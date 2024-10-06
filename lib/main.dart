@@ -1,0 +1,93 @@
+import 'package:flutter/material.dart';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
+import 'config/language_bloc/switch_language_bloc.dart';
+import 'data/hive_keys.dart';
+import 'firebase_options.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'generated/l10n.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  SimpleBlocObserverService();
+
+  await HiveStorage.init();
+
+  if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
+    HiveStorage.set(
+      HiveKeys.passUserOnboarding,
+      false,
+    );
+  }
+  if (HiveStorage.get(HiveKeys.isArabic) == null) {
+    HiveStorage.set(
+      HiveKeys.isArabic,
+      true,
+    );
+  }
+  runApp(BlocProvider<SwitchLanguageCubit>(
+    create: (context) => SwitchLanguageCubit(),
+    child: const MyApp(),
+  ));
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
+        builder: (context, state) {
+      return ScreenUtilInit(
+          designSize: const Size(375, 812),
+          minTextAdapt: true,
+          useInheritedMediaQuery: true,
+          ensureScreenSize: true,
+          splitScreenMode: true,
+          builder: (_, child) {
+            return MaterialApp(
+              locale: HiveStorage.get(HiveKeys.isArabic)
+                  ? const Locale('ar')
+                  : const Locale('en'),
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              debugShowCheckedModeBanner: false,
+              builder: BotToastInit(),
+              home: const MyHomePage(),
+            );
+          });
+    });
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    var lang = S.of(context);
+    return Container(
+      color: Colors.white,
+      alignment: Alignment.center,
+      child: Text(lang.hello),
+    );
+  }
+}

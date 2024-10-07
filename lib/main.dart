@@ -18,6 +18,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   SimpleBlocObserverService();
+  
 
   await HiveStorage.init();
 

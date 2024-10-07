@@ -1,4 +1,5 @@
 {
   "@@locale": "en"
  ,"hello":"hello"
+ ,"signin":"signIn"
 }

@@ -21,12 +21,13 @@ void main() async {
 
   await HiveStorage.init();
 
-  if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
-    HiveStorage.set(
-      HiveKeys.passUserOnboarding,
-      false,
-    );
-  }
+  // if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
+  //   HiveStorage.set(
+  //     HiveKeys.passUserOnboarding,
+  //     false,
+  //   );
+  // }
+
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(
       HiveKeys.isArabic,
@@ -87,7 +88,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
       color: Colors.white,
       alignment: Alignment.center,
-      child: Text(lang.hello),
+      child: Text(lang.signin),
     );
   }
 }
+
+// fonts 
+// colors 
+//  scaffold

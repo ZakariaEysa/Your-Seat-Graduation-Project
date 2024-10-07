@@ -59,6 +59,16 @@ class S {
       args: [],
     );
   }
+
+  /// `signIn`
+  String get signin {
+    return Intl.message(
+      'signIn',
+      name: 'signin',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

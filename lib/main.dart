@@ -77,6 +77,3 @@ class MyApp extends StatelessWidget {
 
 
 
-// fonts 
-// colors 
-//  scaffold

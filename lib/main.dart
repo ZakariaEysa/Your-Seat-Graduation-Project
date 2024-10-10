@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/pages/Home_Screen/home_screen.dart';
+import 'package:yourseatgraduationproject/pages/Home_Screen/items.dart';
+import 'package:yourseatgraduationproject/pages/home_layout.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
@@ -20,7 +23,10 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
-
+  HiveStorage.set(
+    HiveKeys.isArabic,
+    false,
+  );
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(
       HiveKeys.passUserOnboarding,
@@ -66,28 +72,13 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-              home: const MyHomePage(),
+           initialRoute: HomeLayout.routeName,
+              routes: {
+                HomeLayout.routeName: (_)=> HomeLayout(),
+              },
+
             );
           });
     });
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    var lang = S.of(context);
-    return Container(
-      color: Colors.white,
-      alignment: Alignment.center,
-      child: Text(lang.hello),
-    );
   }
 }

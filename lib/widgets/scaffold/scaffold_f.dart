@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/resources/constants.dart';
 
 import '../../resources/color_manager.dart';
 import '../app_bar/appbar.dart';
@@ -16,9 +17,19 @@ class ScaffoldF extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: ColorManager.primaryW,
         bottomNavigationBar: bottomNavigationBar,
-        body: body,
+        body: Container(
+            width: MediaQuery.sizeOf(context).width,
+            height: MediaQuery.sizeOf(context).height,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              image: DecorationImage(
+                image: AssetImage(
+                    "assets/images/${AppConstVariables.appBackGround}"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: body),
         appBar: title != null
             ? PreferredSize(
                 preferredSize: Size.fromHeight(50.h),

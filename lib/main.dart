@@ -6,6 +6,7 @@ import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/pages/Home_Screen/home_screen.dart';
 import 'package:yourseatgraduationproject/pages/Home_Screen/items.dart';
 import 'package:yourseatgraduationproject/pages/home_layout.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_page.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
@@ -33,10 +34,18 @@ void main() async {
       false,
     );
   }
+
+  // if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
+  //   HiveStorage.set(
+  //     HiveKeys.passUserOnboarding,
+  //     false,
+  //   );
+  // }
+
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(
       HiveKeys.isArabic,
-      true,
+      false,
     );
   }
   runApp(BlocProvider<SwitchLanguageCubit>(

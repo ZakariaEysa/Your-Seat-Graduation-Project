@@ -45,7 +45,7 @@ void main() async {
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(
       HiveKeys.isArabic,
-      false,
+      true,
     );
   }
   runApp(BlocProvider<SwitchLanguageCubit>(
@@ -81,13 +81,17 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-           initialRoute: HomeLayout.routeName,
-              routes: {
-                HomeLayout.routeName: (_)=> HomeLayout(),
-              },
+           // initialRoute: HomeLayout.routeName,
+           //    routes: {
+           //      HomeLayout.routeName: (_)=> HomeLayout(),
+           //    },
 
+              home: const HomeView(),
             );
           });
     });
   }
 }
+
+
+

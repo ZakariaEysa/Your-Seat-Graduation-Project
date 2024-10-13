@@ -16,12 +16,13 @@ class BuilderAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      forceMaterialTransparency: true,
-      shadowColor: ColorManager.primaryW,
-      backgroundColor: ColorManager.primaryW,
+      // forceMaterialTransparency: true,
+      // shadowColor: ColorManager.primaryW,
+      backgroundColor: const Color(0xff2D136E),
       title: Text(
         title,
-        style: AppStylesManager.customTextStyleBl.copyWith(fontSize: 16.sp),
+        style: AppStylesManager.customTextStyleBl
+            .copyWith(fontSize: 28.sp, color: ColorManager.primaryW),
       ),
       centerTitle: true,
     );

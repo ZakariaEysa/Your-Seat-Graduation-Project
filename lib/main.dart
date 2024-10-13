@@ -10,6 +10,7 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/v
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
+import 'features/user_flow/about_us/presentation/views/about_us.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -81,17 +82,14 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-           // initialRoute: HomeLayout.routeName,
-           //    routes: {
-           //      HomeLayout.routeName: (_)=> HomeLayout(),
-           //    },
+              // initialRoute: HomeLayout.routeName,
+              //    routes: {
+              //      HomeLayout.routeName: (_)=> HomeLayout(),
+              //    },
 
-              home: const HomeView(),
+              home: AboutUs(),
             );
           });
     });
   }
 }
-
-
-

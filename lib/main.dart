@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
-import 'package:yourseatgraduationproject/pages/Home_Screen/home_screen.dart';
-import 'package:yourseatgraduationproject/pages/Home_Screen/items.dart';
-import 'package:yourseatgraduationproject/pages/home_layout.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_page.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
+import 'features/user_flow/Splash_screen/splash_screen.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -81,12 +79,13 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-           // initialRoute: HomeLayout.routeName,
-           //    routes: {
-           //      HomeLayout.routeName: (_)=> HomeLayout(),
-           //    },
+           initialRoute: SplashScreen.routeName,
+              routes: {
+                HomeLayout.routeName: (_)=> HomeLayout(),
+                SplashScreen.routeName: (_)=> SplashScreen()
+              },
 
-              home: const HomeView(),
+
             );
           });
     });

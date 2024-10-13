@@ -25,6 +25,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   hive_flutter: ^1.1.0
   curved_labeled_navigation_bar: ^2.0.2
+  google_fonts: ^6.2.1
   flutter_facebook_auth:
   font_awesome_flutter:
   google_sign_in:
@@ -48,8 +49,6 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
-    - assets/icons/
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

@@ -8,6 +8,11 @@ import '../../../Settings/settings_screen.dart';
 import '../../../Tickets/tickets_screen.dart';
 import '../../../Watch_list/watch_list_screen.dart';
 
+import 'package:yourseatgraduationproject/pages/Home_Screen/home_screen.dart';
+import '../features/user_flow/settings/presentation/views/settings_screen.dart';
+import 'Tickets/tickets_screen.dart';
+import 'Watch_list/watch_list_screen.dart';
+
 class HomeLayout extends StatefulWidget {
   static const String routeName = "home";
   const HomeLayout({super.key});
@@ -17,7 +22,7 @@ class HomeLayout extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeLayout> {
-
+  // Set the default index to 3 for HomeScreen
   int selectedIndex = 0;
 
   List<Widget> pages = [

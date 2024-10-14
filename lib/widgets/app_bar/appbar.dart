@@ -14,14 +14,12 @@ class BuilderAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return AppBar(
       elevation: 0,
-      forceMaterialTransparency: true,
-      shadowColor: ColorManager.primaryW,
-      backgroundColor: ColorManager.primaryW,
+      backgroundColor: theme.primaryColor,
       title: Text(
         title,
-        style: AppStylesManager.customTextStyleBl.copyWith(fontSize: 16.sp),
       ),
       centerTitle: true,
     );

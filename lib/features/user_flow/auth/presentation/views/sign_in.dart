@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../widgets/button/button_builder.dart';
+import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
@@ -34,21 +38,23 @@ class SignIn extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextFormField(
-                    controller: TextEditingController(),
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.phone),
-                      hintText: 'Phone Number',
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
+                TextFormFieldBuilder(label: '', controller:TextEditingController(), type: null,),
+
+                // Padding(
+                //   padding: const EdgeInsets.all(16.0),
+                //   child: TextFormField(
+                //     controller: TextEditingController(),
+                //     keyboardType: TextInputType.phone,
+                //     decoration: InputDecoration(
+                //       prefixIcon: const Icon(Icons.phone),
+                //       hintText: 'Phone Number',
+                //       border: OutlineInputBorder(
+                //         borderSide: const BorderSide(color: Colors.black),
+                //         borderRadius: BorderRadius.circular(10),
+                //       ),
+                //     ),
+                //   ),
+                // ),
 
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -83,11 +89,7 @@ class SignIn extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width:10,
-                  height: 50,
-                  color: const Color(0xFF2D1468),
-                ),
+                ButtonBuilder(text: 'Sign In', ontap: () {  },width: 220.w,height:55.h ,),
 
                 const SizedBox(
                   height: 20,
@@ -201,7 +203,7 @@ class SignIn extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height:15),
+                const SizedBox(height:5),
 
                 const Padding(
                   padding: EdgeInsets.all(8.0),
@@ -209,11 +211,11 @@ class SignIn extends StatelessWidget {
                     children: [
                       Text('Don’t have any account yet?',
                           style:
-                              TextStyle(color: Colors.white, fontSize: 20)),
+                              TextStyle(color: Colors.white, fontSize:18)),
                       Text('Sign Up',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 23,
+                            fontSize: 18,
                           ))
                     ],
                   ),

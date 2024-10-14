@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../widgets/otp.dart';
+import '../widgets/otp.dart';
 class Confirm extends StatelessWidget {
   static const String routeName = "confirm";
   const Confirm({super.key});

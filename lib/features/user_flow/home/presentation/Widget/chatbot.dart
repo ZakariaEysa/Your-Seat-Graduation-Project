@@ -6,11 +6,12 @@ class DraggableFloatingButton extends StatefulWidget {
   const DraggableFloatingButton({Key? key}) : super(key: key);
 
   @override
-  _DraggableFloatingButtonState createState() => _DraggableFloatingButtonState();
+  _DraggableFloatingButtonState createState() =>
+      _DraggableFloatingButtonState();
 }
 
 class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
-  Offset buttonPosition = Offset(330, 740); // Starting position
+  Offset buttonPosition = Offset(300.w, 680.h); // Starting position
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,8 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
           width: 80.w,
           height: 80.h,
         ),
-        childWhenDragging: Container(), // While dragging, hide the original button
+        childWhenDragging:
+            Container(), // While dragging, hide the original button
         onDraggableCanceled: (velocity, offset) {
           setState(() {
             buttonPosition = offset;

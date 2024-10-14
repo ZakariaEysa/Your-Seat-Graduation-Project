@@ -1,3 +1,6 @@
 class AppConstVariables {
-  static String appBackGround = "Sign-in_22.png";
+  static String aboutUsImg = "aboutUs.png";
+  static String linkedInImg = "linkedin.png";
+  static String facebookImg = "facebook.png";
+  static String emailImg = "email.png";
 }

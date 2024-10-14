@@ -15,29 +15,27 @@ class ScaffoldF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: bottomNavigationBar,
-        body: Container(
-            width: MediaQuery.sizeOf(context).width,
-            height: MediaQuery.sizeOf(context).height,
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              image: DecorationImage(
-                image: AssetImage(
-                    "assets/images/${AppConstVariables.appBackGround}"),
-                fit: BoxFit.cover,
-              ),
+    var theme = Theme.of(context);
+    return Scaffold(
+      bottomNavigationBar: bottomNavigationBar,
+      body: Container(
+          width: 500.w,
+          height: 900.h,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: const Alignment(-0.00, -1.00),
+              end: const Alignment(0, 1),
+              colors: [theme.primaryColor, theme.colorScheme.secondary],
             ),
-            child: body),
-        appBar: title != null
-            ? PreferredSize(
-                preferredSize: Size.fromHeight(50.h),
-                child: BuilderAppBar(
-                  title: title ?? "",
-                ))
-            : null,
-      ),
+          ),
+          child: body),
+      appBar: title != null
+          ? PreferredSize(
+              preferredSize: Size.fromHeight(50.h),
+              child: BuilderAppBar(
+                title: title ?? "",
+              ))
+          : null,
     );
   }
 }

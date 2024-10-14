@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
+import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
 import 'features/user_flow/Splash_screen/splash_screen.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
           splitScreenMode: true,
           builder: (_, child) {
             return MaterialApp(
+              theme: ApplicationTheme.darkTheme,
               locale: HiveStorage.get(HiveKeys.isArabic)
                   ? const Locale('ar')
                   : const Locale('en'),
@@ -79,18 +81,9 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-           initialRoute: SplashScreen.routeName,
-              routes: {
-                HomeLayout.routeName: (_)=> HomeLayout(),
-                SplashScreen.routeName: (_)=> SplashScreen()
-              },
-
-
+              home: const SplashScreen(),
             );
           });
     });
   }
 }
-
-
-

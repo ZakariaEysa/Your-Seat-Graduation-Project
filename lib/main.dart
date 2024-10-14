@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/pages/Home_Screen/home_screen.dart';
 import 'package:yourseatgraduationproject/pages/Home_Screen/items.dart';
 import 'package:yourseatgraduationproject/pages/home_layout.dart';
@@ -10,6 +11,7 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/v
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
+import 'features/user_flow/home/presentation/views/confirm.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -86,7 +88,7 @@ class MyApp extends StatelessWidget {
            //      HomeLayout.routeName: (_)=> HomeLayout(),
            //    },
 
-              home: const HomeView(),
+              home:   SignIn(),
             );
           });
     });

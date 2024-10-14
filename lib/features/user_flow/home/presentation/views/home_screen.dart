@@ -8,18 +8,14 @@ import '../Widget/movie_carousel_widget.dart';
 import '../Widget/search.dart';
 import '../Widget/text_widget.dart';
 
-
 class HomeScreen extends StatelessWidget {
-  static const String routeName = "home";
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Stack(
         children: [
-          
           Container(
             width: 500.w,
             height: 900.h,
@@ -30,7 +26,8 @@ class HomeScreen extends StatelessWidget {
                 colors: [Color(0xFF2E1371), Color(0xFF130B2B)],
               ),
             ),
-            child: SingleChildScrollView( // This makes the content scrollable
+            child: SingleChildScrollView(
+              // This makes the content scrollable
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -53,19 +50,21 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-Search(),
+                  const Search(),
                   SizedBox(height: 30.h),
                   TextWidget(text: "Now playing"),
                   SizedBox(height: 20.h), // Add some space
                   Container(
                     height: 500.sp, // Define a height for the carousel
-                    child: MovieCarouselWidget(), // Movie carousel remains scrollable inside
+                    child:
+                        MovieCarouselWidget(), // Movie carousel remains scrollable inside
                   ),
                   TextWidget(text: "Coming soon"),
                   SizedBox(height: 10.h),
                   Container(
                     height: 400.h, // Height for the coming soon section
-                    child: ComingSoon(), // Horizontal list of coming soon movies
+                    child:
+                        ComingSoon(), // Horizontal list of coming soon movies
                   ),
                   Text(
                     "Promo & Discount",

@@ -8,7 +8,8 @@ class MovieCarouselWidget extends StatefulWidget {
 }
 
 class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
-  final PageController _pageController = PageController(viewportFraction: 0.7, initialPage: 1);
+  final PageController _pageController =
+      PageController(viewportFraction: 0.7, initialPage: 1);
   int _currentPage = 1; // Track the current page
 
   @override
@@ -46,29 +47,31 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                     ),
                   );
                 },
-                child: MovieCard(index: index, currentPage: 1,),
+                child: MovieCard(
+                  index: index,
+                  currentPage: 1,
+                ),
               );
             },
           ),
         ),
-
-
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(3, (index) {
             return AnimatedContainer(
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               margin: EdgeInsets.symmetric(horizontal: 5.sp),
               width: _currentPage == index ? 30 : 10,
               height: 8.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                color: _currentPage == index ? Color(0xffFCC434) : Color(0xff2E2E2E),
+                color: _currentPage == index
+                    ? const Color(0xffFCC434)
+                    : const Color(0xff2E2E2E),
               ),
             );
           }),
         ),
-        SizedBox(height: 40.sp),
       ],
     );
   }

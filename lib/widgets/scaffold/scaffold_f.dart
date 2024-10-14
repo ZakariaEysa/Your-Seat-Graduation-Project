@@ -19,14 +19,13 @@ class ScaffoldF extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: bottomNavigationBar,
       body: Container(
-          padding: const EdgeInsets.only(bottom: 90.0),
-          width: 500.sp,
-          height: 900.sp,
-          decoration: const BoxDecoration(
+          width: 500.w,
+          height: 900.h,
+          decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment(-0.00, -1.00),
-              end: Alignment(0, 1),
-              colors: [Color(0xFF2E1371), Color(0xFF130B2B)],
+              begin: const Alignment(-0.00, -1.00),
+              end: const Alignment(0, 1),
+              colors: [theme.primaryColor, theme.colorScheme.secondary],
             ),
           ),
           child: body),
@@ -35,8 +34,7 @@ class ScaffoldF extends StatelessWidget {
               preferredSize: Size.fromHeight(50.h),
               child: BuilderAppBar(
                 title: title ?? "",
-              )
-      )
+              ))
           : null,
     );
   }

@@ -62,4 +62,33 @@ class AppStylesManager {
       ),
     );
   }
+
+  static ShapeDecoration backGroundDecorations() {
+    return ShapeDecoration(
+      gradient: const LinearGradient(
+        begin: const Alignment(0.00, 1.00),
+        end: const Alignment(0, -1),
+        colors: [const Color(0xFF0E0A1C), const Color(0xFF2F1472)],
+      ),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          width: 1.w,
+          strokeAlign: BorderSide.strokeAlignOutside,
+          color: const Color(0xFF8059E1),
+        ),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(50.sp),
+          topRight: Radius.circular(50.sp),
+        ),
+      ),
+      shadows: [
+        BoxShadow(
+          color: const Color(0x3F000000),
+          blurRadius: 8.sp,
+          offset: const Offset(0, 4),
+          spreadRadius: 15.sp,
+        )
+      ],
+    );
+  }
 }

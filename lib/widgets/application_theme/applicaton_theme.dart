@@ -62,12 +62,17 @@ class ApplicationTheme {
           ),
           centerTitle: true),
       textTheme: TextTheme(
-          titleLarge: GoogleFonts.poppins(
-              fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+        labelLarge: GoogleFonts.aDLaMDisplay(
+            fontSize: 22, fontWeight: FontWeight.w400, color: Colors.white
+        ),
+          titleLarge: GoogleFonts.acme(
+              fontSize: 18, fontWeight: FontWeight.w400, color: Colors.white),
+          titleMedium: GoogleFonts.pottaOne(
+              fontSize: 19, fontWeight: FontWeight.w400, color: Colors.white),
           bodyLarge: GoogleFonts.inter(
               fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
           bodyMedium: GoogleFonts.poppins(
-              fontSize: 15, fontWeight: FontWeight.w500, color: Colors.white),
+              fontSize: 13, fontWeight: FontWeight.w400, color: Colors.white),
           bodySmall: GoogleFonts.poppins(
               fontSize: 15,
               fontWeight: FontWeight.normal,

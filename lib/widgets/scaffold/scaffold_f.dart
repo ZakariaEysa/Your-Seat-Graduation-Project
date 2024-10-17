@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/resources/constants.dart';
 
 import '../../resources/color_manager.dart';
 import '../app_bar/appbar.dart';

@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../resources/app_styles_manager.dart';
-import '../../resources/color_manager.dart';
 
 class BuilderAppBar extends StatelessWidget {
   const BuilderAppBar({
@@ -20,6 +16,7 @@ class BuilderAppBar extends StatelessWidget {
       backgroundColor: theme.primaryColor,
       title: Text(
         title,
+        style: const TextStyle(fontSize:30),
       ),
       centerTitle: true,
     );

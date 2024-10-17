@@ -38,7 +38,7 @@ class ButtonBuilder extends StatelessWidget {
             child: isLoading == null || isLoading == false
                 ? Center(
                     child: Container(
-                      width: width ?? screenWidth * 0.95,
+                      width: width ?? screenWidth * 0.50,
                       height: height ?? screenHeight * 0.07,
                       decoration: ShapeDecoration(
                           color: buttonColor ?? ColorManager.primaryW,
@@ -46,22 +46,29 @@ class ButtonBuilder extends StatelessWidget {
                             side: BorderSide(
                                 width: 1,
                                 color: frameColor ?? ColorManager.primaryW),
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(50),
                           )),
                       child: Center(
                         child: Text(
                           text,
-                          style: style ?? AppStylesManager.customTextStyleBl,
-                        ),
+                          style:const TextStyle( color: Colors.white,
+                            fontSize:23,
+                            shadows: [
+                              Shadow(
+                                color: Color(0xFFEB68E3),
+                                offset: Offset(2.0, 2.0),
+                              ),
+                            ],
+                        )),
                       ),
                     ),
                   )
                 : Center(
                     child: Container(
-                      width: width ?? screenWidth * 0.95,
+                      width: width ?? screenWidth * 0.70,
                       height: height ?? 50,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(40),
                         color: ColorManager.primaryW,
                       ),
                       child: const Center(

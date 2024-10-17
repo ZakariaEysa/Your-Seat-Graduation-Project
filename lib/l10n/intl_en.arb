@@ -9,5 +9,17 @@
 ,    "contactUsContent": "We’d love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to assist you. Please feel free to reach out to us using the form below or via the provided contact details.\nContact Information:\nCustomer Support Email: [support@yourseatapp.com]\nPhone Number: [+123-456-7890]\n\nFeedback and Suggestions:\nWe highly value your input! If you have any suggestions on how we can improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:"
 ,
 "aboutUs": "About Us"
+"pleasefillthecredentials": "please fill the credentials"
+"phonenumber": "Phone Number"
+"password": "Password"
+"forgotpassword": "Forgot Password"
+"continuewithfacebook": "Continue With Facebook"
+"continuewithgoogle": "Continue With Google"
+"continueasguest": "Continue As Guest"
+"don'thaveanyaccountyet?": "Don't have any account yet?"
+"signup": "Sign Up"
+"confirmOtpCode": "Confirm Otp Code"
+"youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber": "you Just Need To Enter The Otp Sent To The Registered Phone Number"
+"continue": "Continue"
 
  }

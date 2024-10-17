@@ -14,7 +14,7 @@ class TextFormFieldBuilder extends StatelessWidget {
     required this.type,
     this.width,
     this.suffix,
-    this.obsecure = false,
+    this.obsecure = true,
     this.color,
     this.validator,
     this.prefix,
@@ -28,12 +28,19 @@ class TextFormFieldBuilder extends StatelessWidget {
     this.textAlignVer,
     this.enabledBorder,
     this.onSubmitted,
+    this.icon,
+    this.imagePath,
+    this.suffixImagePath,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.hinitText,
   });
 
   final String label;
   final Function(String)? onChanged;
   final Function(String)? onSubmitted;
-
+  final String? imagePath;
+  final String? suffixImagePath;
   final bool? obsecure;
   final bool? isIcon;
   final bool? noIcon;
@@ -51,13 +58,16 @@ class TextFormFieldBuilder extends StatelessWidget {
   final TextAlignVertical? textAlignVer;
   final BorderSide? disabledBorder;
   final BorderSide? enabledBorder;
+  final String? icon;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final String? hinitText;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // decoration: decorationWithFade(),
-      width: width ?? MediaQuery.sizeOf(context).width,
-      height: height ?? 50.h,
+      width: width ?? 333.w,
+      height: height ?? 55.h,
       child: TextFormField(
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines! ? 1 : null,
@@ -75,31 +85,48 @@ class TextFormFieldBuilder extends StatelessWidget {
         decoration: InputDecoration(
           disabledBorder: OutlineInputBorder(
             borderSide: disabledBorder ??
-                const BorderSide(width: 1, color: Color(0xDCEBECFF)),
-            borderRadius: BorderRadius.circular(12),
+                const BorderSide(width: 40, color: Color(0xFFA8A6A6)),
+            borderRadius: BorderRadius.circular(30),
           ),
           errorBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: ColorManager.primaryW),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(30),
           ),
           border: OutlineInputBorder(
             borderSide: enabledBorder ??
                 const BorderSide(width: 1, color: Color(0xDCEBECFF)),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(8),
           ),
-
-          suffixIcon: suffix,
-          prefixIcon: noIcon! ? null : prefixWidget,
-          // prefix: prefixWidget,
-          hintMaxLines: 5,
-          hintText: label,
-          hintStyle: color == null
-              ? AppStylesManager.customTextStyleBl
-              : TextStyle(
-                  color: color,
-                ),
+          hintText:label ,
+          hintStyle: const TextStyle(color: Colors.grey,),
+          labelStyle:const TextStyle(color: Colors.white,) ,
+          prefixIcon: imagePath != null
+              ? Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    imagePath!,
+                    width:20,
+                    height: 20,
+                    fit: BoxFit.fill,
+                  ),
+                )
+              : null,
+          suffixIcon: suffixImagePath != null
+              ? Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    suffixImagePath!,
+                    width: 20,
+                    height: 20,
+                    fit: BoxFit.fill,
+                  ),
+                )
+              : null,
         ),
+
+
       ),
+
     );
   }
 }

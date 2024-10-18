@@ -6,11 +6,16 @@ import '../app_bar/appbar.dart';
 
 class ScaffoldF extends StatelessWidget {
   const ScaffoldF(
-      {super.key, this.bottomNavigationBar, required this.body, this.title});
+      {super.key,
+      this.bottomNavigationBar,
+      required this.body,
+      this.title,
+      this.actions});
 
   final Widget? bottomNavigationBar;
   final Widget body;
   final String? title;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +37,7 @@ class ScaffoldF extends StatelessWidget {
           ? PreferredSize(
               preferredSize: Size.fromHeight(50.h),
               child: BuilderAppBar(
+                actions: actions,
                 title: title ?? "",
               ))
           : null,

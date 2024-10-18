@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
-import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/profile.dart';
+import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/language_sheet.dart';
+import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/profile_card.dart';
+import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/theme_sheet.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/settings_item/settings_item.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 
@@ -22,17 +24,21 @@ class SettingsPage extends StatelessWidget {
             title: "Profile",
             imageIcon: "assets/images/account.png",
             onPress: () {
-              navigateTo(context: context, screen: const Profile());
+              navigateTo(context: context, screen: const ProfileCard());
             },
           ),
           SettingsItem(
               title: "Language",
               imageIcon: "assets/images/language.png",
-              onPress: () {}),
+              onPress: () {
+                showLanguageBottomSheet(context);
+              }),
           SettingsItem(
               title: "Theme",
               imageIcon: "assets/images/theme.png",
-              onPress: () {}),
+              onPress: () {
+                showThemeBottomSheet(context);
+              }),
           SettingsItem(
               title: "About Us",
               imageIcon: "assets/images/account.png",
@@ -47,4 +53,13 @@ class SettingsPage extends StatelessWidget {
       )),
     );
   }
+
+  void showThemeBottomSheet(context){
+    showBottomSheet(context: context, builder:(context) =>  const ThemeSheet());
+  }
+  void showLanguageBottomSheet(context){
+    showBottomSheet(context: context, builder:(context) =>  const LanguageSheet());
+  }
 }
+
+

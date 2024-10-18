@@ -28,7 +28,7 @@ class SettingsItem extends StatelessWidget {
             width: 25,
             height: 25,
           ),
-          Text(title),
+          Text(title,style: theme.textTheme.titleMedium,),
           IconButton(
             onPressed: onPress,
             icon: const Icon(Icons.arrow_forward_ios_rounded),

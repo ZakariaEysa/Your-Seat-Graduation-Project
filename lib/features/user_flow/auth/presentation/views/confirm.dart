@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/app_bar/appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
@@ -15,17 +17,17 @@ class Confirm extends StatelessWidget {
           const BuilderAppBar(
             title: 'Confirm OTP code',
           ),
-          const Text(
+          Text(
             'You just need to enter the OTP\nsent to the registered phone \n'
             '   number ',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.white, fontSize:20.sp),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
-            height: 40,
+        SizedBox(
+            height:40.h,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding:EdgeInsets.only(left:20.w, right: 20.w),
             child: Row(
               children: [
                 ConfirmPart(title: ''),
@@ -37,16 +39,16 @@ class Confirm extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(
-            height: 30,
+           SizedBox(
+            height: 30.h,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 320),
+           Padding(
+            padding: EdgeInsets.only(left: 320.h),
             child: Text('00:59',
-                style: TextStyle(color: Colors.white, fontSize: 20)),
+                style: TextStyle(color: Colors.white, fontSize:20.sp)),
           ),
-          const SizedBox(
-            height: 5,
+          SizedBox(
+            height: 5.h,
           ),
           ButtonBuilder(
             text: 'Continue',

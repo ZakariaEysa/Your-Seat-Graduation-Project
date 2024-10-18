@@ -10,22 +10,22 @@ class ConfirmPart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: Row(
-      children: [
-        TextFormFieldBuilder(
-          type: TextInputType.number,
-          width: 50,
-          height: 70,
-          color: Colors.white,
-          controller: TextEditingController(),
-          label: title,
-          textAlign: TextAlign.center,
-          obsecure: false,
+          children: [
+            TextFormFieldBuilder(
+              type: TextInputType.number,
+              width: 50,
+              height: 70,
+              color: Colors.white,
+              controller: TextEditingController(),
+              label: title,
+              textAlign: TextAlign.center,
+              obsecure: false,
 
-        ),
+            ),
 
 
 
-      ],
-    ));
+          ],
+        ));
   }
 }

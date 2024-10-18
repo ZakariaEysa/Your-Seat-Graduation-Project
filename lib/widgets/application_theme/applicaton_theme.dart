@@ -54,8 +54,9 @@ class ApplicationTheme {
           elevation: 0.0,
           backgroundColor: Colors.transparent,
           titleTextStyle: GoogleFonts.aDLaMDisplay(
+            fontStyle: FontStyle.normal,
             color: Colors.white,
-            fontSize: 25.sp,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w400,
             height: 0.03.h,
             letterSpacing: -0.41.sp,

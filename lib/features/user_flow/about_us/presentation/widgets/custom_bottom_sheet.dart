@@ -64,23 +64,27 @@ class CustomBottomSheet extends StatelessWidget {
                 Expanded(
                   child: SingleChildScrollView(
                     controller: innerScrollController,
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 10),
-                        Text(
-                          content,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                        SizedBox(height: 20.h),
-                        if (bottomWidget != null)
-                          Container(
-                            alignment: Alignment.center,
-                            margin: const EdgeInsets.only(top: 20.0),
-                            child: bottomWidget,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 26.sp),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 10),
+                          Text(
+                            content,
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 16),
                           ),
-                        SizedBox(height: 120.h),
-                      ],
+                          SizedBox(height: 20.h),
+                          if (bottomWidget != null)
+                            Container(
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.only(top: 20.0),
+                              child: bottomWidget,
+                            ),
+                          SizedBox(height: 120.h),
+                        ],
+                      ),
                     ),
                   ),
                 ),

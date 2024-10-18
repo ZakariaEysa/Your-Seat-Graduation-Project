@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/SignUp.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
-import '../auth/presentation/views/confirm.dart';
 import '../home/presentation/views/home_layout.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -11,7 +13,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 3), () {
-      navigateAndReplace(context: context, screen: const Confirm ());
+      navigateAndReplace(context: context, screen:  SignUp());
     });
     var mediaQuery = MediaQuery.of(context).size;
     return Scaffold(

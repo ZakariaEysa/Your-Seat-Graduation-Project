@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
@@ -81,9 +82,10 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-              home: const SplashScreen(),
+              home: const  SplashScreen(),
             );
           });
     });
   }
 }
+

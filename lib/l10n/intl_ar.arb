@@ -17,12 +17,22 @@
 "continuewithgoogle":   "تواصل مع جوجل"
 "continueasguest":   "متابعة كضيف"
 "don'thaveanyaccountyet?":  "ليس لديك أي حساب حتى الآن؟"
-"signup":  "اشتراك"
 "confirmOtpCode": "otp تأكيد رمز "
 "youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber": "تحتاج فقط إلى إدخال otp
  المرسل إلى رقم الهاتف المسجل
  "
 "continue": "استمر"s
+
+
+
+"Username":"اسم المستخدم",
+"Confirm Password":"تاكيد كلمه السر",
+"Birth Date":"تاريخ الميلاد",
+"Month":"شهر",
+"Day":"يوم",
+"Year":"سنه",
+"I agree with privacy policy" : "أوافق على سياسة الخصوصية",
+"Sign Up":"إنشاء حساب",
 
 
 

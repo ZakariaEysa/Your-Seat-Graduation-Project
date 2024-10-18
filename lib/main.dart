@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/settings_screen.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
@@ -81,7 +82,7 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-              home: const SplashScreen(),
+              home: const SettingsPage(),
             );
           });
     });

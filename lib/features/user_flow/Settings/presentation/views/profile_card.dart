@@ -12,6 +12,7 @@ class ProfileCard extends StatelessWidget {
 
     return ScaffoldF(
       title: "",
+
       actions:  [
         InkWell(
           onTap: (){},

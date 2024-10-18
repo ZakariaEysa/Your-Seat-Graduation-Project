@@ -54,12 +54,13 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  void showThemeBottomSheet(context){
-    showBottomSheet(context: context, builder:(context) =>  const ThemeSheet());
+  void showThemeBottomSheet(BuildContext context){
+    showModalBottomSheet(context: context, builder:(context) =>  const ThemeSheet());
   }
   void showLanguageBottomSheet(context){
-    showBottomSheet(context: context, builder:(context) =>  const LanguageSheet());
+    showModalBottomSheet(context: context, builder:(context) =>   const LanguageSheet());
   }
 }
+
 
 

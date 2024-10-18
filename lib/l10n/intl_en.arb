@@ -17,9 +17,15 @@
 "continuewithgoogle": "Continue With Google"
 "continueasguest": "Continue As Guest"
 "don'thaveanyaccountyet?": "Don't have any account yet?"
-"signup": "Sign Up"
 "confirmOtpCode": "Confirm Otp Code"
 "youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber": "you Just Need To Enter The Otp Sent To The Registered Phone Number"
 "continue": "Continue"
-
+"username":"Username",
+"confirm password":"Confirm Password",
+"birth date":"Birth Date",
+"month":"Month",
+"day":"Day",
+"year":"Year",
+"i agree with privacy policy" : "I agree with privacy policy",
+"sign Up":"Sign Up",
  }

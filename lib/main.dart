@@ -82,9 +82,10 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-              home: const SplashScreen(),
+              home: const  SplashScreen(),
             );
           });
     });
   }
 }
+

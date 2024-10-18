@@ -1,143 +1,228 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/sign_in_part.dart';
-import '../../../../../widgets/app_bar/appbar.dart';
+
 import '../../../../../widgets/button/button_builder.dart';
-import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return ScaffoldF(
+    return Scaffold(
+      backgroundColor: const Color(0x281365FF),
       body: SingleChildScrollView(
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const BuilderAppBar(
-                title: 'Sign in',
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Text(
-                  'please fill the credentials',
-                  style: TextStyle(fontSize: 12),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextFormFieldBuilder(
-                  controller: TextEditingController(),
-                  type: TextInputType.phone,
-                  label: 'Phone Number',
-                  obsecure:false,
-                  hinitText: 'Phone Number',
-                  imagePath: 'assets/images/telephone 1 (1).png',
-
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextFormFieldBuilder(
-                  controller: TextEditingController(),
-                  type: TextInputType.text,
-                  label: 'Password',
-                  obsecure: true
-                  ,
-                  imagePath: 'assets/images/Vector (2).png',
-                  suffixImagePath: 'assets/images/hide 1.png',
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 50,left:20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Sign In',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text('please fill the credentials.',
+                          style: TextStyle(color: Colors.white, fontSize: 15)),
+                    ],
+                  ),
                 ),
 
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormFieldBuilder(label: '', controller:TextEditingController(), type: null,),
+
+                // Padding(
+                //   padding: const EdgeInsets.all(16.0),
+                //   child: TextFormField(
+                //     controller: TextEditingController(),
+                //     keyboardType: TextInputType.phone,
+                //     decoration: InputDecoration(
+                //       prefixIcon: const Icon(Icons.phone),
+                //       hintText: 'Phone Number',
+                //       border: OutlineInputBorder(
+                //         borderSide: const BorderSide(color: Colors.black),
+                //         borderRadius: BorderRadius.circular(10),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    controller: TextEditingController(),
+                    obscureText: true,
+                    keyboardType: TextInputType.visiblePassword,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.key),
+                      hintText: 'Password',
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.visibility_off),
+                        onPressed: () {
+
+                        },
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
                   'Forgot password?',
-                  style: TextStyle(color: Color(0xFFC2B2B2)),
+                  style: TextStyle(color: Color(0xFfC2B2B2)),
                   textAlign: TextAlign.right,
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ButtonBuilder(
-                text: 'Sign in',
-                ontap: () {},
-                width: 220.w,
-                height: 55.h,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        color: Colors.white,
-                        thickness: 1,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Text(
-                        'or',
-                        style: TextStyle(fontSize: 17, color: Colors.white),
-                      ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        color: Colors.white,
-                        thickness: 1,
-                      ),
-                    ),
-                  ],
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SignInPart(
-                  title: 'Continue With Facebook ',
-                  icon: Icons.facebook,
+                ButtonBuilder(text: 'Sign In', ontap: () {  },width: 220.w,height:55.h ,),
+
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SignInPart(
-                  title: 'Continue With Google ',
-                  icon: Icons.g_mobiledata,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SignInPart(
-                  title: 'Continue as Guest ',
-                  icon: Icons.account_box_outlined,
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    Text('Don’t have any account yet?',
-                        style:
-                            TextStyle(color: Color(0xFFF3E0E0), fontSize: 18)),
-                    Text('Sign Up',
-                        style: TextStyle(
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
                           color: Colors.white,
-                          fontSize: 20,
-                        ))
-                  ],
+                          thickness: 1,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                          'or',
+                          style: TextStyle(fontSize: 17, color: Colors.white),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )
-            ]),
-      ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 150,
+                    height: 60,
+                    decoration: const BoxDecoration(color: Color(0x0A054DFF)),
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.facebook,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: 20),
+                          Text(
+                            'Continue With Facebook',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 150,
+                    height: 60,
+                    decoration: const BoxDecoration(color: Color(0x0A054DFF)),
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.g_mobiledata_rounded,
+                            color: Colors.white,
+                            size: 35,
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Continue With Google',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                // const SizedBox(
+                //   height: 20,
+                // ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 150,
+                    height: 60,
+                    decoration: const BoxDecoration(color: Color(0x0A054DFF)),
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.account_box_outlined,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: 20),
+                          Text(
+                            'Continue as Guest',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height:5),
+
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text('Don’t have any account yet?',
+                          style:
+                              TextStyle(color: Colors.white, fontSize:18)),
+                      Text('Sign Up',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ))
+                    ],
+                  ),
+                )
+              ]),
+        ),
+
     );
   }
 }

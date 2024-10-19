@@ -7,6 +7,7 @@ import 'package:yourseatgraduationproject/features/user_flow/Settings/presentati
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/confirm.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
@@ -84,7 +85,7 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-              home: SignIn(),
+              home: const HomeLayout(),
             );
           });
     });

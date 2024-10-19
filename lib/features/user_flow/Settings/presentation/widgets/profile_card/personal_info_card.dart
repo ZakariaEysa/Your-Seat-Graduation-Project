@@ -20,11 +20,11 @@ class PersonalInfoCard extends StatelessWidget {
         children: [
           ImageIcon(AssetImage(icon,),size: 25,color: Colors.white,),
           const SizedBox(width: 18,),
-          Text(title,style: theme.textTheme.titleLarge,),
+          Text(title,style: theme.textTheme.titleSmall,),
           const Spacer(),
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: Text(info,style: theme.textTheme.bodyMedium,overflow: TextOverflow.ellipsis,maxLines: 1,),
+            child: Text(info,style: theme.textTheme.bodySmall!.copyWith(fontSize: 12),overflow: TextOverflow.ellipsis,maxLines: 1,),
           )
         ],
       ),

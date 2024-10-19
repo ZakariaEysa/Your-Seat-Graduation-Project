@@ -52,7 +52,7 @@ class ApplicationTheme {
       appBarTheme: AppBarTheme(
           iconTheme: const IconThemeData(color: Colors.white),
           elevation: 0.0,
-          backgroundColor: Colors.transparent,
+          backgroundColor:  const Color(0xFF2E1371),
           titleTextStyle: GoogleFonts.aDLaMDisplay(
             fontStyle: FontStyle.normal,
             color: Colors.white,
@@ -63,20 +63,22 @@ class ApplicationTheme {
           ),
           centerTitle: true),
       textTheme: TextTheme(
-        labelLarge: GoogleFonts.aDLaMDisplay(
-            fontSize: 22, fontWeight: FontWeight.w400, color: Colors.white
+        labelLarge: GoogleFonts.acme(
+            fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white
         ),
-          titleLarge: GoogleFonts.acme(
+          titleLarge: GoogleFonts.aDLaMDisplay(
+              fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
+          titleMedium: GoogleFonts.aDLaMDisplay(
+              fontSize: 22, fontWeight: FontWeight.w400, color: Colors.white),
+          titleSmall: GoogleFonts.aDLaMDisplay(
               fontSize: 18, fontWeight: FontWeight.w400, color: Colors.white),
-          titleMedium: GoogleFonts.pottaOne(
-              fontSize: 19, fontWeight: FontWeight.w400, color: Colors.white),
-          bodyLarge: GoogleFonts.inter(
-              fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+          bodyLarge: GoogleFonts.poppins(
+              fontSize: 28, fontWeight: FontWeight.w400, color: Colors.white),
           bodyMedium: GoogleFonts.poppins(
-              fontSize: 13, fontWeight: FontWeight.w400, color: Colors.white),
+              fontSize: 22, fontWeight: FontWeight.w400, color: Colors.white),
           bodySmall: GoogleFonts.poppins(
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
+              fontSize: 19,
+              fontWeight: FontWeight.w400,
               color: Colors.white)),
       bottomSheetTheme:
           const BottomSheetThemeData(backgroundColor: Color(0xFF2C126A)));

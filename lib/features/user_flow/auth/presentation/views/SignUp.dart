@@ -36,13 +36,14 @@ class _SignUpState extends State<SignUp> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             BuilderAppBar(
+
               actions: [
               IconButton(onPressed: (){
-                navigateTo(context: context, screen: SignIn());
-              }, icon: Icon(Icons.arrow_back_outlined,color: Colors.white,))
+                navigateTo(context: context, screen: const SignIn());
+              }, icon: const Icon(Icons.arrow_back_outlined,color: Colors.white,))
               ],
               title: 'Sign Up',
             ),

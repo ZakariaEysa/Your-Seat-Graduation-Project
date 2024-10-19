@@ -28,7 +28,7 @@ class LanguageSheet extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("English",style: theme.textTheme.labelLarge,),
+                    Text("English",style: theme.textTheme.bodyMedium,),
                     const Icon(Icons.check_rounded,color: Colors.white,size: 25,)
                   ],
                 ),
@@ -40,7 +40,7 @@ class LanguageSheet extends StatelessWidget {
                 onTap: (){
                   navigatePop(context: context);
                 },
-                child: Text("العربية",style: theme.textTheme.labelLarge))
+                child: Text("العربية",style: theme.textTheme.bodyMedium))
           ],
         ),
       ),

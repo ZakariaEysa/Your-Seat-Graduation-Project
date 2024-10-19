@@ -23,7 +23,7 @@ class SignIn extends StatelessWidget {
                 padding: EdgeInsets.only(left: 20),
                 child: Text(
                   'please fill the credentials',
-                  style: TextStyle(fontSize: 12),
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
               const SizedBox(

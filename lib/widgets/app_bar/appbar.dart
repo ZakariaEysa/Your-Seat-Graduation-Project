@@ -16,8 +16,6 @@ class BuilderAppBar extends StatelessWidget {
     var theme = Theme.of(context);
     return AppBar(
       actions: actions,
-      elevation: 0,
-      backgroundColor: Colors.transparent,
       title: Text(
         title,
         style: const TextStyle(fontSize:30),

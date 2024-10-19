@@ -39,7 +39,7 @@ class ProfileCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
                     const Text(
                       textAlign: TextAlign.center,
                       'Mohamed Ahmed',
@@ -71,7 +71,7 @@ class ProfileCard extends StatelessWidget {
                           "Personal Info",
                           textAlign: TextAlign.start,
                           style:
-                              theme.textTheme.titleLarge!.copyWith(fontSize: 22),
+                              theme.textTheme.labelLarge!.copyWith(fontSize: 24),
                         ),
                       ),
                     ),

@@ -28,7 +28,7 @@ class ThemeSheet extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Dark",style: theme.textTheme.bodyMedium,),
+                    Text("Dark",style: theme.textTheme.labelLarge,),
                     const Icon(Icons.check_rounded,color: Colors.white,size: 25,)
                   ],
                 ),
@@ -40,7 +40,7 @@ class ThemeSheet extends StatelessWidget {
                 onTap: () {
                   navigatePop(context: context);
                 },
-                child: Text("Light",style: theme.textTheme.bodyMedium))
+                child: Text("Light",style: theme.textTheme.labelLarge))
           ],
         ),
       ),

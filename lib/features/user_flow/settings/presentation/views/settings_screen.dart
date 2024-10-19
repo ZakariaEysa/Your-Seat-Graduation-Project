@@ -15,7 +15,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldF(
-       title: "Settings",
+      title: "Settings",
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

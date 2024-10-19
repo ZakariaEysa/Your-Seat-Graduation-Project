@@ -82,3 +82,4 @@ class ApplicationTheme {
           const BottomSheetThemeData(backgroundColor: Color(0xFF2C126A)));
 }
 
+

@@ -65,6 +65,7 @@ class TextFormFieldBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return SizedBox(
       width: width ?? 333.w,
       height: height ?? 55.h,

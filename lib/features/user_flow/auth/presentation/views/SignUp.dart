@@ -40,9 +40,9 @@ class _SignUpState extends State<SignUp> {
           children: [
             BuilderAppBar(
               actions: [
-              IconButton(onPressed: (){
-                navigateTo(context: context, screen: SignIn());
-              }, icon: Icon(Icons.arrow_back_outlined,color: Colors.white,))
+                IconButton(onPressed: (){
+                  navigateTo(context: context, screen: SignIn());
+                }, icon: Icon(Icons.arrow_back_outlined,color: Colors.white,))
               ],
               title: 'Sign Up',
             ),
@@ -81,7 +81,7 @@ class _SignUpState extends State<SignUp> {
                 controller: TextEditingController(),
                 type: TextInputType.text,
                 label: 'Password',
-             //   obsecure: true,
+                //   obsecure: true,
                 imagePath: 'assets/images/Password.png',
                 suffixImagePath: 'assets/images/show.png',
               ),

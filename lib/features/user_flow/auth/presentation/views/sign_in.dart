@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/sign_in_part.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/app_bar/appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
+import '../../../home/presentation/views/home_screen.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ScaffoldF(
       body: SingleChildScrollView(
         child: Column(
@@ -18,19 +21,21 @@ class SignIn extends StatelessWidget {
             children: [
               const BuilderAppBar(
                 title: 'Sign in',
+
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
+               SizedBox(height: 10.h),
+               Padding(
+                padding: EdgeInsets.only(left:30.h),
                 child: Text(
                   'please fill the credentials',
-                  style: TextStyle(fontSize: 12),
+                  style:theme.textTheme.bodySmall!.copyWith(fontSize:16),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+             SizedBox(
+                height: 15.h,
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding:EdgeInsets.all(16.0.sp),
                 child: TextFormFieldBuilder(
                   controller: TextEditingController(),
                   type: TextInputType.phone,
@@ -42,7 +47,7 @@ class SignIn extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0.sp),
                 child: TextFormFieldBuilder(
                   controller: TextEditingController(),
                   type: TextInputType.text,
@@ -54,44 +59,46 @@ class SignIn extends StatelessWidget {
                 ),
 
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+             Padding(
+                padding: EdgeInsets.all(8.0.sp),
                 child: Text(
                   'Forgot password?',
-                  style: TextStyle(color: Color(0xFFC2B2B2)),
+                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
                   textAlign: TextAlign.right,
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 15.h,
               ),
               ButtonBuilder(
                 text: 'Sign in',
-                ontap: () {},
+                ontap: () {
+                  navigateTo(context: context, screen: const HomeScreen());
+                  },
                 width: 220.w,
                 height: 55.h,
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 20.h,
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+            Padding(
+                padding: EdgeInsets.all(8.0.sp),
                 child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: Divider(
                         color: Colors.white,
                         thickness: 1,
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      padding: EdgeInsets.symmetric(horizontal:8.h),
                       child: Text(
                         'or',
-                        style: TextStyle(fontSize: 17, color: Colors.white),
+                        style: theme.textTheme.titleMedium,
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Divider(
                         color: Colors.white,
                         thickness: 1,
@@ -101,38 +108,35 @@ class SignIn extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0.sp),
                 child: SignInPart(
                   title: 'Continue With Facebook ',
-                  icon: Icons.facebook,
+                  icon: Icons.facebook ,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding:EdgeInsets.all(16.0.sp),
                 child: SignInPart(
                   title: 'Continue With Google ',
-                  icon: Icons.g_mobiledata,
+                 icon:Icons.g_mobiledata_rounded ,
+
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding:  EdgeInsets.all(16.0.sp),
                 child: SignInPart(
                   title: 'Continue as Guest ',
                   icon: Icons.account_box_outlined,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
+             Padding(
+                padding: EdgeInsets.all(4.0.sp),
                 child: Row(
                   children: [
                     Text('Don’t have any account yet?',
-                        style:
-                        TextStyle(color: Color(0xFFF3E0E0), fontSize: 18)),
+                        style: theme.textTheme.bodySmall!.copyWith(fontSize: 17)),
                     Text('Sign Up',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ))
+                        style: theme.textTheme.labelLarge!.copyWith(fontSize: 17))
                   ],
                 ),
               )

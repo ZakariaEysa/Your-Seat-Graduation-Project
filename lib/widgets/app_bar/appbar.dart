@@ -15,14 +15,15 @@ class BuilderAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return AppBar(
-      actions: actions,
+
       elevation: 0,
       backgroundColor: Colors.transparent,
       title: Text(
         title,
-        style: const TextStyle(fontSize:30),
+        style:theme.textTheme.labelLarge!.copyWith(fontSize:30),
       ),
       centerTitle: true,
+      leading: actions != null ? actions![0] : null ,
     );
   }
 }

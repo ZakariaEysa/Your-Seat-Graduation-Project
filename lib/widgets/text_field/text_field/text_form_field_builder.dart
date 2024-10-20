@@ -97,36 +97,38 @@ class TextFormFieldBuilder extends StatelessWidget {
                 const BorderSide(width: 1, color: Color(0xDCEBECFF)),
             borderRadius: BorderRadius.circular(8),
           ),
-          hintText:label ,
-          hintStyle: const TextStyle(color: Colors.white,),
-          labelStyle:const TextStyle(color: Colors.white,) ,
+          hintText: label,
+          hintStyle: const TextStyle(
+            color: Color(0xFFA8A6A6),
+            fontSize: 13,
+          ),
+          labelStyle: const TextStyle(
+            color: Color(0xFFA8A6A6),
+          ),
           prefixIcon: imagePath != null
               ? Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Image.asset(
-              imagePath!,
-              width:20,
-              height: 20,
-              fit: BoxFit.fill,
-            ),
-          )
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    imagePath!,
+                    width:10,
+                    height: 10,
+                    fit: BoxFit.fill,
+                  ),
+                )
               : null,
           suffixIcon: suffixImagePath != null
               ? Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Image.asset(
-              suffixImagePath!,
-              width: 20,
-              height: 20,
-              fit: BoxFit.fill,
-            ),
-          )
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    suffixImagePath!,
+                    width: 10,
+                    height: 10,
+                    fit: BoxFit.fill,
+                  ),
+                )
               : null,
         ),
-
-
       ),
-
     );
   }
 }

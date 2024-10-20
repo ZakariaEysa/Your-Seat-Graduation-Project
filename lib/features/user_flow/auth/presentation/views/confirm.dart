@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/SignUp.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/app_bar/appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
+import '../../../home/presentation/views/home_screen.dart';
 import '../widgets/confirm_part.dart';
 
 class Confirm extends StatelessWidget {
@@ -12,19 +14,27 @@ class Confirm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ScaffoldF(
         body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          const BuilderAppBar(
+           BuilderAppBar(
+             actions: [
+               IconButton(onPressed: (){
+                 navigateTo(context: context, screen: const SignUp());
+               }, icon: const Icon(Icons.arrow_back_outlined,color: Colors.white,))
+             ],
             title: 'Confirm OTP code',
+
           ),
+         SizedBox(height: 40.h,),
           Text(
             'You just need to enter the OTP\nsent to the registered phone \n'
             '   number ',
-            style: TextStyle(color: Colors.white, fontSize:20.sp),
+            style:  theme.textTheme.bodySmall!.copyWith(fontSize:20),
             textAlign: TextAlign.center,
           ),
         SizedBox(
-            height:40.h,
+            height:50.h,
           ),
           Padding(
             padding:EdgeInsets.only(left:20.w, right: 20.w),
@@ -45,14 +55,17 @@ class Confirm extends StatelessWidget {
            Padding(
             padding: EdgeInsets.only(left: 320.h),
             child: Text('00:59',
-                style: TextStyle(color: Colors.white, fontSize:20.sp)),
+                style:  theme.textTheme.bodySmall!.copyWith(fontSize:20)),
           ),
           SizedBox(
             height: 5.h,
           ),
           ButtonBuilder(
             text: 'Continue',
-            ontap: () {},
+            ontap: () {
+              // Navigate to HomeScreen after successful OTP verification
+              navigateTo(context: context, screen: const HomeScreen());
+            },
           ),
         ]));
   }

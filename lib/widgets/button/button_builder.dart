@@ -30,6 +30,7 @@ class ButtonBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return isActivated
@@ -51,17 +52,19 @@ class ButtonBuilder extends StatelessWidget {
                       child: Center(
                         child: Text(
                           text,
-                          style:const TextStyle( color: Colors.white,
-                            fontSize:23,
+                          style:theme.textTheme.labelLarge!.copyWith(
                             shadows: [
-                              Shadow(
-                                color: Color(0xFFEB68E3),
-                                offset: Offset(2.0, 2.0),
+                              BoxShadow(
+                                color: Colors.purple.withOpacity(0.2), // Adjust the color and opacity
+                                offset: Offset(0, 3), // Adjust the offset
+                                blurRadius: 5, // Adjust the blur radius
                               ),
                             ],
-                        )),
+                          ),
+
+                      ))
                       ),
-                    ),
+
                   )
                 : Center(
                     child: Container(

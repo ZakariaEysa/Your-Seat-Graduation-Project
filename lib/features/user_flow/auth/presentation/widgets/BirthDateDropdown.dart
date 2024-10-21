@@ -17,16 +17,18 @@ class BirthDateDropdown<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
-      height: 41,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      width: 120,
+      height: 51,
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xFF9C24D9), width: 2),
         borderRadius: BorderRadius.circular(5),
       ),
       child: DropdownButton<T>(
+
         value: selectedValue,
         hint: Text(hintText, style: const TextStyle(color: Colors.white)),
-        dropdownColor: Color( 0xFF2E1371),
+        dropdownColor: const Color( 0xFF2E1371),
         icon: Image.asset(
           'assets/images/arrow_down.png',
           width: 16,
@@ -35,7 +37,7 @@ class BirthDateDropdown<T> extends StatelessWidget {
         items: itemsList.map((T item) {
           return DropdownMenuItem<T>(
             value: item,
-            child: Text(item.toString(), style: const TextStyle(color: Colors.white)),
+            child: Text(item.toString(), style: const TextStyle(color: Colors.white,fontSize: 18)),
           );
         }).toList(),
         onChanged: onChanged,

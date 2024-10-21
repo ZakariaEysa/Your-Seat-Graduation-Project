@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/SignUp.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';

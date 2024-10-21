@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/sign_in_part.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/app_bar/appbar.dart';
@@ -27,7 +28,7 @@ class SignIn extends StatelessWidget {
                Padding(
                 padding: EdgeInsets.only(left:30.h),
                 child: Text(
-                  'please fill the credentials',
+                  'Please fill the credentials',
                   style:theme.textTheme.bodySmall!.copyWith(fontSize:16),
                 ),
               ),
@@ -129,14 +130,21 @@ class SignIn extends StatelessWidget {
                   icon: Icons.account_box_outlined,
                 ),
               ),
+             const SizedBox(height: 15,),
              Padding(
                 padding: EdgeInsets.all(4.0.sp),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Don’t have any account yet?',
                         style: theme.textTheme.bodySmall!.copyWith(fontSize: 17)),
-                    Text('Sign Up',
-                        style: theme.textTheme.labelLarge!.copyWith(fontSize: 17))
+                    InkWell(
+                      onTap: (){
+                        navigateTo(context: context, screen: const SignUp());
+                      },
+                      child: Text('Sign Up',
+                          style: theme.textTheme.labelLarge!.copyWith(fontSize: 17)),
+                    )
                   ],
                 ),
               )

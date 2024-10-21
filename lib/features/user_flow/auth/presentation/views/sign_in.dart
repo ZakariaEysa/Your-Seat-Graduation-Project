@@ -22,7 +22,6 @@ class SignIn extends StatelessWidget {
             children: [
               const BuilderAppBar(
                 title: 'Sign in',
-
               ),
                SizedBox(height: 10.h),
                Padding(

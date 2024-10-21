@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-              home: SignUp(),
+              home: HomeLayout(),
             );
           });
     });

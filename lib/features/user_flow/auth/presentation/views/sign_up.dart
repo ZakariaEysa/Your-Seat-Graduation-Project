@@ -312,6 +312,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
                SizedBox(
+
                 height: 35.h,
               ),
               FadeInUp(

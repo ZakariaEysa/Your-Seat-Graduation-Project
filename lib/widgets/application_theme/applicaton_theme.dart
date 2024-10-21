@@ -52,7 +52,7 @@ class ApplicationTheme {
       appBarTheme: AppBarTheme(
           iconTheme: const IconThemeData(color: Colors.white),
           elevation: 0.0,
-          backgroundColor: Colors.transparent,
+          backgroundColor:const Color(0xFF2E1371),
           titleTextStyle: GoogleFonts.aDLaMDisplay(
             fontStyle: FontStyle.normal,
             color: Colors.white,

@@ -73,7 +73,7 @@ class TextFormFieldBuilder extends StatelessWidget {
       width: width ?? 333.w,
       height: height ?? 55.h,
       child: TextFormField(
-
+        
         onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines! ? 1 : null,

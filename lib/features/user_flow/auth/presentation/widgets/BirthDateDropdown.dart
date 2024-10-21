@@ -16,6 +16,7 @@ class BirthDateDropdown<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme =  Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       width: 120,
@@ -27,7 +28,7 @@ class BirthDateDropdown<T> extends StatelessWidget {
       child: DropdownButton<T>(
 
         value: selectedValue,
-        hint: Text(hintText, style: const TextStyle(color: Colors.white)),
+        hint: Text(hintText, style:theme.textTheme.bodyLarge!.copyWith(fontSize: 20)),
         dropdownColor: const Color( 0xFF2E1371),
         icon: Image.asset(
           'assets/images/arrow_down.png',
@@ -37,7 +38,7 @@ class BirthDateDropdown<T> extends StatelessWidget {
         items: itemsList.map((T item) {
           return DropdownMenuItem<T>(
             value: item,
-            child: Text(item.toString(), style: const TextStyle(color: Colors.white,fontSize: 18)),
+            child: Text(item.toString(), style: theme.textTheme.bodyLarge),
           );
         }).toList(),
         onChanged: onChanged,

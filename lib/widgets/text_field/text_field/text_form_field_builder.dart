@@ -108,25 +108,25 @@ class TextFormFieldBuilder extends StatelessWidget {
           ),
           prefixIcon: imagePath != null
               ? Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Image.asset(
-                    imagePath!,
-                    width:10,
-                    height: 10,
-                    fit: BoxFit.fill,
-                  ),
-                )
+            padding: const EdgeInsets.all(12.0),
+            child: Image.asset(
+              imagePath!,
+              width:10,
+              height: 10,
+              fit: BoxFit.fill,
+            ),
+          )
               : null,
           suffixIcon: suffixImagePath != null
               ? Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Image.asset(
-                    suffixImagePath!,
-                    width: 10,
-                    height: 10,
-                    fit: BoxFit.fill,
-                  ),
-                )
+            padding: const EdgeInsets.all(12.0),
+            child: Image.asset(
+              suffixImagePath!,
+              width: 10,
+              height: 10,
+              fit: BoxFit.fill,
+            ),
+          )
               : null,
         ),
       ),

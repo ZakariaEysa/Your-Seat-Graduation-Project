@@ -23,15 +23,31 @@ class _SignUpState extends State<SignUp> {
   int? selectedYear;
 
   final List<String> months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ];
 
   final List<int> days = List<int>.generate(31, (index) => index + 1);
-  final List<int> years = List<int>.generate(80, (index) => DateTime.now().year - index);
+  final List<int> years =
+      List<int>.generate(80, (index) => DateTime.now().year - index);
 
-  @override
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ScaffoldF(
       body: SingleChildScrollView(
         child: Column(
@@ -40,24 +56,31 @@ class _SignUpState extends State<SignUp> {
           children: [
             BuilderAppBar(
               actions: [
-                IconButton(onPressed: (){
-                  navigateTo(context: context, screen: SignIn());
-                }, icon: Icon(Icons.arrow_back_outlined,color: Colors.white,))
+                IconButton(
+                    onPressed: () {
+                      navigateTo(context: context, screen: SignIn());
+                    },
+                    icon: Icon(
+                      Icons.arrow_back_outlined,
+                      color: Colors.white,
+                    ))
               ],
               title: 'Sign Up',
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
+             Padding(
+              padding: EdgeInsets.only(left: 20.w),
               child: Text(
                 '\n\nPlease fill in the credentials',
-                style: TextStyle(fontSize: 12),
+                style: theme.textTheme.bodySmall!.copyWith(fontSize: 16),
               ),
             ),
-            const SizedBox(height: 10,),
+            SizedBox(
+              height: 10.h,
+            ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0.sp),
               child: TextFormFieldBuilder(
-                controller: TextEditingController(),
+                controller: usernameController,
                 type: TextInputType.text,
                 obsecure: false,
                 label: 'Username',
@@ -65,20 +88,19 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0.sp),
               child: TextFormFieldBuilder(
-                controller: TextEditingController(),
+                controller: phoneController,
                 label: 'Phone Number',
                 obsecure: false,
                 type: TextInputType.phone,
                 imagePath: 'assets/images/Phone.png',
               ),
             ),
-
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0.sp),
               child: TextFormFieldBuilder(
-                controller: TextEditingController(),
+                controller: passwordController,
                 type: TextInputType.text,
                 label: 'Password',
                 //   obsecure: true,
@@ -87,16 +109,18 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0.sp),
               child: TextFormFieldBuilder(
-                controller: TextEditingController(),
+                controller: confirmPasswordController,
                 label: 'Confirm Password',
                 type: TextInputType.text,
                 //obsecure: true,
                 suffixImagePath: 'assets/images/hide.png',
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 35.h),
+            Text('Birth Date :',  style: theme.textTheme.labelLarge!.copyWith(fontSize: 16),),
+            SizedBox(height: 25.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -132,32 +156,31 @@ class _SignUpState extends State<SignUp> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 25.h),
             Row(
               children: [
-                const SizedBox(width: 45),
+                SizedBox(width: 45.w),
                 Container(
-                  width: 28,
-                  height: 28,
+                  width: 28.w,
+                  height: 28.h,
                   decoration: BoxDecoration(
                     color: Colors.purple,
                     shape: BoxShape.circle,
                   ),
-
                   child: Icon(
                     Icons.check,
                     size: 20,
                     color: Colors.black,
                   ),
                 ),
-                const SizedBox(width: 10),
-                const Text(
+                SizedBox(width: 10.w),
+                 Text(
                   'I agree with privacy policy',
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                   style: theme.textTheme.bodySmall!.copyWith(fontSize: 16),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 30.h),
             ButtonBuilder(
               text: 'Sign Up',
               ontap: () {},

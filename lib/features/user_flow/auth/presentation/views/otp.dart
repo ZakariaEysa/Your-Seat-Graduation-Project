@@ -8,9 +8,9 @@ import '../../../../../widgets/button/button_builder.dart';
 import '../../../home/presentation/views/home_screen.dart';
 import '../widgets/confirm_part.dart';
 
-class Confirm extends StatelessWidget {
+class Otp extends StatelessWidget {
   static const String routeName = "confirm";
-  const Confirm({super.key});
+  const Otp({super.key});
 
   @override
   Widget build(BuildContext context) {

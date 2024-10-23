@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/settings_screen.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/confirm.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
@@ -85,7 +85,10 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-              home: HomeLayout(),
+            home: const SplashScreen(),
+          //    home: const SignUp(),
+
+
             );
           });
     });

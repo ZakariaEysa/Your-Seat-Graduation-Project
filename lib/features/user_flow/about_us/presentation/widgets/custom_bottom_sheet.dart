@@ -25,6 +25,8 @@ class CustomBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 13.sp),
       child: DraggableScrollableSheet(
@@ -52,11 +54,8 @@ class CustomBottomSheet extends StatelessWidget {
                         horizontal: 15.sp, vertical: 15.sp),
                     child: Text(
                       title,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                      style:
+                          theme.textTheme.labelLarge!.copyWith(fontSize: 24.sp),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -72,8 +71,8 @@ class CustomBottomSheet extends StatelessWidget {
                           Text(
                             content,
                             textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 16),
+                            style: theme.textTheme.bodyMedium!
+                                .copyWith(fontSize: 12.sp),
                           ),
                           SizedBox(height: 20.h),
                           if (bottomWidget != null)

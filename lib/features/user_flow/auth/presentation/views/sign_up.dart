@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 
@@ -74,7 +76,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-               SizedBox(
+              SizedBox(
                 height: 10.h,
               ),
               FadeInRight(
@@ -99,7 +101,7 @@ class _SignUpState extends State<SignUp> {
               FadeInRight(
                 delay: const Duration(milliseconds: 550),
                 child: Padding(
-                  padding:  EdgeInsets.all(16.0.sp),
+                  padding: EdgeInsets.all(16.0.sp),
                   child: TextFormFieldBuilder(
                     controller: phone,
                     label: 'Phone Number',
@@ -121,7 +123,7 @@ class _SignUpState extends State<SignUp> {
               FadeInRight(
                 delay: const Duration(milliseconds: 550),
                 child: Padding(
-                  padding:  EdgeInsets.all(16.0.sp),
+                  padding: EdgeInsets.all(16.0.sp),
                   child: TextFormFieldBuilder(
                     controller: password,
                     type: TextInputType.text,
@@ -161,7 +163,7 @@ class _SignUpState extends State<SignUp> {
               FadeInRight(
                 delay: const Duration(milliseconds: 550),
                 child: Padding(
-                  padding:  EdgeInsets.all(16.0.sp),
+                  padding: EdgeInsets.all(16.0.sp),
                   child: TextFormFieldBuilder(
                     controller: confirmPassword,
                     label: 'Confirm Password',
@@ -207,7 +209,8 @@ class _SignUpState extends State<SignUp> {
                   padding: EdgeInsets.only(left: 13.sp),
                   child: Text(
                     'Birth Date :',
-                    style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),
+                    style:
+                        theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),
                   ),
                 ),
               ),
@@ -250,7 +253,7 @@ class _SignUpState extends State<SignUp> {
                   ],
                 ),
               ),
-               SizedBox(height: 35.h),
+              SizedBox(height: 35.h),
               FadeInRight(
                 delay: const Duration(milliseconds: 550),
                 child: Row(
@@ -291,10 +294,11 @@ class _SignUpState extends State<SignUp> {
                               ),
                       ),
                     ),
-                     SizedBox(width: 10.w),
+                    SizedBox(width: 10.w),
                     Text(
                       'I agree with privacy policy',
-                      style: theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                      style:
+                          theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
                     ),
                   ],
                 ),
@@ -311,8 +315,7 @@ class _SignUpState extends State<SignUp> {
                   height: 55.h,
                 ),
               ),
-               SizedBox(
-
+              SizedBox(
                 height: 35.h,
               ),
               FadeInUp(
@@ -320,7 +323,12 @@ class _SignUpState extends State<SignUp> {
                 child: Center(
                   child: InkWell(
                       onTap: () {
-                        navigateTo(context: context, screen: const SignIn());
+                        navigateTo(
+                            context: context,
+                            screen: BlocProvider(
+                              create: (context) => AuthCubit(),
+                              child: SignIn(),
+                            ));
                       },
                       child: Text("Already have account?",
                           style: theme.textTheme.bodySmall)),

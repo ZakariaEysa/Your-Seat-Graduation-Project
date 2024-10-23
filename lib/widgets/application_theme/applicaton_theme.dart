@@ -17,7 +17,8 @@ class ApplicationTheme {
             color: Colors.black,
           ),
           elevation: 0.0,
-          backgroundColor: Colors.transparent,
+          // backgroundColor: Colors.transparent,
+          backgroundColor: const Color(0xFF2E1371),
           titleTextStyle: GoogleFonts.elMessiri(
               fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
           centerTitle: true),
@@ -63,9 +64,8 @@ class ApplicationTheme {
           ),
           centerTitle: true),
       textTheme: TextTheme(
-        labelLarge: GoogleFonts.aDLaMDisplay(
-            fontSize: 22, fontWeight: FontWeight.w400, color: Colors.white
-        ),
+          labelLarge: GoogleFonts.aDLaMDisplay(
+              fontSize: 22, fontWeight: FontWeight.w400, color: Colors.white),
           titleLarge: GoogleFonts.acme(
               fontSize: 18, fontWeight: FontWeight.w400, color: Colors.white),
           titleMedium: GoogleFonts.pottaOne(
@@ -81,6 +81,3 @@ class ApplicationTheme {
       bottomSheetTheme:
           const BottomSheetThemeData(backgroundColor: Color(0xFF2C126A)));
 }
-
-
-

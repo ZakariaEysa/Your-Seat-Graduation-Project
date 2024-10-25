@@ -13,6 +13,7 @@ class AboutUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
+
     return ScaffoldF(
       title: lang.aboutUs,
       body: Container(

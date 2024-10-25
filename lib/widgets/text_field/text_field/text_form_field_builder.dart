@@ -7,7 +7,9 @@ import 'package:yourseatgraduationproject/resources/color_manager.dart';
 
 class TextFormFieldBuilder extends StatelessWidget {
   const TextFormFieldBuilder({
+
     super.key,
+    this.onTap,
     required this.label,
     this.onChanged,
     required this.controller,
@@ -62,6 +64,7 @@ class TextFormFieldBuilder extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String? hinitText;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +73,8 @@ class TextFormFieldBuilder extends StatelessWidget {
       width: width ?? 333.w,
       height: height ?? 55.h,
       child: TextFormField(
+        
+        onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines! ? 1 : null,
         expands: maxlines! ? false : true,
@@ -108,28 +113,21 @@ class TextFormFieldBuilder extends StatelessWidget {
           ),
           prefixIcon: imagePath != null
               ? Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Image.asset(
-              imagePath!,
-              width:10,
-              height: 10,
-              fit: BoxFit.fill,
-            ),
-          )
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    imagePath!,
+                    width:10,
+                    height: 10,
+                    fit: BoxFit.fill,
+                  ),
+                )
               : null,
-          suffixIcon: suffixImagePath != null
-              ? Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Image.asset(
-              suffixImagePath!,
-              width: 10,
-              height: 10,
-              fit: BoxFit.fill,
-            ),
-          )
-              : null,
+          suffixIcon: suffixIcon
         ),
+
+
       ),
+
     );
   }
 }

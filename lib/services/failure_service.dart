@@ -4,3 +4,8 @@ abstract class FailureService {
 
   FailureService(this.errorMsg);
 }
+
+
+class ServiceFailure extends FailureService {
+  ServiceFailure(super.errorMsg);
+}

@@ -8,6 +8,7 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/v
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
@@ -37,7 +38,7 @@ void main() async {
       false,
     );
   }
-
+AppLogs.scussessLog(HiveStorage.get(HiveKeys.role).toString());
   // if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
   //   HiveStorage.set(
   //     HiveKeys.passUserOnboarding,

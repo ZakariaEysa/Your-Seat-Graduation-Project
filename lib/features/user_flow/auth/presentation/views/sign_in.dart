@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
@@ -11,14 +12,25 @@ import '../../../../../widgets/text_field/text_field/text_filed.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class SignIn extends StatelessWidget {
-  SignIn({super.key});
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  final GoogleSignInService googleSignInService = GoogleSignInService();
+  const SignIn({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+    Future<void> addUser(
+        String id, String name, String password, String phone) async {
+      await _firestore.collection('users').doc(phone).set({
+        'id': id,
+        'name': name,
+        'password': password,
+        'phone': phone,
+      });
+    }
+
     var cubit = AuthCubit.get(context);
     final theme = Theme.of(context);
     return ScaffoldF(
@@ -68,9 +80,16 @@ class SignIn extends StatelessWidget {
               ),
               ButtonBuilder(
                 text: 'Sign in',
-                ontap: () {
-                  PhoneAuthService().loginWithPhoneNumber(context,
-                      cubit.emailController.text); // Example phone number
+                ontap: () async {
+                  String userId = '12345';
+                  String name = 'John Doe';
+                  String password = 'password123';
+                  String phone = '+1234567890';
+
+                  await addUser(userId, name, password, phone);
+                  print("User added successfully!");
+                  // PhoneAuthService().loginWithPhoneNumber(context,
+                  //     cubit.emailController.text); // Example phone number
 
                   // loginWithEmailPassword(cubit.emailController.text,
                   //       cubit.passwordController.text);
@@ -122,7 +141,7 @@ class SignIn extends StatelessWidget {
                 padding: EdgeInsets.all(16.0.sp),
                 child: SignInPart(
                   onTap: () {
-                    loginWithGoogle();
+                    AuthCubit.get(context).signInWithGoogle();
                   },
                   title: 'Continue With Google ',
                   icon: Icons.g_mobiledata_rounded,
@@ -155,148 +174,167 @@ class SignIn extends StatelessWidget {
       ),
     );
   }
-
-  void loginWithGoogle() async {
-    User? user = await googleSignInService.signInWithGoogle();
-    if (user != null) {
-      print('User signed in: ${user.displayName}');
-    } else {
-      print('Google sign-in failed');
-    }
-  }
-
-  // zakariaeysa@gmail.com
-  //123456
 }
 
-class GoogleSignInService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+//   void loginWithGoogle() async {
+//     User? user = await googleSignInService.signInWithGoogle();
+//     if (user != null) {
+//       print('User signed in: ${user.displayName}');
+//     } else {
+//       print('Google sign-in failed');
+//     }
+//   }
 
-  Future<User?> signInWithGoogle() async {
-    try {
-      // Trigger the Google Sign-In flow
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+//   // zakariaeysa@gmail.com
+//   //123456
+// }
 
-      if (googleUser == null) {
-        // The user canceled the sign-in
-        return null;
-      }
+// class GoogleSignInService {
+//   final FirebaseAuth _auth = FirebaseAuth.instance;
+//   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-      // Obtain the auth details from the Google user
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+//   Future<User?> signInWithGoogle() async {
+//     try {
+//       // Trigger the Google Sign-In flow
+//       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
-      // Create a new credential using the Google auth tokens
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
+//       if (googleUser == null) {
+//         // The user canceled the sign-in
+//         return null;
+//       }
 
-      // Sign in to Firebase with the Google credential
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
+//       // Obtain the auth details from the Google user
+//       final GoogleSignInAuthentication googleAuth =
+//           await googleUser.authentication;
 
-      // Return the signed-in Firebase user
-      return userCredential.user;
-    } catch (e) {
-      print('Error during Google sign-in: $e');
-      return null;
-    }
-  }
+//       // Create a new credential using the Google auth tokens
+//       final OAuthCredential credential = GoogleAuthProvider.credential(
+//         accessToken: googleAuth.accessToken,
+//         idToken: googleAuth.idToken,
+//       );
 
-  Future<void> signOutGoogle() async {
-    await _googleSignIn.signOut();
-    await _auth.signOut();
-  }
-}
+//       // Sign in to Firebase with the Google credential
+//       final UserCredential userCredential =
+//           await _auth.signInWithCredential(credential);
 
-class PhoneAuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+//       // Return the signed-in Firebase user
+//       return userCredential.user;
+//     } catch (e) {
+//       print('Error during Google sign-in: $e');
+//       return null;
+//     }
+//   }
 
-  // This function triggers the OTP SMS for the phone number provided
-  Future<void> loginWithPhoneNumber(
-      BuildContext context, String phoneNumber) async {
-    // Show a loading indicator while waiting for verification
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
-    );
+//   Future<void> signOutGoogle() async {
+//     await _googleSignIn.signOut();
+//     await _auth.signOut();
+//   }
+// }
 
-    // Phone number needs to be in the full international format, i.e., '+20XXXXXXXXXX'
-    String formattedPhoneNumber = '+20' + phoneNumber;
+// class PhoneAuthService {
+//   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-    // Verify phone number by sending an OTP
-    await _auth.verifyPhoneNumber(
-      phoneNumber: formattedPhoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        // Auto-retrieve the SMS code or auto-verify (on certain devices)
-        await _auth.signInWithCredential(credential);
-        Navigator.of(context).pop(); // Close the loading indicator
-        // Handle successful login
-        print('Phone number automatically verified and user logged in.');
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        Navigator.of(context).pop(); // Close the loading indicator
-        print('Phone number verification failed: ${e.message}');
-        // Handle error (e.g., display an error message)
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(e.message ?? 'Verification failed')));
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        Navigator.of(context).pop(); // Close the loading indicator
-        // Ask the user to enter the OTP manually
-        _showOTPDialog(context, verificationId);
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        // Handle timeout when the auto-retrieval of the OTP fails
-        print('Timeout for automatic OTP retrieval.');
-      },
-    );
-  }
+//   // This function triggers the OTP SMS for the phone number provided
+//   Future<void> loginWithPhoneNumber(
+//       BuildContext context, String phoneNumber) async {
+//     // Show a loading indicator while waiting for verification
+//     showDialog(
+//       context: context,
+//       barrierDismissible: false,
+//       builder: (context) => Center(child: CircularProgressIndicator()),
+//     );
 
-  // This function handles the OTP input by the user
-  void _showOTPDialog(BuildContext context, String verificationId) {
-    String smsCode = '';
+//     // Phone number needs to be in the full international format, i.e., '+20XXXXXXXXXX'
+//     String formattedPhoneNumber = '+20' + phoneNumber;
 
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Enter OTP'),
-        content: TextField(
-          onChanged: (value) {
-            smsCode = value;
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () async {
-              // Close the dialog
-              Navigator.of(context).pop();
+//     // Verify phone number by sending an OTP
+//     await _auth.verifyPhoneNumber(
+//       phoneNumber: formattedPhoneNumber,
+//       verificationCompleted: (PhoneAuthCredential credential) async {
+//         // Auto-retrieve the SMS code or auto-verify (on certain devices)
+//         await _auth.signInWithCredential(credential);
+//         Navigator.of(context).pop(); // Close the loading indicator
+//         // Handle successful login
+//         print('Phone number automatically verified and user logged in.');
+//       },
+//       verificationFailed: (FirebaseAuthException e) {
+//         Navigator.of(context).pop(); // Close the loading indicator
+//         print('Phone number verification failed: ${e.message}');
+//         // Handle error (e.g., display an error message)
+//         ScaffoldMessenger.of(context).showSnackBar(
+//             SnackBar(content: Text(e.message ?? 'Verification failed')));
+//       },
+//       codeSent: (String verificationId, int? resendToken) {
+//         Navigator.of(context).pop(); // Close the loading indicator
+//         // Ask the user to enter the OTP manually
+//         _showOTPDialog(context, verificationId);
+//       },
+//       codeAutoRetrievalTimeout: (String verificationId) {
+//         // Handle timeout when the auto-retrieval of the OTP fails
+//         print('Timeout for automatic OTP retrieval.');
+//       },
+//     );
+//   }
 
-              // Create the PhoneAuthCredential using the verification ID and the SMS code
-              PhoneAuthCredential credential = PhoneAuthProvider.credential(
-                verificationId: verificationId,
-                smsCode: smsCode,
-              );
+//   // This function handles the OTP input by the user
+//   void _showOTPDialog(BuildContext context, String verificationId) {
+//     String smsCode = '';
 
-              try {
-                // Sign in with the credential (OTP)
-                await _auth.signInWithCredential(credential);
-                // Handle successful login
-                print('User signed in successfully.');
-              } catch (e) {
-                // Handle error (e.g., incorrect OTP)
-                print('Failed to sign in: $e');
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text('Incorrect OTP')));
-              }
-            },
-            child: Text('Verify'),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//     showDialog(
+//       context: context,
+//       builder: (context) => AlertDialog(
+//         title: Text('Enter OTP'),
+//         content: TextField(
+//           onChanged: (value) {
+//             smsCode = value;
+//           },
+//         ),
+//         actions: [
+//           TextButton(
+//             onPressed: () async {
+//               // Close the dialog
+//               Navigator.of(context).pop();
+
+//               // Create the PhoneAuthCredential using the verification ID and the SMS code
+//               PhoneAuthCredential credential = PhoneAuthProvider.credential(
+//                 verificationId: verificationId,
+//                 smsCode: smsCode,
+//               );
+
+//               try {
+//                 // Sign in with the credential (OTP)
+//                 await _auth.signInWithCredential(credential);
+//                 // Handle successful login
+//                 print('User signed in successfully.');
+//               } catch (e) {
+//                 // Handle error (e.g., incorrect OTP)
+//                 print('Failed to sign in: $e');
+//                 ScaffoldMessenger.of(context)
+//                     .showSnackBar(SnackBar(content: Text('Incorrect OTP')));
+//               }
+//             },
+//             child: Text('Verify'),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+
+
+
+
+
+// Future<UserCredential> signInWithFacebook() async {
+//   // Trigger the sign-in flow
+//   final LoginResult loginResult = await FacebookAuth.instance.login();
+
+//   // Create a credential from the access token
+//   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+//   // Once signed in, return the UserCredential
+//   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+// }
+
+

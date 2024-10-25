@@ -13,6 +13,7 @@ import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
 import 'features/user_flow/Splash_screen/splash_screen.dart';
 import 'features/user_flow/auth/presentation/views/sign_up.dart';
+import 'features/user_flow/onBoarding/OnBoarding.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -85,7 +86,7 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-            home: const SplashScreen(),
+            home:  OnBoarding(),
           //    home: const SignUp(),
 
 

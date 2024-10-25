@@ -7,6 +7,7 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/v
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../auth/presentation/cubit/auth_cubit.dart';
@@ -25,8 +26,8 @@ class SplashScreen extends StatelessWidget {
       navigateAndReplace(
           context: context,
           screen: BlocProvider(
-            create: (context) => AuthCubit(),
-            child: SignIn(),
+            create: (context) => AuthCubit( ),
+            child:SignIn(),
           ));
     });
     var mediaQuery = MediaQuery.of(context).size;

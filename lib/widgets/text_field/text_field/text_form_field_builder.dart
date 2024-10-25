@@ -73,7 +73,7 @@ class TextFormFieldBuilder extends StatelessWidget {
       width: width ?? 333.w,
       height: height ?? 55.h,
       child: TextFormField(
-        
+
         onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines! ? 1 : null,
@@ -91,16 +91,16 @@ class TextFormFieldBuilder extends StatelessWidget {
         decoration: InputDecoration(
           disabledBorder: OutlineInputBorder(
             borderSide: disabledBorder ??
-                const BorderSide(width: 40, color: Color(0xFFA8A6A6)),
+                const BorderSide(width: 40, color:Colors.indigo),
             borderRadius: BorderRadius.circular(30),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: ColorManager.primaryW),
+            borderSide: const BorderSide(color:Colors.indigo),
             borderRadius: BorderRadius.circular(30),
           ),
           border: OutlineInputBorder(
             borderSide: enabledBorder ??
-                const BorderSide(width: 1, color: Color(0xDCEBECFF)),
+                const BorderSide(width: 1, color:Colors.indigo),
             borderRadius: BorderRadius.circular(8),
           ),
           hintText: label,

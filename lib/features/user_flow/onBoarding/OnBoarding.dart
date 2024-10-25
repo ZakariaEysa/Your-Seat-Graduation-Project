@@ -2,8 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
-import '../../widgets/button/button_builder.dart';
-import '../../widgets/scaffold/scaffold_f.dart';
+import '../../../widgets/button/button_builder.dart';
+import '../../../widgets/scaffold/scaffold_f.dart';
 import 'content.dart';
 
 class OnBoarding extends StatefulWidget {

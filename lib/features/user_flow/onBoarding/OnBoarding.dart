@@ -35,6 +35,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   currentPage = index;
                 });
               },
+
               itemBuilder: (_, index) {
                 return Center(
                   child: Padding(

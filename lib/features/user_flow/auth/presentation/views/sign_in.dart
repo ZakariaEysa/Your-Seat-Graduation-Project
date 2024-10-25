@@ -7,6 +7,7 @@ import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/app_bar/appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../../../widgets/text_field/text_field/text_filed.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -42,24 +43,16 @@ class SignIn extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(16.0.sp),
-                child: TextFormFieldBuilder(
-                  controller: cubit.emailController,
-                  type: TextInputType.phone,
-                  label: 'Phone Number',
-                  obsecure: false,
-                  hinitText: 'Phone Number',
-                  imagePath: 'assets/images/telephone 1 (1).png',
+                child:  const TextFiled(
+                  hintText: 'Phone Number', icon:Icons.phone, isPassword:false,
+
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(16.0.sp),
-                child: TextFormFieldBuilder(
-                  controller: cubit.passwordController,
-                  type: TextInputType.text,
-                  label: 'Password',
-                  obsecure: true,
-                  imagePath: 'assets/images/Vector (2).png',
-                  suffixImagePath: 'assets/images/hide 1.png',
+                child: const TextFiled(
+
+                  hintText: 'password', icon:Icons.key, isPassword: true,
                 ),
               ),
               Padding(
@@ -122,6 +115,7 @@ class SignIn extends StatelessWidget {
                 child: const SignInPart(
                   title: 'Continue With Facebook ',
                   icon: Icons.facebook,
+
                 ),
               ),
               Padding(
@@ -141,27 +135,21 @@ class SignIn extends StatelessWidget {
                   icon: Icons.account_box_outlined,
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: EdgeInsets.all(4.0.sp),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Don’t have any account yet?',
-                        style:
-                            theme.textTheme.bodySmall!.copyWith(fontSize: 17)),
-                    InkWell(
-                      onTap: () {
-                        navigateTo(context: context, screen: const SignUp());
-                      },
-                      child: Text('  Sign Up',
-                          style: theme.textTheme.labelLarge!
-                              .copyWith(fontSize: 17)),
-                    )
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Don’t have any account yet?',
+                      style:
+                          theme.textTheme.bodySmall!.copyWith(fontSize: 17)),
+                  InkWell(
+                    onTap: () {
+                      navigateTo(context: context, screen: const SignUp());
+                    },
+                    child: Text('  Sign Up',
+                        style: theme.textTheme.labelLarge!
+                            .copyWith(fontSize: 17)),
+                  )
+                ],
               )
             ]),
       ),

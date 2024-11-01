@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -23,9 +25,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+              apiKey: 'AIzaSyCREJCsFWlgq_kon3J8_Eu_mhvL0PUNGjs',
+              appId: '1:556627768143:android:f217ff5d7d11f450b5cb3a',
+              messagingSenderId: '556627768143',
+              projectId: 'yourseatgraduationprojec-19068'))
+      : await Firebase.initializeApp();
+
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   SimpleBlocObserverService();
 
   await HiveStorage.init();
@@ -39,7 +50,7 @@ void main() async {
       false,
     );
   }
-AppLogs.scussessLog(HiveStorage.get(HiveKeys.role).toString());
+  AppLogs.scussessLog(HiveStorage.get(HiveKeys.role).toString());
   // if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
   //   HiveStorage.set(
   //     HiveKeys.passUserOnboarding,
@@ -87,10 +98,8 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-            home:  OnBoarding(),
-          //    home: const SignUp(),
-
-
+              home: const SplashScreen(),
+              //    home: const SignUp(),
             );
           });
     });

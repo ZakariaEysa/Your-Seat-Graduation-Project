@@ -7,6 +7,8 @@ import '../../../widgets/scaffold/scaffold_f.dart';
 import 'content.dart';
 
 class OnBoarding extends StatefulWidget {
+  const OnBoarding({super.key});
+
   @override
   _OnBoardingState createState() => _OnBoardingState();
 }
@@ -64,7 +66,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         ),
                         SizedBox(height: 15.h),
                         Text(
-                          contents[index].discription,
+                          contents[index].description,
                           textAlign: TextAlign.center,
                           style: theme.textTheme.bodyMedium!
                               .copyWith(fontSize: 16.sp),

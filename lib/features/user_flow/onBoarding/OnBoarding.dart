@@ -22,7 +22,7 @@ class _OnBoardingState extends State<OnBoarding> {
       body: Column(
         children: [
           SizedBox(
-            height: 100.h,
+            height: 130.h,
             width: 230.w,
             child: Image.asset('assets/images/yourseat.png', fit: BoxFit.cover),
           ),
@@ -74,7 +74,7 @@ class _OnBoardingState extends State<OnBoarding> {
                             ? ButtonBuilder(
                           text: 'Start Using the App->',
                           ontap: () {},
-                          width: 250.w,
+                          width: 300.w,
                           height: 55.h,
                         )
                             : Row(

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Notifaction/Notifaction.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/settings_screen.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Watch_list/watch_list_screen.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
@@ -86,8 +88,8 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-            home:  OnBoarding(),
-          //    home: const SignUp(),
+            home: Notifaction()
+          //    home:  OnBoarding,
 
 
             );

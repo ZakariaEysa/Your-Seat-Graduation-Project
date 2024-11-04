@@ -3,7 +3,6 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
 import '../../../Settings/presentation/views/settings_screen.dart';
-import '../../../Settings/settings_screen.dart';
 import '../../../Tickets/tickets_screen.dart';
 import '../../../Watch_list/watch_list_screen.dart';
 

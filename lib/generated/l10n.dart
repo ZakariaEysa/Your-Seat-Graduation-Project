@@ -50,20 +50,20 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `hello`
+  /// `Hello`
   String get hello {
     return Intl.message(
-      'hello',
+      'Hello',
       name: 'hello',
       desc: '',
       args: [],
     );
   }
 
-  /// `signIn`
+  /// `Sign In`
   String get signin {
     return Intl.message(
-      'signIn',
+      'Sign In',
       name: 'signin',
       desc: '',
       args: [],
@@ -105,6 +105,790 @@ class S {
     return Intl.message(
       'About Us',
       name: 'aboutUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill the credentials.`
+  String get pleaseFillTheCredentials {
+    return Intl.message(
+      'Please fill the credentials.',
+      name: 'pleaseFillTheCredentials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phonenumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phonenumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot Password',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue With Facebook`
+  String get continueWithFacebook {
+    return Intl.message(
+      'Continue With Facebook',
+      name: 'continueWithFacebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue With Google`
+  String get continueWithGoogle {
+    return Intl.message(
+      'Continue With Google',
+      name: 'continueWithGoogle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue As Guest`
+  String get continueAsGuest {
+    return Intl.message(
+      'Continue As Guest',
+      name: 'continueAsGuest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have any account yet?`
+  String get dontHaveAnyAccountYet {
+    return Intl.message(
+      'Don\'t have any account yet?',
+      name: 'dontHaveAnyAccountYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm OTP Code`
+  String get confirmOtpCode {
+    return Intl.message(
+      'Confirm OTP Code',
+      name: 'confirmOtpCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You just need to enter the OTP sent to the registered phone number.`
+  String get youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber {
+    return Intl.message(
+      'You just need to enter the OTP sent to the registered phone number.',
+      name: 'youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continuee {
+    return Intl.message(
+      'Continue',
+      name: 'continuee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get username {
+    return Intl.message(
+      'Username',
+      name: 'username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth Date`
+  String get birthDate {
+    return Intl.message(
+      'Birth Date',
+      name: 'birthDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Month`
+  String get month {
+    return Intl.message(
+      'Month',
+      name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Day`
+  String get day {
+    return Intl.message(
+      'Day',
+      name: 'day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year`
+  String get year {
+    return Intl.message(
+      'Year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I agree with privacy policy`
+  String get iAgreeWithPrivacyPolicy {
+    return Intl.message(
+      'I agree with privacy policy',
+      name: 'iAgreeWithPrivacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to YourSeat!`
+  String get welcomeToYourSeat {
+    return Intl.message(
+      'Welcome to YourSeat!',
+      name: 'welcomeToYourSeat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enjoy easy ticket booking and personalized recommendations.`
+  String get enjoyEasyTicketBooking {
+    return Intl.message(
+      'Enjoy easy ticket booking and personalized recommendations.',
+      name: 'enjoyEasyTicketBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New movies! Easy booking`
+  String get newMoviesEasyBooking {
+    return Intl.message(
+      'New movies! Easy booking',
+      name: 'newMoviesEasyBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book tickets for the latest movies at the cinema nearest to you.`
+  String get bookTicketsForLatestMovies {
+    return Intl.message(
+      'Book tickets for the latest movies at the cinema nearest to you.',
+      name: 'bookTicketsForLatestMovies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorite it! Add to watchlist`
+  String get favoriteItAddWatchlist {
+    return Intl.message(
+      'Favorite it! Add to watchlist',
+      name: 'favoriteItAddWatchlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorites or watchlist for quick access to your beloved movies.`
+  String get favoritesOrWatchlistForQuickAccess {
+    return Intl.message(
+      'Favorites or watchlist for quick access to your beloved movies.',
+      name: 'favoritesOrWatchlistForQuickAccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get notification {
+    return Intl.message(
+      'Notification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message(
+      'General',
+      name: 'general',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SALE IS LIVE`
+  String get saleIsLive {
+    return Intl.message(
+      'SALE IS LIVE',
+      name: 'saleIsLive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit`
+  String get loremIpsumPlaceholder {
+    return Intl.message(
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit',
+      name: 'loremIpsumPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1m ago`
+  String get timeAgo1Minute {
+    return Intl.message(
+      '1m ago',
+      name: 'timeAgo1Minute',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `10 Hrs ago`
+  String get timeAgo10Hours {
+    return Intl.message(
+      '10 Hrs ago',
+      name: 'timeAgo10Hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `15 Hrs ago`
+  String get timeAgo15Hours {
+    return Intl.message(
+      '15 Hrs ago',
+      name: 'timeAgo15Hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See all`
+  String get seeAll {
+    return Intl.message(
+      'See all',
+      name: 'seeAll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Now playing`
+  String get nowPlaying {
+    return Intl.message(
+      'Now playing',
+      name: 'nowPlaying',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coming soon`
+  String get comingSoon {
+    return Intl.message(
+      'Coming soon',
+      name: 'comingSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo & Discount`
+  String get promoDiscount {
+    return Intl.message(
+      'Promo & Discount',
+      name: 'promoDiscount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cinema`
+  String get cinema {
+    return Intl.message(
+      'Cinema',
+      name: 'cinema',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please agree with privacy policy`
+  String get PleaseAgreeWithPrivacyPolicy {
+    return Intl.message(
+      'Please agree with privacy policy',
+      name: 'PleaseAgreeWithPrivacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `January`
+  String get january {
+    return Intl.message(
+      'January',
+      name: 'january',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `February`
+  String get february {
+    return Intl.message(
+      'February',
+      name: 'february',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `March`
+  String get march {
+    return Intl.message(
+      'March',
+      name: 'march',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `April`
+  String get april {
+    return Intl.message(
+      'April',
+      name: 'april',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `May`
+  String get may {
+    return Intl.message(
+      'May',
+      name: 'may',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `June`
+  String get june {
+    return Intl.message(
+      'June',
+      name: 'june',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `July`
+  String get july {
+    return Intl.message(
+      'July',
+      name: 'july',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `August`
+  String get august {
+    return Intl.message(
+      'August',
+      name: 'august',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `September`
+  String get september {
+    return Intl.message(
+      'September',
+      name: 'september',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `October`
+  String get october {
+    return Intl.message(
+      'October',
+      name: 'october',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `November`
+  String get november {
+    return Intl.message(
+      'November',
+      name: 'november',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `December`
+  String get december {
+    return Intl.message(
+      'December',
+      name: 'december',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'alreadyHaveAccount?' key
+
+  // skipped getter for the '1' key
+
+  // skipped getter for the '2' key
+
+  // skipped getter for the '3' key
+
+  // skipped getter for the '4' key
+
+  // skipped getter for the '5' key
+
+  // skipped getter for the '6' key
+
+  // skipped getter for the '7' key
+
+  // skipped getter for the '8' key
+
+  // skipped getter for the '9' key
+
+  // skipped getter for the '10' key
+
+  // skipped getter for the '11' key
+
+  // skipped getter for the '12' key
+
+  // skipped getter for the '13' key
+
+  // skipped getter for the '14' key
+
+  // skipped getter for the '15' key
+
+  // skipped getter for the '16' key
+
+  // skipped getter for the '17' key
+
+  // skipped getter for the '18' key
+
+  // skipped getter for the '19' key
+
+  // skipped getter for the '20' key
+
+  // skipped getter for the '21' key
+
+  // skipped getter for the '22' key
+
+  // skipped getter for the '23' key
+
+  // skipped getter for the '24' key
+
+  // skipped getter for the '25' key
+
+  // skipped getter for the '26' key
+
+  // skipped getter for the '27' key
+
+  // skipped getter for the '28' key
+
+  // skipped getter for the '29' key
+
+  // skipped getter for the '30' key
+
+  // skipped getter for the '31' key
+
+  // skipped getter for the '1990' key
+
+  // skipped getter for the '1991' key
+
+  // skipped getter for the '1992' key
+
+  // skipped getter for the '1993' key
+
+  // skipped getter for the '1994' key
+
+  // skipped getter for the '1995' key
+
+  // skipped getter for the '1996' key
+
+  // skipped getter for the '1997' key
+
+  // skipped getter for the '1998' key
+
+  // skipped getter for the '1999' key
+
+  // skipped getter for the '2000' key
+
+  // skipped getter for the '2001' key
+
+  // skipped getter for the '2002' key
+
+  // skipped getter for the '2003' key
+
+  // skipped getter for the '2004' key
+
+  // skipped getter for the '2005' key
+
+  // skipped getter for the '2006' key
+
+  // skipped getter for the '2007' key
+
+  // skipped getter for the '2008' key
+
+  // skipped getter for the '2009' key
+
+  // skipped getter for the '2010' key
+
+  // skipped getter for the '2011' key
+
+  // skipped getter for the '2012' key
+
+  // skipped getter for the '2013' key
+
+  // skipped getter for the '2014' key
+
+  // skipped getter for the '2015' key
+
+  // skipped getter for the '2016' key
+
+  // skipped getter for the '2017' key
+
+  // skipped getter for the '2018' key
+
+  // skipped getter for the '2019' key
+
+  // skipped getter for the '2020' key
+
+  // skipped getter for the '2021' key
+
+  // skipped getter for the '2022' key
+
+  // skipped getter for the '2023' key
+
+  // skipped getter for the '2024' key
+
+  /// `Enter user name`
+  String get enterUsername {
+    return Intl.message(
+      'Enter user name',
+      name: 'enterUsername',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid username`
+  String get invalidUsername {
+    return Intl.message(
+      'Invalid username',
+      name: 'invalidUsername',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter phone number`
+  String get enterPhoneNumber {
+    return Intl.message(
+      'Enter phone number',
+      name: 'enterPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wrong phone format`
+  String get wrongPhoneFormat {
+    return Intl.message(
+      'Wrong phone format',
+      name: 'wrongPhoneFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Password`
+  String get enterPassword {
+    return Intl.message(
+      'Enter Password',
+      name: 'enterPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password should be at least 8 characters with at least one uppercase letter, one number, and one special character`
+  String get passwordCriteria {
+    return Intl.message(
+      'Password should be at least 8 characters with at least one uppercase letter, one number, and one special character',
+      name: 'passwordCriteria',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter confirmation password`
+  String get enterConfirmPassword {
+    return Intl.message(
+      'Enter confirmation password',
+      name: 'enterConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wrong confirmation password`
+  String get wrongConfirmPassword {
+    return Intl.message(
+      'Wrong confirmation password',
+      name: 'wrongConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get alreadyHaveAccount {
+    return Intl.message(
+      'Already have an account?',
+      name: 'alreadyHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registered Successfully`
+  String get registerSuccess {
+    return Intl.message(
+      'Registered Successfully',
+      name: 'registerSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry, this account exists already`
+  String get accountExists {
+    return Intl.message(
+      'Sorry, this account exists already',
+      name: 'accountExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Creating Account`
+  String get creatingAccount {
+    return Intl.message(
+      'Creating Account',
+      name: 'creatingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error saving user`
+  String get errorSavingUser {
+    return Intl.message(
+      'Error saving user',
+      name: 'errorSavingUser',
       desc: '',
       args: [],
     );

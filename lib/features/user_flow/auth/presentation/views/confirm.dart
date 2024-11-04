@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/app_bar/appbar.dart';
@@ -10,21 +9,15 @@ import '../widgets/confirm_part.dart';
 
 class Confirm extends StatelessWidget {
   static const String routeName = "confirm";
-  const Confirm({super.key});
+  const Confirm({super.key, required String verificationId});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ScaffoldF(
         body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-           BuilderAppBar(
-             actions: [
-               IconButton(onPressed: (){
-                 navigateTo(context: context, screen: const SignUp());
-               }, icon: const Icon(Icons.arrow_back_outlined,color: Colors.white,))
-             ],
+           const BuilderAppBar(
             title: 'Confirm OTP code',
-
           ),
          SizedBox(height: 40.h,),
           Text(

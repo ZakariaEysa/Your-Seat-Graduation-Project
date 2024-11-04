@@ -25,14 +25,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Platform.isAndroid
-      ? await Firebase.initializeApp(
-          options: const FirebaseOptions(
-              apiKey: 'AIzaSyCREJCsFWlgq_kon3J8_Eu_mhvL0PUNGjs',
-              appId: '1:556627768143:android:f217ff5d7d11f450b5cb3a',
-              messagingSenderId: '556627768143',
-              projectId: 'yourseatgraduationprojec-19068'))
-      : await Firebase.initializeApp();
+  // Platform.isAndroid
+  //     ? await Firebase.initializeApp(
+  //         options: const FirebaseOptions(
+  //             apiKey: 'AIzaSyCREJCsFWlgq_kon3J8_Eu_mhvL0PUNGjs',
+  //             appId: '1:556627768143:android:f217ff5d7d11f450b5cb3a',
+  //             messagingSenderId: '556627768143',
+  //             projectId: 'yourseatgraduationprojec-19068'))
+  //     : await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,

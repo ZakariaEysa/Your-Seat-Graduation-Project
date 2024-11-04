@@ -100,8 +100,8 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-              home:  Otp(),
-              //    home: const SignUp(),
+              // home:  Otp(),
+              home: const SplashScreen(),
             );
           });
     });

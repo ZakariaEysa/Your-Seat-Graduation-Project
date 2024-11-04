@@ -16,11 +16,12 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldF(
-        appBar: AppBar(
-          backgroundColor: Color(0xFF2E1371),
-          title: HeadAppBar(
-            title: 'Settings',
-          ),),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF2E1371),
+        title: HeadAppBar(
+          title: 'Settings',
+        ),
+      ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

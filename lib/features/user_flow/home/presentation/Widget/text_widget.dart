@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../generated/l10n.dart';
+
 
 class TextWidget extends StatelessWidget {
   String text;
@@ -9,6 +11,7 @@ class TextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     return    Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -30,7 +33,7 @@ class TextWidget extends StatelessWidget {
           child: Row(
             children:  [
               Text(
-                'See all',
+                "lang.seeall",
                 style: TextStyle(
                   color: Color(0xFFFCC434),
                   fontSize: 15.sp,

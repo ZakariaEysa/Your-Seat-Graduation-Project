@@ -17,7 +17,8 @@ class BuilderAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return AppBar(
-      elevation: 0,
+      backgroundColor: Color(0xFF2E1371),
+     // elevation: 0,
       title: Text(
         title,
         style:theme.textTheme.labelLarge!.copyWith(fontSize:30),

@@ -16,7 +16,7 @@ class ApplicationTheme {
           iconTheme: const IconThemeData(
             color: Colors.black,
           ),
-          elevation: 0.0,
+        //  elevation: 0.0,
           // backgroundColor: Colors.transparent,
           backgroundColor: const Color(0xFF2E1371),
           titleTextStyle: GoogleFonts.elMessiri(
@@ -50,19 +50,6 @@ class ApplicationTheme {
         secondary: const Color(0xFF130B2B),
         seedColor: const Color(0xFF2E1371),
       ),
-      appBarTheme: AppBarTheme(
-          iconTheme: const IconThemeData(color: Colors.white),
-          elevation: 0.0,
-          backgroundColor:const Color(0xFF2E1371),
-          titleTextStyle: GoogleFonts.aDLaMDisplay(
-            fontStyle: FontStyle.normal,
-            color: Colors.white,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w400,
-            height: 0.03.h,
-            letterSpacing: -0.41.sp,
-          ),
-          centerTitle: true),
       textTheme: TextTheme(
           labelLarge: GoogleFonts.aDLaMDisplay(
               fontSize: 22, fontWeight: FontWeight.w400, color: Colors.white),

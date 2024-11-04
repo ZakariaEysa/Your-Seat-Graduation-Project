@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/settings_screen.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
@@ -22,6 +19,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: "yourseatgraduationprojec-19068",
     options: DefaultFirebaseOptions.currentPlatform,
   );
   SimpleBlocObserverService();
@@ -64,33 +62,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
         builder: (context, state) {
-      return ScreenUtilInit(
-          designSize: const Size(375, 812),
-          minTextAdapt: true,
-          useInheritedMediaQuery: true,
-          ensureScreenSize: true,
-          splitScreenMode: true,
-          builder: (_, child) {
-            return MaterialApp(
-              theme: ApplicationTheme.darkTheme,
-              locale: HiveStorage.get(HiveKeys.isArabic)
-                  ? const Locale('ar')
-                  : const Locale('en'),
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              debugShowCheckedModeBanner: false,
-              builder: BotToastInit(),
-            home: const SplashScreen(),
-          //    home: const SignUp(),
-
-
-            );
-          });
-    });
+          return ScreenUtilInit(
+              designSize: const Size(375, 812),
+              minTextAdapt: true,
+              useInheritedMediaQuery: true,
+              ensureScreenSize: true,
+              splitScreenMode: true,
+              builder: (_, child) {
+                return MaterialApp(
+                  theme: ApplicationTheme.darkTheme,
+                  locale: HiveStorage.get(HiveKeys.isArabic)
+                      ? const Locale('ar')
+                      : const Locale('en'),
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  debugShowCheckedModeBanner: false,
+                  builder: BotToastInit(),
+                  home:  HomeLayout(),
+                );
+              });
+        });
   }
 }

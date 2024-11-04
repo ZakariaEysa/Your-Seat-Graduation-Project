@@ -48,6 +48,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب بعد؟"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("ليس لديك أي حساب حتى الآن؟"),
+        "enterConfirmPassword":
+            MessageLookupByLibrary.simpleMessage("ادخل تأكيد كلمة المرور"),
+        "enterPassword":
+            MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
+        "enterPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("أدخل رقم الهاتف"),
+        "enterUsername":
+            MessageLookupByLibrary.simpleMessage("أدخل اسم المستخدم"),
         "enter_password":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال كلمة المرور"),
         "enter_phone_number":
@@ -68,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hello": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "iAgreeWithPrivacyPolicy":
             MessageLookupByLibrary.simpleMessage("أوافق على سياسة الخصوصية"),
+        "invalidUsername":
+            MessageLookupByLibrary.simpleMessage("اسم مستخدم خاطئ"),
         "invalid_phone_format":
             MessageLookupByLibrary.simpleMessage("صيغة رقم الهاتف غير صحيحة"),
         "logging_successful":
@@ -81,8 +91,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "month": MessageLookupByLibrary.simpleMessage("شهر"),
         "no_account": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("جارى التشغيل الآن"),
+        "ok": MessageLookupByLibrary.simpleMessage("تم"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة السر"),
+        "passwordCriteria":
+            MessageLookupByLibrary.simpleMessage("معايير كلمة المرور"),
         "password_min_length": MessageLookupByLibrary.simpleMessage(
             "يجب أن تكون كلمة المرور 6 أحرف على الأقل"),
         "password_requirements": MessageLookupByLibrary.simpleMessage(
@@ -114,6 +127,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
             "1. مسؤوليات المستخدم: باستخدام هذا التطبيق، فإنك توافق على الالتزام بشروط الخدمة الخاصة بنا والتصرف بطريقة محترمة. يُرجى الامتناع عن أي سلوك يعكر تجربة مشاهدة الأفلام للآخرين، مثل التحدث بصوت عالٍ، أو استخدام هاتفك، أو شراء تذاكر للاستخدام غير المصرح به. نحتفظ بالحق في إلغاء وصولك إلى التطبيق إذا تم انتهاك هذه الشروط.\n\n2. إنشاء حساب المستخدم: لإنشاء حساب، ستحتاج إلى تقديم عنوان بريد إلكتروني صالح وكلمة مرور قوية. يُرجى اختيار كلمة مرور يصعب تخمينها وتجنب استخدام معلومات سهلة التعرف. يتم تخزين بيانات حسابك بشكل آمن، وهي متاحة فقط للأشخاص المصرح لهم. الأمان: اختر كلمة مرور قوية تجمع بين الحروف والأرقام والرموز. تجنب استخدام نفس كلمة المرور لعدة حسابات. قم بتمكين التحقق الثنائي (إذا كان متاحًا) لزيادة الأمان. لا تشارك معلومات تسجيل الدخول الخاصة بك مع أي شخص.\n\n3. معالجة المعاملات: يتم معالجة جميع المعاملات بشكل آمن باستخدام [اذكر بوابة الدفع]. نحن نقبل [قائمة طرق الدفع المقبولة، مثل بطاقات الائتمان، بطاقات الخصم، PayPal]. معلومات إضافية: يُرجى التأكد من أن معلومات الدفع الخاصة بك دقيقة ومحدثة. نحتفظ بالحق في إلغاء الطلبات في حالة وجود نشاط احتيالي أو معلومات دفع غير صحيحة. لأي استفسارات أو مخاوف بشأن المدفوعات، يرجى الاتصال بفريق دعم العملاء لدينا.\n\n4. ملكية المحتوى: جميع المحتويات داخل التطبيق، بما في ذلك الصور والنصوص ومقاطع الفيديو والمواد الأخرى، هي ملك لـ [Your Seat] أو المرخصين لها. ما لم يتم الإشارة إلى خلاف ذلك، لا يُسمح لك باستخدام أو إعادة إنتاج أو تعديل أو توزيع أو عرض أي محتوى من التطبيق بدون إذن خطي مسبق."),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "wrongConfirmPassword":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور خاطئة"),
+        "wrongPhoneFormat":
+            MessageLookupByLibrary.simpleMessage("تنسيق الهاتف خاطئ"),
         "wrong_password":
             MessageLookupByLibrary.simpleMessage("كلمة المرور غير صحيحة"),
         "wrong_phone_format":

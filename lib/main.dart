@@ -101,7 +101,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home: const SplashScreen(),
+              home: const SignUp(),
             );
           });
     });

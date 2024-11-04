@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:yourseatgraduationproject/resources/app_styles_manager.dart';
-import 'package:yourseatgraduationproject/resources/color_manager.dart';
-
 class TextFormFieldBuilder extends StatelessWidget {
   const TextFormFieldBuilder({
     super.key,
     this.onTap,
-     this.label,
+    this.label,
     this.onChanged,
     required this.controller,
     required this.type,
@@ -41,19 +38,19 @@ class TextFormFieldBuilder extends StatelessWidget {
   final Function(String)? onSubmitted;
   final String? imagePath;
   final String? suffixImagePath;
-  final bool? obsecure;
-  final bool? isIcon;
-  final bool? noIcon;
+  final bool obsecure;
+  final bool isIcon;
+  final bool noIcon;
   final Widget? suffix;
   final IconData? prefix;
   final Widget? prefixWidget;
-  final TextEditingController? controller;
-  final TextInputType? type;
+  final TextEditingController controller;
+  final TextInputType type;
   final double? width;
   final double? height;
   final Color? color;
   final String? Function(String?)? validator;
-  final bool? maxlines;
+  final bool maxlines;
   final TextAlign? textAlign;
   final TextAlignVertical? textAlignVer;
   final BorderSide? disabledBorder;
@@ -72,10 +69,10 @@ class TextFormFieldBuilder extends StatelessWidget {
       child: TextFormField(
         onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
-        maxLines: maxlines! ? 1 : null,
-        expands: maxlines! ? false : true,
+        maxLines: maxlines ? 1 : null,
+        expands: maxlines ? false : true,
         controller: controller,
-        obscureText: obsecure!,
+        obscureText: obsecure,
         textAlignVertical: textAlignVer ?? TextAlignVertical.top,
         style: const TextStyle(color: Colors.white),
         validator: validator,
@@ -97,25 +94,19 @@ class TextFormFieldBuilder extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           )
-              : (prefixIcon ??
-              (isIcon == true
-                  ? Icon(prefix, color: const Color(0xFFA8A6A6))
-                  : null)),
+              : (prefixIcon ?? (isIcon ? Icon(prefix, color: const Color(0xFFA8A6A6)) : null)),
           suffixIcon: suffixIcon ??
-              (obsecure!
+              (obsecure
                   ? IconButton(
                 icon: const Icon(Icons.remove_red_eye, color: Colors.white54),
                 onPressed: () {
-                  // Toggle password visibility here if needed
+                  // Toggle password visibility
                 },
               )
                   : null),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(13.0),
-            borderSide: BorderSide(
-              color: const Color(0x40000000),
-              width: .8,
-            ),
+            borderRadius: BorderRadius.circular(30.0),
+            borderSide: enabledBorder ?? const BorderSide(width: 1, color: Color(0x40000000)),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(13.0),
@@ -125,15 +116,13 @@ class TextFormFieldBuilder extends StatelessWidget {
             ),
           ),
           disabledBorder: OutlineInputBorder(
-            borderSide: disabledBorder ??
-                const BorderSide(width: 40, color: Colors.indigo),
+            borderSide: disabledBorder ?? const BorderSide(width: 1, color: Color(0xFFA8A6A6)),
             borderRadius: BorderRadius.circular(30),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.indigo),
+            borderSide: const BorderSide(color: Colors.red),
             borderRadius: BorderRadius.circular(30),
           ),
-          labelStyle: const TextStyle(color: Color(0xFFA8A6A6)),
         ),
       ),
     );

@@ -57,11 +57,19 @@
   "password_validation": "يجب أن تكون كلمة المرور 8 أحرف على الأقل وتحتوي على حرف كبير واحد، ورقم واحد وحرف خاص",
   "enter_valid_phone": "يرجى إدخال رقم هاتف صالح",
   "sign_in": "تسجيل الدخول",
-"or": "أو",
+  "or": "أو",
   "no_account": "ليس لديك حساب؟",
   "login_failed": "فشل تسجيل الدخول",
   "error_during_login": "حدث خطأ أثناء تسجيل الدخول",
   "phone_not_exists": "رقم الهاتف غير مسجل",
-  "error": "خطأ"
-  
+  "error": "خطأ",
+  "enterPhoneNumber" : "أدخل رقم الهاتف",
+  "wrongPhoneFormat" : "تنسيق الهاتف خاطئ",
+  "enterPassword" : "أدخل كلمة المرور",
+  "passwordCriteria" : "معايير كلمة المرور",
+  "enterConfirmPassword" : "ادخل تأكيد كلمة المرور",
+  "wrongConfirmPassword" : "تأكيد كلمة المرور خاطئة",
+  "ok" : "تم",
+  "enterUsername" : "أدخل اسم المستخدم",
+  "invalidUsername" : "اسم مستخدم خاطئ"
 }

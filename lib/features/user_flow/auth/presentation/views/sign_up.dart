@@ -27,6 +27,7 @@ class _SignUpState extends State<SignUp> {
   bool agree = true;
   bool obscure = true;
   bool obscure2 = true;
+
   TextEditingController userName = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();

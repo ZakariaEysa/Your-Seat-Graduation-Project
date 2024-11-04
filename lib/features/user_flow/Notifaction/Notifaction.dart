@@ -66,24 +66,29 @@ class Notifaction extends StatelessWidget {
               children: [
                 NotifactionContent(
                   imagePath: 'assets/images/notif1.png',
+                  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                   numOfNotifaction: '2',
                 ),
                 NotifactionContent(
                   imagePath: 'assets/images/notif2.png',
+                  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                   numOfNotifaction: '2',
                 ),
                 NotifactionContent(
                   imagePath: 'assets/images/notif3.png',
+                  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                 ),
                 NotifactionContent(
                   imagePath: 'assets/images/notif4.png',
+                  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n10 Hrs ago.',
                 ),
                 NotifactionContent(
                   imagePath: 'assets/images/notif5.png',
+                  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n15 Hrs ago.',
                 ),
               ],

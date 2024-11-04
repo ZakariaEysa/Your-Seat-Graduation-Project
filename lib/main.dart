@@ -88,8 +88,8 @@ class MyApp extends StatelessWidget {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
-            home: Notifaction()
-          //    home:  OnBoarding,
+            // home: Notifaction()
+             home:  OnBoarding(),
 
 
             );

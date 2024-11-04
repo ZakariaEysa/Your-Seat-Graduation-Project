@@ -7,7 +7,6 @@ import 'package:yourseatgraduationproject/resources/color_manager.dart';
 
 class TextFormFieldBuilder extends StatelessWidget {
   const TextFormFieldBuilder({
-
     super.key,
     this.onTap,
     required this.label,
@@ -73,7 +72,6 @@ class TextFormFieldBuilder extends StatelessWidget {
       width: width ?? 333.w,
       height: height ?? 55.h,
       child: TextFormField(
-        
         onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines! ? 1 : null,
@@ -89,45 +87,41 @@ class TextFormFieldBuilder extends StatelessWidget {
         onFieldSubmitted: onSubmitted,
         keyboardType: type,
         decoration: InputDecoration(
-          disabledBorder: OutlineInputBorder(
-            borderSide: disabledBorder ??
-                const BorderSide(width: 40, color: Color(0xFFA8A6A6)),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: ColorManager.primaryW),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          border: OutlineInputBorder(
-            borderSide: enabledBorder ??
-                const BorderSide(width: 1, color: Color(0xDCEBECFF)),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          hintText: label,
-          hintStyle: const TextStyle(
-            color: Color(0xFFA8A6A6),
-            fontSize: 13,
-          ),
-          labelStyle: const TextStyle(
-            color: Color(0xFFA8A6A6),
-          ),
-          prefixIcon: imagePath != null
-              ? Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Image.asset(
-                    imagePath!,
-                    width:10,
-                    height: 10,
-                    fit: BoxFit.fill,
-                  ),
-                )
-              : null,
-          suffixIcon: suffixIcon
-        ),
-
-
+            disabledBorder: OutlineInputBorder(
+              borderSide: disabledBorder ??
+                  const BorderSide(width: 40, color: Colors.indigo),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.indigo),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            border: OutlineInputBorder(
+              borderSide: enabledBorder ??
+                  const BorderSide(width: 1, color: Colors.indigo),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            hintText: label,
+            hintStyle: const TextStyle(
+              color: Color(0xFFA8A6A6),
+              fontSize: 13,
+            ),
+            labelStyle: const TextStyle(
+              color: Color(0xFFA8A6A6),
+            ),
+            prefixIcon: imagePath != null
+                ? Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Image.asset(
+                      imagePath!,
+                      width: 10,
+                      height: 10,
+                      fit: BoxFit.fill,
+                    ),
+                  )
+                : null,
+            suffixIcon: suffixIcon),
       ),
-
     );
   }
 }

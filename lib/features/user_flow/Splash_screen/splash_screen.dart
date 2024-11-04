@@ -1,22 +1,19 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
-
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
-import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
-import '../auth/presentation/cubit/auth_cubit.dart';
-import '../home/presentation/views/home_layout.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/data/repos/auth_repo.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 
-
+import 'package:yourseatgraduationproject/utils/navigation.dart';
+import 'package:yourseatgraduationproject/utils/service_locator.dart';
+import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../auth/presentation/cubit/auth_cubit.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -26,31 +23,31 @@ class SplashScreen extends StatelessWidget {
       navigateAndReplace(
           context: context,
           screen: BlocProvider(
-            create: (context) => AuthCubit( ),
-            child:SignIn(),
+            create: (context) => AuthCubit(AuthRepoImpl(
+                AuthRemoteDataSourceImpl(
+                    FirebaseAuth.instance, GoogleSignIn()))),
+            child: const SignIn(),
           ));
     });
     var mediaQuery = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Image.asset(
-        "assets/images/splash.png",
+    return ScaffoldF(
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.transparent,
+        ),
         width: mediaQuery.width,
         height: mediaQuery.height,
-        fit: BoxFit.cover,
-      ),
+        child: Image.asset(
+          "assets/images/splash.png",
+
+          // fit: BoxFit.cover,
+        ),
+      )
+          .animate()
+          .then()
+          .shimmer(duration: const Duration(milliseconds: 900))
+          .then()
+          .shimmer(duration: const Duration(milliseconds: 900)),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

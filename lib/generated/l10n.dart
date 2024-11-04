@@ -18,31 +18,28 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(_current != null, 'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
-  static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
+  static const AppLocalizationDelegate delegate =
+    AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
-    final localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
       final instance = S();
       S._current = instance;
-
+ 
       return instance;
     });
-  }
+  } 
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(instance != null, 'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -50,20 +47,20 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `hello`
+  /// `Hello`
   String get hello {
     return Intl.message(
-      'hello',
+      'Hello',
       name: 'hello',
       desc: '',
       args: [],
     );
   }
 
-  /// `signIn`
+  /// `Sign In`
   String get signin {
     return Intl.message(
-      'signIn',
+      'Sign In',
       name: 'signin',
       desc: '',
       args: [],
@@ -109,6 +106,229 @@ class S {
       args: [],
     );
   }
+
+  /// `Please fill the credentials.`
+  String get pleaseFillTheCredentials {
+    return Intl.message(
+      'Please fill the credentials.',
+      name: 'pleaseFillTheCredentials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phonenumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phonenumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot Password',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue With Facebook`
+  String get continueWithFacebook {
+    return Intl.message(
+      'Continue With Facebook',
+      name: 'continueWithFacebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue With Google`
+  String get continueWithGoogle {
+    return Intl.message(
+      'Continue With Google',
+      name: 'continueWithGoogle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue As Guest`
+  String get continueAsGuest {
+    return Intl.message(
+      'Continue As Guest',
+      name: 'continueAsGuest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have any account yet?`
+  String get dontHaveAnyAccountYet {
+    return Intl.message(
+      'Don\'t have any account yet?',
+      name: 'dontHaveAnyAccountYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm OTP Code`
+  String get confirmOtpCode {
+    return Intl.message(
+      'Confirm OTP Code',
+      name: 'confirmOtpCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You just need to enter the OTP sent to the registered phone number.`
+  String get youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber {
+    return Intl.message(
+      'You just need to enter the OTP sent to the registered phone number.',
+      name: 'youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+
+  /// `Username`
+  String get username {
+    return Intl.message(
+      'Username',
+      name: 'username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth Date`
+  String get birthDate {
+    return Intl.message(
+      'Birth Date',
+      name: 'birthDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Month`
+  String get month {
+    return Intl.message(
+      'Month',
+      name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Day`
+  String get day {
+    return Intl.message(
+      'Day',
+      name: 'day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year`
+  String get year {
+    return Intl.message(
+      'Year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I agree with privacy policy`
+  String get iAgreeWithPrivacyPolicy {
+    return Intl.message(
+      'I agree with privacy policy',
+      name: 'iAgreeWithPrivacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'Welcome to YourSeat !' key
+
+  // skipped getter for the 'Enjoy easy ticket booking and personalized ' key
+
+  // skipped getter for the 'New movies ! Easy booking' key
+
+  // skipped getter for the 'Book tickets for the latest movies at the cinema nearest to you.' key
+
+  // skipped getter for the 'Favorite it!\n Add watchlist' key
+
+  // skipped getter for the 'Favorites or watchlist for quick access to your beloved movies.' key
+
+  /// `Notification`
+  String get Notification {
+    return Intl.message(
+      'Notification',
+      name: 'Notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get General {
+    return Intl.message(
+      'General',
+      name: 'General',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'SALE IS LIVE' key
+
+  // skipped getter for the 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit' key
+
+  // skipped getter for the '1m ago' key
+
+  // skipped getter for the '10 Hrs ago ' key
+
+  // skipped getter for the '15 Hrs ago' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

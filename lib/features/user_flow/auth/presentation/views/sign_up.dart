@@ -1,12 +1,17 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 
+import '../../../../../utils/service_locator.dart';
 import '../../../../../widgets/app_bar/appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -326,7 +331,9 @@ class _SignUpState extends State<SignUp> {
                         navigateTo(
                             context: context,
                             screen: BlocProvider(
-                              create: (context) => AuthCubit(),
+                              create: (context) => AuthCubit(AuthRepoImpl(
+                                  AuthRemoteDataSourceImpl(
+                                      FirebaseAuth.instance, GoogleSignIn()))),
                               child: SignIn(),
                             ));
                       },

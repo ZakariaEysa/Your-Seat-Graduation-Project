@@ -1,25 +1,25 @@
-class UnbordingContent {
+class OnBoardingContent {
   String image;
   String title;
-  String discription;
+  String description;
 
-  UnbordingContent({required this.image, required this.title, required this.discription});
+  OnBoardingContent({required this.image, required this.title, required this.description});
 }
 
-List<UnbordingContent> contents = [
-  UnbordingContent(
+List<OnBoardingContent> contents = [
+  OnBoardingContent(
       title: "Welcome to YourSeat !",
       image: "assets/images/image 5.png",
-      discription: "Enjoy easy ticket booking and personalized recommendations"
+      description: "Enjoy easy ticket booking and personalized recommendations"
   ),
-  UnbordingContent(
+  OnBoardingContent(
       title: "New movies ! Easy booking",
       image: "assets/images/image 6.png",
-      discription: "Book tickets for the latest movies at the cinema nearest to you."
+      description: "Book tickets for the latest movies at the cinema nearest to you."
   ),
-  UnbordingContent(
+  OnBoardingContent(
       title: "Favorite it!\n Add watchlist",
       image: "assets/images/image 7.png",
-      discription: "Favorites or watchlist for quick access to your beloved movies. "
+      description: "Favorites or watchlist for quick access to your beloved movies. "
   ),
 ];

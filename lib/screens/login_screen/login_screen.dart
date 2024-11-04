@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yourseatgraduationproject/screens/login_screen/widget/country_picker.dart';
 import 'package:yourseatgraduationproject/screens/login_screen/widget/custom_button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -163,5 +165,27 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+}
+
+
+Future<String> checkUserExists(String userId) async {
+  try {
+    // الوصول إلى مجموعة المستخدمين
+    CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
+
+    // البحث عن المستخدم باستخدام الرقم المرسل
+    DocumentSnapshot userDoc = await usersCollection.doc(userId).get();
+
+    if (userDoc.exists) {
+      // إذا وجد المستخدم
+      return 'User found';
+    } else {
+      // إذا لم يوجد المستخدم
+      return 'User not found';
+    }
+  } catch (e) {
+    // في حالة حدوث خطأ
+    return 'Error: $e';
   }
 }

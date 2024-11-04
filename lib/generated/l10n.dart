@@ -208,7 +208,6 @@ class S {
   }
 
 
-
   /// `Username`
   String get username {
     return Intl.message(
@@ -288,6 +287,48 @@ class S {
       args: [],
     );
   }
+
+  // skipped getter for the 'Welcome to YourSeat !' key
+
+  // skipped getter for the 'Enjoy easy ticket booking and personalized ' key
+
+  // skipped getter for the 'New movies ! Easy booking' key
+
+  // skipped getter for the 'Book tickets for the latest movies at the cinema nearest to you.' key
+
+  // skipped getter for the 'Favorite it!\n Add watchlist' key
+
+  // skipped getter for the 'Favorites or watchlist for quick access to your beloved movies.' key
+
+  /// `Notification`
+  String get Notification {
+    return Intl.message(
+      'Notification',
+      name: 'Notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get General {
+    return Intl.message(
+      'General',
+      name: 'General',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'SALE IS LIVE' key
+
+  // skipped getter for the 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit' key
+
+  // skipped getter for the '1m ago' key
+
+  // skipped getter for the '10 Hrs ago ' key
+
+  // skipped getter for the '15 Hrs ago' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

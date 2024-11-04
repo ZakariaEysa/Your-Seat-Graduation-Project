@@ -21,6 +21,7 @@ final AuthRepo authRepo;
   final TextEditingController passwordController = TextEditingController();
   bool showPassword = true;
 
+  final TextEditingController phoneController = TextEditingController();
 
   onPressed() {
     showPassword = !showPassword;

@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/sign_in_part.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/app_bar/appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
@@ -86,7 +87,9 @@ class SignIn extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(16.0.sp),
-                child: const TextFiled(
+                child:  TextFiled(
+                  controller: AuthCubit.get(context).phoneController,
+
                   hintText: 'Phone Number',
                   icon: Icons.phone,
                   isPassword: false,
@@ -94,7 +97,7 @@ class SignIn extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(16.0.sp),
-                child: const TextFiled(
+                child:  TextFiled(
                   hintText: 'password',
                   icon: Icons.key,
                   isPassword: true,
@@ -114,6 +117,13 @@ class SignIn extends StatelessWidget {
               ButtonBuilder(
                 text: 'Sign in',
                 ontap: () async {
+
+
+
+                  String ss= await checkUserExists("+20123456789");
+
+                  AppLogs.scussessLog(ss);
+
                   // PhoneAuthService().loginWithPhoneNumber(context,
                   //     cubit.emailController.text); // Example phone number
 
@@ -189,7 +199,8 @@ class SignIn extends StatelessWidget {
                       style: theme.textTheme.bodySmall!.copyWith(fontSize: 17)),
                   InkWell(
                     onTap: () {
-                      navigateTo(context: context, screen: const SignUp());
+                      // navigateTo(context: context, screen: const SignUp());
+
                     },
                     child: Text('  Sign Up',
                         style:
@@ -201,4 +212,32 @@ class SignIn extends StatelessWidget {
       ),
     );
   }
+  Future<String> checkUserExists(String userId) async {
+
+    try {
+      // الوصول إلى مجموعة المستخدمين
+      CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
+
+      // البحث عن المستخدم باستخدام الرقم المرسل
+      DocumentSnapshot userDoc = await usersCollection.doc(userId).get();
+
+      AppLogs.scussessLog(
+          userDoc.get("password")  );
+
+
+      AppLogs.scussessLog(
+          userDoc.get("age")  );
+      if (userDoc.exists) {
+        // إذا وجد المستخدم
+        return 'User found';
+      } else {
+        // إذا لم يوجد المستخدم
+        return 'User not found';
+      }
+    } catch (e) {
+      // في حالة حدوث خطأ
+      return 'Error: $e';
+    }
+  }
+
 }

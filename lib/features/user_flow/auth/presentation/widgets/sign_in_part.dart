@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 class SignInPart extends StatelessWidget{
   final String title;
   final IconData icon;
-   const SignInPart({super.key,required this.title, required this.icon,this.onTap});
-final void Function()? onTap;
+  const SignInPart({super.key,required this.title, required this.icon,this.onTap});
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -27,15 +27,15 @@ final void Function()? onTap;
                 title,
                 style:theme.textTheme.labelLarge!.copyWith(fontSize: 17),
               ),
-      
+
             ],
           ),
         ),
-      
-      
-      
-      
-      
+
+
+
+
+
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:yourseatgraduationproject/features/user_flow/settings/presentati
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/theme_sheet.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/settings_item/settings_item.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
+import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
@@ -15,7 +16,11 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldF(
-      title: "Settings",
+        appBar: AppBar(
+          backgroundColor: Color(0xFF2E1371),
+          title: HeadAppBar(
+            title: 'Settings',
+          ),),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

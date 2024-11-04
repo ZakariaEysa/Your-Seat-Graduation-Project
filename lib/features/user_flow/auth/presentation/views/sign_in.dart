@@ -9,13 +9,13 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/v
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/sign_in_part.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import 'package:yourseatgraduationproject/generated/l10n.dart';
+import 'package:yourseatgraduationproject/utils/validation_utils.dart';
 import 'package:yourseatgraduationproject/widgets/text_field/text_field/text_form_field_builder.dart';
 import '../../../../../utils/navigation.dart';
-import '../../../../../widgets/app_bar/appbar.dart';
+import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../../../../widgets/text_field/text_field/text_filed.dart';
 
 class SignIn extends StatefulWidget {
   SignIn({super.key});
@@ -34,12 +34,13 @@ class _SignInState extends State<SignIn> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
 
     Future<void> loginWithFacebook(BuildContext context) async {
+      var lang = S.of(context);
       try {
         final result = await FacebookAuth.instance.login();
         if (result.status == LoginStatus.success) {
           final accessToken = result.accessToken;
           final facebookAuthCredential =
-              FacebookAuthProvider.credential(accessToken!.tokenString);
+              FacebookAuthProvider.credential(accessToken!.token);
           final userCredential =
               await _auth.signInWithCredential(facebookAuthCredential);
           final userData = await FacebookAuth.instance.getUserData();
@@ -47,23 +48,30 @@ class _SignInState extends State<SignIn> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text(
-                    'تسجيل الدخول ناجح: ${userCredential.user!.displayName}')),
+                    '${lang.login_successful} ${userCredential.user!.displayName}')),
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('فشل تسجيل الدخول: ${result.message}')),
+            SnackBar(content: Text(lang.login_failed)),
           );
         }
       } catch (e) {
         print('Error: $e');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('حدث خطأ أثناء تسجيل الدخول')),
+          SnackBar(content: Text(lang.error_during_login)),
         );
       }
     }
 
+    var lang = S.of(context);
     final theme = Theme.of(context);
     return ScaffoldF(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF2E1371),
+        title: HeadAppBar(
+          title: 'Sign In',
+        ),
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: cubit.formKeyLogin,
@@ -71,14 +79,11 @@ class _SignInState extends State<SignIn> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const BuilderAppBar(
-                  title: 'Sign in',
-                ),
                 SizedBox(height: 10.h),
                 Padding(
                   padding: EdgeInsets.only(left: 30.h),
                   child: Text(
-                    'Please fill the credentials',
+                    lang.pleaseFillTheCredentials,
                     style: theme.textTheme.bodySmall!.copyWith(fontSize: 16),
                   ),
                 ),
@@ -88,17 +93,17 @@ class _SignInState extends State<SignIn> {
                   child: TextFormFieldBuilder(
                     height: 80.h,
                     type: TextInputType.phone,
-                    label: 'Phone Number',
+                    label: lang.phonenumber,
                     controller: cubit.phoneController,
-                    hinitText: 'Phone Number',
+                    hinitText: lang.phonenumber,
                     prefixIcon: Icon(Icons.phone),
                     obsecure: false,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your phone number';
+                        return lang.enter_phone_number;
                       }
                       if (value.length != 11) {
-                        return 'Wrong phone format';
+                        return lang.invalid_phone_format;
                       }
                       return null;
                     },
@@ -113,11 +118,7 @@ class _SignInState extends State<SignIn> {
                         image: AssetImage("assets/images/Password.png")),
                     suffixIcon: InkWell(
                         onTap: () {
-                          if (obscure2) {
-                            obscure2 = false;
-                          } else {
-                            obscure2 = true;
-                          }
+                          obscure2 = !obscure2;
                           setState(() {});
                         },
                         child: obscure2
@@ -129,16 +130,15 @@ class _SignInState extends State<SignIn> {
                                 Icons.visibility,
                                 color: Colors.grey,
                               )),
-                    suffixImagePath: 'assets/images/hide.png',
-                    height: 80.h,
+                    height: 90.h,
                     controller: cubit.passwordController,
-                    label: 'Password',
+                    label: lang.password,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
+                        return lang.enter_password;
                       }
-                      if (value.length < 6) {
-                        return "password should be at least 6 characters";
+                      if (!isValidPassword(value)) {
+                        return lang.password_validation;
                       }
                       return null;
                     },
@@ -151,12 +151,11 @@ class _SignInState extends State<SignIn> {
                       if (cubit.phoneController.text.length == 11) {
                         navigateTo(context: context, screen: Otp());
                       } else {
-                        BotToast.showText(
-                            text: "please enter a valid phone number");
+                        BotToast.showText(text: lang.enter_valid_phone);
                       }
                     },
                     child: Text(
-                      'Forgot password?',
+                      lang.forgotPassword,
                       style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
                       textAlign: TextAlign.right,
                     ),
@@ -164,7 +163,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 SizedBox(height: 15.h),
                 ButtonBuilder(
-                  text: 'Sign in',
+                  text: lang.sign_in,
                   ontap: () async {
                     if (cubit.formKeyLogin.currentState!.validate()) {
                       String ss = await checkUserExists(
@@ -174,7 +173,7 @@ class _SignInState extends State<SignIn> {
                       BotToast.showText(text: ss);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Please fill all fields')),
+                        SnackBar(content: Text(lang.fill_all_fields)),
                       );
                     }
                   },
@@ -195,7 +194,7 @@ class _SignInState extends State<SignIn> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.h),
                         child: Text(
-                          'or',
+                          lang.or,
                           style: theme.textTheme.titleMedium,
                         ),
                       ),
@@ -214,7 +213,7 @@ class _SignInState extends State<SignIn> {
                     onTap: () {
                       loginWithFacebook(context);
                     },
-                    title: 'Continue With Facebook ',
+                    title: lang.continue_with_facebook,
                     icon: Icons.facebook,
                   ),
                 ),
@@ -224,7 +223,7 @@ class _SignInState extends State<SignIn> {
                     onTap: () {
                       cubit.signInWithGoogle();
                     },
-                    title: 'Continue With Google ',
+                    title: lang.continue_with_google,
                     icon: Icons.g_mobiledata_rounded,
                   ),
                 ),
@@ -235,21 +234,21 @@ class _SignInState extends State<SignIn> {
                       navigateAndRemoveUntil(
                           context: context, screen: const HomeLayout());
                     },
-                    title: 'Continue as Guest ',
+                    title: lang.continue_as_guest,
                     icon: Icons.account_box_outlined,
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Don’t have any account yet?',
+                    Text(lang.no_account,
                         style:
                             theme.textTheme.bodySmall!.copyWith(fontSize: 17)),
                     InkWell(
                       onTap: () {
                         navigateTo(context: context, screen: const SignUp());
                       },
-                      child: Text('  Sign Up',
+                      child: Text(lang.sign_up,
                           style: theme.textTheme.labelLarge!
                               .copyWith(fontSize: 17)),
                     )
@@ -262,23 +261,22 @@ class _SignInState extends State<SignIn> {
   }
 
   Future<String> checkUserExists(String userId, String password) async {
+    var lang = S.of(context);
     try {
       CollectionReference usersCollection =
           FirebaseFirestore.instance.collection('users');
       DocumentSnapshot userDoc = await usersCollection.doc(userId).get();
 
-      // AppLogs.scussessLog(userDoc.get("password"));
-      // AppLogs.scussessLog(userDoc.get("age"));
       if (userDoc.exists) {
         if (userDoc.get("password") == password) {
-          return 'logging successful';
+          return lang.login_successful;
         }
-        return 'password is wrong ';
+        return lang.wrong_password;
       } else {
-        return 'phone number doesn\'t exits';
+        return lang.phone_not_exists;
       }
     } catch (e) {
-      return 'Error: $e';
+      return '${lang.error}: $e';
     }
   }
 }

@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:yourseatgraduationproject/data/hive_keys.dart';
+import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/data/repos/auth_repo.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
+import 'package:yourseatgraduationproject/features/user_flow/onBoarding/OnBoarding.dart';
 
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/utils/service_locator.dart';
@@ -20,15 +24,26 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 3), () {
-      navigateAndReplace(
+      if (HiveStorage.get(HiveKeys.passUserOnboarding) == false) {
+        navigateAndRemoveUntil(context: context, screen: OnBoarding());
+      } else if (HiveStorage.get(HiveKeys.role) == "") {
+        navigateAndRemoveUntil(
           context: context,
           screen: BlocProvider(
             create: (context) => AuthCubit(AuthRepoImpl(
                 AuthRemoteDataSourceImpl(
                     FirebaseAuth.instance, GoogleSignIn()))),
             child: SignIn(),
-          ));
+          ),
+        );
+      } else {
+        navigateAndRemoveUntil(
+          context: context,
+          screen: HomeLayout(),
+        );
+      }
     });
+
     var mediaQuery = MediaQuery.of(context).size;
     return ScaffoldF(
       body: Container(

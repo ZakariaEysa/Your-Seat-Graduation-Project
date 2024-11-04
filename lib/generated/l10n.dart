@@ -300,47 +300,505 @@ class S {
     );
   }
 
-  // skipped getter for the 'Welcome to YourSeat !' key
+  /// `Welcome to YourSeat!`
+  String get welcomeToYourSeat {
+    return Intl.message(
+      'Welcome to YourSeat!',
+      name: 'welcomeToYourSeat',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Enjoy easy ticket booking and personalized ' key
+  /// `Enjoy easy ticket booking and personalized recommendations.`
+  String get enjoyEasyTicketBooking {
+    return Intl.message(
+      'Enjoy easy ticket booking and personalized recommendations.',
+      name: 'enjoyEasyTicketBooking',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'New movies ! Easy booking' key
+  /// `New movies! Easy booking`
+  String get newMoviesEasyBooking {
+    return Intl.message(
+      'New movies! Easy booking',
+      name: 'newMoviesEasyBooking',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Book tickets for the latest movies at the cinema nearest to you.' key
+  /// `Book tickets for the latest movies at the cinema nearest to you.`
+  String get bookTicketsForLatestMovies {
+    return Intl.message(
+      'Book tickets for the latest movies at the cinema nearest to you.',
+      name: 'bookTicketsForLatestMovies',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Favorite it!\n Add watchlist' key
+  /// `Favorite it! Add to watchlist`
+  String get favoriteItAddWatchlist {
+    return Intl.message(
+      'Favorite it! Add to watchlist',
+      name: 'favoriteItAddWatchlist',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Favorites or watchlist for quick access to your beloved movies.' key
+  /// `Favorites or watchlist for quick access to your beloved movies.`
+  String get favoritesOrWatchlistForQuickAccess {
+    return Intl.message(
+      'Favorites or watchlist for quick access to your beloved movies.',
+      name: 'favoritesOrWatchlistForQuickAccess',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Notification`
-  String get Notification {
+  String get notification {
     return Intl.message(
       'Notification',
-      name: 'Notification',
+      name: 'notification',
       desc: '',
       args: [],
     );
   }
 
   /// `General`
-  String get General {
+  String get general {
     return Intl.message(
       'General',
-      name: 'General',
+      name: 'general',
       desc: '',
       args: [],
     );
   }
 
-  // skipped getter for the 'SALE IS LIVE' key
+  /// `SALE IS LIVE`
+  String get saleIsLive {
+    return Intl.message(
+      'SALE IS LIVE',
+      name: 'saleIsLive',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit' key
+  /// `Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit`
+  String get loremIpsumPlaceholder {
+    return Intl.message(
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit',
+      name: 'loremIpsumPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the '1m ago' key
+  /// `1m ago`
+  String get timeAgo1Minute {
+    return Intl.message(
+      '1m ago',
+      name: 'timeAgo1Minute',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the '10 Hrs ago ' key
+  /// `10 Hrs ago`
+  String get timeAgo10Hours {
+    return Intl.message(
+      '10 Hrs ago',
+      name: 'timeAgo10Hours',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the '15 Hrs ago' key
+  /// `15 Hrs ago`
+  String get timeAgo15Hours {
+    return Intl.message(
+      '15 Hrs ago',
+      name: 'timeAgo15Hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See all`
+  String get seeAll {
+    return Intl.message(
+      'See all',
+      name: 'seeAll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Now playing`
+  String get nowPlaying {
+    return Intl.message(
+      'Now playing',
+      name: 'nowPlaying',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coming soon`
+  String get comingSoon {
+    return Intl.message(
+      'Coming soon',
+      name: 'comingSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo & Discount`
+  String get promoDiscount {
+    return Intl.message(
+      'Promo & Discount',
+      name: 'promoDiscount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cinema`
+  String get cinema {
+    return Intl.message(
+      'Cinema',
+      name: 'cinema',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill all fields`
+  String get fill_all_fields {
+    return Intl.message(
+      'Please fill all fields',
+      name: 'fill_all_fields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your phone number`
+  String get please_enter_phone_number {
+    return Intl.message(
+      'Please enter your phone number',
+      name: 'please_enter_phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wrong phone format`
+  String get wrong_phone_format {
+    return Intl.message(
+      'Wrong phone format',
+      name: 'wrong_phone_format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get please_enter_password {
+    return Intl.message(
+      'Please enter your password',
+      name: 'please_enter_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password should be at least 8 characters with at least one uppercase letter, one number, and one special character`
+  String get password_requirements {
+    return Intl.message(
+      'Password should be at least 8 characters with at least one uppercase letter, one number, and one special character',
+      name: 'password_requirements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password should be at least 6 characters`
+  String get password_min_length {
+    return Intl.message(
+      'Password should be at least 6 characters',
+      name: 'password_min_length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password`
+  String get forgot_password {
+    return Intl.message(
+      'Forgot Password',
+      name: 'forgot_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue as Guest`
+  String get continue_as_guest {
+    return Intl.message(
+      'Continue as Guest',
+      name: 'continue_as_guest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue With Google`
+  String get continue_with_google {
+    return Intl.message(
+      'Continue With Google',
+      name: 'continue_with_google',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue With Facebook`
+  String get continue_with_facebook {
+    return Intl.message(
+      'Continue With Facebook',
+      name: 'continue_with_facebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don’t have any account yet?`
+  String get don_t_have_account {
+    return Intl.message(
+      'Don’t have any account yet?',
+      name: 'don_t_have_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get sign_up {
+    return Intl.message(
+      'Sign Up',
+      name: 'sign_up',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logging successful`
+  String get logging_successful {
+    return Intl.message(
+      'Logging successful',
+      name: 'logging_successful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is wrong`
+  String get wrong_password {
+    return Intl.message(
+      'Password is wrong',
+      name: 'wrong_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number doesn't exist`
+  String get phone_does_not_exist {
+    return Intl.message(
+      'Phone number doesn\'t exist',
+      name: 'phone_does_not_exist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to log in with Facebook`
+  String get facebook_login_failed {
+    return Intl.message(
+      'Failed to log in with Facebook',
+      name: 'facebook_login_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while logging in`
+  String get login_error {
+    return Intl.message(
+      'An error occurred while logging in',
+      name: 'login_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number`
+  String get please_enter_valid_phone {
+    return Intl.message(
+      'Please enter a valid phone number',
+      name: 'please_enter_valid_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login successful`
+  String get login_successful {
+    return Intl.message(
+      'Login successful',
+      name: 'login_successful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your phone number`
+  String get enter_phone_number {
+    return Intl.message(
+      'Please enter your phone number',
+      name: 'enter_phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone format`
+  String get invalid_phone_format {
+    return Intl.message(
+      'Invalid phone format',
+      name: 'invalid_phone_format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get enter_password {
+    return Intl.message(
+      'Please enter your password',
+      name: 'enter_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password should be at least 8 characters with one uppercase letter, one number, and one special character`
+  String get password_validation {
+    return Intl.message(
+      'Password should be at least 8 characters with one uppercase letter, one number, and one special character',
+      name: 'password_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number`
+  String get enter_valid_phone {
+    return Intl.message(
+      'Please enter a valid phone number',
+      name: 'enter_valid_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get sign_in {
+    return Intl.message(
+      'Sign In',
+      name: 'sign_in',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or`
+  String get or {
+    return Intl.message(
+      'or',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don’t have an account?`
+  String get no_account {
+    return Intl.message(
+      'Don’t have an account?',
+      name: 'no_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login failed`
+  String get login_failed {
+    return Intl.message(
+      'Login failed',
+      name: 'login_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred during login`
+  String get error_during_login {
+    return Intl.message(
+      'An error occurred during login',
+      name: 'error_during_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number doesn't exist`
+  String get phone_not_exists {
+    return Intl.message(
+      'Phone number doesn\'t exist',
+      name: 'phone_not_exists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -9,6 +9,7 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_da
 import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
@@ -56,6 +57,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    // var local = S.of(context);
     var theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(

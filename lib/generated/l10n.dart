@@ -490,405 +490,311 @@ class S {
     );
   }
 
-  /// `Please agree with privacy policy`
-  String get PleaseAgreeWithPrivacyPolicy {
+  /// `Please fill all fields`
+  String get fill_all_fields {
     return Intl.message(
-      'Please agree with privacy policy',
-      name: 'PleaseAgreeWithPrivacyPolicy',
+      'Please fill all fields',
+      name: 'fill_all_fields',
       desc: '',
       args: [],
     );
   }
 
-  /// `January`
-  String get january {
+  /// `Please enter your phone number`
+  String get please_enter_phone_number {
     return Intl.message(
-      'January',
-      name: 'january',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `February`
-  String get february {
-    return Intl.message(
-      'February',
-      name: 'february',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `March`
-  String get march {
-    return Intl.message(
-      'March',
-      name: 'march',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `April`
-  String get april {
-    return Intl.message(
-      'April',
-      name: 'april',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `May`
-  String get may {
-    return Intl.message(
-      'May',
-      name: 'may',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `June`
-  String get june {
-    return Intl.message(
-      'June',
-      name: 'june',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `July`
-  String get july {
-    return Intl.message(
-      'July',
-      name: 'july',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `August`
-  String get august {
-    return Intl.message(
-      'August',
-      name: 'august',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `September`
-  String get september {
-    return Intl.message(
-      'September',
-      name: 'september',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `October`
-  String get october {
-    return Intl.message(
-      'October',
-      name: 'october',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `November`
-  String get november {
-    return Intl.message(
-      'November',
-      name: 'november',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `December`
-  String get december {
-    return Intl.message(
-      'December',
-      name: 'december',
-      desc: '',
-      args: [],
-    );
-  }
-
-  // skipped getter for the 'alreadyHaveAccount?' key
-
-  // skipped getter for the '1' key
-
-  // skipped getter for the '2' key
-
-  // skipped getter for the '3' key
-
-  // skipped getter for the '4' key
-
-  // skipped getter for the '5' key
-
-  // skipped getter for the '6' key
-
-  // skipped getter for the '7' key
-
-  // skipped getter for the '8' key
-
-  // skipped getter for the '9' key
-
-  // skipped getter for the '10' key
-
-  // skipped getter for the '11' key
-
-  // skipped getter for the '12' key
-
-  // skipped getter for the '13' key
-
-  // skipped getter for the '14' key
-
-  // skipped getter for the '15' key
-
-  // skipped getter for the '16' key
-
-  // skipped getter for the '17' key
-
-  // skipped getter for the '18' key
-
-  // skipped getter for the '19' key
-
-  // skipped getter for the '20' key
-
-  // skipped getter for the '21' key
-
-  // skipped getter for the '22' key
-
-  // skipped getter for the '23' key
-
-  // skipped getter for the '24' key
-
-  // skipped getter for the '25' key
-
-  // skipped getter for the '26' key
-
-  // skipped getter for the '27' key
-
-  // skipped getter for the '28' key
-
-  // skipped getter for the '29' key
-
-  // skipped getter for the '30' key
-
-  // skipped getter for the '31' key
-
-  // skipped getter for the '1990' key
-
-  // skipped getter for the '1991' key
-
-  // skipped getter for the '1992' key
-
-  // skipped getter for the '1993' key
-
-  // skipped getter for the '1994' key
-
-  // skipped getter for the '1995' key
-
-  // skipped getter for the '1996' key
-
-  // skipped getter for the '1997' key
-
-  // skipped getter for the '1998' key
-
-  // skipped getter for the '1999' key
-
-  // skipped getter for the '2000' key
-
-  // skipped getter for the '2001' key
-
-  // skipped getter for the '2002' key
-
-  // skipped getter for the '2003' key
-
-  // skipped getter for the '2004' key
-
-  // skipped getter for the '2005' key
-
-  // skipped getter for the '2006' key
-
-  // skipped getter for the '2007' key
-
-  // skipped getter for the '2008' key
-
-  // skipped getter for the '2009' key
-
-  // skipped getter for the '2010' key
-
-  // skipped getter for the '2011' key
-
-  // skipped getter for the '2012' key
-
-  // skipped getter for the '2013' key
-
-  // skipped getter for the '2014' key
-
-  // skipped getter for the '2015' key
-
-  // skipped getter for the '2016' key
-
-  // skipped getter for the '2017' key
-
-  // skipped getter for the '2018' key
-
-  // skipped getter for the '2019' key
-
-  // skipped getter for the '2020' key
-
-  // skipped getter for the '2021' key
-
-  // skipped getter for the '2022' key
-
-  // skipped getter for the '2023' key
-
-  // skipped getter for the '2024' key
-
-  /// `Enter user name`
-  String get enterUsername {
-    return Intl.message(
-      'Enter user name',
-      name: 'enterUsername',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Invalid username`
-  String get invalidUsername {
-    return Intl.message(
-      'Invalid username',
-      name: 'invalidUsername',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter phone number`
-  String get enterPhoneNumber {
-    return Intl.message(
-      'Enter phone number',
-      name: 'enterPhoneNumber',
+      'Please enter your phone number',
+      name: 'please_enter_phone_number',
       desc: '',
       args: [],
     );
   }
 
   /// `Wrong phone format`
-  String get wrongPhoneFormat {
+  String get wrong_phone_format {
     return Intl.message(
       'Wrong phone format',
-      name: 'wrongPhoneFormat',
+      name: 'wrong_phone_format',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enter Password`
-  String get enterPassword {
+  /// `Please enter your password`
+  String get please_enter_password {
     return Intl.message(
-      'Enter Password',
-      name: 'enterPassword',
+      'Please enter your password',
+      name: 'please_enter_password',
       desc: '',
       args: [],
     );
   }
 
   /// `Password should be at least 8 characters with at least one uppercase letter, one number, and one special character`
-  String get passwordCriteria {
+  String get password_requirements {
     return Intl.message(
       'Password should be at least 8 characters with at least one uppercase letter, one number, and one special character',
-      name: 'passwordCriteria',
+      name: 'password_requirements',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enter confirmation password`
-  String get enterConfirmPassword {
+  /// `Password should be at least 6 characters`
+  String get password_min_length {
     return Intl.message(
-      'Enter confirmation password',
-      name: 'enterConfirmPassword',
+      'Password should be at least 6 characters',
+      name: 'password_min_length',
       desc: '',
       args: [],
     );
   }
 
-  /// `Wrong confirmation password`
-  String get wrongConfirmPassword {
+  /// `Forgot Password`
+  String get forgot_password {
     return Intl.message(
-      'Wrong confirmation password',
-      name: 'wrongConfirmPassword',
+      'Forgot Password',
+      name: 'forgot_password',
       desc: '',
       args: [],
     );
   }
 
-  /// `Already have an account?`
-  String get alreadyHaveAccount {
+  /// `Continue as Guest`
+  String get continue_as_guest {
     return Intl.message(
-      'Already have an account?',
-      name: 'alreadyHaveAccount',
+      'Continue as Guest',
+      name: 'continue_as_guest',
       desc: '',
       args: [],
     );
   }
 
-  /// `Registered Successfully`
-  String get registerSuccess {
+  /// `Continue With Google`
+  String get continue_with_google {
     return Intl.message(
-      'Registered Successfully',
-      name: 'registerSuccess',
+      'Continue With Google',
+      name: 'continue_with_google',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sorry, this account exists already`
-  String get accountExists {
+  /// `Continue With Facebook`
+  String get continue_with_facebook {
     return Intl.message(
-      'Sorry, this account exists already',
-      name: 'accountExists',
+      'Continue With Facebook',
+      name: 'continue_with_facebook',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ok`
-  String get ok {
+  /// `Don’t have any account yet?`
+  String get don_t_have_account {
     return Intl.message(
-      'Ok',
-      name: 'ok',
+      'Don’t have any account yet?',
+      name: 'don_t_have_account',
       desc: '',
       args: [],
     );
   }
 
-  /// `Creating Account`
-  String get creatingAccount {
+  /// `Sign Up`
+  String get sign_up {
     return Intl.message(
-      'Creating Account',
-      name: 'creatingAccount',
+      'Sign Up',
+      name: 'sign_up',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error saving user`
-  String get errorSavingUser {
+  /// `Logging successful`
+  String get logging_successful {
     return Intl.message(
-      'Error saving user',
-      name: 'errorSavingUser',
+      'Logging successful',
+      name: 'logging_successful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is wrong`
+  String get wrong_password {
+    return Intl.message(
+      'Password is wrong',
+      name: 'wrong_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number doesn't exist`
+  String get phone_does_not_exist {
+    return Intl.message(
+      'Phone number doesn\'t exist',
+      name: 'phone_does_not_exist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to log in with Facebook`
+  String get facebook_login_failed {
+    return Intl.message(
+      'Failed to log in with Facebook',
+      name: 'facebook_login_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while logging in`
+  String get login_error {
+    return Intl.message(
+      'An error occurred while logging in',
+      name: 'login_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number`
+  String get please_enter_valid_phone {
+    return Intl.message(
+      'Please enter a valid phone number',
+      name: 'please_enter_valid_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login successful`
+  String get login_successful {
+    return Intl.message(
+      'Login successful',
+      name: 'login_successful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your phone number`
+  String get enter_phone_number {
+    return Intl.message(
+      'Please enter your phone number',
+      name: 'enter_phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone format`
+  String get invalid_phone_format {
+    return Intl.message(
+      'Invalid phone format',
+      name: 'invalid_phone_format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get enter_password {
+    return Intl.message(
+      'Please enter your password',
+      name: 'enter_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password should be at least 8 characters with one uppercase letter, one number, and one special character`
+  String get password_validation {
+    return Intl.message(
+      'Password should be at least 8 characters with one uppercase letter, one number, and one special character',
+      name: 'password_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number`
+  String get enter_valid_phone {
+    return Intl.message(
+      'Please enter a valid phone number',
+      name: 'enter_valid_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get sign_in {
+    return Intl.message(
+      'Sign In',
+      name: 'sign_in',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or`
+  String get or {
+    return Intl.message(
+      'or',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don’t have an account?`
+  String get no_account {
+    return Intl.message(
+      'Don’t have an account?',
+      name: 'no_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login failed`
+  String get login_failed {
+    return Intl.message(
+      'Login failed',
+      name: 'login_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred during login`
+  String get error_during_login {
+    return Intl.message(
+      'An error occurred during login',
+      name: 'error_during_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number doesn't exist`
+  String get phone_not_exists {
+    return Intl.message(
+      'Phone number doesn\'t exist',
+      name: 'phone_not_exists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
       desc: '',
       args: [],
     );

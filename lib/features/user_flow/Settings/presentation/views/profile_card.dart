@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/profile_card/personal_info_card.dart';
+import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -11,13 +12,23 @@ class ProfileCard extends StatelessWidget {
     var theme = Theme.of(context);
 
     return ScaffoldF(
-      title: "",
-      actions:  [
-        InkWell(
-          onTap: (){},
-        child: const Icon(Icons.edit,size: 27,color: Colors.white,)),
-        const SizedBox(width: 12,),
-      ],
+      appBar: AppBar(
+
+        actions:  [
+          InkWell(
+              onTap: (){},
+              child: const Icon(Icons.edit,size: 27,color: Colors.white,)),
+          const SizedBox(width: 12,),
+        ],
+        backgroundColor: Color(0xFF2E1371),
+        iconTheme: IconThemeData(
+          size: 28,
+          color: Colors.white,
+        ),
+
+
+      ),
+
       body: Stack(children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),

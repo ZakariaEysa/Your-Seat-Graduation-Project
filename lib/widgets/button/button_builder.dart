@@ -52,20 +52,18 @@ class ButtonBuilder extends StatelessWidget {
                       child: Center(
                         child: Text(
                           text,
-                          style:theme.textTheme.labelLarge!.copyWith(
-                            shadows: [
-                              BoxShadow(
-                                color: Colors.purple.withOpacity(0.2), // Adjust the color and opacity
-                                offset: Offset(0, 3), // Adjust the offset
-                                blurRadius: 5, // Adjust the blur radius
-                              ),
-                            ],
-                          ),
+                          style:theme.textTheme.labelLarge
+                          //     !.copyWith(
+                      //         shadows: [
+                      //         const Shadow(
+                      //         color: Color(0xFFEB68E3),
+                      //     offset: Offset(2.0, 2.0),
+                      //     ),
+                      //
+                      // ]
+                      // ),
 
-                      ))
-                      ),
-
-                  )
+    ))))
                 : Center(
                     child: Container(
                       width: width ?? screenWidth * 0.70,

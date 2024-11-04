@@ -8,9 +8,9 @@ class MovieCard extends StatelessWidget {
   MovieCard({required this.index, required this.currentPage});
 
   final List<String> movieImages = [
-    'assets/images/film2.png', // Guardians of the Galaxy
+    'assets/images/Guardians.png', // Guardians of the Galaxy
     'assets/images/film1.png', // Avengers Infinity War
-    'assets/images/film3.png', // Batman v Superman
+    'assets/images/Batman.png', // Batman v Superman
   ];
 
   final List<Map<String, String>> movieDetails = [
@@ -56,7 +56,7 @@ class MovieCard extends StatelessWidget {
             movieDetails[index]['title']!,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 22.sp,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -66,7 +66,7 @@ class MovieCard extends StatelessWidget {
             '${movieDetails[index]['duration']} • ${movieDetails[index]['genre']}',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 10.sp,
               color: Colors.white70,
             ),
           ),
@@ -79,7 +79,7 @@ class MovieCard extends StatelessWidget {
               Text(
                 movieDetails[index]['rating']!,
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 10.sp,
                   color: Colors.white70,
                 ),
               ),

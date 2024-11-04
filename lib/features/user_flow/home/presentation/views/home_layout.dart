@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
 import '../../../Settings/presentation/views/settings_screen.dart';
 import '../../../Tickets/tickets_screen.dart';
-import '../../../Watch_list/watch_list_screen.dart';
+import '../../../Watch_list/presentation/views/watch_list.dart';
+
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});
@@ -14,12 +15,13 @@ class HomeLayout extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeLayout> {
+  // Set the default index to 3 for HomeScreen
   int selectedIndex = 0;
 
   List<Widget> pages = [
     const HomeScreen(),
+    const WatchList(),
     const TicketPage(),
-    const WatchListPage(),
     const SettingsPage(),
   ];
 
@@ -52,8 +54,8 @@ class _HomeScreenState extends State<HomeLayout> {
           CurvedNavigationBarItem(
             child: ImageIcon(
               selectedIndex == 1
-                  ? const AssetImage("assets/icons/watch_list_bold.png")
-                  : const AssetImage("assets/icons/watch_list.png"),
+                  ?  const AssetImage('assets/icons/bold_watch_list.png'  )
+                  : const AssetImage("assets/icons/watch_list_icon.png"),
               color: Colors.white,
             ),
             label: selectedIndex == 1 ? 'Watch List' : '',

@@ -17,7 +17,7 @@ class SettingsItem extends StatelessWidget {
       height: 57.h,
       padding: const EdgeInsets.all(16),
       decoration: ShapeDecoration(
-        color: const Color(0x54D9D9D9),
+        color: const Color(0xff401C8B).withOpacity(.6),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
       child: Row(

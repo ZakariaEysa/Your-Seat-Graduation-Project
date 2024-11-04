@@ -1,302 +1,242 @@
+import 'package:bot_toast/bot_toast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/sign_in_part.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import 'package:yourseatgraduationproject/widgets/text_field/text_field/text_form_field_builder.dart';
 import '../../../../../utils/navigation.dart';
-import '../../../../../widgets/app_bar/appbar.dart';
+import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../../../../widgets/text_field/text_field/text_filed.dart';
-import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
 
 class SignIn extends StatelessWidget {
   SignIn({super.key});
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  final GoogleSignInService googleSignInService = GoogleSignInService();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
     var cubit = AuthCubit.get(context);
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+    Future<void> loginWithFacebook(BuildContext context) async {
+      try {
+        final result = await FacebookAuth.instance.login();
+        if (result.status == LoginStatus.success) {
+          final accessToken = result.accessToken;
+          final facebookAuthCredential =
+          FacebookAuthProvider.credential(accessToken!.token);
+          final userCredential =
+          await _auth.signInWithCredential(facebookAuthCredential);
+          final userData = await FacebookAuth.instance.getUserData();
+          print('User Data: $userData');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content: Text(
+                    'تسجيل الدخول ناجح: ${userCredential.user!.displayName}')),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('فشل تسجيل الدخول: ${result.message}')),
+          );
+        }
+      } catch (e) {
+        print('Error: $e');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('حدث خطأ أثناء تسجيل الدخول')),
+        );
+      }
+    }
+
     final theme = Theme.of(context);
     return ScaffoldF(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF2E1371),
+        title: HeadAppBar(
+          title: 'Sign In',
+
+        ),),
       body: SingleChildScrollView(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const BuilderAppBar(
-                title: 'Sign in',
-              ),
-              SizedBox(height: 10.h),
-              Padding(
-                padding: EdgeInsets.only(left: 30.h),
-                child: Text(
-                  'Please fill the credentials',
-                  style: theme.textTheme.bodySmall!.copyWith(fontSize: 16),
-                ),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              Padding(
-                padding: EdgeInsets.all(16.0.sp),
-                child:  const TextFiled(
-                  hintText: 'Phone Number', icon:Icons.phone, isPassword:false,
+        child: Form(
+          key: _formKey,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
 
+                SizedBox(height: 10.h),
+                Padding(
+                  padding: EdgeInsets.only(left: 30.h),
+                  child: Text(
+                    'Please fill the credentials',
+                    style: theme.textTheme.bodySmall!.copyWith(fontSize: 16),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16.0.sp),
-                child: const TextFiled(
-
-                  hintText: 'password', icon:Icons.key, isPassword: true,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0.sp),
-                child: Text(
-                  'Forgot password?',
-                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                  textAlign: TextAlign.right,
-                ),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              ButtonBuilder(
-                text: 'Sign in',
-                ontap: () {
-                  PhoneAuthService().loginWithPhoneNumber(context,
-                      cubit.emailController.text); // Example phone number
-
-                  // loginWithEmailPassword(cubit.emailController.text,
-                  //       cubit.passwordController.text);
-                  //   register(emailController.text, passwordController.text);
-
-                  //    navigateTo(context: context, screen: const HomeScreen());
-                },
-                width: 220.w,
-                height: 55.h,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0.sp),
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: Divider(
-                        color: Colors.white,
-                        thickness: 1,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.h),
-                      child: Text(
-                        'or',
-                        style: theme.textTheme.titleMedium,
-                      ),
-                    ),
-                    const Expanded(
-                      child: Divider(
-                        color: Colors.white,
-                        thickness: 1,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16.0.sp),
-                child: const SignInPart(
-                  title: 'Continue With Facebook ',
-                  icon: Icons.facebook,
-
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16.0.sp),
-                child: SignInPart(
-                  onTap: () {
-                    loginWithGoogle();
-                  },
-                  title: 'Continue With Google ',
-                  icon: Icons.g_mobiledata_rounded,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16.0.sp),
-                child: const SignInPart(
-                  title: 'Continue as Guest ',
-                  icon: Icons.account_box_outlined,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Don’t have any account yet?',
-                      style:
-                          theme.textTheme.bodySmall!.copyWith(fontSize: 17)),
-                  InkWell(
-                    onTap: () {
-                      navigateTo(context: context, screen: const SignUp());
+                SizedBox(height: 15.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.sp),
+                  child: TextFormFieldBuilder(
+                    height: 90.h,
+                    type: TextInputType.phone,
+                    label: 'Phone Number',
+                    controller: cubit.phoneController,
+                    hinitText: 'Phone Number',
+                    prefixIcon: Icon(Icons.phone),
+                    obsecure: false,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your phone number';
+                      }
+                      return null;
                     },
-                    child: Text('  Sign Up',
-                        style: theme.textTheme.labelLarge!
-                            .copyWith(fontSize: 17)),
-                  )
-                ],
-              )
-            ]),
-      ),
-    );
-  }
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.sp),
+                  child: TextFormFieldBuilder(
+                    height: 90.h,
+                    controller: cubit.passwordController,
+                    type: TextInputType.visiblePassword,
+                    label: 'Password',
+                    prefixIcon: Icon(Icons.key),
+                    obsecure: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0.sp),
+                  child: Text(
+                    'Forgot password?',
+                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+                SizedBox(height: 15.h),
+                ButtonBuilder(
+                  text: 'Sign in',
+                  ontap: () async {
+                    if (_formKey.currentState!.validate()) {
+                      String ss = await checkUserExists(
+                          cubit.phoneController.text,
+                          cubit.passwordController.text);
 
-  void loginWithGoogle() async {
-    User? user = await googleSignInService.signInWithGoogle();
-    if (user != null) {
-      print('User signed in: ${user.displayName}');
-    } else {
-      print('Google sign-in failed');
-    }
-  }
-
-  // zakariaeysa@gmail.com
-  //123456
-}
-
-class GoogleSignInService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-
-  Future<User?> signInWithGoogle() async {
-    try {
-      // Trigger the Google Sign-In flow
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-
-      if (googleUser == null) {
-        // The user canceled the sign-in
-        return null;
-      }
-
-      // Obtain the auth details from the Google user
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-
-      // Create a new credential using the Google auth tokens
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      // Sign in to Firebase with the Google credential
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-
-      // Return the signed-in Firebase user
-      return userCredential.user;
-    } catch (e) {
-      print('Error during Google sign-in: $e');
-      return null;
-    }
-  }
-
-  Future<void> signOutGoogle() async {
-    await _googleSignIn.signOut();
-    await _auth.signOut();
-  }
-}
-
-class PhoneAuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  // This function triggers the OTP SMS for the phone number provided
-  Future<void> loginWithPhoneNumber(
-      BuildContext context, String phoneNumber) async {
-    // Show a loading indicator while waiting for verification
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
-    );
-
-    // Phone number needs to be in the full international format, i.e., '+20XXXXXXXXXX'
-    String formattedPhoneNumber = '+20' + phoneNumber;
-
-    // Verify phone number by sending an OTP
-    await _auth.verifyPhoneNumber(
-      phoneNumber: formattedPhoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        // Auto-retrieve the SMS code or auto-verify (on certain devices)
-        await _auth.signInWithCredential(credential);
-        Navigator.of(context).pop(); // Close the loading indicator
-        // Handle successful login
-        print('Phone number automatically verified and user logged in.');
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        Navigator.of(context).pop(); // Close the loading indicator
-        print('Phone number verification failed: ${e.message}');
-        // Handle error (e.g., display an error message)
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(e.message ?? 'Verification failed')));
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        Navigator.of(context).pop(); // Close the loading indicator
-        // Ask the user to enter the OTP manually
-        _showOTPDialog(context, verificationId);
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {
-        // Handle timeout when the auto-retrieval of the OTP fails
-        print('Timeout for automatic OTP retrieval.');
-      },
-    );
-  }
-
-  // This function handles the OTP input by the user
-  void _showOTPDialog(BuildContext context, String verificationId) {
-    String smsCode = '';
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Enter OTP'),
-        content: TextField(
-          onChanged: (value) {
-            smsCode = value;
-          },
+                      BotToast.showText(text: ss);
+                      AppLogs.scussessLog(ss);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Please fill all fields')),
+                      );
+                    }
+                  },
+                  width: 220.w,
+                  height: 55.h,
+                ),
+                SizedBox(height: 20.h),
+                Padding(
+                  padding: EdgeInsets.all(8.0.sp),
+                  child: Row(
+                    children: [
+                      const Expanded(
+                        child: Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.h),
+                        child: Text(
+                          'or',
+                          style: theme.textTheme.titleMedium,
+                        ),
+                      ),
+                      const Expanded(
+                        child: Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0.sp),
+                  child: SignInPart(
+                    onTap: () {
+                      loginWithFacebook(context);
+                    },
+                    title: 'Continue With Facebook ',
+                    icon: Icons.facebook,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0.sp),
+                  child: SignInPart(
+                    onTap: () {
+                      cubit.signInWithGoogle();
+                    },
+                    title: 'Continue With Google ',
+                    icon: Icons.g_mobiledata_rounded,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0.sp),
+                  child: const SignInPart(
+                    title: 'Continue as Guest ',
+                    icon: Icons.account_box_outlined,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Don’t have any account yet?',
+                        style:
+                        theme.textTheme.bodySmall!.copyWith(fontSize: 17)),
+                    InkWell(
+                      onTap: () {
+                         navigateTo(context: context, screen: const SignUp());
+                      },
+                      child: Text('  Sign Up',
+                          style: theme.textTheme.labelLarge!
+                              .copyWith(fontSize: 17)),
+                    )
+                  ],
+                )
+              ]),
         ),
-        actions: [
-          TextButton(
-            onPressed: () async {
-              // Close the dialog
-              Navigator.of(context).pop();
-
-              // Create the PhoneAuthCredential using the verification ID and the SMS code
-              PhoneAuthCredential credential = PhoneAuthProvider.credential(
-                verificationId: verificationId,
-                smsCode: smsCode,
-              );
-
-              try {
-                // Sign in with the credential (OTP)
-                await _auth.signInWithCredential(credential);
-                // Handle successful login
-                print('User signed in successfully.');
-              } catch (e) {
-                // Handle error (e.g., incorrect OTP)
-                print('Failed to sign in: $e');
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text('Incorrect OTP')));
-              }
-            },
-            child: Text('Verify'),
-          ),
-        ],
       ),
     );
   }
+
+  Future<String> checkUserExists(String userId, String password) async {
+    try {
+      CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection('users');
+      DocumentSnapshot userDoc = await usersCollection.doc(userId).get();
+
+      // AppLogs.scussessLog(userDoc.get("password"));
+      // AppLogs.scussessLog(userDoc.get("age"));
+      if (userDoc.exists) {
+        if (userDoc.get("password") == password) {
+          return 'User found';
+        }
+        return 'password is wrong ';
+      } else {
+        return 'User not found';
+      }
+    } catch (e) {
+      return 'Error: $e';
+    }
+    }
 }

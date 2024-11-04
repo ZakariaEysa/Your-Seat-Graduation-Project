@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:yourseatgraduationproject/resources/app_styles_manager.dart';
-
 import 'package:yourseatgraduationproject/resources/color_manager.dart';
 
 class TextFormFieldBuilder extends StatelessWidget {
   const TextFormFieldBuilder({
-
     super.key,
     this.onTap,
-    required this.label,
+     this.label,
     this.onChanged,
     required this.controller,
     required this.type,
@@ -38,7 +36,7 @@ class TextFormFieldBuilder extends StatelessWidget {
     this.hinitText,
   });
 
-  final String label;
+  final String? label;
   final Function(String)? onChanged;
   final Function(String)? onSubmitted;
   final String? imagePath;
@@ -68,12 +66,10 @@ class TextFormFieldBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return SizedBox(
       width: width ?? 333.w,
-      height: height ?? 55.h,
+      height: height ?? 60.h,
       child: TextFormField(
-
         onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines! ? 1 : null,
@@ -81,53 +77,65 @@ class TextFormFieldBuilder extends StatelessWidget {
         controller: controller,
         obscureText: obsecure!,
         textAlignVertical: textAlignVer ?? TextAlignVertical.top,
-        style: TextStyle(
-          color: color,
-        ),
+        style: const TextStyle(color: Colors.white),
         validator: validator,
         onChanged: onChanged,
         onFieldSubmitted: onSubmitted,
         keyboardType: type,
         decoration: InputDecoration(
+          hintText: label,
+          hintStyle: TextStyle(color: Colors.grey, fontSize: 13.sp),
+          filled: true,
+          fillColor: const Color(0xff2E126E).withOpacity(.4),
+          prefixIcon: imagePath != null
+              ? Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Image.asset(
+              imagePath!,
+              width: 10,
+              height: 10,
+              fit: BoxFit.fill,
+            ),
+          )
+              : (prefixIcon ??
+              (isIcon == true
+                  ? Icon(prefix, color: const Color(0xFFA8A6A6))
+                  : null)),
+          suffixIcon: suffixIcon ??
+              (obsecure!
+                  ? IconButton(
+                icon: const Icon(Icons.remove_red_eye, color: Colors.white54),
+                onPressed: () {
+                  // Toggle password visibility here if needed
+                },
+              )
+                  : null),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(13.0),
+            borderSide: BorderSide(
+              color: const Color(0x40000000),
+              width: .8,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(13.0),
+            borderSide: BorderSide(
+              color: const Color(0xFF78028A).withOpacity(.6),
+              width: 2.0,
+            ),
+          ),
           disabledBorder: OutlineInputBorder(
             borderSide: disabledBorder ??
-                const BorderSide(width: 40, color:Colors.indigo),
+                const BorderSide(width: 40, color: Colors.indigo),
             borderRadius: BorderRadius.circular(30),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color:Colors.indigo),
+            borderSide: const BorderSide(color: Colors.indigo),
             borderRadius: BorderRadius.circular(30),
           ),
-          border: OutlineInputBorder(
-            borderSide: enabledBorder ??
-                const BorderSide(width: 1, color:Colors.indigo),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          hintText: label,
-          hintStyle: const TextStyle(
-            color: Color(0xFFA8A6A6),
-            fontSize: 13,
-          ),
-          labelStyle: const TextStyle(
-            color: Color(0xFFA8A6A6),
-          ),
-          prefixIcon: imagePath != null
-              ? Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Image.asset(
-                    imagePath!,
-                    width:10,
-                    height: 10,
-                    fit: BoxFit.fill,
-                  ),
-                )
-              : null,
-          suffixIcon: suffixIcon
+          labelStyle: const TextStyle(color: Color(0xFFA8A6A6)),
         ),
-
-
       ),
-
     );
   }
 }

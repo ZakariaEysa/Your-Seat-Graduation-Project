@@ -24,5 +24,20 @@
   "day": "Day",
   "year": "Year",
   "iAgreeWithPrivacyPolicy": "I agree with privacy policy",
-  "signUp": "Sign Up"
+  "signUp": "Sign Up",
+
+  "Welcome to YourSeat !":"Welcome to YourSeat !",
+  "Enjoy easy ticket booking and personalized ":"Enjoy easy ticket booking and personalized ",
+  "New movies ! Easy booking":"New movies ! Easy booking",
+  "Book tickets for the latest movies at the cinema nearest to you.":"Book tickets for the latest movies at the cinema nearest to you.",
+  "Favorite it!\n Add watchlist":"Favorite it!\n Add watchlist",
+  "Favorites or watchlist for quick access to your beloved movies.":"Favorites or watchlist for quick access to your beloved movies."
+
+  "Notification":"Notification",
+  "General":"General",
+  "SALE IS LIVE":"SALE IS LIVE",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit":"Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing elit",
+  "1m ago":"1m ago",
+  "10 Hrs ago ":" 10 Hrs ago ",
+  "15 Hrs ago":"15 Hrs ago"
 }

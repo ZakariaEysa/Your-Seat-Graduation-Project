@@ -18,6 +18,7 @@ class TextWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Text(
+
             text,
             style: TextStyle(
               color: Color(0xFFF2F2F2),

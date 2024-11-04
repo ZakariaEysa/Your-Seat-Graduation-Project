@@ -52,7 +52,6 @@ class _HomeScreenState extends State<HomeLayout> {
             labelStyle: const TextStyle(color: Colors.white),
           ),
           CurvedNavigationBarItem(
-
             child: ImageIcon(
               selectedIndex == 1
                   ?  const AssetImage('assets/icons/bold_watch_list.png'  )

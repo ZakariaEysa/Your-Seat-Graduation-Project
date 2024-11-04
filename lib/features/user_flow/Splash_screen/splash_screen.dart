@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
             create: (context) => AuthCubit(AuthRepoImpl(
                 AuthRemoteDataSourceImpl(
                     FirebaseAuth.instance, GoogleSignIn()))),
-            child: const SignIn(),
+            child:  SignIn(),
           ));
     });
     var mediaQuery = MediaQuery.of(context).size;
@@ -40,7 +40,7 @@ class SplashScreen extends StatelessWidget {
         child: Image.asset(
           "assets/images/splash.png",
 
-          // fit: BoxFit.cover,
+           fit: BoxFit.cover,
         ),
       )
           .animate()

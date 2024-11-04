@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
-import '../../../../../widgets/app_bar/appbar.dart';
+import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../home/presentation/views/home_layout.dart';
 import '../Widget/watch_list_part.dart';
 class WatchList extends StatelessWidget {
@@ -11,10 +12,18 @@ class WatchList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldF(
 
+      appBar: AppBar(
+        backgroundColor: Color(0xFF2E1371),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 35.0),
+          child: HeadAppBar(
+            title: 'Watch List ',
+          ),
+        ),),
         body: SingleChildScrollView(
       child: Column(
         children: [
-          const BuilderAppBar(title: "Watch List",),
+
           const WatchListPart(
             image: 'assets/images/Avengers.png',
             title: 'Avengers: End Game',

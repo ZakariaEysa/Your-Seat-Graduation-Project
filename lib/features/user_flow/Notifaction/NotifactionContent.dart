@@ -4,15 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NotifactionContent extends StatelessWidget {
   final String imagePath;
-  final String? title;
-  final String? body;
+  final String title='SALE IS LIVE';
+  final String body;
   final String time;
   final String? numOfNotifaction;
 
   NotifactionContent({
     required this.imagePath,
-    this.title = 'SALE IS LIVE',
-    this.body = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    //this.title = 'SALE IS LIVE',
+    required this.body ,
     required this.time,
     this.numOfNotifaction,
   });
@@ -74,7 +74,7 @@ class NotifactionContent extends StatelessWidget {
                   children: [
                     Text(
                       title!,
-                      style: theme.textTheme.labelLarge?.copyWith(fontSize: 20.sp),
+                      style: theme.textTheme.labelLarge?.copyWith(fontSize: 15.sp),
                     ),
                     SizedBox(height: 4.h),
                     Text(

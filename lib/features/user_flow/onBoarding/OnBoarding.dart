@@ -31,11 +31,18 @@ class _OnBoardingState extends State<OnBoarding> {
     var theme = Theme.of(context);
     return ScaffoldF(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            height: 130.h,
-            width: 230.w,
-            child: Image.asset('assets/images/yourseat.png', fit: BoxFit.cover),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30,top:10),
+
+              child: SizedBox(
+                height: 130.h,
+                width: 250.w,
+                child: Image.asset('assets/images/yourseat.png', fit: BoxFit.cover),
+              ),
+            ),
           ),
           Expanded(
             child: PageView.builder(
@@ -49,7 +56,7 @@ class _OnBoardingState extends State<OnBoarding> {
               itemBuilder: (_, index) {
                 return Center(
                   child: Padding(
-                    padding: EdgeInsets.all(40.sp),
+                    padding: EdgeInsets.all(30.sp),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -163,7 +170,7 @@ class _OnBoardingState extends State<OnBoarding> {
 
   Widget buildDot(int index) {
     return Container(
-      height: 10,
+      height: 10.h,
       width: currentPage == index ? 20.w : 10.w,
       margin: EdgeInsets.only(right: 5.w),
       decoration: BoxDecoration(

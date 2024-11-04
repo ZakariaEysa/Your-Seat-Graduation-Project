@@ -27,15 +27,15 @@ class SignInPart extends StatelessWidget{
                 title,
                 style:theme.textTheme.labelLarge!.copyWith(fontSize: 17),
               ),
-
+      
             ],
           ),
         ),
-
-
-
-
-
+      
+      
+      
+      
+      
       ),
     );
   }

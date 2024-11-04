@@ -24,5 +24,11 @@
   "day": "يوم",
   "year": "سنة",
   "iAgreeWithPrivacyPolicy": "أوافق على سياسة الخصوصية",
-  "signUp": "إنشاء حساب"
+  "signUp": "إنشاء حساب",
+  "seeall": "عرض الكل",
+  "nowPlaying": "جارى التشغيل الآن",
+  "comingSoon": "قريبا",
+  "promoDiscount": "العروض الترويجية والخصومات",
+  "cinema": "سينما",
+  "search":"البحث"
 }

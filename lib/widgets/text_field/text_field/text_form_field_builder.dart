@@ -8,7 +8,7 @@ class TextFormFieldBuilder extends StatelessWidget {
   const TextFormFieldBuilder({
     super.key,
     this.onTap,
-    this.label,
+     this.label,
     this.onChanged,
     required this.controller,
     required this.type,
@@ -89,27 +89,26 @@ class TextFormFieldBuilder extends StatelessWidget {
           fillColor: const Color(0xff2E126E).withOpacity(.4),
           prefixIcon: imagePath != null
               ? Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Image.asset(
-                    imagePath!,
-                    width: 10,
-                    height: 10,
-                    fit: BoxFit.fill,
-                  ),
-                )
+            padding: const EdgeInsets.all(12.0),
+            child: Image.asset(
+              imagePath!,
+              width: 10,
+              height: 10,
+              fit: BoxFit.fill,
+            ),
+          )
               : (prefixIcon ??
-                  (isIcon == true
-                      ? Icon(prefix, color: const Color(0xFFA8A6A6))
-                      : null)),
+              (isIcon == true
+                  ? Icon(prefix, color: const Color(0xFFA8A6A6))
+                  : null)),
           suffixIcon: suffixIcon ??
               (obsecure!
                   ? IconButton(
-                      icon: const Icon(Icons.remove_red_eye,
-                          color: Colors.white54),
-                      onPressed: () {
-                        // Toggle password visibility here if needed
-                      },
-                    )
+                icon: const Icon(Icons.remove_red_eye, color: Colors.white54),
+                onPressed: () {
+                  // Toggle password visibility here if needed
+                },
+              )
                   : null),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(13.0),

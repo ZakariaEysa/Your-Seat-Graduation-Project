@@ -71,5 +71,7 @@
   "wrongConfirmPassword" : "تأكيد كلمة المرور خاطئة",
   "ok" : "تم",
   "enterUsername" : "أدخل اسم المستخدم",
-  "invalidUsername" : "اسم مستخدم خاطئ"
+  "invalidUsername" : "اسم مستخدم خاطئ",
+  "pleaseAcceptPrivacyAndPolicy" : "يجب الموافقة علي الشروط و الاحكام"
+
 }

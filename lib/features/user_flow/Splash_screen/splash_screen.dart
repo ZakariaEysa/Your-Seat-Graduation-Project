@@ -26,7 +26,8 @@ class SplashScreen extends StatelessWidget {
     Timer(const Duration(seconds: 3), () {
       if (HiveStorage.get(HiveKeys.passUserOnboarding) == false) {
         navigateAndRemoveUntil(context: context, screen: OnBoarding());
-      } else if (HiveStorage.get(HiveKeys.role) == "") {
+      } else if (HiveStorage.get(HiveKeys.role) == "" ||
+          HiveStorage.get(HiveKeys.role) == null) {
         navigateAndRemoveUntil(
           context: context,
           screen: BlocProvider(

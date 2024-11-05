@@ -106,12 +106,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home: BlocProvider(
-                create: (context) => AuthCubit(AuthRepoImpl(
-                    AuthRemoteDataSourceImpl(
-                        FirebaseAuth.instance, GoogleSignIn()))),
-                child: SignUp(),
-              ),
+              home: const SplashScreen(),
             );
           });
     });

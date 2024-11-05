@@ -57,7 +57,7 @@ class ChatAsk extends StatelessWidget {
                   ]),
                 ),
                 Image.asset('assets/icons/send.png',
-                    width: 39.5, height: 55, fit: BoxFit.cover),
+                    width: 39.5, height: 54, fit: BoxFit.cover),
               ],
             ),
           ),

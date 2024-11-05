@@ -45,7 +45,7 @@ class WatchListPart extends StatelessWidget {
                     title,
                     style: theme.textTheme.bodyMedium!.copyWith(fontSize: 18),
                   ),
-                  const SizedBox(height:8),
+                  const SizedBox(height:7),
                   Row(
                     children: [
                       Image.asset(smallimage, width:70, height:30),

@@ -17,7 +17,7 @@ class ConfirmPart extends StatelessWidget {
             TextFormFieldBuilder(
               type: TextInputType.number,
               width: 50,
-              height: 70,
+              height: 71,
               color: Colors.white,
 
               label: title,

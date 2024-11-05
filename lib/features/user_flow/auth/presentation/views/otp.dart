@@ -50,7 +50,7 @@ class Otp extends StatelessWidget {
             padding:EdgeInsets.only(left:20.w, right: 20.w),
             child: Row(
               children: [
-                ConfirmPart(title: '', controllers:N1,  ),
+                ConfirmPart(title: '', controllers:N1,),
                 ConfirmPart(title: '', controllers: N2,),
                 ConfirmPart(title: '', controllers:N3,),
                 ConfirmPart(title: '', controllers: N4,),
@@ -63,7 +63,7 @@ class Otp extends StatelessWidget {
             height: 30.h,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 320.h),
+            padding: EdgeInsets.only(left: 319.h),
             child: Text('00:59',
                 style:  theme.textTheme.bodySmall!.copyWith(fontSize:20)),
           ),

@@ -25,7 +25,7 @@ import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 class SignIn extends StatefulWidget {
-  SignIn({super.key});
+  const SignIn({super.key});
 
   @override
   State<SignIn> createState() => _SignInState();

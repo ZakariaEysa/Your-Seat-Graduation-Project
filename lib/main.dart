@@ -10,17 +10,21 @@ import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/settings_screen.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bott.dart';
+import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
+import 'features/user_flow/Notifaction/Notifaction.dart';
 import 'features/user_flow/Splash_screen/splash_screen.dart';
 import 'features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/auth/presentation/views/sign_up.dart';
+import 'features/user_flow/chatbot/presentation/views/chat_bot.dart';
 import 'features/user_flow/onBoarding/OnBoarding.dart';
 import 'firebase_options.dart';
 import 'package:yourseatgraduationproject/generated/l10n.dart';
@@ -106,7 +110,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home: const SplashScreen(),
+              home:Otp(),
             );
           });
     });

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../home/presentation/views/home_layout.dart';
-import '../Widget/watch_list_part.dart';
+import '../widgets/watch_list_part.dart';
 class WatchList extends StatelessWidget {
   const WatchList({super.key});
 
@@ -13,9 +13,9 @@ class WatchList extends StatelessWidget {
     return ScaffoldF(
 
       appBar: AppBar(
-        backgroundColor: Color(0xFF2E1371),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 35.0),
+        backgroundColor: const Color(0xFF2E1371),
+        title: const Padding(
+          padding: EdgeInsets.only(left: 35.0),
           child: HeadAppBar(
             title: 'Watch List ',
           ),

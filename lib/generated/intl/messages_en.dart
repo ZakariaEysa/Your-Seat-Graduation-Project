@@ -131,12 +131,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "password_requirements": MessageLookupByLibrary.simpleMessage(
             "Password should be at least 8 characters with at least one uppercase letter, one number, and one special character"),
         "password_validation": MessageLookupByLibrary.simpleMessage(
-            "Password should be at least 8 characters with one uppercase letter, one number, and one special character"),
+            "Password should be at least 8 characters\n with one uppercase letter, one number,\n and one special character"),
         "phone_does_not_exist":
             MessageLookupByLibrary.simpleMessage("Phone number doesn\'t exist"),
         "phone_not_exists":
             MessageLookupByLibrary.simpleMessage("Phone number doesn\'t exist"),
         "phonenumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
+            "Please accept privacy & policy"),
         "pleaseFillTheCredentials": MessageLookupByLibrary.simpleMessage(
             "Please fill the credentials."),
         "please_enter_password":

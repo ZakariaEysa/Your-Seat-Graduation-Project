@@ -107,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_not_exists":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف غير مسجل"),
         "phonenumber": MessageLookupByLibrary.simpleMessage("رقم التليفون"),
+        "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
+            "يجب الموافقة علي الشروط و الاحكام"),
         "pleaseFillTheCredentials":
             MessageLookupByLibrary.simpleMessage("يرجى ملء بيانات الاعتماد."),
         "please_enter_password":

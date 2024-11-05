@@ -104,23 +104,21 @@ class TextFormFieldBuilder extends StatelessWidget {
                 },
               )
                   : null),
+          //لما بقف علي الشكل
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30.0),
             borderSide: enabledBorder ?? const BorderSide(width: 1, color: Color(0x40000000)),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(13.0),
-            borderSide: BorderSide(
-              color: const Color(0xFF78028A).withOpacity(.6),
-              width: 2.0,
-            ),
+            borderSide:  const BorderSide(width: 1, color: Colors.grey),
+            borderRadius: BorderRadius.circular(30),
           ),
           disabledBorder: OutlineInputBorder(
-            borderSide: disabledBorder ?? const BorderSide(width: 1, color: Color(0xFFA8A6A6)),
+            borderSide: disabledBorder ?? const BorderSide(width: 1, color: Colors.yellow),
             borderRadius: BorderRadius.circular(30),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.red),
+            borderSide:  const BorderSide(width: 1, color: Colors.red),
             borderRadius: BorderRadius.circular(30),
           ),
         ),

@@ -15,10 +15,17 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthRepo authRepo;
 
   AuthCubit(this.authRepo) : super(AuthInitial());
-  final GlobalKey<FormState> formKeyLogin = GlobalKey();
-  final GlobalKey<FormState> formKeyRegister = GlobalKey();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  GlobalKey<FormState> formKeyLogin = GlobalKey();
+  GlobalKey<FormState> formKeyRegister = GlobalKey();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController userName = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
+  String? selectedMonth;
+  int? selectedDay;
+  int? selectedYear;
   bool showPassword = true;
 
   final TextEditingController phoneController = TextEditingController();

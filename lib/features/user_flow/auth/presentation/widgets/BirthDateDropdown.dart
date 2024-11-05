@@ -38,7 +38,7 @@ class BirthDateDropdown<T> extends StatelessWidget {
         items: itemsList.map((T item) {
           return DropdownMenuItem<T>(
             value: item,
-            child: Text(item.toString(), style: theme.textTheme.bodyLarge),
+            child: Text(item.toString(), style: theme.textTheme.bodyMedium),
           );
         }).toList(),
         onChanged: onChanged,

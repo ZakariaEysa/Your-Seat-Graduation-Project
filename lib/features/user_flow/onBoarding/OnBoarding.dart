@@ -1,7 +1,16 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../data/hive_keys.dart';
 import '../../../widgets/button/button_builder.dart';
 import '../../../widgets/scaffold/scaffold_f.dart';
 import 'content.dart';
@@ -44,7 +53,6 @@ class _OnBoardingState extends State<OnBoarding> {
                   currentPage = index;
                 });
               },
-
               itemBuilder: (_, index) {
                 return Center(
                   child: Padding(
@@ -57,7 +65,6 @@ class _OnBoardingState extends State<OnBoarding> {
                           height: 300.h,
                         ),
                         SizedBox(height: 15.h),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(contents.length, (dotIndex) {
@@ -81,31 +88,74 @@ class _OnBoardingState extends State<OnBoarding> {
                         SizedBox(height: 40.h),
                         currentPage == contents.length - 1
                             ? ButtonBuilder(
-                          text: 'Start Using the App->',
-                          ontap: () {},
-                          width: 300.w,
-                          height: 55.h,
-                        )
+                                text: 'Start Using the App->',
+                                ontap: () {
+                                  // Navigate to the SignIn screen
+                                  HiveStorage.set(
+                                    HiveKeys.passUserOnboarding,
+                                    true,
+                                  );
+
+                                  navigateAndRemoveUntil(
+                                    context: context,
+                                    screen: BlocProvider(
+                                      create: (context) => AuthCubit(
+                                          AuthRepoImpl(AuthRemoteDataSourceImpl(
+                                              FirebaseAuth.instance,
+                                              GoogleSignIn()))),
+                                      child: SignIn(),
+                                    ),
+                                  );
+                                },
+                                width: 300.w,
+                                height: 55.h,
+                              )
                             : Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: ButtonBuilder(
-                                text: 'Skip',
-                                ontap: (){},
-                                height: 55.h,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: ButtonBuilder(
+                                      text: 'Skip',
+                                      ontap: () {
+                                        HiveStorage.set(
+                                          HiveKeys.passUserOnboarding,
+                                          true,
+                                        );
+
+                                        navigateAndRemoveUntil(
+                                          context: context,
+                                          screen: BlocProvider(
+                                            create: (context) => AuthCubit(
+                                                AuthRepoImpl(
+                                                    AuthRemoteDataSourceImpl(
+                                                        FirebaseAuth.instance,
+                                                        GoogleSignIn()))),
+                                            child: SignIn(),
+                                          ),
+                                        );
+                                      },
+                                      height: 55.h,
+                                    ),
+                                  ),
+                                  SizedBox(width: 20.w),
+                                  Expanded(
+                                    child: ButtonBuilder(
+                                      text: 'Next',
+                                      ontap: () {
+                                        if (currentPage < contents.length - 1) {
+                                          _pageController.nextPage(
+                                            duration:
+                                                Duration(milliseconds: 300),
+                                            curve: Curves.easeInOut,
+                                          );
+                                        }
+                                      },
+                                      height: 55.h,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            SizedBox(width: 20.w),
-                            Expanded(
-                              child: ButtonBuilder(
-                                text: 'Next',
-                                ontap: (){},
-                                height: 55.h,
-                              ),
-                            ),
-                          ],
-                        ),
                       ],
                     ),
                   ),
@@ -125,7 +175,7 @@ class _OnBoardingState extends State<OnBoarding> {
       margin: EdgeInsets.only(right: 5.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.sp),
-        color: currentPage == index ? Colors.deepPurple: Colors.white,
+        color: currentPage == index ? Colors.deepPurple : Colors.white,
       ),
     );
   }

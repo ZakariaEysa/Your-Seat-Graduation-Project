@@ -40,14 +40,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final user = userCredential.user;
 
       if (user != null) {
-
         if (HiveStorage.get(HiveKeys.role) == null) {
           HiveStorage.set(
             HiveKeys.role,
             Role.gmail.toString(),
           );
         }
-
 
         return UserModel.fromFirebaseUser(user);
       } else {

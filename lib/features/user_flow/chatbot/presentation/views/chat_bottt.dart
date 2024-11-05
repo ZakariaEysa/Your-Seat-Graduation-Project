@@ -16,7 +16,7 @@ class ChatBottt extends StatelessWidget {
         const ChatUp(),
         const ChatMessage(),
         Padding(
-          padding: EdgeInsets.only(left: 200.w,top:40.h),
+          padding: EdgeInsets.only(left: 200.w,top: 30.h),
           child: Container(
               width: 128.w,
               height: 55.h,
@@ -44,7 +44,7 @@ class ChatBottt extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(right:250.w,top:40.h),
+          padding: EdgeInsets.only(right:250.w,),
           child: Container(
               width: 100.w,
               height: 50.h,
@@ -70,10 +70,11 @@ class ChatBottt extends StatelessWidget {
               )
           ),
         ),
-        const Spacer(),
+       const Spacer(),
         const ChatAsk()
 
        ]),
     );
   }
 }
+

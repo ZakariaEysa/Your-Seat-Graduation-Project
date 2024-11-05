@@ -40,16 +40,15 @@ class WatchListPart extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     title,
                     style: theme.textTheme.bodyMedium!.copyWith(fontSize: 18),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height:8),
                   Row(
                     children: [
-                      Image.asset(smallimage, width: 70, height: 30),
+                      Image.asset(smallimage, width:70, height:30),
                       const SizedBox(width: 10),
                       Text(
                         smalltitle,
@@ -70,7 +69,7 @@ class WatchListPart extends StatelessWidget {
             ),
             const Spacer(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 100, right: 10),
+              padding: const EdgeInsets.only(bottom: 100, right: 5),
               child: Image.asset(
                 'assets/icons/close.png',
                 width: 25,

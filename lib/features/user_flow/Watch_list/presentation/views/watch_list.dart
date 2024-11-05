@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../home/presentation/views/home_layout.dart';
-import '../Widget/watch_list_part.dart';
+import '../widgets/watch_list_part.dart';
 class WatchList extends StatelessWidget {
   const WatchList({super.key});
 

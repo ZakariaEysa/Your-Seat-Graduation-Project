@@ -710,10 +710,10 @@ class S {
     );
   }
 
-  /// `Password should be at least 8 characters with one uppercase letter, one number, and one special character`
+  /// `Password should be at least 8 characters\n with one uppercase letter, one number,\n and one special character`
   String get password_validation {
     return Intl.message(
-      'Password should be at least 8 characters with one uppercase letter, one number, and one special character',
+      'Password should be at least 8 characters\n with one uppercase letter, one number,\n and one special character',
       name: 'password_validation',
       desc: '',
       args: [],
@@ -1035,6 +1035,16 @@ class S {
     return Intl.message(
       'Ok',
       name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please accept privacy & policy`
+  String get pleaseAcceptPrivacyAndPolicy {
+    return Intl.message(
+      'Please accept privacy & policy',
+      name: 'pleaseAcceptPrivacyAndPolicy',
       desc: '',
       args: [],
     );

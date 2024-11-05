@@ -115,7 +115,7 @@ class _SignInState extends State<SignIn> {
                     type: TextInputType.text,
                     obsecure: obscure2,
                     prefixIcon: const Image(
-                        image: AssetImage("assets/images/Password.png")),
+                    image: AssetImage("assets/images/Password.png")),
                     suffixIcon: InkWell(
                         onTap: () {
                           obscure2 = !obscure2;

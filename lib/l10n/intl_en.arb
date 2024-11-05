@@ -66,7 +66,7 @@
   "enter_phone_number": "Please enter your phone number",
   "invalid_phone_format": "Invalid phone format",
   "enter_password": "Please enter your password",
-  "password_validation": "Password should be at least 8 characters with one uppercase letter, one number, and one special character",
+  "password_validation": "Password should be at least 8 characters\n with one uppercase letter, one number,\n and one special character",
   "enter_valid_phone": "Please enter a valid phone number",
   "sign_in": "Sign In",
   "or": "or",
@@ -98,5 +98,6 @@
   "passwordCriteria" : "Password criteria",
   "enterConfirmPassword" : "Enter confirm password",
   "wrongConfirmPassword" : "Wrong confirm password",
-  "ok" : "Ok"
+  "ok" : "Ok",
+  "pleaseAcceptPrivacyAndPolicy" : "Please accept privacy & policy"
 }

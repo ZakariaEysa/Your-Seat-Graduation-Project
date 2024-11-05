@@ -2,8 +2,15 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:yourseatgraduationproject/data/hive_keys.dart';
+import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
@@ -44,7 +51,7 @@ class _SignInState extends State<SignIn> {
           final userCredential =
               await _auth.signInWithCredential(facebookAuthCredential);
           final userData = await FacebookAuth.instance.getUserData();
-          print('User Data: $userData');
+          // print('User Data: $userData');
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text(
@@ -56,10 +63,30 @@ class _SignInState extends State<SignIn> {
           );
         }
       } catch (e) {
-        print('Error: $e');
+        // print('Error: $e');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(lang.error_during_login)),
         );
+      }
+    }
+
+    Future<String> checkUserExists(String userId, String password) async {
+      var lang = S.of(context);
+      try {
+        CollectionReference usersCollection =
+            FirebaseFirestore.instance.collection('users');
+        DocumentSnapshot userDoc = await usersCollection.doc(userId).get();
+
+        if (userDoc.exists) {
+          if (userDoc.get("password") == password) {
+            return lang.login_successful;
+          }
+          return lang.wrong_password;
+        } else {
+          return lang.phone_not_exists;
+        }
+      } catch (e) {
+        return '${lang.error}: $e';
       }
     }
 
@@ -67,9 +94,9 @@ class _SignInState extends State<SignIn> {
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2E1371),
+        backgroundColor: const Color(0xFF2E1371),
         title: HeadAppBar(
-          title: 'Sign In',
+          title: lang.sign_in,
         ),
       ),
       body: SingleChildScrollView(
@@ -115,7 +142,7 @@ class _SignInState extends State<SignIn> {
                     type: TextInputType.text,
                     obsecure: obscure2,
                     prefixIcon: const Image(
-                    image: AssetImage("assets/images/Password.png")),
+                        image: AssetImage("assets/images/Password.png")),
                     suffixIcon: InkWell(
                         onTap: () {
                           obscure2 = !obscure2;
@@ -169,6 +196,16 @@ class _SignInState extends State<SignIn> {
                       String ss = await checkUserExists(
                           cubit.phoneController.text,
                           cubit.passwordController.text);
+                      if (ss == lang.login_successful) {
+                        HiveStorage.set(HiveKeys.role, Role.phone.toString());
+
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeLayout(),
+                          ),
+                        );
+                      }
 
                       BotToast.showText(text: ss);
                     } else {
@@ -246,7 +283,15 @@ class _SignInState extends State<SignIn> {
                             theme.textTheme.bodySmall!.copyWith(fontSize: 17)),
                     InkWell(
                       onTap: () {
-                        navigateTo(context: context, screen: const SignUp());
+                        navigateTo(
+                            context: context,
+                            screen: BlocProvider(
+                              create: (context) => AuthCubit(
+                                AuthRepoImpl(AuthRemoteDataSourceImpl(
+                                    FirebaseAuth.instance, GoogleSignIn())),
+                              ),
+                              child: const SignUp(),
+                            ));
                       },
                       child: Text(lang.sign_up,
                           style: theme.textTheme.labelLarge!
@@ -258,25 +303,5 @@ class _SignInState extends State<SignIn> {
         ),
       ),
     );
-  }
-
-  Future<String> checkUserExists(String userId, String password) async {
-    var lang = S.of(context);
-    try {
-      CollectionReference usersCollection =
-          FirebaseFirestore.instance.collection('users');
-      DocumentSnapshot userDoc = await usersCollection.doc(userId).get();
-
-      if (userDoc.exists) {
-        if (userDoc.get("password") == password) {
-          return lang.login_successful;
-        }
-        return lang.wrong_password;
-      } else {
-        return lang.phone_not_exists;
-      }
-    } catch (e) {
-      return '${lang.error}: $e';
-    }
   }
 }

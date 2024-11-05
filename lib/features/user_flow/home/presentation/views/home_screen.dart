@@ -25,29 +25,24 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                HeadWidget(),
 
-                   HeadWidget(),
-
-                    Search(),
+                Search(),
                 SizedBox(height: 20.h),
-                TextWidget(text: "lang.Nowplaying"),
+                TextWidget(text: lang.nowPlaying),
                 SizedBox(height: 20.h),
                 Container(
                   height: 500.sp,
-                  child:
-                  MovieCarouselWidget(),
+                  child: MovieCarouselWidget(),
                 ),
                 //  SizedBox(height: 15.h,),
-                TextWidget(text:"lang.Comingsoon" ),
+                TextWidget(text: lang.comingSoon),
                 SizedBox(height: 10.h),
                 Container(
                   height: 400.h,
-                  child:
-                  ComingSoon(), // Horizontal list of coming soon movies
+                  child: ComingSoon(), // Horizontal list of coming soon movies
                 ),
-                TextS(
-                 text:" lang.PromoDiscount,"
-                ),
+                TextS(text: lang.promoDiscount),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Image.asset("assets/images/discount.png"),
@@ -56,17 +51,13 @@ class HomeScreen extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 12.0, top: 10),
-                    child: TextS(text: "lang.cinema",
-
+                    child: TextS(
+                      text: lang.cinema,
                     ),
                   ),
                 ),
 
-
-
-
-
-    Padding(
+                Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CinemaItem(),
                 ),

@@ -68,10 +68,10 @@ void main() async {
   //     false,
   //   );
   // }
-  //  HiveStorage.set(
-  //                       HiveKeys.role,
-  //                       "",
-  //                     );
+  HiveStorage.set(
+    HiveKeys.role,
+    "",
+  );
 
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(

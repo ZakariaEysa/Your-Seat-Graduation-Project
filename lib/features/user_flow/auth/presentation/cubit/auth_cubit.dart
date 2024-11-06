@@ -29,19 +29,33 @@ class AuthCubit extends Cubit<AuthState> {
   bool showPassword = true;
 
   final TextEditingController phoneController = TextEditingController();
-
   Future<void> signInWithGoogle() async {
     emit(GoogleAuthLoading());
-
     final response = await authRepo.signInWithGoogle();
 
-    response.fold((failure) => emit(GoogleAuthError(failure.errorMsg)), (user) {
-      HiveStorage.set(
-        HiveKeys.role,
-        Role.gmail.toString(),
-      );
+    response.fold(
+      (failure) => emit(GoogleAuthError(failure.errorMsg)),
+      (user) => emit(GoogleAuthSuccess(user)),
+    );
+  }
 
-      emit(GoogleAuthSuccess(user));
-    });
+  Future<void> loginWithFacebook() async {
+    emit(FacebookAuthLoading());
+    final response = await authRepo.signInWithFacebook();
+
+    response.fold(
+      (failure) => emit(FacebookAuthError(failure.errorMsg)),
+      (user) => emit(FacebookAuthSuccess(user)),
+    );
+  }
+
+  Future<void> validateUser(String userId, String password) async {
+    emit(UserValidationLoading());
+    final response = await authRepo.checkUserExists(userId, password);
+
+    response.fold(
+      (failure) => emit(UserValidationError(failure.errorMsg)),
+      (message) => emit(UserValidationSuccess(message)),
+    );
   }
 }

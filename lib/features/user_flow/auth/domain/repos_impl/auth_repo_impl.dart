@@ -18,4 +18,26 @@ class AuthRepoImpl implements AuthRepo {
       return Left(ServiceFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<FailureService, UserModel>> signInWithFacebook() async {
+    try {
+      final user = await authRemoteDataSource.signInWithFacebook();
+      return Right(user);
+    } catch (e) {
+      return Left(ServiceFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<FailureService, String>> checkUserExists(
+      String userId, String password) async {
+    try {
+      final result =
+          await authRemoteDataSource.checkUserExists(userId, password);
+      return Right(result);
+    } catch (e) {
+      return Left(ServiceFailure(e.toString()));
+    }
+  }
 }

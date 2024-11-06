@@ -4,6 +4,7 @@ import 'package:yourseatgraduationproject/services/failure_service.dart';
 
 abstract class AuthRepo {
   Future<Either<FailureService, UserModel>> signInWithGoogle();
+  Future<Either<FailureService, UserModel>> signInWithFacebook();
+  Future<Either<FailureService, String>> checkUserExists(
+      String userId, String password);
 }
-
-

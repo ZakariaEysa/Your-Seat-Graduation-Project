@@ -29,7 +29,7 @@
 //
 // class _SignUpState extends State<SignUp> {
 //   String? selectedMonth;
-//   int? selectedDay;
+//   int? selectedDay;3
 //   int? selectedYear;
 //   bool agree = true;
 //   bool obscure = true;

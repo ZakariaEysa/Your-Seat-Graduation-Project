@@ -15,15 +15,26 @@ class HeadAppBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Spacer(),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0XFFFFFFFF)),
+          // Display back button if onBackPressed is provided
+          if (onBackPressed != null)
+            IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: onBackPressed,
+            ),
+          Expanded(
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
           ),
-          Spacer(),
+          // Add Spacer to balance layout if no back button
+          if (onBackPressed == null) Spacer(),
         ],
       ),
     );

@@ -13,7 +13,7 @@ import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../data/hive_keys.dart';
 import '../../../widgets/button/button_builder.dart';
 import '../../../widgets/scaffold/scaffold_f.dart';
-import 'content.dart';
+import 'OnboardingContent.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -35,12 +35,12 @@ class _OnBoardingState extends State<OnBoarding> {
         children: [
           Center(
             child: Padding(
-              padding: const EdgeInsets.only(left: 30,top:10),
-
+              padding: EdgeInsets.only(left: 30.w, top: 10.h),
               child: SizedBox(
                 height: 130.h,
                 width: 250.w,
-                child: Image.asset('assets/images/yourseat.png', fit: BoxFit.cover),
+                child: Image.asset('assets/images/yourseat.png',
+                    fit: BoxFit.cover),
               ),
             ),
           ),

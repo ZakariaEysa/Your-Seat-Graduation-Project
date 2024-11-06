@@ -12,31 +12,30 @@ class HeadAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
-      child: Row(
-        children: [
-          // Display back button if onBackPressed is provided
-          if (onBackPressed != null)
-            IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white),
-              onPressed: onBackPressed,
-            ),
-          Expanded(
-            child: Text(
-              title,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+    // return Row(
+    //   children: [
+    //     // Display back button if onBackPressed is provided
+    //     // if (onBackPressed != null)
+    //     //   IconButton(
+    //     //     icon: Icon(Icons.arrow_back, color: Colors.white),
+    //     //     onPressed: onBackPressed,
+    //     //   ),
+      return  Padding(
+        padding: const EdgeInsets.only(top: 20.0 , right: 35),
+        child: Center(
+          child: Text(
+            title,
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
-          // Add Spacer to balance layout if no back button
-          if (onBackPressed == null) Spacer(),
-        ],
-      ),
-    );
+        ),
+      );
+
+
+
+
   }
 }

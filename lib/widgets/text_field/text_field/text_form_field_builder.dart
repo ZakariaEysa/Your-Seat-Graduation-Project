@@ -106,12 +106,12 @@ class TextFormFieldBuilder extends StatelessWidget {
                   : null),
           //لما بقف علي الشكل
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(13.0),
             borderSide: enabledBorder ?? const BorderSide(width: 1, color: Color(0x40000000)),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide:  const BorderSide(width: 1, color: Colors.grey),
-            borderRadius: BorderRadius.circular(30),
+            borderSide:  const BorderSide(width: 1, color: Color(0xD0AA0A9C)),
+            borderRadius: BorderRadius.circular(13),
           ),
           disabledBorder: OutlineInputBorder(
             borderSide: disabledBorder ?? const BorderSide(width: 1, color: Colors.yellow),
@@ -119,7 +119,7 @@ class TextFormFieldBuilder extends StatelessWidget {
           ),
           errorBorder: OutlineInputBorder(
             borderSide:  const BorderSide(width: 1, color: Colors.red),
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
       ),

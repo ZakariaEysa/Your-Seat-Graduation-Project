@@ -79,10 +79,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<String> checkUserExists(String userId, String password) async {
     final userDoc =
         await FirebaseFirestore.instance.collection('users').doc(userId).get();
-    if (userDoc.exists && userDoc.get("password") == password) {
-      return 'Login successful';
+
+    if (userDoc.exists) {
+      if (userDoc.get("password") == password) {
+        return "LoginSuccessful";
+      }
+      return "WrongPassword";
     } else {
-      throw Exception('User does not exist or password is incorrect');
+      return "PhoneNotExists";
     }
+
+    // throw Exception('User does not exist or password is incorrect');
   }
 }

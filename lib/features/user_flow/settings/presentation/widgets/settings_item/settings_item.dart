@@ -17,7 +17,7 @@ class SettingsItem extends StatelessWidget {
       height: 57.h,
       padding: const EdgeInsets.all(16),
       decoration: ShapeDecoration(
-        color: const Color(0x54D9D9D9),
+        color: const Color(0xff401C8B).withOpacity(.6),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
       child: Row(
@@ -28,7 +28,7 @@ class SettingsItem extends StatelessWidget {
             width: 25,
             height: 25,
           ),
-          Text(title),
+          Text(title,style: theme.textTheme.titleMedium,),
           IconButton(
             onPressed: onPress,
             icon: const Icon(Icons.arrow_forward_ios_rounded),

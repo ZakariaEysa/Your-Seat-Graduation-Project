@@ -27,6 +27,7 @@ class _OnBoardingState extends State<OnBoarding> {
   int currentPage = 0;
 
   @override
+  @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return ScaffoldF(

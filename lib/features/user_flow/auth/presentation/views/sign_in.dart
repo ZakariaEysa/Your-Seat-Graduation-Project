@@ -268,6 +268,11 @@ class _SignInState extends State<SignIn> {
                   padding: EdgeInsets.all(16.0.sp),
                   child: SignInPart(
                     onTap: () {
+                      HiveStorage.set(
+                        HiveKeys.role,
+                        Role.guest,
+                      );
+
                       navigateAndRemoveUntil(
                           context: context, screen: const HomeLayout());
                     },

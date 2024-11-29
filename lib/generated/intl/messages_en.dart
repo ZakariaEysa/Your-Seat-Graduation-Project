@@ -22,155 +22,126 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "LoginSuccessful":
+            MessageLookupByLibrary.simpleMessage("Login Successful"),
+        "Sorrytherewasanerrorpleasetryagainlater":
+            MessageLookupByLibrary.simpleMessage(
+                "Sorry, there was an error, please try again later"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
         "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
             "Already have an account? Sign In"),
         "april": MessageLookupByLibrary.simpleMessage("April"),
         "august": MessageLookupByLibrary.simpleMessage("August"),
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
-        "bookTicketsForLatestMovies": MessageLookupByLibrary.simpleMessage(
-            "Book tickets for the latest movies at the cinema nearest to you."),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
-        "comingSoon": MessageLookupByLibrary.simpleMessage("Coming soon"),
+        "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
         "confirmOtpCode":
             MessageLookupByLibrary.simpleMessage("Confirm OTP Code"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "contactUsContent": MessageLookupByLibrary.simpleMessage(
-            "We’d love to hear from you! Whether you have inquiries..."),
+            "We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact Information:\nCustomer Support Email: [support@yourseatapp.com]\nPhone Number: [+123-456-7890]\n\nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:"),
         "continueAsGuest":
-            MessageLookupByLibrary.simpleMessage("Continue As Guest"),
+            MessageLookupByLibrary.simpleMessage("Continue as Guest"),
         "continueWithFacebook":
-            MessageLookupByLibrary.simpleMessage("Continue With Facebook"),
+            MessageLookupByLibrary.simpleMessage("Continue with Facebook"),
         "continueWithGoogle":
-            MessageLookupByLibrary.simpleMessage("Continue With Google"),
+            MessageLookupByLibrary.simpleMessage("Continue with Google"),
         "continue_as_guest":
             MessageLookupByLibrary.simpleMessage("Continue as Guest"),
         "continue_with_facebook":
-            MessageLookupByLibrary.simpleMessage("Continue With Facebook"),
+            MessageLookupByLibrary.simpleMessage("Continue with Facebook"),
         "continue_with_google":
-            MessageLookupByLibrary.simpleMessage("Continue With Google"),
+            MessageLookupByLibrary.simpleMessage("Continue with Google"),
         "continuee": MessageLookupByLibrary.simpleMessage("Continue"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
-        "don_t_have_account":
-            MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
-        "dontHaveAnyAccountYet": MessageLookupByLibrary.simpleMessage(
-            "Don\'t have any account yet?"),
-        "enjoyEasyTicketBooking": MessageLookupByLibrary.simpleMessage(
-            "Enjoy easy ticket booking and personalized recommendations."),
+        "dontHaveAnyAccountYet":
+            MessageLookupByLibrary.simpleMessage("Don’t have an account yet?"),
         "enterConfirmPassword":
             MessageLookupByLibrary.simpleMessage("Enter confirm password"),
         "enterPassword": MessageLookupByLibrary.simpleMessage("Enter password"),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter phone number"),
         "enterUsername":
-            MessageLookupByLibrary.simpleMessage("Enter user name"),
+            MessageLookupByLibrary.simpleMessage("Enter your username"),
         "enter_password":
-            MessageLookupByLibrary.simpleMessage("Please enter your password"),
-        "enter_phone_number": MessageLookupByLibrary.simpleMessage(
-            "Please enter your phone number"),
+            MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "enter_phone_number":
+            MessageLookupByLibrary.simpleMessage("Enter your phone number"),
         "enter_valid_phone": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid phone number"),
-        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorSavingUser":
             MessageLookupByLibrary.simpleMessage("Error saving user data."),
         "error_during_login": MessageLookupByLibrary.simpleMessage(
             "An error occurred during login"),
         "facebook_login_failed": MessageLookupByLibrary.simpleMessage(
             "Failed to log in with Facebook"),
-        "favoriteItAddWatchlist": MessageLookupByLibrary.simpleMessage(
-            "Favorite it! Add to watchlist"),
-        "favoritesOrWatchlistForQuickAccess": MessageLookupByLibrary.simpleMessage(
-            "Favorites or watchlist for quick access to your beloved movies."),
         "february": MessageLookupByLibrary.simpleMessage("February"),
         "fill_all_fields":
             MessageLookupByLibrary.simpleMessage("Please fill all fields"),
         "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Forgot Password"),
-        "forgot_password":
-            MessageLookupByLibrary.simpleMessage("Forgot Password"),
-        "general": MessageLookupByLibrary.simpleMessage("General"),
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
         "iAgreeWithPrivacyPolicy": MessageLookupByLibrary.simpleMessage(
-            "I agree with the privacy policy"),
+            "I agree with the Privacy Policy"),
         "invalidUsername":
-            MessageLookupByLibrary.simpleMessage("Invalid user name"),
+            MessageLookupByLibrary.simpleMessage("Invalid username"),
         "invalid_phone_format":
             MessageLookupByLibrary.simpleMessage("Invalid phone format"),
         "january": MessageLookupByLibrary.simpleMessage("January"),
         "july": MessageLookupByLibrary.simpleMessage("July"),
         "june": MessageLookupByLibrary.simpleMessage("June"),
-        "logging_successful":
-            MessageLookupByLibrary.simpleMessage("Logging successful"),
         "login_error": MessageLookupByLibrary.simpleMessage(
-            "An error occurred while logging in"),
-        "login_failed": MessageLookupByLibrary.simpleMessage("Login failed"),
+            "An error occurred during login"),
         "login_successful":
             MessageLookupByLibrary.simpleMessage("Login successful"),
-        "loremIpsumPlaceholder": MessageLookupByLibrary.simpleMessage(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."),
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),
-        "newMoviesEasyBooking":
-            MessageLookupByLibrary.simpleMessage("New movies! Easy booking"),
         "no_account":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
-        "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "november": MessageLookupByLibrary.simpleMessage("November"),
-        "nowPlaying": MessageLookupByLibrary.simpleMessage("Now playing"),
+        "nowPlaying": MessageLookupByLibrary.simpleMessage("Now Playing"),
         "october": MessageLookupByLibrary.simpleMessage("October"),
-        "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
-        "passwordCriteria":
-            MessageLookupByLibrary.simpleMessage("Password criteria"),
         "password_min_length": MessageLookupByLibrary.simpleMessage(
-            "Password should be at least 6 characters"),
+            "Password must be at least 6 characters."),
         "password_requirements": MessageLookupByLibrary.simpleMessage(
-            "Password should be at least 8 characters with at least one uppercase letter, one number, and one special character"),
+            "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character."),
         "password_validation": MessageLookupByLibrary.simpleMessage(
-            "Password should be at least 8 characters\n with one uppercase letter, one number,\n and one special character"),
+            "Password must meet the requirements"),
         "phone_does_not_exist":
-            MessageLookupByLibrary.simpleMessage("Phone number doesn\'t exist"),
-        "phone_not_exists":
-            MessageLookupByLibrary.simpleMessage("Phone number doesn\'t exist"),
+            MessageLookupByLibrary.simpleMessage("Phone number does not exist"),
         "phonenumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
-            "Please accept privacy & policy"),
+            "You must accept the terms and conditions."),
         "pleaseFillTheCredentials": MessageLookupByLibrary.simpleMessage(
-            "Please fill the credentials."),
+            "Please fill in the credentials."),
         "please_enter_password":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
         "please_enter_phone_number": MessageLookupByLibrary.simpleMessage(
             "Please enter your phone number"),
-        "please_enter_valid_phone": MessageLookupByLibrary.simpleMessage(
-            "Please enter a valid phone number"),
         "privacyPolicyContent": MessageLookupByLibrary.simpleMessage(
-            "At YourSeat, we are committed to protecting your privacy..."),
+            "At YourSeat, we are committed to protecting your privacy. This privacy policy explains how we collect, use, and safeguard your personal data when you use the YourSeat mobile application. By using the app, you agree to the collection and use of your information in accordance with this policy.\n\n1. How We Use Your Information: The information we collect from you is used for the following purposes:\n   To provide and maintain the app: Ensuring the app functions properly and improving its performance.\n   To process transactions: Managing payments for movie tickets and related services.\n   To offer personalized recommendations: Suggesting movies and cinemas based on your preferences and location.\n   To communicate with you: Sending notifications about your bookings, promotions, or updates to our services.\n   To improve our services: Analyzing app usage data to enhance features and resolve issues.\n\n2. How We Protect Your Data: YourSeat employs standard security measures to protect your personal information, including:\n   Encryption: Securing your payment data and personal information using encryption protocols like SSL.\n   Access restrictions: Ensuring only authorized personnel can access your personal data.\n   Continuous audits: Regularly reviewing our security practices to ensure your data’s safety.\n   While we take all precautions, no security measures are completely foolproof, and we cannot guarantee the absolute security of your data.\n\n3. Data Sharing and Disclosure: YourSeat does not sell or share your personal information with third parties, except:\n   Service Providers: We work with trusted third-party partners (e.g., payment processors, cloud storage providers) to help deliver our services.\n   Legal Obligations: We may disclose your information if required by law or in response to a valid legal request (e.g., a court order).\n\n4. Your Rights: You have the following rights regarding your personal data:\n   Access: You can request a copy of the personal data we hold about you.\n   Correction: You can request corrections or updates to your data.\n   Deletion: You can request deletion of your data, subject to legal requirements.\n   Opt-out of marketing: You can opt-out of promotional communications by following the unsubscribe link in our emails or adjusting app settings."),
         "promoDiscount":
-            MessageLookupByLibrary.simpleMessage("Promo & Discount"),
+            MessageLookupByLibrary.simpleMessage("Promotions & Discounts"),
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("Registration successful!"),
-        "saleIsLive": MessageLookupByLibrary.simpleMessage("SALE IS LIVE"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
-        "seeAll": MessageLookupByLibrary.simpleMessage("See all"),
+        "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
+        "seeall": MessageLookupByLibrary.simpleMessage("See All"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signin": MessageLookupByLibrary.simpleMessage("Sign In"),
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
-            "1. User Responsibilities: By using this app..."),
-        "timeAgo10Hours": MessageLookupByLibrary.simpleMessage("10 Hrs ago"),
-        "timeAgo15Hours": MessageLookupByLibrary.simpleMessage("15 Hrs ago"),
-        "timeAgo1Minute": MessageLookupByLibrary.simpleMessage("1m ago"),
+            "1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your phone, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission."),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
-        "welcomeToYourSeat":
-            MessageLookupByLibrary.simpleMessage("Welcome to YourSeat!"),
-        "wrongConfirmPassword":
-            MessageLookupByLibrary.simpleMessage("Wrong confirm password"),
+        "wrongConfirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Confirm password does not match"),
         "wrongPhoneFormat":
             MessageLookupByLibrary.simpleMessage("Wrong phone format"),
         "wrong_password":

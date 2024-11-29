@@ -51,7 +51,7 @@ class ChatAsk extends StatelessWidget {
                         width: 280,
                         height: 300,
                         fit: BoxFit.cover,
-                        color: Color(0xFF27125B),
+                        color: const Color(0xFF27125B),
                       ),
                     ),
                   ]),

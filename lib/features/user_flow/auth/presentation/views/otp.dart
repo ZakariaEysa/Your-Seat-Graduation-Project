@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
@@ -8,16 +7,27 @@ import '../../../../../widgets/button/button_builder.dart';
 import '../../../home/presentation/views/home_screen.dart';
 import '../widgets/confirm_part.dart';
 
-class Otp extends StatelessWidget {
+class Otp extends StatefulWidget {
   static const String routeName = "confirm";
-  TextEditingController N1 = TextEditingController();
-  TextEditingController N2 = TextEditingController();
-  TextEditingController N3 = TextEditingController();
-  TextEditingController N4 = TextEditingController();
-  TextEditingController N5 = TextEditingController();
-  TextEditingController N6 = TextEditingController();
 
-  Otp({super.key});
+  const  Otp({super.key});
+
+  @override
+  State<Otp> createState() => _OtpState();
+}
+
+class _OtpState extends State<Otp> {
+  TextEditingController N1 = TextEditingController();
+
+  TextEditingController N2 = TextEditingController();
+
+  TextEditingController N3 = TextEditingController();
+
+  TextEditingController N4 = TextEditingController();
+
+  TextEditingController N5 = TextEditingController();
+
+  TextEditingController N6 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

@@ -70,30 +70,30 @@ class S {
     );
   }
 
-  /// `At YourSeat, we are committed to protecting your privacy...`
+  /// `At YourSeat, we are committed to protecting your privacy. This privacy policy explains how we collect, use, and safeguard your personal data when you use the YourSeat mobile application. By using the app, you agree to the collection and use of your information in accordance with this policy.\n\n1. How We Use Your Information: The information we collect from you is used for the following purposes:\n   To provide and maintain the app: Ensuring the app functions properly and improving its performance.\n   To process transactions: Managing payments for movie tickets and related services.\n   To offer personalized recommendations: Suggesting movies and cinemas based on your preferences and location.\n   To communicate with you: Sending notifications about your bookings, promotions, or updates to our services.\n   To improve our services: Analyzing app usage data to enhance features and resolve issues.\n\n2. How We Protect Your Data: YourSeat employs standard security measures to protect your personal information, including:\n   Encryption: Securing your payment data and personal information using encryption protocols like SSL.\n   Access restrictions: Ensuring only authorized personnel can access your personal data.\n   Continuous audits: Regularly reviewing our security practices to ensure your data’s safety.\n   While we take all precautions, no security measures are completely foolproof, and we cannot guarantee the absolute security of your data.\n\n3. Data Sharing and Disclosure: YourSeat does not sell or share your personal information with third parties, except:\n   Service Providers: We work with trusted third-party partners (e.g., payment processors, cloud storage providers) to help deliver our services.\n   Legal Obligations: We may disclose your information if required by law or in response to a valid legal request (e.g., a court order).\n\n4. Your Rights: You have the following rights regarding your personal data:\n   Access: You can request a copy of the personal data we hold about you.\n   Correction: You can request corrections or updates to your data.\n   Deletion: You can request deletion of your data, subject to legal requirements.\n   Opt-out of marketing: You can opt-out of promotional communications by following the unsubscribe link in our emails or adjusting app settings.`
   String get privacyPolicyContent {
     return Intl.message(
-      'At YourSeat, we are committed to protecting your privacy...',
+      'At YourSeat, we are committed to protecting your privacy. This privacy policy explains how we collect, use, and safeguard your personal data when you use the YourSeat mobile application. By using the app, you agree to the collection and use of your information in accordance with this policy.\n\n1. How We Use Your Information: The information we collect from you is used for the following purposes:\n   To provide and maintain the app: Ensuring the app functions properly and improving its performance.\n   To process transactions: Managing payments for movie tickets and related services.\n   To offer personalized recommendations: Suggesting movies and cinemas based on your preferences and location.\n   To communicate with you: Sending notifications about your bookings, promotions, or updates to our services.\n   To improve our services: Analyzing app usage data to enhance features and resolve issues.\n\n2. How We Protect Your Data: YourSeat employs standard security measures to protect your personal information, including:\n   Encryption: Securing your payment data and personal information using encryption protocols like SSL.\n   Access restrictions: Ensuring only authorized personnel can access your personal data.\n   Continuous audits: Regularly reviewing our security practices to ensure your data’s safety.\n   While we take all precautions, no security measures are completely foolproof, and we cannot guarantee the absolute security of your data.\n\n3. Data Sharing and Disclosure: YourSeat does not sell or share your personal information with third parties, except:\n   Service Providers: We work with trusted third-party partners (e.g., payment processors, cloud storage providers) to help deliver our services.\n   Legal Obligations: We may disclose your information if required by law or in response to a valid legal request (e.g., a court order).\n\n4. Your Rights: You have the following rights regarding your personal data:\n   Access: You can request a copy of the personal data we hold about you.\n   Correction: You can request corrections or updates to your data.\n   Deletion: You can request deletion of your data, subject to legal requirements.\n   Opt-out of marketing: You can opt-out of promotional communications by following the unsubscribe link in our emails or adjusting app settings.',
       name: 'privacyPolicyContent',
       desc: '',
       args: [],
     );
   }
 
-  /// `1. User Responsibilities: By using this app...`
+  /// `1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your phone, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission.`
   String get termsAndConditionsContent {
     return Intl.message(
-      '1. User Responsibilities: By using this app...',
+      '1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your phone, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission.',
       name: 'termsAndConditionsContent',
       desc: '',
       args: [],
     );
   }
 
-  /// `We’d love to hear from you! Whether you have inquiries...`
+  /// `We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact Information:\nCustomer Support Email: [support@yourseatapp.com]\nPhone Number: [+123-456-7890]\n\nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:`
   String get contactUsContent {
     return Intl.message(
-      'We’d love to hear from you! Whether you have inquiries...',
+      'We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact Information:\nCustomer Support Email: [support@yourseatapp.com]\nPhone Number: [+123-456-7890]\n\nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:',
       name: 'contactUsContent',
       desc: '',
       args: [],
@@ -110,10 +110,10 @@ class S {
     );
   }
 
-  /// `Please fill the credentials.`
+  /// `Please fill in the credentials.`
   String get pleaseFillTheCredentials {
     return Intl.message(
-      'Please fill the credentials.',
+      'Please fill in the credentials.',
       name: 'pleaseFillTheCredentials',
       desc: '',
       args: [],
@@ -140,50 +140,50 @@ class S {
     );
   }
 
-  /// `Forgot Password`
+  /// `Forgot Password?`
   String get forgotPassword {
     return Intl.message(
-      'Forgot Password',
+      'Forgot Password?',
       name: 'forgotPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Continue With Facebook`
+  /// `Continue with Facebook`
   String get continueWithFacebook {
     return Intl.message(
-      'Continue With Facebook',
+      'Continue with Facebook',
       name: 'continueWithFacebook',
       desc: '',
       args: [],
     );
   }
 
-  /// `Continue With Google`
+  /// `Continue with Google`
   String get continueWithGoogle {
     return Intl.message(
-      'Continue With Google',
+      'Continue with Google',
       name: 'continueWithGoogle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Continue As Guest`
+  /// `Continue as Guest`
   String get continueAsGuest {
     return Intl.message(
-      'Continue As Guest',
+      'Continue as Guest',
       name: 'continueAsGuest',
       desc: '',
       args: [],
     );
   }
 
-  /// `Don't have any account yet?`
+  /// `Don’t have an account yet?`
   String get dontHaveAnyAccountYet {
     return Intl.message(
-      'Don\'t have any account yet?',
+      'Don’t have an account yet?',
       name: 'dontHaveAnyAccountYet',
       desc: '',
       args: [],
@@ -280,10 +280,10 @@ class S {
     );
   }
 
-  /// `I agree with the privacy policy`
+  /// `I agree with the Privacy Policy`
   String get iAgreeWithPrivacyPolicy {
     return Intl.message(
-      'I agree with the privacy policy',
+      'I agree with the Privacy Policy',
       name: 'iAgreeWithPrivacyPolicy',
       desc: '',
       args: [],
@@ -300,170 +300,40 @@ class S {
     );
   }
 
-  /// `Welcome to YourSeat!`
-  String get welcomeToYourSeat {
+  /// `See All`
+  String get seeall {
     return Intl.message(
-      'Welcome to YourSeat!',
-      name: 'welcomeToYourSeat',
+      'See All',
+      name: 'seeall',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enjoy easy ticket booking and personalized recommendations.`
-  String get enjoyEasyTicketBooking {
-    return Intl.message(
-      'Enjoy easy ticket booking and personalized recommendations.',
-      name: 'enjoyEasyTicketBooking',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `New movies! Easy booking`
-  String get newMoviesEasyBooking {
-    return Intl.message(
-      'New movies! Easy booking',
-      name: 'newMoviesEasyBooking',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Book tickets for the latest movies at the cinema nearest to you.`
-  String get bookTicketsForLatestMovies {
-    return Intl.message(
-      'Book tickets for the latest movies at the cinema nearest to you.',
-      name: 'bookTicketsForLatestMovies',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Favorite it! Add to watchlist`
-  String get favoriteItAddWatchlist {
-    return Intl.message(
-      'Favorite it! Add to watchlist',
-      name: 'favoriteItAddWatchlist',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Favorites or watchlist for quick access to your beloved movies.`
-  String get favoritesOrWatchlistForQuickAccess {
-    return Intl.message(
-      'Favorites or watchlist for quick access to your beloved movies.',
-      name: 'favoritesOrWatchlistForQuickAccess',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Notification`
-  String get notification {
-    return Intl.message(
-      'Notification',
-      name: 'notification',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `General`
-  String get general {
-    return Intl.message(
-      'General',
-      name: 'general',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `SALE IS LIVE`
-  String get saleIsLive {
-    return Intl.message(
-      'SALE IS LIVE',
-      name: 'saleIsLive',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Lorem ipsum dolor sit amet, consectetur adipiscing elit...`
-  String get loremIpsumPlaceholder {
-    return Intl.message(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-      name: 'loremIpsumPlaceholder',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `1m ago`
-  String get timeAgo1Minute {
-    return Intl.message(
-      '1m ago',
-      name: 'timeAgo1Minute',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `10 Hrs ago`
-  String get timeAgo10Hours {
-    return Intl.message(
-      '10 Hrs ago',
-      name: 'timeAgo10Hours',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `15 Hrs ago`
-  String get timeAgo15Hours {
-    return Intl.message(
-      '15 Hrs ago',
-      name: 'timeAgo15Hours',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `See all`
-  String get seeAll {
-    return Intl.message(
-      'See all',
-      name: 'seeAll',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Now playing`
+  /// `Now Playing`
   String get nowPlaying {
     return Intl.message(
-      'Now playing',
+      'Now Playing',
       name: 'nowPlaying',
       desc: '',
       args: [],
     );
   }
 
-  /// `Coming soon`
+  /// `Coming Soon`
   String get comingSoon {
     return Intl.message(
-      'Coming soon',
+      'Coming Soon',
       name: 'comingSoon',
       desc: '',
       args: [],
     );
   }
 
-  /// `Promo & Discount`
+  /// `Promotions & Discounts`
   String get promoDiscount {
     return Intl.message(
-      'Promo & Discount',
+      'Promotions & Discounts',
       name: 'promoDiscount',
       desc: '',
       args: [],
@@ -530,91 +400,21 @@ class S {
     );
   }
 
-  /// `Password should be at least 8 characters with at least one uppercase letter, one number, and one special character`
+  /// `Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.`
   String get password_requirements {
     return Intl.message(
-      'Password should be at least 8 characters with at least one uppercase letter, one number, and one special character',
+      'Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.',
       name: 'password_requirements',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password should be at least 6 characters`
+  /// `Password must be at least 6 characters.`
   String get password_min_length {
     return Intl.message(
-      'Password should be at least 6 characters',
+      'Password must be at least 6 characters.',
       name: 'password_min_length',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Forgot Password`
-  String get forgot_password {
-    return Intl.message(
-      'Forgot Password',
-      name: 'forgot_password',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Continue as Guest`
-  String get continue_as_guest {
-    return Intl.message(
-      'Continue as Guest',
-      name: 'continue_as_guest',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Continue With Google`
-  String get continue_with_google {
-    return Intl.message(
-      'Continue With Google',
-      name: 'continue_with_google',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Continue With Facebook`
-  String get continue_with_facebook {
-    return Intl.message(
-      'Continue With Facebook',
-      name: 'continue_with_facebook',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Don’t have an account?`
-  String get don_t_have_account {
-    return Intl.message(
-      'Don’t have an account?',
-      name: 'don_t_have_account',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sign Up`
-  String get sign_up {
-    return Intl.message(
-      'Sign Up',
-      name: 'sign_up',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Logging successful`
-  String get logging_successful {
-    return Intl.message(
-      'Logging successful',
-      name: 'logging_successful',
       desc: '',
       args: [],
     );
@@ -630,10 +430,10 @@ class S {
     );
   }
 
-  /// `Phone number doesn't exist`
+  /// `Phone number does not exist`
   String get phone_does_not_exist {
     return Intl.message(
-      'Phone number doesn\'t exist',
+      'Phone number does not exist',
       name: 'phone_does_not_exist',
       desc: '',
       args: [],
@@ -650,21 +450,11 @@ class S {
     );
   }
 
-  /// `An error occurred while logging in`
+  /// `An error occurred during login`
   String get login_error {
     return Intl.message(
-      'An error occurred while logging in',
+      'An error occurred during login',
       name: 'login_error',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter a valid phone number`
-  String get please_enter_valid_phone {
-    return Intl.message(
-      'Please enter a valid phone number',
-      name: 'please_enter_valid_phone',
       desc: '',
       args: [],
     );
@@ -680,121 +470,11 @@ class S {
     );
   }
 
-  /// `Please enter your phone number`
-  String get enter_phone_number {
-    return Intl.message(
-      'Please enter your phone number',
-      name: 'enter_phone_number',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Invalid phone format`
-  String get invalid_phone_format {
-    return Intl.message(
-      'Invalid phone format',
-      name: 'invalid_phone_format',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter your password`
-  String get enter_password {
-    return Intl.message(
-      'Please enter your password',
-      name: 'enter_password',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password should be at least 8 characters\n with one uppercase letter, one number,\n and one special character`
-  String get password_validation {
-    return Intl.message(
-      'Password should be at least 8 characters\n with one uppercase letter, one number,\n and one special character',
-      name: 'password_validation',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter a valid phone number`
-  String get enter_valid_phone {
-    return Intl.message(
-      'Please enter a valid phone number',
-      name: 'enter_valid_phone',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sign In`
-  String get sign_in {
-    return Intl.message(
-      'Sign In',
-      name: 'sign_in',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `or`
-  String get or {
-    return Intl.message(
-      'or',
-      name: 'or',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Don’t have an account?`
-  String get no_account {
-    return Intl.message(
-      'Don’t have an account?',
-      name: 'no_account',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Login failed`
-  String get login_failed {
-    return Intl.message(
-      'Login failed',
-      name: 'login_failed',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `An error occurred during login`
   String get error_during_login {
     return Intl.message(
       'An error occurred during login',
       name: 'error_during_login',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Phone number doesn't exist`
-  String get phone_not_exists {
-    return Intl.message(
-      'Phone number doesn\'t exist',
-      name: 'phone_not_exists',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Error`
-  String get error {
-    return Intl.message(
-      'Error',
-      name: 'error',
       desc: '',
       args: [],
     );
@@ -950,31 +630,141 @@ class S {
     );
   }
 
-  /// `Enter phone number`
-  String get enterPhoneNumber {
+  /// `Invalid username`
+  String get invalidUsername {
     return Intl.message(
-      'Enter phone number',
-      name: 'enterPhoneNumber',
+      'Invalid username',
+      name: 'invalidUsername',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enter user name`
+  /// `You must accept the terms and conditions.`
+  String get pleaseAcceptPrivacyAndPolicy {
+    return Intl.message(
+      'You must accept the terms and conditions.',
+      name: 'pleaseAcceptPrivacyAndPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get sign_in {
+    return Intl.message(
+      'Sign In',
+      name: 'sign_in',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone number`
+  String get enter_phone_number {
+    return Intl.message(
+      'Enter your phone number',
+      name: 'enter_phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone format`
+  String get invalid_phone_format {
+    return Intl.message(
+      'Invalid phone format',
+      name: 'invalid_phone_format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your password`
+  String get enter_password {
+    return Intl.message(
+      'Enter your password',
+      name: 'enter_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number`
+  String get enter_valid_phone {
+    return Intl.message(
+      'Please enter a valid phone number',
+      name: 'enter_valid_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or`
+  String get or {
+    return Intl.message(
+      'or',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue with Facebook`
+  String get continue_with_facebook {
+    return Intl.message(
+      'Continue with Facebook',
+      name: 'continue_with_facebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue with Google`
+  String get continue_with_google {
+    return Intl.message(
+      'Continue with Google',
+      name: 'continue_with_google',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don’t have an account?`
+  String get no_account {
+    return Intl.message(
+      'Don’t have an account?',
+      name: 'no_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get sign_up {
+    return Intl.message(
+      'Sign Up',
+      name: 'sign_up',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your username`
   String get enterUsername {
     return Intl.message(
-      'Enter user name',
+      'Enter your username',
       name: 'enterUsername',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid user name`
-  String get invalidUsername {
+  /// `Enter phone number`
+  String get enterPhoneNumber {
     return Intl.message(
-      'Invalid user name',
-      name: 'invalidUsername',
+      'Enter phone number',
+      name: 'enterPhoneNumber',
       desc: '',
       args: [],
     );
@@ -1000,11 +790,11 @@ class S {
     );
   }
 
-  /// `Password criteria`
-  String get passwordCriteria {
+  /// `Password must meet the requirements`
+  String get password_validation {
     return Intl.message(
-      'Password criteria',
-      name: 'passwordCriteria',
+      'Password must meet the requirements',
+      name: 'password_validation',
       desc: '',
       args: [],
     );
@@ -1020,31 +810,51 @@ class S {
     );
   }
 
-  /// `Wrong confirm password`
+  /// `Confirm password does not match`
   String get wrongConfirmPassword {
     return Intl.message(
-      'Wrong confirm password',
+      'Confirm password does not match',
       name: 'wrongConfirmPassword',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ok`
-  String get ok {
+  /// `See All`
+  String get seeAll {
     return Intl.message(
-      'Ok',
-      name: 'ok',
+      'See All',
+      name: 'seeAll',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please accept privacy & policy`
-  String get pleaseAcceptPrivacyAndPolicy {
+  /// `Sorry, there was an error, please try again later`
+  String get Sorrytherewasanerrorpleasetryagainlater {
     return Intl.message(
-      'Please accept privacy & policy',
-      name: 'pleaseAcceptPrivacyAndPolicy',
+      'Sorry, there was an error, please try again later',
+      name: 'Sorrytherewasanerrorpleasetryagainlater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login Successful`
+  String get LoginSuccessful {
+    return Intl.message(
+      'Login Successful',
+      name: 'LoginSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue as Guest`
+  String get continue_as_guest {
+    return Intl.message(
+      'Continue as Guest',
+      name: 'continue_as_guest',
       desc: '',
       args: [],
     );

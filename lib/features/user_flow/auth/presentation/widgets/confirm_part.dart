@@ -5,8 +5,8 @@ import '../../../../../widgets/text_field/text_field/text_form_field_builder.dar
 class ConfirmPart extends StatelessWidget {
 
 
-  String title;
-  ConfirmPart({super.key, required this.title, required controllers});
+ final  String title;
+   const ConfirmPart({super.key, required this.title, required controllers});
 
   @override
   Widget build(BuildContext context) {

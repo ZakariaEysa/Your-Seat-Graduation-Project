@@ -8,7 +8,7 @@ class ComingCard extends StatelessWidget {
   final String date;
   final String imageUrl;
 
-   ComingCard({
+   ComingCard({super.key,
     required this.title,
     required this.genre,
     required this.date,
@@ -19,7 +19,7 @@ class ComingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: Container(
+      child: SizedBox(
         width: 160.sp,
         height: 300.sp,
         child: Column(
@@ -38,7 +38,7 @@ class ComingCard extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: Color(0xFFFCC434),
+                color: const Color(0xFFFCC434),
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
               ),

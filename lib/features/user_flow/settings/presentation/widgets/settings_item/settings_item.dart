@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/settings_screen.dart';
 
 class SettingsItem extends StatelessWidget {
   final String title;

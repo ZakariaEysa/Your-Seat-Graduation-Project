@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DraggableFloatingButton extends StatefulWidget {
-  const DraggableFloatingButton({Key? key}) : super(key: key);
+  const DraggableFloatingButton({super.key});
 
   @override
   _DraggableFloatingButtonState createState() =>

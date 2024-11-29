@@ -23,7 +23,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 3), () {
       if (HiveStorage.get(HiveKeys.passUserOnboarding) == false) {
-        navigateAndRemoveUntil(context: context, screen: OnBoarding());
+        navigateAndRemoveUntil(context: context, screen: const OnBoarding());
       } else if (HiveStorage.get(HiveKeys.role) == "" ||
           HiveStorage.get(HiveKeys.role) == null) {
         navigateAndRemoveUntil(
@@ -32,13 +32,13 @@ class SplashScreen extends StatelessWidget {
             create: (context) => AuthCubit(AuthRepoImpl(
                 AuthRemoteDataSourceImpl(
                     FirebaseAuth.instance, GoogleSignIn()))),
-            child: SignIn(),
+            child: const SignIn(),
           ),
         );
       } else {
         navigateAndRemoveUntil(
           context: context,
-          screen: HomeLayout(),
+          screen: const HomeLayout(),
         );
       }
     });

@@ -11,8 +11,8 @@ class BirthDateDropdown<T> extends StatelessWidget {
     required this.selectedValue,
     required this.itemsList,
     required this.onChanged,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

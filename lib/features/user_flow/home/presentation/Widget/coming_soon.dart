@@ -24,6 +24,8 @@ class ComingSoon extends StatelessWidget {
     },
   ];
 
+   ComingSoon({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
@@ -36,7 +38,7 @@ class ComingSoon extends StatelessWidget {
         final movie = movies[index];
 
         return Padding(
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           child: ComingCard(
             title: movie['title']!,
             genre: movie['genre']!,

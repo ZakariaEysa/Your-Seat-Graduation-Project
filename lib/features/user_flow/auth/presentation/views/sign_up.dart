@@ -736,7 +736,7 @@ class _SignUpState extends State<SignUp> {
                             create: (context) => AuthCubit(AuthRepoImpl(
                                 AuthRemoteDataSourceImpl(
                                     FirebaseAuth.instance, GoogleSignIn()))),
-                            child: SignIn(),
+                            child: const SignIn(),
                           ),
                         )   ;                 },
                       child: Text("Already have account?",
@@ -805,7 +805,7 @@ class _SignUpState extends State<SignUp> {
       DialogUtils.showMessage(context, "Registered Successfully",
           posActionTitle: "Ok", posAction: () {
             navigateTo(
-                context: context, screen: Otp());
+                context: context, screen: const Otp());
           });
 
       AppLogs.errorLog("ww");

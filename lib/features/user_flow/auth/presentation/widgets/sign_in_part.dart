@@ -12,7 +12,7 @@ class SignInPart extends StatelessWidget{
       child: Container(
         width:331,
         height: 52,
-        decoration: BoxDecoration(color: Color(0xFF2D1468),borderRadius: BorderRadius.circular(40)),
+        decoration: BoxDecoration(color: const Color(0xFF2D1468),borderRadius: BorderRadius.circular(40)),
         child:  Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

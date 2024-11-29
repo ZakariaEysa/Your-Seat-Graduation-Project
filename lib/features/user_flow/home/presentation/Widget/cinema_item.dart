@@ -22,6 +22,8 @@ class CinemaItem extends StatelessWidget {
     },
   ];
 
+   CinemaItem({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -46,7 +48,7 @@ class CinemaItem extends StatelessWidget {
                 SizedBox(height: 8.h),
                 Text(
                   movie['title']!,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold , color: Color(0xFFFFFFFF)),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold , color: Color(0xFFFFFFFF)),
                 ),
               ],
             ),

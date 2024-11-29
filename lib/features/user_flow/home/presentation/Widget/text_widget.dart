@@ -23,7 +23,7 @@ class TextWidget extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              color: Color(0xFFF2F2F2),
+              color: const Color(0xFFF2F2F2),
               fontSize: 24.sp,
               fontFamily: 'SF Pro',
               fontWeight: FontWeight.w700,
@@ -32,13 +32,13 @@ class TextWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(right: 10.0),
+          padding: const EdgeInsets.only(right: 10.0),
           child: Row(
             children: [
               Text(
                 lang.seeAll,
                 style: TextStyle(
-                  color: Color(0xFFFCC434),
+                  color: const Color(0xFFFCC434),
                   fontSize: 15.sp,
                   fontFamily: 'SF Pro',
                   fontWeight: FontWeight.w400,
@@ -47,7 +47,7 @@ class TextWidget extends StatelessWidget {
               ),
               Icon(
                 Icons.arrow_forward_ios,
-                color: Color(0xFFFCC434),
+                color: const Color(0xFFFCC434),
                 size: 16.sp,
               ),
             ],

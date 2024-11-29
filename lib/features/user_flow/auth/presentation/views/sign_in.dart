@@ -1,13 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
@@ -18,7 +15,6 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/v
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/sign_in_part.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/generated/l10n.dart';
-import 'package:yourseatgraduationproject/utils/validation_utils.dart';
 import 'package:yourseatgraduationproject/widgets/text_field/text_field/text_form_field_builder.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
@@ -114,7 +110,7 @@ class _SignInState extends State<SignIn> {
                           label: lang.phonenumber,
                           controller: cubit.phoneController,
                           hinitText: lang.phonenumber,
-                          prefixIcon: Icon(Icons.phone),
+                          prefixIcon: const Icon(Icons.phone),
                           obsecure: false,
                           validator: (value) {
                             if (value == null || value.isEmpty)
@@ -146,14 +142,14 @@ class _SignInState extends State<SignIn> {
                                     : Icons.visibility,
                                 color: Colors.grey),
                           ),
-                          height: 90.h,
+                          // height: 90.h,
                           controller: cubit.passwordController,
                           label: lang.password,
                           validator: (value) {
                             if (value == null || value.isEmpty)
                               return lang.enter_password;
-                            if (!isValidPassword(value))
-                              return lang.password_validation;
+                            // if (!isValidPassword(value))
+                            //   return lang.password_validation;
                             return null;
                           },
                         ),
@@ -169,7 +165,7 @@ class _SignInState extends State<SignIn> {
                         child: GestureDetector(
                           onTap: () {
                             if (cubit.phoneController.text.length == 11) {
-                              navigateTo(context: context, screen: Otp());
+                              navigateTo(context: context, screen: const Otp());
                             } else {
                               BotToast.showText(text: lang.enter_valid_phone);
                             }

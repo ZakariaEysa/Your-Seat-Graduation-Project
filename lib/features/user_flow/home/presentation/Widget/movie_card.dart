@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
 
 class MovieCard extends StatelessWidget {
   final int index;
   final int currentPage;
-  MovieCard({required this.index, required this.currentPage});
+  MovieCard({super.key, required this.index, required this.currentPage});
 
   final List<String> movieImages = [
     'assets/images/Guardians.png', // Guardians of the Galaxy
@@ -74,7 +73,7 @@ class MovieCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.star, color: Colors.yellow, size: 16),
+              const Icon(Icons.star, color: Colors.yellow, size: 16),
               SizedBox(width: 4.w),
               Text(
                 movieDetails[index]['rating']!,

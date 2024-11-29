@@ -24,8 +24,8 @@ class ProfileCard extends StatelessWidget {
             width: 12,
           ),
         ],
-        backgroundColor: Color(0xFF2E1371),
-        iconTheme: IconThemeData(
+        backgroundColor: const Color(0xFF2E1371),
+        iconTheme: const IconThemeData(
           size: 28,
           color: Colors.white,
         ),

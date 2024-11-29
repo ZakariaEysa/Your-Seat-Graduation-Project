@@ -46,7 +46,7 @@ class _SearchState extends State<Search> {
         controller: _controller,
         decoration: InputDecoration(
           filled: true,
-          fillColor: Color(0x54D9D9D9),
+          fillColor: const Color(0x54D9D9D9),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.sp),
             borderSide: BorderSide.none,

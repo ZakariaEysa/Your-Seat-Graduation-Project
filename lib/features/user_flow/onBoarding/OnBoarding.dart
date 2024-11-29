@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -104,7 +103,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                           AuthRepoImpl(AuthRemoteDataSourceImpl(
                                               FirebaseAuth.instance,
                                               GoogleSignIn()))),
-                                      child: SignIn(),
+                                      child: const SignIn(),
                                     ),
                                   );
                                 },
@@ -132,7 +131,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                                     AuthRemoteDataSourceImpl(
                                                         FirebaseAuth.instance,
                                                         GoogleSignIn()))),
-                                            child: SignIn(),
+                                            child: const SignIn(),
                                           ),
                                         );
                                       },
@@ -147,7 +146,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                         if (currentPage < contents.length - 1) {
                                           _pageController.nextPage(
                                             duration:
-                                                Duration(milliseconds: 300),
+                                                const Duration(milliseconds: 300),
                                             curve: Curves.easeInOut,
                                           );
                                         }

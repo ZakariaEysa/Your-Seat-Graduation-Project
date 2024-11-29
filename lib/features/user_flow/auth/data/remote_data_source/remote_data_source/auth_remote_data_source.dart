@@ -6,8 +6,6 @@ import 'package:yourseatgraduationproject/utils/app_logs.dart';
 
 import '../../../../../../data/hive_keys.dart';
 import '../../../../../../data/hive_stroage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class AuthRemoteDataSource {
@@ -84,10 +82,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (userDoc.get("password") == password) {
         return "LoginSuccessful";
       }
-      return "WrongPassword";
-    } else {
-      return "PhoneNotExists";
-    }
+      }
+
+      return "User does not exist or password is incorrect";
+
 
     // throw Exception('User does not exist or password is incorrect');
   }

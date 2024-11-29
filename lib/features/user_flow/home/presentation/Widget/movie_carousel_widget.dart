@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'movie_card.dart';
 
 class MovieCarouselWidget extends StatefulWidget {
+  const MovieCarouselWidget({super.key});
+
   @override
   _MovieCarouselWidgetState createState() => _MovieCarouselWidgetState();
 }

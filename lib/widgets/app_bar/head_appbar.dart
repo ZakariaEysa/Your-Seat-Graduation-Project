@@ -19,14 +19,14 @@ class HeadAppBar extends StatelessWidget {
           // Display back button if onBackPressed is provided
           if (onBackPressed != null)
             IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white),
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
               onPressed: onBackPressed,
             ),
           Expanded(
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -34,7 +34,7 @@ class HeadAppBar extends StatelessWidget {
             ),
           ),
           // Add Spacer to balance layout if no back button
-          if (onBackPressed == null) Spacer(),
+          if (onBackPressed == null) const Spacer(),
         ],
       ),
     );

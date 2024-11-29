@@ -18,14 +18,14 @@ class AboutUs extends StatelessWidget {
     return ScaffoldF(
       appBar: AppBar(
 
-        backgroundColor: Color(0xFF2E1371),
-        iconTheme: IconThemeData(
+        backgroundColor: const Color(0xFF2E1371),
+        iconTheme: const IconThemeData(
           size: 28,
           color: Colors.white,
         ),
         
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 10.0 ,right: 35),
+        title: const Padding(
+          padding: EdgeInsets.only(bottom: 10.0 ,right: 35),
           child: HeadAppBar(
             title: 'About Us',
           ),

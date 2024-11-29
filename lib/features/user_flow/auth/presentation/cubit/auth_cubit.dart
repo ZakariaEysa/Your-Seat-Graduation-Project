@@ -31,7 +31,10 @@ class AuthCubit extends Cubit<AuthState> {
     final response = await authRepo.signInWithGoogle();
 
     response.fold(
-      (failure) => emit(GoogleAuthError(failure.errorMsg)),
+      // (failure) => emit(GoogleAuthError(failure.errorMsg)),
+      (failure) => emit(
+          GoogleAuthError("Sorry there was an error , please try again later")),
+
       (user) => emit(GoogleAuthSuccess(user)),
     );
   }
@@ -41,7 +44,9 @@ class AuthCubit extends Cubit<AuthState> {
     final response = await authRepo.signInWithFacebook();
 
     response.fold(
-      (failure) => emit(FacebookAuthError(failure.errorMsg)),
+      // (failure) => emit(FacebookAuthError(failure.errorMsg)),
+      (failure) => emit(FacebookAuthError(
+          "Sorry there was an error , please try again later")),
       (user) => emit(FacebookAuthSuccess(user)),
     );
   }
@@ -54,10 +59,13 @@ class AuthCubit extends Cubit<AuthState> {
         (message) {
       if (message == "LoginSuccessful") {
         emit(UserValidationSuccess(message));
-      } else if (message == "WrongPassword") {
-        emit(UserValidationError(message));
-      } else if (message == "PhoneNotExists") {
-        emit(UserValidationError(message));
+      } else {
+        if (message == "User does not exist or password is incorrect") {
+          emit(UserValidationError(message));
+        } else {
+          emit(UserValidationError(
+              "Sorry there was an error , please try again later"));
+        }
       }
     });
   }

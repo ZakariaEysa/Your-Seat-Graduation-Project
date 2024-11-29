@@ -8,7 +8,7 @@ class HeadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 120.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -21,7 +21,7 @@ class HeadWidget extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigateTo(context: context, screen: Notifaction());
+              navigateTo(context: context, screen: const Notifaction());
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),

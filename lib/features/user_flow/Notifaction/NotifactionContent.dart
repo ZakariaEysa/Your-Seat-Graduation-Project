@@ -2,19 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NotifactionContent extends StatelessWidget {
+class NotificationContent extends StatelessWidget {
   final String imagePath;
   final String title='SALE IS LIVE';
   final String body;
   final String time;
-  final String? numOfNotifaction;
+  final String? numOfNotification;
 
-  NotifactionContent({
+  const NotificationContent({super.key,
     required this.imagePath,
     //this.title = 'SALE IS LIVE',
     required this.body ,
     required this.time,
-    this.numOfNotifaction,
+    this.numOfNotification,
   });
 
   @override
@@ -42,20 +42,20 @@ class NotifactionContent extends StatelessWidget {
                     ),
                   ),
 
-                  if (numOfNotifaction != null)
+                  if (numOfNotification != null)
                     Positioned(
                       top: 0,
                       right: 0,
                         child: Container(
                           width: 24.w,
                           height: 24.w,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Color(0xFFD7443A),
                             shape: BoxShape.circle,
                           ),
                           child: Center(
                             child: Text(
-                              numOfNotifaction!,
+                              numOfNotification!,
                               style: theme.textTheme.titleSmall?.copyWith(
                                 fontSize: 15.sp,
                                 color: Colors.white,
@@ -73,12 +73,12 @@ class NotifactionContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title!,
+                      title,
                       style: theme.textTheme.labelLarge?.copyWith(fontSize: 15.sp),
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      body!,
+                      body,
                       style: theme.textTheme.bodyMedium?.copyWith(fontSize: 10.sp),
                     ),
                   ],
@@ -88,7 +88,7 @@ class NotifactionContent extends StatelessWidget {
                 time,
                 style: theme.textTheme.labelLarge?.copyWith(
                   fontSize: 14.sp,
-                  color: Color(0xFF6C6C6C),
+                  color: const Color(0xFF6C6C6C),
                 ),
               ),
             ],

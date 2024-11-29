@@ -16,8 +16,8 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldF(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2E1371),
-        title: HeadAppBar(
+        backgroundColor: const Color(0xFF2E1371),
+        title: const HeadAppBar(
           title: 'Settings',
         ),
       ),

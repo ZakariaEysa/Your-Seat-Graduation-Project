@@ -19,7 +19,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    options: FirebaseOptions(
+    options: const FirebaseOptions(
       apiKey: 'AIzaSyCREJCsFWlgq_kon3J8_Eu_mhvL0PUNGjs',
       appId: '1:556627768143:android:f217ff5d7d11f450b5cb3a',
       messagingSenderId: '556627768143',
@@ -56,6 +56,10 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
+  // HiveStorage.set(
+  //   HiveKeys.role,
+  //   "",
+  // );
   HiveStorage.set(
     HiveKeys.isArabic,
     false,
@@ -119,7 +123,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home: SplashScreen(),
+              home: const SplashScreen(),
             );
           });
     });

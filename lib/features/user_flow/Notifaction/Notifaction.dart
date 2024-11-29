@@ -17,7 +17,7 @@ class Notifaction extends StatelessWidget {
         title: const HeadAppBar(
           title: 'Notification',
         ),
-        backgroundColor: Color(0xFF2E1371),
+        backgroundColor: const Color(0xFF2E1371),
       ),
       body: Column(
         children: [
@@ -43,7 +43,7 @@ class Notifaction extends StatelessWidget {
                     child: Container(
                       height: 2.h,
                       width: 90.w,
-                      color: Color(0xFFAB44B0),
+                      color: const Color(0xFFAB44B0),
                     ),
                   ),
                 ],
@@ -53,30 +53,30 @@ class Notifaction extends StatelessWidget {
           SizedBox(height: 10.h),
           Expanded(
             child: ListView(
-              children: [
-                NotifactionContent(
+              children: const [
+                NotificationContent(
                   imagePath: 'assets/images/notif1.png',
                   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
-                  numOfNotifaction: '2',
+                  numOfNotification: '2',
                 ),
-                NotifactionContent(
+                NotificationContent(
                   imagePath: 'assets/images/notif2.png',
                   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
-                  numOfNotifaction: '2',
+                  numOfNotification: '2',
                 ),
-                NotifactionContent(
+                NotificationContent(
                   imagePath: 'assets/images/notif3.png',
                   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                 ),
-                NotifactionContent(
+                NotificationContent(
                   imagePath: 'assets/images/notif4.png',
                   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n10 Hrs ago.',
                 ),
-                NotifactionContent(
+                NotificationContent(
                   imagePath: 'assets/images/notif5.png',
                   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n15 Hrs ago.',

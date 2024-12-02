@@ -128,6 +128,8 @@ class _SignInState extends State<SignIn> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.sp),
                         child: TextFormFieldBuilder(
+                          height: 80.h,
+
                           type: TextInputType.text,
                           obsecure: obscure2,
                           imagePath: "assets/images/padlock.png",
@@ -170,11 +172,17 @@ class _SignInState extends State<SignIn> {
                               BotToast.showText(text: lang.enter_valid_phone);
                             }
                           },
-                          child: Text(
-                            lang.forgotPassword,
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                fontSize: 14, color: Color(0xFFC1B2B2)),
-                            textAlign: TextAlign.right, // التوجيه لليسار هنا
+                          child: Align(
+                            alignment:
+                                Alignment.centerRight, // محاذاة النص لليمين
+                            child: Text(
+                              lang.forgotPassword,
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 14,
+                                color: Color(0xFFC1B2B2),
+                              ),
+                              textAlign: TextAlign.right, // التوجيه لليسار هنا
+                            ),
                           ),
                         ),
                       ),
@@ -187,7 +195,7 @@ class _SignInState extends State<SignIn> {
                       child: ButtonBuilder(
                         image: "assets/images/SignIn.png",
                         // text: lang.sign_in,
-                        text: "lang.sign_in",
+                        text: "",
                         onTap: () async {
                           if (cubit.formKeyLogin.currentState!.validate()) {
                             cubit.validateUser(cubit.phoneController.text,

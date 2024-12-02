@@ -126,7 +126,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home:CinemaDetails(),
+              home: SplashScreen(),
             );
           });
     });

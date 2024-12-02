@@ -17,11 +17,9 @@ class CinemaComments extends StatelessWidget{
      ),
 
      child:Row(
+       mainAxisAlignment: MainAxisAlignment.spaceBetween,
        children: [
-        Padding(
-          padding: EdgeInsets.all(8.0.sp),
-          child: Image.asset(image,width:30.w,height:40.h,),
-        ),
+        Image.asset(image,width:45.w,height:45.h,),
          Column(
            crossAxisAlignment: CrossAxisAlignment.start,
            children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/profile_card/personal_info_card.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -9,66 +10,65 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-
+    var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
         actions: [
           InkWell(
               onTap: () {},
-              child: const Icon(
+              child:  Icon(
                 Icons.edit,
-                size: 27,
+                size: 27.sp,
                 color: Colors.white,
               )),
-          const SizedBox(
-            width: 12,
+           SizedBox(
+            width: 12.w,
           ),
         ],
         backgroundColor: const Color(0xFF2E1371),
-        iconTheme: const IconThemeData(
-          size: 28,
+        iconTheme:  IconThemeData(
+          size: 28.sp,
           color: Colors.white,
         ),
       ),
       body: Stack(children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
+          padding:  EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
           child: Container(
-            //height: 700,
-            margin: const EdgeInsets.only(top: 40),
-            decoration: const BoxDecoration(
+            margin:  EdgeInsets.only(top: 40.h),
+            decoration:  BoxDecoration(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(51),
-                topRight: Radius.circular(48),
+                topLeft: Radius.circular(51.r),
+                topRight: Radius.circular(48.r),
               ),
-              color: Color(0xFF00002B),
+              color: const Color(0xFF00002B),
             ),
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.only(top: 100.0, left: 10),
+                padding:  EdgeInsets.only(top: 100.h, left: 10.w),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 10),
-                    const Text(
+                    SizedBox(height: 10.h),
+                    Text(
                       textAlign: TextAlign.center,
                       'Mohamed Ahmed',
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                    const Text(
+                     Text(
                       textAlign: TextAlign.center,
                       '@mohamed-ahmed21',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: Colors.white70,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10.h),
                     Align(
                       alignment: Alignment.topLeft,
                       child: Container(
@@ -77,44 +77,44 @@ class ProfileCard extends StatelessWidget {
                         height: 38.h,
                         decoration: BoxDecoration(
                             color: const Color(0xFFD9D9D9).withOpacity(0.6),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(15.r)),
                         child: Text(
-                          "Personal Info",
+                          lang.personalInfo,
                           textAlign: TextAlign.start,
                           style: theme.textTheme.titleLarge!
-                              .copyWith(fontSize: 22),
+                              .copyWith(fontSize: 22.sp),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    const PersonalInfoCard(
-                      title: "phone number",
+                    SizedBox(height: 20.h),
+                     PersonalInfoCard(
+                      title: lang.phonenumber,
                       icon: "assets/icons/telephone.png",
                       info: "010635199443",
                     ),
-                    const SizedBox(height: 20),
-                    const PersonalInfoCard(
-                      title: "Date of Birth",
+                    SizedBox(height: 20.h),
+                     PersonalInfoCard(
+                      title: lang.birthDate,
                       icon: "assets/icons/birthday_cake.png",
                       info: "21 May 2022",
                     ),
-                    const SizedBox(height: 20),
-                    const PersonalInfoCard(
-                      title: "Gender",
+                     SizedBox(height: 20.h),
+                     PersonalInfoCard(
+                      title: lang.gender,
                       icon: "assets/icons/gender.png",
                       info: "Male",
                     ),
-                    const SizedBox(height: 20),
-                    const PersonalInfoCard(
-                      title: "Location",
+                    SizedBox(height: 20.h),
+                     PersonalInfoCard(
+                      title: lang.location,
                       icon: "assets/icons/location.png",
                       info: "Egypt , Sheikh Zayed",
                     ),
-                    const SizedBox(height: 20),
-                    const PersonalInfoCard(
-                      title: "Email Address",
+                    SizedBox(height: 20.h),
+                     PersonalInfoCard(
+                      title: lang.emailAddress,
                       icon: "assets/icons/email.png",
-                      info: "Mohamed555@gmail.com",
+                      info: 'Mohamed123456666666666666666666@gmail.com',
                     ),
                   ],
                 ),
@@ -126,9 +126,9 @@ class ProfileCard extends StatelessWidget {
           left: 105.w,
           // top: -3.h,
 
-          child: const CircleAvatar(
-              radius: 80,
-              backgroundImage: AssetImage(
+          child:  CircleAvatar(
+              radius: 80.r,
+              backgroundImage: const AssetImage(
                   "assets/images/film1.png") // Replace with your image URL
               ),
         ),

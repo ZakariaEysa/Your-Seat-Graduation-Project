@@ -99,7 +99,7 @@ class CinemaDetails extends StatelessWidget {
             ),
           ]),
           Padding(
-            padding: EdgeInsets.all(10.0.sp),
+            padding: EdgeInsets.all(10.sp),
             child: Text(
               'Movies',
               style: theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
@@ -124,14 +124,14 @@ class CinemaDetails extends StatelessWidget {
             ),
           ),
            Padding(
-            padding: EdgeInsets.all(8.0.sp),
+            padding: EdgeInsets.all(8.sp),
             child: const CinemaComments(
                 image: "assets/images/image (1).png",
                 title: "Great selection of movies . Highly recommended!",
                 titlename: "@Iva588"),
           ),
            Padding(
-            padding: EdgeInsets.all(8.0.sp),
+            padding: EdgeInsets.all(8.sp),
             child: const CinemaComments(
                 image: "assets/images/image (4).png",
                 title:
@@ -139,7 +139,7 @@ class CinemaDetails extends StatelessWidget {
                 titlename: "@Rana158"),
           ),
            Padding(
-            padding: EdgeInsets.all(8.0.sp),
+            padding: EdgeInsets.all(8.sp),
             child: const CinemaComments(
                 image: "assets/images/image (1).png",
                 title:
@@ -149,7 +149,7 @@ class CinemaDetails extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding:  EdgeInsets.all(16.0.sp),
+                padding:  EdgeInsets.all(16.sp),
                 child: TextFormFieldBuilder(
                   controller: TextEditingController(),
                   type: TextInputType.text,

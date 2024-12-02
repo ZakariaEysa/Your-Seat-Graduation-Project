@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 
 class ApplicationTheme {
   static bool isDark = true;
@@ -31,13 +33,13 @@ class ApplicationTheme {
   //     ),
   //     textTheme: TextTheme(
   //         titleLarge: GoogleFonts.poppins(
-  //             fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
+  //             fontSize: 30.sp, fontWeight: FontWeight.bold, color: Colors.black),
   //         bodyLarge: GoogleFonts.inter(
-  //             fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+  //             fontSize: 25.sp, fontWeight: FontWeight.bold, color: Colors.black),
   //         bodyMedium: GoogleFonts.poppins(
-  //             fontSize: 25, fontWeight: FontWeight.w500, color: Colors.black),
+  //             fontSize: 25.sp, fontWeight: FontWeight.w500, color: Colors.black),
   //         bodySmall: GoogleFonts.poppins(
-  //             fontSize: 18,
+  //             fontSize: 18.sp,
   //             fontWeight: FontWeight.normal,
   //             color: Colors.black)));
 
@@ -52,17 +54,17 @@ class ApplicationTheme {
 
       textTheme: TextTheme(
           labelLarge: GoogleFonts.aDLaMDisplay(
-              fontSize: 22, fontWeight: FontWeight.w400, color: Colors.white),
+              fontSize: 22.sp, fontWeight: FontWeight.w400, color: Colors.white),
           titleLarge: GoogleFonts.acme(
-              fontSize: 18, fontWeight: FontWeight.w400, color: Colors.white),
+              fontSize: 18.sp, fontWeight: FontWeight.w400, color: Colors.white),
           titleMedium: GoogleFonts.pottaOne(
-              fontSize: 19, fontWeight: FontWeight.w400, color: Colors.white),
+              fontSize: 19.sp, fontWeight: FontWeight.w400, color: Colors.white),
           bodyLarge: GoogleFonts.inter(
-              fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 15.sp, fontWeight: FontWeight.bold, color: Colors.white),
           bodyMedium: GoogleFonts.poppins(
-              fontSize: 13, fontWeight: FontWeight.w400, color: Colors.white),
+              fontSize: 13.sp, fontWeight: FontWeight.w400, color: Colors.white),
           bodySmall: GoogleFonts.poppins(
-              fontSize: 15,
+              fontSize: 15.sp,
               fontWeight: FontWeight.normal,
               color: Colors.white)),
       bottomSheetTheme:

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
+
+import '../../../cinema_details/presentation/views/cinema_details.dart';
 
 
 class CinemaItem extends StatelessWidget {
@@ -37,12 +40,18 @@ class CinemaItem extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                ClipOval(
-                  child: Image.asset(
-                    movie['image']!,
-                    height: 120.h,
-                    width: 120.w,
-                    fit: BoxFit.cover,
+                GestureDetector(
+onTap: (){
+
+  navigateTo(context: context, screen: CinemaDetails());
+},
+                  child: ClipOval(
+                    child: Image.asset(
+                      movie['image']!,
+                      height: 120.h,
+                      width: 120.w,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 SizedBox(height: 8.h),

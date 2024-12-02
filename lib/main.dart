@@ -89,6 +89,11 @@ void main() async {
   //   HiveKeys.role,
   //   "",
   // );
+  // HiveStorage.set(
+  //   HiveKeys.passUserOnboarding,
+  //   false,
+  // );
+
 
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(
@@ -131,7 +136,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home: SplashScreen(),
+              home: const SplashScreen(),
             );
           });
     });

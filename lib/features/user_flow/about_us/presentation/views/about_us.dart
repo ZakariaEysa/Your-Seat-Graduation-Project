@@ -27,8 +27,8 @@ class AboutUs extends StatelessWidget {
             bottom: 10.h, // ضبط الحافة السفلية باستخدام ScreenUtil
             right: 35.w, // ضبط الحافة اليمنى باستخدام ScreenUtil
           ),
-          child: const HeadAppBar(
-            title: 'About Us',
+          child:  HeadAppBar(
+            title:lang.AboutUs,
           ),
         ),
       ),
@@ -47,7 +47,7 @@ class AboutUs extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: CustomBottomSheet(
                 scrollController: DraggableScrollableController(),
-                title: "Terms and Conditions",
+                title: lang.TermsAndConditions,
                 content: lang.termsAndConditionsContent,
                 initialHeight: .28,
                 maxHeight: .98,
@@ -58,7 +58,7 @@ class AboutUs extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: CustomBottomSheet(
                 scrollController: DraggableScrollableController(),
-                title: "Privacy Policy",
+                title: lang.PrivacyPolicy,
                 content: lang.privacyPolicyContent,
                 initialHeight: .185,
                 maxHeight: .89,
@@ -69,7 +69,7 @@ class AboutUs extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: CustomBottomSheet(
                 scrollController: DraggableScrollableController(),
-                title: "Contact Us",
+                title: lang.contactUs,
                 content: lang.contactUsContent,
                 initialHeight: .1,
                 maxHeight: .82,

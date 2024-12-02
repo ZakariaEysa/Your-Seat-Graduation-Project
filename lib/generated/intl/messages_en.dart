@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "IMAXCinema": MessageLookupByLibrary.simpleMessage("IMAX Cinema"),
+        "IMAX_Cinema": MessageLookupByLibrary.simpleMessage("IMAX Cinema"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("Login Successful"),
         "Sorrytherewasanerrorpleasetryagainlater":

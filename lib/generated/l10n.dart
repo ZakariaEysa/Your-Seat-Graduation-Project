@@ -861,10 +861,10 @@ class S {
   }
 
   /// `IMAX Cinema`
-  String get IMAXCinema {
+  String get IMAX_Cinema {
     return Intl.message(
       'IMAX Cinema',
-      name: 'IMAXCinema',
+      name: 'IMAX_Cinema',
       desc: '',
       args: [],
     );

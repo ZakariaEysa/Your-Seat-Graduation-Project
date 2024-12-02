@@ -27,7 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   final TextEditingController phoneController = TextEditingController();
   Future<void> signInWithGoogle() async {
-    emit(GoogleAuthLoading());
+    emit(AuthLoading());
     final response = await authRepo.signInWithGoogle();
 
     response.fold(
@@ -40,7 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> loginWithFacebook() async {
-    emit(FacebookAuthLoading());
+    emit(AuthLoading());
     final response = await authRepo.signInWithFacebook();
 
     response.fold(
@@ -52,7 +52,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> validateUser(String userId, String password) async {
-    emit(UserValidationLoading());
+    emit(AuthLoading());
     var response = await authRepo.checkUserExists(userId, password);
 
     response.fold((failure) => emit(UserValidationError(failure.errorMsg)),

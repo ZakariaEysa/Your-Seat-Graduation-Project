@@ -19,6 +19,7 @@ import 'package:yourseatgraduationproject/widgets/text_field/text_field/text_for
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
+import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 class SignIn extends StatefulWidget {
@@ -71,7 +72,7 @@ class _SignInState extends State<SignIn> {
             } else if (state is UserValidationError) {
               BotToast.showText(text: state.error);
             } else if (state is AuthLoading) {
-              BotToast.showLoading();
+              LoadingIndicator();
             }
           },
           builder: (context, state) {
@@ -81,9 +82,11 @@ class _SignInState extends State<SignIn> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(height: 10.h),
-
+                    SizedBox(
+                      height: 25.h,
+                    ),
                     // النص يأتي من اليمين
+
                     FadeInRight(
                       delay: const Duration(milliseconds: 200),
                       child: Padding(
@@ -203,6 +206,15 @@ class _SignInState extends State<SignIn> {
                         height: 55.h,
                       ),
                     ),
+                    SizedBox(height: 10.h),
+                    if (state is AuthLoading)
+                      const Align(
+                        alignment: Alignment.center,
+                        child: AbsorbPointer(
+                          absorbing: true,
+                          child: LoadingIndicator(),
+                        ),
+                      ),
 
                     SizedBox(height: 20.h),
 

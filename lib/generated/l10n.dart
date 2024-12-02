@@ -859,6 +859,64 @@ class S {
       args: [],
     );
   }
+
+  /// `IMAX Cinema`
+  String get IMAXCinema {
+    return Intl.message(
+      'IMAX Cinema',
+      name: 'IMAXCinema',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'StatUp is planned for 2025, type of theater known for its large screen size and high-quality sound system. It offers an immersive viewing experience for movies, documentaries, and other content' key
+
+  /// `Review`
+  String get review {
+    return Intl.message(
+      'Review',
+      name: 'review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Movies`
+  String get movies {
+    return Intl.message(
+      'Movies',
+      name: 'movies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'shazam:Fury of the Gods' key
+
+  // skipped getter for the 'avengers:infinity war' key
+
+  // skipped getter for the '2 hour 5 minutes' key
+
+  // skipped getter for the 'action,sci-fi' key
+
+  /// `Comments`
+  String get comments {
+    return Intl.message(
+      'Comments',
+      name: 'comments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'great selection of movies.Highly recommended!' key
+
+  // skipped getter for the 'the luxurious seats and immersive sound system make for a truly unforgettable' key
+
+  // skipped getter for the 'the cinema\'s modern design and aesthetically pleasing decor create a welcoming atmosphere' key
+
+  // skipped getter for the 'add comment' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

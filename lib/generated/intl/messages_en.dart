@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "IMAXCinema": MessageLookupByLibrary.simpleMessage("IMAX Cinema"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("Login Successful"),
         "Sorrytherewasanerrorpleasetryagainlater":
@@ -35,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
+        "comments": MessageLookupByLibrary.simpleMessage("Comments"),
         "confirmOtpCode":
             MessageLookupByLibrary.simpleMessage("Confirm OTP Code"),
         "confirmPassword":
@@ -99,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),
+        "movies": MessageLookupByLibrary.simpleMessage("Movies"),
         "no_account":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
         "november": MessageLookupByLibrary.simpleMessage("November"),
@@ -129,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Promotions & Discounts"),
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("Registration successful!"),
+        "review": MessageLookupByLibrary.simpleMessage("Review"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
         "seeall": MessageLookupByLibrary.simpleMessage("See All"),

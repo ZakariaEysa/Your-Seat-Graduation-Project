@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
@@ -47,14 +48,20 @@ class SplashScreen extends StatelessWidget {
     return ScaffoldF(
       body: Container(
         decoration: const BoxDecoration(
-          color: Colors.transparent,
+          color: Colors.white,
         ),
         width: mediaQuery.width,
         height: mediaQuery.height,
-        child: Image.asset(
-          "assets/images/splash.png",
+        child: Center(
+          child: SizedBox(
+            width: 305.w,
+            height: 260.h,
+            child: Image.asset(
+              "assets/images/splash.png",
 
-          // fit: BoxFit.cover,
+              // fit: BoxFit.cover,
+            ),
+          ),
         ),
       )
           .animate()

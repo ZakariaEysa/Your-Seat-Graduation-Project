@@ -110,7 +110,7 @@ class _SignInState extends State<SignIn> {
                           label: lang.phonenumber,
                           controller: cubit.phoneController,
                           hinitText: lang.phonenumber,
-                          prefixIcon: const Icon(Icons.phone),
+                          imagePath: "assets/images/telephone.png",
                           obsecure: false,
                           validator: (value) {
                             if (value == null || value.isEmpty)
@@ -130,8 +130,8 @@ class _SignInState extends State<SignIn> {
                         child: TextFormFieldBuilder(
                           type: TextInputType.text,
                           obsecure: obscure2,
-                          prefixIcon: const Image(
-                              image: AssetImage("assets/images/Password.png")),
+                          imagePath: "assets/images/padlock.png",
+
                           suffixIcon: InkWell(
                             onTap: () {
                               setState(() => obscure2 = !obscure2);
@@ -160,8 +160,8 @@ class _SignInState extends State<SignIn> {
                     FadeInLeft(
                       delay: const Duration(milliseconds: 700),
                       child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.only(end: 20.w, bottom: 15.h),
+                        padding: EdgeInsetsDirectional.only(
+                            end: 20.w, bottom: 15.h, top: 12.h),
                         child: GestureDetector(
                           onTap: () {
                             if (cubit.phoneController.text.length == 11) {
@@ -172,8 +172,8 @@ class _SignInState extends State<SignIn> {
                           },
                           child: Text(
                             lang.forgotPassword,
-                            style: theme.textTheme.bodyMedium!
-                                .copyWith(fontSize: 14),
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 14, color: Color(0xFFC1B2B2)),
                             textAlign: TextAlign.right, // التوجيه لليسار هنا
                           ),
                         ),
@@ -185,8 +185,10 @@ class _SignInState extends State<SignIn> {
                     FadeInLeft(
                       delay: const Duration(milliseconds: 750),
                       child: ButtonBuilder(
-                        text: lang.sign_in,
-                        ontap: () async {
+                        image: "assets/images/SignIn.png",
+                        // text: lang.sign_in,
+                        text: "lang.sign_in",
+                        onTap: () async {
                           if (cubit.formKeyLogin.currentState!.validate()) {
                             cubit.validateUser(cubit.phoneController.text,
                                 cubit.passwordController.text);
@@ -233,7 +235,7 @@ class _SignInState extends State<SignIn> {
                             cubit.loginWithFacebook();
                           },
                           title: lang.continue_with_facebook,
-                          icon: Icons.facebook,
+                          imagePath: "assets/images/facebook.png",
                         ),
                       ),
                     ),
@@ -247,7 +249,7 @@ class _SignInState extends State<SignIn> {
                             cubit.signInWithGoogle();
                           },
                           title: lang.continue_with_google,
-                          icon: Icons.g_mobiledata_rounded,
+                          imagePath: "assets/images/mdi_google.png",
                         ),
                       ),
                     ),
@@ -264,7 +266,7 @@ class _SignInState extends State<SignIn> {
                                 context: context, screen: const HomeLayout());
                           },
                           title: lang.continue_as_guest,
-                          icon: Icons.account_box_outlined,
+                          imagePath: "assets/images/Vector.png",
                         ),
                       ),
                     ),

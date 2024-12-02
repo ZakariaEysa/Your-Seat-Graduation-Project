@@ -86,11 +86,11 @@ class TextFormFieldBuilder extends StatelessWidget {
           fillColor: const Color(0xff2E126E).withOpacity(.4),
           prefixIcon: imagePath != null
               ? Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding:  EdgeInsets.all(12.0.sp),
             child: Image.asset(
               imagePath!,
-              width: 10,
-              height: 10,
+              width: 24.w,
+              height: 24.h,
               fit: BoxFit.fill,
             ),
           )

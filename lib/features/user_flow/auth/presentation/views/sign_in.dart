@@ -91,8 +91,8 @@ class _SignInState extends State<SignIn> {
                             start: 20.w, bottom: 15.h),
                         child: Text(
                           lang.pleaseFillTheCredentials,
-                          style:
-                              theme.textTheme.bodySmall!.copyWith(fontSize: 16),
+                          style: theme.textTheme.bodySmall!
+                              .copyWith(fontSize: 16.sp),
                         ),
                       ),
                     ),
@@ -128,10 +128,10 @@ class _SignInState extends State<SignIn> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.sp),
                         child: TextFormFieldBuilder(
+                          height: 80.h,
                           type: TextInputType.text,
                           obsecure: obscure2,
                           imagePath: "assets/images/padlock.png",
-
                           suffixIcon: InkWell(
                             onTap: () {
                               setState(() => obscure2 = !obscure2);
@@ -142,14 +142,11 @@ class _SignInState extends State<SignIn> {
                                     : Icons.visibility,
                                 color: Colors.grey),
                           ),
-                          // height: 90.h,
                           controller: cubit.passwordController,
                           label: lang.password,
                           validator: (value) {
                             if (value == null || value.isEmpty)
                               return lang.enter_password;
-                            // if (!isValidPassword(value))
-                            //   return lang.password_validation;
                             return null;
                           },
                         ),
@@ -170,11 +167,17 @@ class _SignInState extends State<SignIn> {
                               BotToast.showText(text: lang.enter_valid_phone);
                             }
                           },
-                          child: Text(
-                            lang.forgotPassword,
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                fontSize: 14, color: Color(0xFFC1B2B2)),
-                            textAlign: TextAlign.right, // التوجيه لليسار هنا
+                          child: Align(
+                            alignment:
+                                Alignment.centerRight, // محاذاة النص لليمين
+                            child: Text(
+                              lang.forgotPassword,
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 14.sp,
+                                color: const Color(0xFFC1B2B2),
+                              ),
+                              textAlign: TextAlign.right, // التوجيه لليسار هنا
+                            ),
                           ),
                         ),
                       ),
@@ -186,8 +189,7 @@ class _SignInState extends State<SignIn> {
                       delay: const Duration(milliseconds: 750),
                       child: ButtonBuilder(
                         image: "assets/images/SignIn.png",
-                        // text: lang.sign_in,
-                        text: "lang.sign_in",
+                        text: "",
                         onTap: () async {
                           if (cubit.formKeyLogin.currentState!.validate()) {
                             cubit.validateUser(cubit.phoneController.text,
@@ -280,7 +282,7 @@ class _SignInState extends State<SignIn> {
                           Text(
                             lang.no_account,
                             style: theme.textTheme.bodySmall!
-                                .copyWith(fontSize: 17),
+                                .copyWith(fontSize: 17.sp),
                           ),
                           SizedBox(width: 5.w),
                           InkWell(
@@ -299,7 +301,7 @@ class _SignInState extends State<SignIn> {
                             child: Text(
                               lang.sign_up,
                               style: theme.textTheme.labelLarge!
-                                  .copyWith(fontSize: 17),
+                                  .copyWith(fontSize: 17.sp),
                             ),
                           ),
                         ],

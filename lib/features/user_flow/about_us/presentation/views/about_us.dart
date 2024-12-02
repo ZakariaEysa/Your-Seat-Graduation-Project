@@ -17,23 +17,23 @@ class AboutUs extends StatelessWidget {
 
     return ScaffoldF(
       appBar: AppBar(
-
         backgroundColor: const Color(0xFF2E1371),
-        iconTheme: const IconThemeData(
-          size: 28,
+        iconTheme: IconThemeData(
+          size: 28.sp, // ضبط حجم الأيقونة باستخدام ScreenUtil
           color: Colors.white,
         ),
-        
-        title: const Padding(
-          padding: EdgeInsets.only(bottom: 10.0 ,right: 35),
-          child: HeadAppBar(
+        title: Padding(
+          padding: EdgeInsets.only(
+            bottom: 10.h, // ضبط الحافة السفلية باستخدام ScreenUtil
+            right: 35.w, // ضبط الحافة اليمنى باستخدام ScreenUtil
+          ),
+          child: const HeadAppBar(
             title: 'About Us',
           ),
         ),
       ),
-
       body: Container(
-        margin: EdgeInsets.only(top: 65.h),
+        margin: EdgeInsets.only(top: 65.h), // ضبط المسافة العلوية باستخدام ScreenUtil
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(

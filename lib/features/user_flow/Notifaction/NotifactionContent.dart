@@ -1,18 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NotificationContent extends StatelessWidget {
   final String imagePath;
-  final String title='SALE IS LIVE';
+  final String title;
   final String body;
   final String time;
   final String? numOfNotification;
 
-  const NotificationContent({super.key,
+  const NotificationContent({
+    super.key,
     required this.imagePath,
-    //this.title = 'SALE IS LIVE',
-    required this.body ,
+    this.title = 'SALE IS LIVE', // قيمة افتراضية
+    required this.body,
     required this.time,
     this.numOfNotification,
   });
@@ -21,15 +21,15 @@ class NotificationContent extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Padding(
-      padding: EdgeInsets.only(left: 20.w,right:20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w), // حواف أفقية باستخدام ScreenUtil
       child: Column(
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
-                alignment: Alignment.center,
                 children: [
+                  // صورة الإشعار
                   Container(
                     width: 60.w,
                     height: 60.h,
@@ -41,49 +41,68 @@ class NotificationContent extends StatelessWidget {
                       ),
                     ),
                   ),
-
+                  // عدد الإشعارات
                   if (numOfNotification != null)
                     Positioned(
                       top: 0,
                       right: 0,
-                        child: Container(
-                          width: 24.w,
-                          height: 24.w,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFD7443A),
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: Text(
-                              numOfNotification!,
-                              style: theme.textTheme.titleSmall?.copyWith(
-                                fontSize: 15.sp,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
+                      child: Container(
+                        width: 24.w,
+                        height: 24.w,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFD7443A),
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 4.r,
+                              offset: Offset(0, 2.h),
                             ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(
+                            numOfNotification!,
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              fontSize: 12.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
+                      ),
                     ),
                 ],
               ),
-              SizedBox(width: 22.w),
+              SizedBox(width: 22.w), // مسافة أفقية
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // عنوان الإشعار
                     Text(
                       title,
-                      style: theme.textTheme.labelLarge?.copyWith(fontSize: 15.sp),
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    SizedBox(height: 4.h),
+                    SizedBox(height: 4.h), // مسافة عمودية
+                    // وصف الإشعار
                     Text(
                       body,
-                      style: theme.textTheme.bodyMedium?.copyWith(fontSize: 10.sp),
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontSize: 13.sp,
+                        color: Colors.grey.shade700,
+                      ),
+                      maxLines: 2, // لتجنب النصوص الطويلة
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
               ),
+              // وقت الإشعار
               Text(
                 time,
                 style: theme.textTheme.labelLarge?.copyWith(
@@ -93,7 +112,7 @@ class NotificationContent extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20.h),
+          SizedBox(height: 20.h), // مسافة عمودية بين الإشعارات
         ],
       ),
     );

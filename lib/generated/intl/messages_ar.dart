@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "IMAX_Cinema": MessageLookupByLibrary.simpleMessage("سينما آيماكس"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
         "Sorrytherewasanerrorpleasetryagainlater":

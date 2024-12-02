@@ -83,7 +83,7 @@
   "Sorrytherewasanerrorpleasetryagainlater": "Sorry, there was an error, please try again later",
   "LoginSuccessful": "Login Successful",
   "continue_as_guest": "Continue as Guest",
-  "IMAXCinema": "IMAX Cinema",
+  "IMAX_Cinema": "IMAX Cinema",
   "StatUp is planned for 2025, type of theater known for its large screen size and high-quality sound system. It offers an immersive viewing experience for movies, documentaries, and other content": "StatUp is planned for 2025, type of theater known for its large screen size and high-quality sound system. It offers an immersive viewing experience for movies, documentaries, and other content",
   "review": "Review",
   "movies": "Movies",
@@ -95,5 +95,6 @@
   "great selection of movies.Highly recommended!": "Great selection of movies.Highly recommended!",
   "the luxurious seats and immersive sound system make for a truly unforgettable": "The luxurious seats and immersive sound system make for a truly unforgettable",
   "the cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere": "The cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere",
-  "add comment": " Add Comment",
-
+  "add comment": " Add Comment"
+  
+}

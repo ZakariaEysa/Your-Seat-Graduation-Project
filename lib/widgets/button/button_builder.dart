@@ -63,11 +63,10 @@ class ButtonBuilder extends StatelessWidget {
                         height: 84.h,
                         // fit: BoxFit.cover,
                       ),
-                    if (image == null && image!.isEmpty)
-                      Text(
-                        text,
-                        style: style ?? theme.textTheme.labelLarge,
-                      ),
+                    Text(
+                      text,
+                      style: style ?? theme.textTheme.labelLarge,
+                    ),
                   ],
                 ),
         ),

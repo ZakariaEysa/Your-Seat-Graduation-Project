@@ -8,15 +8,15 @@ class RowOfSocialItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      SocialItem(
-        url: "assets/images/${AppConstVariables.facebookImg}",
-       
-      ),
-      SizedBox(width: 22.w),
-      SocialItem(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SocialItem(
+          url: "assets/images/${AppConstVariables.facebookImg}",
+        ),
+        SizedBox(width: 22.w), // استخدام ScreenUtil لضبط التباعد
+        SocialItem(
           url: "assets/images/${AppConstVariables.emailImg}",
-          
           boxShadow: const [
             BoxShadow(
               color: Color(0x3F000000),
@@ -24,12 +24,13 @@ class RowOfSocialItems extends StatelessWidget {
               offset: Offset(0, 4),
               spreadRadius: 0,
             ),
-          ]),
-      SizedBox(width: 22.w),
-      SocialItem(
-        url: "assets/images/${AppConstVariables.linkedInImg}",
-     
-      ),
-    ]);
+          ],
+        ),
+        SizedBox(width: 22.w), // استخدام ScreenUtil لضبط التباعد
+        SocialItem(
+          url: "assets/images/${AppConstVariables.linkedInImg}",
+        ),
+      ],
+    );
   }
 }

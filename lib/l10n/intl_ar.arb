@@ -108,5 +108,20 @@
   "Great selection of movies . Highly recommended!": "مجموعة كبيرة من الأفلام. موصى به للغاية!",
   "The luxurious seats and immersive sound system make for a truly unforgettable": "المقاعد الفاخرة ونظام الصوت الغامر تجعلها تجربة لا تُنسى حقًا",
   "he cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere": "يخلق التصميم الحديث للسينما والديكور الجميل أجواءً ترحيبية",
-  "Add Comment": "أضف تعليق"
+  "Add Comment": "أضف تعليق",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  "dark": "ليلي",
+  "light": "نهاري",
+  "profile": "الملف الشخصي",
+  "theme": "النمط",
+  "aboutUs": "من نحن",
+  "logOut": "تسجيل الخروج",
+  "gender": "الجنس",
+  "location": "الموقع",
+  "personalInfo": "المعلومات الشخصية",
+  "emailAddress" : "البريد الالكتروني",
+  "setting" : "الاعدادات",
+  "language" : "اللغة"
+
 }

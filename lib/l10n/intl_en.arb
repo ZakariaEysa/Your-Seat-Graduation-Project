@@ -101,5 +101,21 @@
   "great selection of movies.Highly recommended!": "Great selection of movies.Highly recommended!",
   "the luxurious seats and immersive sound system make for a truly unforgettable": "The luxurious seats and immersive sound system make for a truly unforgettable",
   "the cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere": "The cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere",
-  "add comment": " Add Comment"
+  "add comment": " Add Comment",
+  "english": "English",
+  "arabic": "Arabic",
+  "dark": "Dark",
+  "light": "Light",
+  "profile" : "Profile",
+  "theme" : "Theme",
+  "aboutUs": "About Us",
+  "logOut" : "LogOut",
+  "gender": "Gender",
+  "location" : "Location",
+  "personalInfo": "Personal Info",
+  "emailAddress" : "Email Address",
+  "setting" : "Setting",
+  "language" : "Language"
+
+
 }

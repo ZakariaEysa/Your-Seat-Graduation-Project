@@ -2,6 +2,7 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
@@ -20,6 +21,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   await Firebase.initializeApp(
     options: const FirebaseOptions(
@@ -59,14 +64,14 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
-  HiveStorage.set(
-    HiveKeys.role,
-    "",
-  );
-  HiveStorage.set(
-    HiveKeys.isArabic,
-    false,
-  );
+  // HiveStorage.set(
+  //   HiveKeys.role,
+  //   "",
+  // );
+//  HiveStorage.set(
+//     HiveKeys.isArabic,
+//     false,
+  // );
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(
       HiveKeys.passUserOnboarding,

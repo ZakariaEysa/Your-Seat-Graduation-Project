@@ -47,6 +47,7 @@ class _OtpState extends State<Otp> {
         ),
         body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           const HeadAppBar(
+
             title: 'Confirm OTP code',
           ),
           SizedBox(

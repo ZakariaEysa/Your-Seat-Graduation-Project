@@ -6,6 +6,7 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/v
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
+import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 
 class CinemaDetails extends StatelessWidget {
@@ -15,12 +16,18 @@ class CinemaDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ScaffoldF(
+
         body: SingleChildScrollView(
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+
           Stack(children: [
+
+
+
+
             Image.asset(
               'assets/images/image 12.png',
               width: 400.w,

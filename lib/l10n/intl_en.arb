@@ -47,7 +47,6 @@
   "registerSuccess": "Registration successful!",
   "errorSavingUser": "Error saving user data.",
   "alreadyHaveAccount": "Already have an account? Sign In",
-
   "january": "January",
   "february": "February",
   "march": "March",
@@ -108,7 +107,6 @@
   "light": "Light",
   "profile" : "Profile",
   "theme" : "Theme",
-  "aboutUs": "About Us",
   "logOut" : "LogOut",
   "gender": "Gender",
   "location" : "Location",
@@ -116,6 +114,4 @@
   "emailAddress" : "Email Address",
   "setting" : "Setting",
   "language" : "Language"
-
-
 }

@@ -46,7 +46,6 @@
   "registerSuccess": "تم التسجيل بنجاح!",
   "errorSavingUser": "حدث خطأ أثناء حفظ بيانات المستخدم.",
   "alreadyHaveAccount": "هل لديك حساب بالفعل؟ سجل الدخول",
-
   "january": "يناير",
   "february": "فبراير",
   "march": "مارس",
@@ -59,7 +58,6 @@
   "october": "أكتوبر",
   "november": "نوفمبر",
   "december": "ديسمبر",
-
   "invalidUsername": "اسم المستخدم غير صحيح",
   "pleaseAcceptPrivacyAndPolicy": "يجب أن توافق على الشروط والأحكام.",
   "sign_in": "تسجيل الدخول",
@@ -80,20 +78,13 @@
   "enterConfirmPassword": "أدخل تأكيد كلمة المرور",
   "wrongConfirmPassword": "كلمة المرور المؤكدة غير متطابقة",
   "seeAll": "عرض الكل",
-
   "contactUs": "اتصل بنا",
-
   "PrivacyPolicy": "سياسة الخصوصية",
   "TermsAndConditions": "الشروط والأحكام",
   "AboutUs": "من نحن",
   "SorryThereWasAnError,pleaseTryAgainLater": "عذرًا، حدث خطأ، يرجى المحاولة مرة أخرى لاحقًا",
   "LoginSuccessful": "تم تسجيل الدخول بنجاح",
   "UserDoesNotExistOrPasswordIsIncorrect": "المستخدم غير موجود أو كلمة المرور غير صحيحة",
-
-
-
-
-
   "Sorrytherewasanerrorpleasetryagainlater": "عذراً، حدث خطأ. يرجى المحاولة لاحقاً",
   "continue_as_guest": "تسجيل الدخول كضيف",
   "IMAX_Cinema": "سينما آيماكس",
@@ -115,7 +106,6 @@
   "light": "نهاري",
   "profile": "الملف الشخصي",
   "theme": "النمط",
-  "aboutUs": "من نحن",
   "logOut": "تسجيل الخروج",
   "gender": "الجنس",
   "location": "الموقع",
@@ -123,5 +113,4 @@
   "emailAddress" : "البريد الالكتروني",
   "setting" : "الاعدادات",
   "language" : "اللغة"
-
 }

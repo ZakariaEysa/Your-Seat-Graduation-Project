@@ -389,7 +389,6 @@ class _SignUpState extends State<SignUp> {
   FirebaseAuth auth = FirebaseAuth.instance;
   // var formKey = GlobalKey<FormState>();
 
-
   final List<int> days = List<int>.generate(31, (index) => index + 1);
   final List<int> years =
       List<int>.generate(80, (index) => DateTime.now().year - index);
@@ -415,16 +414,12 @@ class _SignUpState extends State<SignUp> {
     ];
     return ScaffoldF(
       appBar: AppBar(
-        iconTheme: const IconThemeData(
-            size: 28,
-            color: Colors.white
-        ),
+        iconTheme: const IconThemeData(size: 28, color: Colors.white),
         backgroundColor: theme.primaryColor,
         title: Padding(
-          padding: const EdgeInsets.only(right: 35.0 , bottom: 12),
+          padding: const EdgeInsets.only(right: 35.0, bottom: 12),
           child: HeadAppBar(
             title: local.signUp,
-
           ),
         ),
       ),
@@ -687,8 +682,7 @@ class _SignUpState extends State<SignUp> {
                       style:
                           theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
                     ),
-
-                   ],
+                  ],
                 ),
               ),
 
@@ -697,7 +691,6 @@ class _SignUpState extends State<SignUp> {
                 delay: const Duration(milliseconds: 550),
                 child: Text(
                   privacyPolicy ? "" : local.pleaseAcceptPrivacyAndPolicy,
-
                   style: const TextStyle(color: Colors.red),
                   textAlign: TextAlign.center,
                 ),
@@ -707,7 +700,7 @@ class _SignUpState extends State<SignUp> {
                 delay: const Duration(milliseconds: 550),
                 child: ButtonBuilder(
                   text: local.signUp,
-                  ontap: () {
+                  onTap: () {
                     setState(() {
                       if (agree == true) {
                         privacyPolicy = false;
@@ -715,8 +708,7 @@ class _SignUpState extends State<SignUp> {
                         privacyPolicy = true;
                       }
                     });
-                    createAccount(
-                    );
+                    createAccount();
                   },
                   width: 220.w,
                   height: 55.h,
@@ -731,14 +723,15 @@ class _SignUpState extends State<SignUp> {
                   child: InkWell(
                       onTap: () {
                         navigateAndReplace(
-                        context:  context,
+                          context: context,
                           screen: BlocProvider(
                             create: (context) => AuthCubit(AuthRepoImpl(
                                 AuthRemoteDataSourceImpl(
                                     FirebaseAuth.instance, GoogleSignIn()))),
                             child: const SignIn(),
                           ),
-                        )   ;                 },
+                        );
+                      },
                       child: Text("Already have account?",
                           style: theme.textTheme.bodySmall)),
                 ),
@@ -754,12 +747,14 @@ class _SignUpState extends State<SignUp> {
   }
 
   void createAccount() async {
-    AuthCubit auth=AuthCubit.get(context);
+    AuthCubit auth = AuthCubit.get(context);
 
     if (auth.formKeyRegister.currentState!.validate() == false) {
       return;
     }
-    if (auth.selectedMonth == null || auth.selectedDay == null || auth.selectedYear == null) {
+    if (auth.selectedMonth == null ||
+        auth.selectedDay == null ||
+        auth.selectedYear == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text("Please select your full birth date"),
@@ -774,29 +769,31 @@ class _SignUpState extends State<SignUp> {
       }
       return;
     }
-    if(privacyPolicy==false) {
+    if (privacyPolicy == false) {
       return;
-    }else {
-
+    } else {
       await checkUserExists(auth.phone.text);
     }
+  }
 
-
-  }Future<void> checkUserExists(String userId) async {
+  Future<void> checkUserExists(String userId) async {
     try {
-
       AppLogs.errorLog(userId.toString());
       CollectionReference usersCollection =
-      FirebaseFirestore.instance.collection('users');
-      DocumentSnapshot userDoc = await usersCollection.doc("0$userId",).get();
+          FirebaseFirestore.instance.collection('users');
+      DocumentSnapshot userDoc = await usersCollection
+          .doc(
+            "0$userId",
+          )
+          .get();
 
       if (userDoc.exists) {
         AppLogs.errorLog("aaa");
 
-        DialogUtils.showMessage(context, 'Sorry this account exist before',posAction: (){
-
+        DialogUtils.showMessage(context, 'Sorry this account exist before',
+            posAction: () {
           // navigatePop(context: context);
-        },posActionTitle: "Ok");
+        }, posActionTitle: "Ok");
 
         return;
       }
@@ -804,17 +801,12 @@ class _SignUpState extends State<SignUp> {
       await saveUserToFireStore();
       DialogUtils.showMessage(context, "Registered Successfully",
           posActionTitle: "Ok", posAction: () {
-            navigateTo(
-                context: context, screen: const Otp());
-          });
+        navigateTo(context: context, screen: const Otp());
+      });
 
       AppLogs.errorLog("ww");
-    } catch (e) {
-
-    }
+    } catch (e) {}
   }
-
-
 
   Future<void> signInWithPhoneNumber(String phoneNumber) async {
     try {
@@ -853,7 +845,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   Future<void> saveUserToFireStore() async {
-    AuthCubit auth=AuthCubit.get(context);
+    AuthCubit auth = AuthCubit.get(context);
     DialogUtils.showMessage(context, "Creating Account");
     try {
       await FirebaseFirestore.instance
@@ -864,13 +856,11 @@ class _SignUpState extends State<SignUp> {
         'phone': "0${auth.phone.text}",
         'password': auth.password.text,
         'birthdate':
-        "${auth.selectedDay ?? ''}/${auth.selectedMonth ?? ''}/${auth.selectedYear ?? ''}"
+            "${auth.selectedDay ?? ''}/${auth.selectedMonth ?? ''}/${auth.selectedYear ?? ''}"
       });
       DialogUtils.hideLoading(context);
 
-
       print("User saved successfully!");
-
     } catch (e) {
       print("Error saving user: $e");
     }

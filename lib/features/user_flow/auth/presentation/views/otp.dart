@@ -10,7 +10,7 @@ import '../widgets/confirm_part.dart';
 class Otp extends StatefulWidget {
   static const String routeName = "confirm";
 
-  const  Otp({super.key});
+  const Otp({super.key});
 
   @override
   State<Otp> createState() => _OtpState();
@@ -33,39 +33,62 @@ class _OtpState extends State<Otp> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ScaffoldF(
-      appBar: AppBar(
-        actions: [
-          IconButton(onPressed: (){
-            // navigateTo(context: context, screen: const SignUp());
-          }, icon: const Icon(Icons.arrow_back_outlined,color: Colors.white,))
-        ],
-      ),
+        appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  // navigateTo(context: context, screen: const SignUp());
+                },
+                icon: const Icon(
+                  Icons.arrow_back_outlined,
+                  color: Colors.white,
+                ))
+          ],
+        ),
         body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           const HeadAppBar(
-
             title: 'Confirm OTP code',
-
           ),
-          SizedBox(height: 40.h,),
+          SizedBox(
+            height: 40.h,
+          ),
           Text(
             'You just need to enter the OTP\nsent to the registered phone \n'
-                '   number ',
-            style:  theme.textTheme.bodySmall!.copyWith(fontSize:20),
+            '   number ',
+            style: theme.textTheme.bodySmall!.copyWith(fontSize: 20),
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height:50.h,
+            height: 50.h,
           ),
           Padding(
-            padding:EdgeInsets.only(left:20.w, right: 20.w),
+            padding: EdgeInsets.only(left: 20.w, right: 20.w),
             child: Row(
               children: [
-                ConfirmPart(title: '', controllers:N1,),
-                ConfirmPart(title: '', controllers: N2,),
-                ConfirmPart(title: '', controllers:N3,),
-                ConfirmPart(title: '', controllers: N4,),
-                ConfirmPart(title: '', controllers: N5,),
-                ConfirmPart(title: '', controllers: N6,),
+                ConfirmPart(
+                  title: '',
+                  controllers: N1,
+                ),
+                ConfirmPart(
+                  title: '',
+                  controllers: N2,
+                ),
+                ConfirmPart(
+                  title: '',
+                  controllers: N3,
+                ),
+                ConfirmPart(
+                  title: '',
+                  controllers: N4,
+                ),
+                ConfirmPart(
+                  title: '',
+                  controllers: N5,
+                ),
+                ConfirmPart(
+                  title: '',
+                  controllers: N6,
+                ),
               ],
             ),
           ),
@@ -75,14 +98,14 @@ class _OtpState extends State<Otp> {
           Padding(
             padding: EdgeInsets.only(left: 319.h),
             child: Text('00:59',
-                style:  theme.textTheme.bodySmall!.copyWith(fontSize:20)),
+                style: theme.textTheme.bodySmall!.copyWith(fontSize: 20)),
           ),
           SizedBox(
             height: 5.h,
           ),
           ButtonBuilder(
             text: 'Continue',
-            ontap: () {
+            onTap: () {
               // Navigate to HomeScreen after successful OTP verification
               navigateTo(context: context, screen: const HomeScreen());
             },

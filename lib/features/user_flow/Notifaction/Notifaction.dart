@@ -59,6 +59,7 @@ class Notifaction extends StatelessWidget {
                   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                   numOfNotification: '2',
+
                 ),
                 NotificationContent(
                   imagePath: 'assets/images/notif2.png',
@@ -71,7 +72,11 @@ class Notifaction extends StatelessWidget {
                   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                 ),
+
                 NotificationContent(
+
+
+
                   imagePath: 'assets/images/notif4.png',
                   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n10 Hrs ago.',

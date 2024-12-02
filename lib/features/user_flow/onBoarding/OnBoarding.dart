@@ -89,7 +89,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         currentPage == contents.length - 1
                             ? ButtonBuilder(
                                 text: 'Start Using the App->',
-                                ontap: () {
+                                onTap: () {
                                   // Navigate to the SignIn screen
                                   HiveStorage.set(
                                     HiveKeys.passUserOnboarding,
@@ -117,7 +117,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                   Expanded(
                                     child: ButtonBuilder(
                                       text: 'Skip',
-                                      ontap: () {
+                                      onTap: () {
                                         HiveStorage.set(
                                           HiveKeys.passUserOnboarding,
                                           true,
@@ -142,11 +142,11 @@ class _OnBoardingState extends State<OnBoarding> {
                                   Expanded(
                                     child: ButtonBuilder(
                                       text: 'Next',
-                                      ontap: () {
+                                      onTap: () {
                                         if (currentPage < contents.length - 1) {
                                           _pageController.nextPage(
-                                            duration:
-                                                const Duration(milliseconds: 300),
+                                            duration: const Duration(
+                                                milliseconds: 300),
                                             curve: Curves.easeInOut,
                                           );
                                         }

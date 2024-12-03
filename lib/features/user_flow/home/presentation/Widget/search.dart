@@ -45,6 +45,17 @@ class _SearchState extends State<Search> {
         focusNode: _focusNode,
         controller: _controller,
         decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0), // حدود مستديرة قليلاً
+            borderSide:
+            const BorderSide(width: 2, color: Color(0xFFB0BEC5)), // لون محايد
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                width: 2, color: Colors.blue), // لون أزرق عند التركيز
+            borderRadius: BorderRadius.circular(12.0), // حدود مستديرة
+          ),
+
           prefixIcon: Padding(
             padding: EdgeInsets.all(12.sp),
             child: Image.asset(

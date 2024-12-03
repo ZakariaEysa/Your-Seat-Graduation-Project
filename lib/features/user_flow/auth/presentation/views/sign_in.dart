@@ -163,7 +163,7 @@ class _SignInState extends State<SignIn> {
                             onTap: () {
                               if (cubit.phoneController.text.length == 11) {
                                 navigateTo(
-                                    context: context, screen: const Otp());
+                                    context: context, screen:  Otp());
                               } else {
                                 BotToast.showText(text: lang.enter_valid_phone);
                               }

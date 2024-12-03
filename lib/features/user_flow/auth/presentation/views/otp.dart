@@ -7,8 +7,8 @@ import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/button/button_builder.dart';
 
-class Otp extends StatefulWidget {
-  static const String routeName = "confirm";
+class Otp extends StatelessWidget {
+//  final  static const String routeName = "confirm";
 
   // Controllers for each OTP field
   final TextEditingController N1 = TextEditingController();
@@ -45,7 +45,7 @@ class Otp extends StatefulWidget {
         backgroundColor: const Color(0xFF2E1371),
         title: Padding(
           padding: EdgeInsets.only(top: 20.sp),
-          child: HeadAppBar(
+          child: const HeadAppBar(
             title: 'OTP',
           ),
         ),
@@ -80,14 +80,17 @@ class Otp extends StatefulWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                CountdownTimer(startSeconds: 59, onResend: () {  },),
+                CountdownTimer(
+                  startSeconds: 59,
+                  onResend: () {},
+                ),
               ],
             ),
           ),
           SizedBox(height: 5.h),
           ButtonBuilder(
             text: 'Continue',
-            ontap: () {
+            onTap: () {
               if (N1.text.isEmpty ||
                   N2.text.isEmpty ||
                   N3.text.isEmpty ||
@@ -95,13 +98,13 @@ class Otp extends StatefulWidget {
                   N5.text.isEmpty ||
                   N6.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text('Please enter all numbers OTP'),
                     backgroundColor: Colors.red,
                   ),
                 );
               } else {
-                navigateTo(context: context, screen: HomeLayout());
+                navigateTo(context: context, screen: const HomeLayout());
               }
             },
           ),
@@ -111,10 +114,10 @@ class Otp extends StatefulWidget {
   }
 
   Widget buildOtpField(
-      TextEditingController controller,
-      FocusNode currentFocus,
-      FocusNode? nextFocus,
-      ) {
+    TextEditingController controller,
+    FocusNode currentFocus,
+    FocusNode? nextFocus,
+  ) {
     return SizedBox(
       width: 40.w,
       child: TextField(
@@ -128,22 +131,22 @@ class Otp extends StatefulWidget {
         },
         decoration: InputDecoration(
           filled: true,
-          fillColor: Color(0xFF2E1371),
+          fillColor: const Color(0xFF2E1371),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.black, width: 2),
+            borderSide: const BorderSide(color: Colors.black, width: 2),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Color(0xff4d0973), width: 1.5),
+            borderSide: const BorderSide(color: Color(0xff4d0973), width: 1.5),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Color(0xff3C163CFF), width: 1.5),
+            borderSide: const BorderSide(color: Color(0xff3C163CFF), width: 1.5),
           ),
           counterText: "",
         ),
-        style: TextStyle(color: Colors.white, fontSize: 18),
+        style: const TextStyle(color: Colors.white, fontSize: 18),
       ),
     );
   }

@@ -6,10 +6,10 @@ class CountdownTimer extends StatefulWidget {
   final VoidCallback onResend;
 
   const CountdownTimer({
-    Key? key,
+    super.key,
     this.startSeconds = 59,
     required this.onResend,
-  }) : super(key: key);
+  });
 
   @override
   State<CountdownTimer> createState() => _CountdownTimerState();
@@ -65,7 +65,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
         widget.onResend();
         resetTimer();
       },
-      child: Text(
+      child: const Text(
         "Resend !",
         style: TextStyle(
           fontSize: 20,
@@ -77,7 +77,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
     )
         : Text(
       _formatTime(remainingSeconds),
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w600,
         color: Colors.white,

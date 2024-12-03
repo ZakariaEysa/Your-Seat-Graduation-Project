@@ -8,7 +8,7 @@ class HeadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 125.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

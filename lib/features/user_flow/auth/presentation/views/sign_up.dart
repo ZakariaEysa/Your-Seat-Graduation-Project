@@ -1,4 +1,3 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -66,7 +65,7 @@ class _SignUpState extends State<SignUp> {
         iconTheme: const IconThemeData(size: 28, color: Colors.white),
         backgroundColor: theme.primaryColor,
         title: Padding(
-          padding:  EdgeInsets.only(right: 35.w, bottom: 12.h),
+          padding: EdgeInsets.only(right: 35.w, bottom: 12.h),
           child: HeadAppBar(
             title: local.signUp,
           ),
@@ -207,8 +206,10 @@ class _SignUpState extends State<SignUp> {
                     },
                     type: TextInputType.text,
                     obsecure: obscure2,
-                    prefixIcon:  Image(
-                        image: const AssetImage("assets/images/access.png"),width:2.w,),
+                    prefixIcon: Image(
+                      image: const AssetImage("assets/images/access.png"),
+                      width: 2.w,
+                    ),
                     suffixIcon: InkWell(
                         onTap: () {
                           if (obscure2) {
@@ -315,12 +316,12 @@ class _SignUpState extends State<SignUp> {
                                 shape: BoxShape.circle,
                               ),
                         child: agree
-                            ?  Icon(
+                            ? Icon(
                                 Icons.check,
                                 size: 20.sp,
                                 color: Colors.white,
                               )
-                            :  Icon(
+                            : Icon(
                                 Icons.check,
                                 size: 20.sp,
                                 color: Colors.black,
@@ -452,7 +453,7 @@ class _SignUpState extends State<SignUp> {
       await saveUserToFireStore();
       DialogUtils.showMessage(context, "Registered Successfully",
           posActionTitle: "Ok", posAction: () {
-        navigateTo(context: context, screen: const Otp());
+        navigateTo(context: context, screen: Otp());
       });
 
       AppLogs.errorLog("ww");
@@ -517,7 +518,3 @@ class _SignUpState extends State<SignUp> {
     }
   }
 }
-
-
-
-

@@ -29,7 +29,7 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChatBot()), // Navigate to ChatBot screen
+                      MaterialPageRoute(builder: (context) => const ChatBot()), // Navigate to ChatBot screen
                     );
                   },
                   child: Image.asset(
@@ -61,7 +61,7 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChatBott()), // Navigate to ChatBot screen
+                      MaterialPageRoute(builder: (context) => const ChatBott()), // Navigate to ChatBot screen
                     );
                   },
                   child: Image.asset(

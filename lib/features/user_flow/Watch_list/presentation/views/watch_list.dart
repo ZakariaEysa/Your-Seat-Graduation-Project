@@ -12,12 +12,12 @@ class WatchList extends StatelessWidget {
 
       appBar: AppBar(
 
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white,
   size: 28
         ),
         backgroundColor: const Color(0xFF2E1371),
-        title: HeadAppBar(
+        title: const HeadAppBar(
           title: 'Watch List ',
         ),),
         body: SingleChildScrollView(

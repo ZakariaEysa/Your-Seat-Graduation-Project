@@ -100,6 +100,7 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: _buildSettingsItems(context),
+
         ),
       ),
     );

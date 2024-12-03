@@ -27,13 +27,14 @@ class AboutUs extends StatelessWidget {
             bottom: 10.h, // ضبط الحافة السفلية باستخدام ScreenUtil
             right: 35.w, // ضبط الحافة اليمنى باستخدام ScreenUtil
           ),
-          child:  HeadAppBar(
-            title:lang.AboutUs,
+          child: HeadAppBar(
+            title: lang.AboutUs,
           ),
         ),
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 65.h), // ضبط المسافة العلوية باستخدام ScreenUtil
+        margin: EdgeInsets.only(
+            top: 65.h), // ضبط المسافة العلوية باستخدام ScreenUtil
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(

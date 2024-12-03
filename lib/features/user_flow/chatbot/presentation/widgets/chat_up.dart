@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 
 import '../../../../../utils/navigation.dart';
-import '../../../home/presentation/views/home_screen.dart';
 
 class ChatUp extends StatelessWidget{
   const ChatUp({super.key});
@@ -19,7 +19,7 @@ class ChatUp extends StatelessWidget{
             children: [
               GestureDetector(
                   onTap: () {
-                    navigateTo(context: context, screen: const HomeScreen());
+                    navigateTo(context: context, screen: const HomeLayout());
                   },
                   child: Image.asset('assets/icons/close.png')),
               const Spacer(),

@@ -8,7 +8,7 @@ class ComingCard extends StatelessWidget {
   final String date;
   final String imageUrl;
 
-   ComingCard({super.key,
+   const ComingCard({super.key,
     required this.title,
     required this.genre,
     required this.date,

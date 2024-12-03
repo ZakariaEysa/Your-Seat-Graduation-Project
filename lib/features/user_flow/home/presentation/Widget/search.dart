@@ -40,40 +40,42 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         focusNode: _focusNode,
         controller: _controller,
         decoration: InputDecoration(
-          filled: true,
-          fillColor: const Color(0x54D9D9D9),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.sp),
-            borderSide: BorderSide.none,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0), // حدود مستديرة قليلاً
+            borderSide:
+            const BorderSide(width: 2, color: Color(0xFFB0BEC5)), // لون محايد
           ),
-          prefixIcon: _isFocused && _hasText
-              ? null
-              : Padding(
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                width: 2, color: Colors.blue), // لون أزرق عند التركيز
+            borderRadius: BorderRadius.circular(12.0), // حدود مستديرة
+          ),
+
+          prefixIcon: Padding(
             padding: EdgeInsets.all(12.sp),
             child: Image.asset(
               "assets/icons/search.png",
-              width: 24.w,
-              height: 24.h,
+              width: 20.w,
+              height: 20.h,
             ),
           ),
-          hintText: _isFocused && _hasText ? '' : 'Search',
+          hintText: 'Search',
           hintStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 16.sp,
+            color: Colors.white70,
+            fontSize: 14.sp,
             fontFamily: 'SF Pro',
-            fontWeight: FontWeight.w400,
           ),
+          contentPadding: EdgeInsets.symmetric(vertical: 12.h),
+          border: InputBorder.none,
         ),
         style: TextStyle(
           color: Colors.white,
-          fontSize: 16.sp,
-          fontFamily: 'SF Pro',
-          fontWeight: FontWeight.w400,
+          fontSize: 14.sp,
         ),
       ),
     );

@@ -12,7 +12,7 @@ class SettingsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var lang = S.of(context);
+    S.of(context);
     return Container(
       alignment: Alignment.centerLeft,
       width: 304.w,

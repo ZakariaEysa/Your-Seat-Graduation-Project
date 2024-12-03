@@ -11,12 +11,14 @@ class WatchList extends StatelessWidget {
     return ScaffoldF(
 
       appBar: AppBar(
+
+        iconTheme: IconThemeData(
+          color: Colors.white,
+  size: 28
+        ),
         backgroundColor: const Color(0xFF2E1371),
-        title: const Padding(
-          padding: EdgeInsets.only(left: 35.0),
-          child: HeadAppBar(
-            title: 'Watch List ',
-          ),
+        title: HeadAppBar(
+          title: 'Watch List ',
         ),),
         body: SingleChildScrollView(
       child: Column(

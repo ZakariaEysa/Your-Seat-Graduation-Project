@@ -55,14 +55,13 @@ class SplashScreen extends StatelessWidget {
         width: 1.sw, // العرض بناءً على الشاشة
         height: 1.sh, // الطول بناءً على الشاشة
         child: Center(
-          child: SizedBox(
-            width: 305.w, // العرض النسبى
-            height: 260.h, // الطول النسبى
-            child: Image.asset(
-              "assets/images/splash.png",
-            ),
+            child: SizedBox(
+          width: 305.w, // العرض النسبى
+          height: 260.h, // الطول النسبى
+          child: Image.asset(
+            "assets/images/splash.png",
           ),
-        ),
+        )),
       )
           .animate()
           .then()

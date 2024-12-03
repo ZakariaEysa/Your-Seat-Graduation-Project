@@ -127,6 +127,7 @@ class TextFormFieldBuilder extends StatelessWidget {
             borderSide: BorderSide(
                 width: 2, color: Colors.blue), // لون أزرق عند التركيز
             borderRadius: BorderRadius.circular(12.0),
+
           ),
         ),
       ),

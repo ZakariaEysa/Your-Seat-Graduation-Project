@@ -38,5 +38,6 @@ class HeadAppBar extends StatelessWidget {
         ],
       ),
     );
+
   }
 }

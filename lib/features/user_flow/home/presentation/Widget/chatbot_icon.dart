@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bott.dart';
+
+import '../../../chatbot/presentation/views/chat_bot.dart';
 
 class DraggableFloatingButton extends StatefulWidget {
   const DraggableFloatingButton({super.key});
@@ -14,7 +17,6 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
 
   @override
   Widget build(BuildContext context) {
-    // Use LayoutBuilder to get constraints of the Stack
     return LayoutBuilder(
       builder: (context, constraints) {
         return Stack(
@@ -23,19 +25,26 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
               left: buttonPosition.dx,
               top: buttonPosition.dy,
               child: Draggable(
-                feedback: Image.asset(
-                  'assets/images/chat_bot.png',
-                  width: 80.w,
-                  height: 80.h,
+                feedback: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChatBot()), // Navigate to ChatBot screen
+                    );
+                  },
+                  child: Image.asset(
+                    'assets/images/chat_bot.png',
+                    width: 80.w,
+                    height: 80.h,
+                  ),
                 ),
-                childWhenDragging: Container(), // While dragging, hide the original button
+                childWhenDragging: Container(), // Hide original button while dragging
                 onDraggableCanceled: (velocity, offset) {
                   setState(() {
-                    // Ensure the button doesn't go outside the visible area of the Stack
+                    // Adjust button position to stay within bounds
                     double newX = offset.dx;
                     double newY = offset.dy;
 
-                    // Adjust X and Y to stay within the Stack's constraints
                     if (newX < 0) newX = 0;
                     if (newY < 0) newY = 0;
                     if (newX > constraints.maxWidth - 80.w) {
@@ -48,10 +57,18 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
                     buttonPosition = Offset(newX, newY);
                   });
                 },
-                child: Image.asset(
-                  'assets/images/chat_bot.png',
-                  width: 80.w,
-                  height: 80.h,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChatBott()), // Navigate to ChatBot screen
+                    );
+                  },
+                  child: Image.asset(
+                    'assets/images/chat_bot.png',
+                    width: 80.w,
+                    height: 80.h,
+                  ),
                 ),
               ),
             ),
@@ -61,3 +78,5 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
     );
   }
 }
+
+

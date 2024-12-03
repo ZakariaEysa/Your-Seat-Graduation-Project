@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/resources/color_manager.dart';
@@ -55,21 +54,21 @@ class ButtonBuilder extends StatelessWidget {
           child: isLoading
               ? const Center(child: CircularProgressIndicator())
               : Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (image != null && image!.isNotEmpty)
-                Image.asset(
-                  image!,
-                  width: 84.w,
-                  height: 84.h,
-                  // fit: BoxFit.cover,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (image != null && image!.isNotEmpty)
+                      Image.asset(
+                        image!,
+                        width: 84.w,
+                        height: 84.h,
+                        // fit: BoxFit.cover,
+                      ),
+                    Text(
+                      text,
+                      style: style ?? theme.textTheme.labelLarge,
+                    ),
+                  ],
                 ),
-              Text(
-                text,
-                style: style ?? theme.textTheme.labelLarge,
-              ),
-            ],
-          ),
         ),
       ),
     );

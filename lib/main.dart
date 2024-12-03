@@ -2,9 +2,9 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/settings_screen.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
 import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/cinema_details.dart';
@@ -21,6 +21,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   await Firebase.initializeApp(
     options: const FirebaseOptions(
@@ -60,14 +64,14 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
-  HiveStorage.set(
-    HiveKeys.role,
-    "",
-  );
-  HiveStorage.set(
-    HiveKeys.isArabic,
-    false,
-  );
+  // HiveStorage.set(
+  //   HiveKeys.role,
+  //   "",
+  // );
+//  HiveStorage.set(
+//     HiveKeys.isArabic,
+//     false,
+  // );
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(
       HiveKeys.passUserOnboarding,
@@ -85,6 +89,11 @@ void main() async {
   //   HiveKeys.role,
   //   "",
   // );
+  // HiveStorage.set(
+  //   HiveKeys.passUserOnboarding,
+  //   false,
+  // );
+
 
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(
@@ -127,7 +136,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home:SplashScreen(),
+              home: const SplashScreen(),
             );
           });
     });

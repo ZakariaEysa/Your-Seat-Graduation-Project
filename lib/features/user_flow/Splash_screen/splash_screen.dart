@@ -13,15 +13,17 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_i
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/features/user_flow/onBoarding/OnBoarding.dart';
-
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+
 import '../auth/presentation/cubit/auth_cubit.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
+    // تهيئة الـ Timer للتنقل بين الشاشات
     Timer(const Duration(seconds: 3), () {
       if (HiveStorage.get(HiveKeys.passUserOnboarding) == false) {
         navigateAndRemoveUntil(context: context, screen: const OnBoarding());
@@ -44,22 +46,20 @@ class SplashScreen extends StatelessWidget {
       }
     });
 
-    var mediaQuery = MediaQuery.of(context).size;
+    // استخدام ScreenUtil لتحديد القياسات
     return ScaffoldF(
       body: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
-        width: mediaQuery.width,
-        height: mediaQuery.height,
+        width: 1.sw, // العرض بناءً على الشاشة
+        height: 1.sh, // الطول بناءً على الشاشة
         child: Center(
           child: SizedBox(
-            width: 305.w,
-            height: 260.h,
+            width: 305.w, // العرض النسبى
+            height: 260.h, // الطول النسبى
             child: Image.asset(
               "assets/images/splash.png",
-
-              // fit: BoxFit.cover,
             ),
           ),
         ),

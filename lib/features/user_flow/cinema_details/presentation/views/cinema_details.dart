@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/widgets/cinema_comments.dart';
 import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/widgets/cinema_movies.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
+import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 
 class CinemaDetails extends StatelessWidget {
@@ -16,12 +16,18 @@ class CinemaDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ScaffoldF(
+
         body: SingleChildScrollView(
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+
           Stack(children: [
+
+
+
+
             Image.asset(
               'assets/images/image 12.png',
               width: 400.w,
@@ -29,24 +35,26 @@ class CinemaDetails extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             Positioned(
-              top: 10,
-              left:0,
-              right:370,
-              bottom: 240,
-              child:IconButton(onPressed: (){
-                navigateTo(context: context, screen:HomeLayout());
-              }, icon:Icon(Icons.arrow_back),color: Colors.white,)
-            ),
+                top: 10.h,
+                right: 370.w,
+                left: 10.w,
+                bottom: 240.h,
+                child: IconButton(
+                  onPressed: () {
+                    navigateTo(context: context, screen: const HomeLayout());
+                  },
+                  icon: const Icon(Icons.arrow_back),
+                  color: Colors.white,
+                )),
             Positioned(
-              top: 200,
-              left:10,
-              right:10,
-              bottom:0,
+              top: 200.h,
+              left: 10.w,
+              right: 10.w,
               child: Container(
                 padding: EdgeInsets.all(8.sp),
-                color: const Color(0xCB786E7C),
-                width: 360.w,
-                height: 150.h,
+                color: const Color(0xFF37313B).withOpacity(.71),
+                width: 370.w,
+                height: 170.h,
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -54,8 +62,8 @@ class CinemaDetails extends StatelessWidget {
                     children: [
                       Text(
                         'IMAX Cinema',
-                        style:
-                            theme.textTheme.bodyMedium!.copyWith(fontSize:14.sp),
+                        style: theme.textTheme.bodyMedium!
+                            .copyWith(fontSize: 13.sp),
                       ),
                       Text(
                         'StatUp is planned for 2025, type of theater known for'
@@ -63,9 +71,9 @@ class CinemaDetails extends StatelessWidget {
                         ' It offers an immersive viewing experience for movies,'
                         ' documentaries, and other content',
                         style: theme.textTheme.bodyMedium!.copyWith(
-                            fontSize:13.sp, color: const Color(0xFFD4D0D0)),
+                            fontSize: 11.sp, color: const Color(0xFFD4D0D0)),
                       ),
-                      SizedBox(height:5.h),
+                      SizedBox(height: 5.h),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -74,7 +82,7 @@ class CinemaDetails extends StatelessWidget {
                             'Review',
                             textAlign: TextAlign.start,
                             style: theme.textTheme.bodyMedium!
-                                .copyWith(fontSize:16.sp),
+                                .copyWith(fontSize: 16.sp),
                           ),
                           SizedBox(
                             width: 10.w,
@@ -82,7 +90,7 @@ class CinemaDetails extends StatelessWidget {
                           Image.asset(
                             'assets/images/cinemastar.png',
                             width: 14.w,
-                            height:12.h,
+                            height: 12.h,
                           ),
                           SizedBox(
                             width: 10.w,
@@ -91,7 +99,7 @@ class CinemaDetails extends StatelessWidget {
                         ],
                       ),
                       Image.asset('assets/images/cinemastars.png',
-                          width:100.w, height:15.h)
+                          width: 200.w, height: 30.h)
                     ],
                   ),
                 ),
@@ -99,7 +107,7 @@ class CinemaDetails extends StatelessWidget {
             ),
           ]),
           Padding(
-            padding: EdgeInsets.all(10.sp),
+            padding: EdgeInsets.all(10.0.sp),
             child: Text(
               'Movies',
               style: theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
@@ -123,23 +131,23 @@ class CinemaDetails extends StatelessWidget {
               style: theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
             ),
           ),
-           Padding(
-            padding: EdgeInsets.all(8.sp),
+          Padding(
+            padding: EdgeInsets.all(8.0.sp),
             child: const CinemaComments(
                 image: "assets/images/image (1).png",
                 title: "Great selection of movies . Highly recommended!",
                 titlename: "@Iva588"),
           ),
-           Padding(
-            padding: EdgeInsets.all(8.sp),
+          Padding(
+            padding: EdgeInsets.all(10.0.sp),
             child: const CinemaComments(
                 image: "assets/images/image (4).png",
                 title:
                     "The luxurious seats and immersive sound system\nmake for a truly unforgettable",
                 titlename: "@Rana158"),
           ),
-           Padding(
-            padding: EdgeInsets.all(8.sp),
+          Padding(
+            padding: EdgeInsets.all(8.0.sp),
             child: const CinemaComments(
                 image: "assets/images/image (1).png",
                 title:
@@ -149,7 +157,7 @@ class CinemaDetails extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding:  EdgeInsets.all(16.sp),
+                padding: EdgeInsets.all(16.0.sp),
                 child: TextFormFieldBuilder(
                   controller: TextEditingController(),
                   type: TextInputType.text,
@@ -158,12 +166,13 @@ class CinemaDetails extends StatelessWidget {
                   color: const Color(0xFF110C3B),
                   obsecure: false,
                   label: 'Add Comment',
+
                 ),
               ),
               Image.asset(
                 "assets/icons/Vector (4).png",
-                width:25.w,
-                height:25.h,
+                width: 25.w,
+                height: 25.h,
               )
             ],
           )

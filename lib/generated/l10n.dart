@@ -110,6 +110,16 @@ class S {
     );
   }
 
+  /// `contact Us`
+  String get contactUs {
+    return Intl.message(
+      'contact Us',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please fill in the credentials.`
   String get pleaseFillTheCredentials {
     return Intl.message(
@@ -830,21 +840,63 @@ class S {
     );
   }
 
-  /// `Sorry, there was an error, please try again later`
-  String get Sorrytherewasanerrorpleasetryagainlater {
+  /// `Privacy Policy`
+  String get PrivacyPolicy {
     return Intl.message(
-      'Sorry, there was an error, please try again later',
-      name: 'Sorrytherewasanerrorpleasetryagainlater',
+      'Privacy Policy',
+      name: 'PrivacyPolicy',
       desc: '',
       args: [],
     );
   }
+
+  /// `Terms and Conditions`
+  String get TermsAndConditions {
+    return Intl.message(
+      'Terms and Conditions',
+      name: 'TermsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Us`
+  String get AboutUs {
+    return Intl.message(
+      'About Us',
+      name: 'AboutUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'SorryThereWasAnError,pleaseTryAgainLater' key
 
   /// `Login Successful`
   String get LoginSuccessful {
     return Intl.message(
       'Login Successful',
       name: 'LoginSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User does not exist or password is incorrect`
+  String get UserDoesNotExistOrPasswordIsIncorrect {
+    return Intl.message(
+      'User does not exist or password is incorrect',
+      name: 'UserDoesNotExistOrPasswordIsIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry, there was an error, please try again later`
+  String get Sorrytherewasanerrorpleasetryagainlater {
+    return Intl.message(
+      'Sorry, there was an error, please try again later',
+      name: 'Sorrytherewasanerrorpleasetryagainlater',
       desc: '',
       args: [],
     );

@@ -20,16 +20,13 @@ class HeadAppBar extends StatelessWidget {
     //     //     icon: Icon(Icons.arrow_back, color: Colors.white),
     //     //     onPressed: onBackPressed,
     //     //   ),
-      return  Padding(
-        padding: const EdgeInsets.only(top: 20.0 , right: 35),
-        child: Center(
-          child: Text(
-            title,
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+      return  Center(
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       );

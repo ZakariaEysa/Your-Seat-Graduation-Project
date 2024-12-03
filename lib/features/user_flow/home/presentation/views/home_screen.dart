@@ -5,7 +5,7 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/W
 import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:yourseatgraduationproject/generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../Widget/chatbot.dart';
+import '../Widget/chatbot_icon.dart';
 import '../Widget/cinema_item.dart';
 import '../Widget/coming_soon.dart';
 import '../Widget/movie_carousel_widget.dart';
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                 TextS(text: lang.promoDiscount),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: Image.asset("assets/images/discount.png"),
+                 child: Image.asset("assets/images/discount.png"),
                 ),
                 Align(
                   alignment: Alignment.topLeft,

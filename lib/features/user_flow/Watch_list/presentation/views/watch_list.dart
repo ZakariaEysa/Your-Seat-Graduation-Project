@@ -13,6 +13,7 @@ class WatchList extends StatelessWidget {
     return ScaffoldF(
 
       appBar: AppBar(
+
         iconTheme: IconThemeData(
           color: Colors.white,
   size: 28

@@ -8,8 +8,9 @@ class HeadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 120.h,
+    return Container
+      (
+      height: 125.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -17,7 +18,7 @@ class HeadWidget extends StatelessWidget {
           Image.asset(
             "assets/images/yourseat.png",
             width: 190.w,
-            height: 200.h,
+            height: 120.h,
           ),
           GestureDetector(
             onTap: () {

@@ -25,7 +25,7 @@ class AboutUs extends StatelessWidget {
         ),
         
         title: Padding(
-          padding: const EdgeInsets.only(bottom: 10.0 ,right: 35),
+          padding: const EdgeInsets.only(right: 50),
           child: HeadAppBar(
             title: 'About Us',
           ),

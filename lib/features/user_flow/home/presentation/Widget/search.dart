@@ -40,40 +40,40 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12),
-      child: TextFormField(
-        focusNode: _focusNode,
-        controller: _controller,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Color(0x54D9D9D9),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.sp),
-            borderSide: BorderSide.none,
-          ),
-          prefixIcon: _isFocused && _hasText
-              ? null
-              : Padding(
-            padding: EdgeInsets.all(12.sp),
-            child: Image.asset(
-              "assets/icons/search.png",
-              width: 24.w,
-              height: 24.h,
-            ),
-          ),
-          hintText: _isFocused && _hasText ? '' : 'Search',
-          hintStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 16.sp,
-            fontFamily: 'SF Pro',
-            fontWeight: FontWeight.w400,
-          ),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+      child: Container(
+        height: 48.h,
+        decoration: BoxDecoration(
+          color: const Color(0x54D9D9D9),
+          borderRadius: BorderRadius.circular(10.sp),
         ),
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16.sp,
-          fontFamily: 'SF Pro',
-          fontWeight: FontWeight.w400,
+        child: TextFormField(
+          focusNode: _focusNode,
+          controller: _controller,
+          decoration: InputDecoration(
+            prefixIcon: Padding(
+              padding: EdgeInsets.all(12.sp),
+              child: Image.asset(
+                "assets/icons/search.png",
+                width: 20.w,
+                height: 20.h,
+              ),
+            ),
+            hintText: 'Search',
+
+            hintStyle: TextStyle(
+              color: Colors.white70,
+              fontSize: 14.sp,
+              fontFamily: 'SF Pro',
+
+            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 12.h),
+            border: InputBorder.none,
+          ),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14.sp,
+          ),
         ),
       ),
     );

@@ -15,6 +15,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'features/user_flow/auth/presentation/views/otp.dart';
+import 'features/user_flow/chatbot/presentation/views/chat_bot.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

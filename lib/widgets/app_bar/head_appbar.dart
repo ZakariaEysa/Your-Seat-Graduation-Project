@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeadAppBar extends StatelessWidget {
   final String title;
@@ -20,13 +21,17 @@ class HeadAppBar extends StatelessWidget {
     //     //     icon: Icon(Icons.arrow_back, color: Colors.white),
     //     //     onPressed: onBackPressed,
     //     //   ),
+
       return  Center(
-        child: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        child: Padding(
+          padding:  EdgeInsetsDirectional.only(top: 20.h,end: 85.w),
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
       );

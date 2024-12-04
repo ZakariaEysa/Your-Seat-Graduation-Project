@@ -23,19 +23,38 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
+        "ActionSciFi": MessageLookupByLibrary.simpleMessage("Action, Sci-Fi"),
+        "AvengersInfinityWar":
+            MessageLookupByLibrary.simpleMessage("Avengers: Infinity War"),
+        "GreatSelectionOfMoviesHighlyRecommended":
+            MessageLookupByLibrary.simpleMessage(
+                "Great selection of movies. Highly recommended!"),
         "IMAX_Cinema": MessageLookupByLibrary.simpleMessage("IMAX Cinema"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("Login Successful"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
-        "Sorrytherewasanerrorpleasetryagainlater":
+        "ShazamFuryOfTheGods":
+            MessageLookupByLibrary.simpleMessage("Shazam: Fury of the Gods"),
+        "SorryThereWasAnErrorPleaseTryAgainLater":
             MessageLookupByLibrary.simpleMessage(
-                "Sorry, there was an error, please try again later"),
+                "Sorry, there was an error. Please try again later."),
+        "StatUpIsPlannedFor2025TypeOfTheaterKnownForItsLargeScreenSizeAndHighQualitySoundSystemItOffersAnImmersiveViewingExperienceForMoviesDocumentariesAndOtherContent":
+            MessageLookupByLibrary.simpleMessage(
+                "StatUp is planned for 2025, a type of theater known for its large screen size and high-quality sound system. It offers an immersive viewing experience for movies, documentaries, and other content."),
         "TermsAndConditions":
             MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
+        "TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere":
+            MessageLookupByLibrary.simpleMessage(
+                "The cinema\'s modern design and aesthetically pleasing decor create a welcoming atmosphere."),
+        "TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable":
+            MessageLookupByLibrary.simpleMessage(
+                "The luxurious seats and immersive sound system make for a truly unforgettable experience."),
+        "TwoHoursFiveMinutes":
+            MessageLookupByLibrary.simpleMessage("2 hours 5 minutes"),
         "UserDoesNotExistOrPasswordIsIncorrect":
             MessageLookupByLibrary.simpleMessage(
                 "User does not exist or password is incorrect"),
-        "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
+        "addComment": MessageLookupByLibrary.simpleMessage(" Add Comment"),
         "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
             "Already have an account? Sign In"),
         "april": MessageLookupByLibrary.simpleMessage("April"),
@@ -97,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "general": MessageLookupByLibrary.simpleMessage("General"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
         "iAgreeWithPrivacyPolicy": MessageLookupByLibrary.simpleMessage(
             "I agree with the Privacy Policy"),
@@ -121,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
         "no_account":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
+        "notifications": MessageLookupByLibrary.simpleMessage("Notification"),
         "november": MessageLookupByLibrary.simpleMessage("November"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("Now Playing"),
         "october": MessageLookupByLibrary.simpleMessage("October"),
@@ -154,7 +175,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "review": MessageLookupByLibrary.simpleMessage("Review"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
-        "seeall": MessageLookupByLibrary.simpleMessage("See All"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
@@ -179,6 +199,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "year": MessageLookupByLibrary.simpleMessage("Year"),
         "youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber":
             MessageLookupByLibrary.simpleMessage(
-                "You just need to enter the OTP sent to the registered phone number.")
+                "You just need to enter the OTP sent to the registered phone number."),
+        "zakaria": MessageLookupByLibrary.simpleMessage("zakaria"),
+        "zakaria1": MessageLookupByLibrary.simpleMessage("zakaria1")
       };
 }

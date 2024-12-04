@@ -22,12 +22,35 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا "),
+        "ActionSciFi": MessageLookupByLibrary.simpleMessage("أكشن، خيال علمي"),
+        "AvengersInfinityWar":
+            MessageLookupByLibrary.simpleMessage("المنتقمون: حرب إنفينيتي"),
+        "GreatSelectionOfMoviesHighlyRecommended":
+            MessageLookupByLibrary.simpleMessage(
+                "مجموعة كبيرة من الأفلام. موصى به للغاية!"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
-        "Sorrytherewasanerrorpleasetryagainlater":
+        "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "ShazamFuryOfTheGods":
+            MessageLookupByLibrary.simpleMessage("شزام: غضب الآلهة"),
+        "SorryThereWasAnErrorPleaseTryAgainLater":
             MessageLookupByLibrary.simpleMessage(
                 "عذراً، حدث خطأ. يرجى المحاولة لاحقاً"),
-        "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
+        "StatUpIsPlannedFor2025TypeOfTheaterKnownForItsLargeScreenSizeAndHighQualitySoundSystemItOffersAnImmersiveViewingExperienceForMoviesDocumentariesAndOtherContent":
+            MessageLookupByLibrary.simpleMessage(
+                "من المقرر أن يتم إنشاء Statup في عام 2025، وهو نوع من المسرح معروف بحجم شاشته الكبيرة ونظام الصوت عالي الجودة. فهو يوفر تجربة مشاهدة غامرة للأفلام والأفلام الوثائقية والمحتويات الأخرى"),
+        "TermsAndConditions":
+            MessageLookupByLibrary.simpleMessage("الشروط و الاحكام "),
+        "TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere":
+            MessageLookupByLibrary.simpleMessage(
+                "يخلق التصميم الحديث للسينما والديكور الجميل أجواءً ترحيبية"),
+        "TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable":
+            MessageLookupByLibrary.simpleMessage(
+                "المقاعد الفاخرة ونظام الصوت الغامر تجعلها تجربة لا تُنسى حقًا"),
+        "TwoHoursFiveMinutes":
+            MessageLookupByLibrary.simpleMessage("ساعة و 5 دقائق 2"),
+        "addComment": MessageLookupByLibrary.simpleMessage("أضف تعليق"),
         "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
             "هل لديك حساب بالفعل؟ سجل الدخول"),
         "april": MessageLookupByLibrary.simpleMessage("أبريل"),
@@ -36,10 +59,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "cinema": MessageLookupByLibrary.simpleMessage("سينما"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("قريباً"),
+        "comments": MessageLookupByLibrary.simpleMessage("تعليقات"),
         "confirmOtpCode":
             MessageLookupByLibrary.simpleMessage("تأكيد رمز التحقق"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "contactUsContent": MessageLookupByLibrary.simpleMessage(
             "يسعدنا سماعك! سواء كان لديك استفسارات، تحتاج إلى دعم، تريد مشاركة ملاحظات، أو لديك اقتراحات، فريقنا هنا لمساعدتك. لا تتردد في التواصل معنا باستخدام النموذج أدناه أو عبر تفاصيل الاتصال المقدمة.\nمعلومات الاتصال:\nالبريد الإلكتروني لدعم العملاء: [support@yourseatapp.com]\nرقم الهاتف: [+123-456-7890]\n\nالملاحظات والاقتراحات:\nنقدر مدخلاتك بشدة! إذا كانت لديك اقتراحات لتحسين تجربتك مع YourSeat، يرجى مشاركتها في حقل الرسالة بنموذج الاتصال أو إرسالها مباشرة إلى بريدنا الإلكتروني.\n\nتواصل معنا على قنوات التواصل الاجتماعي الخاصة بنا للحصول على أحدث التحديثات والعروض الترويجية والمزيد:"),
         "continueAsGuest":
@@ -89,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور؟"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
+        "general": MessageLookupByLibrary.simpleMessage("عام"),
         "hello": MessageLookupByLibrary.simpleMessage("مرحبًا"),
         "iAgreeWithPrivacyPolicy":
             MessageLookupByLibrary.simpleMessage("أوافق على سياسة الخصوصية"),
@@ -111,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "may": MessageLookupByLibrary.simpleMessage("مايو"),
         "month": MessageLookupByLibrary.simpleMessage("الشهر"),
         "no_account": MessageLookupByLibrary.simpleMessage("لا تملك حساباً؟"),
+        "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),
         "november": MessageLookupByLibrary.simpleMessage("نوفمبر"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("يُعرض الآن"),
         "october": MessageLookupByLibrary.simpleMessage("أكتوبر"),
@@ -143,7 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح!"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
-        "seeall": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+        "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "september": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "setting": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -165,6 +192,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "year": MessageLookupByLibrary.simpleMessage("السنة"),
         "youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber":
             MessageLookupByLibrary.simpleMessage(
-                "فقط أدخل رمز التحقق المرسل إلى رقم الهاتف المسجل.")
+                "فقط أدخل رمز التحقق المرسل إلى رقم الهاتف المسجل."),
+        "zakaria": MessageLookupByLibrary.simpleMessage("زكريا"),
+        "zakaria1": MessageLookupByLibrary.simpleMessage("زكريا")
       };
 }

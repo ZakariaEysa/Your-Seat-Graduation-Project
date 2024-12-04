@@ -21,7 +21,7 @@ class SignInPart extends StatelessWidget {
           borderRadius: BorderRadius.circular(40.sp), // تم تعديل الزوايا باستخدام ScreenUtil
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 30.w), // تم تعديل التباعد باستخدام ScreenUtil
+          padding: EdgeInsetsDirectional.only(start: 30.w), // تم تعديل التباعد باستخدام ScreenUtil
           child: Row(
             children: [
               // تم إلغاء الكود المعطل للـ Icon

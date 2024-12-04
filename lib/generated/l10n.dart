@@ -50,6 +50,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `zakaria`
+  String get zakaria {
+    return Intl.message(
+      'zakaria',
+      name: 'zakaria',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hello`
   String get hello {
     return Intl.message(
@@ -95,16 +105,6 @@ class S {
     return Intl.message(
       'We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact Information:\nCustomer Support Email: [support@yourseatapp.com]\nPhone Number: [+123-456-7890]\n\nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:',
       name: 'contactUsContent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `About Us`
-  String get aboutUs {
-    return Intl.message(
-      'About Us',
-      name: 'aboutUs',
       desc: '',
       args: [],
     );
@@ -305,16 +305,6 @@ class S {
     return Intl.message(
       'Sign Up',
       name: 'signUp',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `See All`
-  String get seeall {
-    return Intl.message(
-      'See All',
-      name: 'seeall',
       desc: '',
       args: [],
     );
@@ -870,8 +860,6 @@ class S {
     );
   }
 
-  // skipped getter for the 'SorryThereWasAnError,pleaseTryAgainLater' key
-
   /// `Login Successful`
   String get LoginSuccessful {
     return Intl.message(
@@ -887,16 +875,6 @@ class S {
     return Intl.message(
       'User does not exist or password is incorrect',
       name: 'UserDoesNotExistOrPasswordIsIncorrect',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sorry, there was an error, please try again later`
-  String get Sorrytherewasanerrorpleasetryagainlater {
-    return Intl.message(
-      'Sorry, there was an error, please try again later',
-      name: 'Sorrytherewasanerrorpleasetryagainlater',
       desc: '',
       args: [],
     );
@@ -922,8 +900,6 @@ class S {
     );
   }
 
-  // skipped getter for the 'StatUp is planned for 2025, type of theater known for its large screen size and high-quality sound system. It offers an immersive viewing experience for movies, documentaries, and other content' key
-
   /// `Review`
   String get review {
     return Intl.message(
@@ -944,14 +920,6 @@ class S {
     );
   }
 
-  // skipped getter for the 'shazam:Fury of the Gods' key
-
-  // skipped getter for the 'avengers:infinity war' key
-
-  // skipped getter for the '2 hour 5 minutes' key
-
-  // skipped getter for the 'action,sci-fi' key
-
   /// `Comments`
   String get comments {
     return Intl.message(
@@ -962,13 +930,15 @@ class S {
     );
   }
 
-  // skipped getter for the 'great selection of movies.Highly recommended!' key
-
-  // skipped getter for the 'the luxurious seats and immersive sound system make for a truly unforgettable' key
-
-  // skipped getter for the 'the cinema\'s modern design and aesthetically pleasing decor create a welcoming atmosphere' key
-
-  // skipped getter for the 'add comment' key
+  /// ` Add Comment`
+  String get addComment {
+    return Intl.message(
+      ' Add Comment',
+      name: 'addComment',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `English`
   String get english {
@@ -1100,16 +1070,6 @@ class S {
     );
   }
 
-  // skipped getter for the 'StatUpIsPlannedFor2025,TypeOfTheaterKnownForItsLargeScreenSizeAndHigh-qualitySoundSystem.ItOffersAnImmersiveViewingExperienceForMovies,Documentaries,AndOtherContent' key
-
-  // skipped getter for the 'shazam:FuryOfTheGods' key
-
-  // skipped getter for the 'avengers:infinityWar' key
-
-  // skipped getter for the '2hour5minutes' key
-
-  // skipped getter for the 'greatSelectionOfMovies.HighlyRecommended!' key
-
   /// `The luxurious seats and immersive sound system make for a truly unforgettable`
   String
       get theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable {
@@ -1122,7 +1082,131 @@ class S {
     );
   }
 
-  // skipped getter for the 'theCinema\'sModernDesignAndAEstheticallyPleasingDecorCreateAWelcomingAtmosphere' key
+  /// `Sorry, there was an error. Please try again later.`
+  String get SorryThereWasAnErrorPleaseTryAgainLater {
+    return Intl.message(
+      'Sorry, there was an error. Please try again later.',
+      name: 'SorryThereWasAnErrorPleaseTryAgainLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `StatUp is planned for 2025, a type of theater known for its large screen size and high-quality sound system. It offers an immersive viewing experience for movies, documentaries, and other content.`
+  String
+      get StatUpIsPlannedFor2025TypeOfTheaterKnownForItsLargeScreenSizeAndHighQualitySoundSystemItOffersAnImmersiveViewingExperienceForMoviesDocumentariesAndOtherContent {
+    return Intl.message(
+      'StatUp is planned for 2025, a type of theater known for its large screen size and high-quality sound system. It offers an immersive viewing experience for movies, documentaries, and other content.',
+      name:
+          'StatUpIsPlannedFor2025TypeOfTheaterKnownForItsLargeScreenSizeAndHighQualitySoundSystemItOffersAnImmersiveViewingExperienceForMoviesDocumentariesAndOtherContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shazam: Fury of the Gods`
+  String get ShazamFuryOfTheGods {
+    return Intl.message(
+      'Shazam: Fury of the Gods',
+      name: 'ShazamFuryOfTheGods',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avengers: Infinity War`
+  String get AvengersInfinityWar {
+    return Intl.message(
+      'Avengers: Infinity War',
+      name: 'AvengersInfinityWar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `2 hours 5 minutes`
+  String get TwoHoursFiveMinutes {
+    return Intl.message(
+      '2 hours 5 minutes',
+      name: 'TwoHoursFiveMinutes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Action, Sci-Fi`
+  String get ActionSciFi {
+    return Intl.message(
+      'Action, Sci-Fi',
+      name: 'ActionSciFi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Great selection of movies. Highly recommended!`
+  String get GreatSelectionOfMoviesHighlyRecommended {
+    return Intl.message(
+      'Great selection of movies. Highly recommended!',
+      name: 'GreatSelectionOfMoviesHighlyRecommended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The luxurious seats and immersive sound system make for a truly unforgettable experience.`
+  String
+      get TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable {
+    return Intl.message(
+      'The luxurious seats and immersive sound system make for a truly unforgettable experience.',
+      name:
+          'TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere.`
+  String
+      get TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere {
+    return Intl.message(
+      'The cinema\'s modern design and aesthetically pleasing decor create a welcoming atmosphere.',
+      name:
+          'TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get notifications {
+    return Intl.message(
+      'Notification',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message(
+      'General',
+      name: 'general',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `zakaria1`
+  String get zakaria1 {
+    return Intl.message(
+      'zakaria1',
+      name: 'zakaria1',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

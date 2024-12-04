@@ -21,7 +21,7 @@ class HeadWidget extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigateTo(context: context, screen: const Notifaction());
+              navigateTo(context: context, screen: const Notifications());
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),

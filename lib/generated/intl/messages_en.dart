@@ -55,12 +55,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "User does not exist or password is incorrect"),
         "addComment": MessageLookupByLibrary.simpleMessage(" Add Comment"),
+        "ahmedSayed": MessageLookupByLibrary.simpleMessage("Ahmed Sayed"),
+        "ahmedSayed1": MessageLookupByLibrary.simpleMessage("Ahmed Sayed"),
         "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
             "Already have an account? Sign In"),
         "april": MessageLookupByLibrary.simpleMessage("April"),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to log out ?"),
         "august": MessageLookupByLibrary.simpleMessage("August"),
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
         "comments": MessageLookupByLibrary.simpleMessage("Comments"),
@@ -145,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "november": MessageLookupByLibrary.simpleMessage("November"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("Now Playing"),
         "october": MessageLookupByLibrary.simpleMessage("October"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "password_min_length": MessageLookupByLibrary.simpleMessage(

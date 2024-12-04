@@ -114,5 +114,11 @@
   "TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere": "The cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere.",
   "notifications": "Notification",
   "general": "General",
-  "zakaria1": "zakaria1"
+  "zakaria1": "zakaria1",
+
+  "ahmedSayed" : "Ahmed Sayed",
+  "ok": "OK",
+  "cancel": "Cancel",
+  "areYouSureYouWantToLogOut" : "Are you sure you want to log out ?",
+  "ahmedSayed1" : "Ahmed Sayed"
 }

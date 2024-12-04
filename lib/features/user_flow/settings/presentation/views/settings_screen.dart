@@ -154,9 +154,9 @@ class SettingsPage extends StatelessWidget {
         title: lang.logOut,
         imageIcon: "assets/images/logout 1.png",
         onPress: () {
-          DialogUtils.showMessage(context, "Are you sure you want to log out?",
-          posActionTitle: "Ok",
-            negActionTitle: "Cancel",
+          DialogUtils.showMessage(context, lang.areYouSureYouWantToLogOut,
+          posActionTitle: lang.ok,
+            negActionTitle: lang.cancel,
             posAction: (){
               bool lang = HiveStorage.get(HiveKeys.isArabic);
               HiveStorage.set(HiveKeys.role,"");

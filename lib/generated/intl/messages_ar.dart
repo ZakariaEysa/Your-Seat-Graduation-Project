@@ -51,12 +51,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "TwoHoursFiveMinutes":
             MessageLookupByLibrary.simpleMessage("ساعة و 5 دقائق 2"),
         "addComment": MessageLookupByLibrary.simpleMessage("أضف تعليق"),
+        "ahmedSayed": MessageLookupByLibrary.simpleMessage("احمد سيد"),
+        "ahmedSayed1": MessageLookupByLibrary.simpleMessage("احمد سيد"),
         "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
             "هل لديك حساب بالفعل؟ سجل الدخول"),
         "april": MessageLookupByLibrary.simpleMessage("أبريل"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+        "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
+            "هل انت متاكد انك تريد تسجيل الخروج ؟"),
         "august": MessageLookupByLibrary.simpleMessage("أغسطس"),
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
+        "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
         "cinema": MessageLookupByLibrary.simpleMessage("سينما"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("قريباً"),
         "comments": MessageLookupByLibrary.simpleMessage("تعليقات"),
@@ -141,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "november": MessageLookupByLibrary.simpleMessage("نوفمبر"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("يُعرض الآن"),
         "october": MessageLookupByLibrary.simpleMessage("أكتوبر"),
+        "ok": MessageLookupByLibrary.simpleMessage("موافق"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "password_min_length": MessageLookupByLibrary.simpleMessage(

@@ -12,11 +12,23 @@ abstract class AuthRemoteDataSource {
   Future<UserModel> signInWithGoogle();
   Future<UserModel> signInWithFacebook();
   Future<String> checkUserExists(String userId, String password);
+  Future<void> checkUserExistsR(String phone);
+  Future<void> saveUserToFirestore({
+    required String username,
+    required String phone,
+    required String password,
+    required String birthDate,
+  });
+  Future<void> signInWithPhoneNumber(
+      String phoneNumber, Function(String) onCodeSent);
+
+
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
+
 
   AuthRemoteDataSourceImpl(this._auth, this._googleSignIn);
 
@@ -89,4 +101,43 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     // throw Exception('User does not exist or password is incorrect');
   }
+
+  Future<void> checkUserExistsR(String phone) async {
+    final userDoc = await FirebaseFirestore.instance.collection('users').doc("0$phone").get();
+    if (userDoc.exists) {
+      throw Exception("User already exists");
+    }
+  }
+
+  Future<void> saveUserToFirestore({
+    required String username,
+    required String phone,
+    required String password,
+    required String birthDate,
+  }) async {
+    await FirebaseFirestore.instance.collection('users').doc("0$phone").set({
+      'username': username,
+      'phone': "0$phone",
+      'password': password,
+      'birthdate': birthDate,
+    });
+  }
+
+  Future<void> signInWithPhoneNumber(
+      String phoneNumber, Function(String) onCodeSent) async {
+    await _auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await _auth.signInWithCredential(credential);
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        throw Exception("Verification failed: ${e.message}");
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        onCodeSent(verificationId);
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
 }
+

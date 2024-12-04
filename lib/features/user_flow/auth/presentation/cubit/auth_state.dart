@@ -38,3 +38,26 @@ final class UserValidationError extends AuthState {
   final String error;
   UserValidationError(this.error);
 }
+
+
+class OtpSent extends AuthState {
+  final String verificationId;
+
+  OtpSent(this.verificationId);
+
+  @override
+  List<Object?> get props => [verificationId];
+}
+
+// State for successful registration
+class AuthSuccess extends AuthState {}
+
+// State for any error that occurs
+class AuthError extends AuthState {
+  final String errorMessage;
+
+  AuthError(this.errorMessage);
+
+  @override
+  List<Object?> get props => [errorMessage];
+}

@@ -69,4 +69,39 @@ class AuthCubit extends Cubit<AuthState> {
       }
     });
   }
+
+  Future<void> registerUser({
+    required String username,
+    required String phone,
+    required String password,
+    required String birthDate,
+  }) async {
+    try {
+      emit(AuthLoading());
+      await authRepo.checkUserExistsR(phone);
+      print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+      await authRepo.saveUser(
+        username: username,
+        phone: phone,
+        password: password,
+        birthDate: birthDate,
+      );
+      emit(AuthSuccess());
+    } catch (e) {
+      print(e.toString());
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> sendOtp(String phoneNumber) async {
+    try {
+      emit(AuthLoading());
+      await authRepo.sendOtp(phoneNumber, (verificationId) {
+        emit(OtpSent(verificationId));
+      });
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
 }
+

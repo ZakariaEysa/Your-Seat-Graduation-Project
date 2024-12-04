@@ -40,4 +40,39 @@ class AuthRepoImpl implements AuthRepo {
       return Left(ServiceFailure(e.toString()));
     }
   }
+
+  Future<void> checkUserExistsR(String phone) async {
+    try {
+      await authRemoteDataSource.checkUserExistsR(phone);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> saveUser({
+    required String username,
+    required String phone,
+    required String password,
+    required String birthDate,
+  }) async {
+    try {
+      await authRemoteDataSource.saveUserToFirestore(
+        username: username,
+        phone: phone,
+        password: password,
+        birthDate: birthDate,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> sendOtp(String phoneNumber, Function(String) onCodeSent) async {
+    try {
+      await authRemoteDataSource.signInWithPhoneNumber(phoneNumber, onCodeSent);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
+

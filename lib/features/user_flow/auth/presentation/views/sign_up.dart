@@ -19,6 +19,7 @@ import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/utils/validation_utils.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
+import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 import '../../data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
@@ -374,6 +375,7 @@ class _SignUpState extends State<SignUp> {
                         privacyPolicy = true;
                       }
                     });
+                    //cubit.registerUser(username: cubit.userName.text, phone: cubit.phone.text, password: cubit.password.text, birthDate: "${cubit.selectedDay}/${cubit.selectedMonth}/${cubit.selectedYear}");
                     createAccount();
                   },
                   width: 220.w,
@@ -404,6 +406,17 @@ class _SignUpState extends State<SignUp> {
               ),
               SizedBox(
                 height: 25.h,
+              ),
+              BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, state) {
+                  if (state is AuthLoading) {
+                    return const AbsorbPointer(
+                      absorbing: true,
+                      child: LoadingIndicator(),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
               ),
             ],
           ),
@@ -437,7 +450,8 @@ class _SignUpState extends State<SignUp> {
     if (privacyPolicy == false) {
       return;
     } else {
-      await checkUserExists(auth.phone.text);
+      auth.registerUser(username: auth.userName.text, phone: auth.phone.text, password: auth.password.text, birthDate: "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}");
+      //await checkUserExists(auth.phone.text);
     }
   }
 
@@ -531,6 +545,8 @@ class _SignUpState extends State<SignUp> {
     }
   }
 }
+
+
 
 
 

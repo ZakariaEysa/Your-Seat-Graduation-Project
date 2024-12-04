@@ -1207,6 +1207,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Ahmed Sayed`
+  String get ahmedSayed {
+    return Intl.message(
+      'Ahmed Sayed',
+      name: 'ahmedSayed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to log out ?`
+  String get areYouSureYouWantToLogOut {
+    return Intl.message(
+      'Are you sure you want to log out ?',
+      name: 'areYouSureYouWantToLogOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ahmed Sayed`
+  String get ahmedSayed1 {
+    return Intl.message(
+      'Ahmed Sayed',
+      name: 'ahmedSayed1',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

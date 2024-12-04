@@ -466,7 +466,7 @@ class _SignUpState extends State<SignUp> {
       await saveUserToFireStore();
       DialogUtils.showMessage(context, "Registered Successfully",
           posActionTitle: "Ok", posAction: () {
-        navigateTo(context: context, screen: const Otp());
+        navigateTo(context: context, screen:  Otp());
       });
 
       AppLogs.errorLog("ww");

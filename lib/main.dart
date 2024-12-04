@@ -63,7 +63,7 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
-  HiveStorage.set(HiveKeys.isArabic, false);
+  // HiveStorage.set(HiveKeys.isArabic, false);
   // HiveStorage.set(
   //   HiveKeys.role,
   //   "",

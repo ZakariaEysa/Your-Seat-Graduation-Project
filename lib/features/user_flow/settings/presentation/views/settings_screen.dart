@@ -70,8 +70,11 @@
 //   }
 // }
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/language_sheet.dart';
@@ -83,7 +86,13 @@ import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../Splash_screen/splash_screen.dart';
+import '../../../auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
+import '../../../auth/domain/repos_impl/auth_repo_impl.dart';
+import '../../../auth/presentation/cubit/auth_cubit.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -135,7 +144,7 @@ class SettingsPage extends StatelessWidget {
         ),
       ),
       SettingsItem(
-        title: lang.aboutUs,
+        title: lang.AboutUs,
         imageIcon: "assets/images/account.png",
         onPress: () {
           navigateTo(context: context, screen: const AboutUs());
@@ -149,7 +158,18 @@ class SettingsPage extends StatelessWidget {
           posActionTitle: "Ok",
             negActionTitle: "Cancel",
             posAction: (){
-            navigateTo(context: context, screen: const SignIn());
+              bool lang = HiveStorage.get(HiveKeys.isArabic);
+              HiveStorage.set(HiveKeys.role,"");
+              HiveStorage.set(HiveKeys.passUserOnboarding, true);
+              HiveStorage.set(HiveKeys.isArabic, lang).then((c) =>navigateAndRemoveUntil(
+                context: context,
+                screen: BlocProvider(
+                  create: (context) => AuthCubit(AuthRepoImpl(
+                      AuthRemoteDataSourceImpl(
+                          FirebaseAuth.instance, GoogleSignIn()))),
+                  child: const SignIn(),
+                ),
+              ));
             },
             negAction: (){
             navigatePop(context: context);

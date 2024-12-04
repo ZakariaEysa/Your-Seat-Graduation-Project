@@ -169,7 +169,7 @@ class _SignInState extends State<SignIn> {
                               }
                             },
                             child: Align(
-                              alignment: Alignment.centerRight,
+                              alignment: AlignmentDirectional.centerEnd,
                               child: Text(
                                 lang.forgotPassword,
                                 style: theme.textTheme.bodyMedium!.copyWith(

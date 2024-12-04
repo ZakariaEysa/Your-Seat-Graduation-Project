@@ -3,41 +3,44 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Notifaction/NotifactionContent.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
+import '../../../generated/l10n.dart';
 import '../../../widgets/app_bar/head_appbar.dart';
 
-class Notifaction extends StatelessWidget {
-  const Notifaction({super.key});
+class Notifications extends StatelessWidget {
+  const Notifications({super.key});
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var lang=S.of(context);
     return ScaffoldF(
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white,
           size: 28.sp, // ضبط حجم الأيقونة باستخدام ScreenUtil
         ),
-        title: const HeadAppBar(
-          title: 'Notification',
+        title:  HeadAppBar(
+          title: lang.notifications,
         ),
         backgroundColor: const Color(0xFF2E1371),
       ),
       body: Column(
         children: [
           SizedBox(height: 30.h), // مسافة عمودية باستخدام ScreenUtil
+
           Padding(
             padding:
-                EdgeInsets.only(left: 5.w), // حافة أفقية باستخدام ScreenUtil
+                EdgeInsetsDirectional.only(start: 5.w), // حافة أفقية باستخدام ScreenUtil
             child: Align(
               alignment: Alignment.centerLeft,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(
-                        left: 20.w), // حافة داخلية باستخدام ScreenUtil
+                    padding: EdgeInsetsDirectional.only(
+                        start: 20.w), // حافة داخلية باستخدام ScreenUtil
                     child: Text(
-                      'General',
+                      lang.general,
                       style: theme.textTheme.bodySmall?.copyWith(
                         fontSize: 18.sp, // ضبط حجم النص باستخدام ScreenUtil
                       ),
@@ -45,7 +48,7 @@ class Notifaction extends StatelessWidget {
                   ),
                   Padding(
                     padding:
-                        EdgeInsets.only(left: 12.w, top: 7.h), // ضبط الحواف
+                        EdgeInsetsDirectional.only(start: 12.w, top: 7.h), // ضبط الحواف
                     child: Container(
                       height: 2.h, // ارتفاع الخط باستخدام ScreenUtil
                       width: 90.w, // عرض الخط باستخدام ScreenUtil

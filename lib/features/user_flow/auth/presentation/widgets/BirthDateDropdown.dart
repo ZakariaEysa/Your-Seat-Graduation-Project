@@ -21,7 +21,7 @@ class BirthDateDropdown<T> extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 2.w),
       padding: EdgeInsets.symmetric(horizontal: 10.w),
-      width: 120.w,
+      width: 110.w,
       height: 51.h,
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xFF9C24D9), width: 2.w),

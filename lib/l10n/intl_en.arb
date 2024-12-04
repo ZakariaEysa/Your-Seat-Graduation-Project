@@ -112,6 +112,14 @@
   "location" : "Location",
   "personalInfo": "Personal Info",
   "emailAddress" : "Email Address",
+
   "setting" : "Setting",
-  "language" : "Language"
+  "language" : "Language",
+  "StatUpIsPlannedFor2025,TypeOfTheaterKnownForItsLargeScreenSizeAndHigh-qualitySoundSystem.ItOffersAnImmersiveViewingExperienceForMovies,Documentaries,AndOtherContent": "StatUp is planned for 2025, type of theater known for its large screen size and high-quality sound system. It offers an immersive viewing experience for movies, documentaries, and other content",
+  "shazam:FuryOfTheGods": "Shazam:Fury of the Gods",
+  "avengers:infinityWar": "Avengers:Infinity War",
+  "2hour5minutes": "2 hour 5 minutes",
+  "greatSelectionOfMovies.HighlyRecommended!": "Great selection of movies.Highly recommended!",
+  "theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable": "The luxurious seats and immersive sound system make for a truly unforgettable",
+  "theCinema'sModernDesignAndAEstheticallyPleasingDecorCreateAWelcomingAtmosphere": "The cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere"
 }

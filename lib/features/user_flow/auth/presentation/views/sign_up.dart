@@ -1,9 +1,13 @@
+
 import 'package:animate_do/animate_do.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:neon_widgets/neon_widgets.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/settings_screen.dart';
+import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
 import 'package:yourseatgraduationproject/generated/l10n.dart';
@@ -64,11 +68,8 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         iconTheme: const IconThemeData(size: 28, color: Colors.white),
         backgroundColor: theme.primaryColor,
-        title: Padding(
-          padding: EdgeInsets.only(right: 35.w, bottom: 12.h),
-          child: HeadAppBar(
-            title: local.signUp,
-          ),
+        title: HeadAppBar(
+          title: local.signUp,
         ),
       ),
       body: SingleChildScrollView(
@@ -206,10 +207,9 @@ class _SignUpState extends State<SignUp> {
                     },
                     type: TextInputType.text,
                     obsecure: obscure2,
-                    prefixIcon: Image(
-                      image: const AssetImage("assets/images/access.png"),
-                      width: 2.w,
-                    ),
+                    imagePath: "assets/images/access.png",
+                    // prefixIcon:  Image(
+                    //     image: const AssetImage("assets/images/access.png"),width:2.w,),
                     suffixIcon: InkWell(
                         onTap: () {
                           if (obscure2) {
@@ -247,41 +247,45 @@ class _SignUpState extends State<SignUp> {
               SizedBox(height: 15.h),
               FadeInLeft(
                 delay: const Duration(milliseconds: 550),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // Text(selectedMonth? "":""),
-                    BirthDateDropdown<String>(
-                      hintText: local.month,
-                      selectedValue: cubit.selectedMonth,
-                      itemsList: months,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          cubit.selectedMonth = newValue;
-                        });
-                      },
-                    ),
-                    BirthDateDropdown<int>(
-                      hintText: local.day,
-                      selectedValue: cubit.selectedDay,
-                      itemsList: days,
-                      onChanged: (int? newValue) {
-                        setState(() {
-                          cubit.selectedDay = newValue;
-                        });
-                      },
-                    ),
-                    BirthDateDropdown<int>(
-                      hintText: local.year,
-                      selectedValue: cubit.selectedYear,
-                      itemsList: years,
-                      onChanged: (int? newValue) {
-                        setState(() {
-                          cubit.selectedYear = newValue;
-                        });
-                      },
-                    ),
-                  ],
+                child: Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 8.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // Text(selectedMonth? "":""),
+                      BirthDateDropdown<String>(
+
+                        hintText: local.month,
+                        selectedValue: cubit.selectedMonth,
+                        itemsList: months,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            cubit.selectedMonth = newValue;
+                          });
+                        },
+                      ),
+                      BirthDateDropdown<int>(
+                        hintText: local.day,
+                        selectedValue: cubit.selectedDay,
+                        itemsList: days,
+                        onChanged: (int? newValue) {
+                          setState(() {
+                            cubit.selectedDay = newValue;
+                          });
+                        },
+                      ),
+                      BirthDateDropdown<int>(
+                        hintText: local.year,
+                        selectedValue: cubit.selectedYear,
+                        itemsList: years,
+                        onChanged: (int? newValue) {
+                          setState(() {
+                            cubit.selectedYear = newValue;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 35.h),
@@ -316,12 +320,12 @@ class _SignUpState extends State<SignUp> {
                                 shape: BoxShape.circle,
                               ),
                         child: agree
-                            ? Icon(
+                            ?  Icon(
                                 Icons.check,
                                 size: 20.sp,
                                 color: Colors.white,
                               )
-                            : Icon(
+                            :  Icon(
                                 Icons.check,
                                 size: 20.sp,
                                 color: Colors.black,
@@ -329,11 +333,19 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                     SizedBox(width: 10.w),
-                    Text(
-                      //textAlign: TextAlign.center,
-                      local.iAgreeWithPrivacyPolicy,
-                      style:
-                          theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                    InkWell(
+                      onTap: (){
+                        navigateTo(context: context, screen: const AboutUs());
+                      },
+                      child: FlickerNeonText(
+                        text: local.iAgreeWithPrivacyPolicy,
+                        flickerTimeInMilliSeconds: 600,
+                        spreadColor: Colors.white,
+                        blurRadius: 20.r,
+                        textSize: 18.sp,
+                        // style:
+                        //     theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                      ),
                     ),
                   ],
                 ),
@@ -352,7 +364,8 @@ class _SignUpState extends State<SignUp> {
               FadeInUp(
                 delay: const Duration(milliseconds: 550),
                 child: ButtonBuilder(
-                  text: local.signUp,
+                  image: "assets/images/Sign up.png",
+                  text: "",
                   onTap: () {
                     setState(() {
                       if (agree == true) {
@@ -385,7 +398,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                         );
                       },
-                      child: Text("Already have account?",
+                      child: Text(local.alreadyHaveAccount,
                           style: theme.textTheme.bodySmall)),
                 ),
               ),
@@ -453,7 +466,7 @@ class _SignUpState extends State<SignUp> {
       await saveUserToFireStore();
       DialogUtils.showMessage(context, "Registered Successfully",
           posActionTitle: "Ok", posAction: () {
-        navigateTo(context: context, screen: Otp());
+        navigateTo(context: context, screen:  Otp());
       });
 
       AppLogs.errorLog("ww");
@@ -518,3 +531,7 @@ class _SignUpState extends State<SignUp> {
     }
   }
 }
+
+
+
+

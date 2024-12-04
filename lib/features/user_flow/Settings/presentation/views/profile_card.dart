@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/widgets/profile_card/profile_edit_card.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/profile_card/personal_info_card.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
@@ -15,7 +17,9 @@ class ProfileCard extends StatelessWidget {
       appBar: AppBar(
         actions: [
           InkWell(
-              onTap: () {},
+              onTap: () {
+                navigateTo(context: context, screen:  ProfileEditCard());
+              },
               child:  Icon(
                 Icons.edit,
                 size: 27.sp,

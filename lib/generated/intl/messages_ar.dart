@@ -22,19 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "AboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
-        "IMAX_Cinema": MessageLookupByLibrary.simpleMessage("سينما آيماكس"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
-        "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "Sorrytherewasanerrorpleasetryagainlater":
             MessageLookupByLibrary.simpleMessage(
                 "عذراً، حدث خطأ. يرجى المحاولة لاحقاً"),
-        "TermsAndConditions":
-            MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
-        "UserDoesNotExistOrPasswordIsIncorrect":
-            MessageLookupByLibrary.simpleMessage(
-                "المستخدم غير موجود أو كلمة المرور غير صحيحة"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("معلومات عنا"),
         "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
             "هل لديك حساب بالفعل؟ سجل الدخول"),
@@ -48,7 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تأكيد رمز التحقق"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
-        "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "contactUsContent": MessageLookupByLibrary.simpleMessage(
             "يسعدنا سماعك! سواء كان لديك استفسارات، تحتاج إلى دعم، تريد مشاركة ملاحظات، أو لديك اقتراحات، فريقنا هنا لمساعدتك. لا تتردد في التواصل معنا باستخدام النموذج أدناه أو عبر تفاصيل الاتصال المقدمة.\nمعلومات الاتصال:\nالبريد الإلكتروني لدعم العملاء: [support@yourseatapp.com]\nرقم الهاتف: [+123-456-7890]\n\nالملاحظات والاقتراحات:\nنقدر مدخلاتك بشدة! إذا كانت لديك اقتراحات لتحسين تجربتك مع YourSeat، يرجى مشاركتها في حقل الرسالة بنموذج الاتصال أو إرسالها مباشرة إلى بريدنا الإلكتروني.\n\nتواصل معنا على قنوات التواصل الاجتماعي الخاصة بنا للحصول على أحدث التحديثات والعروض الترويجية والمزيد:"),
         "continueAsGuest":
@@ -152,7 +143,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح!"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
-        "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "seeall": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "september": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "setting": MessageLookupByLibrary.simpleMessage("الاعدادات"),

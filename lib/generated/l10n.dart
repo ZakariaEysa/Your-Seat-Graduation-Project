@@ -1099,6 +1099,30 @@ class S {
       args: [],
     );
   }
+
+  // skipped getter for the 'StatUpIsPlannedFor2025,TypeOfTheaterKnownForItsLargeScreenSizeAndHigh-qualitySoundSystem.ItOffersAnImmersiveViewingExperienceForMovies,Documentaries,AndOtherContent' key
+
+  // skipped getter for the 'shazam:FuryOfTheGods' key
+
+  // skipped getter for the 'avengers:infinityWar' key
+
+  // skipped getter for the '2hour5minutes' key
+
+  // skipped getter for the 'greatSelectionOfMovies.HighlyRecommended!' key
+
+  /// `The luxurious seats and immersive sound system make for a truly unforgettable`
+  String
+      get theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable {
+    return Intl.message(
+      'The luxurious seats and immersive sound system make for a truly unforgettable',
+      name:
+          'theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'theCinema\'sModernDesignAndAEstheticallyPleasingDecorCreateAWelcomingAtmosphere' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -64,6 +64,7 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
+  HiveStorage.set(HiveKeys.isArabic, false);
   // HiveStorage.set(
   //   HiveKeys.role,
   //   "",
@@ -98,7 +99,7 @@ void main() async {
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(
       HiveKeys.isArabic,
-      true,
+      false,
     );
   }
   runApp(BlocProvider<SwitchLanguageCubit>(

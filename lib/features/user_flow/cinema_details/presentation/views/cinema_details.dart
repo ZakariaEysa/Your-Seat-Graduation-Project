@@ -6,6 +6,8 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/v
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
+import '../../../../../generated/l10n.dart';
+import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 
 class CinemaDetails extends StatelessWidget {
@@ -14,6 +16,7 @@ class CinemaDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    var lang=S.of(context);
     return ScaffoldF(
 
         body: SingleChildScrollView(
@@ -60,7 +63,7 @@ class CinemaDetails extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'IMAX Cinema',
+                        lang.IMAX_Cinema,
                         style: theme.textTheme.bodyMedium!
                             .copyWith(fontSize: 13.sp),
                       ),

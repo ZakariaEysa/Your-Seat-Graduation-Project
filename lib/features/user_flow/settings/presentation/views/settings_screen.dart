@@ -73,10 +73,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/language_sheet.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/profile_card.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/theme_sheet.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/settings_item/settings_item.dart';
+import 'package:yourseatgraduationproject/utils/dialog_utilits.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
@@ -93,7 +95,7 @@ class SettingsPage extends StatelessWidget {
     return ScaffoldF(
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E1371),
-        title:  HeadAppBar(title: lang.setting),
+        title: HeadAppBar(title: lang.setting),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -143,7 +145,16 @@ class SettingsPage extends StatelessWidget {
         title: lang.logOut,
         imageIcon: "assets/images/logout 1.png",
         onPress: () {
-          // Add logout logic here
+          DialogUtils.showMessage(context, "Are you sure you want to log out?",
+          posActionTitle: "Ok",
+            negActionTitle: "Cancel",
+            posAction: (){
+            navigateTo(context: context, screen: const SignIn());
+            },
+            negAction: (){
+            navigatePop(context: context);
+            }
+          );
         },
       ),
     ];

@@ -46,6 +46,7 @@ class ApplicationTheme {
       primaryColor: const Color(0xFF2E1371),
       colorScheme: ColorScheme.fromSeed(
         onPrimary: Colors.white,
+        onSecondary: const Color(0xFFD9D9D9).withOpacity(0.6),
         primary: const Color(0xFF2E1371),
         secondary: const Color(0xFF130B2B),
         seedColor: const Color(0xFF2E1371),

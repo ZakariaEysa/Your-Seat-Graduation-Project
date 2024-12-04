@@ -1,6 +1,7 @@
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,6 +63,7 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
+  HiveStorage.set(HiveKeys.isArabic, false);
   // HiveStorage.set(
   //   HiveKeys.role,
   //   "",
@@ -96,7 +98,7 @@ void main() async {
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(
       HiveKeys.isArabic,
-      true,
+      false,
     );
   }
   runApp(BlocProvider<SwitchLanguageCubit>(

@@ -74,7 +74,7 @@ class HiveStorage {
 
 
   static Future<void> logOut() async {
-    await box.clear();
+    // await box.clear();
     await box1.clear();
     await box2.clear();
 

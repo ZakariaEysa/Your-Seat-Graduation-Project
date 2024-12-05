@@ -17,20 +17,22 @@ class GoogleUserModelAdapter extends TypeAdapter<GoogleUserModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return GoogleUserModel(
-      displayName: fields[0] as String,
+      name: fields[0] as String,
       email: fields[1] as String,
       password: fields[2] as String?,
       dateOfBirth: fields[3] as String?,
       image: fields[4] as String?,
+      gender: fields[5] as String?,
+      location: fields[6] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, GoogleUserModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(7)
       ..writeByte(0)
-      ..write(obj.displayName)
+      ..write(obj.name)
       ..writeByte(1)
       ..write(obj.email)
       ..writeByte(2)
@@ -38,7 +40,11 @@ class GoogleUserModelAdapter extends TypeAdapter<GoogleUserModel> {
       ..writeByte(3)
       ..write(obj.dateOfBirth)
       ..writeByte(4)
-      ..write(obj.image);
+      ..write(obj.image)
+      ..writeByte(5)
+      ..write(obj.gender)
+      ..writeByte(6)
+      ..write(obj.location);
   }
 
   @override

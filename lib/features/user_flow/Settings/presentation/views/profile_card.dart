@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/widgets/profile_card/profile_edit_card.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/user_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/profile_card/personal_info_card.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
@@ -12,6 +16,19 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var currentUser;
+    if(HiveStorage.get(HiveKeys.role)==Role.gmail.toString()){
+     currentUser=   HiveStorage.getGoogleUser();
+
+
+    }
+    else {
+
+      currentUser=   HiveStorage.getDefaultUser(       );
+      AppLogs.scussessLog(currentUser.toString());
+
+
+    }
     var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
@@ -57,7 +74,7 @@ class ProfileCard extends StatelessWidget {
                     SizedBox(height: 10.h),
                     Text(
                       textAlign: TextAlign.center,
-                      'Mohamed Ahmed',
+                      currentUser?.name??"-",
                       style: TextStyle(
                         fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
@@ -66,7 +83,8 @@ class ProfileCard extends StatelessWidget {
                     ),
                      Text(
                       textAlign: TextAlign.center,
-                      '@mohamed-ahmed21',
+                       currentUser?.email??"-",
+
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.white70,
@@ -94,31 +112,36 @@ class ProfileCard extends StatelessWidget {
                      PersonalInfoCard(
                       title: lang.email,
                       icon: "assets/icons/telephone.png",
-                      info: "010635199443",
-                    ),
+                      info:                       currentUser?.email??"-",
+
+                     ),
                     SizedBox(height: 20.h),
                      PersonalInfoCard(
                       title: lang.birthDate,
                       icon: "assets/icons/birthday_cake.png",
-                      info: "21 May 2022",
+                      info:                       currentUser?.dateOfBirth??"-",
+
                     ),
                      SizedBox(height: 20.h),
                      PersonalInfoCard(
                       title: lang.gender,
                       icon: "assets/icons/gender.png",
-                      info: "Male",
+                      info:                       currentUser?.gender??"-",
+
                     ),
                     SizedBox(height: 20.h),
                      PersonalInfoCard(
                       title: lang.location,
                       icon: "assets/icons/location.png",
-                      info: "Egypt , Sheikh Zayed",
+                      info:                       currentUser?.location??"-",
+
                     ),
                     SizedBox(height: 20.h),
                      PersonalInfoCard(
                       title: lang.emailAddress,
                       icon: "assets/icons/email.png",
-                      info: 'Mohamed123456666666666666666666@gmail.com',
+                      info:                       currentUser?.email??"-",
+
                     ),
                   ],
                 ),

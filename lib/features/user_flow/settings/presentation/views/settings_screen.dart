@@ -159,11 +159,12 @@ class SettingsPage extends StatelessWidget {
             negActionTitle: lang.cancel,
             posAction: (){
               bool lang = HiveStorage.get(HiveKeys.isArabic);
-              // HiveStorage.set(HiveKeys.role,"");
-              // HiveStorage.set(HiveKeys.passUserOnboarding, true);
+              HiveStorage.set(HiveKeys.role,"");
+              HiveStorage.set(HiveKeys.passUserOnboarding, true);
+              HiveStorage.logOut();
+
               HiveStorage.set(HiveKeys.isArabic, lang).then((c) {
 
-                HiveStorage.logOut();
 
                 navigateAndRemoveUntil(
                 context: context,

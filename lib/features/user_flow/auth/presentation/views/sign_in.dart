@@ -8,6 +8,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/user_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
@@ -53,7 +54,7 @@ class _SignInState extends State<SignIn> {
 
                   BotToast.showText(
                       text:
-                          '${lang.login_successful} ${state.user.displayName}');
+                          '${lang.login_successful} ${state.user.name}');
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is FacebookAuthSuccess) {
@@ -61,7 +62,7 @@ class _SignInState extends State<SignIn> {
 
                   BotToast.showText(
                       text:
-                          '${lang.login_successful} ${state.user.displayName}');
+                          '${lang.login_successful} ${state.user.name}');
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is UserValidationSuccess) {
@@ -186,7 +187,8 @@ class _SignInState extends State<SignIn> {
                       FadeInLeft(
                         delay: const Duration(milliseconds: 750),
                         child: ButtonBuilder(
-                          image: "assets/images/SignIn.png",
+                          // image:"assets/images/SignInAR.png",
+                      image:HiveStorage.get(HiveKeys.isArabic)?"assets/images/SignInAR.png": "assets/images/SignIn.png",
                           text: "",
                           onTap: () async {
                             if (cubit.formKeyLogin.currentState!.validate()) {
@@ -256,6 +258,9 @@ class _SignInState extends State<SignIn> {
                           padding: EdgeInsets.all(16.0.sp),
                           child: SignInPart(
                             onTap: () {
+                              HiveStorage.saveDefaultUser(
+                                UserModel(name: "guest", email: '-', password: '-', dateOfBirth: '-',image: '')
+                              );
                               HiveStorage.set(
                                   HiveKeys.role, Role.guest.toString());
                               navigateAndRemoveUntil(

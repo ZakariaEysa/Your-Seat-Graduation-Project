@@ -7,8 +7,8 @@ class ChatBott extends StatelessWidget {
   const ChatBott({super.key});
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context);
-    return const ScaffoldF(
+    final theme = Theme.of(context);
+    return  const ScaffoldF(
       body: Column(
           children: [
         ChatUp(),

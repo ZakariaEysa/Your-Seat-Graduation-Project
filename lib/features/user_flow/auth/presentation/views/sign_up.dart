@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:neon_widgets/neon_widgets.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/settings_screen.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
@@ -400,7 +399,7 @@ class _SignUpState extends State<SignUp> {
               if (state is AuthError) {
                 BotToast.showText(
                     text:
-              state.errorMessage ?? '' );
+              state.errorMessage );
               }
               if (state is AuthSuccess) {
                 HiveStorage.set(HiveKeys.role, Role.phone.toString());

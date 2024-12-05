@@ -6,7 +6,6 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/u
 import 'package:yourseatgraduationproject/services/failure_service.dart';
 
 import '../../../../../data/hive_stroage.dart';
-import '../../../../../utils/app_logs.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource authRemoteDataSource;

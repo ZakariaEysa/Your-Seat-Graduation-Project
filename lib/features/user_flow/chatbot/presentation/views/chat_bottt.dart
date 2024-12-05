@@ -71,7 +71,7 @@ class ChatBottt extends StatelessWidget {
           ),
         ),
        const Spacer(),
-        const ChatAsk()
+         ChatAsk()
 
        ]),
     );

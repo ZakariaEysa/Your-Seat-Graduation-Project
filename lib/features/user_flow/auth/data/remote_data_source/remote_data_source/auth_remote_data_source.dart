@@ -9,8 +9,8 @@ import '../../../../../../data/hive_stroage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<UserModel> signInWithGoogle();
-  Future<UserModel> signInWithFacebook();
+  Future<GoogleUserModel> signInWithGoogle();
+  Future<GoogleUserModel> signInWithFacebook();
   Future<String> checkUserExists(String userId, String password);
   Future<void> checkUserExistsR(String phone);
   Future<void> saveUserToFirestore({
@@ -33,7 +33,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this._auth, this._googleSignIn);
 
   @override
-  Future<UserModel> signInWithGoogle() async {
+  Future<GoogleUserModel> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
@@ -51,9 +51,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final UserCredential userCredential =
           await _auth.signInWithCredential(credential);
 
-      AppLogs.infoLog(userCredential.toString());
-      AppLogs.infoLog(userCredential.additionalUserInfo.toString());
       final user = userCredential.user;
+
+
 
       if (user != null) {
         if (HiveStorage.get(HiveKeys.role) == null) {
@@ -62,8 +62,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
             Role.gmail.toString(),
           );
         }
+        AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
 
-        return UserModel.fromFirebaseUser(user);
+
+
+
+
+
+        return GoogleUserModel.fromFirebaseUser(user);
       } else {
         throw Exception('Google sign-in failed');
       }
@@ -73,13 +79,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> signInWithFacebook() async {
+  Future<GoogleUserModel> signInWithFacebook() async {
     final result = await FacebookAuth.instance.login();
     if (result.status == LoginStatus.success) {
       final credential =
           FacebookAuthProvider.credential(result.accessToken!.token);
       final userCredential = await _auth.signInWithCredential(credential);
-      return UserModel.fromFirebaseUser(userCredential.user!);
+      return GoogleUserModel.fromFirebaseUser(userCredential.user!);
     } else {
       throw Exception('Facebook login failed');
     }

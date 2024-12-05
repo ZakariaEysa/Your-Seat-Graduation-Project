@@ -9,7 +9,7 @@ final class AuthLoading extends AuthState {}
 // Google Authentication States
 final class GoogleAuthLoading extends AuthState {}
 final class GoogleAuthSuccess extends AuthState {
-  final UserModel user;
+  final GoogleUserModel user;
   GoogleAuthSuccess(this.user);
 }
 final class GoogleAuthError extends AuthState {
@@ -20,7 +20,7 @@ final class GoogleAuthError extends AuthState {
 // Facebook Authentication States
 final class FacebookAuthLoading extends AuthState {}
 final class FacebookAuthSuccess extends AuthState {
-  final UserModel user;
+  final GoogleUserModel user;
   FacebookAuthSuccess(this.user);
 }
 final class FacebookAuthError extends AuthState {

@@ -127,7 +127,7 @@ class _SignUpState extends State<SignUp> {
                       child: TextFormFieldBuilder(
                         height: 80.h,
                         controller: cubit.phone,
-                        label: local.phonenumber,
+                        label: local.email,
                         validator: (value) {
                           String? enteredNumber = value;
                           if (value == null || value.trim().isEmpty) {

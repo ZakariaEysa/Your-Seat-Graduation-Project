@@ -92,7 +92,7 @@ class ProfileCard extends StatelessWidget {
                     ),
                     SizedBox(height: 20.h),
                      PersonalInfoCard(
-                      title: lang.phonenumber,
+                      title: lang.email,
                       icon: "assets/icons/telephone.png",
                       info: "010635199443",
                     ),

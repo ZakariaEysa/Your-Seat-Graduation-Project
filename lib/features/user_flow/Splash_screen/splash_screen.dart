@@ -26,10 +26,10 @@ class SplashScreen extends StatelessWidget {
     // تهيئة الـ Timer للتنقل بين الشاشات
     Timer(const Duration(seconds: 3), () {
       if (HiveStorage.get(HiveKeys.passUserOnboarding) == false) {
-        navigateAndRemoveUntil(context: context, screen: const OnBoarding());
+        navigateAndReplace(context: context, screen: const OnBoarding());
       } else if (HiveStorage.get(HiveKeys.role) == "" ||
           HiveStorage.get(HiveKeys.role) == null) {
-        navigateAndRemoveUntil(
+        navigateAndReplace(
           context: context,
           screen: BlocProvider(
             create: (context) => AuthCubit(AuthRepoImpl(
@@ -39,7 +39,7 @@ class SplashScreen extends StatelessWidget {
           ),
         );
       } else {
-        navigateAndRemoveUntil(
+        navigateAndReplace(
           context: context,
           screen: const HomeLayout(),
         );

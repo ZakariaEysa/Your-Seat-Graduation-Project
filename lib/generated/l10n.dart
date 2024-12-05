@@ -130,11 +130,11 @@ class S {
     );
   }
 
-  /// `Phone Number`
-  String get phonenumber {
+  /// `email`
+  String get email {
     return Intl.message(
-      'Phone Number',
-      name: 'phonenumber',
+      'email',
+      name: 'email',
       desc: '',
       args: [],
     );

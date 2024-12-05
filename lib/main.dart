@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
@@ -16,6 +17,9 @@ import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'features/user_flow/auth/domain/model/google_user_model.dart';
+import 'features/user_flow/auth/domain/model/user_model.dart';
 
 
 void main() async {
@@ -93,6 +97,27 @@ void main() async {
   //   HiveKeys.passUserOnboarding,
   //   false,
   // );
+  // Register the adapter
+
+  // Hive.registerAdapter(UserModelAdapter());
+
+// open the box
+  //  await Hive.openBox<UserModel>('userBox');
+
+  // Register the adapter
+  // Hive.registerAdapter(GoogleUserModelAdapter());
+
+
+  // Open the box
+  // await Hive.openBox<GoogleUserModel>('googleUserBox');
+
+  GoogleUserModel? currentUser = HiveStorage.getGoogleUser();
+  UserModel? currentUser2 = HiveStorage.getDefaultUser();
+
+
+  AppLogs.errorLog(currentUser.toString());
+  AppLogs.errorLog(currentUser2.toString());
+
 
 
   if (HiveStorage.get(HiveKeys.isArabic) == null) {

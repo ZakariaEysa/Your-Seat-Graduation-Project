@@ -159,9 +159,13 @@ class SettingsPage extends StatelessWidget {
             negActionTitle: lang.cancel,
             posAction: (){
               bool lang = HiveStorage.get(HiveKeys.isArabic);
-              HiveStorage.set(HiveKeys.role,"");
-              HiveStorage.set(HiveKeys.passUserOnboarding, true);
-              HiveStorage.set(HiveKeys.isArabic, lang).then((c) =>navigateAndRemoveUntil(
+              // HiveStorage.set(HiveKeys.role,"");
+              // HiveStorage.set(HiveKeys.passUserOnboarding, true);
+              HiveStorage.set(HiveKeys.isArabic, lang).then((c) {
+
+                HiveStorage.logOut();
+
+                navigateAndRemoveUntil(
                 context: context,
                 screen: BlocProvider(
                   create: (context) => AuthCubit(AuthRepoImpl(
@@ -169,7 +173,10 @@ class SettingsPage extends StatelessWidget {
                           FirebaseAuth.instance, GoogleSignIn()))),
                   child: const SignIn(),
                 ),
-              ));
+              );
+
+    }
+              );
             },
             negAction: (){
             navigatePop(context: context);

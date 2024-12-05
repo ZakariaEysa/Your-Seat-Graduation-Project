@@ -107,9 +107,9 @@ class _SignInState extends State<SignIn> {
                           child: TextFormFieldBuilder(
                             height: 80.h,
                             type: TextInputType.phone,
-                            label: lang.phonenumber,
+                            label: lang.email,
                             controller: cubit.phoneController,
-                            hinitText: lang.phonenumber,
+                            hinitText: lang.email,
                             imagePath: "assets/images/telephone.png",
                             obsecure: false,
                             validator: (value) {

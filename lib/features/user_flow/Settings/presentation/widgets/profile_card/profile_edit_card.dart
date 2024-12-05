@@ -76,7 +76,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                        const InfoContainer(title: "Mohamed Ahmed"),
                        Text(lang.emailAddress,style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),),
                        const InfoContainer(title: "MohamedAhmed555@gmail.com"),
-                       Text(lang.phonenumber,style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),),
+                       Text(lang.email,style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),),
                        const InfoContainer(title: "+201064123288"),
                        Text(lang.password,style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),),
                        const InfoContainer(title: "password"),

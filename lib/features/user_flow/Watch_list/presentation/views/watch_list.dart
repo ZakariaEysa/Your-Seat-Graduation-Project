@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
+
 import '../widgets/watch_list_part.dart';
 class WatchList extends StatelessWidget {
   const WatchList({super.key});
@@ -12,12 +13,12 @@ class WatchList extends StatelessWidget {
 
       appBar: AppBar(
 
-        iconTheme: const IconThemeData(
+        iconTheme: IconThemeData(
           color: Colors.white,
   size: 28
         ),
         backgroundColor: const Color(0xFF2E1371),
-        title: const HeadAppBar(
+        title: HeadAppBar(
           title: 'Watch List ',
         ),),
         body: SingleChildScrollView(

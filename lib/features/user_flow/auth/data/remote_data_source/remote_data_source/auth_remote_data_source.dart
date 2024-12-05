@@ -8,12 +8,14 @@ import '../../../../../../data/hive_keys.dart';
 import '../../../../../../data/hive_stroage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../../domain/model/user_model.dart';
+
 abstract class AuthRemoteDataSource {
-  Future<UserModel> signInWithGoogle();
-  Future<UserModel> signInWithFacebook();
+  Future<GoogleUserModel> signInWithGoogle();
+  Future<GoogleUserModel> signInWithFacebook();
   Future<String> checkUserExists(String userId, String password);
   Future<void> checkUserExistsR(String phone);
-  Future<void> saveUserToFirestore({
+  Future<void> saveUserToFireStore({
     required String username,
     required String phone,
     required String password,
@@ -33,7 +35,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this._auth, this._googleSignIn);
 
   @override
-  Future<UserModel> signInWithGoogle() async {
+  Future<GoogleUserModel> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
@@ -51,9 +53,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final UserCredential userCredential =
           await _auth.signInWithCredential(credential);
 
-      AppLogs.infoLog(userCredential.toString());
-      AppLogs.infoLog(userCredential.additionalUserInfo.toString());
       final user = userCredential.user;
+
+
 
       if (user != null) {
         if (HiveStorage.get(HiveKeys.role) == null) {
@@ -62,8 +64,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
             Role.gmail.toString(),
           );
         }
+        AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
 
-        return UserModel.fromFirebaseUser(user);
+
+
+
+
+
+        return GoogleUserModel.fromFirebaseUser(user);
       } else {
         throw Exception('Google sign-in failed');
       }
@@ -73,25 +81,28 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> signInWithFacebook() async {
+  Future<GoogleUserModel> signInWithFacebook() async {
     final result = await FacebookAuth.instance.login();
     if (result.status == LoginStatus.success) {
       final credential =
           FacebookAuthProvider.credential(result.accessToken!.token);
       final userCredential = await _auth.signInWithCredential(credential);
-      return UserModel.fromFirebaseUser(userCredential.user!);
+      return GoogleUserModel.fromFirebaseUser(userCredential.user!);
     } else {
       throw Exception('Facebook login failed');
     }
   }
 
   @override
-  Future<String> checkUserExists(String userId, String password) async {
+  Future<String> checkUserExists(String userEmail, String password) async {
     final userDoc =
-        await FirebaseFirestore.instance.collection('users').doc(userId).get();
+        await FirebaseFirestore.instance.collection('users').doc(userEmail).get();
 
     if (userDoc.exists) {
       if (userDoc.get("password") == password) {
+
+        await HiveStorage.saveDefaultUser(UserModel(name: (userDoc.get('name')), email: userEmail, password: password, dateOfBirth: userDoc.get("dateOfBirth"),gender: userDoc.get("gender"),image: userDoc.get("image"),location: userDoc.get("location") ));
+
         return "LoginSuccessful";
       }
       }
@@ -101,6 +112,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     // throw Exception('User does not exist or password is incorrect');
   }
+  @override
 
   Future<void> checkUserExistsR(String phone) async {
     final userDoc = await FirebaseFirestore.instance.collection('users').doc("0$phone").get();
@@ -109,19 +121,26 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
-  Future<void> saveUserToFirestore({
+  @override
+  Future<void> saveUserToFireStore({
+
+    // TODO: Change to userModel
     required String username,
     required String phone,
     required String password,
     required String birthDate,
   }) async {
     await FirebaseFirestore.instance.collection('users').doc("0$phone").set({
-      'username': username,
+      'name': username,
       'phone': "0$phone",
       'password': password,
-      'birthdate': birthDate,
+      'dateOfBirth': birthDate,
+      'gender': "",
+      'image': "",
+      'location': "",
     });
   }
+  @override
 
   Future<void> signInWithPhoneNumber(
       String phoneNumber, Function(String) onCodeSent) async {

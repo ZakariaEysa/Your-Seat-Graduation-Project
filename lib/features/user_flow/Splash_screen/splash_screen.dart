@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -15,59 +14,67 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/v
 import 'package:yourseatgraduationproject/features/user_flow/onBoarding/OnBoarding.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
-
 import '../auth/presentation/cubit/auth_cubit.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // تهيئة الـ Timer للتنقل بين الشاشات
-    Timer(const Duration(seconds: 3), () {
-      if (HiveStorage.get(HiveKeys.passUserOnboarding) == false) {
-        navigateAndRemoveUntil(context: context, screen: const OnBoarding());
-      } else if (HiveStorage.get(HiveKeys.role) == "" ||
-          HiveStorage.get(HiveKeys.role) == null) {
-        navigateAndRemoveUntil(
-          context: context,
-          screen: BlocProvider(
-            create: (context) => AuthCubit(AuthRepoImpl(
-                AuthRemoteDataSourceImpl(
-                    FirebaseAuth.instance, GoogleSignIn()))),
-            child: const SignIn(),
-          ),
-        );
-      } else {
-        navigateAndRemoveUntil(
-          context: context,
-          screen: const HomeLayout(),
-        );
-      }
-    });
+  _SplashScreenState createState() => _SplashScreenState();
+}
 
-    // استخدام ScreenUtil لتحديد القياسات
+class _SplashScreenState extends State<SplashScreen> {
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer(const Duration(seconds: 3), _navigate);
+  }
+
+  void _navigate() {
+    if (HiveStorage.get(HiveKeys.passUserOnboarding) == false) {
+      navigateAndReplace(context: context, screen: const OnBoarding());
+    } else if (HiveStorage.get(HiveKeys.role) == "" || HiveStorage.get(HiveKeys.role) == null) {
+      navigateAndReplace(
+        context: context,
+        screen: BlocProvider(
+          create: (context) => AuthCubit(AuthRepoImpl(
+              AuthRemoteDataSourceImpl(FirebaseAuth.instance, GoogleSignIn()))),
+          child: const SignIn(),
+        ),
+      );
+    } else {
+      navigateAndReplace(
+        context: context,
+        screen: const HomeLayout(),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return ScaffoldF(
       body: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
-        width: 1.sw, // العرض بناءً على الشاشة
-        height: 1.sh, // الطول بناءً على الشاشة
+        width: 1.sw, // width based on screen size
+        height: 1.sh, // height based on screen size
         child: Center(
-            child: SizedBox(
-          width: 305.w, // العرض النسبى
-          height: 260.h, // الطول النسبى
-          child: Image.asset(
-            "assets/images/splash.png",
+          child: SizedBox(
+            width: 305.w, // relative width
+            height: 260.h, // relative height
+            child: Image.asset("assets/images/splash.png"),
           ),
-        )),
-      )
-          .animate()
-          .then()
-          .shimmer(duration: const Duration(milliseconds: 900))
-          .then()
-          .shimmer(duration: const Duration(milliseconds: 900)),
+        ),
+      ).animate().then().shimmer(duration: const Duration(milliseconds: 900)).then().shimmer(duration: const Duration(milliseconds: 900)),
     );
   }
 }

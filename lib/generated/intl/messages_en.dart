@@ -94,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "december": MessageLookupByLibrary.simpleMessage("December"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("Don’t have an account yet?"),
+        "email": MessageLookupByLibrary.simpleMessage("email"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "enterConfirmPassword":
@@ -162,7 +163,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "personalInfo": MessageLookupByLibrary.simpleMessage("Personal Info"),
         "phone_does_not_exist":
             MessageLookupByLibrary.simpleMessage("Phone number does not exist"),
-        "phonenumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
             "You must accept the terms and conditions."),
         "pleaseFillTheCredentials": MessageLookupByLibrary.simpleMessage(

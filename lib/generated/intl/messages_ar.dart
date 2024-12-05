@@ -90,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "december": MessageLookupByLibrary.simpleMessage("ديسمبر"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("لا تملك حساباً بعد؟"),
+        "email": MessageLookupByLibrary.simpleMessage("الاميل "),
         "emailAddress":
             MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
         "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
@@ -159,7 +160,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
         "phone_does_not_exist":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف غير موجود"),
-        "phonenumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
             "يجب أن توافق على الشروط والأحكام."),
         "pleaseFillTheCredentials":

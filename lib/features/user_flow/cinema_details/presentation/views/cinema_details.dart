@@ -7,7 +7,6 @@ import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 
 class CinemaDetails extends StatelessWidget {

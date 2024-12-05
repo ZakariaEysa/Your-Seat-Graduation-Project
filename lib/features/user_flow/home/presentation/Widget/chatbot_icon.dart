@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bott.dart';
 
-import '../../../chatbot/presentation/views/chat_bot.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../chatbot/presentation/views/chat_bottt.dart';
 
 class DraggableFloatingButton extends StatefulWidget {
-  const DraggableFloatingButton({Key? key}) : super(key: key);
+  const DraggableFloatingButton({super.key});
 
   @override
   _DraggableFloatingButtonState createState() =>
@@ -28,7 +28,7 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
               child: Draggable(
                 feedback: GestureDetector(
                   onTap: () {
-                    navigateTo(context: context, screen: ChatBottt);
+                    navigateTo(context: context, screen:  const ChatBottt());
 
                   },
                   child: Image.asset(
@@ -60,7 +60,7 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChatBott()), // Navigate to ChatBot screen
+                      MaterialPageRoute(builder: (context) => const ChatBott()), // Navigate to ChatBot screen
                     );
                   },
                   child: Image.asset(

@@ -8,7 +8,7 @@ class ChatBot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ScaffoldF(
+    return  const ScaffoldF(
       body: Column(children: [
         ChatUp(),
         Spacer(),

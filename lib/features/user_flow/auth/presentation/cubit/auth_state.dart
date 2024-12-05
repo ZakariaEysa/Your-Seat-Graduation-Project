@@ -45,7 +45,6 @@ class OtpSent extends AuthState {
 
   OtpSent(this.verificationId);
 
-  @override
   List<Object?> get props => [verificationId];
 }
 
@@ -58,6 +57,5 @@ class AuthError extends AuthState {
 
   AuthError(this.errorMessage);
 
-  @override
   List<Object?> get props => [errorMessage];
 }

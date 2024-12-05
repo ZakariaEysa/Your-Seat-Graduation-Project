@@ -11,12 +11,12 @@ class ChatAsk extends StatelessWidget {
       width: 390.w,
       height: 80.h,
       child: Padding(
-        padding: EdgeInsets.only(right: 8 , bottom: 16 , left: 16 , top: 16),
+        padding: const EdgeInsets.only(right: 8 , bottom: 16 , left: 16 , top: 16),
         child: Row(
           children: [
             Expanded(
               child: Stack(
-alignment: Alignment(1.1, 0.8),
+alignment: const Alignment(1.1, 0.8),
                 children: [
                   TextField(
                     decoration: InputDecoration(

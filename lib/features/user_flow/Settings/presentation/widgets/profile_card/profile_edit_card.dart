@@ -6,9 +6,7 @@ import 'package:yourseatgraduationproject/widgets/button/button_builder.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/navigation.dart';
 import '../../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../../../auth/presentation/cubit/auth_cubit.dart';
 import '../../../../auth/presentation/widgets/BirthDateDropdown.dart';
-import '../../cubit/edit_profile_cubit.dart';
 
 class ProfileEditCard extends StatefulWidget {
    ProfileEditCard({super.key});

@@ -8,7 +8,7 @@ class ChatBott extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return  ScaffoldF(
+    return  const ScaffoldF(
       body: Column(
           children: [
         ChatUp(),

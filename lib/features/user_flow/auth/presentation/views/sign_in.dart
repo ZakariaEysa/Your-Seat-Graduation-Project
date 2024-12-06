@@ -50,7 +50,7 @@ class _SignInState extends State<SignIn> {
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is GoogleAuthSuccess) {
-                  HiveStorage.set(HiveKeys.role, Role.gmail.toString());
+                  HiveStorage.set(HiveKeys.role, Role.google.toString());
 
                   BotToast.showText(
                       text:
@@ -66,7 +66,7 @@ class _SignInState extends State<SignIn> {
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is UserValidationSuccess) {
-                  HiveStorage.set(HiveKeys.role, Role.phone.toString());
+                  HiveStorage.set(HiveKeys.role, Role.email.toString());
                   BotToast.showText(text: lang.login_successful);
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
@@ -117,9 +117,9 @@ class _SignInState extends State<SignIn> {
                               if (value == null || value.isEmpty) {
                                 return lang.enter_phone_number;
                               }
-                              if (value.length != 11) {
-                                return lang.invalid_phone_format;
-                              }
+                              // if (value.length != 11) {
+                              //   return lang.invalid_phone_format;
+                              // }
                               return null;
                             },
                           ),

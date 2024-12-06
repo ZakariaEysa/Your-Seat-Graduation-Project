@@ -407,7 +407,7 @@ class _SignUpState extends State<SignUp> {
               state.errorMessage );
               }
               if (state is AuthSuccess) {
-                HiveStorage.set(HiveKeys.role, Role.phone.toString());
+                HiveStorage.set(HiveKeys.role, Role.email.toString());
 
                 navigateAndRemoveUntil(context: context, screen: Otp());
               }

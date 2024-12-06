@@ -16,7 +16,7 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var currentUser;
-    if (HiveStorage.get(HiveKeys.role) == Role.gmail.toString()) {
+    if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
     } else {
       currentUser = HiveStorage.getDefaultUser();

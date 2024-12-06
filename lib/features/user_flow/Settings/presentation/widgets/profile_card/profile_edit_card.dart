@@ -37,7 +37,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
   Widget build(BuildContext context) {
 
     var currentUser;
-    if (HiveStorage.get(HiveKeys.role) == Role.gmail.toString()) {
+    if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
     } else {
       currentUser = HiveStorage.getDefaultUser();

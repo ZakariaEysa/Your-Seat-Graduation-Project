@@ -62,7 +62,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         if (HiveStorage.get(HiveKeys.role) == null) {
           HiveStorage.set(
             HiveKeys.role,
-            Role.gmail.toString(),
+            Role.google.toString(),
           );
         }
         AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
@@ -102,6 +102,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     if (userDoc.exists) {
       if (userDoc.get("password") == password) {
 
+        // await HiveStorage.saveDefaultUser(UserModel(name: (userDoc.get('name')), email: userEmail, password: password, dateOfBirth: userDoc.get("dateOfBirth"),gender: userDoc.get("gender"),image: userDoc.get("image"),location: userDoc.get("location") ));
         await HiveStorage.saveDefaultUser(UserModel(name: (userDoc.get('name')), email: userEmail, password: password, dateOfBirth: userDoc.get("dateOfBirth"),gender: userDoc.get("gender"),image: userDoc.get("image"),location: userDoc.get("location") ));
 
         return "LoginSuccessful";
@@ -141,6 +142,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       'image': "",
       'location': "",
     });
+
   }
   @override
 

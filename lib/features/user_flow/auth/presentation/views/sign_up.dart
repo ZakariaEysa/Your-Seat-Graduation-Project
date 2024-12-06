@@ -125,25 +125,20 @@ class _SignUpState extends State<SignUp> {
                       padding: EdgeInsets.all(16.0.sp),
                       child: TextFormFieldBuilder(
                         height: 80.h,
-                        controller: cubit.phone,
+                        controller: cubit.email,
                         label: local.email,
                         validator: (value) {
                           String? enteredNumber = value;
                           if (value == null || value.trim().isEmpty) {
-                            return local.enterPhoneNumber;
-                          }
-                          if (value.length == 10 &&
-                              value.startsWith("1") &&
-                              egyptianPhoneRegex.hasMatch(value)) {
-                            value = "0${enteredNumber!}";
-                          } else {
-                            return local.wrongPhoneFormat;
+                            return local.enterEmailAddress;
+                          }if(!isValidEmail(value)){
+                            return local.invalidEmailFormat;
                           }
                           return null;
                         },
                         obsecure: false,
-                        type: TextInputType.phone,
-                        imagePath: 'assets/images/+20.png',
+                        type: TextInputType.emailAddress,
+                        imagePath: 'assets/images/email 2.png',
                       ),
                     ),
                   ),
@@ -274,63 +269,73 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(height: 35.h),
                   FadeInRight(
                     delay: const Duration(milliseconds: 550),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(width: 40.w),
-                        InkWell(
-                          onTap: () {
-                            if (agree) {
-                              agree = false;
-                              privacyPolicy = true;
-                            } else {
-                              agree = true;
-                              privacyPolicy = false;
-                            }
-                            setState(() {});
-                          },
-                          child: Container(
-                            width: 28.w,
-                            height: 28.h,
-                            decoration: agree
-                                ? BoxDecoration(
-                                color: Colors.transparent,
+                    child: Padding(
+                      padding:  EdgeInsets.only(right: 17.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(width: 40.w),
+                          InkWell(
+                            onTap: () {
+                              if (agree) {
+                                agree = false;
+                                privacyPolicy = true;
+                              } else {
+                                agree = true;
+                                privacyPolicy = false;
+                              }
+                              setState(() {});
+                            },
+                            child: Container(
+                              width: 28.w,
+                              height: 28.h,
+                              decoration: agree
+                                  ? BoxDecoration(
+                                  color: Colors.transparent,
+                                  shape: BoxShape.circle,
+                                  border:
+                                  Border.all(color: Colors.white, width: 2.w))
+                                  : const BoxDecoration(
+                                color: Colors.purple,
                                 shape: BoxShape.circle,
-                                border:
-                                Border.all(color: Colors.white, width: 2.w))
-                                : const BoxDecoration(
-                              color: Colors.purple,
-                              shape: BoxShape.circle,
-                            ),
-                            child: agree
-                                ?  Icon(
-                              Icons.check,
-                              size: 20.sp,
-                              color: Colors.white,
-                            )
-                                :  Icon(
-                              Icons.check,
-                              size: 20.sp,
-                              color: Colors.black,
+                              ),
+                              child: agree
+                                  ?  Icon(
+                                Icons.check,
+                                size: 20.sp,
+                                color: Colors.white,
+                              )
+                                  :  Icon(
+                                Icons.check,
+                                size: 20.sp,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 10.w),
-                        InkWell(
-                          onTap: (){
-                            navigateTo(context: context, screen: const AboutUs());
-                          },
-                          child: FlickerNeonText(
-                            text: local.iAgreeWithPrivacyPolicy,
-                            flickerTimeInMilliSeconds: 600,
-                            spreadColor: Colors.white,
-                            blurRadius: 20.r,
-                            textSize: 18.sp,
-                            // style:
-                            //     theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                          SizedBox(width: 10.w),
+                         Text(
+                             local.iAgreeWith,
+                            style:
+                                theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
                           ),
-                        ),
-                      ],
+                          SizedBox(width: 4.w,),
+                          InkWell(
+                            onTap: (){
+                              navigateTo(context: context, screen: const AboutUs());
+                            },
+                            child: FlickerNeonText(
+                              text: local.privacyPolicy,
+                              flickerTimeInMilliSeconds: 1000,
+                              spreadColor: Colors.white,
+                              //textColor: theme.primaryColor,
+                              blurRadius: 20.r,
+                              textSize: 18.sp,
+                              // style:
+                              //     theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -346,7 +351,7 @@ class _SignUpState extends State<SignUp> {
                   FadeInUp(
                     delay: const Duration(milliseconds: 550),
                     child: ButtonBuilder(
-                      image: "assets/images/Sign up.png",
+                      image: HiveStorage.get(HiveKeys.isArabic)? "assets/images/sign_up_arabic.png":"assets/images/Sign up.png",
                       text: "",
                       onTap: () {
                         setState(() {
@@ -447,7 +452,7 @@ class _SignUpState extends State<SignUp> {
     if (privacyPolicy == false) {
       return;
     } else {
-      auth.registerUser(username: auth.userName.text, phone: auth.phone.text, password: auth.password.text, birthDate: "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}");
+      auth.registerUser(username: auth.userName.text, password: auth.password.text, birthDate: "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}", email: auth.email.text);
       //await checkUserExists(auth.phone.text);
     }
   }

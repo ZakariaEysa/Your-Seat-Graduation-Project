@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -20,6 +22,8 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
+  TextEditingController email = TextEditingController();
+
   String? selectedMonth;
   int? selectedDay;
   int? selectedYear;
@@ -72,25 +76,60 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> registerUser({
     required String username,
-    required String phone,
+    required String email,
     required String password,
     required String birthDate,
   }) async {
+
     try {
-      emit(AuthLoading());
-      await authRepo.checkUserExistsR(phone);
-      print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-      await authRepo.saveUser(
-        username: username,
-        phone: phone,
+         emit(AuthLoading());
+      // Create user with email and password
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
         password: password,
-        birthDate: birthDate,
       );
-      emit(AuthSuccess());
+
+      // Get the UID or email of the newly created user
+      String userEmail = userCredential.user!.email!;
+      String uid = userCredential.user!.uid;
+
+      // Now create a Firestore document for the user
+      await FirebaseFirestore.instance.collection('users').doc(userEmail).set({
+        'username': username,
+        'email': userEmail,
+        'uid': uid,
+        'birthDate': birthDate,
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+
+      print('User successfully registered and data stored in Firestore.');
+
+      // You can emit states if you're using a state management solution, for example:
+       emit(AuthSuccess());
+    } on FirebaseAuthException catch (e) {
+      // Handle Firebase authentication exceptions
+      print('Error registering user: ${e.message}');
+       emit(AuthError(e.message??""));
     } catch (e) {
-      print(e.toString());
-      emit(AuthError(e.toString()));
+      // Handle other types of errors
+      print('An unexpected error occurred: $e');
+       emit(AuthError(e.toString()));
     }
+    // try {
+    //   emit(AuthLoading());
+    //   await authRepo.checkUserExistsR(phone);
+    //   print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+    //   await authRepo.saveUser(
+    //     username: username,
+    //     phone: phone,
+    //     password: password,
+    //     birthDate: birthDate,
+    //   );
+    //   emit(AuthSuccess());
+    // } catch (e) {
+    //   print(e.toString());
+    //   emit(AuthError(e.toString()));
+    // }
   }
 
   Future<void> sendOtp(String phoneNumber) async {

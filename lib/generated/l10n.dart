@@ -130,10 +130,10 @@ class S {
     );
   }
 
-  /// `email`
+  /// `Email`
   String get email {
     return Intl.message(
-      'email',
+      'Email',
       name: 'email',
       desc: '',
       args: [],
@@ -290,11 +290,21 @@ class S {
     );
   }
 
-  /// `I agree with the Privacy Policy`
-  String get iAgreeWithPrivacyPolicy {
+  /// `I agree with the`
+  String get iAgreeWith {
     return Intl.message(
-      'I agree with the Privacy Policy',
-      name: 'iAgreeWithPrivacyPolicy',
+      'I agree with the',
+      name: 'iAgreeWith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PrivacyPolicy`
+  String get privacyPolicy {
+    return Intl.message(
+      'PrivacyPolicy',
+      name: 'privacyPolicy',
       desc: '',
       args: [],
     );
@@ -1243,6 +1253,116 @@ class S {
     return Intl.message(
       'Are you sure you want to log out ?',
       name: 'areYouSureYouWantToLogOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter e-mail address`
+  String get enterEmailAddress {
+    return Intl.message(
+      'Enter e-mail address',
+      name: 'enterEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid e-mail format`
+  String get invalidEmailFormat {
+    return Intl.message(
+      'Invalid e-mail format',
+      name: 'invalidEmailFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enjoy easy ticket booking and personalized recommendations`
+  String get enjoyEasyTicketBookingAndPersonalizedRecommendations {
+    return Intl.message(
+      'Enjoy easy ticket booking and personalized recommendations',
+      name: 'enjoyEasyTicketBookingAndPersonalizedRecommendations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to YourSeat !`
+  String get welcomeToYourSeat {
+    return Intl.message(
+      'Welcome to YourSeat !',
+      name: 'welcomeToYourSeat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Using the App ->`
+  String get startUsingTheApp {
+    return Intl.message(
+      'Start Using the App ->',
+      name: 'startUsingTheApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skip {
+    return Intl.message(
+      'Skip',
+      name: 'skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New movies ! Easy booking`
+  String get newMoviesEasyBooking {
+    return Intl.message(
+      'New movies ! Easy booking',
+      name: 'newMoviesEasyBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book tickets for the latest movies at the cinema nearest to you.`
+  String get bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou {
+    return Intl.message(
+      'Book tickets for the latest movies at the cinema nearest to you.',
+      name: 'bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorite it!\n Add watchlist`
+  String get favoriteItAddWatchlist {
+    return Intl.message(
+      'Favorite it!\n Add watchlist',
+      name: 'favoriteItAddWatchlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorites or watchlist for quick access to your beloved movies.`
+  String get favoritesOrWatchlistForQuickAccessToYourBelovedMovies {
+    return Intl.message(
+      'Favorites or watchlist for quick access to your beloved movies.',
+      name: 'favoritesOrWatchlistForQuickAccessToYourBelovedMovies',
       desc: '',
       args: [],
     );

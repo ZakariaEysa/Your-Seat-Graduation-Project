@@ -16,17 +16,11 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var currentUser;
-    if(HiveStorage.get(HiveKeys.role)==Role.gmail.toString()){
-     currentUser=   HiveStorage.getGoogleUser();
-
-
-    }
-    else {
-
-      currentUser=   HiveStorage.getDefaultUser(       );
+    if (HiveStorage.get(HiveKeys.role) == Role.gmail.toString()) {
+      currentUser = HiveStorage.getGoogleUser();
+    } else {
+      currentUser = HiveStorage.getDefaultUser();
       AppLogs.scussessLog(currentUser.toString());
-
-
     }
     var lang = S.of(context);
     return ScaffoldF(
@@ -34,29 +28,29 @@ class ProfileCard extends StatelessWidget {
         actions: [
           InkWell(
               onTap: () {
-                navigateTo(context: context, screen:  ProfileEditCard());
+                navigateTo(context: context, screen: ProfileEditCard());
               },
-              child:  Icon(
+              child: Icon(
                 Icons.edit,
                 size: 27.sp,
                 color: Colors.white,
               )),
-           SizedBox(
+          SizedBox(
             width: 12.w,
           ),
         ],
         backgroundColor: const Color(0xFF2E1371),
-        iconTheme:  IconThemeData(
+        iconTheme: IconThemeData(
           size: 28.sp,
           color: Colors.white,
         ),
       ),
       body: Stack(children: [
         Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
           child: Container(
-            margin:  EdgeInsets.only(top: 40.h),
-            decoration:  BoxDecoration(
+            margin: EdgeInsets.only(top: 40.h),
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(51.r),
                 topRight: Radius.circular(48.r),
@@ -65,7 +59,7 @@ class ProfileCard extends StatelessWidget {
             ),
             child: Center(
               child: Padding(
-                padding:  EdgeInsets.only(top: 100.h, left: 10.w),
+                padding: EdgeInsets.only(top: 100.h, left: 10.w),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -73,17 +67,16 @@ class ProfileCard extends StatelessWidget {
                     SizedBox(height: 10.h),
                     Text(
                       textAlign: TextAlign.center,
-                      currentUser?.name??"-",
+                      currentUser?.name ?? "-",
                       style: TextStyle(
                         fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                     Text(
+                    Text(
                       textAlign: TextAlign.center,
-                       currentUser?.email??"-",
-
+                      currentUser?.email ?? "-",
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.white70,
@@ -103,44 +96,39 @@ class ProfileCard extends StatelessWidget {
                           lang.personalInfo,
                           textAlign: TextAlign.start,
                           style: theme.textTheme.titleLarge!
-                              .copyWith(fontSize: 22.sp),
+                              .copyWith(fontSize: 18.sp),
                         ),
                       ),
                     ),
                     SizedBox(height: 20.h),
-                     PersonalInfoCard(
+                    PersonalInfoCard(
                       title: lang.email,
                       icon: "assets/icons/telephone.png",
-                      info:                       currentUser?.email??"-",
-
-                     ),
+                      info: currentUser?.email ?? "-",
+                    ),
                     SizedBox(height: 20.h),
-                     PersonalInfoCard(
+                    PersonalInfoCard(
                       title: lang.birthDate,
                       icon: "assets/icons/birthday_cake.png",
-                      info:                       currentUser?.dateOfBirth??"-",
-
+                      info: currentUser?.dateOfBirth ?? "-",
                     ),
-                     SizedBox(height: 20.h),
-                     PersonalInfoCard(
+                    SizedBox(height: 20.h),
+                    PersonalInfoCard(
                       title: lang.gender,
                       icon: "assets/icons/gender.png",
-                      info:                       currentUser?.gender??"-",
-
+                      info: currentUser?.gender ?? "-",
                     ),
                     SizedBox(height: 20.h),
-                     PersonalInfoCard(
+                    PersonalInfoCard(
                       title: lang.location,
                       icon: "assets/icons/location.png",
-                      info:                       currentUser?.location??"-",
-
+                      info: currentUser?.location ?? "-",
                     ),
                     SizedBox(height: 20.h),
-                     PersonalInfoCard(
+                    PersonalInfoCard(
                       title: lang.emailAddress,
                       icon: "assets/icons/email.png",
-                      info:                       currentUser?.email??"-",
-
+                      info: currentUser?.email ?? "-",
                     ),
                   ],
                 ),
@@ -152,7 +140,7 @@ class ProfileCard extends StatelessWidget {
           left: 105.w,
           // top: -3.h,
 
-          child:  CircleAvatar(
+          child: CircleAvatar(
               radius: 80.r,
               backgroundImage: const AssetImage(
                   "assets/images/film1.png") // Replace with your image URL

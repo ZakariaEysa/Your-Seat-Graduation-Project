@@ -17,7 +17,8 @@ abstract class AuthRemoteDataSource {
   Future<void> checkUserExistsR(String phone);
   Future<void> saveUserToFireStore({
     required String username,
-    required String phone,
+    required String email,
+    //required String phone,
     required String password,
     required String birthDate,
   });
@@ -114,8 +115,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
   @override
 
-  Future<void> checkUserExistsR(String phone) async {
-    final userDoc = await FirebaseFirestore.instance.collection('users').doc("0$phone").get();
+  Future<void> checkUserExistsR(String email) async {
+    final userDoc = await FirebaseFirestore.instance.collection('users').doc(email).get();
     if (userDoc.exists) {
       throw Exception("User already exists");
     }
@@ -126,13 +127,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     // TODO: Change to userModel
     required String username,
-    required String phone,
+    required String email,
     required String password,
     required String birthDate,
   }) async {
-    await FirebaseFirestore.instance.collection('users').doc("0$phone").set({
+    await FirebaseFirestore.instance.collection('users').doc(email).set({
       'name': username,
-      'phone': "0$phone",
+      'email': email,
+      //'phone': "0$phone",
       'password': password,
       'dateOfBirth': birthDate,
       'gender': "",

@@ -65,6 +65,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you sure you want to log out ?"),
         "august": MessageLookupByLibrary.simpleMessage("August"),
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
+        "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou":
+            MessageLookupByLibrary.simpleMessage(
+                "Book tickets for the latest movies at the cinema nearest to you."),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
@@ -94,11 +97,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "december": MessageLookupByLibrary.simpleMessage("December"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("Don’t have an account yet?"),
-        "email": MessageLookupByLibrary.simpleMessage("email"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
+        "enjoyEasyTicketBookingAndPersonalizedRecommendations":
+            MessageLookupByLibrary.simpleMessage(
+                "Enjoy easy ticket booking and personalized recommendations"),
         "enterConfirmPassword":
             MessageLookupByLibrary.simpleMessage("Enter confirm password"),
+        "enterEmailAddress":
+            MessageLookupByLibrary.simpleMessage("Enter e-mail address"),
         "enterPassword": MessageLookupByLibrary.simpleMessage("Enter password"),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter phone number"),
@@ -116,6 +124,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred during login"),
         "facebook_login_failed": MessageLookupByLibrary.simpleMessage(
             "Failed to log in with Facebook"),
+        "favoriteItAddWatchlist": MessageLookupByLibrary.simpleMessage(
+            "Favorite it!\n Add watchlist"),
+        "favoritesOrWatchlistForQuickAccessToYourBelovedMovies":
+            MessageLookupByLibrary.simpleMessage(
+                "Favorites or watchlist for quick access to your beloved movies."),
         "february": MessageLookupByLibrary.simpleMessage("February"),
         "fill_all_fields":
             MessageLookupByLibrary.simpleMessage("Please fill all fields"),
@@ -124,8 +137,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
-        "iAgreeWithPrivacyPolicy": MessageLookupByLibrary.simpleMessage(
-            "I agree with the Privacy Policy"),
+        "iAgreeWith": MessageLookupByLibrary.simpleMessage("I agree with the"),
+        "invalidEmailFormat":
+            MessageLookupByLibrary.simpleMessage("Invalid e-mail format"),
         "invalidUsername":
             MessageLookupByLibrary.simpleMessage("Invalid username"),
         "invalid_phone_format":
@@ -145,6 +159,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
+        "newMoviesEasyBooking":
+            MessageLookupByLibrary.simpleMessage("New movies ! Easy booking"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no_account":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notification"),
@@ -171,6 +188,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
         "please_enter_phone_number": MessageLookupByLibrary.simpleMessage(
             "Please enter your phone number"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("PrivacyPolicy"),
         "privacyPolicyContent": MessageLookupByLibrary.simpleMessage(
             "At YourSeat, we are committed to protecting your privacy. This privacy policy explains how we collect, use, and safeguard your personal data when you use the YourSeat mobile application. By using the app, you agree to the collection and use of your information in accordance with this policy.\n\n1. How We Use Your Information: The information we collect from you is used for the following purposes:\n   To provide and maintain the app: Ensuring the app functions properly and improving its performance.\n   To process transactions: Managing payments for movie tickets and related services.\n   To offer personalized recommendations: Suggesting movies and cinemas based on your preferences and location.\n   To communicate with you: Sending notifications about your bookings, promotions, or updates to our services.\n   To improve our services: Analyzing app usage data to enhance features and resolve issues.\n\n2. How We Protect Your Data: YourSeat employs standard security measures to protect your personal information, including:\n   Encryption: Securing your payment data and personal information using encryption protocols like SSL.\n   Access restrictions: Ensuring only authorized personnel can access your personal data.\n   Continuous audits: Regularly reviewing our security practices to ensure your data’s safety.\n   While we take all precautions, no security measures are completely foolproof, and we cannot guarantee the absolute security of your data.\n\n3. Data Sharing and Disclosure: YourSeat does not sell or share your personal information with third parties, except:\n   Service Providers: We work with trusted third-party partners (e.g., payment processors, cloud storage providers) to help deliver our services.\n   Legal Obligations: We may disclose your information if required by law or in response to a valid legal request (e.g., a court order).\n\n4. Your Rights: You have the following rights regarding your personal data:\n   Access: You can request a copy of the personal data we hold about you.\n   Correction: You can request corrections or updates to your data.\n   Deletion: You can request deletion of your data, subject to legal requirements.\n   Opt-out of marketing: You can opt-out of promotional communications by following the unsubscribe link in our emails or adjusting app settings."),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
@@ -187,6 +205,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signin": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "startUsingTheApp":
+            MessageLookupByLibrary.simpleMessage("Start Using the App ->"),
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
             "1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your phone, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission."),
         "theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable":
@@ -194,6 +215,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "The luxurious seats and immersive sound system make for a truly unforgettable"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
+        "welcomeToYourSeat":
+            MessageLookupByLibrary.simpleMessage("Welcome to YourSeat !"),
         "wrongConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password does not match"),
         "wrongPhoneFormat":

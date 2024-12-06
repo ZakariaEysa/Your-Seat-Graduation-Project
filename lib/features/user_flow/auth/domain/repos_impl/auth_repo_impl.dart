@@ -57,6 +57,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<void> saveUser({
+
     required String username,
     required String phone,
     required String password,
@@ -68,8 +69,9 @@ class AuthRepoImpl implements AuthRepo {
 
 
       await authRemoteDataSource.saveUserToFireStore(
+        email: phone,
         username: username,
-        phone: phone,
+        //phone: phone,
         password: password,
         birthDate: birthDate,
       );

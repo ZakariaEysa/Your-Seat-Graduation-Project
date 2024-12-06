@@ -9,4 +9,4 @@ class HiveKeys {
 
 }
 
-enum Role { guest, gmail, phone, facebook }
+enum Role { guest, google, email, facebook }

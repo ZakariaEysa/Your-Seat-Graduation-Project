@@ -14,6 +14,7 @@ final egyptianPhoneRegex = RegExp(r'^[1][0125][0-9]{8}$');
 final nameRegex = RegExp(r'^[A-Za-z]{3,20}(?: [A-Za-z]{3,20})*$');
 
 
+
 /*
 Be at least 8 characters long.
 Contain at least one uppercase letter.

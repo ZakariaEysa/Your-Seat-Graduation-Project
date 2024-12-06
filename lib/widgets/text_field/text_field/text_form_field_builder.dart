@@ -31,8 +31,9 @@ class TextFormFieldBuilder extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.hinitText,
+    //this.initialValue,
   });
-
+  //final String? initialValue ;
   final String? label;
   final Function(String)? onChanged;
   final Function(String)? onSubmitted;
@@ -67,6 +68,7 @@ class TextFormFieldBuilder extends StatelessWidget {
       width: width ?? 333.w,
       height: height ?? 60.h,
       child: TextFormField(
+       // initialValue: initialValue,
         onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines ? 1 : null,

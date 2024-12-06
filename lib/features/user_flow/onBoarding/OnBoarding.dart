@@ -8,6 +8,7 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_da
 import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../data/hive_keys.dart';
 import '../../../widgets/button/button_builder.dart';
@@ -28,6 +29,7 @@ class _OnBoardingState extends State<OnBoarding> {
   @override
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     var theme = Theme.of(context);
     return ScaffoldF(
       body: Column(
@@ -47,116 +49,118 @@ class _OnBoardingState extends State<OnBoarding> {
           Expanded(
             child: PageView.builder(
               controller: _pageController,
-              itemCount: contents.length,
+              itemCount: getOnBoardingContents(context).length,
               onPageChanged: (int index) {
                 setState(() {
                   currentPage = index;
                 });
               },
               itemBuilder: (_, index) {
-                return Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(30.sp),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          contents[index].image,
-                          height: 300.h,
-                        ),
-                        SizedBox(height: 15.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(contents.length, (dotIndex) {
-                            return buildDot(dotIndex);
-                          }),
-                        ),
-                        SizedBox(height: 15.h),
-                        Text(
-                          contents[index].title,
-                          style: theme.textTheme.labelLarge!
-                              .copyWith(fontSize: 35.sp),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 15.h),
-                        Text(
-                          contents[index].description,
-                          textAlign: TextAlign.center,
-                          style: theme.textTheme.bodyMedium!
-                              .copyWith(fontSize: 16.sp),
-                        ),
-                        SizedBox(height: 40.h),
-                        currentPage == contents.length - 1
-                            ? ButtonBuilder(
-                                text: 'Start Using the App->',
-                                onTap: () {
-                                  // Navigate to the SignIn screen
-                                  HiveStorage.set(
-                                    HiveKeys.passUserOnboarding,
-                                    true,
-                                  );
-
-                                  navigateAndRemoveUntil(
-                                    context: context,
-                                    screen: BlocProvider(
-                                      create: (context) => AuthCubit(
-                                          AuthRepoImpl(AuthRemoteDataSourceImpl(
-                                              FirebaseAuth.instance,
-                                              GoogleSignIn()))),
-                                      child: const SignIn(),
-                                    ),
-                                  );
-                                },
-                                width: 300.w,
-                                height: 55.h,
-                              )
-                            : Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: ButtonBuilder(
-                                      text: 'Skip',
-                                      onTap: () {
-                                        HiveStorage.set(
-                                          HiveKeys.passUserOnboarding,
-                                          true,
-                                        );
-
-                                        navigateAndRemoveUntil(
-                                          context: context,
-                                          screen: BlocProvider(
-                                            create: (context) => AuthCubit(
-                                                AuthRepoImpl(
-                                                    AuthRemoteDataSourceImpl(
-                                                        FirebaseAuth.instance,
-                                                        GoogleSignIn()))),
-                                            child: const SignIn(),
-                                          ),
-                                        );
-                                      },
-                                      height: 55.h,
-                                    ),
-                                  ),
-                                  SizedBox(width: 20.w),
-                                  Expanded(
-                                    child: ButtonBuilder(
-                                      text: 'Next',
-                                      onTap: () {
-                                        if (currentPage < contents.length - 1) {
-                                          _pageController.nextPage(
-                                            duration: const Duration(
-                                                milliseconds: 300),
-                                            curve: Curves.easeInOut,
+                return SingleChildScrollView(
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(30.sp),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            getOnBoardingContents(context)[index].image,
+                            height: 300.h,
+                          ),
+                          SizedBox(height: 15.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(getOnBoardingContents(context).length, (dotIndex) {
+                              return buildDot(dotIndex);
+                            }),
+                          ),
+                          SizedBox(height: 15.h),
+                          Text(
+                            getOnBoardingContents(context)[index].title,
+                            style: theme.textTheme.labelLarge!
+                                .copyWith(fontSize: 35.sp),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 15.h),
+                          Text(
+                            getOnBoardingContents(context)[index].description,
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.bodyMedium!
+                                .copyWith(fontSize: 16.sp),
+                          ),
+                          SizedBox(height: 40.h),
+                          currentPage == getOnBoardingContents(context).length - 1
+                              ? ButtonBuilder(
+                                  text: lang.startUsingTheApp,
+                                  onTap: () {
+                                    // Navigate to the SignIn screen
+                                    HiveStorage.set(
+                                      HiveKeys.passUserOnboarding,
+                                      true,
+                                    );
+                  
+                                    navigateAndRemoveUntil(
+                                      context: context,
+                                      screen: BlocProvider(
+                                        create: (context) => AuthCubit(
+                                            AuthRepoImpl(AuthRemoteDataSourceImpl(
+                                                FirebaseAuth.instance,
+                                                GoogleSignIn()))),
+                                        child: const SignIn(),
+                                      ),
+                                    );
+                                  },
+                                  width: 300.w,
+                                  height: 55.h,
+                                )
+                              : Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: ButtonBuilder(
+                                        text: lang.skip,
+                                        onTap: () {
+                                          HiveStorage.set(
+                                            HiveKeys.passUserOnboarding,
+                                            true,
                                           );
-                                        }
-                                      },
-                                      height: 55.h,
+                  
+                                          navigateAndRemoveUntil(
+                                            context: context,
+                                            screen: BlocProvider(
+                                              create: (context) => AuthCubit(
+                                                  AuthRepoImpl(
+                                                      AuthRemoteDataSourceImpl(
+                                                          FirebaseAuth.instance,
+                                                          GoogleSignIn()))),
+                                              child: const SignIn(),
+                                            ),
+                                          );
+                                        },
+                                        height: 55.h,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                      ],
+                                    SizedBox(width: 20.w),
+                                    Expanded(
+                                      child: ButtonBuilder(
+                                        text: lang.next,
+                                        onTap: () {
+                                          if (currentPage < getOnBoardingContents(context).length - 1) {
+                                            _pageController.nextPage(
+                                              duration: const Duration(
+                                                  milliseconds: 300),
+                                              curve: Curves.easeInOut,
+                                            );
+                                          }
+                                        },
+                                        height: 55.h,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                        ],
+                      ),
                     ),
                   ),
                 );

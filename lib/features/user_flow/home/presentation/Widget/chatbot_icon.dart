@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bott.dart';
+
 
 import '../../../../../utils/navigation.dart';
 import '../../../chatbot/presentation/views/chat_bottt.dart';
@@ -14,7 +14,7 @@ class DraggableFloatingButton extends StatefulWidget {
 }
 
 class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
-  Offset buttonPosition = Offset(300.w, 680.h); // Starting position
+  Offset buttonPosition = Offset(300.w, 650.h); // Starting position
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +37,10 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
                     height: 80.h,
                   ),
                 ),
-                childWhenDragging: Container(), // Hide original button while dragging
+                childWhenDragging: Container(),
                 onDraggableCanceled: (velocity, offset) {
                   setState(() {
-                    // Adjust button position to stay within bounds
+
                     double newX = offset.dx;
                     double newY = offset.dy;
 
@@ -58,10 +58,7 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
                 },
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const ChatBott()), // Navigate to ChatBot screen
-                    );
+                    navigateTo(context: context, screen:  const ChatBottt());
                   },
                   child: Image.asset(
                     'assets/images/chat_bot.png',

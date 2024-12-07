@@ -2,6 +2,7 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../Settings/presentation/views/settings_screen.dart';
 import '../../../Tickets/tickets_screen.dart';
 import '../../../Watch_list/presentation/views/watch_list.dart';
@@ -25,6 +26,7 @@ class _HomeScreenState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     return Scaffold(
       body: pages[selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/home.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 0 ? 'Home' : '',
+            label: selectedIndex == 0 ? 'lang.home' : '',
             labelStyle: const TextStyle(color: Colors.white),
           ),
           CurvedNavigationBarItem(
@@ -56,7 +58,7 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/watch_list_icon.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 1 ? 'Watch List' : '',
+            label: selectedIndex == 1 ? 'lang.watchlist' : '',
             labelStyle: const TextStyle(color: Colors.white),
           ),
           CurvedNavigationBarItem(
@@ -66,7 +68,7 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/ticket.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 2 ? 'Ticket' : '',
+            label: selectedIndex == 2 ? 'lang.tickets' : '',
             labelStyle: const TextStyle(color: Colors.white),
           ),
           CurvedNavigationBarItem(
@@ -76,7 +78,7 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/settings.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 3 ? 'Settings' : '',
+            label: selectedIndex == 3 ? 'lang.settings' : '',
             labelStyle: const TextStyle(color: Colors.white),
           ),
         ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../generated/l10n.dart';
+
 class Search extends StatefulWidget {
   const Search({super.key});
 
@@ -39,21 +41,22 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(14.0),
       child: TextFormField(
         focusNode: _focusNode,
         controller: _controller,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0), // حدود مستديرة قليلاً
+            borderRadius: BorderRadius.circular(12.0),
             borderSide:
-            const BorderSide(width: 2, color: Color(0xFFB0BEC5)), // لون محايد
+            const BorderSide(width: 2, color: Color(0xFFB0BEC5)),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
-                width: 2, color: Colors.blue), // لون أزرق عند التركيز
-            borderRadius: BorderRadius.circular(12.0), // حدود مستديرة
+                width: 2, color: Colors.blue),
+            borderRadius: BorderRadius.circular(12.0),
           ),
 
           prefixIcon: Padding(
@@ -64,7 +67,7 @@ class _SearchState extends State<Search> {
               height: 20.h,
             ),
           ),
-          hintText: 'Search',
+          hintText: lang.search,
           hintStyle: TextStyle(
             color: Colors.white70,
             fontSize: 14.sp,

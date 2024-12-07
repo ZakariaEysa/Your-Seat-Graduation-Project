@@ -23,10 +23,7 @@ class AboutUs extends StatelessWidget {
           color: Colors.white,
         ),
         title: Padding(
-          padding: EdgeInsets.only(
-            bottom: 10.h, // ضبط الحافة السفلية باستخدام ScreenUtil
-            right: 35.w, // ضبط الحافة اليمنى باستخدام ScreenUtil
-          ),
+          padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 0, 20),
           child: HeadAppBar(
             title: lang.AboutUs,
           ),

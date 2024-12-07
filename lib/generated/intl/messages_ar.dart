@@ -26,9 +26,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("أكشن، خيال علمي"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("المنتقمون: حرب إنفينيتي"),
+        "Esam": MessageLookupByLibrary.simpleMessage("عصام"),
+        "Esam1": MessageLookupByLibrary.simpleMessage("عصام"),
         "GreatSelectionOfMoviesHighlyRecommended":
             MessageLookupByLibrary.simpleMessage(
                 "مجموعة كبيرة من الأفلام. موصى به للغاية!"),
+        "HelloIamyourAIAssistant": MessageLookupByLibrary.simpleMessage(
+            "مرحبًا، أنا مساعد الذكاء الاصطناعي الخاص بك!"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
@@ -59,12 +63,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
             "هل انت متاكد انك تريد تسجيل الخروج ؟"),
+        "askmehere": MessageLookupByLibrary.simpleMessage("اسألني هنا..."),
         "august": MessageLookupByLibrary.simpleMessage("أغسطس"),
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou":
             MessageLookupByLibrary.simpleMessage(
                 "احجز تذاكر لأحدث الأفلام في السينما الأقرب إليك."),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
+        "canyouhelp": MessageLookupByLibrary.simpleMessage("أيمكنني مساعدتك؟"),
         "cinema": MessageLookupByLibrary.simpleMessage("سينما"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("قريباً"),
         "comments": MessageLookupByLibrary.simpleMessage("تعليقات"),
@@ -135,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "general": MessageLookupByLibrary.simpleMessage("عام"),
         "hello": MessageLookupByLibrary.simpleMessage("مرحبًا"),
+        "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "iAgreeWith": MessageLookupByLibrary.simpleMessage("أوافق على "),
         "invalidEmailFormat": MessageLookupByLibrary.simpleMessage(
             "تنسيق البريد الإلكتروني غير صالح"),
@@ -197,6 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "september": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "setting": MessageLookupByLibrary.simpleMessage("الاعدادات"),
+        "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "sign_up": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -207,7 +215,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
             "1. مسؤوليات المستخدم: باستخدام هذا التطبيق، فإنك توافق على الالتزام بشروط الخدمة لدينا والتصرف باحترام. يرجى الامتناع عن أي سلوك يعيق تجربة مشاهدة الأفلام للآخرين، مثل التحدث بصوت عالٍ أو استخدام هاتفك أو شراء التذاكر لأغراض غير مصرح بها. نحتفظ بالحق في إلغاء الوصول إلى التطبيق إذا تم انتهاك هذه الشروط.\n\n2. إنشاء حساب مستخدم: لإنشاء حساب، ستحتاج إلى تقديم عنوان بريد إلكتروني صالح وكلمة مرور قوية. اختر كلمة مرور يصعب تخمينها وتجنب استخدام معلومات يمكن التعرف عليها بسهولة. يتم تخزين بيانات حسابك بأمان ولا يمكن الوصول إليها إلا من قبل الموظفين المصرح لهم.\n   الأمان: اختر كلمة مرور قوية تجمع بين الأحرف والأرقام والرموز. تجنب استخدام نفس كلمة المرور لعدة حسابات. قم بتمكين المصادقة الثنائية (إذا كانت متوفرة) لمزيد من الأمان. لا تشارك معلومات تسجيل الدخول الخاصة بك مع أي شخص.\n\n3. معالجة المعاملات: تتم معالجة جميع المعاملات بشكل آمن باستخدام [بوابة الدفع المحددة]. نحن نقبل [طرق الدفع المقبولة مثل بطاقات الائتمان، بطاقات الخصم، PayPal]. معلومات إضافية: تأكد من أن معلومات الدفع الخاصة بك دقيقة ومحدثة. نحتفظ بالحق في إلغاء الطلبات في حالة النشاط الاحتيالي أو معلومات الدفع غير الصحيحة. لأي أسئلة أو استفسارات بخصوص المدفوعات، يرجى الاتصال بفريق دعم العملاء لدينا.\n\n4. ملكية المحتوى: جميع المحتويات داخل التطبيق، بما في ذلك الصور والنصوص ومقاطع الفيديو والمواد الأخرى، مملوكة لـ [Your Seat] أو الجهات المرخصة لها. ما لم يُذكر خلاف ذلك، لا يُسمح لك باستخدام أو تعديل أو توزيع أو عرض أي محتوى من التطبيق دون إذن كتابي مسبق."),
         "theme": MessageLookupByLibrary.simpleMessage("النمط"),
+        "tickets": MessageLookupByLibrary.simpleMessage("التذاكر"),
+        "typing": MessageLookupByLibrary.simpleMessage("جاري الكتابة..."),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "watchlist": MessageLookupByLibrary.simpleMessage("قائمة المشاهدة"),
         "welcomeToYourSeat":
             MessageLookupByLibrary.simpleMessage("مرحبًا بك في YourSeat!"),
         "wrongConfirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -219,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wrong_phone_format":
             MessageLookupByLibrary.simpleMessage("صيغة رقم الهاتف غير صحيحة"),
         "year": MessageLookupByLibrary.simpleMessage("السنة"),
+        "yes": MessageLookupByLibrary.simpleMessage("نعم "),
         "youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber":
             MessageLookupByLibrary.simpleMessage(
                 "فقط أدخل رمز التحقق المرسل إلى رقم الهاتف المسجل."),

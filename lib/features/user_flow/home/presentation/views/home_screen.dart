@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                 const Search(),
                 SizedBox(height: 20.h),
                 TextWidget(text: lang.nowPlaying),
-                SizedBox(height: 20.h),
+                SizedBox(height: 30.h),
                 SizedBox(
                   height: 500.sp,
                   child: const MovieCarouselWidget(),
@@ -47,9 +47,9 @@ class HomeScreen extends StatelessWidget {
                  child: Image.asset("assets/images/discount.png"),
                 ),
                 Align(
-                  alignment: Alignment.topLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 12.0, top: 10),
+                    padding: const EdgeInsetsDirectional.fromSTEB(10,0,0,0),
                     child: TextS(
                       text: lang.cinema,
                     ),

@@ -1,8 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/widgets/chat_ask.dart';
 import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/widgets/chat_message.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../../../../../generated/l10n.dart';
 import '../widgets/chat_up.dart';
 
 class ChatBottt extends StatelessWidget {
@@ -10,6 +12,7 @@ class ChatBottt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     final theme = Theme.of(context);
     return ScaffoldF(
       body: Column(children: [
@@ -38,8 +41,8 @@ class ChatBottt extends StatelessWidget {
 
               ),
               child: Padding(
-                padding:  EdgeInsets.all(8.0.sp),
-                child: Text(' Yes , plz ',style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
+                padding:  EdgeInsets.only(right:15.sp),
+                child: Text(lang.yes,style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
               )
           ),
         ),
@@ -66,7 +69,7 @@ class ChatBottt extends StatelessWidget {
               ),
               child: Padding(
                 padding: EdgeInsets.all(5.0.sp),
-                child: Text(' typing ...',style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
+                child: Text(lang.typing,style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
               )
           ),
         ),

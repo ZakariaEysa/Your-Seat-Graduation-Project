@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 
 import '../widgets/watch_list_part.dart';
@@ -9,18 +10,19 @@ class WatchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     return ScaffoldF(
 
-      appBar: AppBar(
-
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-  size: 28
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: const Color(0xFF2E1371),
+          title: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(100, 0, 0, 0),
+            child: HeadAppBar(
+              title: lang.watchlist,
+            ),
+          ),
         ),
-        backgroundColor: const Color(0xFF2E1371),
-        title: const HeadAppBar(
-          title: 'Watch List ',
-        ),),
         body: SingleChildScrollView(
       child: Column(
         children: [

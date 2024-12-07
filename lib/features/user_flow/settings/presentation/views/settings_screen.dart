@@ -102,8 +102,12 @@ class SettingsPage extends StatelessWidget {
 
     return ScaffoldF(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF2E1371),
-        title: HeadAppBar(title: lang.setting),
+        title: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(95, 0, 0, 0),
+          child: HeadAppBar(title: lang.setting),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),

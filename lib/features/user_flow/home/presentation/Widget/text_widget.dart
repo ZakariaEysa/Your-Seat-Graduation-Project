@@ -19,7 +19,7 @@ class TextWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(10,0,0,0),
           child: Text(
             text,
             style: TextStyle(
@@ -32,7 +32,7 @@ class TextWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 10.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0,0,10,0),
           child: Row(
             children: [
               Text(

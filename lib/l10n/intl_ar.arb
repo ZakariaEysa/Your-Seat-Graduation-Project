@@ -138,5 +138,17 @@
   "skip" : "تخطي",
   "next" : "التالي",
   "favoritesOrWatchlistForQuickAccessToYourBelovedMovies" : "المفضلات أو قائمة المشاهدة للوصول السريع إلى أفلامك المفضلة.",
-  "ahmedSayed1" : "احمد سيد"
+  "ahmedSayed1" : "احمد سيد",
+  "Esam" : "عصام",
+  "home": "الرئيسية",
+  "watchlist":"قائمة المشاهدة",
+  "tickets": "التذاكر",
+
+  "settings": "الإعدادات",
+  "askmehere": "اسألني هنا...",
+  "HelloIamyourAIAssistant":"مرحبًا، أنا مساعد الذكاء الاصطناعي الخاص بك!",
+  "typing": "جاري الكتابة...",
+  "canyouhelp": "أيمكنني مساعدتك؟",
+  "yes": "نعم ",
+  "Esam1" : "عصام"
 }

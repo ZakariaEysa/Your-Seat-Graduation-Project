@@ -26,9 +26,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("Action, Sci-Fi"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("Avengers: Infinity War"),
+        "Esam": MessageLookupByLibrary.simpleMessage("Esam"),
+        "Esam1": MessageLookupByLibrary.simpleMessage("Esam"),
         "GreatSelectionOfMoviesHighlyRecommended":
             MessageLookupByLibrary.simpleMessage(
                 "Great selection of movies. Highly recommended!"),
+        "HelloIamyourAIAssistant": MessageLookupByLibrary.simpleMessage(
+            "Hello , I’m your AI\nAssistant !"),
         "IMAX_Cinema": MessageLookupByLibrary.simpleMessage("IMAX Cinema"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("Login Successful"),
@@ -63,12 +67,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to log out ?"),
+        "askmehere": MessageLookupByLibrary.simpleMessage("ask me here..."),
         "august": MessageLookupByLibrary.simpleMessage("August"),
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
         "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou":
             MessageLookupByLibrary.simpleMessage(
                 "Book tickets for the latest movies at the cinema nearest to you."),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "canyouhelp": MessageLookupByLibrary.simpleMessage("can i help you?"),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
         "comments": MessageLookupByLibrary.simpleMessage("Comments"),
@@ -137,6 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "iAgreeWith": MessageLookupByLibrary.simpleMessage("I agree with the"),
         "invalidEmailFormat":
             MessageLookupByLibrary.simpleMessage("Invalid e-mail format"),
@@ -201,6 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign Up"),
@@ -214,7 +222,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "The luxurious seats and immersive sound system make for a truly unforgettable"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+        "tickets": MessageLookupByLibrary.simpleMessage("Tickets"),
+        "typing": MessageLookupByLibrary.simpleMessage("typing..."),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
+        "watchlist": MessageLookupByLibrary.simpleMessage("Watch List"),
         "welcomeToYourSeat":
             MessageLookupByLibrary.simpleMessage("Welcome to YourSeat !"),
         "wrongConfirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -226,6 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wrong_phone_format":
             MessageLookupByLibrary.simpleMessage("Wrong phone format"),
         "year": MessageLookupByLibrary.simpleMessage("Year"),
+        "yes": MessageLookupByLibrary.simpleMessage(" Yes"),
         "youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber":
             MessageLookupByLibrary.simpleMessage(
                 "You just need to enter the OTP sent to the registered phone number."),

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../generated/l10n.dart';
+
 class ChatMessage extends StatelessWidget{
 
 
   const ChatMessage({super.key,});
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     final theme = Theme.of(context);
    return Padding(
      padding: EdgeInsets.only(right:170.w,top:40.h,left: 20.w),
@@ -31,7 +34,7 @@ class ChatMessage extends StatelessWidget{
          ),
          child: Padding(
            padding:  EdgeInsets.all(4.0.sp),
-           child: Text(' can i help you?',style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
+           child: Text(lang.canyouhelp,style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
          )
      ),
    );

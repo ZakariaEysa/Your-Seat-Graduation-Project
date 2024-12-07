@@ -43,7 +43,10 @@ class _SignInState extends State<SignIn> {
     return ScaffoldF(
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E1371),
-        title: HeadAppBar(title: lang.sign_in),
+        title: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(85, 0, 0, 0),
+          child: HeadAppBar(title: lang.sign_in),
+        ),
       ),
       body: Stack(
         children: [

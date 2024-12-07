@@ -1377,6 +1377,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Esam`
+  String get Esam {
+    return Intl.message(
+      'Esam',
+      name: 'Esam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Watch List`
+  String get watchlist {
+    return Intl.message(
+      'Watch List',
+      name: 'watchlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tickets`
+  String get tickets {
+    return Intl.message(
+      'Tickets',
+      name: 'tickets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ask me here...`
+  String get askmehere {
+    return Intl.message(
+      'ask me here...',
+      name: 'askmehere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello , I’m your AI\nAssistant !`
+  String get HelloIamyourAIAssistant {
+    return Intl.message(
+      'Hello , I’m your AI\nAssistant !',
+      name: 'HelloIamyourAIAssistant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `typing...`
+  String get typing {
+    return Intl.message(
+      'typing...',
+      name: 'typing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `can i help you?`
+  String get canyouhelp {
+    return Intl.message(
+      'can i help you?',
+      name: 'canyouhelp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Yes`
+  String get yes {
+    return Intl.message(
+      ' Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Esam`
+  String get Esam1 {
+    return Intl.message(
+      'Esam',
+      name: 'Esam1',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

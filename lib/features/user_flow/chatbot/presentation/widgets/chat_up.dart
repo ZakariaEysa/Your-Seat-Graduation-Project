@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 
 class ChatUp extends StatelessWidget{
@@ -10,7 +11,7 @@ class ChatUp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    var lang = S.of(context);
     return Column(
       children: [
         Padding(
@@ -34,7 +35,7 @@ class ChatUp extends StatelessWidget{
         Padding(
           padding:  EdgeInsets.only(top:20.h, right: 100.w),
           child: Text(
-            'Hello , I’m your AI\nAssistant !',
+            lang.HelloIamyourAIAssistant,
             style: theme.textTheme.titleLarge!.copyWith(fontSize: 35.sp),
             textAlign: TextAlign.start,
           ),

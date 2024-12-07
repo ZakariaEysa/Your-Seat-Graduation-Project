@@ -133,5 +133,21 @@
   "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou" : "Book tickets for the latest movies at the cinema nearest to you.",
   "favoriteItAddWatchlist" : "Favorite it!\n Add watchlist",
   "favoritesOrWatchlistForQuickAccessToYourBelovedMovies" : "Favorites or watchlist for quick access to your beloved movies.",
-  "ahmedSayed1" : "Ahmed Sayed"
+  "ahmedSayed1" : "Ahmed Sayed",
+
+
+  "Esam" : "Esam",
+  "home": "Home",
+
+  "watchlist":"Watch List",
+  "settings": "Settings",
+
+
+  "tickets": "Tickets",
+  "askmehere": "ask me here...",
+  "HelloIamyourAIAssistant":"Hello , I’m your AI\nAssistant !",
+  "typing": "typing...",
+  "canyouhelp": "can i help you?",
+  "yes": " Yes",
+  "Esam1" : "Esam"
 }

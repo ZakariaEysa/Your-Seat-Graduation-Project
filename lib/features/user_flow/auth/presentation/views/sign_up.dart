@@ -71,8 +71,11 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         iconTheme: const IconThemeData(size: 28, color: Colors.white),
         backgroundColor: theme.primaryColor,
-        title: HeadAppBar(
-          title: local.signUp,
+        title: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 0, 20),
+          child: HeadAppBar(
+            title: local.signUp,
+          ),
         ),
       ),
       body: Stack(

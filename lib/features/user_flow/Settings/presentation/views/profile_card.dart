@@ -109,7 +109,7 @@ class _ProfileCardState extends State<ProfileCard> {
                     SizedBox(height: 20.h),
                     PersonalInfoCard(
                       title: lang.email,
-                      icon: "assets/icons/telephone.png",
+                      icon: "assets/images/email 2.png",
                       info: currentUser?.email ?? "-",
                     ),
                     SizedBox(height: 20.h),
@@ -131,11 +131,11 @@ class _ProfileCardState extends State<ProfileCard> {
                       info: currentUser?.location ?? "-",
                     ),
                     SizedBox(height: 20.h),
-                    PersonalInfoCard(
-                      title: lang.emailAddress,
-                      icon: "assets/icons/email.png",
-                      info: currentUser?.email ?? "-",
-                    ),
+                    // PersonalInfoCard(
+                    //   title: lang.emailAddress,
+                    //   icon: "assets/icons/email.png",
+                    //   info: currentUser?.email ?? "-",
+                    // ),
                   ],
                 ),
               ),

@@ -86,8 +86,11 @@ class AuthCubit extends Cubit<AuthState> {
          emit(AuthLoading());
            await authRepo.checkUserExistsR(userModel.email);
          sendOtp(userModel.email);
-         authRepo.saveUser(userModel: userModel);
-      // Create user with email and password
+             authRepo.saveUser(userModel: userModel);
+
+
+
+         // Create user with email and password
       // UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
       //   email: email,
       //   password: password,
@@ -148,22 +151,6 @@ class AuthCubit extends Cubit<AuthState> {
       // const SnackBar(content: Text("OTP failed to send")));
 
       AppLogs.scussessLog("failed");
-    }
-
-
-  }
-
-  void verifyOtp(String email) async{
-
-    if (await EmailOTP.sendOTP(email: email)) {
-      AppLogs.scussessLog("success");
-      // ScaffoldMessenger.of(context).showSnackBar(
-      // const SnackBar(content: Text("OTP has been sent")));
-    } else {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      // const SnackBar(content: Text("OTP failed to send")));
-
-      AppLogs.errorLog("err");
     }
 
 

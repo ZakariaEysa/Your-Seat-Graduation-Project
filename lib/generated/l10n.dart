@@ -100,10 +100,10 @@ class S {
     );
   }
 
-  /// `We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact Information:\nCustomer Support Email: [support@yourseatapp.com]\nPhone Number: [+123-456-7890]\n\nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:`
+  /// `We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact \nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:`
   String get contactUsContent {
     return Intl.message(
-      'We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact Information:\nCustomer Support Email: [support@yourseatapp.com]\nPhone Number: [+123-456-7890]\n\nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:',
+      'We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact \nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:',
       name: 'contactUsContent',
       desc: '',
       args: [],
@@ -1483,6 +1483,26 @@ class S {
     return Intl.message(
       'Esam',
       name: 'Esam1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rahaf`
+  String get rahaf {
+    return Intl.message(
+      'Rahaf',
+      name: 'rahaf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rahaf`
+  String get rahaf1 {
+    return Intl.message(
+      'Rahaf',
+      name: 'rahaf1',
       desc: '',
       args: [],
     );

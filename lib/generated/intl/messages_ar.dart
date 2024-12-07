@@ -80,7 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "contactUsContent": MessageLookupByLibrary.simpleMessage(
-            "يسعدنا سماعك! سواء كان لديك استفسارات، تحتاج إلى دعم، تريد مشاركة ملاحظات، أو لديك اقتراحات، فريقنا هنا لمساعدتك. لا تتردد في التواصل معنا باستخدام النموذج أدناه أو عبر تفاصيل الاتصال المقدمة.\nمعلومات الاتصال:\nالبريد الإلكتروني لدعم العملاء: [support@yourseatapp.com]\nرقم الهاتف: [+123-456-7890]\n\nالملاحظات والاقتراحات:\nنقدر مدخلاتك بشدة! إذا كانت لديك اقتراحات لتحسين تجربتك مع YourSeat، يرجى مشاركتها في حقل الرسالة بنموذج الاتصال أو إرسالها مباشرة إلى بريدنا الإلكتروني.\n\nتواصل معنا على قنوات التواصل الاجتماعي الخاصة بنا للحصول على أحدث التحديثات والعروض الترويجية والمزيد:"),
+            "يسعدنا سماعك! سواء كان لديك استفسارات، تحتاج إلى دعم، تريد مشاركة ملاحظات، أو لديك اقتراحات، فريقنا هنا لمساعدتك. لا تتردد في التواصل معنا باستخدام النموذج أدناه \nالملاحظات والاقتراحات:\nنقدر مدخلاتك بشدة! إذا كانت لديك اقتراحات لتحسين تجربتك مع YourSeat، يرجى مشاركتها في حقل الرسالة بنموذج الاتصال أو إرسالها مباشرة إلى بريدنا الإلكتروني.\n\nتواصل معنا على قنوات التواصل الاجتماعي الخاصة بنا للحصول على أحدث التحديثات والعروض الترويجية والمزيد:"),
         "continueAsGuest":
             MessageLookupByLibrary.simpleMessage("المتابعة كضيف"),
         "continueWithFacebook":
@@ -169,7 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_account": MessageLookupByLibrary.simpleMessage("لا تملك حساباً؟"),
         "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),
         "november": MessageLookupByLibrary.simpleMessage("نوفمبر"),
-        "nowPlaying": MessageLookupByLibrary.simpleMessage("يُعرض الآن"),
+        "nowPlaying": MessageLookupByLibrary.simpleMessage("التشغيل الان"),
         "october": MessageLookupByLibrary.simpleMessage("أكتوبر"),
         "ok": MessageLookupByLibrary.simpleMessage("موافق"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
@@ -198,6 +198,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "promoDiscount":
             MessageLookupByLibrary.simpleMessage("العروض والخصومات"),
+        "rahaf": MessageLookupByLibrary.simpleMessage("رهف"),
+        "rahaf1": MessageLookupByLibrary.simpleMessage("رهف"),
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح!"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),

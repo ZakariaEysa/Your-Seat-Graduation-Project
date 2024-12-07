@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_otp/email_otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:meta/meta.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/data/repos/auth_repo.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/google_user_model.dart';
 
+import '../../../../../utils/app_logs.dart';
 import '../../domain/model/user_model.dart';
 
 part 'auth_state.dart';
@@ -83,9 +85,12 @@ class AuthCubit extends Cubit<AuthState> {
     try {
          emit(AuthLoading());
            await authRepo.checkUserExistsR(userModel.email);
+         sendOtp(userModel.email);
+             authRepo.saveUser(userModel: userModel);
 
-         authRepo.saveUser(userModel: userModel);
-      // Create user with email and password
+
+
+         // Create user with email and password
       // UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
       //   email: email,
       //   password: password,
@@ -134,15 +139,23 @@ class AuthCubit extends Cubit<AuthState> {
     // }
   }
 
-  Future<void> sendOtp(String phoneNumber) async {
-    try {
-      emit(AuthLoading());
-      await authRepo.sendOtp(phoneNumber, (verificationId) {
-        emit(OtpSent(verificationId));
-      });
-    } catch (e) {
-      emit(AuthError(e.toString()));
+
+  void sendOtp(String email) async{
+
+    if (await EmailOTP.sendOTP(email: email)) {
+      AppLogs.scussessLog("success");
+      // ScaffoldMessenger.of(context).showSnackBar(
+      // const SnackBar(content: Text("OTP has been sent")));
+    } else {
+      // ScaffoldMessenger.of(context).showSnackBar(
+      // const SnackBar(content: Text("OTP failed to send")));
+
+      AppLogs.scussessLog("failed");
     }
+
+
   }
+
+
 }
 

@@ -1,3 +1,4 @@
+import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/timer.dart';
@@ -37,8 +38,29 @@ class Otp extends StatelessWidget {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+    // var cubit = AuthCubit.get(context);
+    //
+    // void verifyOtp(String email) async{
+    //   bool isOtpValid = await EmailOTP.verifyOTP(otp: otpController.text);
+    //   if (isOtpValid) {
+    //     authRepo.saveUser(userModel: userModel);
+    //
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => const Homelayout()),
+    //     );
+    //   } else {
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //         const SnackBar(content: Text("Invalid OTP")));
+    //   }
+    //
+    //
+    // }
+
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
@@ -150,4 +172,7 @@ class Otp extends StatelessWidget {
       ),
     );
   }
+
+
+
 }

@@ -411,6 +411,8 @@ class _SignUpState extends State<SignUp> {
               state.errorMessage );
               }
               if (state is AuthSuccess) {
+
+            AppLogs.scussessLog("creae");
                 HiveStorage.set(HiveKeys.role, Role.email.toString());
 
                navigateAndRemoveUntil(context: context, screen: Otp());
@@ -476,94 +478,94 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
-  Future<void> checkUserExists(String userId) async {
-    try {
-      AppLogs.errorLog(userId.toString());
-      CollectionReference usersCollection =
-      FirebaseFirestore.instance.collection('users');
-      DocumentSnapshot userDoc = await usersCollection
-          .doc(
-        "0$userId",
-      )
-          .get();
+  // Future<void> checkUserExists(String userId) async {
+  //   try {
+  //     AppLogs.errorLog(userId.toString());
+  //     CollectionReference usersCollection =
+  //     FirebaseFirestore.instance.collection('users');
+  //     DocumentSnapshot userDoc = await usersCollection
+  //         .doc(
+  //       "0$userId",
+  //     )
+  //         .get();
+  //
+  //     if (userDoc.exists) {
+  //       AppLogs.errorLog("aaa");
+  //
+  //       DialogUtils.showMessage(context, 'Sorry this account exist before',
+  //           posAction: () {
+  //             // navigatePop(context: context);
+  //           }, posActionTitle: "Ok");
+  //
+  //       return;
+  //     }
+  //
+  //     await saveUserToFireStore();
+  //     DialogUtils.showMessage(context, "Registered Successfully",
+  //         posActionTitle: "Ok", posAction: () {
+  //           navigateTo(context: context, screen:  Otp());
+  //         });
+  //
+  //     AppLogs.errorLog("ww");
+  //   } catch (e) {}
+  // }
 
-      if (userDoc.exists) {
-        AppLogs.errorLog("aaa");
-
-        DialogUtils.showMessage(context, 'Sorry this account exist before',
-            posAction: () {
-              // navigatePop(context: context);
-            }, posActionTitle: "Ok");
-
-        return;
-      }
-
-      await saveUserToFireStore();
-      DialogUtils.showMessage(context, "Registered Successfully",
-          posActionTitle: "Ok", posAction: () {
-            navigateTo(context: context, screen:  Otp());
-          });
-
-      AppLogs.errorLog("ww");
-    } catch (e) {}
-  }
-
-  Future<void> signInWithPhoneNumber(String phoneNumber) async {
-    try {
-      // Start the phone number verification process
-      await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        verificationCompleted: (PhoneAuthCredential credential) {
-          // Auto-complete verification if the device is already verified
-          signInWithCredential(credential);
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          // Handle verification errors
-          print('Verification failed: ${e.message}');
-        },
-        codeSent: (String verificationId, int? resendToken) {
-          // Store the verification ID and resend token
-          // Prompt the user to enter the verification code
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          // Handle timeout if the user doesn't enter the code
-        },
-      );
-    } catch (e) {
-      print('Error during phone number verification: ${e.toString()}');
-    }
-  }
-
-  Future<void> signInWithCredential(PhoneAuthCredential credential) async {
-    try {
-      // Sign in with the verification credential
-      await FirebaseAuth.instance.signInWithCredential(credential);
-      // User is now signed in
-    } catch (e) {
-      print('Error signing in with credential: ${e.toString()}');
-    }
-  }
-
-  Future<void> saveUserToFireStore() async {
-    AuthCubit auth = AuthCubit.get(context);
-    DialogUtils.showMessage(context, "Creating Account");
-    try {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc("0${auth.phone.text}")
-          .set({
-        'username': auth.userName.text,
-        'phone': "0${auth.phone.text}",
-        'password': auth.password.text,
-        'birthdate':
-        "${auth.selectedDay ?? ''}/${auth.selectedMonth ?? ''}/${auth.selectedYear ?? ''}"
-      });
-      DialogUtils.hideLoading(context);
-
-      print("User saved successfully!");
-    } catch (e) {
-      print("Error saving user: $e");
-    }
-  }
+//   Future<void> signInWithPhoneNumber(String phoneNumber) async {
+//     try {
+//       // Start the phone number verification process
+//       await FirebaseAuth.instance.verifyPhoneNumber(
+//         phoneNumber: phoneNumber,
+//         verificationCompleted: (PhoneAuthCredential credential) {
+//           // Auto-complete verification if the device is already verified
+//           signInWithCredential(credential);
+//         },
+//         verificationFailed: (FirebaseAuthException e) {
+//           // Handle verification errors
+//           print('Verification failed: ${e.message}');
+//         },
+//         codeSent: (String verificationId, int? resendToken) {
+//           // Store the verification ID and resend token
+//           // Prompt the user to enter the verification code
+//         },
+//         codeAutoRetrievalTimeout: (String verificationId) {
+//           // Handle timeout if the user doesn't enter the code
+//         },
+//       );
+//     } catch (e) {
+//       print('Error during phone number verification: ${e.toString()}');
+//     }
+//   }
+//
+//   Future<void> signInWithCredential(PhoneAuthCredential credential) async {
+//     try {
+//       // Sign in with the verification credential
+//       await FirebaseAuth.instance.signInWithCredential(credential);
+//       // User is now signed in
+//     } catch (e) {
+//       print('Error signing in with credential: ${e.toString()}');
+//     }
+//   }
+//
+//   Future<void> saveUserToFireStore() async {
+//     AuthCubit auth = AuthCubit.get(context);
+//     DialogUtils.showMessage(context, "Creating Account");
+//     try {
+//       await FirebaseFirestore.instance
+//           .collection('users')
+//           .doc("0${auth.phone.text}")
+//           .set({
+//         'username': auth.userName.text,
+//         'phone': "0${auth.phone.text}",
+//         'password': auth.password.text,
+//         'birthdate':
+//         "${auth.selectedDay ?? ''}/${auth.selectedMonth ?? ''}/${auth.selectedYear ?? ''}"
+//       });
+//       DialogUtils.hideLoading(context);
+//
+//       print("User saved successfully!");
+//     } catch (e) {
+//       print("Error saving user: $e");
+//     }
+//   }
 }
 

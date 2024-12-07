@@ -58,23 +58,19 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<void> saveUser({
 
-    required String username,
-    required String phone,
-    required String password,
-    required String birthDate,
+    required UserModel userModel,
+
   }) async {
     try {
 
-       await HiveStorage.saveDefaultUser(UserModel(name: username, email: phone, password: password, dateOfBirth: birthDate));
 
 
       await authRemoteDataSource.saveUserToFireStore(
-        email: phone,
-        username: username,
-        //phone: phone,
-        password: password,
-        birthDate: birthDate,
+     userModel: userModel
+
       );
+      await HiveStorage.saveDefaultUser(userModel);
+
     } catch (e) {
       rethrow;
     }

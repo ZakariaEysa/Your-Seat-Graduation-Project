@@ -9,13 +9,19 @@ import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
-class ProfileCard extends StatelessWidget {
+class ProfileCard extends StatefulWidget {
   const ProfileCard({super.key});
+
+  @override
+  State<ProfileCard> createState() => _ProfileCardState();
+}
+
+class _ProfileCardState extends State<ProfileCard> {
+  var currentUser;
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var currentUser;
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
     } else {

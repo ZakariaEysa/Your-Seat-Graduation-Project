@@ -27,6 +27,8 @@ class InfoContainer extends StatelessWidget {
             color: theme.colorScheme.onSecondary),
         child: TextFormField(
          // initialValue: title,
+         // initialValue: title,
+
           textAlign: TextAlign.start,
           controller: controller,
         ),

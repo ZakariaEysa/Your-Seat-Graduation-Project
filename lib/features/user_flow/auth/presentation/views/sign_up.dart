@@ -24,6 +24,7 @@ import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 import '../../data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
+import '../../domain/model/user_model.dart';
 import '../../domain/repos_impl/auth_repo_impl.dart';
 import '../widgets/BirthDateDropdown.dart';
 
@@ -409,7 +410,7 @@ class _SignUpState extends State<SignUp> {
               if (state is AuthSuccess) {
                 HiveStorage.set(HiveKeys.role, Role.email.toString());
 
-                navigateAndRemoveUntil(context: context, screen: Otp());
+               navigateAndRemoveUntil(context: context, screen: Otp());
               }
             },
             builder: (context, state) {
@@ -452,7 +453,22 @@ class _SignUpState extends State<SignUp> {
     if (privacyPolicy == false) {
       return;
     } else {
-      auth.registerUser(username: auth.userName.text, password: auth.password.text, birthDate: "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}", email: auth.email.text);
+      // auth.registerUser(username: auth.userName.text, password: auth.password.text, birthDate: "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}", email: auth.email.text);
+
+     auth.registerUser(userModel: UserModel(
+         name: auth.userName.text, password: auth.password.text, dateOfBirth: "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}", email: auth.email.text,
+
+     location: "",
+       gender: "",
+       image: ""
+
+
+
+
+
+
+
+     ));
       //await checkUserExists(auth.phone.text);
     }
   }

@@ -7,6 +7,8 @@ import 'package:meta/meta.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/data/repos/auth_repo.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/google_user_model.dart';
 
+import '../../domain/model/user_model.dart';
+
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -16,7 +18,6 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this.authRepo) : super(AuthInitial());
   GlobalKey<FormState> formKeyLogin = GlobalKey();
   GlobalKey<FormState> formKeyRegister = GlobalKey();
-  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController userName = TextEditingController();
   TextEditingController phone = TextEditingController();
@@ -29,7 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
   int? selectedYear;
   bool showPassword = true;
 
-  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   Future<void> signInWithGoogle() async {
     emit(AuthLoading());
     final response = await authRepo.signInWithGoogle();
@@ -75,34 +76,35 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> registerUser({
-    required String username,
-    required String email,
-    required String password,
-    required String birthDate,
+    required UserModel userModel,
+
   }) async {
 
     try {
          emit(AuthLoading());
+           await authRepo.checkUserExistsR(userModel.email);
+
+         authRepo.saveUser(userModel: userModel);
       // Create user with email and password
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-
-      // Get the UID or email of the newly created user
-      String userEmail = userCredential.user!.email!;
-      String uid = userCredential.user!.uid;
-
-      // Now create a Firestore document for the user
-      await FirebaseFirestore.instance.collection('users').doc(userEmail).set({
-        'username': username,
-        'email': userEmail,
-        'uid': uid,
-        'birthDate': birthDate,
-        'createdAt': FieldValue.serverTimestamp(),
-      });
-
-      print('User successfully registered and data stored in Firestore.');
+      // UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      //   email: email,
+      //   password: password,
+      // );
+      //
+      // // Get the UID or email of the newly created user
+      // String userEmail = userCredential.user!.email!;
+      // String uid = userCredential.user!.uid;
+      //
+      // // Now create a Firestore document for the user
+      // await FirebaseFirestore.instance.collection('users').doc(userEmail).set({
+      //   'username': username,
+      //   'email': userEmail,
+      //   'uid': uid,
+      //   'birthDate': birthDate,
+      //   'createdAt': FieldValue.serverTimestamp(),
+      // });
+      //
+      // print('User successfully registered and data stored in Firestore.');
 
       // You can emit states if you're using a state management solution, for example:
        emit(AuthSuccess());

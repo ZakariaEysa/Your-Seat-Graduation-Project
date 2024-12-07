@@ -18,6 +18,7 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/v
 import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:yourseatgraduationproject/widgets/text_field/text_field/text_form_field_builder.dart';
 import '../../../../../utils/navigation.dart';
+import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
@@ -107,21 +108,20 @@ class _SignInState extends State<SignIn> {
                           padding: EdgeInsets.symmetric(horizontal: 16.sp),
                           child: TextFormFieldBuilder(
                             height: 80.h,
-                            type: TextInputType.phone,
                             label: lang.email,
-                            controller: cubit.phoneController,
-                            hinitText: lang.email,
-                            imagePath: "assets/images/telephone.png",
-                            obsecure: false,
+                            controller: cubit.emailController,
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return lang.enter_phone_number;
+                              String? enteredNumber = value;
+                              if (value == null || value.trim().isEmpty) {
+                                return lang.enterEmailAddress;
+                              }if(!isValidEmail(value)){
+                                return lang.invalidEmailFormat;
                               }
-                              // if (value.length != 11) {
-                              //   return lang.invalid_phone_format;
-                              // }
                               return null;
                             },
+                            obsecure: false,
+                            type: TextInputType.emailAddress,
+                            imagePath: 'assets/images/email 2.png',
                           ),
                         ),
                       ),
@@ -162,7 +162,7 @@ class _SignInState extends State<SignIn> {
                               end: 20.w, bottom: 15.h, top: 12.h),
                           child: GestureDetector(
                             onTap: () {
-                              if (cubit.phoneController.text.length == 11) {
+                              if (cubit.emailController.text.length == 11) {
                                 navigateTo(
                                     context: context, screen:  Otp());
                               } else {
@@ -192,7 +192,7 @@ class _SignInState extends State<SignIn> {
                           text: "",
                           onTap: () async {
                             if (cubit.formKeyLogin.currentState!.validate()) {
-                              cubit.validateUser(cubit.phoneController.text,
+                              cubit.validateUser(cubit.emailController.text,
                                   cubit.passwordController.text);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(

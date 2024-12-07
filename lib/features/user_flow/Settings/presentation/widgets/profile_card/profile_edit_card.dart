@@ -12,7 +12,7 @@ import '../../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../auth/presentation/widgets/BirthDateDropdown.dart';
 
 class ProfileEditCard extends StatefulWidget {
-   ProfileEditCard({super.key});
+   const ProfileEditCard({super.key});
 
 
   @override
@@ -26,17 +26,20 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+
   final List<int> years =
   List<int>.generate(80, (index) => DateTime.now().year - index);
   String? selectedMonth;
   int? selectedDay;
   int? selectedYear;
+  var currentUser;
+
 
 
   @override
   Widget build(BuildContext context) {
 
-    var currentUser;
+
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
     } else {
@@ -61,6 +64,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       lang.december
     ];
 
+    userController.text= currentUser.name;
+    emailController.text=currentUser.email;
     return  ScaffoldF(
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E1371),
@@ -96,6 +101,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                          InfoContainer(
                            controller: userController,
                              type: TextInputType.text,
+
                              title: "Mohamed Ahmed"),
                          Padding(
                            padding: const EdgeInsets.symmetric(horizontal: 12.0),                         child: Text(lang.emailAddress,style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),),

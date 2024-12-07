@@ -16,11 +16,8 @@ abstract class AuthRemoteDataSource {
   Future<String> checkUserExists(String userId, String password);
   Future<void> checkUserExistsR(String phone);
   Future<void> saveUserToFireStore({
-    required String username,
-    required String email,
-    //required String phone,
-    required String password,
-    required String birthDate,
+    required UserModel userModel,
+
   });
   Future<void> signInWithPhoneNumber(
       String phoneNumber, Function(String) onCodeSent);
@@ -126,21 +123,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> saveUserToFireStore({
 
-    // TODO: Change to userModel
-    required String username,
-    required String email,
-    required String password,
-    required String birthDate,
+    required UserModel userModel,
+
   }) async {
-    await FirebaseFirestore.instance.collection('users').doc(email).set({
-      'name': username,
-      'email': email,
+    await FirebaseFirestore.instance.collection('users').doc(userModel.email).set({
+      'name':userModel.name ,
+      'email': userModel.email,
       //'phone': "0$phone",
-      'password': password,
-      'dateOfBirth': birthDate,
-      'gender': "",
-      'image': "",
-      'location': "",
+      'password':userModel. password,
+      'dateOfBirth': userModel.dateOfBirth,
+      'gender': userModel.gender,
+      'image': userModel.image,
+      'location': userModel.location,
     });
 
   }

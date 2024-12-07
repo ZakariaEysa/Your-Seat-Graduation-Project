@@ -16,7 +16,7 @@ class NowPLaying extends StatelessWidget{
        body:SingleChildScrollView(
          child: Column(
            children: [
-             SizedBox(height: 10.h,),
+             SizedBox(height: 9.h,),
              Row(
                children: [
                  Padding(

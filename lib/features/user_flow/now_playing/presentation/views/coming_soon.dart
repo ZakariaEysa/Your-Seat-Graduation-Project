@@ -45,7 +45,7 @@ class _ComingSoonsState extends State<ComingSoons> {
         ],
       ),
       SizedBox(
-        height: 10.h,
+        height: 9.h,
       ),
       Row(
         children: [

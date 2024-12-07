@@ -78,7 +78,7 @@ class CinemaDetails extends StatelessWidget {
                               ),
                               Image.asset(
                                 'assets/images/cinemastar.png',
-                                width: 14.w,
+                                width: 13.w,
                                 height: 12.h,
                               ),
                               SizedBox(

@@ -20,7 +20,7 @@ class CinemaMovies extends StatelessWidget{
        Image.asset(
          image,
          width: 170.w,
-         height: 265.h,
+         height: 264.h,
          fit: BoxFit.cover,
        ),
          SizedBox(height: 10.h,),

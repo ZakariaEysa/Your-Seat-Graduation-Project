@@ -38,7 +38,7 @@ class _ComingMoviesState extends State<ComingMovies> {
         Image.asset(
           widget.image,
           width: 170.w,
-          height: 229.h,
+          height: 228.h,
           fit: BoxFit.cover,
         ),
         SizedBox(

@@ -38,7 +38,7 @@ class _AppState extends State<App> {
             ),
           ),
           title: Container(
-            width: 315.w,
+            width: 314.w,
             height: 41.h,
             decoration: BoxDecoration(
               color: const Color(0xFF0F0A2B).withOpacity(.30),

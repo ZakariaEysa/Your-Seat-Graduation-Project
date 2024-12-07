@@ -15,7 +15,7 @@ class PlayingMovies extends StatefulWidget {
 
 class _PlayingMoviesState extends State<PlayingMovies> {
 
-  bool _isBookmarked = false;
+  bool _isBookmarked =false;
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);

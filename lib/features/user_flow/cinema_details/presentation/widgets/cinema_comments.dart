@@ -27,7 +27,7 @@ class CinemaComments extends StatelessWidget {
             Image.asset(
               image,
               width: 35.w,
-              height: 42.h,
+              height: 41.h,
             ),
             SizedBox(width: 10.w),
             Expanded(

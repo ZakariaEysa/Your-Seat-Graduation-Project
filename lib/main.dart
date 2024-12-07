@@ -6,6 +6,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bott.dart';
+import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
+import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/cinema_details.dart';
+import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/views/coming_soon.dart';
+import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/views/now_playing.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
@@ -16,6 +21,8 @@ import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'features/user_flow/now_playing/presentation/widgets/app.dart';
 
 
 void main() async {
@@ -152,7 +159,7 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home: const SplashScreen(),
+              home:App(),
             );
           });
     });

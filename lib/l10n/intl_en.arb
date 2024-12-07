@@ -110,15 +110,23 @@
   "TwoHoursFiveMinutes": "2 hours 5 minutes",
   "ActionSciFi": "Action, Sci-Fi",
   "GreatSelectionOfMoviesHighlyRecommended": "Great selection of movies. Highly recommended!",
-  "TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable": "The luxurious seats and immersive sound system make for a truly unforgettable experience.",
-  "TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere": "The cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere.",
+  "TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable": "The luxurious seats and immersive sound  system make for a truly unforgettable experience.",
+  "TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere": "The cinema's modern design and  aesthetically pleasing decor create a welcoming atmosphere.",
   "notifications": "Notification",
+
   "general": "General",
   "zakaria1": "zakaria1",
 
+
   "ahmedSayed" : "Ahmed Sayed",
+
   "ok": "OK",
   "cancel": "Cancel",
   "areYouSureYouWantToLogOut" : "Are you sure you want to log out ?",
-  "ahmedSayed1" : "Ahmed Sayed"
+  "ahmedSayed1" : "Ahmed Sayed",
+
+  "rahaf": "Rahaf",
+  "nowPlaying": "Now Playing",
+  "comingSoon": "Coming Soon",
+  "rahaf1": "Rahaf"
 }

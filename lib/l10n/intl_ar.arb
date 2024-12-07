@@ -126,5 +126,11 @@
   "ok": "موافق",
   "cancel": "الغاء",
   "areYouSureYouWantToLogOut" : "هل انت متاكد انك تريد تسجيل الخروج ؟",
-  "ahmedSayed1" : "احمد سيد"
+  "ahmedSayed1" : "احمد سيد",
+
+  "rahaf": "رهف",
+  "nowPlaying": "التشغيل الان",
+  "comingSoon": "قريباً",
+  "rahaf1": "رهف"
+
 }

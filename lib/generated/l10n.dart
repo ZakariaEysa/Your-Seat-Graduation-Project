@@ -1154,11 +1154,11 @@ class S {
     );
   }
 
-  /// `The luxurious seats and immersive sound system make for a truly unforgettable experience.`
+  /// `The luxurious seats and immersive sound  system make for a truly unforgettable experience.`
   String
       get TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable {
     return Intl.message(
-      'The luxurious seats and immersive sound system make for a truly unforgettable experience.',
+      'The luxurious seats and immersive sound  system make for a truly unforgettable experience.',
       name:
           'TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable',
       desc: '',
@@ -1166,11 +1166,11 @@ class S {
     );
   }
 
-  /// `The cinema's modern design and aesthetically pleasing decor create a welcoming atmosphere.`
+  /// `The cinema's modern design and  aesthetically pleasing decor create a welcoming atmosphere.`
   String
       get TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere {
     return Intl.message(
-      'The cinema\'s modern design and aesthetically pleasing decor create a welcoming atmosphere.',
+      'The cinema\'s modern design and  aesthetically pleasing decor create a welcoming atmosphere.',
       name:
           'TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere',
       desc: '',
@@ -1253,6 +1253,26 @@ class S {
     return Intl.message(
       'Ahmed Sayed',
       name: 'ahmedSayed1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rahaf`
+  String get rahaf {
+    return Intl.message(
+      'Rahaf',
+      name: 'rahaf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rahaf`
+  String get rahaf1 {
+    return Intl.message(
+      'Rahaf',
+      name: 'rahaf1',
       desc: '',
       args: [],
     );

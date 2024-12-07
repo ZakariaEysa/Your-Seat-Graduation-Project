@@ -49,10 +49,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
         "TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere":
             MessageLookupByLibrary.simpleMessage(
-                "The cinema\'s modern design and aesthetically pleasing decor create a welcoming atmosphere."),
+                "The cinema\'s modern design and  aesthetically pleasing decor create a welcoming atmosphere."),
         "TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable":
             MessageLookupByLibrary.simpleMessage(
-                "The luxurious seats and immersive sound system make for a truly unforgettable experience."),
+                "The luxurious seats and immersive sound  system make for a truly unforgettable experience."),
         "TwoHoursFiveMinutes":
             MessageLookupByLibrary.simpleMessage("2 hours 5 minutes"),
         "UserDoesNotExistOrPasswordIsIncorrect":
@@ -201,6 +201,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "promoDiscount":
             MessageLookupByLibrary.simpleMessage("Promotions & Discounts"),
+        "rahaf": MessageLookupByLibrary.simpleMessage("Rahaf"),
+        "rahaf1": MessageLookupByLibrary.simpleMessage("Rahaf"),
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("Registration successful!"),
         "review": MessageLookupByLibrary.simpleMessage("Review"),

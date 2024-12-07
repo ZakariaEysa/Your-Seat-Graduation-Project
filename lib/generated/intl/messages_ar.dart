@@ -169,7 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_account": MessageLookupByLibrary.simpleMessage("لا تملك حساباً؟"),
         "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),
         "november": MessageLookupByLibrary.simpleMessage("نوفمبر"),
-        "nowPlaying": MessageLookupByLibrary.simpleMessage("يُعرض الآن"),
+        "nowPlaying": MessageLookupByLibrary.simpleMessage("التشغيل الان"),
         "october": MessageLookupByLibrary.simpleMessage("أكتوبر"),
         "ok": MessageLookupByLibrary.simpleMessage("موافق"),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
@@ -198,6 +198,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "promoDiscount":
             MessageLookupByLibrary.simpleMessage("العروض والخصومات"),
+        "rahaf": MessageLookupByLibrary.simpleMessage("رهف"),
+        "rahaf1": MessageLookupByLibrary.simpleMessage("رهف"),
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح!"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),

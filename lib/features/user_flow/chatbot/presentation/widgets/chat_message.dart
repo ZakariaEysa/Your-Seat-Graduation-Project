@@ -34,7 +34,7 @@ class ChatMessage extends StatelessWidget{
          ),
          child: Padding(
            padding:  EdgeInsets.all(4.0.sp),
-           child: Text('lang.canyouhelp',style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
+           child: Text(lang.canyouhelp,style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
          )
      ),
    );

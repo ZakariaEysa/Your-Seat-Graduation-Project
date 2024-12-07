@@ -138,12 +138,16 @@
 
   "Esam" : "Esam",
   "home": "Home",
+
   "watchlist":"Watch List",
-  "Settings": "Settings",
+  "settings": "Settings",
+
+
+  "tickets": "Tickets",
   "askmehere": "ask me here...",
   "HelloIamyourAIAssistant":"Hello , I’m your AI\nAssistant !",
   "typing": "typing...",
   "canyouhelp": "can i help you?",
-  "yesplz": " Yes , plz ",
+  "yes": " Yes",
   "Esam1" : "Esam"
 }

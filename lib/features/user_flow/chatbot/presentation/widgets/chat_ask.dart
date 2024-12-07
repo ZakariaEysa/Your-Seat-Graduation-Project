@@ -25,7 +25,7 @@ class ChatAsk extends StatelessWidget {
                   children: [
                     TextField(
                       decoration: InputDecoration(
-                        hintText: 'lang.askmehere',
+                        hintText: lang.askmehere,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none,

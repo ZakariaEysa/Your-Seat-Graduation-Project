@@ -19,7 +19,7 @@ class WatchList extends StatelessWidget {
           title: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(100, 0, 0, 0),
             child: HeadAppBar(
-              title: 'lang.watchlist',
+              title: lang.watchlist,
             ),
           ),
         ),

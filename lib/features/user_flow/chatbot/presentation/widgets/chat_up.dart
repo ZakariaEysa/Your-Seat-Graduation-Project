@@ -35,7 +35,7 @@ class ChatUp extends StatelessWidget{
         Padding(
           padding:  EdgeInsets.only(top:20.h, right: 100.w),
           child: Text(
-            'lang.HelloIamyourAIAssistant',
+            lang.HelloIamyourAIAssistant,
             style: theme.textTheme.titleLarge!.copyWith(fontSize: 35.sp),
             textAlign: TextAlign.start,
           ),

@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/widgets/chat_ask.dart';
@@ -40,8 +41,8 @@ class ChatBottt extends StatelessWidget {
 
               ),
               child: Padding(
-                padding:  EdgeInsets.all(8.0.sp),
-                child: Text('lang.yesplz',style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
+                padding:  EdgeInsets.only(right:15.sp),
+                child: Text(lang.yes,style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
               )
           ),
         ),
@@ -68,7 +69,7 @@ class ChatBottt extends StatelessWidget {
               ),
               child: Padding(
                 padding: EdgeInsets.all(5.0.sp),
-                child: Text('lang.typing',style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
+                child: Text(lang.typing,style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
               )
           ),
         ),

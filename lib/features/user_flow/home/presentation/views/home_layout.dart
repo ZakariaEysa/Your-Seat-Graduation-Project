@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/home.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 0 ? 'lang.home' : '',
+            label: selectedIndex == 0 ? lang.home : '',
             labelStyle: const TextStyle(color: Colors.white),
           ),
           CurvedNavigationBarItem(
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/watch_list_icon.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 1 ? 'lang.watchlist' : '',
+            label: selectedIndex == 1 ? lang.watchlist : '',
             labelStyle: const TextStyle(color: Colors.white),
           ),
           CurvedNavigationBarItem(
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/ticket.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 2 ? 'lang.tickets' : '',
+            label: selectedIndex == 2 ? lang.tickets : '',
             labelStyle: const TextStyle(color: Colors.white),
           ),
           CurvedNavigationBarItem(
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/settings.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 3 ? 'lang.settings' : '',
+            label: selectedIndex == 3 ? lang.settings : '',
             labelStyle: const TextStyle(color: Colors.white),
           ),
         ],

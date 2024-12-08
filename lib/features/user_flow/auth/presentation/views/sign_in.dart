@@ -115,13 +115,13 @@ class _SignInState extends State<SignIn> {
                             label: lang.email,
                             controller: cubit.emailController,
                             validator: (value) {
-                              String? enteredNumber = value;
                               if (value == null || value.trim().isEmpty) {
                                 return lang.enterEmailAddress;
                               }if(!isValidEmail(value)){
                                 return lang.invalidEmailFormat;
                               }
                               return null;
+
                             },
                             obsecure: false,
                             type: TextInputType.emailAddress,
@@ -150,10 +150,15 @@ class _SignInState extends State<SignIn> {
                             ),
                             controller: cubit.passwordController,
                             label: lang.password,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return lang.enter_password;
-                              }
+
+                              validator: (text) {
+                                if (text == null || text.trim().isEmpty) {
+                                  return lang.enterPassword;
+                                }
+                                if (!isValidPassword(text)) {
+                                  return lang.password_validation;
+                                }
+
                               return null;
                             },
                           ),

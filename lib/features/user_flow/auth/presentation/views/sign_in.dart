@@ -24,6 +24,7 @@ import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
+
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
 
@@ -165,11 +166,13 @@ class _SignInState extends State<SignIn> {
                               end: 20.w, bottom: 15.h, top: 12.h),
                           child: GestureDetector(
                             onTap: () {
-                              if (cubit.emailController.text.length == 11) {
+                              if (
+                              isValidEmail(
+                              cubit.emailController.text)) {
                                 navigateTo(
                                     context: context, screen:  Otp());
                               } else {
-                                BotToast.showText(text: lang.enter_valid_phone);
+                                BotToast.showText(text: lang.enter_valid_email);
                               }
                             },
                             child: Align(

@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("أكشن، خيال علمي"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("المنتقمون: حرب إنفينيتي"),
+        "EmailAddress_does_not_exist": MessageLookupByLibrary.simpleMessage(
+            "عنوان البريد الالكتروني غير موجود"),
         "Esam": MessageLookupByLibrary.simpleMessage("عصام"),
         "Esam1": MessageLookupByLibrary.simpleMessage("عصام"),
         "GreatSelectionOfMoviesHighlyRecommended":
@@ -112,16 +114,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "ادخل عنوان البريد الالكتروني"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
-        "enterPhoneNumber":
-            MessageLookupByLibrary.simpleMessage("أدخل رقم الهاتف"),
         "enterUsername":
             MessageLookupByLibrary.simpleMessage("أدخل اسم المستخدم"),
+        "enter_EmailAddress": MessageLookupByLibrary.simpleMessage(
+            "أدخل عنوان البريد الالكتروني"),
         "enter_password":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
-        "enter_phone_number":
-            MessageLookupByLibrary.simpleMessage("أدخل رقم الهاتف"),
-        "enter_valid_phone":
-            MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم هاتف صحيح"),
+        "enter_valid_email": MessageLookupByLibrary.simpleMessage(
+            "يرجى إدخال عنوان بريد الكتروني صحيح"),
         "errorSavingUser": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ أثناء حفظ بيانات المستخدم."),
         "error_during_login":
@@ -147,8 +147,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "تنسيق البريد الإلكتروني غير صالح"),
         "invalidUsername":
             MessageLookupByLibrary.simpleMessage("اسم المستخدم غير صحيح"),
-        "invalid_phone_format":
-            MessageLookupByLibrary.simpleMessage("صيغة رقم الهاتف غير صحيحة"),
+        "invalid_EmailAddress_format": MessageLookupByLibrary.simpleMessage(
+            "صيغة عنوان البريد الالكتروني غير صحيحة"),
         "january": MessageLookupByLibrary.simpleMessage("يناير"),
         "july": MessageLookupByLibrary.simpleMessage("يوليو"),
         "june": MessageLookupByLibrary.simpleMessage("يونيو"),
@@ -182,16 +182,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "يجب أن تفي كلمة المرور بالمتطلبات"),
         "personalInfo":
             MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
-        "phone_does_not_exist":
-            MessageLookupByLibrary.simpleMessage("رقم الهاتف غير موجود"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
             "يجب أن توافق على الشروط والأحكام."),
         "pleaseFillTheCredentials":
             MessageLookupByLibrary.simpleMessage("يرجى ملء البيانات المطلوبة."),
+        "please_enter_EmailAddress": MessageLookupByLibrary.simpleMessage(
+            "يرجى إدخال عنوان البريد الالكتروني"),
         "please_enter_password":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال كلمة المرور"),
-        "please_enter_phone_number":
-            MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم الهاتف"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "privacyPolicyContent": MessageLookupByLibrary.simpleMessage(
             "في YourSeat، نحن ملتزمون بحماية خصوصيتك. توضح سياسة الخصوصية هذه كيف نجمع بياناتك الشخصية ونستخدمها ونحميها عند استخدامك لتطبيق YourSeat. باستخدام التطبيق، فإنك توافق على جمع واستخدام معلوماتك وفقًا لهذه السياسة.\n\n1. كيف نستخدم معلوماتك: المعلومات التي نجمعها منك تُستخدم للأغراض التالية:\n   لتقديم وصيانة التطبيق: ضمان عمل التطبيق بشكل صحيح وتحسين أدائه.\n   لمعالجة المعاملات: إدارة المدفوعات لتذاكر السينما والخدمات ذات الصلة.\n   لتقديم توصيات شخصية: اقتراح الأفلام ودور السينما بناءً على تفضيلاتك وموقعك.\n   للتواصل معك: إرسال الإشعارات المتعلقة بحجوزاتك والعروض الترويجية أو تحديثات خدماتنا.\n   لتحسين خدماتنا: تحليل بيانات استخدام التطبيق لتعزيز الميزات وحل المشكلات.\n\n2. كيف نحمي بياناتك: يستخدم YourSeat تدابير أمان قياسية لحماية بياناتك الشخصية، بما في ذلك:\n   التشفير: تأمين بيانات الدفع والمعلومات الشخصية باستخدام بروتوكولات تشفير مثل SSL.\n   تقييد الوصول: ضمان أن الوصول إلى بياناتك الشخصية متاح فقط للموظفين المصرح لهم.\n   مراجعات دورية: مراجعة ممارساتنا الأمنية بانتظام لضمان سلامة بياناتك.\n   بينما نتخذ جميع الاحتياطات، لا توجد تدابير أمنية تخلو من العيوب تمامًا، ولا يمكننا ضمان أمان بياناتك بشكل مطلق.\n\n3. مشاركة البيانات والإفصاح عنها: لا يقوم YourSeat ببيع أو مشاركة معلوماتك الشخصية مع أطراف ثالثة، باستثناء:\n   مزودي الخدمة: نتعاون مع شركاء خارجيين موثوقين (مثل معالجي الدفع ومزودي التخزين السحابي) لتقديم خدماتنا.\n   الالتزامات القانونية: قد نكشف عن معلوماتك إذا طُلب منا قانونيًا أو استجابة لطلب قانوني صحيح (مثل أمر محكمة).\n\n4. حقوقك: لديك الحقوق التالية فيما يتعلق ببياناتك الشخصية:\n   الوصول: يمكنك طلب نسخة من البيانات الشخصية التي نحتفظ بها عنك.\n   التصحيح: يمكنك طلب تصحيح أو تحديث بياناتك.\n   الحذف: يمكنك طلب حذف بياناتك، مع مراعاة المتطلبات القانونية.\n   إلغاء الاشتراك في التسويق: يمكنك إلغاء الاشتراك في الاتصالات الترويجية من خلال اتباع رابط إلغاء الاشتراك في رسائلنا الإلكترونية أو تعديل إعدادات التطبيق."),
@@ -225,17 +223,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مرحبًا بك في YourSeat!"),
         "wrongConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور المؤكدة غير متطابقة"),
-        "wrongPhoneFormat":
-            MessageLookupByLibrary.simpleMessage("صيغة رقم الهاتف خاطئة"),
+        "wrongEmailAddressFormat": MessageLookupByLibrary.simpleMessage(
+            "صيغة عنوان البريد الالكتروني خاطئة"),
+        "wrong_EmailAddress_format": MessageLookupByLibrary.simpleMessage(
+            "صيغة عنوان البريد الالكتروني غير صحيحة"),
         "wrong_password":
             MessageLookupByLibrary.simpleMessage("كلمة المرور غير صحيحة"),
-        "wrong_phone_format":
-            MessageLookupByLibrary.simpleMessage("صيغة رقم الهاتف غير صحيحة"),
         "year": MessageLookupByLibrary.simpleMessage("السنة"),
         "yes": MessageLookupByLibrary.simpleMessage("نعم "),
-        "youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber":
+        "youJustNeedToEnterTheOtpSentToTheRegisteredEmailAddress":
             MessageLookupByLibrary.simpleMessage(
-                "فقط أدخل رمز التحقق المرسل إلى رقم الهاتف المسجل."),
+                "فقط أدخل رمز التحقق المرسل إلى عنوان البريد الالكتروني المسجل."),
         "zakaria": MessageLookupByLibrary.simpleMessage("زكريا"),
         "zakaria1": MessageLookupByLibrary.simpleMessage("زكريا")
       };

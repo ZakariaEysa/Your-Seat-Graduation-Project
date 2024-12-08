@@ -50,5 +50,21 @@
     <true/>
     <key>UIApplicationSupportsIndirectInputEvents</key>
     <true/>
+
+    <!-- السماح باستخدام روابط الاتصال والبريد -->
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>mailto</string> <!-- للبريد الإلكتروني -->
+        <string>tel</string> <!-- للاتصال برقم الهاتف -->
+        <string>http</string> <!-- للروابط العادية -->
+        <string>https</string> <!-- للروابط الآمنة -->
+    </array>
+
+    <!-- إعداد المتصفحات الافتراضية -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/> <!-- السماح بفتح أي رابط بدون قيود -->
+    </dict>
 </dict>
 </plist>

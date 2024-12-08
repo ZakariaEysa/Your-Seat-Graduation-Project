@@ -16,7 +16,6 @@ final nameRegex = RegExp(r'^[A-Za-z]{3,20}(?: [A-Za-z]{3,20})*\s*$');
 
 
 
-
 /*
 Be at least 8 characters long.
 Contain at least one uppercase letter.

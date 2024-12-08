@@ -128,7 +128,6 @@ class _SignUpState extends State<SignUp> {
                         controller: cubit.email,
                         label: local.email,
                         validator: (value) {
-                          String? enteredNumber = value;
                           if (value == null || value.trim().isEmpty) {
                             return local.enterEmailAddress;
                           }if(!isValidEmail(value)){

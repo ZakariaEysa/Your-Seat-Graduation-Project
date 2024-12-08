@@ -61,12 +61,30 @@
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- إذن الاتصال -->
 
-    <!-- Required to query activities that can process text -->
+    <!-- Required to query activities that can process text or handle links -->
     <queries>
+        <!-- للتحقق من وجود تطبيق يمكنه الاتصال -->
         <intent>
-            <action android:name="android.intent.action.PROCESS_TEXT" />
-            <data android:mimeType="text/plain" />
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
+        </intent>
+
+        <!-- للتحقق من وجود تطبيق يمكنه إرسال البريد الإلكتروني -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+
+        <!-- للتحقق من وجود متصفح لمعالجة روابط الويب -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
         </intent>
     </queries>
 </manifest>

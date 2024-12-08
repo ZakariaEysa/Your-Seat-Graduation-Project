@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/widgets/social_items.dart';
 import 'package:yourseatgraduationproject/resources/constants.dart';
-
 class RowOfSocialItems extends StatelessWidget {
   const RowOfSocialItems({super.key});
 
@@ -12,11 +11,13 @@ class RowOfSocialItems extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SocialItem(
-          url: "assets/images/${AppConstVariables.facebookImg}",
+          linkUrl: "https://www.facebook.com/profile.php?id=61567367565000",
+          imageUrl: "assets/images/${AppConstVariables.facebookImg}",
         ),
         SizedBox(width: 22.w), // استخدام ScreenUtil لضبط التباعد
         SocialItem(
-          url: "assets/images/${AppConstVariables.emailImg}",
+          linkUrl: "mailto:yourseatgp@gmail.com",
+          imageUrl: "assets/images/${AppConstVariables.emailImg}",
           boxShadow: const [
             BoxShadow(
               color: Color(0x3F000000),
@@ -28,7 +29,8 @@ class RowOfSocialItems extends StatelessWidget {
         ),
         SizedBox(width: 22.w), // استخدام ScreenUtil لضبط التباعد
         SocialItem(
-          url: "assets/images/${AppConstVariables.linkedInImg}",
+          linkUrl: "tel:+201091058098", // دعم رقم الهاتف مع أو بدون "tel:"
+          imageUrl: "assets/images/${AppConstVariables.phone}",
         ),
       ],
     );

@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("Action, Sci-Fi"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("Avengers: Infinity War"),
+        "EmailAddress_does_not_exist": MessageLookupByLibrary.simpleMessage(
+            "Email Address does not exist"),
         "Esam": MessageLookupByLibrary.simpleMessage("Esam"),
         "Esam1": MessageLookupByLibrary.simpleMessage("Esam"),
         "GreatSelectionOfMoviesHighlyRecommended":
@@ -112,18 +114,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterConfirmPassword":
             MessageLookupByLibrary.simpleMessage("Enter confirm password"),
         "enterEmailAddress":
-            MessageLookupByLibrary.simpleMessage("Enter e-mail address"),
+            MessageLookupByLibrary.simpleMessage("Enter EmailAddress "),
         "enterPassword": MessageLookupByLibrary.simpleMessage("Enter password"),
-        "enterPhoneNumber":
-            MessageLookupByLibrary.simpleMessage("Enter phone number"),
         "enterUsername":
             MessageLookupByLibrary.simpleMessage("Enter your username"),
+        "enter_EmailAddress":
+            MessageLookupByLibrary.simpleMessage("Enter your Email Address "),
         "enter_password":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
-        "enter_phone_number":
-            MessageLookupByLibrary.simpleMessage("Enter your phone number"),
-        "enter_valid_phone": MessageLookupByLibrary.simpleMessage(
-            "Please enter a valid phone number"),
+        "enter_valid_email": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid email address"),
         "errorSavingUser":
             MessageLookupByLibrary.simpleMessage("Error saving user data."),
         "error_during_login": MessageLookupByLibrary.simpleMessage(
@@ -149,8 +149,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid e-mail format"),
         "invalidUsername":
             MessageLookupByLibrary.simpleMessage("Invalid username"),
-        "invalid_phone_format":
-            MessageLookupByLibrary.simpleMessage("Invalid phone format"),
+        "invalid_EmailAddress_format": MessageLookupByLibrary.simpleMessage(
+            "Invalid Email Address format"),
         "january": MessageLookupByLibrary.simpleMessage("January"),
         "july": MessageLookupByLibrary.simpleMessage("July"),
         "june": MessageLookupByLibrary.simpleMessage("June"),
@@ -185,16 +185,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "password_validation": MessageLookupByLibrary.simpleMessage(
             "Password must meet the requirements"),
         "personalInfo": MessageLookupByLibrary.simpleMessage("Personal Info"),
-        "phone_does_not_exist":
-            MessageLookupByLibrary.simpleMessage("Phone number does not exist"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
             "You must accept the terms and conditions."),
         "pleaseFillTheCredentials": MessageLookupByLibrary.simpleMessage(
             "Please fill in the credentials."),
+        "please_enter_EmailAddress": MessageLookupByLibrary.simpleMessage(
+            "Please enter your Email Address"),
         "please_enter_password":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
-        "please_enter_phone_number": MessageLookupByLibrary.simpleMessage(
-            "Please enter your phone number"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("PrivacyPolicy"),
         "privacyPolicyContent": MessageLookupByLibrary.simpleMessage(
             "At YourSeat, we are committed to protecting your privacy. This privacy policy explains how we collect, use, and safeguard your personal data when you use the YourSeat mobile application. By using the app, you agree to the collection and use of your information in accordance with this policy.\n\n1. How We Use Your Information: The information we collect from you is used for the following purposes:\n   To provide and maintain the app: Ensuring the app functions properly and improving its performance.\n   To process transactions: Managing payments for movie tickets and related services.\n   To offer personalized recommendations: Suggesting movies and cinemas based on your preferences and location.\n   To communicate with you: Sending notifications about your bookings, promotions, or updates to our services.\n   To improve our services: Analyzing app usage data to enhance features and resolve issues.\n\n2. How We Protect Your Data: YourSeat employs standard security measures to protect your personal information, including:\n   Encryption: Securing your payment data and personal information using encryption protocols like SSL.\n   Access restrictions: Ensuring only authorized personnel can access your personal data.\n   Continuous audits: Regularly reviewing our security practices to ensure your data’s safety.\n   While we take all precautions, no security measures are completely foolproof, and we cannot guarantee the absolute security of your data.\n\n3. Data Sharing and Disclosure: YourSeat does not sell or share your personal information with third parties, except:\n   Service Providers: We work with trusted third-party partners (e.g., payment processors, cloud storage providers) to help deliver our services.\n   Legal Obligations: We may disclose your information if required by law or in response to a valid legal request (e.g., a court order).\n\n4. Your Rights: You have the following rights regarding your personal data:\n   Access: You can request a copy of the personal data we hold about you.\n   Correction: You can request corrections or updates to your data.\n   Deletion: You can request deletion of your data, subject to legal requirements.\n   Opt-out of marketing: You can opt-out of promotional communications by following the unsubscribe link in our emails or adjusting app settings."),
@@ -219,7 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "startUsingTheApp":
             MessageLookupByLibrary.simpleMessage("Start Using the App ->"),
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
-            "1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your phone, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission."),
+            "1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your EmailAddress, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission."),
         "theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable":
             MessageLookupByLibrary.simpleMessage(
                 "The luxurious seats and immersive sound system make for a truly unforgettable"),
@@ -232,17 +230,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Welcome to YourSeat !"),
         "wrongConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password does not match"),
-        "wrongPhoneFormat":
-            MessageLookupByLibrary.simpleMessage("Wrong phone format"),
+        "wrongEmailAddressFormat":
+            MessageLookupByLibrary.simpleMessage("Wrong Email Address format"),
+        "wrong_EmailAddress_format":
+            MessageLookupByLibrary.simpleMessage("Wrong Email Address format"),
         "wrong_password":
             MessageLookupByLibrary.simpleMessage("Password is wrong"),
-        "wrong_phone_format":
-            MessageLookupByLibrary.simpleMessage("Wrong phone format"),
         "year": MessageLookupByLibrary.simpleMessage("Year"),
         "yes": MessageLookupByLibrary.simpleMessage(" Yes"),
-        "youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber":
+        "youJustNeedToEnterTheOtpSentToTheRegisteredEmailAddress":
             MessageLookupByLibrary.simpleMessage(
-                "You just need to enter the OTP sent to the registered phone number."),
+                "You just need to enter the OTP sent to the registered Email Address."),
         "zakaria": MessageLookupByLibrary.simpleMessage("zakaria"),
         "zakaria1": MessageLookupByLibrary.simpleMessage("zakaria1")
       };

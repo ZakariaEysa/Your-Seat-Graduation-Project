@@ -451,6 +451,7 @@ class _SignUpState extends State<SignUp> {
     if (privacyPolicy == false) {
       return;
     } else {
+
       auth.registerUser(username: auth.userName.text, password: auth.password.text, birthDate: "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}", email: auth.email.text);
       //await checkUserExists(auth.phone.text);
     }

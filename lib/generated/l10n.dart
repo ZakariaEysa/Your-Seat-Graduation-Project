@@ -100,10 +100,10 @@ class S {
     );
   }
 
-  /// `We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact Information:\nCustomer Support Email: [support@yourseatapp.com]\nPhone Number: [+123-456-7890]\n\nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:`
+  /// `We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact \nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:`
   String get contactUsContent {
     return Intl.message(
-      'We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact Information:\nCustomer Support Email: [support@yourseatapp.com]\nPhone Number: [+123-456-7890]\n\nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:',
+      'We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact \nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:',
       name: 'contactUsContent',
       desc: '',
       args: [],
@@ -1373,6 +1373,136 @@ class S {
     return Intl.message(
       'Ahmed Sayed',
       name: 'ahmedSayed1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Esam`
+  String get Esam {
+    return Intl.message(
+      'Esam',
+      name: 'Esam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Watch List`
+  String get watchlist {
+    return Intl.message(
+      'Watch List',
+      name: 'watchlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tickets`
+  String get tickets {
+    return Intl.message(
+      'Tickets',
+      name: 'tickets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ask me here...`
+  String get askmehere {
+    return Intl.message(
+      'ask me here...',
+      name: 'askmehere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello , I’m your AI\nAssistant !`
+  String get HelloIamyourAIAssistant {
+    return Intl.message(
+      'Hello , I’m your AI\nAssistant !',
+      name: 'HelloIamyourAIAssistant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `typing...`
+  String get typing {
+    return Intl.message(
+      'typing...',
+      name: 'typing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `can i help you?`
+  String get canyouhelp {
+    return Intl.message(
+      'can i help you?',
+      name: 'canyouhelp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Yes`
+  String get yes {
+    return Intl.message(
+      ' Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Esam`
+  String get Esam1 {
+    return Intl.message(
+      'Esam',
+      name: 'Esam1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rahaf`
+  String get rahaf {
+    return Intl.message(
+      'Rahaf',
+      name: 'rahaf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rahaf`
+  String get rahaf1 {
+    return Intl.message(
+      'Rahaf',
+      name: 'rahaf1',
       desc: '',
       args: [],
     );

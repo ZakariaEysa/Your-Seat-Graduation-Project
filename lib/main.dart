@@ -122,7 +122,7 @@ void main() async {
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(
       HiveKeys.isArabic,
-      true,
+      false,
     );
   }
   runApp(BlocProvider<SwitchLanguageCubit>(

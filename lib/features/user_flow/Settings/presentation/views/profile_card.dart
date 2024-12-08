@@ -9,14 +9,20 @@ import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
-class ProfileCard extends StatelessWidget {
+class ProfileCard extends StatefulWidget {
   const ProfileCard({super.key});
+
+  @override
+  State<ProfileCard> createState() => _ProfileCardState();
+}
+
+class _ProfileCardState extends State<ProfileCard> {
+  var currentUser;
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var currentUser;
-    if (HiveStorage.get(HiveKeys.role) == Role.gmail.toString()) {
+    if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
     } else {
       currentUser = HiveStorage.getDefaultUser();
@@ -103,7 +109,7 @@ class ProfileCard extends StatelessWidget {
                     SizedBox(height: 20.h),
                     PersonalInfoCard(
                       title: lang.email,
-                      icon: "assets/icons/telephone.png",
+                      icon: "assets/images/email 2.png",
                       info: currentUser?.email ?? "-",
                     ),
                     SizedBox(height: 20.h),
@@ -125,11 +131,11 @@ class ProfileCard extends StatelessWidget {
                       info: currentUser?.location ?? "-",
                     ),
                     SizedBox(height: 20.h),
-                    PersonalInfoCard(
-                      title: lang.emailAddress,
-                      icon: "assets/icons/email.png",
-                      info: currentUser?.email ?? "-",
-                    ),
+                    // PersonalInfoCard(
+                    //   title: lang.emailAddress,
+                    //   icon: "assets/icons/email.png",
+                    //   info: currentUser?.email ?? "-",
+                    // ),
                   ],
                 ),
               ),

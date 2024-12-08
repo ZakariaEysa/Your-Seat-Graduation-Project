@@ -16,11 +16,8 @@ abstract class AuthRemoteDataSource {
   Future<String> checkUserExists(String userId, String password);
   Future<void> checkUserExistsR(String phone);
   Future<void> saveUserToFireStore({
-    required String username,
-    required String email,
-    //required String phone,
-    required String password,
-    required String birthDate,
+    required UserModel userModel,
+
   });
   Future<void> signInWithPhoneNumber(
       String phoneNumber, Function(String) onCodeSent);
@@ -62,7 +59,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         if (HiveStorage.get(HiveKeys.role) == null) {
           HiveStorage.set(
             HiveKeys.role,
-            Role.gmail.toString(),
+            Role.google.toString(),
           );
         }
         AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
@@ -102,6 +99,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     if (userDoc.exists) {
       if (userDoc.get("password") == password) {
 
+        // await HiveStorage.saveDefaultUser(UserModel(name: (userDoc.get('name')), email: userEmail, password: password, dateOfBirth: userDoc.get("dateOfBirth"),gender: userDoc.get("gender"),image: userDoc.get("image"),location: userDoc.get("location") ));
         await HiveStorage.saveDefaultUser(UserModel(name: (userDoc.get('name')), email: userEmail, password: password, dateOfBirth: userDoc.get("dateOfBirth"),gender: userDoc.get("gender"),image: userDoc.get("image"),location: userDoc.get("location") ));
 
         return "LoginSuccessful";
@@ -125,22 +123,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> saveUserToFireStore({
 
-    // TODO: Change to userModel
-    required String username,
-    required String email,
-    required String password,
-    required String birthDate,
+    required UserModel userModel,
+
   }) async {
-    await FirebaseFirestore.instance.collection('users').doc(email).set({
-      'name': username,
-      'email': email,
+    await FirebaseFirestore.instance.collection('users').doc(userModel.email).set({
+      'name':userModel.name ,
+      'email': userModel.email,
       //'phone': "0$phone",
-      'password': password,
-      'dateOfBirth': birthDate,
-      'gender': "",
-      'image': "",
-      'location': "",
+      'password':userModel. password,
+      'dateOfBirth': userModel.dateOfBirth,
+      'gender': userModel.gender,
+      'image': userModel.image,
+      'location': userModel.location,
     });
+
   }
   @override
 

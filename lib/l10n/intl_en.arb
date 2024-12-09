@@ -154,5 +154,14 @@
   "rahaf": "Rahaf",
   "nowPlaying": "Now Playing",
   "comingSoon": "Coming Soon",
+  "watchTrailer": "Watch Trailer",
+  "movieGenre": "Movie genre:",
+  "censorship": "Censorship:",
+  "language": "language:",
+  "storyLine": "StoryLine",
+  "director": "Director",
+  "actor": "Actor",
+  "cinema": "Cinema",
+  "seeMore": "See more",
   "rahaf1": "Rahaf"
 }

@@ -6,6 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
@@ -176,7 +178,7 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home: const SplashScreen(),
+              home:MovieDetails(),
             );
           });
     });

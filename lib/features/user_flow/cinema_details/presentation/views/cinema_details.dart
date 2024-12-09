@@ -24,16 +24,16 @@ class CinemaDetails extends StatelessWidget {
                 children: [
               Stack(children: [
                 Image.asset(
-                  'assets/images/image 12.png',
-                  width: 400.w,
-                  height: 360.h,
+                  'assets/images/Rectangle 49 (3).png',
+                  width: 430.w,
+                  height: 241.h,
                   fit: BoxFit.cover,
                 ),
                 Padding(
                   padding:  EdgeInsets.only(top:50.h),
                   child: IconButton(onPressed:(){
                     navigateTo(context: context, screen:const HomeLayout());
-                  }, icon:const Icon(Icons.arrow_back,color: Colors.white,size:30,)),
+                  }, icon:const Icon(Icons.arrow_back,color: Colors.white,size:16,weight: 16,)),
                 ),
 
                 Positioned(

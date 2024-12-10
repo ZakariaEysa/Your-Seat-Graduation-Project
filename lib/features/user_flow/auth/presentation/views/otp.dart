@@ -66,7 +66,7 @@ class Otp extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E1371),
         title: Padding(
-          padding: EdgeInsets.only(top: 20.sp),
+          padding: EdgeInsetsDirectional.fromSTEB(85, 0, 0, 0),
           child: const HeadAppBar(
             title: 'OTP',
           ),

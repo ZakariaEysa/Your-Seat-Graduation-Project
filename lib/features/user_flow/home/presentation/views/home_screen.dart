@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/head_widget.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/text.dart';
 import 'package:yourseatgraduationproject/generated/l10n.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../Widget/chatbot_icon.dart';
 import '../Widget/cinema_item.dart';
@@ -28,14 +29,20 @@ class HomeScreen extends StatelessWidget {
 
                 const Search(),
                 SizedBox(height: 20.h),
-                TextWidget(text: lang.nowPlaying),
+                TextWidget(
+                  text: lang.nowPlaying,
+                  navigateToPage: 'nowPlaying',
+                ),
                 SizedBox(height: 30.h),
                 SizedBox(
                   height: 500.sp,
                   child: const MovieCarouselWidget(),
                 ),
                 //  SizedBox(height: 15.h,),
-                TextWidget(text: lang.comingSoon),
+                TextWidget(
+                  text: lang.comingSoon,
+                  navigateToPage: 'comingSoon',
+                ),
                 SizedBox(height: 10.h),
                 SizedBox(
                   height: 400.h,

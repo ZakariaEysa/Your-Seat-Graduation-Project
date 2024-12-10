@@ -12,12 +12,12 @@ class ChatMessage extends StatelessWidget{
     var lang = S.of(context);
     final theme = Theme.of(context);
    return Padding(
-     padding: EdgeInsets.only(right:170.w,top:40.h,left: 20.w),
+     padding: EdgeInsets.only(right:150.w,top:40.h,left: 20.w),
      child: Container(
-         width: 200.w,
+         width: 300.w,
          height: 50.h,
          decoration: BoxDecoration(
-             borderRadius: BorderRadius.circular(50),
+             borderRadius: BorderRadius.circular(20),
              color: Colors.white,
              gradient: const LinearGradient(
                colors: [
@@ -33,7 +33,7 @@ class ChatMessage extends StatelessWidget{
 
          ),
          child: Padding(
-           padding:  EdgeInsets.all(4.0.sp),
+           padding:  EdgeInsetsDirectional.fromSTEB(15, 5, 5, 5),
            child: Text(lang.canyouhelp,style: theme.textTheme.labelSmall!.copyWith(fontSize: 24.sp,color: Colors.white),),
          )
      ),

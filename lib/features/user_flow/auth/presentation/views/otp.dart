@@ -1,4 +1,3 @@
-import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/timer.dart';
@@ -66,7 +65,7 @@ class Otp extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E1371),
         title: Padding(
-          padding: EdgeInsets.only(top: 20.sp),
+          padding: EdgeInsetsDirectional.fromSTEB(85, 0, 0, 0),
           child: const HeadAppBar(
             title: 'OTP',
           ),

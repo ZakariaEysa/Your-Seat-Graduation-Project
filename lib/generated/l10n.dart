@@ -1050,10 +1050,10 @@ class S {
     );
   }
 
-  /// `Language`
+  /// `language:`
   String get language {
     return Intl.message(
-      'Language',
+      'language:',
       name: 'language',
       desc: '',
       args: [],
@@ -1483,6 +1483,76 @@ class S {
     return Intl.message(
       'Coming Soon',
       name: 'comingSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Watch Trailer`
+  String get watchTrailer {
+    return Intl.message(
+      'Watch Trailer',
+      name: 'watchTrailer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Movie genre:`
+  String get movieGenre {
+    return Intl.message(
+      'Movie genre:',
+      name: 'movieGenre',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Censorship:`
+  String get censorship {
+    return Intl.message(
+      'Censorship:',
+      name: 'censorship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `StoryLine`
+  String get storyLine {
+    return Intl.message(
+      'StoryLine',
+      name: 'storyLine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Director`
+  String get director {
+    return Intl.message(
+      'Director',
+      name: 'director',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Actor`
+  String get actor {
+    return Intl.message(
+      'Actor',
+      name: 'actor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See more`
+  String get seeMore {
+    return Intl.message(
+      'See more',
+      name: 'seeMore',
       desc: '',
       args: [],
     );

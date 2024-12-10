@@ -7,7 +7,9 @@ import '../views/coming_soon.dart';
 import '../views/now_playing.dart';
 
 class App extends StatefulWidget {
-  const App({super.key});
+  final int initialTab;
+
+  const App({super.key, this.initialTab = 0});
 
   @override
   State<App> createState() => _AppState();
@@ -21,6 +23,7 @@ class _AppState extends State<App> {
 
     return DefaultTabController(
       length: 2,
+      initialIndex: widget.initialTab,
       child: Scaffold(
         backgroundColor: const Color(0xFF2E1371).withOpacity(.99),
         appBar: AppBar(
@@ -29,7 +32,7 @@ class _AppState extends State<App> {
           leadingWidth: 30,
           leading: IconButton(
             onPressed: () {
-              navigateTo(context: context, screen: const HomeLayout());
+              Navigator.pop(context); // الرجوع إلى الشاشة السابقة
             },
             icon: Icon(
               Icons.arrow_back,
@@ -43,13 +46,13 @@ class _AppState extends State<App> {
             decoration: BoxDecoration(
               color: const Color(0xFF0F0A2B).withOpacity(.30),
               borderRadius:
-                  BorderRadius.circular(12), // Apply BorderRadius here
+              BorderRadius.circular(12), // Apply BorderRadius here
             ),
             child: TabBar(
               labelColor: const Color(0xFFEB68E3), // Selected tab text color
               unselectedLabelColor: Colors.white, // Unselected tab text color
               indicatorColor: const Color(0xFFEB68E3), // Highlight color
-              labelStyle: theme.textTheme.labelLarge!.copyWith(fontSize:17.sp),
+              labelStyle: theme.textTheme.labelLarge!.copyWith(fontSize: 17.sp),
               tabs: [
                 Padding(
                   padding: EdgeInsets.only(right: 15.w),

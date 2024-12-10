@@ -51,14 +51,15 @@ class _SearchState extends State<Search> {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
             borderSide:
-            const BorderSide(width: 2, color: Color(0xFFB0BEC5)),
+            const BorderSide(width: .01, color: Color(0x4DD9D9D9)),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
-                width: 2, color: Colors.blue),
+              width: .01,
+              color: Color(0xffffffff),
+            ),
             borderRadius: BorderRadius.circular(12.0),
           ),
-
           prefixIcon: Padding(
             padding: EdgeInsets.all(12.sp),
             child: Image.asset(
@@ -74,6 +75,8 @@ class _SearchState extends State<Search> {
             fontFamily: 'SF Pro',
           ),
           contentPadding: EdgeInsets.symmetric(vertical: 12.h),
+          filled: true, //
+          fillColor: const Color(0x4DD9D9D9),
           border: InputBorder.none,
         ),
         style: TextStyle(

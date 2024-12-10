@@ -154,6 +154,15 @@
   "rahaf": "رهف",
   "nowPlaying": "التشغيل الان",
   "comingSoon": "قريباً",
+  "watchTrailer": "شاهد المقطع الترويجي",
+  "movieGenre": "نوع الفيلم:",
+  "censorship": "الرقابة:",
+  "language": "اللغه:",
+  "storyLine": "سرد القصة",
+  "director": "مخرج",
+  "actor": "ممثل",
+  "cinema": "سينما",
+  "seeMore": "رؤية المزيد",
   "rahaf1": "رهف"
 
 }

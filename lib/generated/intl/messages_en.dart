@@ -60,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "UserDoesNotExistOrPasswordIsIncorrect":
             MessageLookupByLibrary.simpleMessage(
                 "User does not exist or password is incorrect"),
+        "actor": MessageLookupByLibrary.simpleMessage("Actor"),
         "addComment": MessageLookupByLibrary.simpleMessage(" Add Comment"),
         "ahmedSayed": MessageLookupByLibrary.simpleMessage("Ahmed Sayed"),
         "ahmedSayed1": MessageLookupByLibrary.simpleMessage("Ahmed Sayed"),
@@ -77,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Book tickets for the latest movies at the cinema nearest to you."),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "canyouhelp": MessageLookupByLibrary.simpleMessage("can i help you?"),
+        "censorship": MessageLookupByLibrary.simpleMessage("Censorship:"),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
         "comments": MessageLookupByLibrary.simpleMessage("Comments"),
@@ -103,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
+        "director": MessageLookupByLibrary.simpleMessage("Director"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("Don’t have an account yet?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -154,7 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "january": MessageLookupByLibrary.simpleMessage("January"),
         "july": MessageLookupByLibrary.simpleMessage("July"),
         "june": MessageLookupByLibrary.simpleMessage("June"),
-        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "language": MessageLookupByLibrary.simpleMessage("language:"),
         "light": MessageLookupByLibrary.simpleMessage("Light"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "logOut": MessageLookupByLibrary.simpleMessage("LogOut"),
@@ -165,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),
+        "movieGenre": MessageLookupByLibrary.simpleMessage("Movie genre:"),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
         "newMoviesEasyBooking":
             MessageLookupByLibrary.simpleMessage("New movies ! Easy booking"),
@@ -206,6 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "review": MessageLookupByLibrary.simpleMessage("Review"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
+        "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
@@ -216,6 +221,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "startUsingTheApp":
             MessageLookupByLibrary.simpleMessage("Start Using the App ->"),
+        "storyLine": MessageLookupByLibrary.simpleMessage("StoryLine"),
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
             "1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your EmailAddress, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission."),
         "theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable":
@@ -225,6 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tickets": MessageLookupByLibrary.simpleMessage("Tickets"),
         "typing": MessageLookupByLibrary.simpleMessage("typing..."),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
+        "watchTrailer": MessageLookupByLibrary.simpleMessage("Watch Trailer"),
         "watchlist": MessageLookupByLibrary.simpleMessage("Watch List"),
         "welcomeToYourSeat":
             MessageLookupByLibrary.simpleMessage("Welcome to YourSeat !"),

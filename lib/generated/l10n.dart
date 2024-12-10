@@ -90,10 +90,10 @@ class S {
     );
   }
 
-  /// `1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your EmailAddress, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission.`
+  /// `1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your phone, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission.`
   String get termsAndConditionsContent {
     return Intl.message(
-      '1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your EmailAddress, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission.',
+      '1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your phone, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission.',
       name: 'termsAndConditionsContent',
       desc: '',
       args: [],
@@ -210,11 +210,11 @@ class S {
     );
   }
 
-  /// `You just need to enter the OTP sent to the registered Email Address.`
-  String get youJustNeedToEnterTheOtpSentToTheRegisteredEmailAddress {
+  /// `You just need to enter the OTP sent to the registered phone number.`
+  String get youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber {
     return Intl.message(
-      'You just need to enter the OTP sent to the registered Email Address.',
-      name: 'youJustNeedToEnterTheOtpSentToTheRegisteredEmailAddress',
+      'You just need to enter the OTP sent to the registered phone number.',
+      name: 'youJustNeedToEnterTheOtpSentToTheRegisteredPhoneNumber',
       desc: '',
       args: [],
     );
@@ -320,6 +320,26 @@ class S {
     );
   }
 
+  /// `Now Playing`
+  String get nowPlaying {
+    return Intl.message(
+      'Now Playing',
+      name: 'nowPlaying',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coming Soon`
+  String get comingSoon {
+    return Intl.message(
+      'Coming Soon',
+      name: 'comingSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Promotions & Discounts`
   String get promoDiscount {
     return Intl.message(
@@ -360,21 +380,21 @@ class S {
     );
   }
 
-  /// `Please enter your Email Address`
-  String get please_enter_EmailAddress {
+  /// `Please enter your phone number`
+  String get please_enter_phone_number {
     return Intl.message(
-      'Please enter your Email Address',
-      name: 'please_enter_EmailAddress',
+      'Please enter your phone number',
+      name: 'please_enter_phone_number',
       desc: '',
       args: [],
     );
   }
 
-  /// `Wrong Email Address format`
-  String get wrong_EmailAddress_format {
+  /// `Wrong phone format`
+  String get wrong_phone_format {
     return Intl.message(
-      'Wrong Email Address format',
-      name: 'wrong_EmailAddress_format',
+      'Wrong phone format',
+      name: 'wrong_phone_format',
       desc: '',
       args: [],
     );
@@ -420,11 +440,11 @@ class S {
     );
   }
 
-  /// `Email Address does not exist`
-  String get EmailAddress_does_not_exist {
+  /// `Phone number does not exist`
+  String get phone_does_not_exist {
     return Intl.message(
-      'Email Address does not exist',
-      name: 'EmailAddress_does_not_exist',
+      'Phone number does not exist',
+      name: 'phone_does_not_exist',
       desc: '',
       args: [],
     );
@@ -650,21 +670,21 @@ class S {
     );
   }
 
-  /// `Enter your Email Address `
-  String get enter_EmailAddress {
+  /// `Enter your phone number`
+  String get enter_phone_number {
     return Intl.message(
-      'Enter your Email Address ',
-      name: 'enter_EmailAddress',
+      'Enter your phone number',
+      name: 'enter_phone_number',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Email Address format`
-  String get invalid_EmailAddress_format {
+  /// `Invalid phone format`
+  String get invalid_phone_format {
     return Intl.message(
-      'Invalid Email Address format',
-      name: 'invalid_EmailAddress_format',
+      'Invalid phone format',
+      name: 'invalid_phone_format',
       desc: '',
       args: [],
     );
@@ -680,11 +700,11 @@ class S {
     );
   }
 
-  /// `Please enter a valid email address`
-  String get enter_valid_email {
+  /// `Please enter a valid phone number`
+  String get enter_valid_phone {
     return Intl.message(
-      'Please enter a valid email address',
-      name: 'enter_valid_email',
+      'Please enter a valid phone number',
+      name: 'enter_valid_phone',
       desc: '',
       args: [],
     );
@@ -750,21 +770,21 @@ class S {
     );
   }
 
-  /// `Enter EmailAddress `
-  String get enterEmailAddress {
+  /// `Enter phone number`
+  String get enterPhoneNumber {
     return Intl.message(
-      'Enter EmailAddress ',
-      name: 'enterEmailAddress',
+      'Enter phone number',
+      name: 'enterPhoneNumber',
       desc: '',
       args: [],
     );
   }
 
-  /// `Wrong Email Address format`
-  String get wrongEmailAddressFormat {
+  /// `Wrong phone format`
+  String get wrongPhoneFormat {
     return Intl.message(
-      'Wrong Email Address format',
-      name: 'wrongEmailAddressFormat',
+      'Wrong phone format',
+      name: 'wrongPhoneFormat',
       desc: '',
       args: [],
     );
@@ -1050,10 +1070,10 @@ class S {
     );
   }
 
-  /// `Language`
+  /// `language:`
   String get language {
     return Intl.message(
-      'Language',
+      'language:',
       name: 'language',
       desc: '',
       args: [],
@@ -1233,6 +1253,16 @@ class S {
     return Intl.message(
       'Are you sure you want to log out ?',
       name: 'areYouSureYouWantToLogOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter e-mail address`
+  String get enterEmailAddress {
+    return Intl.message(
+      'Enter e-mail address',
+      name: 'enterEmailAddress',
       desc: '',
       args: [],
     );
@@ -1468,21 +1498,71 @@ class S {
     );
   }
 
-  /// `Now Playing`
-  String get nowPlaying {
+  /// `Watch Trailer`
+  String get watchTrailer {
     return Intl.message(
-      'Now Playing',
-      name: 'nowPlaying',
+      'Watch Trailer',
+      name: 'watchTrailer',
       desc: '',
       args: [],
     );
   }
 
-  /// `Coming Soon`
-  String get comingSoon {
+  /// `Movie genre:`
+  String get movieGenre {
     return Intl.message(
-      'Coming Soon',
-      name: 'comingSoon',
+      'Movie genre:',
+      name: 'movieGenre',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Censorship:`
+  String get censorship {
+    return Intl.message(
+      'Censorship:',
+      name: 'censorship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `StoryLine`
+  String get storyLine {
+    return Intl.message(
+      'StoryLine',
+      name: 'storyLine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Director`
+  String get director {
+    return Intl.message(
+      'Director',
+      name: 'director',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Actor`
+  String get actor {
+    return Intl.message(
+      'Actor',
+      name: 'actor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See more`
+  String get seeMore {
+    return Intl.message(
+      'See more',
+      name: 'seeMore',
       desc: '',
       args: [],
     );

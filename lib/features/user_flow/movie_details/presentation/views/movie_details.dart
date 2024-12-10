@@ -1,0 +1,336 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/widgets/director_actor_card.dart';
+import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_stroage.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../../utils/navigation.dart';
+import '../../../../../widgets/button/button_builder.dart';
+import '../../../home/presentation/views/home_layout.dart';
+import '../widgets/cinema_card.dart';
+
+class MovieDetails extends StatelessWidget {
+  const MovieDetails({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    var lang = S.of(context);
+    return ScaffoldF(
+        body: SingleChildScrollView(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+          Stack(children: [
+            Image.asset(
+              'assets/images/Rectangle 49 (4).png',
+              width: 500.w,
+              height: 390.h,
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 50.h),
+              child: IconButton(
+                  onPressed: () {
+                    navigateTo(context: context, screen: const HomeLayout());
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 30,
+                  )),
+            ),
+            Positioned(
+              top: 220.h,
+              left: 10.w,
+              right: 10.w,
+              child: Container(
+                padding: EdgeInsets.all(8.sp),
+                color: const Color(0xFF2C113D).withOpacity(.81),
+                width: 370.w,
+                height: 170.h,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Avengers: Infinity War",
+                        style: theme.textTheme.bodyMedium!
+                            .copyWith(fontSize: 20.sp),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      Text(
+                        "2h29m • 16.12.2022",
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                            fontSize: 13.sp, color: const Color(0xFFD4D0D0)),
+                      ),
+                      SizedBox(height: 25.h),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            lang.review,
+                            textAlign: TextAlign.start,
+                            style: theme.textTheme.bodyMedium!
+                                .copyWith(fontSize: 16.sp),
+                          ),
+                          SizedBox(
+                            width: 25.w,
+                          ),
+                          Image.asset(
+                            'assets/images/cinemastar.png',
+                            width: 15.w,
+                            height: 20.h,
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text('4.8 (1.222)',
+                              style: theme.textTheme.bodyMedium!
+                                  .copyWith(fontSize: 12.sp)),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset('assets/images/cinemastars.png',
+                              width: 190.w, height: 30.h),
+                          SizedBox(
+                            width: 12.w,
+                          ),
+                          TextButton.icon(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.play_arrow,
+                                color: Colors.white,
+                              ),
+                              label: Text(
+                                lang.watchTrailer,
+                                style: theme.textTheme.bodyMedium!.copyWith(
+                                    fontSize: 12.sp, color: Colors.white),
+                              ),
+                              style: ButtonStyle(
+                                  backgroundColor: WidgetStateProperty.all(
+                                      const Color(0xFF2C113D).withOpacity(.91)),
+                                  shape: WidgetStateProperty.all(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      side:
+                                          const BorderSide(color: Colors.white),
+                                      // ... button styles
+                                    ),
+                                  )))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ]),
+          Padding(
+            padding: EdgeInsets.only(left: 16.w, top: 20.h),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      lang.movieGenre,
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                    ),
+                    SizedBox(
+                      width: 35.w,
+                    ),
+                    Text(
+                      "Action, adventure, sci-fi",
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      lang.censorship,
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                    ),
+                    SizedBox(
+                      width: 35.w,
+                    ),
+                    Text(
+                      " 13+ ",
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      lang.language,
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                    ),
+                    SizedBox(
+                      width: 35.w,
+                    ),
+                    Text(
+                      "    English ",
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Text(
+                  lang.storyLine,
+                  style: theme.textTheme.bodyMedium!
+                      .copyWith(fontSize: 20.sp, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Text(
+                  "As the Avengers and their allies have continued\nto protect the world from threats too large for\nany one hero to handle, a new danger has\nemerged from the cosmic shadows: Thanos.... ",
+                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Text(
+                  lang.seeMore,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                      fontSize: 14.sp, color: const Color(0xFFF6C700)),
+                ),
+                SizedBox(
+                  height: 25.h,
+                ),
+                Text(
+                  lang.director,
+                  style: theme.textTheme.bodyMedium!
+                      .copyWith(fontSize: 24.sp, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                const Row(
+                  children: [
+                    Director(
+                        name: "Anthony\nRusso",
+                        imagePath: "assets/images/director1.png"),
+                    Director(
+                        name: "    Joe\n    Russo",
+                        imagePath: "assets/images/director2.png"),
+                  ],
+                ),
+                SizedBox(
+                  height: 25.h,
+                ),
+                Text(
+                  lang.actor,
+                  style: theme.textTheme.bodyMedium!
+                      .copyWith(fontSize: 24.sp, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 25.h,
+                ),
+                const SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Director(
+                          name: "Robert\nDowney Jr.",
+                          imagePath: "assets/images/actor1.png"),
+                      Director(
+                          name: "Chris\nHemsworth",
+                          imagePath: "assets/images/actor2.png"),
+                      Director(
+                          name: "Chris\nRobert",
+                          imagePath: "assets/images/actor3.png"),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Text(
+                  lang.cinema,
+                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 24.sp),
+                ),
+                SizedBox(
+                  height: 25.h,
+                ),
+                const CinemaCard(
+                  title: 'Vincom Ocean Park CGV',
+                  smalltitle: '4.55 km',
+                  largetitle: 'Da Ton, Gia Lam, Ha Noi',
+                  imageUrl: 'assets/images/cgv.png',
+                ),
+                SizedBox(
+                  height: 25.h,
+                ),
+                const CinemaCard(
+                  title: 'Aeon Mall CGV',
+                  smalltitle: '9.32 km',
+                  largetitle: '27 Co Linh, Long Bien, Ha Noi',
+                  imageUrl: 'assets/images/cgv.png',
+                ),
+                SizedBox(
+                  height: 25.h,
+                ),
+                const CinemaCard(
+                  title: 'Lotte Cinema Long Bien',
+                  smalltitle: '14.3 km',
+                  largetitle: '7-9 Nguyen Van Linh, Long Bien, Ha Noi',
+                  imageUrl: 'assets/images/lottr1.png',
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                ButtonBuilder(
+                  width: 270.w,
+                  height: 55.h,
+                  image: HiveStorage.get(HiveKeys.isArabic)
+                      ? "assets/images/continue_arabic.png"
+                      : "assets/images/Continue1.png",
+                  text: "",
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: 50.h,
+                )
+              ],
+            ),
+          ),
+        ])));
+  }
+}

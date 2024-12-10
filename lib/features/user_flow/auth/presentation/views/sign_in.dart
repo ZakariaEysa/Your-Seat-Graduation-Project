@@ -126,6 +126,7 @@ class _SignInState extends State<SignIn> {
                             obsecure: false,
                             type: TextInputType.emailAddress,
                             imagePath: 'assets/images/email 2.png',
+
                           ),
                         ),
                       ),

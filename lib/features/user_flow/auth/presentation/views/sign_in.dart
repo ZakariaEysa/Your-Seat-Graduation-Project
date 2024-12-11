@@ -128,6 +128,7 @@ class _SignInState extends State<SignIn> {
                             imagePath: 'assets/images/email 2.png',
 
                           ),
+
                         ),
                       ),
                       FadeInRight(

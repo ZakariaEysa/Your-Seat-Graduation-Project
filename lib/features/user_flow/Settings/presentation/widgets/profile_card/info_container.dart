@@ -2,15 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/widgets/text_field/text_field/text_form_field_builder.dart';
 
-class InfoContainer extends StatelessWidget {
+class InfoContainer extends StatefulWidget {
   final String? title;
+
   final TextEditingController controller;
+  final Function(String) onChanged;
   final TextInputType type;
   const InfoContainer(
       {required this.title,
       super.key,
       required this.controller,
-      required this.type});
+      required this.type, required this.onChanged});
+
+  @override
+  State<InfoContainer> createState() => _InfoContainerState();
+}
+
+class _InfoContainerState extends State<InfoContainer> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +35,11 @@ class InfoContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(23.r),
             color: theme.colorScheme.onSecondary),
         child: TextFormField(
-         // initialValue: title,
-         // initialValue: title,
+
+          onChanged: widget.onChanged,
 
           textAlign: TextAlign.start,
-          controller: controller,
+          controller: widget.controller,
         ),
       ),
     );

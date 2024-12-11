@@ -139,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Favorites or watchlist for quick access to your beloved movies."),
         "february": MessageLookupByLibrary.simpleMessage("February"),
+        "female": MessageLookupByLibrary.simpleMessage("Female"),
         "fill_all_fields":
             MessageLookupByLibrary.simpleMessage("Please fill all fields"),
         "forgotPassword":
@@ -165,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred during login"),
         "login_successful":
             MessageLookupByLibrary.simpleMessage("Login successful"),
+        "male": MessageLookupByLibrary.simpleMessage("Male"),
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),

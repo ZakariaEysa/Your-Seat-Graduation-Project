@@ -17,6 +17,7 @@ class Otp extends StatelessWidget {
   final TextEditingController N5 = TextEditingController();
   final TextEditingController N6 = TextEditingController();
 
+
   final FocusNode F1 = FocusNode();
   final FocusNode F2 = FocusNode();
   final FocusNode F3 = FocusNode();

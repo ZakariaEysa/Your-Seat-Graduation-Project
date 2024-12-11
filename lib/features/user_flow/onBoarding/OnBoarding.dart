@@ -101,13 +101,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   
                                     navigateAndRemoveUntil(
                                       context: context,
-                                      screen: BlocProvider(
-                                        create: (context) => AuthCubit(
-                                            AuthRepoImpl(AuthRemoteDataSourceImpl(
-                                                FirebaseAuth.instance,
-                                                GoogleSignIn()))),
-                                        child: const SignIn(),
-                                      ),
+                                      screen: const SignIn(),
                                     );
                                   },
                                   width: 300.w,
@@ -128,14 +122,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   
                                           navigateAndRemoveUntil(
                                             context: context,
-                                            screen: BlocProvider(
-                                              create: (context) => AuthCubit(
-                                                  AuthRepoImpl(
-                                                      AuthRemoteDataSourceImpl(
-                                                          FirebaseAuth.instance,
-                                                          GoogleSignIn()))),
-                                              child: const SignIn(),
-                                            ),
+                                            screen: const SignIn(),
                                           );
                                         },
                                         height: 55.h,

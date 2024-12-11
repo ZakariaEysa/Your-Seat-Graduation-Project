@@ -127,6 +127,7 @@ class _SignInState extends State<SignIn> {
                             type: TextInputType.emailAddress,
                             imagePath: 'assets/images/email 2.png',
 
+
                           ),
 
                         ),

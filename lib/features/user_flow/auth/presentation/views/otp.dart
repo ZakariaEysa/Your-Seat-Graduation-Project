@@ -1,17 +1,15 @@
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/timer.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/button/button_builder.dart';
+import '../../../../../features/user_flow/auth/presentation/views/timer.dart';
 
 class Otp extends StatelessWidget {
-//  final  static const String routeName = "confirm";
-
-  // Controllers for each OTP field
   final TextEditingController N1 = TextEditingController();
   final TextEditingController N2 = TextEditingController();
   final TextEditingController N3 = TextEditingController();
@@ -19,7 +17,6 @@ class Otp extends StatelessWidget {
   final TextEditingController N5 = TextEditingController();
   final TextEditingController N6 = TextEditingController();
 
-  // FocusNodes for OTP fields
   final FocusNode F1 = FocusNode();
   final FocusNode F2 = FocusNode();
   final FocusNode F3 = FocusNode();
@@ -38,29 +35,27 @@ class Otp extends StatelessWidget {
     }
   }
 
+  Future<void> verifyOtp(BuildContext context, String otp) async {
+    bool isOtpValid = await EmailOTP.verifyOTP(otp: otp);
+    if (isOtpValid) {
+  await AuthCubit.get(context).verifyedSendOtp();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeLayout()),
+      );
 
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Invalid OTP'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    // var cubit = AuthCubit.get(context);
-    //
-    // void verifyOtp(String email) async{
-    //   bool isOtpValid = await EmailOTP.verifyOTP(otp: otpController.text);
-    //   if (isOtpValid) {
-    //     authRepo.saveUser(userModel: userModel);
-    //
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => const Homelayout()),
-    //     );
-    //   } else {
-    //     ScaffoldMessenger.of(context).showSnackBar(
-    //         const SnackBar(content: Text("Invalid OTP")));
-    //   }
-    //
-    //
-    // }
-
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
@@ -77,7 +72,7 @@ class Otp extends StatelessWidget {
         children: [
           SizedBox(height: 40.h),
           Text(
-            'You just need to enter the OTP\nsent to the registered phone\nnumber',
+            'You just need to enter the OTP\nsent to the registered Email',
             style: theme.textTheme.bodySmall!.copyWith(fontSize: 20),
             textAlign: TextAlign.center,
           ),
@@ -126,7 +121,9 @@ class Otp extends StatelessWidget {
                   ),
                 );
               } else {
-                navigateTo(context: context, screen: const HomeLayout());
+                String otp =
+                    N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
+                verifyOtp(context, otp);
               }
             },
           ),
@@ -136,10 +133,10 @@ class Otp extends StatelessWidget {
   }
 
   Widget buildOtpField(
-    TextEditingController controller,
-    FocusNode currentFocus,
-    FocusNode? nextFocus,
-  ) {
+      TextEditingController controller,
+      FocusNode currentFocus,
+      FocusNode? nextFocus,
+      ) {
     return SizedBox(
       width: 40.w,
       child: TextField(
@@ -160,7 +157,7 @@ class Otp extends StatelessWidget {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: Color(0xff4d0973), width: 1.5),
+            borderSide:  BorderSide(color: Color(0x66000000), width:1.5 ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
@@ -172,7 +169,4 @@ class Otp extends StatelessWidget {
       ),
     );
   }
-
-
-
 }

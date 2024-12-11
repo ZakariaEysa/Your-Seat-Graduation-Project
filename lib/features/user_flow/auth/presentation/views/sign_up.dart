@@ -382,12 +382,7 @@ class _SignUpState extends State<SignUp> {
                           onTap: () {
                             navigateAndReplace(
                               context: context,
-                              screen: BlocProvider(
-                                create: (context) => AuthCubit(AuthRepoImpl(
-                                    AuthRemoteDataSourceImpl(
-                                        FirebaseAuth.instance, GoogleSignIn()))),
-                                child: const SignIn(),
-                              ),
+                              screen: const SignIn(),
                             );
                           },
                           child: Text(local.alreadyHaveAccount,
@@ -415,7 +410,9 @@ class _SignUpState extends State<SignUp> {
             AppLogs.scussessLog("creae");
                 HiveStorage.set(HiveKeys.role, Role.email.toString());
 
-               navigateAndRemoveUntil(context: context, screen: Otp());
+               navigateTo(context: context, screen:
+                   Otp(),
+               );
               }
             },
             builder: (context, state) {

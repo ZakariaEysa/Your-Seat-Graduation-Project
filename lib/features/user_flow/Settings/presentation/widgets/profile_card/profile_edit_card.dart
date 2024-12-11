@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/widgets/profile_card/info_container.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/user_model.dart';
 import 'package:yourseatgraduationproject/widgets/button/button_builder.dart';
 
 import '../../../../../../data/hive_keys.dart';
@@ -12,8 +15,7 @@ import '../../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../auth/presentation/widgets/BirthDateDropdown.dart';
 
 class ProfileEditCard extends StatefulWidget {
-   const ProfileEditCard({super.key});
-
+  const ProfileEditCard({super.key});
 
   @override
   State<ProfileEditCard> createState() => _ProfileEditCardState();
@@ -21,176 +23,259 @@ class ProfileEditCard extends StatefulWidget {
 
 class _ProfileEditCardState extends State<ProfileEditCard> {
   final List<int> days = List<int>.generate(31, (index) => index + 1);
+  final List<int> years = List<int>.generate(80, (index) => DateTime.now().year - index);
+  final List<String> months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
 
-
-  final List<int> years =
-  List<int>.generate(80, (index) => DateTime.now().year - index);
   String? selectedMonth;
   int? selectedDay;
   int? selectedYear;
+  String? selectedGender;
   var currentUser;
-
-
+  List<String> splitDate = [];
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+    _loadCurrentUser();
+  }
 
-
+  void _loadCurrentUser() {
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
     } else {
       currentUser = HiveStorage.getDefaultUser();
       AppLogs.scussessLog(currentUser.toString());
     }
-   //var cubit = EditProfileCubit.get(context);
+
+    String date = currentUser.dateOfBirth;
+    splitDate = date.split("/");
+
+    try {
+      selectedDay = days.contains(int.parse(splitDate[0])) ? int.parse(splitDate[0]) : null;
+      selectedMonth = months.contains(splitDate[1]) ? splitDate[1] : null;
+      selectedYear = years.contains(int.parse(splitDate[2])) ? int.parse(splitDate[2]) : null;
+      AppLogs.scussessLog("Date parsed successfully");
+    } catch (e) {
+      AppLogs.errorLog("Date parsing failed: $e");
+    }
+
+    userController.text = currentUser.name;
+    emailController.text = currentUser.email;
+    selectedGender = currentUser.gender ?? "";
+  }
+
+  Future<void> updateProfile() async {
+    try {
+      var userDoc = FirebaseFirestore.instance.collection('users').doc(currentUser.email);
+      await userDoc.update({
+        'name': userController.text,
+        'email': emailController.text,
+        'password': passwordController.text,
+        'dateOfBirth': '$selectedDay/$selectedMonth/$selectedYear',
+        "image": "",
+        "gender": selectedGender,
+        "location": "",
+      });
+
+      HiveStorage.saveDefaultUser(UserModel(
+        name: userController.text,
+        email: emailController.text,
+        password: passwordController.text,
+        dateOfBirth: '$selectedDay/$selectedMonth/$selectedYear',
+        gender: selectedGender,
+      ));
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Data Updated Successfully")),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Something Went Wrong")),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     var lang = S.of(context);
     var theme = Theme.of(context);
-    final List<String> months = [
-      lang.january,
-      lang.february,
-      lang.march,
-      lang.april,
-      lang.may,
-      lang.june,
-      lang.july,
-      lang.august,
-      lang.september,
-      lang.october,
-      lang.november,
-      lang.december
-    ];
+    final List<String> gender = ["Male", "Female"];
 
-    userController.text= currentUser.name;
-    emailController.text=currentUser.email;
-    return  ScaffoldF(
+    return ScaffoldF(
+      //resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E1371),
-        iconTheme:  IconThemeData(
+        iconTheme: IconThemeData(
           size: 28.sp,
           color: Colors.white,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Stack(children: [
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
-            child: Container(
-              margin:  EdgeInsets.only(top: 40.h),
-              decoration:  BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(51.r),
-                  topRight: Radius.circular(48.r),
-                ),
-                color: const Color(0xFF00002B),
-              ),
-              child: Center(
-                child: Padding(
-                  padding:  EdgeInsets.only(top: 130.h, left: 10.w),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                         Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                           child: Text(lang.username,style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),),
-                         ),
-                         InfoContainer(
-                           controller: userController,
-                             type: TextInputType.text,
-
-                             title: "Mohamed Ahmed"),
-                         Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 12.0),                         child: Text(lang.emailAddress,style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),),
-                         ),
-                          InfoContainer(
-                             controller: emailController,
-                             type: TextInputType.emailAddress,
-                             title: "MohamedAhmed555@gmail.com"),
-                         Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 12.0),                         child: Text(lang.password,style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),),
-                         ),
-                          InfoContainer(
-                             controller: passwordController,
-                             type: TextInputType.visiblePassword,
-                             title: currentUser?.name ?? "-"),
-                         Padding(
-                           padding: const EdgeInsets.symmetric(horizontal: 12.0),                         child: Text(lang.birthDate,style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),),
-                         ),
-                         Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          // Text(selectedMonth? "":""),
-                          BirthDateDropdown<String>(
-        
-                            hintText: lang.month,
-                            selectedValue: selectedMonth,
-                            itemsList: months,
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                selectedMonth = newValue;
-                              });
-                            },
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
+                child: Container(
+                  margin: EdgeInsets.only(top: 40.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(51.r),
+                      topRight: Radius.circular(48.r),
+                    ),
+                    color: const Color(0xFF00002B),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _buildLabel(theme, lang.username),
+                        SizedBox(height: 15.h),
+                        InfoContainer(
+                          onChanged: (value) => userController.text = value,
+                          controller: userController,
+                          type: TextInputType.text,
+                          title: "",
+                        ),
+                        SizedBox(height: 15.h),
+                        _buildLabel(theme, lang.emailAddress),
+                        SizedBox(height: 15.h),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 12.w),
+                          padding: EdgeInsets.all(15.sp),
+                          alignment: Alignment.centerLeft,
+                          width: double.infinity,
+                          height: 55.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(23.r),
+                            color: theme.colorScheme.onSecondary,
                           ),
-                          BirthDateDropdown<int>(
-                            hintText: lang.day,
-                            selectedValue: selectedDay,
-                            itemsList: days,
-                            onChanged:
-                                (int? newValue) {
-                              setState(() {
-                                selectedDay = newValue;
-                              });
-                            },
-                          ),
-                          BirthDateDropdown<int>(
-                            hintText: lang.year,
-                            selectedValue: selectedYear,
-                            itemsList: years,
-                            onChanged: (int? newValue) {
-                              setState(() {
-                                selectedYear = newValue;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                         SizedBox(height: 15.h,),
-                         Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                           children: [
-                             ButtonBuilder(text: "",
-                                 height: 49,
-                                 width: 167,
-                                 image: HiveStorage.get(HiveKeys.isArabic)?"assets/images/cancel_arabic.png":"assets/images/Cancel.png",
-                                 onTap: (){
-                               navigatePop(context: context);                               }),
-                             ButtonBuilder(text: "",
-                                 height: 49,
-                                 width: 167,
-                                 image:HiveStorage.get(HiveKeys.isArabic)?"assets/images/save_changes_arabic.png": "assets/images/Save Changes.png",
-                                 onTap: (){})
-                           ],
-                         ),
-                      ]
+                          child: Text(emailController.text),
+                        ),
+                        SizedBox(height: 15.h),
+                        _buildLabel(theme, lang.birthDate),
+                        SizedBox(height: 15.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: _buildDropdown(lang.month, selectedMonth, months,
+                                      (String? newValue) {
+                                    setState(() {
+                                      selectedMonth = newValue;
+                                    });
+                                  }),
+                            ),
+                            SizedBox(width: 10.w),
+                            Expanded(
+                              child: _buildDropdown(lang.day, selectedDay, days, (int? newValue) {
+                                setState(() {
+                                  selectedDay = newValue;
+                                });
+                              }),
+                            ),
+                            SizedBox(width: 10.w),
+                            Expanded(
+                              child: _buildDropdown(lang.year, selectedYear, years, (int? newValue) {
+                                setState(() {
+                                  selectedYear = newValue;
+                                });
+                              }),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 15.h),
+                        _buildLabel(theme, lang.gender),
+                        SizedBox(height: 15.h),
+                        _buildDropdown(lang.gender, selectedGender, gender, (String? newValue) {
+                          setState(() {
+                            selectedGender = newValue ?? "";
+                          });
+                        }),
+                        SizedBox(height: 45.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            _buildButton(
+                              HiveStorage.get(HiveKeys.isArabic)
+                                  ? "assets/images/cancel_arabic.png"
+                                  : "assets/images/Cancel.png",
+                                  () => navigatePop(context: context),
+                            ),
+                            _buildButton(
+                              HiveStorage.get(HiveKeys.isArabic)
+                                  ? "assets/images/save_changes_arabic.png"
+                                  : "assets/images/Save Changes.png",
+                              updateProfile,
+                            ),
+                          ],
+                        ),
+                        //SizedBox(height: 10.h),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
+              Positioned(
+                left: 105.w,
+                child: CircleAvatar(
+                  radius: 80.r,
+                  backgroundImage: const AssetImage("assets/images/film1.png"),
+                ),
+              ),
+            ],
           ),
-          Positioned(
-            left: 105.w,
-            child:  CircleAvatar(
-                radius: 80.r,
-                backgroundImage: const AssetImage(
-                    "assets/images/film1.png") // Replace with your image URL
-            ),
-          ),
-        ]),
+        ),
       ),
+    );
+  }
+
+  Widget _buildLabel(ThemeData theme, String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: Text(
+        text,
+        style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),
+      ),
+    );
+  }
+
+  Widget _buildDropdown<T>(String hintText, T? selectedValue, List<T> items, ValueChanged<T?> onChanged) {
+    return BirthDateDropdown<T>(
+      hintText: hintText,
+      selectedValue: selectedValue,
+      itemsList: items,
+      onChanged: onChanged,
+    );
+  }
+
+  Widget _buildButton(String imagePath, VoidCallback onTap) {
+    return ButtonBuilder(
+      text: "",
+      height: 49,
+      width: 167,
+      image: imagePath,
+      onTap: onTap,
     );
   }
 }

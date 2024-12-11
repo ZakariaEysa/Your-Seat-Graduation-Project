@@ -16,6 +16,7 @@ class ScaffoldF extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Scaffold(
+      resizeToAvoidBottomInset: true,
   appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       body: Container(

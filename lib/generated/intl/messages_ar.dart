@@ -134,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "المفضلات أو قائمة المشاهدة للوصول السريع إلى أفلامك المفضلة."),
         "february": MessageLookupByLibrary.simpleMessage("فبراير"),
+        "female": MessageLookupByLibrary.simpleMessage("انثي"),
         "fill_all_fields":
             MessageLookupByLibrary.simpleMessage("يرجى ملء جميع الحقول"),
         "forgotPassword":
@@ -160,6 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حدث خطأ أثناء تسجيل الدخول"),
         "login_successful":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
+        "male": MessageLookupByLibrary.simpleMessage("ذكر"),
         "march": MessageLookupByLibrary.simpleMessage("مارس"),
         "may": MessageLookupByLibrary.simpleMessage("مايو"),
         "month": MessageLookupByLibrary.simpleMessage("الشهر"),

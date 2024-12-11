@@ -127,6 +127,8 @@
   "startUsingTheApp" : "Start Using the App ->",
   "skip" : "Skip",
   "next" : "Next",
+  "male" : "Male",
+  "female" : "Female",
   "newMoviesEasyBooking" : "New movies ! Easy booking",
   "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou" : "Book tickets for the latest movies at the cinema nearest to you.",
   "favoriteItAddWatchlist" : "Favorite it!\n Add watchlist",

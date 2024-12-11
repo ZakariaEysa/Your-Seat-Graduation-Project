@@ -16,7 +16,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   static AuthCubit get(context) => BlocProvider.of<AuthCubit>(context);
   final AuthRepo authRepo;
-
+   UserModel? userModel;
   AuthCubit(this.authRepo) : super(AuthInitial());
   GlobalKey<FormState> formKeyLogin = GlobalKey();
   GlobalKey<FormState> formKeyRegister = GlobalKey();
@@ -84,9 +84,11 @@ class AuthCubit extends Cubit<AuthState> {
 
     try {
          emit(AuthLoading());
+         AppLogs.scussessLog("message");
            await authRepo.checkUserExistsR(userModel.email);
          sendOtp(userModel.email);
-             authRepo.saveUser(userModel: userModel);
+      this.userModel = userModel;
+
 
 
 
@@ -155,7 +157,11 @@ class AuthCubit extends Cubit<AuthState> {
 
 
   }
+  Future<void>  verifyedSendOtp () async{
 
+    AppLogs.scussessLog(userModel.toString());
+   await  authRepo.saveUser(userModel: userModel?? UserModel(name: "", email: "", password: "", dateOfBirth: ""));
+   }
 
 }
 

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/widgets/profile_card/info_container.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/user_model.dart';
@@ -38,6 +41,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     "November",
     "December",
   ];
+  final List<String> gender = ["Male", "Female"];
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
@@ -50,6 +54,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
   String? selectedGender;
   var currentUser;
   List<String> splitDate = [];
+  XFile? selectedImage;
 
   @override
   void initState() {
@@ -72,6 +77,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       selectedDay = days.contains(int.parse(splitDate[0])) ? int.parse(splitDate[0]) : null;
       selectedMonth = months.contains(splitDate[1]) ? splitDate[1] : null;
       selectedYear = years.contains(int.parse(splitDate[2])) ? int.parse(splitDate[2]) : null;
+
       AppLogs.scussessLog("Date parsed successfully");
     } catch (e) {
       AppLogs.errorLog("Date parsing failed: $e");
@@ -79,7 +85,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
     userController.text = currentUser.name;
     emailController.text = currentUser.email;
-    selectedGender = currentUser.gender ?? "";
+    selectedGender = gender.contains(currentUser.gender) ? currentUser.gender : null;
   }
 
   Future<void> updateProfile() async {
@@ -87,10 +93,10 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       var userDoc = FirebaseFirestore.instance.collection('users').doc(currentUser.email);
       await userDoc.update({
         'name': userController.text,
-        'email': emailController.text,
-        'password': passwordController.text,
+        //'email': emailController.text,
+        //'password': passwordController.text,
         'dateOfBirth': '$selectedDay/$selectedMonth/$selectedYear',
-        "image": "",
+        "image": selectedImage?.path ?? "",
         "gender": selectedGender,
         "location": "",
       });
@@ -101,6 +107,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
         password: passwordController.text,
         dateOfBirth: '$selectedDay/$selectedMonth/$selectedYear',
         gender: selectedGender,
+        image: selectedImage?.path ?? "",
       ));
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -113,15 +120,56 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
   }
 
+  Future<void> _pickImage() async {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        var lang = S.of(context);
+        var theme = Theme.of(context);
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.photo_library,color: Colors.white),
+                title: const Text('Gallery',style: TextStyle(color: Colors.white),),
+                onTap: () async {
+                  Navigator.of(context).pop();
+                  final ImagePicker picker = ImagePicker();
+                  final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+                  if (image != null) {
+                    setState(() {
+                      selectedImage = image;
+                    });
+                  }
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.camera_alt,color: Colors.white,),
+                title: const Text('Camera',style: TextStyle(color: Colors.white)),
+                onTap: () async {
+                  Navigator.of(context).pop();
+                  final ImagePicker picker = ImagePicker();
+                  final XFile? image = await picker.pickImage(source: ImageSource.camera);
+                  if (image != null) {
+                    setState(() {
+                      selectedImage = image;
+                    });
+                  }
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
     var theme = Theme.of(context);
-    final List<String> gender = ["Male", "Female",""];
-
 
     return ScaffoldF(
-      //resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E1371),
         iconTheme: IconThemeData(
@@ -210,7 +258,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                         SizedBox(height: 15.h),
                         _buildDropdown(lang.gender, selectedGender, gender, (String? newValue) {
                           setState(() {
-                            selectedGender = newValue ?? "";
+                            selectedGender = newValue;
                           });
                         }),
                         SizedBox(height: 45.h),
@@ -231,7 +279,6 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                             ),
                           ],
                         ),
-                        //SizedBox(height: 10.h),
                       ],
                     ),
                   ),
@@ -239,9 +286,35 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
               ),
               Positioned(
                 left: 105.w,
-                child: CircleAvatar(
-                  radius: 80.r,
-                  backgroundImage: const AssetImage("assets/images/film1.png"),
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 80.r,
+                      backgroundImage: selectedImage != null
+                          ? FileImage(File(selectedImage!.path))
+                          : const AssetImage("assets/images/film1.png") as ImageProvider,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: _pickImage,
+                        child: Container(
+                          height: 30.h,
+                          width: 30.w,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.camera_alt,
+                            size: 20.sp,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

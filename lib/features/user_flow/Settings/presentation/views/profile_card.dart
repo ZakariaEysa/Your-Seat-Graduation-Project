@@ -12,8 +12,10 @@ import '../../../../../widgets/scaffold/scaffold_f.dart';
 class ProfileCard extends StatefulWidget {
   const ProfileCard({super.key});
 
+
   @override
   State<ProfileCard> createState() => _ProfileCardState();
+
 }
 
 class _ProfileCardState extends State<ProfileCard> {
@@ -21,6 +23,7 @@ class _ProfileCardState extends State<ProfileCard> {
 
   @override
   Widget build(BuildContext context) {
+
     var theme = Theme.of(context);
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
@@ -78,14 +81,6 @@ class _ProfileCardState extends State<ProfileCard> {
                         fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      textAlign: TextAlign.center,
-                      currentUser?.email ?? "-",
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        color: Colors.white70,
                       ),
                     ),
                     SizedBox(height: 10.h),

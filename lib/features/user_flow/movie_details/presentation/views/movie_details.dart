@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:readmore/readmore.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/widgets/director_actor_card.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../data/hive_keys.dart';
@@ -219,17 +220,22 @@ class MovieDetails extends StatelessWidget {
                 SizedBox(
                   height: 30.h,
                 ),
-                Text(
-                  "As the Avengers and their allies have continued\nto protect the world from threats too large for\nany one hero to handle, a new danger has\nemerged from the cosmic shadows: Thanos.... ",
-                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Text(
-                  lang.seeMore,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                      fontSize: 14.sp, color: const Color(0xFFF6C700)),
+                ReadMoreText(
+                  "As the Avengers and their allies have continued to\nprotect the world from threats too large for any\none hero to handle, a new danger has emerged\nfrom the cosmic shadows:Thanos...\nto protect the world from threats too large for\nany one hero to handle, a new danger has\nemerged from the cosmic shadows: Thanos....\nAs the Avengers and their allies have continued to\nAs the Avengers and their allies have continued to\nAs the Avengers and their allies have continued to  ",
+                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
+                  trimLines: 4,
+                  textAlign: TextAlign.start,
+                  trimMode: TrimMode.Line,
+                  trimCollapsedText: lang.seeMore,
+                  trimExpandedText: lang.seeLess,
+                  lessStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.yellow,
+                  ),
+                  moreStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.yellow,
+                  ),
                 ),
                 SizedBox(
                   height: 25.h,

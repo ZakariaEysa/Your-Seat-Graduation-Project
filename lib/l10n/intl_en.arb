@@ -163,5 +163,12 @@
   "actor": "Actor",
   "cinema": "Cinema",
   "seeMore": "See more",
+  "seeLess": "See less",
+  "forgetPassword": "Forget Password",
+  "pleaseEnterYourEmailToReceiveAVerificationCard": "Please Enter Your Email To Receive\na Verification Card",
+  "createNewPassword": "Create New Password",
+  "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword": "Your New Password Must Be \nDifferent from Previously \nUsed Password ",
+  "newPassword": "New Password",
+
   "rahaf1": "Rahaf"
 }

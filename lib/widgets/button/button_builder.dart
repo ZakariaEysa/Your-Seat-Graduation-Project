@@ -58,8 +58,8 @@ class ButtonBuilder extends StatelessWidget {
                     if (image != null && image!.isNotEmpty)
                       Image.asset(
                         image!,
-                        width: 84.w,
-                        height: 84.h,
+                        width: 75.w,
+                        height: 75.h,
                         // fit: BoxFit.cover,
                       ),
                     Text(

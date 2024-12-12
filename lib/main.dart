@@ -10,13 +10,18 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
+import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
+import 'package:yourseatgraduationproject/features/user_flow/forget/presentation/views/forget.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
+import 'package:yourseatgraduationproject/features/user_flow/new%20password/presentation/views/new_password.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/app.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
+import 'features/user_flow/Settings/presentation/views/profile_card.dart';
 import 'features/user_flow/Splash_screen/splash_screen.dart';
 import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -170,6 +175,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
         builder: (context, state) {
+
           return ScreenUtilInit(
               designSize: const Size(375, 812),
               minTextAdapt: true,
@@ -196,5 +202,6 @@ class _MyAppState extends State<MyApp> {
                 );
               });
         });
+
   }
 }

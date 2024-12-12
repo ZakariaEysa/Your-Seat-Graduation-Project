@@ -38,11 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
     } else if (HiveStorage.get(HiveKeys.role) == "" || HiveStorage.get(HiveKeys.role) == null) {
       navigateAndReplace(
         context: context,
-        screen: BlocProvider(
-          create: (context) => AuthCubit(AuthRepoImpl(
-              AuthRemoteDataSourceImpl(FirebaseAuth.instance, GoogleSignIn()))),
-          child: const SignIn(),
-        ),
+        screen: const SignIn(),
       );
     } else {
       navigateAndReplace(

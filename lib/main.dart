@@ -1,11 +1,14 @@
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
 import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
 import 'package:yourseatgraduationproject/features/user_flow/forget/presentation/views/forget.dart';
@@ -25,8 +28,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/domain/model/google_user_model.dart';
 import 'features/user_flow/auth/domain/model/user_model.dart';
+import 'features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
 
 
 void main() async {
@@ -126,17 +131,24 @@ void main() async {
   AppLogs.errorLog(currentUser2.toString());
 
 
-
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(
       HiveKeys.isArabic,
       false,
     );
   }
-  runApp(BlocProvider<SwitchLanguageCubit>(
-    create: (context) => SwitchLanguageCubit(),
-    child:  const MyApp(),
-  ));
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider<SwitchLanguageCubit>(create: (context) => SwitchLanguageCubit(),),
+     BlocProvider<AuthCubit>( create: (context) => AuthCubit(AuthRepoImpl(
+         AuthRemoteDataSourceImpl(FirebaseAuth.instance, GoogleSignIn()))),
+     ),
+    ],
+    child: const MyApp(),
+  )
+
+
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -158,35 +170,38 @@ class _MyAppState extends State<MyApp> {
       key = UniqueKey();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
         builder: (context, state) {
-      return ScreenUtilInit(
-          designSize: const Size(375, 812),
-          minTextAdapt: true,
-          useInheritedMediaQuery: true,
-          ensureScreenSize: true,
-          splitScreenMode: true,
-          builder: (_, child) {
-            return MaterialApp(
-              theme: ApplicationTheme.darkTheme,
-              locale: HiveStorage.get(HiveKeys.isArabic)
-                  ? const Locale('ar')
-                  : const Locale('en'),
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              debugShowCheckedModeBanner: false,
-              builder: BotToastInit(),
-              // home:  Otp(),
-              home:NewPassword(),
-            );
-          });
-    });
+
+          return ScreenUtilInit(
+              designSize: const Size(375, 812),
+              minTextAdapt: true,
+              useInheritedMediaQuery: true,
+              ensureScreenSize: true,
+              splitScreenMode: true,
+              builder: (_, child) {
+                return MaterialApp(
+                  theme: ApplicationTheme.darkTheme,
+                  locale: HiveStorage.get(HiveKeys.isArabic)
+                      ? const Locale('ar')
+                      : const Locale('en'),
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  debugShowCheckedModeBanner: false,
+                  builder: BotToastInit(),
+                  // home:  Otp(),
+                  home: SplashScreen(),
+                );
+              });
+        });
+
   }
 }

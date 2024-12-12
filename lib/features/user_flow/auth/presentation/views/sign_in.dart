@@ -127,6 +127,7 @@ class _SignInState extends State<SignIn> {
                             type: TextInputType.emailAddress,
                             imagePath: 'assets/images/email 2.png',
 
+
                           ),
 
                         ),
@@ -299,13 +300,7 @@ class _SignInState extends State<SignIn> {
                               onTap: () {
                                 navigateTo(
                                   context: context,
-                                  screen: BlocProvider(
-                                    create: (context) => AuthCubit(AuthRepoImpl(
-                                        AuthRemoteDataSourceImpl(
-                                            FirebaseAuth.instance,
-                                            GoogleSignIn()))),
-                                    child: const SignUp(),
-                                  ),
+                                  screen: const SignUp(),
                                 );
                               },
                               child: Text(

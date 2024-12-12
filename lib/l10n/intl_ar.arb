@@ -165,6 +165,12 @@
   "actor": "ممثل",
   "cinema": "سينما",
   "seeMore": "رؤية المزيد",
+  "seeLess": "رؤية القليل",
+  "forgetPassword": " نسيت كلمة المرور",
+  "pleaseEnterYourEmailToReceiveAVerificationCard": "من فضلك أدخل بريدك الإلكتروني لتلقي بطاقة التحقق",
+  "createNewPassword": "إنشاء كلمة مرور جديدة",
+  "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword ": "كلمة المرور الجديدة الخاصة بك يجب أن تكون \nيختلف عن السابق \nكلمة المرور المستخدمة",
+  "newPassword": "كلمة المرور الجديدة",
   "rahaf1": "رهف"
 
 }

@@ -1578,6 +1578,66 @@ class S {
     );
   }
 
+  /// `See less`
+  String get seeLess {
+    return Intl.message(
+      'See less',
+      name: 'seeLess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forget Password`
+  String get forgetPassword {
+    return Intl.message(
+      'Forget Password',
+      name: 'forgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Your Email To Receive\na Verification Card`
+  String get pleaseEnterYourEmailToReceiveAVerificationCard {
+    return Intl.message(
+      'Please Enter Your Email To Receive\na Verification Card',
+      name: 'pleaseEnterYourEmailToReceiveAVerificationCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create New Password`
+  String get createNewPassword {
+    return Intl.message(
+      'Create New Password',
+      name: 'createNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your New Password Must Be \nDifferent from Previously \nUsed Password `
+  String get yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword {
+    return Intl.message(
+      'Your New Password Must Be \nDifferent from Previously \nUsed Password ',
+      name: 'yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get newPassword {
+    return Intl.message(
+      'New Password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Rahaf`
   String get rahaf1 {
     return Intl.message(

@@ -98,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "continue_with_google":
             MessageLookupByLibrary.simpleMessage("تسجيل الدخول عبر جوجل"),
         "continuee": MessageLookupByLibrary.simpleMessage("متابعة"),
+        "createNewPassword":
+            MessageLookupByLibrary.simpleMessage("إنشاء كلمة مرور جديدة"),
         "dark": MessageLookupByLibrary.simpleMessage("ليلي"),
         "day": MessageLookupByLibrary.simpleMessage("اليوم"),
         "december": MessageLookupByLibrary.simpleMessage("ديسمبر"),
@@ -140,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "female": MessageLookupByLibrary.simpleMessage("انثي"),
         "fill_all_fields":
             MessageLookupByLibrary.simpleMessage("يرجى ملء جميع الحقول"),
+        "forgetPassword":
+            MessageLookupByLibrary.simpleMessage(" نسيت كلمة المرور"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور؟"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
@@ -171,6 +175,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "movieGenre": MessageLookupByLibrary.simpleMessage("نوع الفيلم:"),
         "newMoviesEasyBooking":
             MessageLookupByLibrary.simpleMessage("أفلام جديدة! حجز سهل"),
+        "newPassword":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "no_account": MessageLookupByLibrary.simpleMessage("لا تملك حساباً؟"),
         "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),
@@ -190,6 +196,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
             "يجب أن توافق على الشروط والأحكام."),
+        "pleaseEnterYourEmailToReceiveAVerificationCard":
+            MessageLookupByLibrary.simpleMessage(
+                "من فضلك أدخل بريدك الإلكتروني لتلقي بطاقة التحقق"),
         "pleaseFillTheCredentials":
             MessageLookupByLibrary.simpleMessage("يرجى ملء البيانات المطلوبة."),
         "please_enter_EmailAddress": MessageLookupByLibrary.simpleMessage(
@@ -208,6 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح!"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+        "seeLess": MessageLookupByLibrary.simpleMessage("رؤية القليل"),
         "seeMore": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
         "september": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "setting": MessageLookupByLibrary.simpleMessage("الاعدادات"),

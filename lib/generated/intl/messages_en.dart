@@ -102,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "continue_with_google":
             MessageLookupByLibrary.simpleMessage("Continue with Google"),
         "continuee": MessageLookupByLibrary.simpleMessage("Continue"),
+        "createNewPassword":
+            MessageLookupByLibrary.simpleMessage("Create New Password"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
@@ -142,6 +144,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "fill_all_fields":
             MessageLookupByLibrary.simpleMessage("Please fill all fields"),
+        "forgetPassword":
+            MessageLookupByLibrary.simpleMessage("Forget Password"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
@@ -174,6 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
         "newMoviesEasyBooking":
             MessageLookupByLibrary.simpleMessage("New movies ! Easy booking"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no_account":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
@@ -193,6 +198,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "personalInfo": MessageLookupByLibrary.simpleMessage("Personal Info"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
             "You must accept the terms and conditions."),
+        "pleaseEnterYourEmailToReceiveAVerificationCard":
+            MessageLookupByLibrary.simpleMessage(
+                "Please Enter Your Email To Receive\na Verification Card"),
         "pleaseFillTheCredentials": MessageLookupByLibrary.simpleMessage(
             "Please fill in the credentials."),
         "please_enter_EmailAddress": MessageLookupByLibrary.simpleMessage(
@@ -212,6 +220,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "review": MessageLookupByLibrary.simpleMessage("Review"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
+        "seeLess": MessageLookupByLibrary.simpleMessage("See less"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
@@ -250,6 +259,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "youJustNeedToEnterTheOtpSentToTheRegisteredEmailAddress":
             MessageLookupByLibrary.simpleMessage(
                 "You just need to enter the OTP sent to the registered Email Address."),
+        "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword":
+            MessageLookupByLibrary.simpleMessage(
+                "Your New Password Must Be \nDifferent from Previously \nUsed Password "),
         "zakaria": MessageLookupByLibrary.simpleMessage("zakaria"),
         "zakaria1": MessageLookupByLibrary.simpleMessage("zakaria1")
       };

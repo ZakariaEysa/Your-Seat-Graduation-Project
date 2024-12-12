@@ -20,8 +20,8 @@ class NowPLaying extends StatelessWidget{
              Row(
                children: [
                  Padding(
-                   padding: EdgeInsets.only(bottom:20.h),
-                   child: const PlayingMovies(image:"assets/images/film88.png", title:"Avengers: Infinity War"),
+                   padding: EdgeInsets.only(bottom:10.h),
+                   child: const PlayingMovies(image:"assets/images/film88.png", title:"Avengers: Infinity\nWar"),
                  ),
 
                    const PlayingMovies(image: "assets/images/film2.png", title: "Shang chi: Legend of\nthe Ten Rings"),],
@@ -30,8 +30,8 @@ class NowPLaying extends StatelessWidget{
               Row(
                children: [
                  Padding(
-                   padding: EdgeInsets.only(bottom: 20.h,),
-                   child: const PlayingMovies(image:"assets/images/film3.png", title:"Guardians Of The Galaxy"),
+                   padding: EdgeInsets.only(bottom:.20.h,),
+                   child: const PlayingMovies(image:"assets/images/film3.png", title:"Guardians Of The\nGalaxy"),
                  ),
                  const PlayingMovies(image: "assets/images/film14.png", title: "Batman v Superman\nDawn of Justice"),],
              ),

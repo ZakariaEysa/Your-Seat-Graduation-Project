@@ -36,7 +36,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
         ),
         Text(
           widget.title,
-          style: theme.textTheme.bodySmall!.copyWith(fontSize:13.sp,fontWeight:FontWeight.bold,),
+          style: theme.textTheme.bodySmall!.copyWith(fontSize:14.sp,fontWeight:FontWeight.bold,),
         ),
         SizedBox(
           height:15.h,

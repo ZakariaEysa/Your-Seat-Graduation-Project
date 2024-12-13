@@ -24,27 +24,27 @@ class CinemaDetails extends StatelessWidget {
                 children: [
               Stack(children: [
                 Image.asset(
-                  'assets/images/Rectangle 49 (3).png',
-                  width: 430.w,
-                  height: 241.h,
+                  'assets/icons/cinema_details.png',
+                  width: 450.w,
+                  height:390.h,
                   fit: BoxFit.cover,
                 ),
                 Padding(
                   padding:  EdgeInsets.only(top:50.h),
                   child: IconButton(onPressed:(){
                     navigateTo(context: context, screen:const HomeLayout());
-                  }, icon:const Icon(Icons.arrow_back,color: Colors.white,size:16,weight: 16,)),
+                  }, icon:const Icon(Icons.arrow_back,color: Colors.white,size:25,weight:16,)),
                 ),
 
                 Positioned(
-                  top: 200.h,
+                  top: 240.h,
                   left: 10.w,
                   right: 10.w,
                   child: Container(
                     padding: EdgeInsets.all(8.sp),
                     color: const Color(0xFF37313B).withOpacity(.71),
-                    width: 370.w,
-                    height: 170.h,
+                    width: 340.w,
+                    height: 160.h,
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -53,7 +53,7 @@ class CinemaDetails extends StatelessWidget {
                           Text(
                             lang.IMAX_Cinema,
                             style: theme.textTheme.bodyMedium!
-                                .copyWith(fontSize: 13.sp),
+                                .copyWith(fontSize: 12.sp),
                           ),
                           Text(
                             lang.StatUpIsPlannedFor2025TypeOfTheaterKnownForItsLargeScreenSizeAndHighQualitySoundSystemItOffersAnImmersiveViewingExperienceForMoviesDocumentariesAndOtherContent
@@ -88,7 +88,7 @@ class CinemaDetails extends StatelessWidget {
                             ],
                           ),
                           Image.asset('assets/images/cinemastars.png',
-                              width: 200.w, height: 30.h)
+                              width:200.w, height:30.h)
                         ],
                       ),
                     ),

@@ -1,5 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import '../features/user_flow/auth/domain/model/google_user_model.dart';
 import '../features/user_flow/auth/domain/model/user_model.dart';
 
@@ -62,6 +63,8 @@ class HiveStorage {
 
   // Save UserModel to the box
   static Future<void> saveDefaultUser(UserModel user) async {
+
+
     await box2.put(HiveKeys.userDData, user);
 
   }

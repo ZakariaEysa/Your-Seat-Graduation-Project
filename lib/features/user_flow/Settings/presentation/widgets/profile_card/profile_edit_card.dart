@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -54,7 +55,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
   String? selectedGender;
   var currentUser;
   List<String> splitDate = [];
-  XFile? selectedImage;
+  String? selectedImageBase64;
 
   @override
   void initState() {
@@ -86,6 +87,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     userController.text = currentUser.name;
     emailController.text = currentUser.email;
     selectedGender = gender.contains(currentUser.gender) ? currentUser.gender : null;
+    selectedImageBase64 = currentUser.image;
   }
 
   Future<void> updateProfile() async {
@@ -93,10 +95,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       var userDoc = FirebaseFirestore.instance.collection('users').doc(currentUser.email);
       await userDoc.update({
         'name': userController.text,
-        //'email': emailController.text,
-        //'password': passwordController.text,
         'dateOfBirth': '$selectedDay/$selectedMonth/$selectedYear',
-        "image": selectedImage?.path ?? "",
+        "image": selectedImageBase64 ?? "",
         "gender": selectedGender,
         "location": "",
       });
@@ -107,12 +107,14 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
         password: passwordController.text,
         dateOfBirth: '$selectedDay/$selectedMonth/$selectedYear',
         gender: selectedGender,
-        image: selectedImage?.path ?? "",
+        image: selectedImageBase64 ?? "",
       ));
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Data Updated Successfully")),
       );
+
+      AppLogs.infoLog(HiveStorage.getDefaultUser().toString());
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Something Went Wrong")),
@@ -130,29 +132,31 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
           child: Wrap(
             children: [
               ListTile(
-                leading: const Icon(Icons.photo_library,color: Colors.white),
-                title: const Text('Gallery',style: TextStyle(color: Colors.white),),
+                leading: const Icon(Icons.photo_library, color: Colors.white),
+                title: const Text('Gallery', style: TextStyle(color: Colors.white)),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
                   final XFile? image = await picker.pickImage(source: ImageSource.gallery);
                   if (image != null) {
+                    final bytes = await File(image.path).readAsBytes();
                     setState(() {
-                      selectedImage = image;
+                      selectedImageBase64 = base64Encode(bytes);
                     });
                   }
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.camera_alt,color: Colors.white,),
-                title: const Text('Camera',style: TextStyle(color: Colors.white)),
+                leading: const Icon(Icons.camera_alt, color: Colors.white),
+                title: const Text('Camera', style: TextStyle(color: Colors.white)),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
                   final XFile? image = await picker.pickImage(source: ImageSource.camera);
                   if (image != null) {
+                    final bytes = await File(image.path).readAsBytes();
                     setState(() {
-                      selectedImage = image;
+                      selectedImageBase64 = base64Encode(bytes);
                     });
                   }
                 },
@@ -290,8 +294,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   children: [
                     CircleAvatar(
                       radius: 80.r,
-                      backgroundImage: selectedImage != null
-                          ? FileImage(File(selectedImage!.path))
+                      backgroundImage: selectedImageBase64 != null
+                          ? MemoryImage(base64Decode(selectedImageBase64!))
                           : const AssetImage("assets/images/film1.png") as ImageProvider,
                     ),
                     Positioned(

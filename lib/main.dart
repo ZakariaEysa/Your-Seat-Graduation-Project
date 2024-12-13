@@ -178,6 +178,7 @@ class _MyAppState extends State<MyApp> {
 
           return ScreenUtilInit(
               designSize: const Size(375, 812),
+
               minTextAdapt: true,
               useInheritedMediaQuery: true,
               ensureScreenSize: true,

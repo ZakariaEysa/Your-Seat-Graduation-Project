@@ -62,7 +62,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     var response = await authRepo.checkUserExists(userId, password);
 
-    response.fold((failure) => emit(UserValidationError(failure.errorMsg)),
+    response.fold((failure) => emit(UserValidationError("Sorry there was an error , please try again later")),
         (message) {
       if (message == "LoginSuccessful") {
         emit(UserValidationSuccess(message));

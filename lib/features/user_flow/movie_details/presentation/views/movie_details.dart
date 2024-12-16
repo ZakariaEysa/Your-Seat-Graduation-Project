@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/widgets/director_actor_card.dart';
@@ -12,7 +13,7 @@ import '../../../home/presentation/views/home_layout.dart';
 import '../widgets/cinema_card.dart';
 
 class MovieDetails extends StatelessWidget {
-  const MovieDetails({super.key});
+  const MovieDetails({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -102,8 +103,25 @@ class MovieDetails extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Image.asset('assets/images/cinemastars.png',
-                              width: 190.w, height: 30.h),
+                          RatingBar.builder(
+                            initialRating:4,
+                            minRating: 1,
+                            unratedColor: Color(0xFF575757),
+                            ignoreGestures: true,
+                            direction: Axis.horizontal,
+                            itemSize: 35,
+                            //allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              size: 2,
+                              color:Color(0xFFCCC919),
+                            ),
+                            onRatingUpdate: (rating) {
+                              // print(rating);
+                            },
+                          ),
                           SizedBox(
                             width: 12.w,
                           ),

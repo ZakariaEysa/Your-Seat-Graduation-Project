@@ -10,12 +10,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
+import 'package:yourseatgraduationproject/features/user_flow/card/presentation/views/card_refund.dart';
 import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
+import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/cinema_details.dart';
 import 'package:yourseatgraduationproject/features/user_flow/forget/presentation/views/forget.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
 import 'package:yourseatgraduationproject/features/user_flow/new%20password/presentation/views/new_password.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/app.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_refund.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment_done/presentation/views/payment_successful.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
@@ -32,6 +37,10 @@ import 'features/user_flow/auth/data/remote_data_source/remote_data_source/auth_
 import 'features/user_flow/auth/domain/model/google_user_model.dart';
 import 'features/user_flow/auth/domain/model/user_model.dart';
 import 'features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
+import 'features/user_flow/card/presentation/views/card.dart';
+import 'features/user_flow/payment_done/presentation/views/refund_successful.dart';
+import 'features/user_flow/payment_policy/presentation/views/payment_policy.dart';
+
 
 
 void main() async {
@@ -199,7 +208,8 @@ class _MyAppState extends State<MyApp> {
                   debugShowCheckedModeBanner: false,
                   builder: BotToastInit(),
                   // home:  Otp(),
-                  home: SplashScreen(),
+                  home:MovieDetails(),
+
                 );
               });
         });

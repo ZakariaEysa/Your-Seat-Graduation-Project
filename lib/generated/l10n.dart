@@ -1208,10 +1208,10 @@ class S {
     );
   }
 
-  /// `OK`
+  /// `oK`
   String get ok {
     return Intl.message(
-      'OK',
+      'oK',
       name: 'ok',
       desc: '',
       args: [],
@@ -1633,6 +1633,304 @@ class S {
     return Intl.message(
       'New Password',
       name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment\nSuccessful !`
+  String get paymentSuccessful {
+    return Intl.message(
+      'Payment\nSuccessful !',
+      name: 'paymentSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ticket`
+  String get ticket {
+    return Intl.message(
+      'Ticket',
+      name: 'ticket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refund\nSuccessful !`
+  String get refundSuccessful {
+    return Intl.message(
+      'Refund\nSuccessful !',
+      name: 'refundSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment`
+  String get payment {
+    return Intl.message(
+      'Payment',
+      name: 'payment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seat :`
+  String get seat {
+    return Intl.message(
+      'Seat :',
+      name: 'seat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total :`
+  String get total {
+    return Intl.message(
+      'Total :',
+      name: 'total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Method`
+  String get paymentMethod {
+    return Intl.message(
+      'Payment Method',
+      name: 'paymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `pay with card`
+  String get payWithCard {
+    return Intl.message(
+      'pay with card',
+      name: 'payWithCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `instapay`
+  String get instapay {
+    return Intl.message(
+      'instapay',
+      name: 'instapay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `complete your payment in`
+  String get completeYourPaymentIn {
+    return Intl.message(
+      'complete your payment in',
+      name: 'completeYourPaymentIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Refund`
+  String get paymentRefund {
+    return Intl.message(
+      'Payment Refund',
+      name: 'paymentRefund',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Refund Method`
+  String get paymentRefundMethod {
+    return Intl.message(
+      'Payment Refund Method',
+      name: 'paymentRefundMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Policy`
+  String get paymentPolicy {
+    return Intl.message(
+      'Payment Policy',
+      name: 'paymentPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Currency:`
+  String get currency {
+    return Intl.message(
+      'Currency:',
+      name: 'currency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All transactions on YourSeat will be\nprocessed in Local Currency.\n`
+  String get allTransactionsOnYourSeatWillBeProcessedInLocalCurrency {
+    return Intl.message(
+      'All transactions on YourSeat will be\nprocessed in Local Currency.\n',
+      name: 'allTransactionsOnYourSeatWillBeProcessedInLocalCurrency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Timing:`
+  String get paymentTiming {
+    return Intl.message(
+      'Payment Timing:',
+      name: 'paymentTiming',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1- Payments must be completed at the time of booking.\n 2- Your booking will only be confirmed upon successful payment.\n 3- Partial payments are not accepted. \n 4- Full payment is required for ticket confirmation.`
+  String
+      get paymentsMustBeCompletedAtTheTimeOfBookingYourBookingWillOnlyBeConfirmedUponSuccessfulPaymentPartialPaymentsAreNotAcceptedFullPaymentIsRequiredForTicketConfirmation {
+    return Intl.message(
+      '1- Payments must be completed at the time of booking.\n 2- Your booking will only be confirmed upon successful payment.\n 3- Partial payments are not accepted. \n 4- Full payment is required for ticket confirmation.',
+      name:
+          'paymentsMustBeCompletedAtTheTimeOfBookingYourBookingWillOnlyBeConfirmedUponSuccessfulPaymentPartialPaymentsAreNotAcceptedFullPaymentIsRequiredForTicketConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Confirmation :`
+  String get bookingConfirmation {
+    return Intl.message(
+      'Booking Confirmation :',
+      name: 'bookingConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Once payment is successful, a confirmation email with ticket details and booking information will be sent to the registered email address. If you do not receive a confirmation within 30 minutes of payment, please contact our support team at support@yourseat.com.`
+  String
+      get oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom {
+    return Intl.message(
+      'Once payment is successful, a confirmation email with ticket details and booking information will be sent to the registered email address. If you do not receive a confirmation within 30 minutes of payment, please contact our support team at support@yourseat.com.',
+      name:
+          'oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancellations & Refunds:`
+  String get cancellationsRefunds {
+    return Intl.message(
+      'Cancellations & Refunds:',
+      name: 'cancellationsRefunds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1-If canceled more than 12 hours before the movie's start time,the customer is eligible\nfor a full refund.\n 2-If canceled within 12 hours but more than 30 minutes before the movie's start time,the customer will receive 50% of the\nticket amount as a refund.\n 3- Cancellations made less than 30 minutes before the movie's start time are\n non-refundable Refund Process: In eligible cases, refunds will be credited back to the\noriginal payment method within (5-10) business days. Bank processing times may vary.\n`
+  String
+      get ifCanceledMoreThanTwelveHoursBeforeTheMovie_sStartTimeTheCustomerIsEligibleForAFullRefundIfCanceledWithinTwelveHoursButMoreThanThirtyMinutesBeforeTheMovie_sStartTimeTheCustomerWillReceiveFiftyOutOfAHundredOfTheTicketAmountAsARefundCancellationsMadeLessThanThirtyMinutesBeforeTheMovie_sStartTimeAreNonRefundableRefundProcessInEligibleCasesRefundsWillBeCreditedBackToTheOriginalPaymentMethodWithinFive_TenBusinessDaysBankProcessingTimesMayVary {
+    return Intl.message(
+      '1-If canceled more than 12 hours before the movie\'s start time,the customer is eligible\nfor a full refund.\n 2-If canceled within 12 hours but more than 30 minutes before the movie\'s start time,the customer will receive 50% of the\nticket amount as a refund.\n 3- Cancellations made less than 30 minutes before the movie\'s start time are\n non-refundable Refund Process: In eligible cases, refunds will be credited back to the\noriginal payment method within (5-10) business days. Bank processing times may vary.\n',
+      name:
+          'ifCanceledMoreThanTwelveHoursBeforeTheMovie_sStartTimeTheCustomerIsEligibleForAFullRefundIfCanceledWithinTwelveHoursButMoreThanThirtyMinutesBeforeTheMovie_sStartTimeTheCustomerWillReceiveFiftyOutOfAHundredOfTheTicketAmountAsARefundCancellationsMadeLessThanThirtyMinutesBeforeTheMovie_sStartTimeAreNonRefundableRefundProcessInEligibleCasesRefundsWillBeCreditedBackToTheOriginalPaymentMethodWithinFive_TenBusinessDaysBankProcessingTimesMayVary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Fees:`
+  String get serviceFees {
+    return Intl.message(
+      'Service Fees:',
+      name: 'serviceFees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Any service or processing fees associated with the booking are non-refundable.`
+  String
+      get anyServiceOrProcessingFeesAssociatedWithTheBookingAreNonRefundable {
+    return Intl.message(
+      'Any service or processing fees associated with the booking are non-refundable.',
+      name:
+          'anyServiceOrProcessingFeesAssociatedWithTheBookingAreNonRefundable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I agree with privacy policy.`
+  String get iAgreeWithPrivacyPolicy {
+    return Intl.message(
+      'I agree with privacy policy.',
+      name: 'iAgreeWithPrivacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continnue {
+    return Intl.message(
+      'Continue',
+      name: 'continnue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card information`
+  String get cardInformation {
+    return Intl.message(
+      'Card information',
+      name: 'cardInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card number:`
+  String get cardNumber {
+    return Intl.message(
+      'Card number:',
+      name: 'cardNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiry Date:`
+  String get expiryDate {
+    return Intl.message(
+      'Expiry Date:',
+      name: 'expiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cvv:`
+  String get cvv {
+    return Intl.message(
+      'Cvv:',
+      name: 'cvv',
       desc: '',
       args: [],
     );

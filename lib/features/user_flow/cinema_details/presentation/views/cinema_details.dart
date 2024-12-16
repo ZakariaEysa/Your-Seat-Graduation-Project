@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/widgets/cinema_comments.dart';
 import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/widgets/cinema_movies.dart';
@@ -87,8 +88,25 @@ class CinemaDetails extends StatelessWidget {
                               Text('4.8 (1.222)',style:theme.textTheme.bodyMedium!.copyWith(fontSize:12.sp))
                             ],
                           ),
-                          Image.asset('assets/images/cinemastars.png',
-                              width:200.w, height:30.h)
+                          RatingBar.builder(
+                            initialRating:4,
+                            minRating: 1,
+                            unratedColor: Color(0xFF575757),
+                            ignoreGestures: true,
+                            direction: Axis.horizontal,
+                            itemSize: 33,
+                            //allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              size: 2,
+                              color:Color(0xFFCCC919),
+                            ),
+                            onRatingUpdate: (rating) {
+                              // print(rating);
+                            },
+                          ),
                         ],
                       ),
                     ),

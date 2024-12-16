@@ -64,8 +64,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "addComment": MessageLookupByLibrary.simpleMessage(" Add Comment"),
         "ahmedSayed": MessageLookupByLibrary.simpleMessage("Ahmed Sayed"),
         "ahmedSayed1": MessageLookupByLibrary.simpleMessage("Ahmed Sayed"),
+        "allTransactionsOnYourSeatWillBeProcessedInLocalCurrency":
+            MessageLookupByLibrary.simpleMessage(
+                "All transactions on YourSeat will be\nprocessed in Local Currency.\n"),
         "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
             "Already have an account? Sign In"),
+        "anyServiceOrProcessingFeesAssociatedWithTheBookingAreNonRefundable":
+            MessageLookupByLibrary.simpleMessage(
+                "Any service or processing fees associated with the booking are non-refundable."),
         "april": MessageLookupByLibrary.simpleMessage("April"),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
@@ -76,12 +82,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou":
             MessageLookupByLibrary.simpleMessage(
                 "Book tickets for the latest movies at the cinema nearest to you."),
+        "bookingConfirmation":
+            MessageLookupByLibrary.simpleMessage("Booking Confirmation :"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancellationsRefunds":
+            MessageLookupByLibrary.simpleMessage("Cancellations & Refunds:"),
         "canyouhelp": MessageLookupByLibrary.simpleMessage("can i help you?"),
+        "cardInformation":
+            MessageLookupByLibrary.simpleMessage("Card information"),
+        "cardNumber": MessageLookupByLibrary.simpleMessage("Card number:"),
         "censorship": MessageLookupByLibrary.simpleMessage("Censorship:"),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
         "comments": MessageLookupByLibrary.simpleMessage("Comments"),
+        "completeYourPaymentIn":
+            MessageLookupByLibrary.simpleMessage("complete your payment in"),
         "confirmOtpCode":
             MessageLookupByLibrary.simpleMessage("Confirm OTP Code"),
         "confirmPassword":
@@ -89,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactUs": MessageLookupByLibrary.simpleMessage("contact Us"),
         "contactUsContent": MessageLookupByLibrary.simpleMessage(
             "We would love to hear from you! Whether you have inquiries, need support, want to share feedback, or simply have suggestions, our team is here to help. Please do not hesitate to reach out to us using the form below or through the contact details provided.\nContact \nFeedback and Suggestions:\nWe greatly value your input! If you have any suggestions on how to improve your experience with YourSeat, please share them in the message field of the contact form or send them directly to our email.\n\nConnect with us on our social media channels for the latest updates, promotions, and more:"),
+        "continnue": MessageLookupByLibrary.simpleMessage("Continue"),
         "continueAsGuest":
             MessageLookupByLibrary.simpleMessage("Continue as Guest"),
         "continueWithFacebook":
@@ -104,6 +120,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "continuee": MessageLookupByLibrary.simpleMessage("Continue"),
         "createNewPassword":
             MessageLookupByLibrary.simpleMessage("Create New Password"),
+        "currency": MessageLookupByLibrary.simpleMessage("Currency:"),
+        "cvv": MessageLookupByLibrary.simpleMessage("Cvv:"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
@@ -133,6 +151,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error saving user data."),
         "error_during_login": MessageLookupByLibrary.simpleMessage(
             "An error occurred during login"),
+        "expiryDate": MessageLookupByLibrary.simpleMessage("Expiry Date:"),
         "facebook_login_failed": MessageLookupByLibrary.simpleMessage(
             "Failed to log in with Facebook"),
         "favoriteItAddWatchlist": MessageLookupByLibrary.simpleMessage(
@@ -153,6 +172,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "iAgreeWith": MessageLookupByLibrary.simpleMessage("I agree with the"),
+        "iAgreeWithPrivacyPolicy": MessageLookupByLibrary.simpleMessage(
+            "I agree with privacy policy."),
+        "ifCanceledMoreThanTwelveHoursBeforeTheMovie_sStartTimeTheCustomerIsEligibleForAFullRefundIfCanceledWithinTwelveHoursButMoreThanThirtyMinutesBeforeTheMovie_sStartTimeTheCustomerWillReceiveFiftyOutOfAHundredOfTheTicketAmountAsARefundCancellationsMadeLessThanThirtyMinutesBeforeTheMovie_sStartTimeAreNonRefundableRefundProcessInEligibleCasesRefundsWillBeCreditedBackToTheOriginalPaymentMethodWithinFive_TenBusinessDaysBankProcessingTimesMayVary":
+            MessageLookupByLibrary.simpleMessage(
+                "1-If canceled more than 12 hours before the movie\'s start time,the customer is eligible\nfor a full refund.\n 2-If canceled within 12 hours but more than 30 minutes before the movie\'s start time,the customer will receive 50% of the\nticket amount as a refund.\n 3- Cancellations made less than 30 minutes before the movie\'s start time are\n non-refundable Refund Process: In eligible cases, refunds will be credited back to the\noriginal payment method within (5-10) business days. Bank processing times may vary.\n"),
+        "instapay": MessageLookupByLibrary.simpleMessage("instapay"),
         "invalidEmailFormat":
             MessageLookupByLibrary.simpleMessage("Invalid e-mail format"),
         "invalidUsername":
@@ -186,7 +211,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "november": MessageLookupByLibrary.simpleMessage("November"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("Now Playing"),
         "october": MessageLookupByLibrary.simpleMessage("October"),
-        "ok": MessageLookupByLibrary.simpleMessage("OK"),
+        "ok": MessageLookupByLibrary.simpleMessage("oK"),
+        "oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom":
+            MessageLookupByLibrary.simpleMessage(
+                "Once payment is successful, a confirmation email with ticket details and booking information will be sent to the registered email address. If you do not receive a confirmation within 30 minutes of payment, please contact our support team at support@yourseat.com."),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "password_min_length": MessageLookupByLibrary.simpleMessage(
@@ -195,6 +223,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character."),
         "password_validation": MessageLookupByLibrary.simpleMessage(
             "Password must meet the requirements"),
+        "payWithCard": MessageLookupByLibrary.simpleMessage("pay with card"),
+        "payment": MessageLookupByLibrary.simpleMessage("Payment"),
+        "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
+        "paymentPolicy": MessageLookupByLibrary.simpleMessage("Payment Policy"),
+        "paymentRefund": MessageLookupByLibrary.simpleMessage("Payment Refund"),
+        "paymentRefundMethod":
+            MessageLookupByLibrary.simpleMessage("Payment Refund Method"),
+        "paymentSuccessful":
+            MessageLookupByLibrary.simpleMessage("Payment\nSuccessful !"),
+        "paymentTiming":
+            MessageLookupByLibrary.simpleMessage("Payment Timing:"),
+        "paymentsMustBeCompletedAtTheTimeOfBookingYourBookingWillOnlyBeConfirmedUponSuccessfulPaymentPartialPaymentsAreNotAcceptedFullPaymentIsRequiredForTicketConfirmation":
+            MessageLookupByLibrary.simpleMessage(
+                "1- Payments must be completed at the time of booking.\n 2- Your booking will only be confirmed upon successful payment.\n 3- Partial payments are not accepted. \n 4- Full payment is required for ticket confirmation."),
         "personalInfo": MessageLookupByLibrary.simpleMessage("Personal Info"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
             "You must accept the terms and conditions."),
@@ -215,14 +257,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Promotions & Discounts"),
         "rahaf": MessageLookupByLibrary.simpleMessage("Rahaf"),
         "rahaf1": MessageLookupByLibrary.simpleMessage("Rahaf"),
+        "refundSuccessful":
+            MessageLookupByLibrary.simpleMessage("Refund\nSuccessful !"),
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("Registration successful!"),
         "review": MessageLookupByLibrary.simpleMessage("Review"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "seat": MessageLookupByLibrary.simpleMessage("Seat :"),
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
         "seeLess": MessageLookupByLibrary.simpleMessage("See less"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
+        "serviceFees": MessageLookupByLibrary.simpleMessage("Service Fees:"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
@@ -239,7 +285,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "The luxurious seats and immersive sound system make for a truly unforgettable"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+        "ticket": MessageLookupByLibrary.simpleMessage("Ticket"),
         "tickets": MessageLookupByLibrary.simpleMessage("Tickets"),
+        "total": MessageLookupByLibrary.simpleMessage("Total :"),
         "typing": MessageLookupByLibrary.simpleMessage("typing..."),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "watchTrailer": MessageLookupByLibrary.simpleMessage("Watch Trailer"),

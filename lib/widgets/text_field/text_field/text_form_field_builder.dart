@@ -83,7 +83,7 @@ class TextFormFieldBuilder extends StatelessWidget {
         keyboardType: type,
         decoration: InputDecoration(
           hintText: label,
-          hintStyle: TextStyle(color: Colors.grey, fontSize: 13.sp),
+          hintStyle: TextStyle(color: Colors.grey, fontSize: 13.sp,),
           filled: true,
           fillColor: const Color(0xff2E126E).withOpacity(.4),
           prefixIcon: imagePath != null
@@ -113,7 +113,7 @@ class TextFormFieldBuilder extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0), // حدود مستديرة قليلاً
             borderSide:
-                const BorderSide(width: 2, color: Color(0xFFB0BEC5)), // لون محايد
+                 BorderSide(width: 2, color: Color(0xFF121111).withOpacity(.40)), // لون محايد
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(

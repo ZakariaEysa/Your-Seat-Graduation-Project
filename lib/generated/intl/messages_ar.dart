@@ -60,8 +60,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "addComment": MessageLookupByLibrary.simpleMessage("أضف تعليق"),
         "ahmedSayed": MessageLookupByLibrary.simpleMessage("احمد سيد"),
         "ahmedSayed1": MessageLookupByLibrary.simpleMessage("احمد سيد"),
+        "allTransactionsOnYourSeatWillBeProcessedInLocalCurrency":
+            MessageLookupByLibrary.simpleMessage(
+                "جميع المعاملات على YourSeat ستكون\nمعالجتها بالعملة المحلية."),
         "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
             "هل لديك حساب بالفعل؟ سجل الدخول"),
+        "anyServiceOrProcessingFeesAssociatedWithTheBookingAreNonRefundable":
+            MessageLookupByLibrary.simpleMessage(
+                "أي رسوم خدمة أو معالجة مرتبطة بالحجز غير قابلة للاسترداد."),
         "april": MessageLookupByLibrary.simpleMessage("أبريل"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
@@ -72,12 +78,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou":
             MessageLookupByLibrary.simpleMessage(
                 "احجز تذاكر لأحدث الأفلام في السينما الأقرب إليك."),
+        "bookingConfirmation":
+            MessageLookupByLibrary.simpleMessage("تأكيد الحجز"),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
+        "cancellationsRefunds":
+            MessageLookupByLibrary.simpleMessage("لإلغاءات واسترداد الأموال"),
         "canyouhelp": MessageLookupByLibrary.simpleMessage("أيمكنني مساعدتك؟"),
+        "cardInformation":
+            MessageLookupByLibrary.simpleMessage("معلومات البطاقة"),
+        "cardNumber": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
         "censorship": MessageLookupByLibrary.simpleMessage("الرقابة:"),
         "cinema": MessageLookupByLibrary.simpleMessage("سينما"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("قريباً"),
         "comments": MessageLookupByLibrary.simpleMessage("تعليقات"),
+        "completeYourPaymentIn":
+            MessageLookupByLibrary.simpleMessage("أكمل دفعتك في"),
         "confirmOtpCode":
             MessageLookupByLibrary.simpleMessage("تأكيد رمز التحقق"),
         "confirmPassword":
@@ -85,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "contactUsContent": MessageLookupByLibrary.simpleMessage(
             "يسعدنا سماعك! سواء كان لديك استفسارات، تحتاج إلى دعم، تريد مشاركة ملاحظات، أو لديك اقتراحات، فريقنا هنا لمساعدتك. لا تتردد في التواصل معنا باستخدام النموذج أدناه \nالملاحظات والاقتراحات:\nنقدر مدخلاتك بشدة! إذا كانت لديك اقتراحات لتحسين تجربتك مع YourSeat، يرجى مشاركتها في حقل الرسالة بنموذج الاتصال أو إرسالها مباشرة إلى بريدنا الإلكتروني.\n\nتواصل معنا على قنوات التواصل الاجتماعي الخاصة بنا للحصول على أحدث التحديثات والعروض الترويجية والمزيد:"),
+        "continnue": MessageLookupByLibrary.simpleMessage("يكمل"),
         "continueAsGuest":
             MessageLookupByLibrary.simpleMessage("المتابعة كضيف"),
         "continueWithFacebook":
@@ -100,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "continuee": MessageLookupByLibrary.simpleMessage("متابعة"),
         "createNewPassword":
             MessageLookupByLibrary.simpleMessage("إنشاء كلمة مرور جديدة"),
+        "currency": MessageLookupByLibrary.simpleMessage("عملة"),
+        "cvv": MessageLookupByLibrary.simpleMessage("السيرة الذاتية"),
         "dark": MessageLookupByLibrary.simpleMessage("ليلي"),
         "day": MessageLookupByLibrary.simpleMessage("اليوم"),
         "december": MessageLookupByLibrary.simpleMessage("ديسمبر"),
@@ -131,6 +149,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "حدث خطأ أثناء حفظ بيانات المستخدم."),
         "error_during_login":
             MessageLookupByLibrary.simpleMessage("حدث خطأ أثناء تسجيل الدخول"),
+        "expiryDate":
+            MessageLookupByLibrary.simpleMessage("تاريخ انتهاء الصلاحية"),
         "facebook_login_failed":
             MessageLookupByLibrary.simpleMessage("فشل تسجيل الدخول عبر فيسبوك"),
         "favoriteItAddWatchlist": MessageLookupByLibrary.simpleMessage(
@@ -151,6 +171,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "hello": MessageLookupByLibrary.simpleMessage("مرحبًا"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "iAgreeWith": MessageLookupByLibrary.simpleMessage("أوافق على "),
+        "iAgreeWithPrivacyPolicy":
+            MessageLookupByLibrary.simpleMessage("أنا أتفق مع سياسة الخصوصية"),
+        "ifCanceledMoreThanTwelveHoursBeforeTheMovie_sStartTimeTheCustomerIsEligibleForAFullRefundIfCanceledWithinTwelveHoursButMoreThanThirtyMinutesBeforeTheMovie_sStartTimeTheCustomerWillReceiveFiftyOutOfAHundredOfTheTicketAmountAsARefundCancellationsMadeLessThanThirtyMinutesBeforeTheMovie_sStartTimeAreNonRefundableRefundProcessInEligibleCasesRefundsWillBeCreditedBackToTheOriginalPaymentMethodWithinFive_TenBusinessDaysBankProcessingTimesMayVary":
+            MessageLookupByLibrary.simpleMessage(
+                "1-إذا تم الإلغاء قبل أكثر من 12 ساعة من موعد عرض الفيلم وقت البدء، يكون العميل مؤهلاً لاسترداد كامل المبلغ.\n  2-إذا تم الإلغاء خلال 12 ساعة بل أكثر من 30 قبل دقائق من وقت بدء الفيلم، العميل سوف تحصل على 50% من مبلغ\n التذكرة كاسترداد.\n3- الإلغاءات تتم قبل أقل من 30 دقيقة وقت\n بدء الفيلم غير قابل للاسترداد.\n عملية استرداد الأموال: في الحالات المؤهلة، سيتم استرداد الأموال تضاف إلى طريقة الدفع الأصلية \n خلال (5-10) أيام عمل. أوقات معالجة البنك  قد تختلف."),
+        "instapay": MessageLookupByLibrary.simpleMessage("دفع إنستا"),
         "invalidEmailFormat": MessageLookupByLibrary.simpleMessage(
             "تنسيق البريد الإلكتروني غير صالح"),
         "invalidUsername":
@@ -183,7 +209,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "november": MessageLookupByLibrary.simpleMessage("نوفمبر"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("التشغيل الان"),
         "october": MessageLookupByLibrary.simpleMessage("أكتوبر"),
-        "ok": MessageLookupByLibrary.simpleMessage("موافق"),
+        "ok": MessageLookupByLibrary.simpleMessage("حسنا"),
+        "oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom":
+            MessageLookupByLibrary.simpleMessage(
+                "بمجرد نجاح الدفع، سيتم إرسال رسالة تأكيد بالبريد الإلكتروني تحتوي على تفاصيل التذكرة ومعلومات الحجز إلى عنوان البريد الإلكتروني المسجل. إذا لم تتلق تأكيدًا خلال 30 دقيقة من الدفع، فيرجى الاتصال بفريق الدعم لدينا على support@yourseat.com."),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "password_min_length": MessageLookupByLibrary.simpleMessage(
@@ -192,6 +221,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "يجب أن تكون كلمة المرور 8 أحرف على الأقل، تحتوي على حرف كبير واحد، ورقم واحد، وحرف خاص."),
         "password_validation": MessageLookupByLibrary.simpleMessage(
             "يجب أن تفي كلمة المرور بالمتطلبات"),
+        "payWithCard": MessageLookupByLibrary.simpleMessage("الدفع بالبطاقة"),
+        "payment": MessageLookupByLibrary.simpleMessage("دفع"),
+        "paymentMethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
+        "paymentPolicy": MessageLookupByLibrary.simpleMessage("سياسة الدفع"),
+        "paymentRefund": MessageLookupByLibrary.simpleMessage("استرداد المبلغ"),
+        "paymentRefundMethod":
+            MessageLookupByLibrary.simpleMessage("طريقة استرداد الأموال"),
+        "paymentSuccessful":
+            MessageLookupByLibrary.simpleMessage("تم الدفع بنجاح!"),
+        "paymentTiming": MessageLookupByLibrary.simpleMessage("توقيت الدفع"),
+        "paymentsMustBeCompletedAtTheTimeOfBookingYourBookingWillOnlyBeConfirmedUponSuccessfulPaymentPartialPaymentsAreNotAcceptedFullPaymentIsRequiredForTicketConfirmation":
+            MessageLookupByLibrary.simpleMessage(
+                "1- يجب إتمام الدفعات في وقتها الحجز.\n 2- لن يتم تأكيد حجزك إلا بعد ذلك  الدفع الناجح.\n 3- لا يتم قبول الدفعات الجزئية. \n 4- يشترط سداد المبلغ بالكامل لتأكيد التذكرة."),
         "personalInfo":
             MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
@@ -213,13 +255,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("العروض والخصومات"),
         "rahaf": MessageLookupByLibrary.simpleMessage("رهف"),
         "rahaf1": MessageLookupByLibrary.simpleMessage("رهف"),
+        "refundSuccessful":
+            MessageLookupByLibrary.simpleMessage("تم استرداد المبلغ بنجاح"),
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح!"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "seat": MessageLookupByLibrary.simpleMessage("مقعد"),
         "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "seeLess": MessageLookupByLibrary.simpleMessage("رؤية القليل"),
         "seeMore": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
         "september": MessageLookupByLibrary.simpleMessage("سبتمبر"),
+        "serviceFees": MessageLookupByLibrary.simpleMessage("رسوم الخدمة"),
         "setting": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -233,7 +279,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
             "1. مسؤوليات المستخدم: باستخدام هذا التطبيق، فإنك توافق على الالتزام بشروط الخدمة لدينا والتصرف باحترام. يرجى الامتناع عن أي سلوك يعيق تجربة مشاهدة الأفلام للآخرين، مثل التحدث بصوت عالٍ أو استخدام هاتفك أو شراء التذاكر لأغراض غير مصرح بها. نحتفظ بالحق في إلغاء الوصول إلى التطبيق إذا تم انتهاك هذه الشروط.\n\n2. إنشاء حساب مستخدم: لإنشاء حساب، ستحتاج إلى تقديم عنوان بريد إلكتروني صالح وكلمة مرور قوية. اختر كلمة مرور يصعب تخمينها وتجنب استخدام معلومات يمكن التعرف عليها بسهولة. يتم تخزين بيانات حسابك بأمان ولا يمكن الوصول إليها إلا من قبل الموظفين المصرح لهم.\n   الأمان: اختر كلمة مرور قوية تجمع بين الأحرف والأرقام والرموز. تجنب استخدام نفس كلمة المرور لعدة حسابات. قم بتمكين المصادقة الثنائية (إذا كانت متوفرة) لمزيد من الأمان. لا تشارك معلومات تسجيل الدخول الخاصة بك مع أي شخص.\n\n3. معالجة المعاملات: تتم معالجة جميع المعاملات بشكل آمن باستخدام [بوابة الدفع المحددة]. نحن نقبل [طرق الدفع المقبولة مثل بطاقات الائتمان، بطاقات الخصم، PayPal]. معلومات إضافية: تأكد من أن معلومات الدفع الخاصة بك دقيقة ومحدثة. نحتفظ بالحق في إلغاء الطلبات في حالة النشاط الاحتيالي أو معلومات الدفع غير الصحيحة. لأي أسئلة أو استفسارات بخصوص المدفوعات، يرجى الاتصال بفريق دعم العملاء لدينا.\n\n4. ملكية المحتوى: جميع المحتويات داخل التطبيق، بما في ذلك الصور والنصوص ومقاطع الفيديو والمواد الأخرى، مملوكة لـ [Your Seat] أو الجهات المرخصة لها. ما لم يُذكر خلاف ذلك، لا يُسمح لك باستخدام أو تعديل أو توزيع أو عرض أي محتوى من التطبيق دون إذن كتابي مسبق."),
         "theme": MessageLookupByLibrary.simpleMessage("النمط"),
+        "ticket": MessageLookupByLibrary.simpleMessage("تذكرة"),
         "tickets": MessageLookupByLibrary.simpleMessage("التذاكر"),
+        "total": MessageLookupByLibrary.simpleMessage("المجموع"),
         "typing": MessageLookupByLibrary.simpleMessage("جاري الكتابة..."),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "watchTrailer":

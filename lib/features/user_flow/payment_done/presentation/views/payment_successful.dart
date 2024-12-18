@@ -17,7 +17,7 @@ class PaymentSuccessful extends StatelessWidget{
     Column(
       children: [
         Padding(
-          padding:  EdgeInsets.only(top:200.h),
+          padding:  EdgeInsets.only(top:150.h),
           child: Image.asset("assets/images/check .png",width: 209.w,height: 209.h,),
         ),
         SizedBox(height: 31.h,),

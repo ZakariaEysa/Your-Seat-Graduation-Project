@@ -93,6 +93,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "comments": MessageLookupByLibrary.simpleMessage("تعليقات"),
         "completeYourPaymentIn":
             MessageLookupByLibrary.simpleMessage("أكمل دفعتك في"),
+        "completeYourPurchase":
+            MessageLookupByLibrary.simpleMessage("أكمل عملية الشراء"),
         "confirmOtpCode":
             MessageLookupByLibrary.simpleMessage("تأكيد رمز التحقق"),
         "confirmPassword":
@@ -212,7 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("حسنا"),
         "oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom":
             MessageLookupByLibrary.simpleMessage(
-                "بمجرد نجاح الدفع، سيتم إرسال رسالة تأكيد بالبريد الإلكتروني تحتوي على تفاصيل التذكرة ومعلومات الحجز إلى عنوان البريد الإلكتروني المسجل. إذا لم تتلق تأكيدًا خلال 30 دقيقة من الدفع، فيرجى الاتصال بفريق الدعم لدينا على support@yourseat.com."),
+                "بمجرد نجاح الدفع، سيتم إرسال رسالة تأكيد\nبالبريد الإلكتروني تحتوي على تفاصيل التذكرة ومعلومات الحجز\nإلى عنوان البريد الإلكتروني المسجل. إذا لم تتلق تأكيدًا خلال 30 دقيقة من الدفع، فيرجى الاتصال بفريق الدعم لدينا على support@yourseat.com."),
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "password_min_length": MessageLookupByLibrary.simpleMessage(
@@ -233,7 +235,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentTiming": MessageLookupByLibrary.simpleMessage("توقيت الدفع"),
         "paymentsMustBeCompletedAtTheTimeOfBookingYourBookingWillOnlyBeConfirmedUponSuccessfulPaymentPartialPaymentsAreNotAcceptedFullPaymentIsRequiredForTicketConfirmation":
             MessageLookupByLibrary.simpleMessage(
-                "1- يجب إتمام الدفعات في وقتها الحجز.\n 2- لن يتم تأكيد حجزك إلا بعد ذلك  الدفع الناجح.\n 3- لا يتم قبول الدفعات الجزئية. \n 4- يشترط سداد المبلغ بالكامل لتأكيد التذكرة."),
+                "1- يجب إتمام الدفعات في وقتها الحجز.\n2- لن يتم تأكيد حجزك إلا بعد ذلك  الدفع الناجح.\n3- لا يتم قبول الدفعات الجزئية. \n4- يشترط سداد المبلغ بالكامل لتأكيد التذكرة."),
         "personalInfo":
             MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
@@ -275,6 +277,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
         "startUsingTheApp":
             MessageLookupByLibrary.simpleMessage("ابدا في استخدام التطبيق"),
+        "storeCardForFutureUse": MessageLookupByLibrary.simpleMessage(
+            "بطاقة تخزين للاستخدام المستقبلي"),
         "storyLine": MessageLookupByLibrary.simpleMessage("سرد القصة"),
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
             "1. مسؤوليات المستخدم: باستخدام هذا التطبيق، فإنك توافق على الالتزام بشروط الخدمة لدينا والتصرف باحترام. يرجى الامتناع عن أي سلوك يعيق تجربة مشاهدة الأفلام للآخرين، مثل التحدث بصوت عالٍ أو استخدام هاتفك أو شراء التذاكر لأغراض غير مصرح بها. نحتفظ بالحق في إلغاء الوصول إلى التطبيق إذا تم انتهاك هذه الشروط.\n\n2. إنشاء حساب مستخدم: لإنشاء حساب، ستحتاج إلى تقديم عنوان بريد إلكتروني صالح وكلمة مرور قوية. اختر كلمة مرور يصعب تخمينها وتجنب استخدام معلومات يمكن التعرف عليها بسهولة. يتم تخزين بيانات حسابك بأمان ولا يمكن الوصول إليها إلا من قبل الموظفين المصرح لهم.\n   الأمان: اختر كلمة مرور قوية تجمع بين الأحرف والأرقام والرموز. تجنب استخدام نفس كلمة المرور لعدة حسابات. قم بتمكين المصادقة الثنائية (إذا كانت متوفرة) لمزيد من الأمان. لا تشارك معلومات تسجيل الدخول الخاصة بك مع أي شخص.\n\n3. معالجة المعاملات: تتم معالجة جميع المعاملات بشكل آمن باستخدام [بوابة الدفع المحددة]. نحن نقبل [طرق الدفع المقبولة مثل بطاقات الائتمان، بطاقات الخصم، PayPal]. معلومات إضافية: تأكد من أن معلومات الدفع الخاصة بك دقيقة ومحدثة. نحتفظ بالحق في إلغاء الطلبات في حالة النشاط الاحتيالي أو معلومات الدفع غير الصحيحة. لأي أسئلة أو استفسارات بخصوص المدفوعات، يرجى الاتصال بفريق دعم العملاء لدينا.\n\n4. ملكية المحتوى: جميع المحتويات داخل التطبيق، بما في ذلك الصور والنصوص ومقاطع الفيديو والمواد الأخرى، مملوكة لـ [Your Seat] أو الجهات المرخصة لها. ما لم يُذكر خلاف ذلك، لا يُسمح لك باستخدام أو تعديل أو توزيع أو عرض أي محتوى من التطبيق دون إذن كتابي مسبق."),

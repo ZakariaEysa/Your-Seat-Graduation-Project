@@ -18,11 +18,9 @@ class ChatUp extends StatelessWidget{
           padding: EdgeInsets.only(top: 50.h, right: 20.w, left: 20.w),
           child: Row(
             children: [
-              GestureDetector(
-                  onTap: () {
-                    navigateTo(context: context, screen: const HomeLayout());
-                  },
-                  child: Image.asset('assets/icons/close.png')),
+             IconButton(onPressed:(){
+               navigateTo(context: context, screen: HomeLayout());
+             }, icon:Icon(Icons.close,size:30,),color: Colors.white,),
               const Spacer(),
               Image.asset(
                 'assets/images/chatbot.png',

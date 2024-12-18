@@ -15,6 +15,7 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/v
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
 import 'package:yourseatgraduationproject/features/user_flow/new%20password/presentation/views/new_password.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/app.dart';
+
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
@@ -172,6 +173,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
         builder: (context, state) {
+
       return ScreenUtilInit(
           designSize: const Size(375, 812),
           minTextAdapt: true,
@@ -198,5 +200,6 @@ class _MyAppState extends State<MyApp> {
             );
           });
     });
+
   }
 }

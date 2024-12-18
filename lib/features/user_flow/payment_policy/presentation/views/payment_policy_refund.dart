@@ -1,22 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment_policy/presentation/widgets/payment_policy_part.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
-
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_refund.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/button/button_builder.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../payment/presentation/views/payment.dart';
+import '../widgets/payment_policy_part.dart';
 
-class PaymentPolicy extends StatefulWidget {
-  const PaymentPolicy({super.key});
+class PaymentPolicyRefund extends StatefulWidget{
+  const PaymentPolicyRefund({super.key});
 
   @override
-  State<PaymentPolicy> createState() => _PaymentPolicyState();
+  State<PaymentPolicyRefund> createState() => _PaymentPolicyRefundState();
 }
 
-class _PaymentPolicyState extends State<PaymentPolicy> {
+class _PaymentPolicyRefundState extends State<PaymentPolicyRefund> {
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
@@ -45,7 +45,7 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
             PaymentPolicyPart(),
             SizedBox(height:30.h,),
             ButtonBuilder(text:lang.continnue, onTap: () {
-              navigateTo(context: context, screen:Payment());
+              navigateTo(context: context, screen:PaymentRefund());
             },),
             SizedBox(height:50.h,),
           ],

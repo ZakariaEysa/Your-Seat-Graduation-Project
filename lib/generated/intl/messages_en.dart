@@ -90,13 +90,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "canyouhelp": MessageLookupByLibrary.simpleMessage("can i help you?"),
         "cardInformation":
             MessageLookupByLibrary.simpleMessage("Card information"),
-        "cardNumber": MessageLookupByLibrary.simpleMessage("Card number:"),
+        "cardNumber": MessageLookupByLibrary.simpleMessage("Card Number:"),
         "censorship": MessageLookupByLibrary.simpleMessage("Censorship:"),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
         "comments": MessageLookupByLibrary.simpleMessage("Comments"),
         "completeYourPaymentIn":
             MessageLookupByLibrary.simpleMessage("complete your payment in"),
+        "completeYourPurchase":
+            MessageLookupByLibrary.simpleMessage("Complete your purchase"),
         "confirmOtpCode":
             MessageLookupByLibrary.simpleMessage("Confirm OTP Code"),
         "confirmPassword":
@@ -121,7 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createNewPassword":
             MessageLookupByLibrary.simpleMessage("Create New Password"),
         "currency": MessageLookupByLibrary.simpleMessage("Currency:"),
-        "cvv": MessageLookupByLibrary.simpleMessage("Cvv:"),
+        "cvv": MessageLookupByLibrary.simpleMessage("CVV:"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "december": MessageLookupByLibrary.simpleMessage("December"),
@@ -211,10 +213,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "november": MessageLookupByLibrary.simpleMessage("November"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("Now Playing"),
         "october": MessageLookupByLibrary.simpleMessage("October"),
-        "ok": MessageLookupByLibrary.simpleMessage("oK"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom":
             MessageLookupByLibrary.simpleMessage(
-                "Once payment is successful, a confirmation email with ticket details and booking information will be sent to the registered email address. If you do not receive a confirmation within 30 minutes of payment, please contact our support team at support@yourseat.com."),
+                "Once payment is successful,a confirmation email\nwith ticket details and booking information\nwill be sent to the registered email address. If you do not receive a confirmation within 30 minutes of payment, please contact our support team at support@yourseat.com."),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "password_min_length": MessageLookupByLibrary.simpleMessage(
@@ -236,7 +238,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Payment Timing:"),
         "paymentsMustBeCompletedAtTheTimeOfBookingYourBookingWillOnlyBeConfirmedUponSuccessfulPaymentPartialPaymentsAreNotAcceptedFullPaymentIsRequiredForTicketConfirmation":
             MessageLookupByLibrary.simpleMessage(
-                "1- Payments must be completed at the time of booking.\n 2- Your booking will only be confirmed upon successful payment.\n 3- Partial payments are not accepted. \n 4- Full payment is required for ticket confirmation."),
+                "1- Payments must be completed at the time of booking.\n2- Your booking will only be confirmed upon successful payment.\n3- Partial payments are not accepted. \n4- Full payment is required for ticket confirmation."),
         "personalInfo": MessageLookupByLibrary.simpleMessage("Personal Info"),
         "pleaseAcceptPrivacyAndPolicy": MessageLookupByLibrary.simpleMessage(
             "You must accept the terms and conditions."),
@@ -278,6 +280,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "startUsingTheApp":
             MessageLookupByLibrary.simpleMessage("Start Using the App ->"),
+        "storeCardForFutureUse":
+            MessageLookupByLibrary.simpleMessage("Store card for future use ?"),
         "storyLine": MessageLookupByLibrary.simpleMessage("StoryLine"),
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
             "1. User Responsibilities: By using this app, you agree to comply with our terms of service and act respectfully. Please refrain from any behavior that disrupts the movie-watching experience for others, such as loud talking, using your EmailAddress, or purchasing tickets for unauthorized use. We reserve the right to revoke access to the app if these terms are violated.\n\n2. Creating a User Account: To create an account, you’ll need to provide a valid email address and a strong password. Choose a password that’s hard to guess and avoid using easily identifiable information. Your account data is stored securely and is accessible only to authorized personnel. Security: Choose a strong password combining letters, numbers, and symbols. Avoid using the same password for multiple accounts. Enable two-factor authentication (if available) for added security. Do not share your login information with anyone.\n\n3. Transaction Processing: All transactions are processed securely using [specify payment gateway]. We accept [list accepted payment methods, such as credit cards, debit cards, PayPal]. Additional Information: Ensure your payment information is accurate and up-to-date. We reserve the right to cancel orders in cases of fraudulent activity or incorrect payment information. For any questions or concerns regarding payments, please contact our customer support team.\n\n4. Content Ownership: All content within the app, including images, text, videos, and other materials, is owned by [Your Seat] or its licensors. Unless otherwise indicated, you are not permitted to use, reproduce, modify, distribute, or display any content from the app without prior written permission."),

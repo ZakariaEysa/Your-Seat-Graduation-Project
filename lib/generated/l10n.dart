@@ -1208,10 +1208,10 @@ class S {
     );
   }
 
-  /// `oK`
+  /// `OK`
   String get ok {
     return Intl.message(
-      'oK',
+      'OK',
       name: 'ok',
       desc: '',
       args: [],
@@ -1798,11 +1798,11 @@ class S {
     );
   }
 
-  /// `1- Payments must be completed at the time of booking.\n 2- Your booking will only be confirmed upon successful payment.\n 3- Partial payments are not accepted. \n 4- Full payment is required for ticket confirmation.`
+  /// `1- Payments must be completed at the time of booking.\n2- Your booking will only be confirmed upon successful payment.\n3- Partial payments are not accepted. \n4- Full payment is required for ticket confirmation.`
   String
       get paymentsMustBeCompletedAtTheTimeOfBookingYourBookingWillOnlyBeConfirmedUponSuccessfulPaymentPartialPaymentsAreNotAcceptedFullPaymentIsRequiredForTicketConfirmation {
     return Intl.message(
-      '1- Payments must be completed at the time of booking.\n 2- Your booking will only be confirmed upon successful payment.\n 3- Partial payments are not accepted. \n 4- Full payment is required for ticket confirmation.',
+      '1- Payments must be completed at the time of booking.\n2- Your booking will only be confirmed upon successful payment.\n3- Partial payments are not accepted. \n4- Full payment is required for ticket confirmation.',
       name:
           'paymentsMustBeCompletedAtTheTimeOfBookingYourBookingWillOnlyBeConfirmedUponSuccessfulPaymentPartialPaymentsAreNotAcceptedFullPaymentIsRequiredForTicketConfirmation',
       desc: '',
@@ -1820,11 +1820,11 @@ class S {
     );
   }
 
-  /// `Once payment is successful, a confirmation email with ticket details and booking information will be sent to the registered email address. If you do not receive a confirmation within 30 minutes of payment, please contact our support team at support@yourseat.com.`
+  /// `Once payment is successful,a confirmation email\nwith ticket details and booking information\nwill be sent to the registered email address. If you do not receive a confirmation within 30 minutes of payment, please contact our support team at support@yourseat.com.`
   String
       get oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom {
     return Intl.message(
-      'Once payment is successful, a confirmation email with ticket details and booking information will be sent to the registered email address. If you do not receive a confirmation within 30 minutes of payment, please contact our support team at support@yourseat.com.',
+      'Once payment is successful,a confirmation email\nwith ticket details and booking information\nwill be sent to the registered email address. If you do not receive a confirmation within 30 minutes of payment, please contact our support team at support@yourseat.com.',
       name:
           'oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom',
       desc: '',
@@ -1906,10 +1906,10 @@ class S {
     );
   }
 
-  /// `Card number:`
+  /// `Card Number:`
   String get cardNumber {
     return Intl.message(
-      'Card number:',
+      'Card Number:',
       name: 'cardNumber',
       desc: '',
       args: [],
@@ -1926,11 +1926,31 @@ class S {
     );
   }
 
-  /// `Cvv:`
+  /// `CVV:`
   String get cvv {
     return Intl.message(
-      'Cvv:',
+      'CVV:',
       name: 'cvv',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Store card for future use ?`
+  String get storeCardForFutureUse {
+    return Intl.message(
+      'Store card for future use ?',
+      name: 'storeCardForFutureUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete your purchase`
+  String get completeYourPurchase {
+    return Intl.message(
+      'Complete your purchase',
+      name: 'completeYourPurchase',
       desc: '',
       args: [],
     );

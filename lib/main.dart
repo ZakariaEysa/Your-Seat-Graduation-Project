@@ -21,6 +21,7 @@ import 'package:yourseatgraduationproject/features/user_flow/now_playing/present
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_refund.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment_done/presentation/views/payment_successful.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment_policy/presentation/views/payment_policy_refund.dart';
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
@@ -208,7 +209,7 @@ class _MyAppState extends State<MyApp> {
                   debugShowCheckedModeBanner: false,
                   builder: BotToastInit(),
                   // home:  Otp(),
-                  home:MovieDetails(),
+                  home:CarrdRefund(),
 
                 );
               });

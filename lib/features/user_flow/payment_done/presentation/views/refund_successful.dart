@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -17,13 +19,15 @@ class RefundSuccessful extends StatelessWidget{
     Column(
       children: [
         Padding(
-          padding:  EdgeInsets.only(top:200.h),
-          child: Image.asset("assets/images/check .png",width: 210.w,height: 210.h,),
+          padding:  EdgeInsets.only(top:150.h),
+          child: Image.asset("assets/images/check .png",width: 209.w,height: 209.h,),
         ),
         SizedBox(height: 31.h,),
         Text(lang.refundSuccessful,style:theme.textTheme.labelLarge!.copyWith(fontSize: 36.sp) ,textAlign: TextAlign.center,),
         SizedBox(height: 52.h,),
-        ButtonBuilder(text:lang.ok, onTap: () {},width: 121.w,height: 48.h,)
+        ButtonBuilder(text:lang.ok, onTap: () {
+          navigateTo(context: context, screen:HomeLayout());
+        },width: 121.w,height: 48.h,)
 
       ],
     ));

@@ -49,6 +49,7 @@ class _AppState extends State<App> {
               BorderRadius.circular(12), // Apply BorderRadius here
             ),
             child: TabBar(
+              dividerColor: Colors.transparent,
               labelColor: const Color(0xFFEB68E3), // Selected tab text color
               unselectedLabelColor: Colors.white, // Unselected tab text color
               indicatorColor: const Color(0xFFEB68E3), // Highlight color

@@ -14,7 +14,7 @@ class WatchList extends StatelessWidget {
     return ScaffoldF(
 
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+         // automaticallyImplyLeading: false,
           backgroundColor: const Color(0xFF2E1371),
           title: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(100, 0, 0, 0),

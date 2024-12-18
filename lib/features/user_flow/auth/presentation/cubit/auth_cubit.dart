@@ -163,5 +163,6 @@ class AuthCubit extends Cubit<AuthState> {
    await  authRepo.saveUser(userModel: userModel?? UserModel(name: "", email: "", password: "", dateOfBirth: ""));
    }
 
+
 }
 

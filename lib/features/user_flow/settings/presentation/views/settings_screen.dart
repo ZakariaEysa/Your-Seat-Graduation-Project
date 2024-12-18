@@ -167,16 +167,9 @@ class SettingsPage extends StatelessWidget {
               HiveStorage.logOut();
 
               HiveStorage.set(HiveKeys.isArabic, lang).then((c) {
-
-
                 navigateAndRemoveUntil(
                 context: context,
-                screen: BlocProvider(
-                  create: (context) => AuthCubit(AuthRepoImpl(
-                      AuthRemoteDataSourceImpl(
-                          FirebaseAuth.instance, GoogleSignIn()))),
-                  child: const SignIn(),
-                ),
+                screen: const SignIn(),
               );
 
     }

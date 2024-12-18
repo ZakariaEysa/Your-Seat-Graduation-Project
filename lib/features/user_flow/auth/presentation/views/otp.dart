@@ -2,12 +2,14 @@ import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/otp_manager.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/button/button_builder.dart';
-import '../../../../../features/user_flow/auth/presentation/views/timer.dart';
+import '../widgets/otp_textfield.dart';
+import '../widgets/timer.dart';
 
 class Otp extends StatelessWidget {
   final TextEditingController N1 = TextEditingController();
@@ -60,9 +62,13 @@ class Otp extends StatelessWidget {
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white,
+          size: 28
+        ),
         backgroundColor: const Color(0xFF2E1371),
         title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(85, 0, 0, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(50,0, 12, 12),
           child: const HeadAppBar(
             title: 'OTP',
           ),
@@ -83,12 +89,12 @@ class Otp extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                buildOtpField(N1, F1, F2),
-                buildOtpField(N2, F2, F3),
-                buildOtpField(N3, F3, F4),
-                buildOtpField(N4, F4, F5),
-                buildOtpField(N5, F5, F6),
-                buildOtpField(N6, F6, null),
+                OtpFieldWidget(controller: N1, currentFocus: F1, nextFocus: F2, nextField: nextField),
+                OtpFieldWidget(controller: N2, currentFocus: F2, nextFocus: F3, nextField: nextField),
+                OtpFieldWidget(controller: N3, currentFocus: F3, nextFocus: F4, nextField: nextField),
+                OtpFieldWidget(controller: N4, currentFocus: F4, nextFocus: F5, nextField: nextField),
+                OtpFieldWidget(controller: N5, currentFocus: F5, nextFocus: F6, nextField: nextField),
+                OtpFieldWidget(controller: N6, currentFocus: F6, nextFocus: null, nextField: nextField),
               ],
             ),
           ),
@@ -99,12 +105,23 @@ class Otp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 CountdownTimer(
-                  startSeconds: 59,
-                  onResend: () {},
+                  onResend: () {
+                    String email = AuthCubit.get(context).userModel?.email ?? '';
+                    if (email.isNotEmpty) {
+                      AuthCubit.get(context).sendOtp(email);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("OTP has been resent"),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    }
+                  },
                 ),
               ],
             ),
           ),
+
           SizedBox(height: 5.h),
           ButtonBuilder(
             text: 'Continue',
@@ -133,41 +150,6 @@ class Otp extends StatelessWidget {
     );
   }
 
-  Widget buildOtpField(
-      TextEditingController controller,
-      FocusNode currentFocus,
-      FocusNode? nextFocus,
-      ) {
-    return SizedBox(
-      width: 40.w,
-      child: TextField(
-        controller: controller,
-        focusNode: currentFocus,
-        keyboardType: TextInputType.number,
-        textAlign: TextAlign.center,
-        maxLength: 1,
-        onChanged: (value) {
-          nextField(value: value, focusNode: nextFocus ?? FocusNode());
-        },
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: const Color(0xFF2E1371),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: Colors.black, width: 2),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide:  BorderSide(color: Color(0x66000000), width:1.5 ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: Color(0xff3C163CFF), width: 1.5),
-          ),
-          counterText: "",
-        ),
-        style: const TextStyle(color: Colors.white, fontSize: 18),
-      ),
-    );
-  }
+
+
 }

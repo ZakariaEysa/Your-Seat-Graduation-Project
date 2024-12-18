@@ -40,7 +40,6 @@ class _SignInState extends State<SignIn> {
     var cubit = AuthCubit.get(context);
     var lang = S.of(context);
     final theme = Theme.of(context);
-
     return ScaffoldF(
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E1371),

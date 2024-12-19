@@ -27,8 +27,9 @@ class Otp extends StatelessWidget {
   final FocusNode F5 = FocusNode();
   final FocusNode F6 = FocusNode();
 
-  Otp({super.key});
+  Otp({super.key, this.isSuccessOtp});
 
+  final  Future<void>Function()?  isSuccessOtp ;
   void nextField({
     required String value,
     required FocusNode focusNode,
@@ -41,13 +42,23 @@ class Otp extends StatelessWidget {
   Future<void> verifyOtp(BuildContext context, String otp) async {
     bool isOtpValid = await EmailOTP.verifyOTP(otp: otp);
     if (isOtpValid) {
-  await AuthCubit.get(context).verifyedSendOtp();
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeLayout()),
-      );
+   if(isSuccessOtp==null) {
 
-    } else {
+
+        await AuthCubit.get(context).verifyedSendOtp();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeLayout()),
+        );
+
+      }else{
+
+       await  isSuccessOtp!();
+      }
+
+
+
+    }else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Invalid OTP'),
@@ -105,10 +116,10 @@ class Otp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 CountdownTimer(
-                  onResend: () {
-                    String email = AuthCubit.get(context).userModel?.email ?? '';
-                    if (email.isNotEmpty) {
-                      AuthCubit.get(context).sendOtp(email);
+                  onResend: ()async {
+                    String email = AuthCubit.get(context).emailController.text ?? '';
+                    if (email.isNotEmpty)  {
+                       AuthCubit.get(context).sendOtp(email);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("OTP has been resent"),

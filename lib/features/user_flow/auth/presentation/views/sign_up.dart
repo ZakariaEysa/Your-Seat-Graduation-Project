@@ -832,6 +832,7 @@ class _SignUpState extends State<SignUp> {
                   FadeInUp(
                     delay: const Duration(milliseconds: 550),
                     child: ButtonBuilder(
+
                       image: HiveStorage.get(HiveKeys.isArabic)
                           ? "assets/images/sign_up_arabic.png"
                           : "assets/images/Sign up.png",
@@ -849,17 +850,7 @@ class _SignUpState extends State<SignUp> {
                         onTap: () {
                           navigateAndReplace(
                             context: context,
-                            screen: BlocProvider(
-                              create: (context) => AuthCubit(
-                                AuthRepoImpl(
-                                  AuthRemoteDataSourceImpl(
-                                    FirebaseAuth.instance,
-                                    GoogleSignIn(),
-                                  ),
-                                ),
-                              ),
-                              child: const SignIn(),
-                            ),
+                            screen: const SignIn(),
                           );
                         },
                         child: Text(local.alreadyHaveAccount, style: theme.textTheme.bodySmall),

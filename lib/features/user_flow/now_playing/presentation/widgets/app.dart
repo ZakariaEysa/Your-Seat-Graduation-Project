@@ -41,7 +41,7 @@ class _AppState extends State<App> {
             ),
           ),
           title: Container(
-            width: 314.w,
+            width: 300.w,
             height: 41.h,
             decoration: BoxDecoration(
               color: const Color(0xFF0F0A2B).withOpacity(.30),
@@ -53,13 +53,16 @@ class _AppState extends State<App> {
               labelColor: const Color(0xFFEB68E3), // Selected tab text color
               unselectedLabelColor: Colors.white, // Unselected tab text color
               indicatorColor: const Color(0xFFEB68E3), // Highlight color
-              labelStyle: theme.textTheme.labelLarge!.copyWith(fontSize: 17.sp),
+              labelStyle: theme.textTheme.labelLarge!.copyWith(fontSize: 15.sp),
               tabs: [
                 Padding(
-                  padding: EdgeInsets.only(right: 15.w),
+                  padding: EdgeInsets.only(right:15.w),
                   child: Tab(text: lang.nowPlaying),
                 ),
-                Tab(text: lang.comingSoon),
+                Padding(
+                  padding:  EdgeInsets.only(right:15.w),
+                  child: Tab(text: lang.comingSoon),
+                ),
               ],
             ),
           ),

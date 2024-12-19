@@ -10,6 +10,7 @@ import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
 import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
+import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/cinema_details.dart';
 import 'package:yourseatgraduationproject/features/user_flow/forget/presentation/views/forget.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
@@ -196,7 +197,7 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home: SplashScreen(),
+              home:SplashScreen(),
             );
           });
     });

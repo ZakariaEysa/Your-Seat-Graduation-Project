@@ -85,14 +85,14 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
 
     userController.text = currentUser.name;
-    emailController.text = currentUser.email;
+    emailController.text = currentUser.emailController;
     selectedGender = gender.contains(currentUser.gender) ? currentUser.gender : null;
     selectedImageBase64 = currentUser.image;
   }
 
   Future<void> updateProfile() async {
     try {
-      var userDoc = FirebaseFirestore.instance.collection('users').doc(currentUser.email);
+      var userDoc = FirebaseFirestore.instance.collection('users').doc(currentUser.emailController);
       await userDoc.update({
         'name': userController.text,
         'dateOfBirth': '$selectedDay/$selectedMonth/$selectedYear',

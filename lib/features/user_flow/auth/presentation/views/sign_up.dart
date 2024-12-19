@@ -628,7 +628,7 @@ class _SignUpState extends State<SignUp> {
                       padding: EdgeInsets.all(16.0.sp),
                       child: TextFormFieldBuilder(
                         height: 80.h,
-                        controller: cubit.email,
+                        controller: cubit.emailController,
                         label: local.email,
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
@@ -925,7 +925,7 @@ class _SignUpState extends State<SignUp> {
         name: auth.userName.text,
         password: auth.password.text,
         dateOfBirth: "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}",
-        email: auth.email.text,
+        email: auth.emailController.text,
         location: "",
         gender: "",
         image: "",

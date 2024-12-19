@@ -8,11 +8,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/data/repos/auth_repo.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/google_user_model.dart';
 
 import '../../../../../utils/app_logs.dart';
-import '../../domain/model/user_model.dart';
+import '../../data/model/google_user_model.dart';
+import '../../data/model/user_model.dart';
+import '../../domain/repos/auth_repo.dart';
 
 part 'auth_state.dart';
 

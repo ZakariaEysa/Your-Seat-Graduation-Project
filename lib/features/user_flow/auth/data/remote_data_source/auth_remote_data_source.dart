@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/google_user_model.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 
 import '../../../../../../data/hive_keys.dart';
 import '../../../../../../data/hive_stroage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../domain/model/user_model.dart';
+import '../model/google_user_model.dart';
+import '../model/user_model.dart';
+
 
 abstract class AuthRemoteDataSource {
   Future<GoogleUserModel> signInWithGoogle();

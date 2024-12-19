@@ -524,9 +524,8 @@ import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
-import '../../data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
-import '../../domain/model/user_model.dart';
-import '../../domain/repos_impl/auth_repo_impl.dart';
+
+import '../../data/model/user_model.dart';
 import '../widgets/BirthDateDropdown.dart';
 
 class SignUp extends StatefulWidget {

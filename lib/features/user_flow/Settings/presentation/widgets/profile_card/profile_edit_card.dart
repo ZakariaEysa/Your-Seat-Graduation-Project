@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/widgets/profile_card/info_container.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/user_model.dart';
 import 'package:yourseatgraduationproject/widgets/button/button_builder.dart';
 
 import '../../../../../../data/hive_keys.dart';
@@ -16,6 +15,7 @@ import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/app_logs.dart';
 import '../../../../../../utils/navigation.dart';
 import '../../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../../auth/data/model/user_model.dart';
 import '../../../../auth/presentation/widgets/BirthDateDropdown.dart';
 
 class ProfileEditCard extends StatefulWidget {

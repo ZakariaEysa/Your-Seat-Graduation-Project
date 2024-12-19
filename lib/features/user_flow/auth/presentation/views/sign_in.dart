@@ -7,9 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/domain/model/user_model.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
@@ -24,6 +21,7 @@ import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../forget/presentation/views/forget.dart';
+import '../../data/model/user_model.dart';
 
 
 class SignIn extends StatefulWidget {

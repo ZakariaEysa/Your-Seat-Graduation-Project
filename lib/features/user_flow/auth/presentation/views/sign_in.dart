@@ -23,6 +23,7 @@ import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../forget/presentation/views/forget.dart';
 
 
 class SignIn extends StatefulWidget {
@@ -173,14 +174,16 @@ class _SignInState extends State<SignIn> {
                               end: 20.w, bottom: 15.h, top: 12.h),
                           child: GestureDetector(
                             onTap: () {
-                              if (
-                              isValidEmail(
-                              cubit.emailController.text)) {
-                                navigateTo(
-                                    context: context, screen:  Otp());
-                              } else {
-                                BotToast.showText(text: lang.enter_valid_email);
-                              }
+
+                              navigateTo(context: context, screen:  ForgotPassword());
+                              // if (
+                              // isValidEmail(
+                              // cubit.emailController.text)) {
+                              //   navigateTo(
+                              //       context: context, screen:  Otp());
+                              // } else {
+                              //   BotToast.showText(text: lang.enter_valid_email);
+                              // }
                             },
                             child: Align(
                               alignment: AlignmentDirectional.centerEnd,

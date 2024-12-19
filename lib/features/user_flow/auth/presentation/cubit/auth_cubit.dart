@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -145,6 +148,9 @@ class AuthCubit extends Cubit<AuthState> {
   void sendOtp(String email) async{
 
     if (await EmailOTP.sendOTP(email: email)) {
+
+      AppLogs.scussessLog(email);
+
       AppLogs.scussessLog("success");
       // ScaffoldMessenger.of(context).showSnackBar(
       // const SnackBar(content: Text("OTP has been sent")));
@@ -163,6 +169,34 @@ class AuthCubit extends Cubit<AuthState> {
    await  authRepo.saveUser(userModel: userModel?? UserModel(name: "", email: "", password: "", dateOfBirth: ""));
    }
 
+
+
+  Future<void> updateUserPassword(String userEmail, String newPassword) async {
+    try {
+      emit(UpdatePasswordLoading());
+      // زمن المهلة
+      const timeoutDuration = Duration(seconds: 5);
+
+      // مرجع للمجموعة المحددة
+      final usersCollection = FirebaseFirestore.instance.collection('users');
+
+      // تنفيذ الطلب مع وقت محدد
+      await Future.any([
+        usersCollection.doc(userEmail).update({
+          'password': newPassword, // تحديث الحقل 'password'
+        }),
+        Future.delayed(timeoutDuration).then((_) => throw TimeoutException('Request timed out')),
+      ]);
+
+      emit(UpdatePasswordSuccess());
+    } on TimeoutException catch (_) {
+      emit(UpdatePasswordError("Failed to update password: request timed out"));
+      // BotToast.showText(text: 'Failed to update password: request timed out');
+    } catch (e) {
+      emit(UpdatePasswordError("Failed to update password: something went wrong"));
+      // BotToast.showText(text: 'Failed to update password: $e');
+    }
+  }
 
 }
 

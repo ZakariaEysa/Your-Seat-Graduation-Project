@@ -59,3 +59,17 @@ class AuthError extends AuthState {
 
   List<Object?> get props => [errorMessage];
 }
+
+final class UpdatePasswordLoading extends AuthState {}
+
+
+final class UpdatePasswordSuccess extends AuthState {}
+
+
+final class UpdatePasswordError extends AuthState {
+
+  final String errorMessage;
+
+  UpdatePasswordError(this.errorMessage);
+
+}

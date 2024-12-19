@@ -1,6 +1,8 @@
 {
   "@@locale": "ar",
   "zakaria": "زكريا",
+  "user_not_found": "المستخدم غير موجود",
+  "password_updated_successfully": "تم تحديث كلمة المرور بنجاح",
   "hello": "مرحبًا",
   "signin": "تسجيل الدخول",
   "TermsAndConditions": "الشروط و الاحكام ",

@@ -223,6 +223,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Password must be at least 6 characters."),
         "password_requirements": MessageLookupByLibrary.simpleMessage(
             "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character."),
+        "password_updated_successfully": MessageLookupByLibrary.simpleMessage(
+            "Password updated successfully"),
         "password_validation": MessageLookupByLibrary.simpleMessage(
             "Password must meet the requirements"),
         "payWithCard": MessageLookupByLibrary.simpleMessage("pay with card"),
@@ -293,6 +295,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tickets": MessageLookupByLibrary.simpleMessage("Tickets"),
         "total": MessageLookupByLibrary.simpleMessage("Total :"),
         "typing": MessageLookupByLibrary.simpleMessage("typing..."),
+        "user_not_found":
+            MessageLookupByLibrary.simpleMessage("User not found"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "watchTrailer": MessageLookupByLibrary.simpleMessage("Watch Trailer"),
         "watchlist": MessageLookupByLibrary.simpleMessage("Watch List"),

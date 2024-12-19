@@ -60,6 +60,26 @@ class S {
     );
   }
 
+  /// `User not found`
+  String get user_not_found {
+    return Intl.message(
+      'User not found',
+      name: 'user_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password updated successfully`
+  String get password_updated_successfully {
+    return Intl.message(
+      'Password updated successfully',
+      name: 'password_updated_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hello`
   String get hello {
     return Intl.message(

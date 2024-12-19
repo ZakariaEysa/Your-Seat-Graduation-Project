@@ -221,6 +221,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يجب أن تكون كلمة المرور 6 أحرف على الأقل."),
         "password_requirements": MessageLookupByLibrary.simpleMessage(
             "يجب أن تكون كلمة المرور 8 أحرف على الأقل، تحتوي على حرف كبير واحد، ورقم واحد، وحرف خاص."),
+        "password_updated_successfully":
+            MessageLookupByLibrary.simpleMessage("تم تحديث كلمة المرور بنجاح"),
         "password_validation": MessageLookupByLibrary.simpleMessage(
             "يجب أن تفي كلمة المرور بالمتطلبات"),
         "payWithCard": MessageLookupByLibrary.simpleMessage("الدفع بالبطاقة"),
@@ -287,6 +289,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tickets": MessageLookupByLibrary.simpleMessage("التذاكر"),
         "total": MessageLookupByLibrary.simpleMessage("المجموع"),
         "typing": MessageLookupByLibrary.simpleMessage("جاري الكتابة..."),
+        "user_not_found":
+            MessageLookupByLibrary.simpleMessage("المستخدم غير موجود"),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "watchTrailer":
             MessageLookupByLibrary.simpleMessage("شاهد المقطع الترويجي"),

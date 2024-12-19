@@ -25,17 +25,14 @@ class AuthCubit extends Cubit<AuthState> {
   GlobalKey<FormState> formKeyRegister = GlobalKey();
   TextEditingController passwordController = TextEditingController();
   TextEditingController userName = TextEditingController();
-  TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
-  TextEditingController email = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   String? selectedMonth;
   int? selectedDay;
   int? selectedYear;
-  bool showPassword = true;
 
-  final TextEditingController emailController = TextEditingController();
   Future<void> signInWithGoogle() async {
     emit(AuthLoading());
     final response = await authRepo.signInWithGoogle();

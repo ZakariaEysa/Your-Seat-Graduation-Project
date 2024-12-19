@@ -358,3 +358,111 @@ class MovieDetails extends StatelessWidget {
         ])));
   }
 }
+
+
+
+
+
+// // إضافة كومنت لكل الأفلام في الكولكشن
+// Future<void> addCommentToAllMovies() async {
+//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+//   final List<Map<String, dynamic>> comments = [
+//     {
+//       'name': 'User1',
+//       'comment': 'Great movie!',
+//       'image': 'https://picsum.photos/',
+//     },
+//     {
+//       'name': 'User2',
+//       'comment': 'Loved the acting!',
+//       'image': 'https://picsum.photos/',
+//     },
+//     {
+//       'name': 'User3',
+//       'comment': 'The storyline was fantastic.',
+//       'image': 'https://picsum.photos/',
+//     },
+//   ];
+//   // try {
+//   //   // جلب كل الأفلام من الكولكشن
+//   //   QuerySnapshot movieSnapshot = await _firestore.collection('movies').get();
+
+//   //   // تنفيذ عملية إضافة الكومنت لكل فيلم
+//   //   for (var doc in movieSnapshot.docs) {
+//   //     String movieId = doc.id;
+//   //     print(movieId);
+
+//   //     // تحديث كل فيلم بإضافة الكومنت في قائمة "comments"
+//   //     await _firestore.collection('movies').doc(movieId).update({
+//   //       'comments': FieldValue.arrayUnion(comments), // إضافة الكومنتات للقائمة
+//   //     });
+//   //   }
+//   //   print("Comment added to all movies successfully.");
+//   // } catch (e) {
+//   //   print("Error adding comment to all movies: $e");
+//   // }
+
+//   try {
+//     // جلب كل الأفلام من الكولكشن 'movies'
+//     QuerySnapshot movieSnapshot = await _firestore.collection('movies').get();
+
+//     // طباعة كل فيلم
+//     for (var doc in movieSnapshot.docs) {
+//       print('Movie ID: ${doc.id}');
+//       print('Movie Data: ${doc.data()}');
+//     }
+//   } catch (e) {
+//     print("Error fetching movies: $e");
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import 'package:cloud_firestore/cloud_firestore.dart';
+
+// Future<void> addCommentToMovie(String movieId, String userName, String comment, String imageUrl) async {
+//   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+//   final CollectionReference moviesCollection = firestore.collection('movies');
+
+//   try {
+//     // تحديد المستند بناءً على movieId
+//     final DocumentReference movieDoc = moviesCollection.doc(movieId);
+
+//     // تعليق جديد
+//     final Map<String, dynamic> newComment = {
+//       'name': userName,
+//       'comment': comment,
+//       'image': imageUrl,
+//     };
+
+//     // إضافة التعليق إلى قائمة التعليقات
+//     await movieDoc.update({
+//       'comments': FieldValue.arrayUnion([newComment]), // يستخدم arrayUnion لإضافة تعليق جديد بشكل آمن
+//     });
+
+//     print('Comment added successfully.');
+//   } catch (e) {
+//     print('Error adding comment: $e');
+//   }
+// }
+

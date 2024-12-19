@@ -10,9 +10,11 @@ class CachedNetworkImageF extends StatelessWidget {
     this.fit = BoxFit.fill,
     this.placeholder,
     this.errorWidget,
+    this.placeholderUrl,
   });
 
   final String imageUrl;
+  final String? placeholderUrl;
   final double? width;
   final double? height;
   final BoxFit? fit;
@@ -25,7 +27,24 @@ class CachedNetworkImageF extends StatelessWidget {
       imageUrl: imageUrl,
       width: width,
       height: height,
+      placeholder: (context, _) {
+        return Image.asset(
+          "assets/images/loading1.gif",
+          fit: fit ?? BoxFit.cover,
+        );
+      },
+      errorWidget: (context, e, _) {
+        return Image.asset(
+          placeholderUrl ?? "assets/images/loading1.gif",
+          fit: fit ?? BoxFit.cover,
+        );
+      },
       fit: fit,
     );
   }
 }
+
+
+
+//ImageReplacer
+

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -54,8 +55,6 @@ void main() async {
     androidProvider: AndroidProvider.debug,
   );
 
-  
-
   // // Initialize Firebase App Check
   // await FirebaseAppCheck.instance.activate();
 
@@ -81,15 +80,8 @@ void main() async {
   SimpleBlocObserverService();
 
   await HiveStorage.init();
-  // HiveStorage.set(HiveKeys.isArabic, false);
-  // HiveStorage.set(
-  //   HiveKeys.role,
-  //   "",
-  // );
-//  HiveStorage.set(
-//     HiveKeys.isArabic,
-//     false,
-  // );
+
+
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(
       HiveKeys.passUserOnboarding,
@@ -97,32 +89,6 @@ void main() async {
     );
   }
   AppLogs.scussessLog(HiveStorage.get(HiveKeys.role).toString());
-  // if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
-  //   HiveStorage.set(
-  //     HiveKeys.passUserOnboarding,
-  //     false,
-  //   );
-  // }
-  // HiveStorage.set(
-  //   HiveKeys.role,
-  //   "",
-  // );
-  // HiveStorage.set(
-  //   HiveKeys.passUserOnboarding,
-  //   false,
-  // );
-  // Register the adapter
-
-  // Hive.registerAdapter(UserModelAdapter());
-
-// open the box
-  //  await Hive.openBox<UserModel>('userBox');
-
-  // Register the adapter
-  // Hive.registerAdapter(GoogleUserModelAdapter());
-
-  // Open the box
-  // await Hive.openBox<GoogleUserModel>('googleUserBox');
 
   GoogleUserModel? currentUser = HiveStorage.getGoogleUser();
   UserModel? currentUser2 = HiveStorage.getDefaultUser();
@@ -174,7 +140,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
         builder: (context, state) {
-
       return ScreenUtilInit(
           designSize: const Size(375, 812),
           minTextAdapt: true,
@@ -197,10 +162,9 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
-              home:SplashScreen(),
+              home: SplashScreen(),
             );
           });
     });
-
   }
 }

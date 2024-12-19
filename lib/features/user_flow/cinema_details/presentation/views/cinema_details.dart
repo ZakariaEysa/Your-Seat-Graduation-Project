@@ -42,73 +42,71 @@ class CinemaDetails extends StatelessWidget {
                   left: 10.w,
                   right: 10.w,
                   child: Container(
-                    padding: EdgeInsets.all(8.sp),
+                    padding: EdgeInsets.all(5.sp),
                     color: const Color(0xFF37313B).withOpacity(.71),
                     width: 340.w,
                     height: 160.h,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            lang.IMAX_Cinema,
-                            style: theme.textTheme.bodyMedium!
-                                .copyWith(fontSize: 12.sp),
-                          ),
-                          Text(
-                            lang.StatUpIsPlannedFor2025TypeOfTheaterKnownForItsLargeScreenSizeAndHighQualitySoundSystemItOffersAnImmersiveViewingExperienceForMoviesDocumentariesAndOtherContent
-                          ,
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                fontSize: 11.sp,
-                                color: const Color(0xFFD4D0D0)),
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                               lang.review,
-                                textAlign: TextAlign.start,
-                                style: theme.textTheme.bodyMedium!
-                                    .copyWith(fontSize: 16.sp),
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Image.asset(
-                                'assets/images/cinemastar.png',
-                                width: 13.w,
-                                height: 12.h,
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              Text('4.8 (1.222)',style:theme.textTheme.bodyMedium!.copyWith(fontSize:12.sp))
-                            ],
-                          ),
-                          RatingBar.builder(
-                            initialRating:4,
-                            minRating: 1,
-                            unratedColor: Color(0xFF575757),
-                            ignoreGestures: true,
-                            direction: Axis.horizontal,
-                            itemSize: 33,
-                            //allowHalfRating: true,
-                            itemCount: 5,
-                            itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              size: 2,
-                              color:Color(0xFFCCC919),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          lang.IMAX_Cinema,
+                          style: theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 11.sp),
+                        ),
+                        Text(
+                          lang.StatUpIsPlannedFor2025TypeOfTheaterKnownForItsLargeScreenSizeAndHighQualitySoundSystemItOffersAnImmersiveViewingExperienceForMoviesDocumentariesAndOtherContent
+                        ,
+                          style: theme.textTheme.bodyMedium!.copyWith(
+                              fontSize: 11.sp,
+                              color: const Color(0xFFD4D0D0)),
+                        ),
+                        SizedBox(height: 5.h),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                             lang.review,
+                              textAlign: TextAlign.start,
+                              style: theme.textTheme.bodyMedium!
+                                  .copyWith(fontSize: 15.sp),
                             ),
-                            onRatingUpdate: (rating) {
-                              // print(rating);
-                            },
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Image.asset(
+                              'assets/images/cinemastar.png',
+                              width: 12.w,
+                              height: 11.h,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Text('4.8 (1.222)',style:theme.textTheme.bodyMedium!.copyWith(fontSize:11.sp))
+                          ],
+                        ),
+                        RatingBar.builder(
+                          initialRating:4,
+                          minRating: 1,
+                          unratedColor: Color(0xFF575757),
+                          ignoreGestures: true,
+                          direction: Axis.horizontal,
+                          itemSize: 33,
+                          //allowHalfRating: true,
+                          itemCount: 5,
+                          itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            size: 2,
+                            color:Color(0xFFCCC919),
                           ),
-                        ],
-                      ),
+                          onRatingUpdate: (rating) {
+                            // print(rating);
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ),

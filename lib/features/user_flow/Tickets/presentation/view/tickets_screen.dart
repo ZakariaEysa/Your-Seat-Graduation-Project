@@ -6,6 +6,7 @@ import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 
 
+import '../../../../../generated/l10n.dart';
 import '../widget/ticket_card.dart';
 import '../widget/vertical_status_card.dart';
 
@@ -48,13 +49,15 @@ class TicketPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF2E1371),
         title: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(100, 0, 0, 0),
           child: HeadAppBar(
-            title: "Tickets",
+            title: lang.tickets,
           ),
         ),
       ),

@@ -25,8 +25,8 @@ class CenterText extends StatelessWidget {
                           20, 0, 0, 0),
                       child: Image.asset(
                         "assets/icons/money.png",
-                        width: 28.w,
-                        height: 15.h,
+                        width: 30.w,
+                        height: 20.h,
                       ),
                     ),
                     const SizedBox(width: 15),
@@ -34,7 +34,7 @@ class CenterText extends StatelessWidget {
                       '210.000 VND',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize: 16,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w400,
                         height: 1.25,
@@ -50,8 +50,8 @@ class CenterText extends StatelessWidget {
                           20, 0, 0, 0),
                       child: Image.asset(
                         "assets/icons/location.png",
-                        width: 28.w,
-                        height: 15.h,
+                        width: 30.w,
+                        height: 20.h,
                         color: Colors.black,
                       ),
                     ),
@@ -60,7 +60,7 @@ class CenterText extends StatelessWidget {
                       'Vincom Ocean Park',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize: 16,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w400,
                         height: 1.25,
@@ -69,8 +69,8 @@ class CenterText extends StatelessWidget {
                     const SizedBox(width: 8),
                     Image.asset(
                       "assets/icons/img_2.png",
-                      width: 28.w,
-                      height: 15.h,
+                      width: 30.w,
+                      height: 20.h,
                     ),
                   ],
                 ),
@@ -98,14 +98,14 @@ class CenterText extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           25, 0, 0, 10),
-                      child: Image.asset("assets/icons/img_3.png" , width: 22.w, height: 22.h,),
+                      child: Image.asset("assets/icons/img_3.png" , width: 25.w, height: 25.h,),
                     ),
                     SizedBox(width: 10,),
                     Text(
                       'Show this QR code to the ticket counter to \nreceive your ticket',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize: 16,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w400,
                         height: 1.50,

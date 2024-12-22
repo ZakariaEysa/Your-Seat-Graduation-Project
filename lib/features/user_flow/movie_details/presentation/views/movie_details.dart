@@ -91,6 +91,7 @@ class MovieDetails extends StatelessWidget {
                             height: 20.h,
                           ),
                           SizedBox(
+
                             width: 10.w,
                           ),
                           Text('4.8 (1.222)',

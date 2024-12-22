@@ -5,11 +5,11 @@ import 'crew.dart';
 
 class MoviesDetailsModel extends Equatable {
   final List<Comment>? comments;
-  final List<String>? castImages;
-  final List<String>? cast;
+  final List<dynamic>? castImages;
+  final List<dynamic>? cast;
   final Crew? crew;
   final String? category;
-  final double? rating;
+  final num? rating;
   final String? description;
   final String? language;
   final String? ageRating;
@@ -41,13 +41,13 @@ class MoviesDetailsModel extends Equatable {
       comments: (json['Comments'] as List<dynamic>?)
           ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
           .toList(),
-      castImages: json['cast_images'] as List<String>?,
-      cast: json['cast'] as List<String>?,
+      castImages: json['cast_images'] as List<dynamic>?,
+      cast: json['cast'] as List<dynamic>?,
       crew: json['crew'] == null
           ? null
           : Crew.fromJson(json['crew'] as Map<String, dynamic>),
       category: json['category'] as String?,
-      rating: (json['rating'] as num?)?.toDouble(),
+      rating: (json['rating'] as num?),
       description: json['description'] as String?,
       language: json['language'] as String?,
       ageRating: json['age_rating'] as String?,

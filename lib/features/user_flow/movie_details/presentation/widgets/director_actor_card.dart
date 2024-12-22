@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/widgets/network_image/cached_network_image_f.dart';
 
 import '../../../../../generated/l10n.dart';
 
@@ -21,7 +22,6 @@ class Director extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Container(
-        width: 140.w,
         height: 58.h,
         margin: EdgeInsets.only(right: 22.w),
         decoration: BoxDecoration(
@@ -31,9 +31,14 @@ class Director extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 23,
-              backgroundImage: AssetImage(imagePath),
+
+            Padding(
+              padding:  EdgeInsetsDirectional.only(start: 5.w),
+              child: CachedNetworkImageF(imageUrl: imagePath, fit: BoxFit.fill,isCircle: true,
+
+              width: 50.w,
+                height: 50.h,
+              ),
             ),
             SizedBox(width: 2.w),
             Padding(

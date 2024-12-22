@@ -6,7 +6,7 @@ class ScaffoldF extends StatelessWidget {
       {super.key,
       this.bottomNavigationBar,
       required this.body,
-        this.appBar,
+      this.appBar,
       this.actions});
   final Widget? bottomNavigationBar;
   final Widget body;
@@ -17,7 +17,7 @@ class ScaffoldF extends StatelessWidget {
     var theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: true,
-  appBar: appBar,
+      appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       body: Container(
           width: 500.w,

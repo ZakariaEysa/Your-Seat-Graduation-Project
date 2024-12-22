@@ -24,13 +24,11 @@ import '../../../forget/presentation/views/forget.dart';
 class NewPassword extends StatefulWidget {
   const NewPassword({super.key});
 
-
   @override
   State<NewPassword> createState() => _NewPasswordState();
 }
 
 class _NewPasswordState extends State<NewPassword> {
-
   bool obscure = true;
   bool obscure2 = true;
   TextEditingController newPasswordController = TextEditingController();
@@ -44,11 +42,19 @@ class _NewPasswordState extends State<NewPassword> {
     return ScaffoldF(
         appBar: AppBar(
           backgroundColor: Color(0xFF2E1371),
-          leading: IconButton(onPressed: () {
-            navigateTo(context: context, screen: ForgotPassword());
-          }, icon: Icon(Icons.arrow_back, color: Colors.white, size: 25,)),
-          title: Text(lang.createNewPassword,
-            style: theme.textTheme.labelLarge!.copyWith(fontSize: 24.sp),),
+          leading: IconButton(
+              onPressed: () {
+                navigateTo(context: context, screen: ForgotPassword());
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 25,
+              )),
+          title: Text(
+            lang.createNewPassword,
+            style: theme.textTheme.labelLarge!.copyWith(fontSize: 24.sp),
+          ),
           titleSpacing: 20,
         ),
         body: Stack(
@@ -56,25 +62,25 @@ class _NewPasswordState extends State<NewPassword> {
             BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is UpdatePasswordSuccess) {
-                  navigateAndRemoveUntil(context: context, screen:   BlocProvider<AuthCubit>(
-                    create: (context) => AuthCubit(AuthRepoImpl(
-                        AuthRemoteDataSourceImpl(FirebaseAuth.instance, GoogleSignIn()))),
-                    child: SignIn(),),
+                  navigateAndRemoveUntil(
+                    context: context,
+                    screen: BlocProvider<AuthCubit>(
+                      create: (context) => AuthCubit(AuthRepoImpl(
+                          AuthRemoteDataSourceImpl(
+                              FirebaseAuth.instance, GoogleSignIn()))),
+                      child: SignIn(),
+                    ),
                   );
                   BotToast.showText(text: lang.password_updated_successfully);
-                }
-
-                else if (state is UpdatePasswordError) {
+                } else if (state is UpdatePasswordError) {
                   BotToast.showText(
                       text: lang.SorryThereWasAnErrorPleaseTryAgainLater);
-
 
                   // BotToast.showText(text: state.errorMessage);
                 }
               },
               builder: (context, state) {
                 return Form(
-
                   key: formKey,
                   child: SingleChildScrollView(
                     child: Column(
@@ -82,14 +88,16 @@ class _NewPasswordState extends State<NewPassword> {
                         Padding(
                           padding: EdgeInsets.only(top: 50.h),
                           child: Image.asset(
-                            "assets/images/image 14.png", width: 210.w,
-                            height: 207.h,),
+                            "assets/images/image 14.png",
+                            width: 210.w,
+                            height: 207.h,
+                          ),
                         ),
                         SizedBox(
                           height: 50.h,
                         ),
-                        Text(lang
-                            .yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword,
+                        Text(
+                            lang.yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword,
                             style: theme.textTheme.bodyMedium!.copyWith(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
@@ -100,9 +108,7 @@ class _NewPasswordState extends State<NewPassword> {
                         ),
                         TextFormFieldBuilder(
                           validator: (text) {
-                            if (text == null || text
-                                .trim()
-                                .isEmpty) {
+                            if (text == null || text.trim().isEmpty) {
                               return lang.enterPassword;
                             }
                             if (!isValidPassword(text)) {
@@ -112,7 +118,6 @@ class _NewPasswordState extends State<NewPassword> {
                           },
                           width: 330.w,
                           height: 80.h,
-
                           controller: newPasswordController,
                           type: TextInputType.visiblePassword,
                           label: lang.newPassword,
@@ -137,9 +142,7 @@ class _NewPasswordState extends State<NewPassword> {
                         ),
                         TextFormFieldBuilder(
                           validator: (text) {
-                            if (text == null || text
-                                .trim()
-                                .isEmpty) {
+                            if (text == null || text.trim().isEmpty) {
                               return lang.enterConfirmPassword;
                             }
                             if (text != newPasswordController.text) {
@@ -168,7 +171,6 @@ class _NewPasswordState extends State<NewPassword> {
                                     : Icons.visibility,
                                 color: Colors.grey,
                               )),
-
                         ),
                         SizedBox(
                           height: 50.h,
@@ -183,9 +185,7 @@ class _NewPasswordState extends State<NewPassword> {
                           onTap: () async {
                             if (!formKey.currentState!.validate()) return;
 
-
                             AuthCubit cubit = AuthCubit.get(context);
-
 
                             await cubit.updateUserPassword(
                                 cubit.emailController.text,
@@ -195,7 +195,6 @@ class _NewPasswordState extends State<NewPassword> {
                         SizedBox(
                           height: 60.h,
                         ),
-
                       ],
                     ),
                   ),
@@ -214,7 +213,6 @@ class _NewPasswordState extends State<NewPassword> {
               },
             ),
           ],
-        )
-    );
+        ));
   }
 }

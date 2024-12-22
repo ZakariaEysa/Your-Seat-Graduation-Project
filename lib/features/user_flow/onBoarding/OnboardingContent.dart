@@ -36,7 +36,8 @@ class OnBoardingContent {
   String title;
   String description;
 
-  OnBoardingContent({required this.image, required this.title, required this.description});
+  OnBoardingContent(
+      {required this.image, required this.title, required this.description});
 }
 
 List<OnBoardingContent> getOnBoardingContents(BuildContext context) {

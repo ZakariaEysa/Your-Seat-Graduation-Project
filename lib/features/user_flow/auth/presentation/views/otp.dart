@@ -2,7 +2,6 @@ import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/otp_manager.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
@@ -19,7 +18,6 @@ class Otp extends StatelessWidget {
   final TextEditingController N5 = TextEditingController();
   final TextEditingController N6 = TextEditingController();
 
-
   final FocusNode F1 = FocusNode();
   final FocusNode F2 = FocusNode();
   final FocusNode F3 = FocusNode();
@@ -29,7 +27,7 @@ class Otp extends StatelessWidget {
 
   Otp({super.key, this.isSuccessOtp});
 
-  final  Future<void>Function()?  isSuccessOtp ;
+  final Future<void> Function()? isSuccessOtp;
   void nextField({
     required String value,
     required FocusNode focusNode,
@@ -42,23 +40,16 @@ class Otp extends StatelessWidget {
   Future<void> verifyOtp(BuildContext context, String otp) async {
     bool isOtpValid = await EmailOTP.verifyOTP(otp: otp);
     if (isOtpValid) {
-   if(isSuccessOtp==null) {
-
-
+      if (isSuccessOtp == null) {
         await AuthCubit.get(context).verifyedSendOtp();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const HomeLayout()),
         );
-
-      }else{
-
-       await  isSuccessOtp!();
+      } else {
+        await isSuccessOtp!();
       }
-
-
-
-    }else {
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Invalid OTP'),
@@ -73,15 +64,12 @@ class Otp extends StatelessWidget {
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-          size: 28
-        ),
+        iconTheme: IconThemeData(color: Colors.white, size: 28),
         backgroundColor: const Color(0xFF2E1371),
         title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(50,0, 12, 12),
+          padding: EdgeInsetsDirectional.fromSTEB(50, 0, 12, 12),
           child: const HeadAppBar(
-            title: 'OTP',
+            title: 'Confirm OTP code',
           ),
         ),
       ),
@@ -90,7 +78,7 @@ class Otp extends StatelessWidget {
         children: [
           SizedBox(height: 40.h),
           Text(
-            'You just need to enter the OTP\nsent to the registered Email',
+            'Please Enter The 6 Digit Code Sent To Your Email ',
             style: theme.textTheme.bodySmall!.copyWith(fontSize: 20),
             textAlign: TextAlign.center,
           ),
@@ -100,12 +88,36 @@ class Otp extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                OtpFieldWidget(controller: N1, currentFocus: F1, nextFocus: F2, nextField: nextField),
-                OtpFieldWidget(controller: N2, currentFocus: F2, nextFocus: F3, nextField: nextField),
-                OtpFieldWidget(controller: N3, currentFocus: F3, nextFocus: F4, nextField: nextField),
-                OtpFieldWidget(controller: N4, currentFocus: F4, nextFocus: F5, nextField: nextField),
-                OtpFieldWidget(controller: N5, currentFocus: F5, nextFocus: F6, nextField: nextField),
-                OtpFieldWidget(controller: N6, currentFocus: F6, nextFocus: null, nextField: nextField),
+                OtpFieldWidget(
+                    controller: N1,
+                    currentFocus: F1,
+                    nextFocus: F2,
+                    nextField: nextField),
+                OtpFieldWidget(
+                    controller: N2,
+                    currentFocus: F2,
+                    nextFocus: F3,
+                    nextField: nextField),
+                OtpFieldWidget(
+                    controller: N3,
+                    currentFocus: F3,
+                    nextFocus: F4,
+                    nextField: nextField),
+                OtpFieldWidget(
+                    controller: N4,
+                    currentFocus: F4,
+                    nextFocus: F5,
+                    nextField: nextField),
+                OtpFieldWidget(
+                    controller: N5,
+                    currentFocus: F5,
+                    nextFocus: F6,
+                    nextField: nextField),
+                OtpFieldWidget(
+                    controller: N6,
+                    currentFocus: F6,
+                    nextFocus: null,
+                    nextField: nextField),
               ],
             ),
           ),
@@ -116,10 +128,11 @@ class Otp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 CountdownTimer(
-                  onResend: ()async {
-                    String email = AuthCubit.get(context).emailController.text ?? '';
-                    if (email.isNotEmpty)  {
-                       AuthCubit.get(context).sendOtp(email);
+                  onResend: () async {
+                    String email =
+                        AuthCubit.get(context).emailController.text ?? '';
+                    if (email.isNotEmpty) {
+                      AuthCubit.get(context).sendOtp(email);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("OTP has been resent"),
@@ -132,7 +145,6 @@ class Otp extends StatelessWidget {
               ],
             ),
           ),
-
           SizedBox(height: 5.h),
           ButtonBuilder(
             text: 'Continue',
@@ -160,7 +172,4 @@ class Otp extends StatelessWidget {
       ),
     );
   }
-
-
-
 }

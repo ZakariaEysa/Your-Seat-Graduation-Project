@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 import '../../../../../utils/navigation.dart';
 import '../../../chatbot/presentation/views/chat_bottt.dart';
 
@@ -28,8 +27,7 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
               child: Draggable(
                 feedback: GestureDetector(
                   onTap: () {
-                    navigateTo(context: context, screen:  const ChatBottt());
-
+                    navigateTo(context: context, screen: const ChatBottt());
                   },
                   child: Image.asset(
                     'assets/images/chat_bot.png',
@@ -40,7 +38,6 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
                 childWhenDragging: Container(),
                 onDraggableCanceled: (velocity, offset) {
                   setState(() {
-
                     double newX = offset.dx;
                     double newY = offset.dy;
 
@@ -58,7 +55,7 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
                 },
                 child: GestureDetector(
                   onTap: () {
-                    navigateTo(context: context, screen:  const ChatBottt());
+                    navigateTo(context: context, screen: const ChatBottt());
                   },
                   child: Image.asset(
                     'assets/images/chat_bot.png',
@@ -74,5 +71,3 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
     );
   }
 }
-
-

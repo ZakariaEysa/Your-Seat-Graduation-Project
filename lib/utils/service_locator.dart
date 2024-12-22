@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
 import '../features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
+
 final getIt = GetIt.instance;
 
 void serviceLocator() {

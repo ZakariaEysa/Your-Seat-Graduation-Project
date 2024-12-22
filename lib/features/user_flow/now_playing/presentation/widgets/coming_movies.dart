@@ -10,11 +10,11 @@ class ComingMovies extends StatefulWidget {
 
   const ComingMovies(
       {super.key,
-        required this.image,
-        required this.title,
-        required this.smallTitle,
-        required this.releaseDate,
-        this.isActive = false});
+      required this.image,
+      required this.title,
+      required this.smallTitle,
+      required this.releaseDate,
+      this.isActive = false});
 
   @override
   State<ComingMovies> createState() => _ComingMoviesState();
@@ -47,7 +47,7 @@ class _ComingMoviesState extends State<ComingMovies> {
         Text(
           widget.title,
           style: theme.textTheme.bodyMedium!
-              .copyWith(fontSize:15.sp, fontWeight: FontWeight.bold),
+              .copyWith(fontSize: 15.sp, fontWeight: FontWeight.bold),
         ),
         SizedBox(
           height: 8.h,
@@ -68,7 +68,7 @@ class _ComingMoviesState extends State<ComingMovies> {
                   .copyWith(fontSize: 12.sp, color: const Color(0xFFDEDEDE)),
             ),
             SizedBox(
-              width:52.w,
+              width: 52.w,
             ),
             GestureDetector(
               onTap: () {
@@ -78,14 +78,16 @@ class _ComingMoviesState extends State<ComingMovies> {
               },
               child: Icon(
                 Icons.bookmark_rounded,
-                color: _isBookmarked ? Colors.purple : Colors.grey.withOpacity(0.40),
-                size:30.sp,
+                color: _isBookmarked
+                    ? Colors.purple
+                    : Colors.grey.withOpacity(0.40),
+                size: 30.sp,
               ),
             ),
           ],
         ),
         SizedBox(
-          height:6.h,
+          height: 6.h,
         ),
         Row(
           children: [
@@ -95,7 +97,7 @@ class _ComingMoviesState extends State<ComingMovies> {
               height: 16.h,
             ),
             SizedBox(
-              width:7.w,
+              width: 7.w,
             ),
             Text(
               widget.smallTitle,

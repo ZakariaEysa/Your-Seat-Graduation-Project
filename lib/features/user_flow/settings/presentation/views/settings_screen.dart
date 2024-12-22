@@ -112,7 +112,6 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: _buildSettingsItems(context),
-
         ),
       ),
     );
@@ -156,27 +155,22 @@ class SettingsPage extends StatelessWidget {
         imageIcon: "assets/images/logout 1.png",
         onPress: () {
           DialogUtils.showMessage(context, lang.areYouSureYouWantToLogOut,
-          posActionTitle: lang.ok,
-            negActionTitle: lang.cancel,
-            posAction: (){
-              bool lang = HiveStorage.get(HiveKeys.isArabic);
-              HiveStorage.set(HiveKeys.role,"");
-              HiveStorage.set(HiveKeys.passUserOnboarding, true);
-              HiveStorage.logOut();
+              posActionTitle: lang.ok,
+              negActionTitle: lang.cancel, posAction: () {
+            bool lang = HiveStorage.get(HiveKeys.isArabic);
+            HiveStorage.set(HiveKeys.role, "");
+            HiveStorage.set(HiveKeys.passUserOnboarding, true);
+            HiveStorage.logOut();
 
-              HiveStorage.set(HiveKeys.isArabic, lang).then((c) {
-                navigateAndRemoveUntil(
+            HiveStorage.set(HiveKeys.isArabic, lang).then((c) {
+              navigateAndRemoveUntil(
                 context: context,
                 screen: const SignIn(),
               );
-
-    }
-              );
-            },
-            negAction: (){
+            });
+          }, negAction: () {
             navigatePop(context: context);
-            }
-          );
+          });
         },
       ),
     ];

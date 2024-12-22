@@ -12,15 +12,14 @@ class InfoContainer extends StatefulWidget {
       {required this.title,
       super.key,
       required this.controller,
-      required this.type, required this.onChanged});
+      required this.type,
+      required this.onChanged});
 
   @override
   State<InfoContainer> createState() => _InfoContainerState();
 }
 
 class _InfoContainerState extends State<InfoContainer> {
-
-
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -35,9 +34,7 @@ class _InfoContainerState extends State<InfoContainer> {
             borderRadius: BorderRadius.circular(23.r),
             color: theme.colorScheme.onSecondary),
         child: TextFormField(
-
           onChanged: widget.onChanged,
-
           textAlign: TextAlign.start,
           controller: widget.controller,
         ),

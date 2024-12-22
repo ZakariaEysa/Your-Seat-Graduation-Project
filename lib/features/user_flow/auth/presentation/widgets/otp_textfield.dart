@@ -6,7 +6,8 @@ class OtpFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode currentFocus;
   final FocusNode? nextFocus;
-  final Function({required String value, required FocusNode focusNode}) nextField;
+  final Function({required String value, required FocusNode focusNode})
+      nextField;
 
   const OtpFieldWidget({
     Key? key,

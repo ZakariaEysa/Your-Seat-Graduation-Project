@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../Settings/presentation/views/settings_screen.dart';
-import '../../../Tickets/view/tickets_screen.dart';
+import '../../../Tickets/presentation/view/tickets_screen.dart';
 import '../../../Watch_list/presentation/views/watch_list.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeLayout> {
   List<Widget> pages = [
     const HomeScreen(),
     const WatchList(),
-     TicketPage(),
+    TicketPage(),
     const SettingsPage(),
   ];
 

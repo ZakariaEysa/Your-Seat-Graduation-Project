@@ -35,28 +35,32 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    AuthCubit cubit= AuthCubit.get(context);
+    AuthCubit cubit = AuthCubit.get(context);
 
     var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-               navigateAndRemoveUntil(context: context, screen:   BlocProvider<AuthCubit>(
-                create: (context) => AuthCubit(AuthRepoImpl(
-                    AuthRemoteDataSourceImpl(FirebaseAuth.instance, GoogleSignIn()))),
-                child: SignIn(),),
+              navigateAndRemoveUntil(
+                context: context,
+                screen: BlocProvider<AuthCubit>(
+                  create: (context) => AuthCubit(AuthRepoImpl(
+                      AuthRemoteDataSourceImpl(
+                          FirebaseAuth.instance, GoogleSignIn()))),
+                  child: SignIn(),
+                ),
               );
             },
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,
-              size:25,
+              size: 25,
             ),
           ),
           backgroundColor: const Color(0xFF2E1371),
           title: Text(
-           lang.forgetPassword,
+            lang.forgetPassword,
             style: theme.textTheme.labelLarge!.copyWith(fontSize: 28.sp),
           ),
           titleSpacing: 30.0),
@@ -68,7 +72,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(top:50.h),
+                padding: EdgeInsets.only(top: 50.h),
                 child: Image.asset(
                   "assets/images/forget.png",
                   width: 242.w,
@@ -85,19 +89,19 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                   textAlign: TextAlign.center),
               SizedBox(
-                height:50.h,
+                height: 50.h,
               ),
               TextFormFieldBuilder(
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return lang.enterEmailAddress;
-                  }if(!isValidEmail(value)){
+                  }
+                  if (!isValidEmail(value)) {
                     return lang.invalidEmailFormat;
                   }
                   return null;
-
                 },
-                width:312.w,
+                width: 312.w,
                 height: 80.h,
                 controller: cubit.emailController,
                 type: TextInputType.emailAddress,
@@ -107,44 +111,42 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 color: Color(0xFF1E126E),
               ),
               SizedBox(
-                height:60.h,
+                height: 60.h,
               ),
               ButtonBuilder(
                 width: 191.w,
-                height:48.h,
+                height: 48.h,
                 image: HiveStorage.get(HiveKeys.isArabic)
                     ? "assets/icons/send11_arabic.png"
                     : "assets/icons/send11.png",
                 text: '',
-                onTap: ()  async{
-
-
+                onTap: () async {
                   if (!formKeyForgot.currentState!.validate()) return;
-                  if (
-                  isValidEmail(
-                  cubit.emailController.text)) {
-
+                  if (isValidEmail(cubit.emailController.text)) {
                   } else {
                     BotToast.showText(text: lang.enter_valid_email);
                     return;
                   }
 
-                   // TODO: check if the user exists or not first
-                  final userDoc =
-                      await FirebaseFirestore.instance.collection('users').doc(cubit.emailController.text).get();
+                  // TODO: check if the user exists or not first
+                  final userDoc = await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(cubit.emailController.text)
+                      .get();
 
-               if(userDoc.exists){
-                 cubit.sendOtp(cubit.emailController.text);
-                 navigateTo(context: context, screen:Otp(isSuccessOtp: () async{
-
-
-                   navigateAndReplace(context: context, screen: NewPassword());
-
-
-                 },));
-                }else{
-                  BotToast.showText(text: lang.user_not_found);
-                }
+                  if (userDoc.exists) {
+                    cubit.sendOtp(cubit.emailController.text);
+                    navigateTo(
+                        context: context,
+                        screen: Otp(
+                          isSuccessOtp: () async {
+                            navigateAndReplace(
+                                context: context, screen: NewPassword());
+                          },
+                        ));
+                  } else {
+                    BotToast.showText(text: lang.user_not_found);
+                  }
                 },
               ),
               SizedBox(

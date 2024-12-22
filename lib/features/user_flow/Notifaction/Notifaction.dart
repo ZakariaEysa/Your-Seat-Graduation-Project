@@ -12,14 +12,14 @@ class Notifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var lang=S.of(context);
+    var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white,
           size: 28.sp, // ضبط حجم الأيقونة باستخدام ScreenUtil
         ),
-        title:  HeadAppBar(
+        title: HeadAppBar(
           title: lang.notifications,
         ),
         backgroundColor: const Color(0xFF2E1371),
@@ -29,8 +29,8 @@ class Notifications extends StatelessWidget {
           SizedBox(height: 30.h), // مسافة عمودية باستخدام ScreenUtil
 
           Padding(
-            padding:
-                EdgeInsetsDirectional.only(start: 5.w), // حافة أفقية باستخدام ScreenUtil
+            padding: EdgeInsetsDirectional.only(
+                start: 5.w), // حافة أفقية باستخدام ScreenUtil
             child: Align(
               alignment: Alignment.centerLeft,
               child: Column(
@@ -47,8 +47,8 @@ class Notifications extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.only(start: 12.w, top: 7.h), // ضبط الحواف
+                    padding: EdgeInsetsDirectional.only(
+                        start: 12.w, top: 7.h), // ضبط الحواف
                     child: Container(
                       height: 2.h, // ارتفاع الخط باستخدام ScreenUtil
                       width: 90.w, // عرض الخط باستخدام ScreenUtil

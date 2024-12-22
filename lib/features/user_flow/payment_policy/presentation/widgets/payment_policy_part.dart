@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../generated/l10n.dart';
 
-class PaymentPolicyPart extends StatefulWidget{
+class PaymentPolicyPart extends StatefulWidget {
   const PaymentPolicyPart({super.key});
 
   @override
@@ -16,7 +16,7 @@ class _PaymentPolicyPartState extends State<PaymentPolicyPart> {
   Widget build(BuildContext context) {
     var lang = S.of(context);
     final theme = Theme.of(context);
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Container(
         width: 350.w,
         height: 930.h,
@@ -53,7 +53,6 @@ class _PaymentPolicyPartState extends State<PaymentPolicyPart> {
                 lang.paymentsMustBeCompletedAtTheTimeOfBookingYourBookingWillOnlyBeConfirmedUponSuccessfulPaymentPartialPaymentsAreNotAcceptedFullPaymentIsRequiredForTicketConfirmation,
                 style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
               ),
-
               Text(
                 lang.bookingConfirmation,
                 style: theme.textTheme.labelLarge!
@@ -81,7 +80,6 @@ class _PaymentPolicyPartState extends State<PaymentPolicyPart> {
                 lang.ifCanceledMoreThanTwelveHoursBeforeTheMovie_sStartTimeTheCustomerIsEligibleForAFullRefundIfCanceledWithinTwelveHoursButMoreThanThirtyMinutesBeforeTheMovie_sStartTimeTheCustomerWillReceiveFiftyOutOfAHundredOfTheTicketAmountAsARefundCancellationsMadeLessThanThirtyMinutesBeforeTheMovie_sStartTimeAreNonRefundableRefundProcessInEligibleCasesRefundsWillBeCreditedBackToTheOriginalPaymentMethodWithinFive_TenBusinessDaysBankProcessingTimesMayVary,
                 style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
               ),
-
               Text(
                 lang.serviceFees,
                 style: theme.textTheme.labelLarge!
@@ -92,15 +90,15 @@ class _PaymentPolicyPartState extends State<PaymentPolicyPart> {
               ),
               Text(
                 lang.anyServiceOrProcessingFeesAssociatedWithTheBookingAreNonRefundable,
-                style: theme.textTheme.bodyMedium!.copyWith(fontSize:14.sp),
+                style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
               ),
               SizedBox(
-                height:10.h,
+                height: 10.h,
               ),
               Row(
                 children: [
                   Transform.scale(
-                    scale:1.2 ,
+                    scale: 1.2,
                     child: Checkbox(
                       value: isChecked,
                       activeColor: Color(0xFF9B51E0),
@@ -113,11 +111,9 @@ class _PaymentPolicyPartState extends State<PaymentPolicyPart> {
                       },
                     ),
                   ),
-
-                  Text(
-                      lang.iAgreeWithPrivacyPolicy,
-                      style:theme.textTheme.bodyMedium!.copyWith(fontSize:16.sp,fontWeight: FontWeight.bold)
-                  ),
+                  Text(lang.iAgreeWithPrivacyPolicy,
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                          fontSize: 16.sp, fontWeight: FontWeight.bold)),
                 ],
               ),
             ]),

@@ -4,7 +4,6 @@ import 'package:yourseatgraduationproject/utils/navigation.dart';
 
 import '../../../cinema_details/presentation/views/cinema_details.dart';
 
-
 class CinemaItem extends StatelessWidget {
   final List<Map<String, String>> movies = [
     {
@@ -25,7 +24,7 @@ class CinemaItem extends StatelessWidget {
     },
   ];
 
-   CinemaItem({super.key});
+  CinemaItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +40,9 @@ class CinemaItem extends StatelessWidget {
             child: Column(
               children: [
                 GestureDetector(
-onTap: (){
-
-  navigateTo(context: context, screen: const CinemaDetails());
-},
+                  onTap: () {
+                    navigateTo(context: context, screen: const CinemaDetails());
+                  },
                   child: ClipOval(
                     child: Image.asset(
                       movie['image']!,
@@ -57,7 +55,10 @@ onTap: (){
                 SizedBox(height: 8.h),
                 Text(
                   movie['title']!,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold , color: Color(0xFFFFFFFF)),
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFFFFFFF)),
                 ),
               ],
             ),

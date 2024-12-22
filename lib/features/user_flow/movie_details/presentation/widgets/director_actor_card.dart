@@ -19,11 +19,11 @@ class Director extends StatelessWidget {
     final theme = Theme.of(context);
     var lang = S.of(context);
     return SingleChildScrollView(
-      scrollDirection:Axis.vertical,
+      scrollDirection: Axis.vertical,
       child: Container(
         width: 140.w,
         height: 58.h,
-        margin: EdgeInsets.only(right:22.w),
+        margin: EdgeInsets.only(right: 22.w),
         decoration: BoxDecoration(
           color: const Color(0xFF7427BF),
           borderRadius: BorderRadius.circular(10),
@@ -32,15 +32,16 @@ class Director extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius:23,
+              radius: 23,
               backgroundImage: AssetImage(imagePath),
             ),
-            SizedBox(width:2.w),
+            SizedBox(width: 2.w),
             Padding(
-              padding:  EdgeInsets.only(right:12.w,left:11.w),
-              child: Text(name, style: theme.textTheme.bodyMedium!.copyWith(fontSize:12.sp)),
+              padding: EdgeInsets.only(right: 12.w, left: 11.w),
+              child: Text(name,
+                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp)),
             ),
-            SizedBox(height:5.h),
+            SizedBox(height: 5.h),
           ],
         ),
       ),

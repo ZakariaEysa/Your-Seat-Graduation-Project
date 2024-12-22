@@ -19,7 +19,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   static AuthCubit get(context) => BlocProvider.of<AuthCubit>(context);
   final AuthRepo authRepo;
-   UserModel? userModel;
+  UserModel? userModel;
   AuthCubit(this.authRepo) : super(AuthInitial());
   GlobalKey<FormState> formKeyLogin = GlobalKey();
   GlobalKey<FormState> formKeyRegister = GlobalKey();
@@ -62,8 +62,9 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     var response = await authRepo.checkUserExists(userId, password);
 
-    response.fold((failure) => emit(UserValidationError("Sorry there was an error , please try again later")),
-        (message) {
+    response.fold(
+        (failure) => emit(UserValidationError(
+            "Sorry there was an error , please try again later")), (message) {
       if (message == "LoginSuccessful") {
         emit(UserValidationSuccess(message));
       } else {
@@ -79,20 +80,15 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> registerUser({
     required UserModel userModel,
-
   }) async {
-
     try {
-         emit(AuthLoading());
-         AppLogs.scussessLog("message");
-           await authRepo.checkUserExistsR(userModel.email);
-         sendOtp(userModel.email);
+      emit(AuthLoading());
+      AppLogs.scussessLog("message");
+      await authRepo.checkUserExistsR(userModel.email);
+      sendOtp(userModel.email);
       this.userModel = userModel;
 
-
-
-
-         // Create user with email and password
+      // Create user with email and password
       // UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
       //   email: email,
       //   password: password,
@@ -114,15 +110,15 @@ class AuthCubit extends Cubit<AuthState> {
       // print('User successfully registered and data stored in Firestore.');
 
       // You can emit states if you're using a state management solution, for example:
-       emit(AuthSuccess());
+      emit(AuthSuccess());
     } on FirebaseAuthException catch (e) {
       // Handle Firebase authentication exceptions
       print('Error registering user: ${e.message}');
-       emit(AuthError(e.message??""));
+      emit(AuthError(e.message ?? ""));
     } catch (e) {
       // Handle other types of errors
       print('An unexpected error occurred: $e');
-       emit(AuthError(e.toString()));
+      emit(AuthError(e.toString()));
     }
     // try {
     //   emit(AuthLoading());
@@ -141,11 +137,8 @@ class AuthCubit extends Cubit<AuthState> {
     // }
   }
 
-
-  void sendOtp(String email) async{
-
+  void sendOtp(String email) async {
     if (await EmailOTP.sendOTP(email: email)) {
-
       AppLogs.scussessLog(email);
 
       AppLogs.scussessLog("success");
@@ -157,16 +150,14 @@ class AuthCubit extends Cubit<AuthState> {
 
       AppLogs.scussessLog("failed");
     }
-
-
   }
-  Future<void>  verifyedSendOtp () async{
 
+  Future<void> verifyedSendOtp() async {
     AppLogs.scussessLog(userModel.toString());
-   await  authRepo.saveUser(userModel: userModel?? UserModel(name: "", email: "", password: "", dateOfBirth: ""));
-   }
-
-
+    await authRepo.saveUser(
+        userModel: userModel ??
+            UserModel(name: "", email: "", password: "", dateOfBirth: ""));
+  }
 
   Future<void> updateUserPassword(String userEmail, String newPassword) async {
     try {
@@ -182,7 +173,8 @@ class AuthCubit extends Cubit<AuthState> {
         usersCollection.doc(userEmail).update({
           'password': newPassword, // تحديث الحقل 'password'
         }),
-        Future.delayed(timeoutDuration).then((_) => throw TimeoutException('Request timed out')),
+        Future.delayed(timeoutDuration)
+            .then((_) => throw TimeoutException('Request timed out')),
       ]);
 
       emit(UpdatePasswordSuccess());
@@ -190,10 +182,9 @@ class AuthCubit extends Cubit<AuthState> {
       emit(UpdatePasswordError("Failed to update password: request timed out"));
       // BotToast.showText(text: 'Failed to update password: request timed out');
     } catch (e) {
-      emit(UpdatePasswordError("Failed to update password: something went wrong"));
+      emit(UpdatePasswordError(
+          "Failed to update password: something went wrong"));
       // BotToast.showText(text: 'Failed to update password: $e');
     }
   }
-
 }
-

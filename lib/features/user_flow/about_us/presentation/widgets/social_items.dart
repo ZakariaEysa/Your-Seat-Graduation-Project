@@ -4,7 +4,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class SocialItem extends StatelessWidget {
   final String imageUrl; // اسم معبر أكثر
-  final String linkUrl; // رابط الشبكة الاجتماعية، البريد الإلكتروني، أو رقم الهاتف
+  final String
+      linkUrl; // رابط الشبكة الاجتماعية، البريد الإلكتروني، أو رقم الهاتف
   final List<BoxShadow>? boxShadow;
 
   const SocialItem({
@@ -57,9 +58,12 @@ class SocialItem extends StatelessWidget {
         if (linkUrl.startsWith('mailto:')) {
           // إذا كان الرابط بريدًا إلكترونيًا
           _launchEmail(linkUrl.replaceFirst('mailto:', ''));
-        } else if (linkUrl.startsWith('tel:') || RegExp(r'^\+?\d+$').hasMatch(linkUrl)) {
+        } else if (linkUrl.startsWith('tel:') ||
+            RegExp(r'^\+?\d+$').hasMatch(linkUrl)) {
           // إذا كان الرابط رقم هاتف (يدعم + أو أرقام فقط)
-          String phoneNumber = linkUrl.startsWith('tel:') ? linkUrl.substring(4) : linkUrl; // إزالة tel: إذا كانت موجودة
+          String phoneNumber = linkUrl.startsWith('tel:')
+              ? linkUrl.substring(4)
+              : linkUrl; // إزالة tel: إذا كانت موجودة
           _makePhoneCall(phoneNumber);
         } else {
           // إذا كان رابط عادي (HTTP أو HTTPS)
@@ -67,8 +71,8 @@ class SocialItem extends StatelessWidget {
         }
       },
       child: Container(
-        width: linkUrl.startsWith('tel:')?33.w: 42.w,
-        height: linkUrl.startsWith('tel:')?32.h :41.h,
+        width: linkUrl.startsWith('tel:') ? 33.w : 42.w,
+        height: linkUrl.startsWith('tel:') ? 32.h : 41.h,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(imageUrl),
@@ -80,4 +84,3 @@ class SocialItem extends StatelessWidget {
     );
   }
 }
-

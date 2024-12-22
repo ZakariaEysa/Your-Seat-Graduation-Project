@@ -82,8 +82,11 @@ class _ComingSoonState extends State<ComingSoon> {
   Future<void> _fetchMovies() async {
     try {
       // Fetch movies from Firestore "Movies" collection
-      final snapshot = await FirebaseFirestore.instance.collection('Movies').get();
-      final fetchedMovies = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      final snapshot =
+          await FirebaseFirestore.instance.collection('Movies').get();
+      final fetchedMovies = snapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
       setState(() {
         movies = fetchedMovies;
       });
@@ -114,7 +117,8 @@ class _ComingSoonState extends State<ComingSoon> {
             title: movie['name'] ?? 'Unknown Title',
             genre: movie['category'] ?? 'Unknown Category',
             date: movie['release_date'] ?? 'Unknown Date',
-            imageUrl: movie['poster_image'] ?? 'https://via.placeholder.com/300',
+            imageUrl:
+                movie['poster_image'] ?? 'https://via.placeholder.com/300',
           ),
         );
       },

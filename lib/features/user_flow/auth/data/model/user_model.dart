@@ -19,26 +19,22 @@ class UserModel extends HiveObject {
   @HiveField(4)
   String? image;
   @HiveField(5)
-
   final String? gender; // Optional, sourced from photoURL in Firebase
   @HiveField(6)
-
   final String? location; // Optional, sourced from photoURL in Firebase
-
 
   UserModel({
     required this.name,
     required this.email,
     required this.password,
     required this.dateOfBirth,
-     this.image,
+    this.image,
     this.gender,
     this.location,
   });
 
   @override
-  String toString(){
+  String toString() {
     return 'UserModel(name: $name, email: $email, password: $password, dateOfBirth: $dateOfBirth, image: $image, gender: $gender, location: $location)';
-
   }
 }

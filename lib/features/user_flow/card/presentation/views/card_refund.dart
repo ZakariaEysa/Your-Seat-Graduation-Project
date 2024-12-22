@@ -29,14 +29,14 @@ class _CarrdState extends State<CarrdRefund> {
     return ScaffoldF(
         appBar: AppBar(
           title: Text(
-           lang.cardInformation,
+            lang.cardInformation,
             style: theme.textTheme.labelLarge!.copyWith(fontSize: 23.sp),
           ),
           titleSpacing: 40.0,
           backgroundColor: const Color(0xFF2E1371),
           leading: IconButton(
               onPressed: () {
-                navigateTo(context: context, screen:PaymentRefund());
+                navigateTo(context: context, screen: PaymentRefund());
               },
               icon: Icon(
                 Icons.arrow_back,
@@ -44,26 +44,28 @@ class _CarrdState extends State<CarrdRefund> {
                 size: 30.sp,
               )),
         ),
-        body:
-        SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.only(left: 30.w, top: 50.h, right: 20.w),
-              child:Column(
-                children: [
-                  CardPart(),
-                    SizedBox(height:80.h,),
-                  ButtonBuilder(
-                    width: 287.w,
-                    height:58.h,
-                    text: 'Complete Your Purchase',buttonColor:Color(0xFFF2F2F2).withOpacity(.29),
-                    frameColor:Color(0xFFFF89F3),
-                    style:theme.textTheme.titleMedium!.copyWith(fontSize:16.sp,),
-                    onTap: () {
-                      navigateTo(context: context, screen:RefundSuccessful());
-                    },
+              child: Column(children: [
+                CardPart(),
+                SizedBox(
+                  height: 80.h,
+                ),
+                ButtonBuilder(
+                  width: 287.w,
+                  height: 58.h,
+                  text: 'Complete Your Purchase',
+                  buttonColor: Color(0xFFF2F2F2).withOpacity(.29),
+                  frameColor: Color(0xFFFF89F3),
+                  style: theme.textTheme.titleMedium!.copyWith(
+                    fontSize: 16.sp,
                   ),
-                  ] )
-          ),
+                  onTap: () {
+                    navigateTo(context: context, screen: RefundSuccessful());
+                  },
+                ),
+              ])),
         ));
   }
 }

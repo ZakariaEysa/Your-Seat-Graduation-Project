@@ -51,18 +51,27 @@ class ApplicationTheme {
         secondary: const Color(0xFF130B2B),
         seedColor: const Color(0xFF2E1371),
       ),
-
       textTheme: TextTheme(
           labelLarge: GoogleFonts.aDLaMDisplay(
-              fontSize: 22.sp, fontWeight: FontWeight.w400, color: Colors.white),
+              fontSize: 22.sp,
+              fontWeight: FontWeight.w400,
+              color: Colors.white),
           titleLarge: GoogleFonts.acme(
-              fontSize: 18.sp, fontWeight: FontWeight.w400, color: Colors.white),
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w400,
+              color: Colors.white),
           titleMedium: GoogleFonts.pottaOne(
-              fontSize: 19.sp, fontWeight: FontWeight.w400, color: Colors.white),
+              fontSize: 19.sp,
+              fontWeight: FontWeight.w400,
+              color: Colors.white),
           bodyLarge: GoogleFonts.inter(
-              fontSize: 15.sp, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 15.sp,
+              fontWeight: FontWeight.bold,
+              color: Colors.white),
           bodyMedium: GoogleFonts.poppins(
-              fontSize: 13.sp, fontWeight: FontWeight.w400, color: Colors.white),
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w400,
+              color: Colors.white),
           bodySmall: GoogleFonts.poppins(
               fontSize: 15.sp,
               fontWeight: FontWeight.normal,

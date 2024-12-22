@@ -27,7 +27,8 @@ class ProfileEditCard extends StatefulWidget {
 
 class _ProfileEditCardState extends State<ProfileEditCard> {
   final List<int> days = List<int>.generate(31, (index) => index + 1);
-  final List<int> years = List<int>.generate(80, (index) => DateTime.now().year - index);
+  final List<int> years =
+      List<int>.generate(80, (index) => DateTime.now().year - index);
   final List<String> months = [
     "January",
     "February",
@@ -42,7 +43,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     "November",
     "December",
   ];
-  final List<String> gender = ["Male", "Female",""];
+  final List<String> gender = ["Male", "Female", ""];
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
@@ -75,9 +76,13 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     splitDate = date.split("/");
 
     try {
-      selectedDay = days.contains(int.parse(splitDate[0])) ? int.parse(splitDate[0]) : null;
+      selectedDay = days.contains(int.parse(splitDate[0]))
+          ? int.parse(splitDate[0])
+          : null;
       selectedMonth = months.contains(splitDate[1]) ? splitDate[1] : null;
-      selectedYear = years.contains(int.parse(splitDate[2])) ? int.parse(splitDate[2]) : null;
+      selectedYear = years.contains(int.parse(splitDate[2]))
+          ? int.parse(splitDate[2])
+          : null;
 
       AppLogs.scussessLog("Date parsed successfully");
     } catch (e) {
@@ -86,13 +91,16 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
     userController.text = currentUser.name;
     emailController.text = currentUser.emailController;
-    selectedGender = gender.contains(currentUser.gender) ? currentUser.gender : null;
+    selectedGender =
+        gender.contains(currentUser.gender) ? currentUser.gender : null;
     selectedImageBase64 = currentUser.image;
   }
 
   Future<void> updateProfile() async {
     try {
-      var userDoc = FirebaseFirestore.instance.collection('users').doc(currentUser.emailController);
+      var userDoc = FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser.emailController);
       await userDoc.update({
         'name': userController.text,
         'dateOfBirth': '$selectedDay/$selectedMonth/$selectedYear',
@@ -133,11 +141,13 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
             children: [
               ListTile(
                 leading: const Icon(Icons.photo_library, color: Colors.white),
-                title: const Text('Gallery', style: TextStyle(color: Colors.white)),
+                title: const Text('Gallery',
+                    style: TextStyle(color: Colors.white)),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
-                  final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+                  final XFile? image =
+                      await picker.pickImage(source: ImageSource.gallery);
                   if (image != null) {
                     final bytes = await File(image.path).readAsBytes();
                     setState(() {
@@ -148,11 +158,13 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
               ),
               ListTile(
                 leading: const Icon(Icons.camera_alt, color: Colors.white),
-                title: const Text('Camera', style: TextStyle(color: Colors.white)),
+                title:
+                    const Text('Camera', style: TextStyle(color: Colors.white)),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
-                  final XFile? image = await picker.pickImage(source: ImageSource.camera);
+                  final XFile? image =
+                      await picker.pickImage(source: ImageSource.camera);
                   if (image != null) {
                     final bytes = await File(image.path).readAsBytes();
                     setState(() {
@@ -197,7 +209,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                     color: const Color(0xFF00002B),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
+                    padding:
+                        EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -232,16 +245,18 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                              child: _buildDropdown(lang.month, selectedMonth, months,
-                                      (String? newValue) {
-                                    setState(() {
-                                      selectedMonth = newValue;
-                                    });
-                                  }),
+                              child: _buildDropdown(
+                                  lang.month, selectedMonth, months,
+                                  (String? newValue) {
+                                setState(() {
+                                  selectedMonth = newValue;
+                                });
+                              }),
                             ),
                             SizedBox(width: 10.w),
                             Expanded(
-                              child: _buildDropdown(lang.day, selectedDay, days, (int? newValue) {
+                              child: _buildDropdown(lang.day, selectedDay, days,
+                                  (int? newValue) {
                                 setState(() {
                                   selectedDay = newValue;
                                 });
@@ -249,7 +264,9 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                             ),
                             SizedBox(width: 10.w),
                             Expanded(
-                              child: _buildDropdown(lang.year, selectedYear, years, (int? newValue) {
+                              child:
+                                  _buildDropdown(lang.year, selectedYear, years,
+                                      (int? newValue) {
                                 setState(() {
                                   selectedYear = newValue;
                                 });
@@ -260,7 +277,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                         SizedBox(height: 15.h),
                         _buildLabel(theme, lang.gender),
                         SizedBox(height: 15.h),
-                        _buildDropdown(lang.gender, selectedGender, gender, (String? newValue) {
+                        _buildDropdown(lang.gender, selectedGender, gender,
+                            (String? newValue) {
                           setState(() {
                             selectedGender = newValue;
                           });
@@ -273,7 +291,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                               HiveStorage.get(HiveKeys.isArabic)
                                   ? "assets/images/cancel_arabic.png"
                                   : "assets/images/Cancel.png",
-                                  () => navigatePop(context: context),
+                              () => navigatePop(context: context),
                             ),
                             _buildButton(
                               HiveStorage.get(HiveKeys.isArabic)
@@ -296,7 +314,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                       radius: 80.r,
                       backgroundImage: selectedImageBase64 != null
                           ? MemoryImage(base64Decode(selectedImageBase64!))
-                          : const AssetImage("assets/images/film1.png") as ImageProvider,
+                          : const AssetImage("assets/images/film1.png")
+                              as ImageProvider,
                     ),
                     Positioned(
                       bottom: 0,
@@ -338,7 +357,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     );
   }
 
-  Widget _buildDropdown<T>(String hintText, T? selectedValue, List<T> items, ValueChanged<T?> onChanged) {
+  Widget _buildDropdown<T>(String hintText, T? selectedValue, List<T> items,
+      ValueChanged<T?> onChanged) {
     return BirthDateDropdown<T>(
       hintText: hintText,
       selectedValue: selectedValue,

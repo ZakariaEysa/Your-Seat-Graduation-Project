@@ -33,7 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigate() {
     if (HiveStorage.get(HiveKeys.passUserOnboarding) == false) {
       navigateAndReplace(context: context, screen: const OnBoarding());
-    } else if (HiveStorage.get(HiveKeys.role) == "" || HiveStorage.get(HiveKeys.role) == null) {
+    } else if (HiveStorage.get(HiveKeys.role) == "" ||
+        HiveStorage.get(HiveKeys.role) == null) {
       navigateAndReplace(
         context: context,
         screen: const SignIn(),
@@ -68,7 +69,12 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Image.asset("assets/images/splash.png"),
           ),
         ),
-      ).animate().then().shimmer(duration: const Duration(milliseconds: 900)).then().shimmer(duration: const Duration(milliseconds: 900)),
+      )
+          .animate()
+          .then()
+          .shimmer(duration: const Duration(milliseconds: 900))
+          .then()
+          .shimmer(duration: const Duration(milliseconds: 900)),
     );
   }
 }

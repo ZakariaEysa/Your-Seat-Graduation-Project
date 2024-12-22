@@ -22,22 +22,18 @@ class HeadAppBar extends StatelessWidget {
     //     //     onPressed: onBackPressed,
     //     //   ),
 
-      return  Center(
-        child: Padding(
-          padding:  EdgeInsetsDirectional.only(top: 20.h,end: 85.w),
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+    return Center(
+      child: Padding(
+        padding: EdgeInsetsDirectional.only(top: 20.h, end: 85.w),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
-      );
-
-
-
-
+      ),
+    );
   }
 }

@@ -21,7 +21,8 @@ class NotificationContent extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w), // حواف أفقية باستخدام ScreenUtil
+      padding: EdgeInsetsDirectional.symmetric(
+          horizontal: 20.w), // حواف أفقية باستخدام ScreenUtil
       child: Column(
         children: [
           Row(

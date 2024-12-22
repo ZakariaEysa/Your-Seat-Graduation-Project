@@ -5,7 +5,7 @@ import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
 
-class CardPart extends StatelessWidget{
+class CardPart extends StatelessWidget {
   const CardPart({super.key});
 
   @override
@@ -32,21 +32,22 @@ class CardPart extends StatelessWidget{
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(
                     color: Color(0xFFFF89F3).withOpacity(.30),
-                    width:1.w
-                    ,
+                    width: 1.w,
                   ),
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.w, top: 10.h),
                   child: TextFormField(
                     obscureText: true,
-                    style:theme.textTheme.bodyMedium!.copyWith(fontSize:18.sp,color: Colors.white) ,
+                    style: theme.textTheme.bodyMedium!
+                        .copyWith(fontSize: 18.sp, color: Colors.white),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "**** **** **** ****",
-                      hintStyle:theme.textTheme.bodyMedium!.copyWith(color: Color(0xFFA59B9B),letterSpacing:3,fontSize: 18.sp
-                      ),
-      
+                      hintStyle: theme.textTheme.bodyMedium!.copyWith(
+                          color: Color(0xFFA59B9B),
+                          letterSpacing: 3,
+                          fontSize: 18.sp),
                     ),
                   ),
                 )),
@@ -75,12 +76,15 @@ class CardPart extends StatelessWidget{
                   padding: EdgeInsets.only(left: 20.w, top: 10.h),
                   child: TextFormField(
                     obscureText: true,
-                    style:theme.textTheme.bodyMedium!.copyWith(fontSize:18.sp,color: Colors.white) ,
+                    style: theme.textTheme.bodyMedium!
+                        .copyWith(fontSize: 18.sp, color: Colors.white),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "MM / YYYY",
-                      hintStyle:theme.textTheme.bodyMedium!.copyWith(color: Color(0xFFA59B9B),letterSpacing: 3,fontSize: 18.sp),
-      
+                      hintStyle: theme.textTheme.bodyMedium!.copyWith(
+                          color: Color(0xFFA59B9B),
+                          letterSpacing: 3,
+                          fontSize: 18.sp),
                     ),
                   ),
                 )),
@@ -106,21 +110,22 @@ class CardPart extends StatelessWidget{
                   ),
                 ),
                 child: Padding(
-                  padding:EdgeInsets.only(left: 20.w, top: 10.h),
+                  padding: EdgeInsets.only(left: 20.w, top: 10.h),
                   child: TextFormField(
                     obscureText: true,
-                    style:theme.textTheme.bodyMedium!.copyWith(fontSize:18.sp,color: Colors.white) ,
+                    style: theme.textTheme.bodyMedium!
+                        .copyWith(fontSize: 18.sp, color: Colors.white),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "*****",
-                      hintStyle:theme.textTheme.bodyMedium!.copyWith(color: Color(0xFFA59B9B),letterSpacing: 3,fontSize: 18.sp),
-      
+                      hintStyle: theme.textTheme.bodyMedium!.copyWith(
+                          color: Color(0xFFA59B9B),
+                          letterSpacing: 3,
+                          fontSize: 18.sp),
                     ),
                   ),
                 )),
-      
-          ] ),
+          ]),
     );
   }
-
 }

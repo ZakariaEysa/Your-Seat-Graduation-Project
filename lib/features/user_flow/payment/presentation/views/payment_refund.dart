@@ -19,19 +19,19 @@ class PaymentRefund extends StatelessWidget {
     return ScaffoldF(
         appBar: AppBar(
           title: Text(
-           lang.paymentRefund,
+            lang.paymentRefund,
             style: theme.textTheme.labelLarge!.copyWith(fontSize: 24.sp),
           ),
           titleSpacing: 40.0,
           backgroundColor: const Color(0xFF2E1371),
           leading: IconButton(
               onPressed: () {
-                navigateTo(context: context, screen:PaymentPolicyRefund());
+                navigateTo(context: context, screen: PaymentPolicyRefund());
               },
               icon: Icon(
                 Icons.arrow_back,
                 color: Colors.white,
-                size:25.sp,
+                size: 25.sp,
               )),
         ),
         body: Column(
@@ -39,7 +39,7 @@ class PaymentRefund extends StatelessWidget {
             SizedBox(
               height: 30.h,
             ),
-            PaymentPart(total: "240.0 EGP", title:lang.paymentRefundMethod),
+            PaymentPart(total: "240.0 EGP", title: lang.paymentRefundMethod),
             Container(
               width: 292.w,
               height: 50.h,
@@ -48,34 +48,36 @@ class PaymentRefund extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: EdgeInsets.only(left: 10.w),
-                child:
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Image.asset(
-                    "assets/images/card.png",
-                    width: 40.41.w,
-                    height: 35.83.h,
-                  ),
-                  Spacer(),
-                  Text(
-                    lang.payWithCard,
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
-                  ),
-                  Spacer(),
-                  IconButton(
-                      onPressed: () {
-                        navigateTo(context: context, screen:CarrdRefund());
-                      },
-                      icon: Icon(
-                        Icons.arrow_forward_ios_sharp,
-                        color: Colors.white,
-                        size:20.sp,
-                      )),
-                  //   color: Colors.white,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        "assets/images/card.png",
+                        width: 40.41.w,
+                        height: 35.83.h,
+                      ),
+                      Spacer(),
+                      Text(
+                        lang.payWithCard,
+                        style: theme.textTheme.bodyMedium!
+                            .copyWith(fontSize: 16.sp),
+                      ),
+                      Spacer(),
+                      IconButton(
+                          onPressed: () {
+                            navigateTo(context: context, screen: CarrdRefund());
+                          },
+                          icon: Icon(
+                            Icons.arrow_forward_ios_sharp,
+                            color: Colors.white,
+                            size: 20.sp,
+                          )),
+                      //   color: Colors.white,
 
-                  SizedBox(
-                    width: 2.w,
-                  ),
-                ]),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                    ]),
               ),
             ),
             SizedBox(
@@ -89,32 +91,34 @@ class PaymentRefund extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: EdgeInsets.only(left: 10.w),
-                child:
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Image.asset(
-                    "assets/images/payy.png",
-                    width: 30.w,
-                    height: 31.h,
-                  ),
-                  Spacer(),
-                  Text(
-                    lang.instapay,
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
-                  ),
-                  Spacer(),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_forward_ios_sharp,
-                        color: Colors.white,
-                        size: 20.sp,
-                      )),
-                  //   color: Colors.white,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        "assets/images/payy.png",
+                        width: 30.w,
+                        height: 31.h,
+                      ),
+                      Spacer(),
+                      Text(
+                        lang.instapay,
+                        style: theme.textTheme.bodyMedium!
+                            .copyWith(fontSize: 16.sp),
+                      ),
+                      Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_forward_ios_sharp,
+                            color: Colors.white,
+                            size: 20.sp,
+                          )),
+                      //   color: Colors.white,
 
-                  SizedBox(
-                    width: 1.w,
-                  ),
-                ]),
+                      SizedBox(
+                        width: 1.w,
+                      ),
+                    ]),
               ),
             )
           ],

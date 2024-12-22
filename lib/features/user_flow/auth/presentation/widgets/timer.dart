@@ -84,37 +84,37 @@ class _CountdownTimerState extends State<CountdownTimer> {
   Widget build(BuildContext context) {
     return showResend
         ? (resendCount < maxResendLimit
-        ? TextButton(
-      onPressed: () async {
-        await _incrementResendCount();
-        widget.onResend();
-        resetTimer();
-      },
-      child: const Text(
-        "Resend!",
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-          color: Colors.white,
-        ),
-      ),
-    )
-        : const Text(
-      "Resend limit reached for today.",
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-        color: Colors.red,
-      ),
-    ))
+            ? TextButton(
+                onPressed: () async {
+                  await _incrementResendCount();
+                  widget.onResend();
+                  resetTimer();
+                },
+                child: const Text(
+                  "Resend!",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            : const Text(
+                "Resend limit reached for today.",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.red,
+                ),
+              ))
         : Text(
-      _formatTime(remainingSeconds),
-      style: const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-        color: Colors.white,
-      ),
-    );
+            _formatTime(remainingSeconds),
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          );
   }
 
   String _formatTime(int seconds) {

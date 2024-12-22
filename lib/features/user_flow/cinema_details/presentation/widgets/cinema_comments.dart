@@ -7,9 +7,9 @@ class CinemaComments extends StatelessWidget {
   final String title;
   const CinemaComments(
       {super.key,
-        required this.image,
-        required this.title,
-        required this.titlename});
+      required this.image,
+      required this.title,
+      required this.titlename});
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -21,7 +21,7 @@ class CinemaComments extends StatelessWidget {
         color: const Color(0xFF150B34),
       ),
       child: Padding(
-        padding:EdgeInsets.all(8.0.sp),
+        padding: EdgeInsets.all(8.0.sp),
         child: Row(
           children: [
             Image.asset(
@@ -37,13 +37,15 @@ class CinemaComments extends StatelessWidget {
                 children: [
                   Text(
                     titlename,
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp),
+                    style:
+                        theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     title,
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 10.sp),
+                    style:
+                        theme.textTheme.bodyMedium!.copyWith(fontSize: 10.sp),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

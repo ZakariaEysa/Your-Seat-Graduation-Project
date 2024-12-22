@@ -5,7 +5,7 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/v
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 
-class ChatUp extends StatelessWidget{
+class ChatUp extends StatelessWidget {
   const ChatUp({super.key});
 
   @override
@@ -18,9 +18,16 @@ class ChatUp extends StatelessWidget{
           padding: EdgeInsets.only(top: 50.h, right: 20.w, left: 20.w),
           child: Row(
             children: [
-             IconButton(onPressed:(){
-               navigateTo(context: context, screen: HomeLayout());
-             }, icon:Icon(Icons.close,size:30,),color: Colors.white,),
+              IconButton(
+                onPressed: () {
+                  navigateTo(context: context, screen: HomeLayout());
+                },
+                icon: Icon(
+                  Icons.close,
+                  size: 30,
+                ),
+                color: Colors.white,
+              ),
               const Spacer(),
               Image.asset(
                 'assets/images/chatbot.png',
@@ -31,15 +38,13 @@ class ChatUp extends StatelessWidget{
           ),
         ),
         Padding(
-          padding:  EdgeInsetsDirectional.fromSTEB(15, 20,90, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(15, 20, 90, 0),
           child: Text(
             lang.HelloIamyourAIAssistant,
             style: theme.textTheme.titleLarge!.copyWith(fontSize: 35.sp),
             textAlign: TextAlign.start,
           ),
         ),
-
-
       ],
     );
   }

@@ -12,7 +12,6 @@ class SwitchLanguageState extends Equatable {
       ];
 }
 
-
 final class SwitchLanguageInitial extends SwitchLanguageState {
   const SwitchLanguageInitial(
     super.switchLanguageValue,

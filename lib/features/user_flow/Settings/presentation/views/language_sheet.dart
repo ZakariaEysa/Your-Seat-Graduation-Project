@@ -28,9 +28,9 @@ class LanguageSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              lang.language,style: theme.textTheme.labelLarge,),
-
-
+              lang.language,
+              style: theme.textTheme.labelLarge,
+            ),
             SizedBox(height: 16.h),
             ListView.builder(
               shrinkWrap: true,
@@ -44,31 +44,34 @@ class LanguageSheet extends StatelessWidget {
                     MyApp.restartApp(context);
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
                     margin: EdgeInsets.only(bottom: 8.h),
                     decoration: BoxDecoration(
-                     // color: currentLang == code ? theme.primaryColor: Colors.transparent,
+                      // color: currentLang == code ? theme.primaryColor: Colors.transparent,
 
-                    color: theme.primaryColor,
+                      color: theme.primaryColor,
                       borderRadius: BorderRadius.circular(10.r),
                       // border: Border.all(color: theme.primaryColor),
-                      border: Border.all(color:  currentLang == code ?  Colors.white:theme.primaryColor,),
-
-
+                      border: Border.all(
+                        color: currentLang == code
+                            ? Colors.white
+                            : theme.primaryColor,
+                      ),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           name,
-                        style: theme.textTheme.labelLarge?.copyWith(
+                          style: theme.textTheme.labelLarge?.copyWith(
                             // color: currentLang == code ? Colors.white : theme.primaryColor,
-                                     color:Colors.white,
-
-                        ),
+                            color: Colors.white,
+                          ),
                         ),
                         if (currentLang == code)
-                          Icon(Icons.check_rounded, color: Colors.white, size: 20.sp),
+                          Icon(Icons.check_rounded,
+                              color: Colors.white, size: 20.sp),
                       ],
                     ),
                   ),

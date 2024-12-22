@@ -20,20 +20,15 @@ class ProfileCard extends StatefulWidget {
 class _ProfileCardState extends State<ProfileCard> {
   var currentUser;
 
-
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
-      setState(() {
-
-      });
+      setState(() {});
     } else {
       currentUser = HiveStorage.getDefaultUser();
-      setState(() {
-
-      });
+      setState(() {});
       AppLogs.scussessLog(currentUser.toString());
     }
     var lang = S.of(context);
@@ -144,9 +139,11 @@ class _ProfileCardState extends State<ProfileCard> {
             left: 105.w,
             child: CircleAvatar(
               radius: 80.r,
-              backgroundImage: currentUser?.image != null && currentUser.image.isNotEmpty
-                  ? MemoryImage(base64Decode(currentUser.image))
-                  : const AssetImage("assets/images/film1.png") as ImageProvider,
+              backgroundImage:
+                  currentUser?.image != null && currentUser.image.isNotEmpty
+                      ? MemoryImage(base64Decode(currentUser.image))
+                      : const AssetImage("assets/images/film1.png")
+                          as ImageProvider,
             ),
           ),
         ],

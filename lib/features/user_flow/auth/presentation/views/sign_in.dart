@@ -23,7 +23,6 @@ import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../forget/presentation/views/forget.dart';
 import '../../data/model/user_model.dart';
 
-
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
 
@@ -56,16 +55,14 @@ class _SignInState extends State<SignIn> {
                   HiveStorage.set(HiveKeys.role, Role.google.toString());
 
                   BotToast.showText(
-                      text:
-                          '${lang.login_successful} ${state.user.name}');
+                      text: '${lang.login_successful} ${state.user.name}');
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is FacebookAuthSuccess) {
                   HiveStorage.set(HiveKeys.role, Role.facebook.toString());
 
                   BotToast.showText(
-                      text:
-                          '${lang.login_successful} ${state.user.name}');
+                      text: '${lang.login_successful} ${state.user.name}');
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is UserValidationSuccess) {
@@ -115,19 +112,16 @@ class _SignInState extends State<SignIn> {
                             validator: (value) {
                               if (value == null || value.trim().isEmpty) {
                                 return lang.enterEmailAddress;
-                              }if(!isValidEmail(value)){
+                              }
+                              if (!isValidEmail(value)) {
                                 return lang.invalidEmailFormat;
                               }
                               return null;
-
                             },
                             obsecure: false,
                             type: TextInputType.emailAddress,
                             imagePath: 'assets/images/email 2.png',
-
-
                           ),
-
                         ),
                       ),
                       FadeInRight(
@@ -151,14 +145,13 @@ class _SignInState extends State<SignIn> {
                             ),
                             controller: cubit.passwordController,
                             label: lang.password,
-
-                              validator: (text) {
-                                if (text == null || text.trim().isEmpty) {
-                                  return lang.enterPassword;
-                                }
-                                if (!isValidPassword(text)) {
-                                  return lang.password_validation;
-                                }
+                            validator: (text) {
+                              if (text == null || text.trim().isEmpty) {
+                                return lang.enterPassword;
+                              }
+                              if (!isValidPassword(text)) {
+                                return lang.password_validation;
+                              }
 
                               return null;
                             },
@@ -172,8 +165,8 @@ class _SignInState extends State<SignIn> {
                               end: 20.w, bottom: 15.h, top: 12.h),
                           child: GestureDetector(
                             onTap: () {
-
-                              navigateTo(context: context, screen:  ForgotPassword());
+                              navigateTo(
+                                  context: context, screen: ForgotPassword());
                               // if (
                               // isValidEmail(
                               // cubit.emailController.text)) {
@@ -202,7 +195,9 @@ class _SignInState extends State<SignIn> {
                         delay: const Duration(milliseconds: 750),
                         child: ButtonBuilder(
                           // image:"assets/images/SignInAR.png",
-                      image:HiveStorage.get(HiveKeys.isArabic)?"assets/images/SignInAR.png": "assets/images/SignIn.png",
+                          image: HiveStorage.get(HiveKeys.isArabic)
+                              ? "assets/images/SignInAR.png"
+                              : "assets/images/SignIn.png",
                           text: "",
                           onTap: () async {
                             if (cubit.formKeyLogin.currentState!.validate()) {
@@ -272,9 +267,12 @@ class _SignInState extends State<SignIn> {
                           padding: EdgeInsets.all(16.0.sp),
                           child: SignInPart(
                             onTap: () {
-                              HiveStorage.saveDefaultUser(
-                                UserModel(name: "guest", email: '-', password: '-', dateOfBirth: '-',image: '')
-                              );
+                              HiveStorage.saveDefaultUser(UserModel(
+                                  name: "guest",
+                                  email: '-',
+                                  password: '-',
+                                  dateOfBirth: '-',
+                                  image: ''));
                               HiveStorage.set(
                                   HiveKeys.role, Role.guest.toString());
                               navigateAndRemoveUntil(

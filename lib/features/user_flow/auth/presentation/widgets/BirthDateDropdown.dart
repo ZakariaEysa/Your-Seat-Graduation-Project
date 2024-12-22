@@ -29,7 +29,6 @@ class BirthDateDropdown<T> extends StatelessWidget {
       ),
       child: DropdownButton<T>(
         menuMaxHeight: 200.h,
-
         value: selectedValue,
         hint: Text(
           hintText,

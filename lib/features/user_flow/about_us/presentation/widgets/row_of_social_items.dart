@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/widgets/social_items.dart';
 import 'package:yourseatgraduationproject/resources/constants.dart';
+
 class RowOfSocialItems extends StatelessWidget {
   const RowOfSocialItems({super.key});
 

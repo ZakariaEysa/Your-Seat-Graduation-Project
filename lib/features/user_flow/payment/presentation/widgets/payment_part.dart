@@ -174,7 +174,7 @@ class PaymentPart extends StatelessWidget {
         ),
       ),
       SizedBox(
-        height:30.h,
+        height: 30.h,
       ),
       Text(
         title,
@@ -183,7 +183,6 @@ class PaymentPart extends StatelessWidget {
       SizedBox(
         height: 50.h,
       ),
-
     ]);
   }
 }

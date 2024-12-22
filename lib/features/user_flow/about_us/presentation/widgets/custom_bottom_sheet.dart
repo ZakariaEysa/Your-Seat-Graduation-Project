@@ -28,7 +28,8 @@ class CustomBottomSheet extends StatelessWidget {
     var theme = Theme.of(context);
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 13.w), // تعديل باستخدام ScreenUtil
+      padding:
+          EdgeInsets.symmetric(horizontal: 13.w), // تعديل باستخدام ScreenUtil
       child: DraggableScrollableSheet(
         controller: scrollController,
         initialChildSize: initialHeight,
@@ -56,7 +57,8 @@ class CustomBottomSheet extends StatelessWidget {
                     ),
                     child: Text(
                       title,
-                      style: theme.textTheme.labelLarge!.copyWith(fontSize: 24.sp), // استخدام ScreenUtil لضبط الحجم
+                      style: theme.textTheme.labelLarge!.copyWith(
+                          fontSize: 24.sp), // استخدام ScreenUtil لضبط الحجم
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -65,21 +67,24 @@ class CustomBottomSheet extends StatelessWidget {
                   child: SingleChildScrollView(
                     controller: innerScrollController,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 26.w), // تعديل باستخدام ScreenUtil
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 26.w), // تعديل باستخدام ScreenUtil
                       child: Column(
                         children: [
                           SizedBox(height: 10.h), // تعديل باستخدام ScreenUtil
                           Text(
                             content,
                             textAlign: TextAlign.left,
-                            style: theme.textTheme.bodyMedium!
-                                .copyWith(fontSize: 12.sp), // استخدام ScreenUtil لضبط الحجم
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                                fontSize:
+                                    12.sp), // استخدام ScreenUtil لضبط الحجم
                           ),
                           SizedBox(height: 20.h), // تعديل باستخدام ScreenUtil
                           if (bottomWidget != null)
                             Container(
                               alignment: Alignment.center,
-                              margin: EdgeInsets.only(top: 20.h), // تعديل باستخدام ScreenUtil
+                              margin: EdgeInsets.only(
+                                  top: 20.h), // تعديل باستخدام ScreenUtil
                               child: bottomWidget,
                             ),
                           SizedBox(height: 120.h), // تعديل باستخدام ScreenUtil

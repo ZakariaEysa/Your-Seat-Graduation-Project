@@ -17,7 +17,8 @@ class ChatAsk extends StatelessWidget {
             width: 390.w,
             height: 80.h,
             child: Padding(
-              padding: const EdgeInsets.only(right: 8, bottom: 16, left: 16, top: 16),
+              padding: const EdgeInsets.only(
+                  right: 8, bottom: 16, left: 16, top: 16),
               child: Directionality(
                 textDirection: TextDirection.ltr,
                 child: Row(

@@ -25,12 +25,12 @@ class Payment extends StatelessWidget {
           backgroundColor: const Color(0xFF2E1371),
           leading: IconButton(
               onPressed: () {
-                navigateTo(context: context, screen:PaymentPolicy());
+                navigateTo(context: context, screen: PaymentPolicy());
               },
               icon: Icon(
                 Icons.arrow_back,
                 color: Colors.white,
-                size:26.sp,
+                size: 26.sp,
               )),
         ),
         body: Column(
@@ -40,7 +40,7 @@ class Payment extends StatelessWidget {
             ),
             PaymentPart(
               total: '210.0 EGP',
-              title:lang.paymentMethod,
+              title: lang.paymentMethod,
             ),
             Container(
               width: 292.w,
@@ -50,34 +50,36 @@ class Payment extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: EdgeInsets.only(left: 10.w),
-                child:
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Image.asset(
-                    "assets/images/card.png",
-                    width: 40.41.w,
-                    height: 35.83.h,
-                  ),
-                  Spacer(),
-                  Text(
-                    lang.payWithCard,
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
-                  ),
-                  Spacer(),
-                  IconButton(
-                      onPressed: () {
-                        navigateTo(context: context, screen:Carrd());
-                      },
-                      icon: Icon(
-                        Icons.arrow_forward_ios_sharp,
-                        color: Colors.white,
-                        size:20.sp,
-                      )),
-                  //   color: Colors.white,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        "assets/images/card.png",
+                        width: 40.41.w,
+                        height: 35.83.h,
+                      ),
+                      Spacer(),
+                      Text(
+                        lang.payWithCard,
+                        style: theme.textTheme.bodyMedium!
+                            .copyWith(fontSize: 16.sp),
+                      ),
+                      Spacer(),
+                      IconButton(
+                          onPressed: () {
+                            navigateTo(context: context, screen: Carrd());
+                          },
+                          icon: Icon(
+                            Icons.arrow_forward_ios_sharp,
+                            color: Colors.white,
+                            size: 20.sp,
+                          )),
+                      //   color: Colors.white,
 
-                  SizedBox(
-                    width: 2.w,
-                  ),
-                ]),
+                      SizedBox(
+                        width: 2.w,
+                      ),
+                    ]),
               ),
             ),
             SizedBox(
@@ -91,40 +93,42 @@ class Payment extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: EdgeInsets.only(left: 10.w),
-                child:
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Image.asset(
-                    "assets/images/payy.png",
-                    width: 30.w,
-                    height: 31.h,
-                  ),
-                  Spacer(),
-                  Text(
-                    lang.instapay,
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
-                  ),
-                  Spacer(),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_forward_ios_sharp,
-                        color: Colors.white,
-                        size: 20.sp,
-                      )),
-                  //   color: Colors.white,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        "assets/images/payy.png",
+                        width: 30.w,
+                        height: 31.h,
+                      ),
+                      Spacer(),
+                      Text(
+                        lang.instapay,
+                        style: theme.textTheme.bodyMedium!
+                            .copyWith(fontSize: 16.sp),
+                      ),
+                      Spacer(),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_forward_ios_sharp,
+                            color: Colors.white,
+                            size: 20.sp,
+                          )),
+                      //   color: Colors.white,
 
-                  SizedBox(
-                    width: 1.w,
-                  ),
-                ]),
+                      SizedBox(
+                        width: 1.w,
+                      ),
+                    ]),
               ),
             ),
             SizedBox(
               height: 60.h,
             ),
             Container(
-              width:208.w,
-              height:36.h,
+              width: 208.w,
+              height: 36.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: Color(0xFF31215B),
@@ -133,14 +137,21 @@ class Payment extends StatelessWidget {
                   width: 2.w,
                 ),
               ),
-              child:Padding(
+              child: Padding(
                 padding: EdgeInsets.all(8.sp),
                 child: Row(
                   children: [
-                    Text(lang.completeYourPaymentIn,style: theme.textTheme.bodyMedium!.copyWith(fontSize:11.sp),),
-                   Spacer(),
-                    Text("15:00",style: theme.textTheme.bodyMedium!.copyWith(fontSize:11.sp,color: Color(0xFFC11E88)),),
-
+                    Text(
+                      lang.completeYourPaymentIn,
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 11.sp),
+                    ),
+                    Spacer(),
+                    Text(
+                      "15:00",
+                      style: theme.textTheme.bodyMedium!
+                          .copyWith(fontSize: 11.sp, color: Color(0xFFC11E88)),
+                    ),
                   ],
                 ),
               ),

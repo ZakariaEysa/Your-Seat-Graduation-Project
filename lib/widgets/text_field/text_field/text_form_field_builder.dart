@@ -68,7 +68,7 @@ class TextFormFieldBuilder extends StatelessWidget {
       width: width ?? 333.w,
       height: height ?? 60.h,
       child: TextFormField(
-       // initialValue: initialValue,
+        // initialValue: initialValue,
         onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines ? 1 : null,
@@ -112,20 +112,23 @@ class TextFormFieldBuilder extends StatelessWidget {
                   : null),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8), // من الأولى
-            borderSide: BorderSide(color: Color(0x66000000), width: 1), // من الأولى
+            borderSide:
+                BorderSide(color: Color(0x66000000), width: 1), // من الأولى
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8), // من الأولى
-            borderSide: const BorderSide(color: Colors.blue, width: 1.5), // من الأولى
+            borderSide:
+                const BorderSide(color: Colors.blue, width: 1.5), // من الأولى
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0), // من الثانية
-            borderSide: const BorderSide(width: 1.5, color: Colors.red), // من الثانية
+            borderSide:
+                const BorderSide(width: 1.5, color: Colors.red), // من الثانية
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
-            borderSide: const BorderSide(width: 2, color: Colors.blue), // من الثاني
-
+            borderSide:
+                const BorderSide(width: 2, color: Colors.blue), // من الثاني
           ),
         ),
       ),

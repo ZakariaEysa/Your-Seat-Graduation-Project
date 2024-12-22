@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInPart extends StatelessWidget {
   final String title;
-  const SignInPart({super.key, required this.title, this.onTap, this.imagePath});
-  
+  const SignInPart(
+      {super.key, required this.title, this.onTap, this.imagePath});
+
   final void Function()? onTap;
   final String? imagePath;
 
@@ -18,10 +19,12 @@ class SignInPart extends StatelessWidget {
         height: 57.h, // تم تعديل الارتفاع باستخدام ScreenUtil
         decoration: BoxDecoration(
           color: const Color(0xFF2D1468),
-          borderRadius: BorderRadius.circular(40.sp), // تم تعديل الزوايا باستخدام ScreenUtil
+          borderRadius: BorderRadius.circular(
+              40.sp), // تم تعديل الزوايا باستخدام ScreenUtil
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.only(start: 30.w), // تم تعديل التباعد باستخدام ScreenUtil
+          padding: EdgeInsetsDirectional.only(
+              start: 30.w), // تم تعديل التباعد باستخدام ScreenUtil
           child: Row(
             children: [
               // تم إلغاء الكود المعطل للـ Icon
@@ -33,7 +36,8 @@ class SignInPart extends StatelessWidget {
               SizedBox(width: 20.w), // تم تعديل التباعد باستخدام ScreenUtil
               Text(
                 title,
-                style: theme.textTheme.labelLarge!.copyWith(fontSize: 17.sp), // تم تعديل الحجم باستخدام ScreenUtil
+                style: theme.textTheme.labelLarge!.copyWith(
+                    fontSize: 17.sp), // تم تعديل الحجم باستخدام ScreenUtil
               ),
             ],
           ),

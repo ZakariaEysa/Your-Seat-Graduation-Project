@@ -166,6 +166,7 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
+
               home: SplashScreen(),
             );
           });

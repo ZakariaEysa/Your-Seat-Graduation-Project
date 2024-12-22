@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/widgets/director_actor_card.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import 'package:yourseatgraduationproject/widgets/network_image/cached_network_image_f.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
@@ -14,13 +17,18 @@ import '../widgets/cinema_card.dart';
 
 class MovieDetails extends StatelessWidget {
   const MovieDetails({
-    super.key,
+    super.key, required this.model,
   });
+
+
+
+  final MoviesDetailsModel model;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     var lang = S.of(context);
+
     return ScaffoldF(
         body: SingleChildScrollView(
             child: Column(
@@ -28,12 +36,12 @@ class MovieDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
           Stack(children: [
-            Image.asset(
-              'assets/images/Rectangle 49 (4).png',
+
+            CachedNetworkImageF(imageUrl: model.posterImage??"",
               width: 500.w,
               height: 390.h,
-              fit: BoxFit.cover,
-            ),
+              fit: BoxFit.cover,)
+          ,
             Padding(
               padding: EdgeInsets.only(top: 50.h),
               child: IconButton(
@@ -61,7 +69,7 @@ class MovieDetails extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Avengers: Infinity War",
+                        model.name??"",
                         style: theme.textTheme.bodyMedium!
                             .copyWith(fontSize: 20.sp),
                       ),
@@ -69,7 +77,7 @@ class MovieDetails extends StatelessWidget {
                         height: 8.h,
                       ),
                       Text(
-                        "2h29m • 16.12.2022",
+                        model.releaseDate??"",
                         style: theme.textTheme.bodyMedium!.copyWith(
                             fontSize: 13.sp, color: const Color(0xFFD4D0D0)),
                       ),
@@ -95,7 +103,7 @@ class MovieDetails extends StatelessWidget {
                           SizedBox(
                             width: 10.w,
                           ),
-                          Text('4.8 (1.222)',
+                          Text(model.rating.toString(),
                               style: theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 12.sp)),
                         ],
@@ -106,13 +114,13 @@ class MovieDetails extends StatelessWidget {
                       Row(
                         children: [
                           RatingBar.builder(
-                            initialRating: 4,
+                            initialRating:model.rating!>=6?model.rating!.toDouble()-5:model.rating!.toDouble() ,
                             minRating: 1,
                             unratedColor: Color(0xFF575757),
                             ignoreGestures: true,
                             direction: Axis.horizontal,
                             itemSize: 35,
-                            //allowHalfRating: true,
+                            allowHalfRating: true,
                             itemCount: 5,
                             itemPadding:
                                 const EdgeInsets.symmetric(horizontal: 2.0),
@@ -129,7 +137,13 @@ class MovieDetails extends StatelessWidget {
                             width: 12.w,
                           ),
                           TextButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+
+                                 //TODO: GO TO WATCH TRAILER
+
+
+
+                              },
                               icon: const Icon(
                                 Icons.play_arrow,
                                 color: Colors.white,
@@ -180,7 +194,7 @@ class MovieDetails extends StatelessWidget {
                       width: 35.w,
                     ),
                     Text(
-                      "Action, adventure, sci-fi",
+                      model.category??"",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -202,7 +216,7 @@ class MovieDetails extends StatelessWidget {
                       width: 35.w,
                     ),
                     Text(
-                      " 13+ ",
+                      model.ageRating??"",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -224,7 +238,7 @@ class MovieDetails extends StatelessWidget {
                       width: 35.w,
                     ),
                     Text(
-                      "    English ",
+                      model.language??"",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -242,7 +256,7 @@ class MovieDetails extends StatelessWidget {
                   height: 30.h,
                 ),
                 ReadMoreText(
-                  "As the Avengers and their allies have continued to\nprotect the world from threats too large for any\none hero to handle, a new danger has emerged\nfrom the cosmic shadows:Thanos...\nto protect the world from threats too large for\nany one hero to handle, a new danger has\nemerged from the cosmic shadows: Thanos....\nAs the Avengers and their allies have continued to\nAs the Avengers and their allies have continued to\nAs the Avengers and their allies have continued to  ",
+model.description??"",
                   style: theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
                   trimLines: 4,
                   textAlign: TextAlign.start,
@@ -269,16 +283,23 @@ class MovieDetails extends StatelessWidget {
                 SizedBox(
                   height: 30.h,
                 ),
-                const Row(
-                  children: [
-                    Director(
-                        name: "Anthony\nRusso",
-                        imagePath: "assets/images/director1.png"),
-                    Director(
-                        name: "    Joe\n    Russo",
-                        imagePath: "assets/images/director2.png"),
-                  ],
-                ),
+                 SingleChildScrollView(
+                   scrollDirection: Axis.horizontal,
+                   child: Row(
+                    children: [
+                      Director(
+                          name: model.crew?.director??"",
+                          imagePath: "https://picsum.photos/"),
+                      Director(
+                          name: model.crew?.producer??"",
+                          imagePath: "https://picsum.photos/"),
+
+                      Director(
+                          name: model.crew?.writer??"",
+                          imagePath: "assets/images/director2.png"),
+                    ],
+                                   ),
+                 ),
                 SizedBox(
                   height: 25.h,
                 ),
@@ -288,24 +309,22 @@ class MovieDetails extends StatelessWidget {
                       .copyWith(fontSize: 24.sp, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
+
                   height: 25.h,
                 ),
-                const SingleChildScrollView(
+              SizedBox(
+                height: 90.h                ,
+                child: ListView.builder(
+
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      Director(
-                          name: "Robert\nDowney Jr.",
-                          imagePath: "assets/images/actor1.png"),
-                      Director(
-                          name: "Chris\nHemsworth",
-                          imagePath: "assets/images/actor2.png"),
-                      Director(
-                          name: "Chris\nRobert",
-                          imagePath: "assets/images/actor3.png"),
-                    ],
-                  ),
+                  shrinkWrap: true,
+
+                  itemBuilder: (context, index) => Director(name: model.cast?[index]??"", imagePath:  model.castImages?[index]??""),
+
+
+                  itemCount: model.cast?.length ?? 0,
                 ),
+              ),
                 SizedBox(
                   height: 30.h,
                 ),
@@ -361,85 +380,3 @@ class MovieDetails extends StatelessWidget {
         ])));
   }
 }
-
-// // إضافة كومنت لكل الأفلام في الكولكشن
-// Future<void> addCommentToAllMovies() async {
-//   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-//   final List<Map<String, dynamic>> comments = [
-//     {
-//       'name': 'User1',
-//       'comment': 'Great movie!',
-//       'image': 'https://picsum.photos/',
-//     },
-//     {
-//       'name': 'User2',
-//       'comment': 'Loved the acting!',
-//       'image': 'https://picsum.photos/',
-//     },
-//     {
-//       'name': 'User3',
-//       'comment': 'The storyline was fantastic.',
-//       'image': 'https://picsum.photos/',
-//     },
-//   ];
-//   // try {
-//   //   // جلب كل الأفلام من الكولكشن
-//   //   QuerySnapshot movieSnapshot = await _firestore.collection('Movies').get();
-
-//   //   // تنفيذ عملية إضافة الكومنت لكل فيلم
-//   //   for (var doc in movieSnapshot.docs) {
-//   //     String movieId = doc.id;
-//   //     print(movieId);
-
-//   //     // تحديث كل فيلم بإضافة الكومنت في قائمة "comments"
-//   //     await _firestore.collection('movies').doc(movieId).update({
-//   //       'comments': FieldValue.arrayUnion(comments), // إضافة الكومنتات للقائمة
-//   //     });
-//   //   }
-//   //   print("Comment added to all movies successfully.");
-//   // } catch (e) {
-//   //   print("Error adding comment to all movies: $e");
-//   // }
-
-//   try {
-//     // جلب كل الأفلام من الكولكشن 'movies'
-//     QuerySnapshot movieSnapshot = await _firestore.collection('movies').get();
-
-//     // طباعة كل فيلم
-//     for (var doc in movieSnapshot.docs) {
-//       print('Movie ID: ${doc.id}');
-//       print('Movie Data: ${doc.data()}');
-//     }
-//   } catch (e) {
-//     print("Error fetching movies: $e");
-//   }
-// }
-
-// import 'package:cloud_firestore/cloud_firestore.dart';
-
-// Future<void> addCommentToMovie(String movieId, String userName, String comment, String imageUrl) async {
-//   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-//   final CollectionReference moviesCollection = firestore.collection('movies');
-
-//   try {
-//     // تحديد المستند بناءً على movieId
-//     final DocumentReference movieDoc = moviesCollection.doc(movieId);
-
-//     // تعليق جديد
-//     final Map<String, dynamic> newComment = {
-//       'name': userName,
-//       'comment': comment,
-//       'image': imageUrl,
-//     };
-
-//     // إضافة التعليق إلى قائمة التعليقات
-//     await movieDoc.update({
-//       'comments': FieldValue.arrayUnion([newComment]), // يستخدم arrayUnion لإضافة تعليق جديد بشكل آمن
-//     });
-
-//     print('Comment added successfully.');
-//   } catch (e) {
-//     print('Error adding comment: $e');
-//   }
-// }

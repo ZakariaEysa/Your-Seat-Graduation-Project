@@ -108,7 +108,7 @@ class _ProfileCardState extends State<ProfileCard> {
                       PersonalInfoCard(
                         title: lang.email,
                         icon: "assets/images/email 2.png",
-                        info: currentUser?.emailController ?? "-",
+                        info: currentUser?. email?? "-",
                       ),
                       SizedBox(height: 20.h),
                       PersonalInfoCard(

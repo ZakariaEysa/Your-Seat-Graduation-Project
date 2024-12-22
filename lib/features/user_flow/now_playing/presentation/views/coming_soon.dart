@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../widgets/coming_movies.dart';
+import '../widgets/playing_movies.dart';
 
 class ComingSoons extends StatefulWidget {
   const ComingSoons({super.key});
@@ -11,67 +14,64 @@ class ComingSoons extends StatefulWidget {
   State<ComingSoons> createState() => _ComingSoonsState();
 }
 
+List<Map<String, dynamic>> movies = [];
+
 class _ComingSoonsState extends State<ComingSoons> {
+  Future<List<MoviesDetailsModel>> _fetchMovies() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('Movies')
+          .get();
+      return snapshot.docs
+          .map((doc) => MoviesDetailsModel.fromJson(doc.data()))
+          .toList();
+    } catch (e) {
+      print("Error fetching movies: $e");
+      return [];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
     final theme = Theme.of(context);
     return ScaffoldF(
-        body: SingleChildScrollView(
-            child: Column(children: [
-      SizedBox(
-        height: 10.h,
+      body: FutureBuilder<List<MoviesDetailsModel>>(
+        future: _fetchMovies(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text(lang.errorSavingUser));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text(lang.errorSavingUser));
+          }
+
+          final movies = snapshot.data!;
+
+          return Padding(
+            padding: EdgeInsets.only(left: 8.0.w, top: 8.0.h),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Number of columns
+                crossAxisSpacing: 10.w, // Adjusted for ScreenUtil
+                childAspectRatio: 0.45, // Adjust to fit the card design
+              ),
+              itemCount: movies.length,
+              itemBuilder: (context, index) {
+                final movie = movies[index];
+                return PlayingMovies(
+                  rate: movie.rating.toString(),
+                  duration: movie.duration ?? "",
+                  category: movie.category ?? "",
+                  image: movie.posterImage ?? "",
+                  title: movie.name ?? "",
+                );
+              },
+            ),
+          );
+        },
       ),
-      Row(
-        children: [
-          SizedBox(
-            width: 10.w,
-          ),
-          const ComingMovies(
-            image: 'assets/images/film8.png',
-            title: 'Avatar 2: The Way\nOf Water',
-            smallTitle: 'Adventure, Sci-fi',
-            releaseDate: '20.12.2022',
-          ),
-          SizedBox(
-            width: 14.w,
-          ),
-          const ComingMovies(
-            image: 'assets/images/film9.png',
-            title: 'Ant Man Wasp:\nQuantumania',
-            smallTitle: 'Adventure, Sci-fi',
-            releaseDate: '25.12.2022',
-          )
-        ],
-      ),
-      SizedBox(
-        height: 9.h,
-      ),
-      Row(
-        children: [
-          SizedBox(
-            width: 10.w,
-          ),
-          const ComingMovies(
-            image: 'assets/images/film10.png',
-            title: 'Shazam: Fury of the\nGods',
-            smallTitle: 'Action, Sci-fi',
-            releaseDate: '17.03.2023',
-          ),
-          SizedBox(
-            width: 10.w,
-          ),
-          const ComingMovies(
-            image: 'assets/images/film11.png',
-            title: 'Fox puss in Boots:\nThe last Wish',
-            smallTitle: 'Comdy,animation',
-            releaseDate: '27.12.2022',
-          )
-        ],
-      ),
-      SizedBox(
-        height: 40.h,
-      )
-    ])));
+    );
   }
 }

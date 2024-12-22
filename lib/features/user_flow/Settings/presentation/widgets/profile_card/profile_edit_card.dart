@@ -90,7 +90,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
 
     userController.text = currentUser.name;
-    emailController.text = currentUser.emailController;
+    emailController.text = currentUser.email;
     selectedGender =
         gender.contains(currentUser.gender) ? currentUser.gender : null;
     selectedImageBase64 = currentUser.image;

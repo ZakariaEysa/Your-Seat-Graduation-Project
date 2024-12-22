@@ -94,7 +94,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'movie_card.dart';
 
 class MovieCarouselWidget extends StatefulWidget {
@@ -172,8 +175,16 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                         ),
                       );
                     },
-                    child: MovieCard(
-                      movie: movies[index], // Pass movie data to the card
+                    child: GestureDetector(
+
+                     onTap: (){
+
+
+                       navigateTo(context: context, screen: MovieDetails(model: MoviesDetailsModel.fromJson(movies[index]),));
+                     },
+                      child: MovieCard(
+                        movie: movies[index], // Pass movie data to the card
+                      ),
                     ),
                   );
                 },

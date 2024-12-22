@@ -16,6 +16,7 @@ import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentatio
 import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/cinema_details.dart';
 import 'package:yourseatgraduationproject/features/user_flow/forget/presentation/views/forget.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
 import 'package:yourseatgraduationproject/features/user_flow/new%20password/presentation/views/new_password.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/app.dart';
@@ -84,7 +85,9 @@ void main() async {
 
   await HiveStorage.init();
 
-  // await fetchh();
+
+
+  // await fetch();
 
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(
@@ -177,8 +180,9 @@ class _MyAppState extends State<MyApp> {
 
 Future<void> fetch() async {
   final snapshot = await FirebaseFirestore.instance.collection('Movies').get();
-  List<Map<String, dynamic>> fetchedMovies =
-      snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+  List<MoviesDetailsModel> fetchedMovies = snapshot.docs
+      .map((doc) => MoviesDetailsModel.fromJson(doc.data()))
+      .toList();
 
   AppLogs.debugLog(fetchedMovies.toString());
 
@@ -190,8 +194,8 @@ Future<void> fetch() async {
 
   AppLogs.errorLog(formattedMap);
 
-  AppLogs.scussessLog(fetchedMovies[0]['cast'].toString());
+  AppLogs.scussessLog(fetchedMovies[0].cast.toString());
 
-  AppLogs.errorLog(fetchedMovies[0]['crew'].toString());
+  AppLogs.errorLog(fetchedMovies[0].crew.toString());
 }
 

@@ -1,60 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore import
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/playing_movies.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../widgets/app.dart';
 
-class NowPLaying extends StatelessWidget {
-  const NowPLaying({super.key});
+class NowPlaying extends StatelessWidget {
+  const NowPlaying({super.key});
+
+  Future<List<Map<String, dynamic>>> _fetchMovies() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('playing now films')
+          .get();
+      return snapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+    } catch (e) {
+      print("Error fetching movies: $e");
+      return [];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
     return ScaffoldF(
-        body: SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 9.h,
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 10.h),
-                child: const PlayingMovies(
-                    image: "assets/images/film88.png",
-                    title: "Avengers: Infinity\nWar"),
+      body: FutureBuilder<List<Map<String, dynamic>>>(
+        future: _fetchMovies(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text(lang.errorSavingUser));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text(lang.errorSavingUser));
+          }
+
+          final movies = snapshot.data!;
+
+          return Padding(
+            padding: EdgeInsets.only(left: 8.0.w,top: 8.0),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Number of columns
+                crossAxisSpacing: 10,
+               // mainAxisSpacing: 150,
+                childAspectRatio: 0.45, // Adjust to fit the card design
               ),
-              const PlayingMovies(
-                  image: "assets/images/film2.png",
-                  title: "Shang chi: Legend of\nthe Ten Rings"),
-            ],
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: .20.h,
-                ),
-                child: const PlayingMovies(
-                    image: "assets/images/film3.png",
-                    title: "Guardians Of The\nGalaxy"),
-              ),
-              const PlayingMovies(
-                  image: "assets/images/film14.png",
-                  title: "Batman v Superman\nDawn of Justice"),
-            ],
-          ),
-          SizedBox(
-            height: 40.h,
-          )
-        ],
+              itemCount: movies.length,
+              itemBuilder: (context, index) {
+                final movie = movies[index];
+                return PlayingMovies(
+                  rate: movie['rating'].toString(),
+                    duration: movie['duration'],
+                    category: movie['category'],
+                    image: movie['poster_image'],
+                    title: movie['name'],
+                    //rate: movie['rating'],
+                );
+              },
+            ),
+          );
+        },
       ),
-    ));
+    );
   }
 }
+
+

@@ -1,7 +1,10 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
@@ -14,6 +17,8 @@ import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
+import '../../../auth/data/remote_data_source/auth_remote_data_source.dart';
+import '../../../auth/data/repos_impl/auth_repo_impl.dart';
 import '../../../home/presentation/views/home_layout.dart';
 import '../../../new password/presentation/views/new_password.dart';
 
@@ -37,7 +42,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              navigateTo(context: context, screen:SignIn());
+               navigateAndRemoveUntil(context: context, screen:   BlocProvider<AuthCubit>(
+                create: (context) => AuthCubit(AuthRepoImpl(
+                    AuthRemoteDataSourceImpl(FirebaseAuth.instance, GoogleSignIn()))),
+                child: SignIn(),),
+              );
             },
             icon: Icon(
               Icons.arrow_back,

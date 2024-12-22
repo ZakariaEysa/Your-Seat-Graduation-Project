@@ -49,13 +49,13 @@ class HomeScreen extends StatelessWidget {
                 ),
                 TextS(text: lang.promoDiscount),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(10.0.w),
                   child: Image.asset("assets/images/discount.png"),
                 ),
                 Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                    padding:  EdgeInsetsDirectional.fromSTEB(10.w, 0, 0, 0),
                     child: TextS(
                       text: lang.cinema,
                     ),
@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.sp),
                   child: CinemaItem(),
                 ),
               ],

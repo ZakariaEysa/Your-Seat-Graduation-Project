@@ -188,7 +188,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "january": MessageLookupByLibrary.simpleMessage("يناير"),
         "july": MessageLookupByLibrary.simpleMessage("يوليو"),
         "june": MessageLookupByLibrary.simpleMessage("يونيو"),
-        "language": MessageLookupByLibrary.simpleMessage("اللغه:"),
+        "language": MessageLookupByLibrary.simpleMessage("اللغه"),
         "light": MessageLookupByLibrary.simpleMessage("نهاري"),
         "location": MessageLookupByLibrary.simpleMessage("الموقع"),
         "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),

@@ -8,6 +8,7 @@ class HeadMyticket extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Column(
       children: [
+
         Row(
          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -31,7 +32,7 @@ class HeadMyticket extends StatelessWidget {
                   children: [
                     Image.asset("assets/icons/clock_icon.png" , width: 18.w , height: 20.h, color: Colors.black,),
                     SizedBox(width: 5,),
-                    Text("Status    :      Active" , style: TextStyle(color: Colors.black),),
+                    Text("2 hours 29 minutes" , style: TextStyle(color: Colors.black),),
                   ],
                 ),
                 SizedBox(height: 5.h,),
@@ -61,12 +62,13 @@ class HeadMyticket extends StatelessWidget {
 
         ]
         ),
+        SizedBox(height: 25.h,),
         Row(
           children: [
-            SizedBox(width: 20.w,),
+            SizedBox(width:40.w,),
             Row(
               children: [
-                Image.asset('assets/icons/calendar.png' , width: 80, height: 80,),
+                Image.asset('assets/icons/calendar.png' , width: 60, height: 60,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -79,14 +81,13 @@ class HeadMyticket extends StatelessWidget {
             SizedBox(width: 40.w,),
             Row(
               children: [
-                Image.asset('assets/icons/vYzyIu_2_.png' , width: 80, height: 80,),
+                Image.asset('assets/icons/vYzyIu_2_.png' , width: 60, height: 60,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text("seat F10" , style: TextStyle(color: Colors.black),),
                     Text("Section 4",style: TextStyle(color: Colors.black),),
                   ],)
-
               ],
             ),
           ],

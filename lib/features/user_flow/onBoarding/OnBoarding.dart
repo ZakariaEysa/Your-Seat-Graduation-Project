@@ -68,7 +68,9 @@ class _OnBoardingState extends State<OnBoarding> {
                           SizedBox(height: 15.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: List.generate(getOnBoardingContents(context).length, (dotIndex) {
+                            children: List.generate(
+                                getOnBoardingContents(context).length,
+                                (dotIndex) {
                               return buildDot(dotIndex);
                             }),
                           ),
@@ -87,7 +89,8 @@ class _OnBoardingState extends State<OnBoarding> {
                                 .copyWith(fontSize: 16.sp),
                           ),
                           SizedBox(height: 40.h),
-                          currentPage == getOnBoardingContents(context).length - 1
+                          currentPage ==
+                                  getOnBoardingContents(context).length - 1
                               ? ButtonBuilder(
                                   text: lang.startUsingTheApp,
                                   onTap: () {
@@ -96,7 +99,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                       HiveKeys.passUserOnboarding,
                                       true,
                                     );
-                  
+
                                     navigateAndRemoveUntil(
                                       context: context,
                                       screen: const SignIn(),
@@ -117,7 +120,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                             HiveKeys.passUserOnboarding,
                                             true,
                                           );
-                  
+
                                           navigateAndRemoveUntil(
                                             context: context,
                                             screen: const SignIn(),
@@ -131,7 +134,10 @@ class _OnBoardingState extends State<OnBoarding> {
                                       child: ButtonBuilder(
                                         text: lang.next,
                                         onTap: () {
-                                          if (currentPage < getOnBoardingContents(context).length - 1) {
+                                          if (currentPage <
+                                              getOnBoardingContents(context)
+                                                      .length -
+                                                  1) {
                                             _pageController.nextPage(
                                               duration: const Duration(
                                                   milliseconds: 300),

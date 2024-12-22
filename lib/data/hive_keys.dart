@@ -6,7 +6,6 @@ class HiveKeys {
 
   static const String userGData = 'userData';
   static const String userDData = 'userData';
-
 }
 
 enum Role { guest, google, email, facebook }

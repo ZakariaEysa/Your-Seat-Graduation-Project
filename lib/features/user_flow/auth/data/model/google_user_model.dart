@@ -21,12 +21,9 @@ class GoogleUserModel extends Equatable {
   @HiveField(4)
   final String? image; // Optional, sourced from photoURL in Firebase
   @HiveField(5)
-
   final String? gender; // Optional, sourced from photoURL in Firebase
   @HiveField(6)
-
   final String? location; // Optional, sourced from photoURL in Firebase
-
 
   const GoogleUserModel({
     required this.name,
@@ -52,5 +49,6 @@ class GoogleUserModel extends Equatable {
   }
 
   @override
-  List<Object?> get props => [name, email, password, dateOfBirth, image,gender,location];
+  List<Object?> get props =>
+      [name, email, password, dateOfBirth, image, gender, location];
 }

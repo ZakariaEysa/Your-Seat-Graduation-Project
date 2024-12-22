@@ -45,17 +45,17 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 10.h),
                 SizedBox(
                   height: 400.h,
-                  child:  ComingSoon(), // Horizontal list of coming soon movies
+                  child: ComingSoon(), // Horizontal list of coming soon movies
                 ),
                 TextS(text: lang.promoDiscount),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                 child: Image.asset("assets/images/discount.png"),
+                  child: Image.asset("assets/images/discount.png"),
                 ),
                 Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(10,0,0,0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                     child: TextS(
                       text: lang.cinema,
                     ),

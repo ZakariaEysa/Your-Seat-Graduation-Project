@@ -10,7 +10,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../model/google_user_model.dart';
 import '../model/user_model.dart';
 
-
 abstract class AuthRemoteDataSource {
   Future<GoogleUserModel> signInWithGoogle();
   Future<GoogleUserModel> signInWithFacebook();
@@ -18,18 +17,14 @@ abstract class AuthRemoteDataSource {
   Future<void> checkUserExistsR(String phone);
   Future<void> saveUserToFireStore({
     required UserModel userModel,
-
   });
   Future<void> signInWithPhoneNumber(
       String phoneNumber, Function(String) onCodeSent);
-
-
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
-
 
   AuthRemoteDataSourceImpl(this._auth, this._googleSignIn);
 
@@ -54,8 +49,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       final user = userCredential.user;
 
-
-
       if (user != null) {
         if (HiveStorage.get(HiveKeys.role) == null) {
           HiveStorage.set(
@@ -64,11 +57,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           );
         }
         AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
-
-
-
-
-
 
         return GoogleUserModel.fromFirebaseUser(user);
       } else {
@@ -94,28 +82,36 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<String> checkUserExists(String userEmail, String password) async {
-    final userDoc =
-        await FirebaseFirestore.instance.collection('users').doc(userEmail).get();
+    final userDoc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userEmail)
+        .get();
 
     if (userDoc.exists) {
       if (userDoc.get("password") == password) {
-
         // await HiveStorage.saveDefaultUser(UserModel(name: (userDoc.get('name')), email: userEmail, password: password, dateOfBirth: userDoc.get("dateOfBirth"),gender: userDoc.get("gender"),image: userDoc.get("image"),location: userDoc.get("location") ));
-        await HiveStorage.saveDefaultUser(UserModel(name: (userDoc.get('name')), email: userEmail, password: password, dateOfBirth: userDoc.get("dateOfBirth"),gender: userDoc.get("gender"),image: userDoc.get("image"),location: userDoc.get("location") ));
+        await HiveStorage.saveDefaultUser(UserModel(
+            name: (userDoc.get('name')),
+            email: userEmail,
+            password: password,
+            dateOfBirth: userDoc.get("dateOfBirth"),
+            gender: userDoc.get("gender"),
+            image: userDoc.get("image"),
+            location: userDoc.get("location")));
 
         return "LoginSuccessful";
       }
-      }
+    }
 
-      return "User does not exist or password is incorrect";
-
+    return "User does not exist or password is incorrect";
 
     // throw Exception('User does not exist or password is incorrect');
   }
-  @override
 
+  @override
   Future<void> checkUserExistsR(String email) async {
-    final userDoc = await FirebaseFirestore.instance.collection('users').doc(email).get();
+    final userDoc =
+        await FirebaseFirestore.instance.collection('users').doc(email).get();
     if (userDoc.exists) {
       throw Exception("User already exists");
     }
@@ -123,24 +119,24 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<void> saveUserToFireStore({
-
     required UserModel userModel,
-
   }) async {
-    await FirebaseFirestore.instance.collection('users').doc(userModel.email).set({
-      'name':userModel.name ,
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userModel.email)
+        .set({
+      'name': userModel.name,
       'email': userModel.email,
       //'phone': "0$phone",
-      'password':userModel. password,
+      'password': userModel.password,
       'dateOfBirth': userModel.dateOfBirth,
       'gender': userModel.gender,
       'image': userModel.image,
       'location': userModel.location,
     });
-
   }
-  @override
 
+  @override
   Future<void> signInWithPhoneNumber(
       String phoneNumber, Function(String) onCodeSent) async {
     await _auth.verifyPhoneNumber(
@@ -158,4 +154,3 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
   }
 }
-

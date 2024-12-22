@@ -105,7 +105,8 @@ class MovieCarouselWidget extends StatefulWidget {
 }
 
 class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
-  final PageController _pageController = PageController(viewportFraction: 0.7, initialPage: 1);
+  final PageController _pageController =
+      PageController(viewportFraction: 0.7, initialPage: 1);
   int _currentPage = 1;
   List<Map<String, dynamic>> movies = []; // List to hold movie data
 
@@ -122,8 +123,12 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
 
   Future<void> _fetchMovies() async {
     try {
-      final snapshot = await FirebaseFirestore.instance.collection('playing now films').get();
-      final fetchedMovies = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      final snapshot = await FirebaseFirestore.instance
+          .collection('playing now films')
+          .get();
+      final fetchedMovies = snapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
       setState(() {
         movies = fetchedMovies;
       });

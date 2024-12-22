@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextS extends StatelessWidget {
- final  String text;
-   const  TextS({super.key , required this.text});
+  final String text;
+  const TextS({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

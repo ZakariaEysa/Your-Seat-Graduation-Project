@@ -50,8 +50,7 @@ class _SearchState extends State<Search> {
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
-            borderSide:
-            const BorderSide(width: .01, color: Color(0x4DD9D9D9)),
+            borderSide: const BorderSide(width: .01, color: Color(0x4DD9D9D9)),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(

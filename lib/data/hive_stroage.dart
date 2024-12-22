@@ -9,7 +9,6 @@ class HiveStorage {
   static late Box<GoogleUserModel> box1;
   static late Box<UserModel> box2;
 
-
   // Initialize the boxes and register adapters
   static Future<void> init() async {
     await Hive.initFlutter();
@@ -18,12 +17,9 @@ class HiveStorage {
     Hive.registerAdapter(GoogleUserModelAdapter());
     Hive.registerAdapter(UserModelAdapter());
 
-
     box = await Hive.openBox('myBox');
     box1 = await Hive.openBox<GoogleUserModel>('googleUserBox');
     box2 = await Hive.openBox<UserModel>('userBox');
-
-
   }
 
   // Get value from the generic box
@@ -60,13 +56,9 @@ class HiveStorage {
     return box1.get(HiveKeys.userGData);
   }
 
-
   // Save UserModel to the box
   static Future<void> saveDefaultUser(UserModel user) async {
-
-
     await box2.put(HiveKeys.userDData, user);
-
   }
 
   // Retrieve the UserModel from the box
@@ -74,12 +66,9 @@ class HiveStorage {
     return box2.get(HiveKeys.userDData);
   }
 
-
   static Future<void> logOut() async {
     // await box.clear();
     await box1.clear();
     await box2.clear();
-
   }
-
 }

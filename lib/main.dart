@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -81,8 +83,7 @@ void main() async {
 
   await HiveStorage.init();
 
-   await fetchh();
-
+  await fetchh();
 
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(
@@ -171,49 +172,23 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-Future <void>fetchh() async{
-
+Future<void> fetchh() async {
   final snapshot = await FirebaseFirestore.instance.collection('Movies').get();
-  List<Map<String, dynamic>> fetchedMovies = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
-
-
-
-
+  List<Map<String, dynamic>> fetchedMovies =
+      snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
 
   AppLogs.debugLog(fetchedMovies.toString());
 
-    AppLogs.debugLog(fetchedMovies.length.toString());
+  AppLogs.debugLog(fetchedMovies.length.toString());
 
+  AppLogs.errorLog(fetchedMovies[0].toString());
 
-    AppLogs.errorLog(fetchedMovies[0].toString());
+  String formattedMap = JsonEncoder.withIndent('  ').convert(fetchedMovies[0]);
 
+  AppLogs.errorLog(formattedMap);
 
+  AppLogs.scussessLog(fetchedMovies[0]['cast'].toString());
 
-
-
-
-
-
-
-
-
-
+  AppLogs.errorLog(fetchedMovies[0]['crew'].toString());
 }
-
-
-
-
-
-
 

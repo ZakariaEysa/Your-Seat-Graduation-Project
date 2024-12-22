@@ -30,8 +30,7 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
         titleSpacing: 40.0,
         backgroundColor: const Color(0xFF2E1371),
         leading: IconButton(
-            onPressed: () {
-            },
+            onPressed: () {},
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -41,13 +40,22 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height:10.h,),
+            SizedBox(
+              height: 10.h,
+            ),
             PaymentPolicyPart(),
-            SizedBox(height:30.h,),
-            ButtonBuilder(text:lang.continnue, onTap: () {
-              navigateTo(context: context, screen:Payment());
-            },),
-            SizedBox(height:50.h,),
+            SizedBox(
+              height: 30.h,
+            ),
+            ButtonBuilder(
+              text: lang.continnue,
+              onTap: () {
+                navigateTo(context: context, screen: Payment());
+              },
+            ),
+            SizedBox(
+              height: 50.h,
+            ),
           ],
         ),
       ),

@@ -40,7 +40,7 @@ class ChatBottt extends StatelessWidget {
                     border: Border.all(color: Colors.white),
                   ),
                   child: Padding(
-                    padding:EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
                     child: Text(
                       lang.yes,
                       style: theme.textTheme.labelSmall!.copyWith(
@@ -51,8 +51,7 @@ class ChatBottt extends StatelessWidget {
                   ),
                 ),
               ),
-
-               SizedBox(height: 310.h),
+              SizedBox(height: 310.h),
               const ChatAsk(),
             ],
           ),

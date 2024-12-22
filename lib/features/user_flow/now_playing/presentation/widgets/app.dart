@@ -25,6 +25,7 @@ class _AppState extends State<App> {
       length: 2,
       initialIndex: widget.initialTab,
       child: Scaffold(
+
         backgroundColor: const Color(0xFF2E1371).withOpacity(.99),
         appBar: AppBar(
           backgroundColor: const Color(0xFF0F0A2B).withOpacity(.02),
@@ -32,7 +33,8 @@ class _AppState extends State<App> {
           leadingWidth: 30,
           leading: IconButton(
             onPressed: () {
-             navigateTo(context: context, screen:HomeLayout());
+              navigatePop(context: context);
+
             },
             icon: Icon(
               Icons.arrow_back,
@@ -46,21 +48,21 @@ class _AppState extends State<App> {
             decoration: BoxDecoration(
               color: const Color(0xFF0F0A2B).withOpacity(.30),
               borderRadius:
-              BorderRadius.circular(12), // Apply BorderRadius here
+                  BorderRadius.circular(12), // Apply BorderRadius here
             ),
             child: TabBar(
-              dividerColor:Colors.transparent,
+              dividerColor: Colors.transparent,
               labelColor: const Color(0xFFEB68E3), // Selected tab text color
               unselectedLabelColor: Colors.white, // Unselected tab text color
               indicatorColor: const Color(0xFFEB68E3), // Highlight color
               labelStyle: theme.textTheme.labelLarge!.copyWith(fontSize: 15.sp),
               tabs: [
                 Padding(
-                  padding: EdgeInsets.only(right:15.w),
+                  padding: EdgeInsets.only(right: 15.w),
                   child: Tab(text: lang.nowPlaying),
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(right:15.w),
+                  padding: EdgeInsets.only(right: 15.w),
                   child: Tab(text: lang.comingSoon),
                 ),
               ],

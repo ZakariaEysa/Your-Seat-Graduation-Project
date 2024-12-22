@@ -544,7 +544,8 @@ class _SignUpState extends State<SignUp> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   final List<int> days = List<int>.generate(31, (index) => index + 1);
-  final List<int> years = List<int>.generate(80, (index) => DateTime.now().year - index);
+  final List<int> years =
+      List<int>.generate(80, (index) => DateTime.now().year - index);
 
   @override
   Widget build(BuildContext context) {
@@ -593,7 +594,8 @@ class _SignUpState extends State<SignUp> {
                       delay: const Duration(milliseconds: 550),
                       child: Text(
                         local.pleaseFillTheCredentials,
-                        style: theme.textTheme.bodySmall!.copyWith(fontSize: 18.sp),
+                        style: theme.textTheme.bodySmall!
+                            .copyWith(fontSize: 18.sp),
                       ),
                     ),
                   ),
@@ -719,7 +721,8 @@ class _SignUpState extends State<SignUp> {
                       padding: EdgeInsets.only(left: 13.w),
                       child: Text(
                         local.birthDate,
-                        style: theme.textTheme.labelLarge!.copyWith(fontSize: 16.sp),
+                        style: theme.textTheme.labelLarge!
+                            .copyWith(fontSize: 16.sp),
                       ),
                     ),
                   ),
@@ -785,9 +788,11 @@ class _SignUpState extends State<SignUp> {
                               width: 28.w,
                               height: 28.h,
                               decoration: BoxDecoration(
-                                color: agree ? Colors.purple : Colors.transparent,
+                                color:
+                                    agree ? Colors.purple : Colors.transparent,
                                 shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 2.w),
+                                border:
+                                    Border.all(color: Colors.white, width: 2.w),
                               ),
                               child: Icon(
                                 Icons.check,
@@ -799,12 +804,14 @@ class _SignUpState extends State<SignUp> {
                           SizedBox(width: 10.w),
                           Text(
                             local.iAgreeWith,
-                            style: theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                            style: theme.textTheme.bodySmall!
+                                .copyWith(fontSize: 16.sp),
                           ),
                           SizedBox(width: 4.w),
                           InkWell(
                             onTap: () {
-                              navigateTo(context: context, screen: const AboutUs());
+                              navigateTo(
+                                  context: context, screen: const AboutUs());
                             },
                             child: FlickerNeonText(
                               text: local.privacyPolicy,
@@ -831,7 +838,6 @@ class _SignUpState extends State<SignUp> {
                   FadeInUp(
                     delay: const Duration(milliseconds: 550),
                     child: ButtonBuilder(
-
                       image: HiveStorage.get(HiveKeys.isArabic)
                           ? "assets/images/sign_up_arabic.png"
                           : "assets/images/Sign up.png",
@@ -852,7 +858,8 @@ class _SignUpState extends State<SignUp> {
                             screen: const SignIn(),
                           );
                         },
-                        child: Text(local.alreadyHaveAccount, style: theme.textTheme.bodySmall),
+                        child: Text(local.alreadyHaveAccount,
+                            style: theme.textTheme.bodySmall),
                       ),
                     ),
                   ),
@@ -894,7 +901,9 @@ class _SignUpState extends State<SignUp> {
     if (!auth.formKeyRegister.currentState!.validate()) return;
 
     // تحقق من إدخال تاريخ الميلاد بالكامل
-    if (auth.selectedMonth == null || auth.selectedDay == null || auth.selectedYear == null) {
+    if (auth.selectedMonth == null ||
+        auth.selectedDay == null ||
+        auth.selectedYear == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text("Please select your full birth date"),
@@ -923,7 +932,8 @@ class _SignUpState extends State<SignUp> {
       userModel: UserModel(
         name: auth.userName.text,
         password: auth.password.text,
-        dateOfBirth: "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}",
+        dateOfBirth:
+            "${auth.selectedDay}/${auth.selectedMonth}/${auth.selectedYear}",
         email: auth.emailController.text,
         location: "",
         gender: "",

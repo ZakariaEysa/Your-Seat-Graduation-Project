@@ -14,7 +14,7 @@ class ThemeSheet extends StatelessWidget {
     return SizedBox(
       height: 350.h,
       child: Padding(
-        padding:  EdgeInsets.all(35.sp),
+        padding: EdgeInsets.all(35.sp),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -23,27 +23,34 @@ class ThemeSheet extends StatelessWidget {
                 navigatePop(context: context);
               },
               child: Container(
-                padding:  EdgeInsets.all(12.sp),
+                padding: EdgeInsets.all(12.sp),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.r),
-                  border: Border.all(color: Colors.white,width: 3.w)
-                ),
+                    borderRadius: BorderRadius.circular(15.r),
+                    border: Border.all(color: Colors.white, width: 3.w)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(lang.dark,style: theme.textTheme.labelLarge,),
-                    Icon(Icons.check_rounded,color: Colors.white,size: 25.sp,)
+                    Text(
+                      lang.dark,
+                      style: theme.textTheme.labelLarge,
+                    ),
+                    Icon(
+                      Icons.check_rounded,
+                      color: Colors.white,
+                      size: 25.sp,
+                    )
                   ],
                 ),
               ),
             ),
-
-            SizedBox(height: 50.h,),
+            SizedBox(
+              height: 50.h,
+            ),
             GestureDetector(
                 onTap: () {
                   navigatePop(context: context);
                 },
-                child: Text(lang.light,style: theme.textTheme.labelLarge))
+                child: Text(lang.light, style: theme.textTheme.labelLarge))
           ],
         ),
       ),

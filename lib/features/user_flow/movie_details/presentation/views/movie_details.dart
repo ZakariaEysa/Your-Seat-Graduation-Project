@@ -13,7 +13,9 @@ import '../../../home/presentation/views/home_layout.dart';
 import '../widgets/cinema_card.dart';
 
 class MovieDetails extends StatelessWidget {
-  const MovieDetails({super.key,});
+  const MovieDetails({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,6 @@ class MovieDetails extends StatelessWidget {
                             height: 20.h,
                           ),
                           SizedBox(
-
                             width: 10.w,
                           ),
                           Text('4.8 (1.222)',
@@ -105,7 +106,7 @@ class MovieDetails extends StatelessWidget {
                       Row(
                         children: [
                           RatingBar.builder(
-                            initialRating:4,
+                            initialRating: 4,
                             minRating: 1,
                             unratedColor: Color(0xFF575757),
                             ignoreGestures: true,
@@ -113,11 +114,12 @@ class MovieDetails extends StatelessWidget {
                             itemSize: 35,
                             //allowHalfRating: true,
                             itemCount: 5,
-                            itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                            itemPadding:
+                                const EdgeInsets.symmetric(horizontal: 2.0),
                             itemBuilder: (context, _) => Icon(
                               Icons.star,
                               size: 2,
-                              color:Color(0xFFCCC919),
+                              color: Color(0xFFCCC919),
                             ),
                             onRatingUpdate: (rating) {
                               // print(rating);
@@ -360,10 +362,6 @@ class MovieDetails extends StatelessWidget {
   }
 }
 
-
-
-
-
 // // إضافة كومنت لكل الأفلام في الكولكشن
 // Future<void> addCommentToAllMovies() async {
 //   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -418,27 +416,6 @@ class MovieDetails extends StatelessWidget {
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Future<void> addCommentToMovie(String movieId, String userName, String comment, String imageUrl) async {
@@ -466,4 +443,3 @@ class MovieDetails extends StatelessWidget {
 //     print('Error adding comment: $e');
 //   }
 // }
-

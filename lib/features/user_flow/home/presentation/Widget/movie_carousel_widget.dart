@@ -1,5 +1,100 @@
+// import 'package:flutter/material.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'movie_card.dart';
+//
+// class MovieCarouselWidget extends StatefulWidget {
+//   const MovieCarouselWidget({super.key});
+//
+//   @override
+//   _MovieCarouselWidgetState createState() => _MovieCarouselWidgetState();
+// }
+//
+// class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
+//   final PageController _pageController =
+//   PageController(viewportFraction: 0.7, initialPage: 1);
+//   int _currentPage = 1; // Track the current page
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _pageController.addListener(() {
+//       setState(() {
+//         _currentPage = _pageController.page!.round();
+//       });
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Stack(
+//       children: [
+//         Column(
+//           mainAxisAlignment: MainAxisAlignment.end,
+//           children: [
+//             Expanded(
+//               child: PageView.builder(
+//                 controller: _pageController,
+//                 itemCount: 3,
+//                 itemBuilder: (context, index) {
+//                   return AnimatedBuilder(
+//                     animation: _pageController,
+//                     builder: (context, child) {
+//                       double value = 1.0;
+//                       if (_pageController.position.haveDimensions) {
+//                         value = _pageController.page! - index;
+//                         value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
+//                       }
+//                       return Center(
+//                         child: Transform.scale(
+//                           scale: Curves.easeOut.transform(value),
+//                           child: Opacity(
+//                             opacity: _currentPage == index ? 1.0 : 0.5, // Control opacity
+//                             child: child,
+//                           ),
+//                         ),
+//                       );
+//                     },
+//                     child: MovieCard(
+//                       index: index,
+//                       currentPage: 1,
+//                     ),
+//                   );
+//                 },
+//               ),
+//             ),
+//           ],
+//         ),
+//         Positioned(
+//           bottom: 40.h, // Adjust the position of the dots
+//           left: 0,
+//           right: 0,
+//           child: Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: List.generate(3, (index) {
+//               return AnimatedContainer(
+//                 duration: const Duration(milliseconds: 300),
+//                 margin: EdgeInsets.symmetric(horizontal: 5.sp),
+//                 width: _currentPage == index ? 30 : 10,
+//                 height: 8.h,
+//                 decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(5),
+//                   color: _currentPage == index
+//                       ? const Color(0xffFCC434)
+//                       : const Color(0xff2E2E2E),
+//                 ),
+//               );
+//             }),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'movie_card.dart';
 
 class MovieCarouselWidget extends StatefulWidget {
@@ -10,13 +105,14 @@ class MovieCarouselWidget extends StatefulWidget {
 }
 
 class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
-  final PageController _pageController =
-  PageController(viewportFraction: 0.7, initialPage: 1);
-  int _currentPage = 1; // Track the current page
+  final PageController _pageController = PageController(viewportFraction: 0.7, initialPage: 1);
+  int _currentPage = 1;
+  List<Map<String, dynamic>> movies = []; // List to hold movie data
 
   @override
   void initState() {
     super.initState();
+    _fetchMovies();
     _pageController.addListener(() {
       setState(() {
         _currentPage = _pageController.page!.round();
@@ -24,8 +120,25 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
     });
   }
 
+  Future<void> _fetchMovies() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance.collection('playing now films').get();
+      final fetchedMovies = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      setState(() {
+        movies = fetchedMovies;
+      });
+    } catch (e) {
+      print("Error fetching movies: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (movies.isEmpty) {
+      // Show loading spinner if movies are not loaded yet
+      return Center(child: CircularProgressIndicator());
+    }
+
     return Stack(
       children: [
         Column(
@@ -34,7 +147,7 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
-                itemCount: 3,
+                itemCount: 5,
                 itemBuilder: (context, index) {
                   return AnimatedBuilder(
                     animation: _pageController,
@@ -48,15 +161,14 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                         child: Transform.scale(
                           scale: Curves.easeOut.transform(value),
                           child: Opacity(
-                            opacity: _currentPage == index ? 1.0 : 0.5, // Control opacity
+                            opacity: _currentPage == index ? 1.0 : 0.5,
                             child: child,
                           ),
                         ),
                       );
                     },
                     child: MovieCard(
-                      index: index,
-                      currentPage: 1,
+                      movie: movies[index], // Pass movie data to the card
                     ),
                   );
                 },
@@ -65,16 +177,16 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
           ],
         ),
         Positioned(
-          bottom: 40.h, // Adjust the position of the dots
+          bottom: 60.h,
           left: 0,
           right: 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(3, (index) {
+            children: List.generate(5, (index) {
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 margin: EdgeInsets.symmetric(horizontal: 5.sp),
-                width: _currentPage == index ? 30 : 10,
+                width: _currentPage == index ? 40 : 10,
                 height: 8.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),

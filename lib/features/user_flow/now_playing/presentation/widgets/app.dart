@@ -71,7 +71,7 @@ class _AppState extends State<App> {
         ),
         body: const TabBarView(
           children: [
-            NowPLaying(), // The Now Playing page
+            NowPlaying(), // The Now Playing page
             ComingSoons(), // The Coming Soon page
           ],
         ),

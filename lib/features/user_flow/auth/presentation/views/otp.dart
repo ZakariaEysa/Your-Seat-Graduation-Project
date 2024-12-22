@@ -2,7 +2,7 @@ import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/widgets/otp_manager.dart';
+
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
@@ -68,9 +68,9 @@ class Otp extends StatelessWidget {
         ),
         backgroundColor: const Color(0xFF2E1371),
         title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(50,0, 12, 12),
-          child: const HeadAppBar(
-            title: 'OTP',
+          padding: EdgeInsetsDirectional.fromSTEB(33,0 , 0, 15),
+          child:  HeadAppBar(
+            title: 'Confirm OTP code',
           ),
         ),
       ),
@@ -79,7 +79,7 @@ class Otp extends StatelessWidget {
         children: [
           SizedBox(height: 40.h),
           Text(
-            'You just need to enter the OTP\nsent to the registered Email',
+            'Please Enter The 6 Digit Code Sent To Your Email ',
             style: theme.textTheme.bodySmall!.copyWith(fontSize: 20),
             textAlign: TextAlign.center,
           ),

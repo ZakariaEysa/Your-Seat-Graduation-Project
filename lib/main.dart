@@ -23,10 +23,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'features/user_flow/Tickets/presentation/view/tickets_screen.dart';
+
 import 'features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/domain/model/google_user_model.dart';
 import 'features/user_flow/auth/domain/model/user_model.dart';
 import 'features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
+import 'features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 
 
 void main() async {

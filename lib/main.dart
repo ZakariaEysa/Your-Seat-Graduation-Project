@@ -84,7 +84,7 @@ void main() async {
 
   await HiveStorage.init();
 
-  await fetchh();
+  // await fetchh();
 
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(
@@ -168,13 +168,14 @@ class _MyAppState extends State<MyApp> {
               // home:  Otp(),
 
               home: SplashScreen(),
+
             );
           });
     });
   }
 }
 
-Future<void> fetchh() async {
+Future<void> fetch() async {
   final snapshot = await FirebaseFirestore.instance.collection('Movies').get();
   List<Map<String, dynamic>> fetchedMovies =
       snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();

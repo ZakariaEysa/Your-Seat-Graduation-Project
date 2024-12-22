@@ -60,21 +60,21 @@ class MoviesDetailsModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-        'Comments': comments?.map((e) => e.toJson()).toList(),
-        'cast_images': castImages,
-        'cast': cast,
-        'crew': crew?.toJson(),
-        'category': category,
-        'rating': rating,
-        'description': description,
-        'language': language,
-        'age_rating': ageRating,
-        'duration': duration,
-        'name': name,
-        'poster_image': posterImage,
-        'release_date': releaseDate,
-        'trailer': trailer,
-      };
+    'Comments': comments?.map((e) => e.toJson()).toList(),
+    'cast_images': castImages,
+    'cast': cast,
+    'crew': crew?.toJson(),
+    'category': category,
+    'rating': rating,
+    'description': description,
+    'language': language,
+    'age_rating': ageRating,
+    'duration': duration,
+    'name': name,
+    'poster_image': posterImage,
+    'release_date': releaseDate,
+    'trailer': trailer,
+  };
 
   @override
   List<Object?> get props {

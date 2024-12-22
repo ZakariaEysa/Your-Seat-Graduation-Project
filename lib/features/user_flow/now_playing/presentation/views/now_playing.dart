@@ -5,17 +5,18 @@ import 'package:yourseatgraduationproject/features/user_flow/now_playing/present
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 
 class NowPlaying extends StatelessWidget {
   const NowPlaying({super.key});
 
-  Future<List<Map<String, dynamic>>> _fetchMovies() async {
+  Future<List<MoviesDetailsModel>> _fetchMovies() async {
     try {
       final snapshot = await FirebaseFirestore.instance
           .collection('playing now films')
           .get();
       return snapshot.docs
-          .map((doc) => doc.data() as Map<String, dynamic>)
+          .map((doc) => MoviesDetailsModel.fromJson(doc.data()))
           .toList();
     } catch (e) {
       print("Error fetching movies: $e");
@@ -27,7 +28,7 @@ class NowPlaying extends StatelessWidget {
   Widget build(BuildContext context) {
     var lang = S.of(context);
     return ScaffoldF(
-      body: FutureBuilder<List<Map<String, dynamic>>>(
+      body: FutureBuilder<List<MoviesDetailsModel>>(
         future: _fetchMovies(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -41,24 +42,22 @@ class NowPlaying extends StatelessWidget {
           final movies = snapshot.data!;
 
           return Padding(
-            padding: EdgeInsets.only(left: 8.0.w,top: 8.0),
+            padding: EdgeInsets.only(left: 8.0.w,top: 8.0.h),
             child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Number of columns
-                crossAxisSpacing: 10,
-               // mainAxisSpacing: 150,
+                crossAxisSpacing: 10.w,
                 childAspectRatio: 0.45, // Adjust to fit the card design
               ),
               itemCount: movies.length,
               itemBuilder: (context, index) {
                 final movie = movies[index];
                 return PlayingMovies(
-                  rate: movie['rating'].toString(),
-                    duration: movie['duration'],
-                    category: movie['category'],
-                    image: movie['poster_image'],
-                    title: movie['name'],
-                    //rate: movie['rating'],
+                    rate: movie.rating.toString(),
+                    duration: movie.duration??"",
+                    category: movie.category??"",
+                    image: movie.posterImage??"",
+                    title: movie.name??"",
                 );
               },
             ),

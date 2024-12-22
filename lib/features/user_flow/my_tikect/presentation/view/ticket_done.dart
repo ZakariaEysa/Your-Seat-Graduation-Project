@@ -72,7 +72,7 @@ class TicketDone extends StatelessWidget {
             height: 700.h,
             indent: 40.sp,
             endIndent: 40.sp,
-            thickness: .5,
+            thickness: 1,
           ),
 const CenterText(),
           const  QrState()

@@ -36,6 +36,7 @@ import 'features/user_flow/auth/data/model/google_user_model.dart';
 import 'features/user_flow/auth/data/model/user_model.dart';
 import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
+import 'features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -165,6 +166,7 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               builder: BotToastInit(),
               // home:  Otp(),
+
               home: SplashScreen(),
             );
           });

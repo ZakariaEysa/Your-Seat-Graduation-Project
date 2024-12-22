@@ -99,8 +99,8 @@ class TicketCard extends StatelessWidget {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFF08086A),
-                            fixedSize: Size(100, 10),
-                            side: BorderSide(color: Color(0xFFBD1A2F), width: 2), // لون وسمك الحدود
+                            fixedSize: Size(100.w, 10.h),
+                            side: BorderSide(color: Color(0xFFBD1A2F), width: 2.w), // لون وسمك الحدود
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),

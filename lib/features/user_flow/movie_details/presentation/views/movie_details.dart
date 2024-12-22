@@ -387,7 +387,7 @@ class MovieDetails extends StatelessWidget {
 //   ];
 //   // try {
 //   //   // جلب كل الأفلام من الكولكشن
-//   //   QuerySnapshot movieSnapshot = await _firestore.collection('movies').get();
+//   //   QuerySnapshot movieSnapshot = await _firestore.collection('Movies').get();
 
 //   //   // تنفيذ عملية إضافة الكومنت لكل فيلم
 //   //   for (var doc in movieSnapshot.docs) {

@@ -178,24 +178,24 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-Future<void> fetch() async {
-  final snapshot = await FirebaseFirestore.instance.collection('Movies').get();
-  List<MoviesDetailsModel> fetchedMovies = snapshot.docs
-      .map((doc) => MoviesDetailsModel.fromJson(doc.data()))
-      .toList();
-
-  AppLogs.debugLog(fetchedMovies.toString());
-
-  AppLogs.debugLog(fetchedMovies.length.toString());
-
-  AppLogs.errorLog(fetchedMovies[0].toString());
-
-  String formattedMap = JsonEncoder.withIndent('  ').convert(fetchedMovies[0]);
-
-  AppLogs.errorLog(formattedMap);
-
-  AppLogs.scussessLog(fetchedMovies[0].cast.toString());
-
-  AppLogs.errorLog(fetchedMovies[0].crew.toString());
-}
-
+// Future<void> fetch() async {
+//   final snapshot = await FirebaseFirestore.instance.collection('Movies').get();
+//   List<MoviesDetailsModel> fetchedMovies = snapshot.docs
+//       .map((doc) => MoviesDetailsModel.fromJson(doc.data()))
+//       .toList();
+//
+//   AppLogs.debugLog(fetchedMovies.toString());
+//
+//   AppLogs.debugLog(fetchedMovies.length.toString());
+//
+//   AppLogs.errorLog(fetchedMovies[0].toString());
+//
+//   String formattedMap = JsonEncoder.withIndent('  ').convert(fetchedMovies[0]);
+//
+//   AppLogs.errorLog(formattedMap);
+//
+//   AppLogs.scussessLog(fetchedMovies[0].cast.toString());
+//
+//   AppLogs.errorLog(fetchedMovies[0].crew.toString());
+// }
+//

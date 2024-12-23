@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/widgets/director_actor_card.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
@@ -37,7 +38,7 @@ class MovieDetails extends StatelessWidget {
                 children: [
           Stack(children: [
 
-            CachedNetworkImageF(imageUrl: model.posterImage??"",
+            ImageReplacer(imageUrl: model.posterImage??"",
               width: 500.w,
               height: 390.h,
               fit: BoxFit.cover,)
@@ -140,6 +141,8 @@ class MovieDetails extends StatelessWidget {
                               onPressed: () {
 
                                  //TODO: GO TO WATCH TRAILER
+
+                                VideoLauncher.launchYouTubeVideo(model.trailer??"");
 
 
 
@@ -289,10 +292,10 @@ model.description??"",
                     children: [
                       Director(
                           name: model.crew?.director??"",
-                          imagePath: "https://picsum.photos/"),
+                          imagePath: "https://picsum.photos/150/150"),
                       Director(
                           name: model.crew?.producer??"",
-                          imagePath: "https://picsum.photos/"),
+                          imagePath: "https://picsum.photos/150/150"),
 
                       Director(
                           name: model.crew?.writer??"",
@@ -380,3 +383,16 @@ model.description??"",
         ])));
   }
 }
+
+class VideoLauncher {
+  static Future<void> launchYouTubeVideo(String videoUrl) async {
+    final Uri url = Uri.parse(videoUrl);
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $videoUrl';
+    }
+  }
+}
+

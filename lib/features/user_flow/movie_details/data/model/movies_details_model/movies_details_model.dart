@@ -4,7 +4,7 @@ import 'comment.dart';
 import 'crew.dart';
 
 class MoviesDetailsModel extends Equatable {
-  final List<Comment>? comments;
+  // final List<Comment>? comments;
   final List<dynamic>? castImages;
   final List<dynamic>? cast;
   final Crew? crew;
@@ -20,7 +20,7 @@ class MoviesDetailsModel extends Equatable {
   final String? trailer;
 
   const MoviesDetailsModel({
-    this.comments,
+    // this.comments,
     this.castImages,
     this.cast,
     this.crew,
@@ -38,9 +38,9 @@ class MoviesDetailsModel extends Equatable {
 
   factory MoviesDetailsModel.fromJson(Map<String, dynamic> json) {
     return MoviesDetailsModel(
-      comments: (json['Comments'] as List<dynamic>?)
-          ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      // comments: (json['Comments'] as List<dynamic>?)
+      //     ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
+      //     .toList(),
       castImages: json['cast_images'] as List<dynamic>?,
       cast: json['cast'] as List<dynamic>?,
       crew: json['crew'] == null
@@ -60,7 +60,7 @@ class MoviesDetailsModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-    'Comments': comments?.map((e) => e.toJson()).toList(),
+    // 'Comments': comments?.map((e) => e.toJson()).toList(),
     'cast_images': castImages,
     'cast': cast,
     'crew': crew?.toJson(),
@@ -79,7 +79,7 @@ class MoviesDetailsModel extends Equatable {
   @override
   List<Object?> get props {
     return [
-      comments,
+      // comments,
       castImages,
       cast,
       crew,

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../../movie_details/presentation/views/movie_details.dart';
 import '../widgets/coming_movies.dart';
 import '../widgets/playing_movies.dart';
 
@@ -60,12 +62,20 @@ class _ComingSoonsState extends State<ComingSoons> {
               itemCount: movies.length,
               itemBuilder: (context, index) {
                 final movie = movies[index];
-                return PlayingMovies(
-                  rate: movie.rating.toString(),
-                  duration: movie.duration ?? "",
-                  category: movie.category ?? "",
-                  image: movie.posterImage ?? "",
-                  title: movie.name ?? "",
+                return GestureDetector(
+                  onTap: (){
+                    navigateTo(context: context, screen: MovieDetails(model: movie,));
+
+
+                  },
+
+                  child: PlayingMovies(
+                    rate: movie.rating.toString(),
+                    duration: movie.duration ?? "",
+                    category: movie.category ?? "",
+                    image: movie.posterImage ?? "",
+                    title: movie.name ?? "",
+                  ),
                 );
               },
             ),

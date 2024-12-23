@@ -37,7 +37,7 @@ class MovieDetails extends StatelessWidget {
                 children: [
           Stack(children: [
 
-            CachedNetworkImageF(imageUrl: model.posterImage??"",
+            ImageReplacer(imageUrl: model.posterImage??"",
               width: 500.w,
               height: 390.h,
               fit: BoxFit.cover,)
@@ -289,10 +289,10 @@ model.description??"",
                     children: [
                       Director(
                           name: model.crew?.director??"",
-                          imagePath: "https://picsum.photos/"),
+                          imagePath: "https://picsum.photos/150/150"),
                       Director(
                           name: model.crew?.producer??"",
-                          imagePath: "https://picsum.photos/"),
+                          imagePath: "https://picsum.photos/150/150"),
 
                       Director(
                           name: model.crew?.writer??"",

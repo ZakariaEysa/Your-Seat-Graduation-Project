@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class CachedNetworkImageF extends StatelessWidget {
-  const CachedNetworkImageF({
+class ImageReplacer extends StatelessWidget {
+  const ImageReplacer({
     super.key,
     required this.imageUrl,
     this.width,
@@ -84,4 +84,4 @@ class CachedNetworkImageF extends StatelessWidget {
   }
 }
 
-//ImageReplacer
+//

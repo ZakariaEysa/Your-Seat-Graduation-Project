@@ -34,7 +34,7 @@ class Director extends StatelessWidget {
 
             Padding(
               padding:  EdgeInsetsDirectional.only(start: 5.w),
-              child: CachedNetworkImageF(imageUrl: imagePath, fit: BoxFit.fill,isCircle: true,
+              child: ImageReplacer(imageUrl: imagePath, fit: BoxFit.fill,isCircle: true,
 
               width: 50.w,
                 height: 50.h,

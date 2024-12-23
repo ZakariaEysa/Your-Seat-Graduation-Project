@@ -6,7 +6,7 @@ class TicketCard extends StatelessWidget {
   final Ticket ticket;
   final bool isFirstTicket; // Add this to track if it's the first ticket
 
-  TicketCard({required this.ticket, this.isFirstTicket = false}); // Def
+  const TicketCard({super.key, required this.ticket, this.isFirstTicket = false}); // Def
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class TicketCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 15),
       color: Color(0xFF0E0643),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Container(
-        height: 175.h,
+      child: SizedBox(
+        height: 185.h,
 
         child: Row(
           children: [

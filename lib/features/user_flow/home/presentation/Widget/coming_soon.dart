@@ -61,6 +61,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../../../../../utils/navigation.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../../movie_details/presentation/views/movie_details.dart';
 import 'coming_card.dart';
 
 class ComingSoon extends StatefulWidget {
@@ -111,14 +114,21 @@ class _ComingSoonState extends State<ComingSoon> {
       itemCount: 5,
       itemBuilder: (context, index) {
         final movie = movies[index];
-        return Padding(
-          padding: const EdgeInsets.all(5),
-          child: ComingCard(
-            title: movie['name'] ?? 'Unknown Title',
-            genre: movie['category'] ?? 'Unknown Category',
-            date: movie['release_date'] ?? 'Unknown Date',
-            imageUrl:
-                movie['poster_image'] ?? 'https://via.placeholder.com/300',
+        return GestureDetector(
+          onTap: (){
+            navigateTo(context: context, screen: MovieDetails(model: MoviesDetailsModel.fromJson(movies[index]),));
+
+
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(5),
+            child: ComingCard(
+              title: movie['name'] ?? 'Unknown Title',
+              genre: movie['category'] ?? 'Unknown Category',
+              date: movie['release_date'] ?? 'Unknown Date',
+              imageUrl:
+                  movie['poster_image'] ?? 'https://via.placeholder.com/300',
+            ),
           ),
         );
       },

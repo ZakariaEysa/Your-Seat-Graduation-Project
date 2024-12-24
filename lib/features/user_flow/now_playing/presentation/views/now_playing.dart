@@ -57,10 +57,9 @@ class NowPlaying extends StatelessWidget {
                 return GestureDetector(
                   onTap: (){
                     navigateTo(context: context, screen: MovieDetails(model:movie,));
-
-
                   },
                   child: PlayingMovies(
+                      movies: movie,
                       rate: movie.rating.toString(),
                       duration: movie.duration??"",
                       category: movie.category??"",

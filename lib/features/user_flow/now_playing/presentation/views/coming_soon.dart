@@ -70,6 +70,7 @@ class _ComingSoonsState extends State<ComingSoons> {
                   },
 
                   child: PlayingMovies(
+                    movies: movie,
                     rate: movie.rating.toString(),
                     duration: movie.duration ?? "",
                     category: movie.category ?? "",

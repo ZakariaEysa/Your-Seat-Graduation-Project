@@ -280,6 +280,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signin": MessageLookupByLibrary.simpleMessage("Sign In"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "sorryNoWatchListMoviesYet": MessageLookupByLibrary.simpleMessage(
+            "Sorry No WatchList Movies Yet"),
         "startUsingTheApp":
             MessageLookupByLibrary.simpleMessage("Start Using the App ->"),
         "storeCardForFutureUse":

@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
@@ -33,6 +34,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'features/user_flow/Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
 import 'features/user_flow/auth/data/model/google_user_model.dart';
 import 'features/user_flow/auth/data/model/user_model.dart';
 import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
@@ -40,6 +42,7 @@ import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
 import 'features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -111,6 +114,7 @@ void main() async {
   }
   runApp(MultiBlocProvider(
     providers: [
+      ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
       BlocProvider<SwitchLanguageCubit>(
         create: (context) => SwitchLanguageCubit(),
       ),

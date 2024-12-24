@@ -277,6 +277,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_up": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "signin": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
+        "sorryNoWatchListMoviesYet": MessageLookupByLibrary.simpleMessage(
+            "عذرًا لا توجد أفلام في قائمة المشاهدة حتى الآن"),
         "startUsingTheApp":
             MessageLookupByLibrary.simpleMessage("ابدا في استخدام التطبيق"),
         "storeCardForFutureUse": MessageLookupByLibrary.simpleMessage(

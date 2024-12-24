@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
-import 'package:yourseatgraduationproject/features/user_flow/card/presentation/widgets/card_part.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/widgets/card_part.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment_done/presentation/views/payment_successful.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_successful.dart';
 
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
@@ -14,14 +14,14 @@ import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 import '../../../auth/presentation/views/otp.dart';
 
-class Carrd extends StatefulWidget {
-  const Carrd({super.key});
+class PaymentCard extends StatefulWidget {
+  const PaymentCard({super.key});
 
   @override
-  State<Carrd> createState() => _CarrdState();
+  State<PaymentCard> createState() => _PaymentCardState();
 }
 
-class _CarrdState extends State<Carrd> {
+class _PaymentCardState extends State<PaymentCard> {
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {

@@ -16,10 +16,10 @@ import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
-import '../../../auth/data/remote_data_source/auth_remote_data_source.dart';
-import '../../../auth/data/repos_impl/auth_repo_impl.dart';
-import '../../../auth/presentation/cubit/auth_cubit.dart';
-import '../../../forget/presentation/views/forget.dart';
+import '../../data/remote_data_source/auth_remote_data_source.dart';
+import '../../data/repos_impl/auth_repo_impl.dart';
+import '../cubit/auth_cubit.dart';
+import 'forget.dart';
 
 class NewPassword extends StatefulWidget {
   const NewPassword({super.key});

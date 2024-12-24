@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/widgets/payment_part.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment_policy/presentation/views/payment_policy.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_policy.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../card/presentation/views/card.dart';
+import 'card.dart';
 
 class Payment extends StatelessWidget {
   const Payment({super.key});
@@ -67,7 +67,7 @@ class Payment extends StatelessWidget {
                       Spacer(),
                       IconButton(
                           onPressed: () {
-                            navigateTo(context: context, screen: Carrd());
+                            navigateTo(context: context, screen: PaymentCard());
                           },
                           icon: Icon(
                             Icons.arrow_forward_ios_sharp,

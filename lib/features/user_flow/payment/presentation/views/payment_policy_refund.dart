@@ -6,7 +6,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../../payment/presentation/views/payment.dart';
+import 'payment.dart';
 import '../widgets/payment_policy_part.dart';
 
 class PaymentPolicyRefund extends StatefulWidget {

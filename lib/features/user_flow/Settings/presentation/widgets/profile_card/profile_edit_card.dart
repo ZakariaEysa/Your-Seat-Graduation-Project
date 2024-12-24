@@ -17,7 +17,6 @@ import '../../../../../../utils/navigation.dart';
 import '../../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../auth/data/model/user_model.dart';
 import '../../../../auth/presentation/widgets/BirthDateDropdown.dart';
-
 class ProfileEditCard extends StatefulWidget {
   const ProfileEditCard({super.key});
 
@@ -28,7 +27,7 @@ class ProfileEditCard extends StatefulWidget {
 class _ProfileEditCardState extends State<ProfileEditCard> {
   final List<int> days = List<int>.generate(31, (index) => index + 1);
   final List<int> years =
-      List<int>.generate(80, (index) => DateTime.now().year - index);
+  List<int>.generate(80, (index) => DateTime.now().year - index);
   final List<String> months = [
     "January",
     "February",
@@ -90,32 +89,75 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
 
     userController.text = currentUser.name;
-    emailController.text = currentUser.email;
     selectedGender =
-        gender.contains(currentUser.gender) ? currentUser.gender : null;
+    gender.contains(currentUser.gender) ? currentUser.gender : null;
     selectedImageBase64 = currentUser.image;
+  }
+
+  // دالة للتحقق من صحة بيانات Base64
+  bool _isValidBase64(String? base64String) {
+    if (base64String == null || base64String.isEmpty) {
+      return false;
+    }
+    try {
+      base64Decode(base64String);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   Future<void> updateProfile() async {
     try {
       var userDoc = FirebaseFirestore.instance
           .collection('users')
-          .doc(currentUser.emailController);
-      await userDoc.update({
-        'name': userController.text,
-        'dateOfBirth': '$selectedDay/$selectedMonth/$selectedYear',
-        "image": selectedImageBase64 ?? "",
-        "gender": selectedGender,
-        "location": "",
-      });
+          .doc(currentUser.email);
 
+      // إعداد الحقول التي سيتم تحديثها فقط إذا تغيرت
+      Map<String, dynamic> updatedData = {};
+
+      if (userController.text.isNotEmpty && userController.text != currentUser.name) {
+        updatedData['name'] = userController.text;
+      }
+
+      if (selectedDay != null && selectedMonth != null && selectedYear != null) {
+        String newDateOfBirth = '$selectedDay/$selectedMonth/$selectedYear';
+        if (newDateOfBirth != currentUser.dateOfBirth) {
+          updatedData['dateOfBirth'] = newDateOfBirth;
+        }
+      }
+
+      if (selectedGender != null && selectedGender != currentUser.gender) {
+        updatedData['gender'] = selectedGender;
+      }
+
+      if (!_isValidBase64(selectedImageBase64)) {
+        selectedImageBase64 = ""; // إذا كانت الصورة غير صالحة، يتم تفريغها
+      }
+
+      if (selectedImageBase64 != currentUser.image) {
+        updatedData['image'] = selectedImageBase64 ?? "";
+      }
+
+      // إذا لم يكن هناك تغييرات، أوقف العملية
+      if (updatedData.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("No changes detected")),
+        );
+        return;
+      }
+
+      // تحديث البيانات في Firestore
+      await userDoc.update(updatedData);
+
+      // تحديث البيانات في Hive
       HiveStorage.saveDefaultUser(UserModel(
-        name: userController.text,
-        email: emailController.text,
-        password: passwordController.text,
-        dateOfBirth: '$selectedDay/$selectedMonth/$selectedYear',
-        gender: selectedGender,
-        image: selectedImageBase64 ?? "",
+        name: updatedData['name'] ?? currentUser.name,
+        email: currentUser.email,
+        password: currentUser.password, // نستخدم القيم الحالية
+        dateOfBirth: updatedData['dateOfBirth'] ?? currentUser.dateOfBirth,
+        gender: updatedData['gender'] ?? currentUser.gender,
+        image: updatedData['image'] ?? currentUser.image,
       ));
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -127,6 +169,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Something Went Wrong")),
       );
+      AppLogs.errorLog("Update profile failed: $e");
     }
   }
 
@@ -147,7 +190,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
                   final XFile? image =
-                      await picker.pickImage(source: ImageSource.gallery);
+                  await picker.pickImage(source: ImageSource.gallery);
                   if (image != null) {
                     final bytes = await File(image.path).readAsBytes();
                     setState(() {
@@ -159,12 +202,12 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
               ListTile(
                 leading: const Icon(Icons.camera_alt, color: Colors.white),
                 title:
-                    const Text('Camera', style: TextStyle(color: Colors.white)),
+                const Text('Camera', style: TextStyle(color: Colors.white)),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
                   final XFile? image =
-                      await picker.pickImage(source: ImageSource.camera);
+                  await picker.pickImage(source: ImageSource.camera);
                   if (image != null) {
                     final bytes = await File(image.path).readAsBytes();
                     setState(() {
@@ -210,7 +253,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
+                    EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -224,7 +267,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           title: "",
                         ),
                         SizedBox(height: 15.h),
-                        _buildLabel(theme, lang.emailAddress),
+                        _buildLabel(theme, lang.emailAddress ),
                         SizedBox(height: 15.h),
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 12.w),
@@ -236,7 +279,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                             borderRadius: BorderRadius.circular(23.r),
                             color: theme.colorScheme.onSecondary,
                           ),
-                          child: Text(emailController.text),
+                          child: Text(currentUser.email),
                         ),
                         SizedBox(height: 15.h),
                         _buildLabel(theme, lang.birthDate),
@@ -247,30 +290,30 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                             Expanded(
                               child: _buildDropdown(
                                   lang.month, selectedMonth, months,
-                                  (String? newValue) {
-                                setState(() {
-                                  selectedMonth = newValue;
-                                });
-                              }),
+                                      (String? newValue) {
+                                    setState(() {
+                                      selectedMonth = newValue;
+                                    });
+                                  }),
                             ),
                             SizedBox(width: 10.w),
                             Expanded(
                               child: _buildDropdown(lang.day, selectedDay, days,
-                                  (int? newValue) {
-                                setState(() {
-                                  selectedDay = newValue;
-                                });
-                              }),
+                                      (int? newValue) {
+                                    setState(() {
+                                      selectedDay = newValue;
+                                    });
+                                  }),
                             ),
                             SizedBox(width: 10.w),
                             Expanded(
                               child:
-                                  _buildDropdown(lang.year, selectedYear, years,
+                              _buildDropdown(lang.year, selectedYear, years,
                                       (int? newValue) {
-                                setState(() {
-                                  selectedYear = newValue;
-                                });
-                              }),
+                                    setState(() {
+                                      selectedYear = newValue;
+                                    });
+                                  }),
                             ),
                           ],
                         ),
@@ -278,11 +321,11 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                         _buildLabel(theme, lang.gender),
                         SizedBox(height: 15.h),
                         _buildDropdown(lang.gender, selectedGender, gender,
-                            (String? newValue) {
-                          setState(() {
-                            selectedGender = newValue;
-                          });
-                        }),
+                                (String? newValue) {
+                              setState(() {
+                                selectedGender = newValue;
+                              });
+                            }),
                         SizedBox(height: 45.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -291,7 +334,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                               HiveStorage.get(HiveKeys.isArabic)
                                   ? "assets/images/cancel_arabic.png"
                                   : "assets/images/Cancel.png",
-                              () => navigatePop(context: context),
+                                  () => navigatePop(context: context),
                             ),
                             _buildButton(
                               HiveStorage.get(HiveKeys.isArabic)
@@ -312,10 +355,10 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   children: [
                     CircleAvatar(
                       radius: 80.r,
-                      backgroundImage: selectedImageBase64 != null
+                      backgroundImage: _isValidBase64(selectedImageBase64)
                           ? MemoryImage(base64Decode(selectedImageBase64!))
-                          : const AssetImage("assets/images/film1.png")
-                              as ImageProvider,
+                          : const AssetImage("assets/images/account.png")
+                      as ImageProvider,
                     ),
                     Positioned(
                       bottom: 0,

@@ -142,7 +142,7 @@ class _ProfileCardState extends State<ProfileCard> {
               backgroundImage:
                   currentUser?.image != null && currentUser.image.isNotEmpty
                       ? MemoryImage(base64Decode(currentUser.image))
-                      : const AssetImage("assets/images/film1.png")
+                      : const AssetImage("assets/images/account.png")
                           as ImageProvider,
             ),
           ),

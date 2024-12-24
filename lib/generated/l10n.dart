@@ -1248,6 +1248,16 @@ class S {
     );
   }
 
+  /// `Sorry No WatchList Movies Yet`
+  String get sorryNoWatchListMoviesYet {
+    return Intl.message(
+      'Sorry No WatchList Movies Yet',
+      name: 'sorryNoWatchListMoviesYet',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Are you sure you want to log out ?`
   String get areYouSureYouWantToLogOut {
     return Intl.message(

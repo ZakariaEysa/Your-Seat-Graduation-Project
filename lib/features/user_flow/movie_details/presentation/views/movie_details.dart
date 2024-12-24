@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/widgets/director_actor_card.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/widgets/network_image/cached_network_image_f.dart';
+import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
@@ -44,7 +44,7 @@ class MovieDetails extends StatelessWidget {
               fit: BoxFit.cover,)
           ,
             Padding(
-              padding: EdgeInsets.only(top: 50.h),
+              padding: EdgeInsetsDirectional.only(top: 50.h),
               child: IconButton(
                   onPressed: () {
                     navigateTo(context: context, screen: const HomeLayout());
@@ -179,7 +179,7 @@ class MovieDetails extends StatelessWidget {
             ),
           ]),
           Padding(
-            padding: EdgeInsets.only(left: 16.w, top: 20.h),
+            padding: EdgeInsetsDirectional.only(start: 16.w, top: 20.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -289,17 +289,19 @@ model.description??"",
                  SingleChildScrollView(
                    scrollDirection: Axis.horizontal,
                    child: Row(
+
                     children: [
                       Director(
                           name: model.crew?.director??"",
                           imagePath: "https://picsum.photos/150/150"),
                       Director(
                           name: model.crew?.producer??"",
-                          imagePath: "https://picsum.photos/150/150"),
+
+                          imagePath: "https://picsum.photos/150/130"),
 
                       Director(
                           name: model.crew?.writer??"",
-                          imagePath: "assets/images/director2.png"),
+                          imagePath: "https://picsum.photos/150/120"),
                     ],
                                    ),
                  ),

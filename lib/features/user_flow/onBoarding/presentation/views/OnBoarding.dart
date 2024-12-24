@@ -8,10 +8,10 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/c
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
-import '../../../data/hive_keys.dart';
-import '../../../widgets/button/button_builder.dart';
-import '../../../widgets/scaffold/scaffold_f.dart';
-import 'OnboardingContent.dart';
+import '../../../../../data/hive_keys.dart';
+import '../../../../../widgets/button/button_builder.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../widgets/OnboardingContent.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});

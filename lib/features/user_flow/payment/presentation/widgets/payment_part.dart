@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/card/presentation/views/card.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/card.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 
 import '../../../../../generated/l10n.dart';

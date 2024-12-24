@@ -20,7 +20,7 @@ import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../../forget/presentation/views/forget.dart';
+import 'forget.dart';
 import '../../data/model/user_model.dart';
 
 class SignIn extends StatefulWidget {

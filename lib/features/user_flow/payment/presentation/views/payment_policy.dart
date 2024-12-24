@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment_policy/presentation/widgets/payment_policy_part.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/widgets/payment_policy_part.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 

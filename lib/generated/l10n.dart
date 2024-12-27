@@ -1718,10 +1718,10 @@ class S {
     );
   }
 
-  /// `Total :`
+  /// `Total`
   String get total {
     return Intl.message(
-      'Total :',
+      'Total',
       name: 'total',
       desc: '',
       args: [],
@@ -1991,6 +1991,106 @@ class S {
     return Intl.message(
       'Rahaf',
       name: 'rahaf1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Roaa`
+  String get Roaa {
+    return Intl.message(
+      'Roaa',
+      name: 'Roaa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Seat`
+  String get selectSeat {
+    return Intl.message(
+      'Select Seat',
+      name: 'selectSeat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available`
+  String get available {
+    return Intl.message(
+      'Available',
+      name: 'available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reserved`
+  String get reserved {
+    return Intl.message(
+      'Reserved',
+      name: 'reserved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selected`
+  String get selected {
+    return Intl.message(
+      'Selected',
+      name: 'selected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Seat Selected is VIP.`
+  String get theSeatSelectedIsVIP {
+    return Intl.message(
+      'The Seat Selected is VIP.',
+      name: 'theSeatSelectedIsVIP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Date & Time`
+  String get selectDateTime {
+    return Intl.message(
+      'Select Date & Time',
+      name: 'selectDateTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EGP`
+  String get egp {
+    return Intl.message(
+      'EGP',
+      name: 'egp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy Ticket`
+  String get buyTicket {
+    return Intl.message(
+      'Buy Ticket',
+      name: 'buyTicket',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Roaa1`
+  String get Roaa1 {
+    return Intl.message(
+      'Roaa1',
+      name: 'Roaa1',
       desc: '',
       args: [],
     );

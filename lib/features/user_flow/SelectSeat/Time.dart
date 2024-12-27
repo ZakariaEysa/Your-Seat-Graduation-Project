@@ -10,7 +10,7 @@ class Time extends StatefulWidget {
 
 class _TimeState extends State<Time> {
   final List<String> times = ['11:05', '14:15', '16:30', '17:00', '20:20'];
-  int _selectedTimeIndex = -1;
+  int _selectedTimeIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _TimeState extends State<Time> {
                     ? const Color(0xFF321131)
                     : const Color(0xFF1E1E1E),
                 border: _selectedTimeIndex == index
-                    ? Border.all(color: const Color(0xFF09FBD3), width: 2)
+                    ? Border.all(color: const Color(0xFF09FBD3), width: 2.w)
                     : null,
                 borderRadius: BorderRadius.circular(30),
               ),

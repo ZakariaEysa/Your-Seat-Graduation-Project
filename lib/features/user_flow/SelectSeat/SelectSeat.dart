@@ -5,6 +5,7 @@ import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../home/presentation/views/home_screen.dart';
 import 'Date.dart';
+import 'Time.dart';
 import 'left.dart';
 import 'right.dart';
 
@@ -45,7 +46,6 @@ class _SelectSeatState extends State<SelectSeat> {
               height: 3.h,
               color: const Color(0xFFF834FC),
             ),
-
             Center(
               child: Image.asset(
                 "assets/images/shadwo.png",
@@ -54,17 +54,15 @@ class _SelectSeatState extends State<SelectSeat> {
                 fit: BoxFit.cover,
               ),
             ),
-
             Row(
               children: [
                 SizedBox(width: 10.w),
-                 Left(),
+                Left(),
                 SizedBox(width: 12.w),
-                 Right(),
+                Right(),
               ],
             ),
             SizedBox(height: 15.h),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -74,7 +72,6 @@ class _SelectSeatState extends State<SelectSeat> {
               ],
             ),
             SizedBox(height: 10.h),
-
             Row(
               children: [
                 Image.asset(
@@ -89,7 +86,6 @@ class _SelectSeatState extends State<SelectSeat> {
               ],
             ),
             SizedBox(height: 10.h),
-
             Center(
               child: Text(
                 'Select Date & Time',
@@ -101,54 +97,13 @@ class _SelectSeatState extends State<SelectSeat> {
               ),
             ),
             SizedBox(height: 5.h),
-
             Date(),
-
-
-        SizedBox(height: 10.h,),
-
             SizedBox(
-              height: 60.h,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: times.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedTimeIndex = index;
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 3.w),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 30.w),
-                      decoration: BoxDecoration(
-                        color: _selectedTimeIndex == index
-                            ? const Color(0xFF321131)
-                            : const Color(0xFF1E1E1E),
-                        border: _selectedTimeIndex == index
-                            ? Border.all(color: const Color(0xFF09FBD3), width: 2)
-                            : null,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Center(
-                        child: Text(
-                          times[index],
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+              height: 10.h,
             ),
-          //  SizedBox(height: 6.h),
-
+            Time(),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:  EdgeInsets.all(16.0.sp),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -157,7 +112,8 @@ class _SelectSeatState extends State<SelectSeat> {
                     children: [
                       Text(
                         'Total',
-                        style: theme.textTheme.bodySmall?.copyWith(fontSize: 20.sp),
+                        style: theme.textTheme.bodySmall
+                            ?.copyWith(fontSize: 20.sp),
                       ),
                       Text(
                         '210.000 EGP',
@@ -169,9 +125,7 @@ class _SelectSeatState extends State<SelectSeat> {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF09FBD3),
                       minimumSize: Size(155.w, 42.h),

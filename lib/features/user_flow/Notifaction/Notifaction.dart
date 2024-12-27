@@ -17,6 +17,7 @@ class Notifaction extends StatelessWidget {
         title: const HeadAppBar(
           title: 'Notification',
         ),
+
         backgroundColor: Color(0xFF2E1371),
       ),
       body: Column(

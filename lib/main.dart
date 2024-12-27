@@ -7,6 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Notifaction/Notifaction.dart';
+import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/DateSelector.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/settings_screen.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
@@ -16,6 +18,8 @@ import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
+import 'features/user_flow/SelectSeat/Date.dart';
+import 'features/user_flow/SelectSeat/SelectSeat.dart';
 import 'features/user_flow/Splash_screen/splash_screen.dart';
 import 'features/user_flow/auth/data/remote_data_source/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/domain/repos_impl/auth_repo_impl.dart';
@@ -84,31 +88,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
         builder: (context, state) {
-      return ScreenUtilInit(
-          designSize: const Size(375, 812),
-          minTextAdapt: true,
-          useInheritedMediaQuery: true,
-          ensureScreenSize: true,
-          splitScreenMode: true,
-          builder: (_, child) {
-            return MaterialApp(
-              theme: ApplicationTheme.darkTheme,
-              locale: HiveStorage.get(HiveKeys.isArabic)
-                  ? const Locale('ar')
-                  : const Locale('en'),
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              debugShowCheckedModeBanner: false,
-              builder: BotToastInit(),
-              // home:  Otp(),
-              home: const SplashScreen(),
-            );
-          });
-    });
+          return ScreenUtilInit(
+              designSize: const Size(375, 812),
+              minTextAdapt: true,
+              useInheritedMediaQuery: true,
+              ensureScreenSize: true,
+              splitScreenMode: true,
+              builder: (_, child) {
+                return MaterialApp(
+                  theme: ApplicationTheme.darkTheme,
+                  locale: HiveStorage.get(HiveKeys.isArabic)
+                      ? const Locale('ar')
+                      : const Locale('en'),
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  debugShowCheckedModeBanner: false,
+                  builder: BotToastInit(),
+                 home: SelectSeat(),
+                //home:Date(),
+                );
+              });
+        });
   }
 }

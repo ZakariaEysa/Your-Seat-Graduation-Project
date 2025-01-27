@@ -875,7 +875,7 @@ class _SignUpState extends State<SignUp> {
               }
               if (state is AuthSuccess) {
                 AppLogs.scussessLog("create");
-                HiveStorage.set(HiveKeys.role, Role.email.toString());
+                // HiveStorage.set(HiveKeys.role, Role.email.toString());
                 navigateAndRemoveUntil(context: context, screen: Otp());
               }
             },

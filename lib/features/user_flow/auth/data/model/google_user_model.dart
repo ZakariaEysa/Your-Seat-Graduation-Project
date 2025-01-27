@@ -1,6 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive/hive.dart';
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
 
 part 'google_user_model.g.dart'; // Required for Hive adapter generation
 
@@ -20,8 +23,10 @@ class GoogleUserModel extends Equatable {
 
   @HiveField(4)
   final String? image; // Optional, sourced from photoURL in Firebase
+
   @HiveField(5)
   final String? gender; // Optional, sourced from photoURL in Firebase
+
   @HiveField(6)
   final String? location; // Optional, sourced from photoURL in Firebase
 
@@ -36,16 +41,43 @@ class GoogleUserModel extends Equatable {
   });
 
   // Factory constructor to create a GoogleUserModel from a Firebase User object
-  factory GoogleUserModel.fromFirebaseUser(User user) {
+  static Future<GoogleUserModel> fromFirebaseUser(User user) async {
+    String base64Image = '';
+
+    if (user.photoURL != null && user.photoURL!.isNotEmpty) {
+      base64Image = await convertImageToBase64(user.photoURL!);
+    }
+
     return GoogleUserModel(
       name: user.displayName ?? 'Unknown',
       email: user.email ?? 'Unknown',
-      password: null, // Firebase doesn't expose passwords
-      dateOfBirth: null, // To be set manually if required
-      image: user.photoURL ?? '', // Firebase's photoURL property
+      password: "", // Firebase doesn't expose passwords
+      dateOfBirth: "", // To be set manually if required
+      image:
+          base64Image.isNotEmpty ? base64Image : '', // Base64 or empty string
       gender: null, // To be set manually if required
-      location: null, // To be set manually if required
+      location: "", // To be set manually if required
     );
+  }
+
+  // Function to convert an image URL to Base64
+  static Future<String> convertImageToBase64(String imageUrl) async {
+    try {
+      // تحميل الصورة كبيانات من الرابط
+      final response = await http.get(Uri.parse(imageUrl));
+
+      if (response.statusCode == 200) {
+        // تحويل البيانات إلى Base64
+        Uint8List imageBytes = response.bodyBytes;
+        String base64String = base64Encode(imageBytes);
+        return base64String;
+      } else {
+        throw Exception('فشل تحميل الصورة');
+      }
+    } catch (e) {
+      print('Error: $e');
+      return '';
+    }
   }
 
   @override

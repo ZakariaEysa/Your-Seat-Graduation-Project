@@ -139,18 +139,20 @@
 
 
   "Esam" : "Esam",
-  "home": "Home",
 
+  "home": "Home",
   "watchlist":"Watch List",
   "settings": "Settings",
-
-
   "tickets": "Tickets",
   "askmehere": "ask me here...",
   "HelloIamyourAIAssistant":"Hello , I’m your AI\nAssistant !",
   "typing": "typing...",
   "canyouhelp": "can i help you?",
   "yes": " Yes",
+  "ConfirmOTPcode" : "Confirm OTP code",
+  "PleaseEnterThe6DigitCodeSentToYourEmail": "Please Enter The 6 Digit Code Sent To Your Email",
+  "Resendlimitreachedfortoday": "Resend limit reached for today.",
+  "Resend": "Resend!",
   "Esam1" : "Esam",
 
   "rahaf": "Rahaf",

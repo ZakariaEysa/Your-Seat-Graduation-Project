@@ -6,8 +6,8 @@ class OtpFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode currentFocus;
   final FocusNode? nextFocus;
-  final Function({required String value, required FocusNode focusNode})
-      nextField;
+  final Function({required String value, required FocusNode focusNode}) nextField;
+  final bool autofocus; // إضافة خاصية التركيز التلقائي
 
   const OtpFieldWidget({
     Key? key,
@@ -15,6 +15,7 @@ class OtpFieldWidget extends StatelessWidget {
     required this.currentFocus,
     required this.nextFocus,
     required this.nextField,
+    this.autofocus = false, // قيمة افتراضية
   }) : super(key: key);
 
   @override
@@ -27,11 +28,16 @@ class OtpFieldWidget extends StatelessWidget {
         keyboardType: TextInputType.number,
         textAlign: TextAlign.center,
         maxLength: 1,
+        autofocus: autofocus, // استخدام خاصية التركيز التلقائي
         onChanged: (value) {
-          nextField(value: value, focusNode: nextFocus ?? FocusNode());
+          if (value.isNotEmpty) {
+            if (nextFocus != null) {
+              nextFocus?.requestFocus();
+            }
+          }
         },
         inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly, // قبول الأرقام فقط
+          FilteringTextInputFormatter.digitsOnly, // Allow only digits
         ],
         decoration: InputDecoration(
           filled: true,
@@ -51,6 +57,7 @@ class OtpFieldWidget extends StatelessWidget {
           counterText: "",
         ),
         style: const TextStyle(color: Colors.white, fontSize: 18),
+        textDirection: TextDirection.ltr, // Force left-to-right text direction
       ),
     );
   }

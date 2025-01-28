@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Tickets/presentation/widget/dashed_line_painter.dart';
-import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/widget/center_text.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
-
+import '../widget/dashed_line_painter.dart';
 import '../widget/head_myticket.dart';
 import '../widget/qr_state.dart';
 
@@ -14,21 +12,29 @@ class TicketDone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Initializing ScreenUtil to get screen size
+    ScreenUtil.init(context, designSize: Size(375, 812), minTextAdapt: true);
+
     return ScaffoldF(
       appBar: AppBar(
         backgroundColor: Color(0xFF2E1371),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+          size: 28.sp
+        ),
         title: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 0, 15),
+          padding: EdgeInsetsDirectional.only(start: 45.w, top: 0, bottom: 15.h),
           child: HeadAppBar(title: "My ticket"),
         ),
       ),
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20, 50, 20, 50),
+            padding: EdgeInsetsDirectional.only(
+                start: 20.w, top: 50.h, end: 20.w, bottom: 50.h),
             child: Container(
-              width: 400.w,
-              height: 800.h,
+              width: 1.sw, // Make it responsive
+              height: 1.sh * 0.8, // Set height as a fraction of screen height
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -38,21 +44,21 @@ class TicketDone extends StatelessWidget {
           HeadMyticket(),
           Positioned(
             bottom: 0,
-            left: 342,
+            left: 342.w, // Responsive to screen width
             right: 0,
-            top: 340,
+            top: 340.h, // Responsive to screen height
             child: Image.asset(
               'assets/icons/img.png',
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 330, 0, 0),
+            padding: EdgeInsetsDirectional.only(top: 330.h),
             child: Center(
               child: CustomPaint(
-                size: Size(310, .8), // Width and height of the line
+                size: Size(310.w, 0.8.h), // Make line size responsive
                 painter: DashedLinePainter(
-                  dashWidth: 10.0, // Width of the dashes
-                  dashSpace: 5.0, // Space between the dashes
+                  dashWidth: 10.0, // Dash width fixed, no need for responsive
+                  dashSpace: 5.0, // Dash space fixed, no need for responsive
                 ),
               ),
             ),
@@ -60,11 +66,11 @@ class TicketDone extends StatelessWidget {
           Positioned(
             bottom: 0,
             left: 0,
-            right: 342,
-            top: 340,
+            right: 342.w,
+            top: 340.h,
             child: Image.asset(
               'assets/icons/img_1.png',
-              width: 30,
+              width: 30.w, // Responsive width
             ),
           ),
           Divider(
@@ -74,8 +80,8 @@ class TicketDone extends StatelessWidget {
             endIndent: 40.sp,
             thickness: 1,
           ),
-const CenterText(),
-          const  QrState()
+          const CenterText(),
+          const QrState()
         ],
       ),
     );

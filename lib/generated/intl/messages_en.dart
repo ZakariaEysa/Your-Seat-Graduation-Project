@@ -39,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("Login Successful"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "Roaa": MessageLookupByLibrary.simpleMessage("Roaa"),
+        "Roaa1": MessageLookupByLibrary.simpleMessage("Roaa1"),
         "ShazamFuryOfTheGods":
             MessageLookupByLibrary.simpleMessage("Shazam: Fury of the Gods"),
         "SorryThereWasAnErrorPleaseTryAgainLater":
@@ -78,12 +80,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you sure you want to log out ?"),
         "askmehere": MessageLookupByLibrary.simpleMessage("ask me here..."),
         "august": MessageLookupByLibrary.simpleMessage("August"),
+        "available": MessageLookupByLibrary.simpleMessage("Available"),
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
         "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou":
             MessageLookupByLibrary.simpleMessage(
                 "Book tickets for the latest movies at the cinema nearest to you."),
         "bookingConfirmation":
             MessageLookupByLibrary.simpleMessage("Booking Confirmation :"),
+        "buyTicket": MessageLookupByLibrary.simpleMessage("Buy Ticket"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancellationsRefunds":
             MessageLookupByLibrary.simpleMessage("Cancellations & Refunds:"),
@@ -130,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "director": MessageLookupByLibrary.simpleMessage("Director"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("Don’t have an account yet?"),
+        "egp": MessageLookupByLibrary.simpleMessage("EGP"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
@@ -265,12 +270,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Refund\nSuccessful !"),
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("Registration successful!"),
+        "reserved": MessageLookupByLibrary.simpleMessage("Reserved"),
         "review": MessageLookupByLibrary.simpleMessage("Review"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "seat": MessageLookupByLibrary.simpleMessage("Seat :"),
         "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
         "seeLess": MessageLookupByLibrary.simpleMessage("See less"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
+        "selectDateTime":
+            MessageLookupByLibrary.simpleMessage("Select Date & Time"),
+        "selectSeat": MessageLookupByLibrary.simpleMessage("Select Seat"),
+        "selected": MessageLookupByLibrary.simpleMessage("Selected"),
         "september": MessageLookupByLibrary.simpleMessage("September"),
         "serviceFees": MessageLookupByLibrary.simpleMessage("Service Fees:"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
@@ -292,10 +302,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable":
             MessageLookupByLibrary.simpleMessage(
                 "The luxurious seats and immersive sound system make for a truly unforgettable"),
+        "theSeatSelectedIsVIP":
+            MessageLookupByLibrary.simpleMessage("The Seat Selected is VIP."),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "ticket": MessageLookupByLibrary.simpleMessage("Ticket"),
         "tickets": MessageLookupByLibrary.simpleMessage("Tickets"),
-        "total": MessageLookupByLibrary.simpleMessage("Total :"),
+        "total": MessageLookupByLibrary.simpleMessage("Total"),
         "typing": MessageLookupByLibrary.simpleMessage("typing..."),
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("User not found"),

@@ -206,5 +206,17 @@
   "storeCardForFutureUse": "Store card for future use ?",
   "completeYourPurchase": "Complete your purchase",
 
-  "rahaf1": "Rahaf"
+  "rahaf1": "Rahaf",
+
+  "Roaa" : "Roaa",
+  "selectSeat" : "Select Seat",
+  "available" : "Available",
+  "reserved":"Reserved",
+  "selected":"Selected",
+  "theSeatSelectedIsVIP":"The Seat Selected is VIP.",
+  "selectDateTime":"Select Date & Time",
+  "total":"Total",
+  "egp":"EGP",
+  "buyTicket" : "Buy Ticket",
+  "Roaa1" : "Roaa1"
 }

@@ -3,6 +3,9 @@ import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import '../features/user_flow/auth/data/model/google_user_model.dart';
 import '../features/user_flow/auth/data/model/user_model.dart';
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:http/http.dart' as http;
 
 class HiveStorage {
   static late Box box;
@@ -48,6 +51,10 @@ class HiveStorage {
 
   // Save GoogleUserModel to the box
   static Future<void> saveGoogleUser(GoogleUserModel user) async {
+
+
+    
+
     await box1.put(HiveKeys.userGData, user);
   }
 

@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "Roaa": MessageLookupByLibrary.simpleMessage("رؤى"),
+        "Roaa1": MessageLookupByLibrary.simpleMessage("رؤى"),
         "ShazamFuryOfTheGods":
             MessageLookupByLibrary.simpleMessage("شزام: غضب الآلهة"),
         "SorryThereWasAnErrorPleaseTryAgainLater":
@@ -74,12 +76,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "هل انت متاكد انك تريد تسجيل الخروج ؟"),
         "askmehere": MessageLookupByLibrary.simpleMessage("اسألني هنا..."),
         "august": MessageLookupByLibrary.simpleMessage("أغسطس"),
+        "available": MessageLookupByLibrary.simpleMessage("متاح"),
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou":
             MessageLookupByLibrary.simpleMessage(
                 "احجز تذاكر لأحدث الأفلام في السينما الأقرب إليك."),
         "bookingConfirmation":
             MessageLookupByLibrary.simpleMessage("تأكيد الحجز"),
+        "buyTicket": MessageLookupByLibrary.simpleMessage("شراء التذكره"),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
         "cancellationsRefunds":
             MessageLookupByLibrary.simpleMessage("لإلغاءات واسترداد الأموال"),
@@ -126,6 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "director": MessageLookupByLibrary.simpleMessage("مخرج"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("لا تملك حساباً بعد؟"),
+        "egp": MessageLookupByLibrary.simpleMessage("جنيه"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الالكتروني "),
         "emailAddress":
             MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
@@ -263,11 +268,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم استرداد المبلغ بنجاح"),
         "registerSuccess":
             MessageLookupByLibrary.simpleMessage("تم التسجيل بنجاح!"),
+        "reserved": MessageLookupByLibrary.simpleMessage("محجوز"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "seat": MessageLookupByLibrary.simpleMessage("مقعد"),
         "seeAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "seeLess": MessageLookupByLibrary.simpleMessage("رؤية القليل"),
         "seeMore": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
+        "selectDateTime":
+            MessageLookupByLibrary.simpleMessage("اختيار الوقت & التاريخ"),
+        "selectSeat": MessageLookupByLibrary.simpleMessage("اختر كرسيك"),
+        "selected": MessageLookupByLibrary.simpleMessage("محدد"),
         "september": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "serviceFees": MessageLookupByLibrary.simpleMessage("رسوم الخدمة"),
         "setting": MessageLookupByLibrary.simpleMessage("الاعدادات"),
@@ -286,10 +296,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "storyLine": MessageLookupByLibrary.simpleMessage("سرد القصة"),
         "termsAndConditionsContent": MessageLookupByLibrary.simpleMessage(
             "1. مسؤوليات المستخدم: باستخدام هذا التطبيق، فإنك توافق على الالتزام بشروط الخدمة لدينا والتصرف باحترام. يرجى الامتناع عن أي سلوك يعيق تجربة مشاهدة الأفلام للآخرين، مثل التحدث بصوت عالٍ أو استخدام هاتفك أو شراء التذاكر لأغراض غير مصرح بها. نحتفظ بالحق في إلغاء الوصول إلى التطبيق إذا تم انتهاك هذه الشروط.\n\n2. إنشاء حساب مستخدم: لإنشاء حساب، ستحتاج إلى تقديم عنوان بريد إلكتروني صالح وكلمة مرور قوية. اختر كلمة مرور يصعب تخمينها وتجنب استخدام معلومات يمكن التعرف عليها بسهولة. يتم تخزين بيانات حسابك بأمان ولا يمكن الوصول إليها إلا من قبل الموظفين المصرح لهم.\n   الأمان: اختر كلمة مرور قوية تجمع بين الأحرف والأرقام والرموز. تجنب استخدام نفس كلمة المرور لعدة حسابات. قم بتمكين المصادقة الثنائية (إذا كانت متوفرة) لمزيد من الأمان. لا تشارك معلومات تسجيل الدخول الخاصة بك مع أي شخص.\n\n3. معالجة المعاملات: تتم معالجة جميع المعاملات بشكل آمن باستخدام [بوابة الدفع المحددة]. نحن نقبل [طرق الدفع المقبولة مثل بطاقات الائتمان، بطاقات الخصم، PayPal]. معلومات إضافية: تأكد من أن معلومات الدفع الخاصة بك دقيقة ومحدثة. نحتفظ بالحق في إلغاء الطلبات في حالة النشاط الاحتيالي أو معلومات الدفع غير الصحيحة. لأي أسئلة أو استفسارات بخصوص المدفوعات، يرجى الاتصال بفريق دعم العملاء لدينا.\n\n4. ملكية المحتوى: جميع المحتويات داخل التطبيق، بما في ذلك الصور والنصوص ومقاطع الفيديو والمواد الأخرى، مملوكة لـ [Your Seat] أو الجهات المرخصة لها. ما لم يُذكر خلاف ذلك، لا يُسمح لك باستخدام أو تعديل أو توزيع أو عرض أي محتوى من التطبيق دون إذن كتابي مسبق."),
+        "theSeatSelectedIsVIP":
+            MessageLookupByLibrary.simpleMessage("المقعد المحدد هو VIP."),
         "theme": MessageLookupByLibrary.simpleMessage("النمط"),
         "ticket": MessageLookupByLibrary.simpleMessage("تذكرة"),
         "tickets": MessageLookupByLibrary.simpleMessage("التذاكر"),
-        "total": MessageLookupByLibrary.simpleMessage("المجموع"),
+        "total": MessageLookupByLibrary.simpleMessage("الاجمالي"),
         "typing": MessageLookupByLibrary.simpleMessage("جاري الكتابة..."),
         "user_not_found":
             MessageLookupByLibrary.simpleMessage("المستخدم غير موجود"),

@@ -218,16 +218,6 @@ import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
-import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
-import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/cinema_details.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/forget.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/new_password.dart';
-import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/app.dart';
-
 import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';

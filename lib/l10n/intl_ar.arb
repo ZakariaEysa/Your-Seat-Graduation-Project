@@ -147,13 +147,16 @@
   "home": "الرئيسية",
   "watchlist":"قائمة المشاهدة",
   "tickets": "التذاكر",
-
   "settings": "الإعدادات",
   "askmehere": "اسألني هنا...",
   "HelloIamyourAIAssistant":"مرحبًا، أنا مساعد الذكاء الاصطناعي الخاص بك!",
   "typing": "جاري الكتابة...",
   "canyouhelp": "أيمكنني مساعدتك؟",
   "yes": "نعم ",
+  "ConfirmOTPcode" : "تاكيد رمز الدخول",
+  "PleaseEnterThe6DigitCodeSentToYourEmail": "الرجاء إدخال الرمز المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",
+  "Resendlimitreachedfortoday": "تم الوصول إلى حد إعادة الإرسال اليوم.",
+  "Resend": "إعادة الإرسال!",
   "Esam1" : "عصام",
 
   "rahaf": "رهف",

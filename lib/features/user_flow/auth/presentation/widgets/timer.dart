@@ -91,7 +91,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
                   resetTimer();
                 },
                 child: const Text(
-                  "Resend!",
+                  "lang.Resend",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -100,7 +100,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
                 ),
               )
             : const Text(
-                "Resend limit reached for today.",
+                "lang.Resendlimitreachedfortoday",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,

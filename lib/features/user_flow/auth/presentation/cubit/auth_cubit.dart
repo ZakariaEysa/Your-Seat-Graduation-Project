@@ -37,9 +37,11 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final response = await authRepo.signInWithGoogle();
 
+
     response.fold(
 
       (failure) => emit(GoogleAuthError(failure.errorMsg)),
+
       // (failure) => emit(
       //     GoogleAuthError("Sorry there was an error , please try again later")),
 

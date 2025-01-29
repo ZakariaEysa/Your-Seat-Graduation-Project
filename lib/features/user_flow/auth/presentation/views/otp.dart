@@ -102,7 +102,7 @@ class _OtpState extends State<Otp> {
         title: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(25.w, 0, 0, 20.h),
           child:  HeadAppBar(
-            title: 'lang.ConfirmOTPcode',
+            title: lang.ConfirmOTPcode,
           ),
         ),
       ),
@@ -111,7 +111,7 @@ class _OtpState extends State<Otp> {
         children: [
           SizedBox(height: 40.h),
           Text(
-           "lang.PleaseEnterThe6DigitCodeSentToYourEmail",
+           lang.PleaseEnterThe6DigitCodeSentToYourEmail,
             style: theme.textTheme.bodySmall!.copyWith(fontSize: 20),
             textAlign: TextAlign.center,
           ),

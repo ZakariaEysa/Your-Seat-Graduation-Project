@@ -179,6 +179,7 @@ class CinemaDetails extends StatelessWidget {
                   label: lang.addComment,
                 ),
               ),
+            SizedBox(width:8,),
               Image.asset(
                 "assets/icons/Vector (4).png",
                 width: 25.w,

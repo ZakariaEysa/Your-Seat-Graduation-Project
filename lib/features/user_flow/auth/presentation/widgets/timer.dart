@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../generated/l10n.dart';
+
 class CountdownTimer extends StatefulWidget {
   final int startSeconds;
   final VoidCallback onResend;
@@ -82,6 +84,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     return showResend
         ? (resendCount < maxResendLimit
             ? TextButton(
@@ -90,8 +93,8 @@ class _CountdownTimerState extends State<CountdownTimer> {
                   widget.onResend();
                   resetTimer();
                 },
-                child: const Text(
-                  "lang.Resend",
+                child:  Text(
+                  lang.Resend,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
@@ -99,8 +102,8 @@ class _CountdownTimerState extends State<CountdownTimer> {
                   ),
                 ),
               )
-            : const Text(
-                "lang.Resendlimitreachedfortoday",
+            :  Text(
+                lang.Resendlimitreachedfortoday,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,

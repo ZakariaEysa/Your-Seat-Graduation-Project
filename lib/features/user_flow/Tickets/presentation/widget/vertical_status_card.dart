@@ -7,7 +7,8 @@ class VerticalStatusCard extends StatelessWidget {
   final double imageWidth;
   final double imageHeight;
 
-  const VerticalStatusCard({super.key,
+  const VerticalStatusCard({
+    super.key,
     required this.status,
     required this.imagePath,
     required this.imageWidth,
@@ -17,7 +18,7 @@ class VerticalStatusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8.w, 0),
+      padding: EdgeInsetsDirectional.only(end: 8.w),
       child: Container(
         width: 36.w,
         height: 140.h,
@@ -29,7 +30,7 @@ class VerticalStatusCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RotatedBox(
-              quarterTurns: 9,
+              quarterTurns: 3, // دوران 90 درجة باتجاه عقارب الساعة
               child: Text(
                 status,
                 style: TextStyle(
@@ -39,13 +40,13 @@ class VerticalStatusCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 19.h),
+            SizedBox(height: 12.h), // تقليل المسافة بين النص والصورة
             ClipOval(
               child: Image.asset(
                 imagePath,
-                width: imageWidth,
-                height: imageHeight,
-
+                width: imageWidth.w,  // التأكد من توافق الحجم مع `screenUtil`
+                height: imageHeight.h,
+             // يمنع التشويه إذا لم تكن الصورة مربعة
               ),
             ),
           ],

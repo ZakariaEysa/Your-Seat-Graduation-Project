@@ -337,7 +337,7 @@ class _MyAppState extends State<MyApp> {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: DevicePreview.appBuilder,
-              home:HomeLayout(),
+              home:TicketDone(),
             );
           });
     });

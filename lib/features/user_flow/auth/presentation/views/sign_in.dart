@@ -14,6 +14,7 @@ import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/w
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:yourseatgraduationproject/widgets/text_field/text_field/text_form_field_builder.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
@@ -51,8 +52,9 @@ class _SignInState extends State<SignIn> {
           SingleChildScrollView(
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
-                if (state is GoogleAuthSuccess) {
+                if (state is GoogleAuthSuccess)  {
                   HiveStorage.set(HiveKeys.role, Role.google.toString());
+                  AppLogs.debugLog('${lang.login_successful} ${state.user.name}');
 
                   BotToast.showText(
                       text: '${lang.login_successful} ${state.user.name}');
@@ -61,21 +63,21 @@ class _SignInState extends State<SignIn> {
                 } else if (state is FacebookAuthSuccess) {
                   HiveStorage.set(HiveKeys.role, Role.facebook.toString());
 
-                  BotToast.showText(
+                   BotToast.showText(
                       text: '${lang.login_successful} ${state.user.name}');
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is UserValidationSuccess) {
                   HiveStorage.set(HiveKeys.role, Role.email.toString());
-                  BotToast.showText(text: lang.login_successful);
+                   BotToast.showText(text: lang.login_successful);
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is GoogleAuthError) {
-                  BotToast.showText(text: state.errorMsg);
+                   BotToast.showText(text: state.errorMsg);
                 } else if (state is FacebookAuthError) {
-                  BotToast.showText(text: state.errorMsg);
+                   BotToast.showText(text: state.errorMsg);
                 } else if (state is UserValidationError) {
-                  BotToast.showText(text: state.error);
+                   BotToast.showText(text: state.error);
                 }
               },
               builder: (context, state) {
@@ -296,7 +298,7 @@ class _SignInState extends State<SignIn> {
                             SizedBox(width: 5.w),
                             InkWell(
                               onTap: () {
-                                navigateTo(
+                                navigateAndReplace(
                                   context: context,
                                   screen: const SignUp(),
                                 );

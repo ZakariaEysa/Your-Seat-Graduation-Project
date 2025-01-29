@@ -40,9 +40,9 @@ class CinemaItem extends StatelessWidget {
             child: Column(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    navigateTo(context: context, screen: const CinemaDetails());
-                  },
+                  // onTap: () {
+                  //   navigateTo(context: context, screen: const CinemaDetails());
+                  // },
                   child: ClipOval(
                     child: Image.asset(
                       movie['image']!,

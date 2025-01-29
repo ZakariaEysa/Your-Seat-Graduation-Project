@@ -20,8 +20,8 @@ class TicketPage extends StatelessWidget {
       price: '210.000 EGP',
       status: 'Active',
       statusImage: 'assets/icons/icon_active.png',
-      statusImageWidth: 30.w,
-      statusImageHeight: 30.h,
+      statusImageWidth: 28.w,
+      statusImageHeight: 28.h,
     ),
     Ticket(
       movieName: 'Batman v Superman',
@@ -33,8 +33,8 @@ class TicketPage extends StatelessWidget {
       price: '200.000 EGP',
       status: 'Used   ',
       statusImage: 'assets/icons/user.png',
-      statusImageWidth: 26.w,
-      statusImageHeight: 26.h,
+      statusImageWidth: 24.w,
+      statusImageHeight: 24.h,
     ),
     Ticket(
       movieName: 'Guardians of the Galaxy',
@@ -46,37 +46,10 @@ class TicketPage extends StatelessWidget {
       price: '200.000 EGP',
       status: 'Cancelled',
       statusImage: 'assets/icons/canllll.png',
-      statusImageWidth: 24.w,
-      statusImageHeight: 24.h,
-    ),
-    Ticket(
-      movieName: 'Batman v Superman',
-      location: 'Vincom Ocean Park CGV',
-      imageUrl: 'assets/images/bat_ticket.png',
-      time: '14:15 pm',
-      date: '25.9.2024',
-      seats: '10,11,12',
-      price: '200.000 EGP',
-      status: 'Used   ',
-      statusImage: 'assets/icons/user.png',
-      statusImageWidth: 26.w,
-      statusImageHeight: 26.h,
-    ),
-    Ticket(
-      movieName: 'Avengers: Infinity War',
-      location: 'Vincom Ocean Park CGV',
-      imageUrl: 'assets/images/avg_ticket.png',
-      time: '14:15 pm',
-      date: '25.9.2024',
-      seats: '10,11,12',
-      price: '210.000 EGP',
-      status: 'Active',
-      statusImage: 'assets/icons/icon_active.png',
-      statusImageWidth: 30.w,
-      statusImageHeight: 30.h,
+      statusImageWidth: 22.w,
+      statusImageHeight: 22.h,
     ),
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,29 +58,35 @@ class TicketPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF2E1371),
-        title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(100.w, 0, 0, 0),
-          child: HeadAppBar(
-            title: lang.tickets,
+        title: Center(  // جعل العنوان في المنتصف
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(80.w, 0, 0, 0), // استخدم `w` لجعل المسافة ديناميكية
+            child: HeadAppBar(
+              title: lang.tickets,
+            ),
           ),
+
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ListView.builder(
-              padding: EdgeInsets.all(10.sp),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: tickets.length,
-              itemBuilder: (context, index) {
-                return TicketCard(
-                  ticket: tickets[index],
-                  isFirstTicket: index == 0, // Pass true only for the first ticket
-                );
-              },
-            ),
-          ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h), // جعل التباعد مرنًا
+          child: Column(
+            children: [
+              ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: tickets.length,
+                itemBuilder: (context, index) {
+                  return TicketCard(
+                    ticket: tickets[index],
+                    isFirstTicket: index == 0, // تحديد البطاقة الأولى
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

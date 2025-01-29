@@ -95,6 +95,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../widgets/network_image/image_replacer.dart';
+
 class MovieCard extends StatelessWidget {
   final Map<String, dynamic> movie;
 
@@ -110,34 +112,35 @@ class MovieCard extends StatelessWidget {
           // Movie Image
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: Image.network(
+            child: ImageReplacer(
+              imageUrl:
               movie['poster_image'] ?? 'https://via.placeholder.com/300',
               fit: BoxFit.cover,
               height: 350.h,
               width: double.infinity,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
-                        : null,
-                  ),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  height: 350.sp,
-                  width: 250.sp,
-                  color: Colors.grey.shade800,
-                  child: const Icon(
-                    Icons.broken_image,
-                    color: Colors.white,
-                    size: 50,
-                  ),
-                );
-              },
+              // loadingBuilder: (context, child, loadingProgress) {
+              //   if (loadingProgress == null) return child;
+              //   return Center(
+              //     child: CircularProgressIndicator(
+              //       value: loadingProgress.expectedTotalBytes != null
+              //           ? loadingProgress.cumulativeBytesLoaded /
+              //               loadingProgress.expectedTotalBytes!
+              //           : null,
+              //     ),
+              //   );
+              // },
+              // errorBuilder: (context, error, stackTrace) {
+              //   return Container(
+              //     height: 350.sp,
+              //     width: 250.sp,
+              //     color: Colors.grey.shade800,
+              //     child: const Icon(
+              //       Icons.broken_image,
+              //       color: Colors.white,
+              //       size: 50,
+              //     ),
+              //   );
+              // },
             ),
           ),
           SizedBox(height: 10.h),

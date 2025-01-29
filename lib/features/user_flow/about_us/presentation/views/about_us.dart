@@ -50,6 +50,7 @@ class AboutUs extends StatelessWidget {
                 initialHeight: .34,
                 maxHeight: .98,
                 minHeight: .34,
+
               ),
             ),
             Align(
@@ -69,9 +70,9 @@ class AboutUs extends StatelessWidget {
                 scrollController: DraggableScrollableController(),
                 title: lang.contactUs,
                 content: lang.contactUsContent,
-                initialHeight: .14,
+                initialHeight: .15,
                 maxHeight: .82,
-                minHeight: .14,
+                minHeight: .15,
                 bottomWidget: const RowOfSocialItems(),
               ),
             ),

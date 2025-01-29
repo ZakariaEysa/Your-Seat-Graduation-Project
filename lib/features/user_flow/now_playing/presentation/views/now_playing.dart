@@ -47,8 +47,9 @@ class NowPlaying extends StatelessWidget {
             padding: EdgeInsets.only(left: 8.0.w,top: 8.0.h),
             child: GridView.builder(
               gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 20.h,
                 crossAxisCount: 2, // Number of columns
-                crossAxisSpacing: 10.w,
+                crossAxisSpacing: 1.w,
                 childAspectRatio: 0.45, // Adjust to fit the card design
               ),
               itemCount: movies.length,

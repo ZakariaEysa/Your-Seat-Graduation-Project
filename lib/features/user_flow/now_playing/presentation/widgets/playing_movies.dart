@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
@@ -58,30 +59,31 @@ class _PlayingMoviesState extends State<PlayingMovies> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                        : null,
-                  ),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  height: 260.sp,
-                  width: 250.sp,
-                  color: Colors.grey.shade800,
-                  child: const Icon(
-                    Icons.broken_image,
-                    color: Colors.white,
-                    size: 50,
-                  ),
-                );
-              },
+            child: ImageReplacer(
+              // loadingBuilder: (context, child, loadingProgress) {
+              //   if (loadingProgress == null) return child;
+              //   return Center(
+              //     child: CircularProgressIndicator(
+              //       value: loadingProgress.expectedTotalBytes != null
+              //           ? loadingProgress.cumulativeBytesLoaded /
+              //           loadingProgress.expectedTotalBytes!
+              //           : null,
+              //     ),
+              //   );
+              // },
+              // errorBuilder: (context, error, stackTrace) {
+              //   return Container(
+              //     height: 260.sp,
+              //     width: 250.sp,
+              //     color: Colors.grey.shade800,
+              //     child: const Icon(
+              //       Icons.broken_image,
+              //       color: Colors.white,
+              //       size: 50,
+              //     ),
+              //   );
+              // },
+              imageUrl:
               widget.image,
               width: 200.w,
               height: 250.h,
@@ -93,6 +95,8 @@ class _PlayingMoviesState extends State<PlayingMovies> {
           ),
           Text(
             widget.title,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
             style: theme.textTheme.bodySmall!.copyWith(
               fontSize: 14.sp,
               fontWeight: FontWeight.bold,
@@ -118,16 +122,16 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               Spacer(),
               GestureDetector(
                 onTap: () {
-                  setState(() {
-                    if (!_isBookmarked) {
-                      Provider.of<FavoriteMoviesProvider>(context, listen: false).addMovie(widget.movies);
-                      print("Added to favorites: ${widget.movies.name}");
-                    } else {
-                      Provider.of<FavoriteMoviesProvider>(context, listen: false).removeMovie(widget.movies);
-                      print("Removed from favorites: ${widget.movies.name}");
-                    }
-                    _isBookmarked = !_isBookmarked;
-                  });
+                //   setState(() {
+                //     if (!_isBookmarked) {
+                //       Provider.of<FavoriteMoviesProvider>(context, listen: false).addMovie(widget.movies);
+                //       print("Added to favorites: ${widget.movies.name}");
+                //     } else {
+                //       Provider.of<FavoriteMoviesProvider>(context, listen: false).removeMovie(widget.movies);
+                //       print("Removed from favorites: ${widget.movies.name}");
+                //     }
+                //     _isBookmarked = !_isBookmarked;
+                //   });
                 },
                 child: Icon(
                   Icons.bookmark,
@@ -158,7 +162,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               ),
             ],
           ),
-          Spacer(),
+          SizedBox(height: 10.h,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,6 +182,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
             ],
           ),
           Spacer(),
+          //SizedBox(height: 15.h,)
         ],
       ),
     );

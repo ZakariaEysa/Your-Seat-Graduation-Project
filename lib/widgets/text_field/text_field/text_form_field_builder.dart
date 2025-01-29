@@ -31,8 +31,9 @@ class TextFormFieldBuilder extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.hinitText,
+    //this.initialValue,
   });
-
+  //final String? initialValue ;
   final String? label;
   final Function(String)? onChanged;
   final Function(String)? onSubmitted;
@@ -67,6 +68,7 @@ class TextFormFieldBuilder extends StatelessWidget {
       width: width ?? 333.w,
       height: height ?? 60.h,
       child: TextFormField(
+        // initialValue: initialValue,
         onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines ? 1 : null,
@@ -86,40 +88,48 @@ class TextFormFieldBuilder extends StatelessWidget {
           fillColor: const Color(0xff2E126E).withOpacity(.4),
           prefixIcon: imagePath != null
               ? Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Image.asset(
-              imagePath!,
-              width: 10,
-              height: 10,
-              fit: BoxFit.fill,
-            ),
-          )
-              : (prefixIcon ?? (isIcon ? Icon(prefix, color: const Color(0xFFA8A6A6)) : null)),
+                  padding: EdgeInsets.all(12.0.sp),
+                  child: Image.asset(
+                    imagePath!,
+                    width: 24.w,
+                    height: 24.h,
+                    fit: BoxFit.fill,
+                  ),
+                )
+              : (prefixIcon ??
+                  (isIcon
+                      ? Icon(prefix, color: const Color(0xFFA8A6A6))
+                      : null)),
           suffixIcon: suffixIcon ??
               (obsecure
                   ? IconButton(
-                icon: const Icon(Icons.remove_red_eye, color: Colors.white54),
-                onPressed: () {
-                  // Toggle password visibility
-                },
-              )
+                      icon: const Icon(Icons.remove_red_eye,
+                          color: Colors.white54),
+                      onPressed: () {
+                        // Toggle password visibility
+                      },
+                    )
                   : null),
-          //لما بقف علي الشكل
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(13.0),
-            borderSide: enabledBorder ?? const BorderSide(width: 1, color: Color(0x40000000)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide:  const BorderSide(width: 1, color: Color(0xD0AA0A9C)),
-            borderRadius: BorderRadius.circular(13),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderSide: disabledBorder ?? const BorderSide(width: 1, color: Colors.yellow),
-            borderRadius: BorderRadius.circular(30),
+
+            borderRadius: BorderRadius.circular(8),
+            borderSide:BorderSide(color: Color(0x40000000), width: 1.0),
+
+          ),  focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+
+            borderSide:
+                const BorderSide(color: Colors.blue, width: 1.5),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide:  const BorderSide(width: 1, color: Colors.red),
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide:
+                const BorderSide(width: 1.5, color: Colors.red),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide:
+                const BorderSide(width: 2, color: Colors.blue),
           ),
         ),
       ),

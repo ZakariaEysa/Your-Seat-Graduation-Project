@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BirthDateDropdown<T> extends StatelessWidget {
   final String hintText;
@@ -11,34 +12,41 @@ class BirthDateDropdown<T> extends StatelessWidget {
     required this.selectedValue,
     required this.itemsList,
     required this.onChanged,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    var theme =  Theme.of(context);
+    var theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      width: 120,
-      height: 51,
+      margin: EdgeInsets.symmetric(horizontal: 2.w),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      width: 100.w,
+      height: 51.h,
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFF9C24D9), width: 2),
-        borderRadius: BorderRadius.circular(5),
+        border: Border.all(color: const Color(0xFF9C24D9), width: 2.w),
+        borderRadius: BorderRadius.circular(5.r),
       ),
       child: DropdownButton<T>(
-
+        menuMaxHeight: 200.h,
         value: selectedValue,
-        hint: Text(hintText, style:theme.textTheme.bodyLarge!.copyWith(fontSize: 20)),
-        dropdownColor: const Color( 0xFF2E1371),
+        hint: Text(
+          hintText,
+          style: theme.textTheme.bodyLarge?.copyWith(fontSize: 18.sp),
+        ),
+        dropdownColor: const Color(0xFF2E1371),
         icon: Image.asset(
           'assets/images/arrow_down.png',
-          width: 16,
-          height: 16,
+          width: 16.w,
+          height: 16.h,
         ),
         items: itemsList.map((T item) {
           return DropdownMenuItem<T>(
             value: item,
-            child: Text(item.toString(), style: theme.textTheme.bodyMedium),
+            child: Text(
+              item.toString(),
+              style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp),
+            ),
           );
         }).toList(),
         onChanged: onChanged,

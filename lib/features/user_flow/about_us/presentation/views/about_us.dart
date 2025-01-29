@@ -17,23 +17,21 @@ class AboutUs extends StatelessWidget {
 
     return ScaffoldF(
       appBar: AppBar(
-
-        backgroundColor: Color(0xFF2E1371),
+        backgroundColor: const Color(0xFF2E1371),
         iconTheme: IconThemeData(
-          size: 28,
+          size: 28.sp, // ضبط حجم الأيقونة باستخدام ScreenUtil
           color: Colors.white,
         ),
-        
         title: Padding(
-          padding: const EdgeInsets.only(bottom: 10.0 ,right: 35),
+          padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 0, 20),
           child: HeadAppBar(
-            title: 'About Us',
+            title: lang.AboutUs,
           ),
         ),
       ),
-
       body: Container(
-        margin: EdgeInsets.only(top: 65.h),
+        margin: EdgeInsets.only(
+            top: 65.h), // ضبط المسافة العلوية باستخدام ScreenUtil
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -47,33 +45,34 @@ class AboutUs extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: CustomBottomSheet(
                 scrollController: DraggableScrollableController(),
-                title: "Terms and Conditions",
+                title: lang.TermsAndConditions,
                 content: lang.termsAndConditionsContent,
-                initialHeight: .28,
+                initialHeight: .34,
                 maxHeight: .98,
-                minHeight: .28,
+                minHeight: .34,
+
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: CustomBottomSheet(
                 scrollController: DraggableScrollableController(),
-                title: "Privacy Policy",
+                title: lang.PrivacyPolicy,
                 content: lang.privacyPolicyContent,
-                initialHeight: .185,
+                initialHeight: .24,
                 maxHeight: .89,
-                minHeight: .185,
+                minHeight: .24,
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: CustomBottomSheet(
                 scrollController: DraggableScrollableController(),
-                title: "Contact Us",
+                title: lang.contactUs,
                 content: lang.contactUsContent,
-                initialHeight: .1,
+                initialHeight: .15,
                 maxHeight: .82,
-                minHeight: .1,
+                minHeight: .15,
                 bottomWidget: const RowOfSocialItems(),
               ),
             ),

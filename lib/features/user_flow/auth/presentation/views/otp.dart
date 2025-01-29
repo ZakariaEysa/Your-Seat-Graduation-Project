@@ -1,42 +1,110 @@
+
+import 'package:email_otp_auth/email_otp_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/button/button_builder.dart';
-import '../../../home/presentation/views/home_screen.dart';
+import '../widgets/otp_textfield.dart';
+import '../widgets/timer.dart';
 
-class Otp extends StatelessWidget {
-  static const String routeName = "confirm";
+class Otp extends StatefulWidget {
+  final Future<void> Function()? isSuccessOtp;
+  Otp({super.key, this.isSuccessOtp});
+  @override
+  _OtpState createState() => _OtpState();
+}
+class _OtpState extends State<Otp> {
+  TextEditingController N1 = TextEditingController();
+  TextEditingController N2 = TextEditingController();
+  TextEditingController N3 = TextEditingController();
+  TextEditingController N4 = TextEditingController();
+  TextEditingController N5 = TextEditingController();
+  TextEditingController N6 = TextEditingController();
 
-  // Controllers for each OTP field
-  final TextEditingController N1 = TextEditingController();
-  final TextEditingController N2 = TextEditingController();
-  final TextEditingController N3 = TextEditingController();
-  final TextEditingController N4 = TextEditingController();
-  final TextEditingController N5 = TextEditingController();
-  final TextEditingController N6 = TextEditingController();
+  final FocusNode F1 = FocusNode();
+  final FocusNode F2 = FocusNode();
+  final FocusNode F3 = FocusNode();
+  final FocusNode F4 = FocusNode();
+  final FocusNode F5 = FocusNode();
+  final FocusNode F6 = FocusNode();
 
-  Otp({super.key});
+  // Future<void> sendOtpResend(String email) async {
+  //   try {
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return const Center(child: CircularProgressIndicator());
+  //       },
+  //     );
+  //
+  //     var res = await EmailOtpAuth.sendOTP(email: email);
+  //     if (context.mounted) {
+  //       Navigator.of(context).pop();
+  //     }
+  //     if (res["message"] == "Email Send" && context.mounted) {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text("OTP Sent Successfully ✅")),
+  //       );
+  //     } else if (context.mounted) {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text("Invalid E-Mail Address ❌")),
+  //       );
+  //     }
+  //   } catch (error) {
+  //     throw error.toString();
+  //   }
+  // }
+
+  Future<void> verifyOtp(BuildContext context, String otp) async {
+    bool isOtpValid = (await EmailOtpAuth.verifyOtp(otp: otp))["message"] == "OTP Verified";
+    if (isOtpValid) {
+      if (widget.isSuccessOtp == null) {
+        await AuthCubit.get(context).verifyedSendOtp();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeLayout()),
+        );
+      } else {
+        await widget.isSuccessOtp!();
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Invalid OTP'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
 
   void nextField({
     required String value,
     required FocusNode focusNode,
   }) {
-    if (value.length == 1) {
+    if (value.isNotEmpty) {
       focusNode.requestFocus();
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white, size: 28),
         backgroundColor: const Color(0xFF2E1371),
-        title: HeadAppBar(
-          title: 'OTP',
+        title: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(25.w, 0, 0, 20.h),
+          child:  HeadAppBar(
+            title: lang.ConfirmOTPcode,
+          ),
         ),
       ),
       body: Column(
@@ -44,7 +112,7 @@ class Otp extends StatelessWidget {
         children: [
           SizedBox(height: 40.h),
           Text(
-            'You just need to enter the OTP\nsent to the registered phone\nnumber',
+           lang.PleaseEnterThe6DigitCodeSentToYourEmail,
             style: theme.textTheme.bodySmall!.copyWith(fontSize: 20),
             textAlign: TextAlign.center,
           ),
@@ -54,63 +122,89 @@ class Otp extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                buildOtpField(N1),
-                buildOtpField(N2),
-                buildOtpField(N3),
-                buildOtpField(N4),
-                buildOtpField(N5),
-                buildOtpField(N6),
+                OtpFieldWidget(
+                  controller: N1,
+                  currentFocus: F1,
+                  nextFocus: F2,
+                  nextField: nextField,
+                  autofocus: true, // إضافة التركيز التلقائي هنا
+                ),
+                OtpFieldWidget(
+                  controller: N2,
+                  currentFocus: F2,
+                  nextFocus: F3,
+                  nextField: nextField,
+                ),
+                OtpFieldWidget(
+                  controller: N3,
+                  currentFocus: F3,
+                  nextFocus: F4,
+                  nextField: nextField,
+                ),
+                OtpFieldWidget(
+                  controller: N4,
+                  currentFocus: F4,
+                  nextFocus: F5,
+                  nextField: nextField,
+                ),
+                OtpFieldWidget(
+                  controller: N5,
+                  currentFocus: F5,
+                  nextFocus: F6,
+                  nextField: nextField,
+                ),
+                OtpFieldWidget(
+                  controller: N6,
+                  currentFocus: F6,
+                  nextFocus: null,
+                  nextField: nextField,
+                ),
+
               ],
             ),
           ),
           SizedBox(height: 30.h),
           Padding(
-            padding: EdgeInsets.only(left: 320.w),
-            child: Text(
-              '00:59',
-              style: theme.textTheme.bodySmall!.copyWith(fontSize: 20),
+            padding: const EdgeInsets.only(right: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                CountdownTimer(
+                  onResend: () async {
+                    String email = AuthCubit.get(context).emailController.text ?? '';
+                    if (email.isNotEmpty) {
+                      AuthCubit.get(context).sendOtp(email);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("OTP has been resent"),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
             ),
           ),
           SizedBox(height: 5.h),
           ButtonBuilder(
             text: 'Continue',
-            ontap: () {
-
-              if (N1.text.isEmpty || N2.text.isEmpty || N3.text.isEmpty ||
-                  N4.text.isEmpty || N5.text.isEmpty || N6.text.isEmpty) {
-
+            onTap: () {
+              if (N1.text.isEmpty || N2.text.isEmpty || N3.text.isEmpty || N4.text.isEmpty || N5.text.isEmpty || N6.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text('Please enter all numbers OTP'),
                     backgroundColor: Colors.red,
                   ),
                 );
               } else {
-
-                navigateTo(context: context, screen: HomeLayout());
+                String otp = N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
+                print("OTP entered: $otp");
+                verifyOtp(context, otp);
               }
             },
-          ),
+          )
         ],
-      ),
-    );
-  }
-
-  Widget buildOtpField(TextEditingController controller) {
-    return SizedBox(
-      width: 40.w,
-      child: TextField(
-        controller: controller,
-        keyboardType: TextInputType.number,
-        textAlign: TextAlign.center,
-        maxLength: 1,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.purpleAccent, width: 2),
-          ),
-          counterText: "",
-        ),
       ),
     );
   }

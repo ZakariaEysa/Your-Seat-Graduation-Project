@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'movie_card.dart';
 
 class MovieCarouselWidget extends StatefulWidget {
+  const MovieCarouselWidget({super.key});
+
   @override
   _MovieCarouselWidgetState createState() => _MovieCarouselWidgetState();
 }
@@ -10,11 +16,13 @@ class MovieCarouselWidget extends StatefulWidget {
 class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
   final PageController _pageController =
   PageController(viewportFraction: 0.7, initialPage: 1);
-  int _currentPage = 1; // Track the current page
+  int _currentPage = 1;
+  List<Map<String, dynamic>> movies = []; // List to hold movie data
 
   @override
   void initState() {
     super.initState();
+    _fetchMovies();
     _pageController.addListener(() {
       setState(() {
         _currentPage = _pageController.page!.round();
@@ -22,8 +30,29 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
     });
   }
 
+  Future<void> _fetchMovies() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('playing now films')
+          .get();
+      final fetchedMovies = snapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+      setState(() {
+        movies = fetchedMovies;
+      });
+    } catch (e) {
+      print("Error fetching movies: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (movies.isEmpty) {
+      // Show loading spinner if movies are not loaded yet
+      return Center(child: CircularProgressIndicator());
+    }
+
     return Stack(
       children: [
         Column(
@@ -32,7 +61,7 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
-                itemCount: 3,
+                itemCount: 5,
                 itemBuilder: (context, index) {
                   return AnimatedBuilder(
                     animation: _pageController,
@@ -46,15 +75,22 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                         child: Transform.scale(
                           scale: Curves.easeOut.transform(value),
                           child: Opacity(
-                            opacity: _currentPage == index ? 1.0 : 0.5, // Control opacity
+                            opacity: _currentPage == index ? 1.0 : 0.5,
                             child: child,
                           ),
                         ),
                       );
                     },
-                    child: MovieCard(
-                      index: index,
-                      currentPage: 1,
+                    child: GestureDetector(
+
+                      onTap: (){
+                        navigateTo(context: context, screen: MovieDetails(model: MoviesDetailsModel.fromJson(movies[index]),));
+                        
+                        
+                      },
+                      child: MovieCard(
+                        movie: movies[index], // Pass movie data to the card
+                      ),
                     ),
                   );
                 },
@@ -63,19 +99,19 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
           ],
         ),
         Positioned(
-          bottom: 40.h, // Adjust the position of the dots
-          left: 0,
-          right: 0,
+          bottom: 60.h,
+          left: 0.w,
+          right: 0.w,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(3, (index) {
+            children: List.generate(5, (index) {
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 margin: EdgeInsets.symmetric(horizontal: 5.sp),
-                width: _currentPage == index ? 30 : 10,
+                width: _currentPage == index ? 40.w : 10.w,
                 height: 8.h,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(5.r),
                   color: _currentPage == index
                       ? const Color(0xffFCC434)
                       : const Color(0xff2E2E2E),

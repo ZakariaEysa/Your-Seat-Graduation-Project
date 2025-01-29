@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
-import '../../../home/presentation/views/home_screen.dart';
 
-class ChatUp extends StatelessWidget{
+class ChatUp extends StatelessWidget {
   const ChatUp({super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    var lang = S.of(context);
     return Column(
       children: [
         Padding(
           padding: EdgeInsets.only(top: 50.h, right: 20.w, left: 20.w),
           child: Row(
             children: [
-              GestureDetector(
-                  onTap: () {
-                    navigateTo(context: context, screen: const HomeScreen());
-                  },
-                  child: Image.asset('assets/icons/close.png')),
+              IconButton(
+                onPressed: () {
+                  navigateTo(context: context, screen: HomeLayout());
+                },
+                icon: Icon(
+                  Icons.close,
+                  size: 30,
+                ),
+                color: Colors.white,
+              ),
               const Spacer(),
               Image.asset(
                 'assets/images/chatbot.png',
@@ -32,15 +38,13 @@ class ChatUp extends StatelessWidget{
           ),
         ),
         Padding(
-          padding:  EdgeInsets.only(top:20.h, right: 100.w),
+          padding: EdgeInsetsDirectional.fromSTEB(15, 20, 90, 0),
           child: Text(
-            'Hello , I’m your AI\nAssistant !',
+            lang.HelloIamyourAIAssistant,
             style: theme.textTheme.titleLarge!.copyWith(fontSize: 35.sp),
             textAlign: TextAlign.start,
           ),
         ),
-
-
       ],
     );
   }

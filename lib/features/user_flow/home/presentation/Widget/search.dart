@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../generated/l10n.dart';
+
 class Search extends StatefulWidget {
   const Search({super.key});
 
@@ -39,41 +41,46 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(14.0),
       child: TextFormField(
         focusNode: _focusNode,
         controller: _controller,
         decoration: InputDecoration(
-          filled: true,
-          fillColor: Color(0x54D9D9D9),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.sp),
-            borderSide: BorderSide.none,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
+            borderSide: const BorderSide(width: .01, color: Color(0x4DD9D9D9)),
           ),
-          prefixIcon: _isFocused && _hasText
-              ? null
-              : Padding(
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              width: .01,
+              color: Color(0xffffffff),
+            ),
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          prefixIcon: Padding(
             padding: EdgeInsets.all(12.sp),
             child: Image.asset(
               "assets/icons/search.png",
-              width: 24.w,
-              height: 24.h,
+              width: 20.w,
+              height: 20.h,
             ),
           ),
-          hintText: _isFocused && _hasText ? '' : 'Search',
+          hintText: lang.search,
           hintStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 16.sp,
+            color: Colors.white70,
+            fontSize: 14.sp,
             fontFamily: 'SF Pro',
-            fontWeight: FontWeight.w400,
           ),
+          contentPadding: EdgeInsets.symmetric(vertical: 12.h),
+          filled: true, //
+          fillColor: const Color(0x4DD9D9D9),
+          border: InputBorder.none,
         ),
         style: TextStyle(
           color: Colors.white,
-          fontSize: 16.sp,
-          fontFamily: 'SF Pro',
-          fontWeight: FontWeight.w400,
+          fontSize: 14.sp,
         ),
       ),
     );

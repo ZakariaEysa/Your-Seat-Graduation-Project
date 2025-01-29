@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Notifaction/Notifaction.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Notifaction/views/Notifaction.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 
 class HeadWidget extends StatelessWidget {
@@ -8,7 +8,7 @@ class HeadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 120.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -17,11 +17,11 @@ class HeadWidget extends StatelessWidget {
           Image.asset(
             "assets/images/yourseat.png",
             width: 190.w,
-            height: 200.h,
+            height: 120.h,
           ),
           GestureDetector(
             onTap: () {
-              navigateTo(context: context, screen: Notifaction());
+              navigateTo(context: context, screen: const Notifications());
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),

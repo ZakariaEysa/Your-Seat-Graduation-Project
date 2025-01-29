@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_stroage.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../../main.dart';
 
 class LanguageSheet extends StatelessWidget {
   const LanguageSheet({super.key});
@@ -8,39 +11,73 @@ class LanguageSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return  SizedBox(
-      height: 350,
+    var lang = S.of(context);
+
+    final List<Map<String, String>> languagesList = [
+      {"code": "ar", "name": lang.arabic},
+      {"code": "en", "name": lang.english},
+    ];
+
+    String currentLang = HiveStorage.get(HiveKeys.isArabic) ? "ar" : "en";
+
+    return SizedBox(
+      height: 350.h,
       child: Padding(
-        padding: const EdgeInsets.all(35.0),
+        padding: EdgeInsets.all(20.sp),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: Colors.white,width: 3)
-              ),
-              child: InkWell(
-                onTap: (){
-                  navigatePop(context: context);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("English",style: theme.textTheme.labelLarge,),
-                    const Icon(Icons.check_rounded,color: Colors.white,size: 25,)
-                  ],
-                ),
-              ),
+            Text(
+              lang.language,
+              style: theme.textTheme.labelLarge,
             ),
+            SizedBox(height: 16.h),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: languagesList.length,
+              itemBuilder: (context, index) {
+                String code = languagesList[index]['code']!;
+                String name = languagesList[index]['name']!;
+                return GestureDetector(
+                  onTap: () {
+                    HiveStorage.set(HiveKeys.isArabic, code == "ar");
+                    MyApp.restartApp(context);
+                  },
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+                    margin: EdgeInsets.only(bottom: 8.h),
+                    decoration: BoxDecoration(
+                      // color: currentLang == code ? theme.primaryColor: Colors.transparent,
 
-            const SizedBox(height: 50,),
-            GestureDetector(
-                onTap: (){
-                  navigatePop(context: context);
-                },
-                child: Text("العربية",style: theme.textTheme.labelLarge))
+                      color: theme.primaryColor,
+                      borderRadius: BorderRadius.circular(10.r),
+                      // border: Border.all(color: theme.primaryColor),
+                      border: Border.all(
+                        color: currentLang == code
+                            ? Colors.white
+                            : theme.primaryColor,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          name,
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            // color: currentLang == code ? Colors.white : theme.primaryColor,
+                            color: Colors.white,
+                          ),
+                        ),
+                        if (currentLang == code)
+                          Icon(Icons.check_rounded,
+                              color: Colors.white, size: 20.sp),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

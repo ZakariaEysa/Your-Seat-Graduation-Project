@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/widgets/social_items.dart';
-import 'package:yourseatgraduationproject/generated/l10n.dart';
-import 'package:yourseatgraduationproject/resources/app_styles_manager.dart';
 import 'package:yourseatgraduationproject/resources/constants.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 class RowOfSocialItems extends StatelessWidget {
   const RowOfSocialItems({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      SocialItem(
-        url: "assets/images/${AppConstVariables.facebookImg}",
-       
-      ),
-      SizedBox(width: 22.w),
-      SocialItem(
-          url: "assets/images/${AppConstVariables.emailImg}",
-          
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SocialItem(
+          linkUrl: "https://www.facebook.com/profile.php?id=61567367565000",
+          imageUrl: "assets/images/${AppConstVariables.facebookImg}",
+        ),
+        SizedBox(width: 22.w), // استخدام ScreenUtil لضبط التباعد
+        SocialItem(
+          linkUrl: "mailto:yourseatgp@gmail.com",
+          imageUrl: "assets/images/${AppConstVariables.emailImg}",
           boxShadow: const [
             BoxShadow(
               color: Color(0x3F000000),
@@ -28,12 +26,14 @@ class RowOfSocialItems extends StatelessWidget {
               offset: Offset(0, 4),
               spreadRadius: 0,
             ),
-          ]),
-      SizedBox(width: 22.w),
-      SocialItem(
-        url: "assets/images/${AppConstVariables.linkedInImg}",
-     
-      ),
-    ]);
+          ],
+        ),
+        SizedBox(width: 22.w), // استخدام ScreenUtil لضبط التباعد
+        SocialItem(
+          linkUrl: "tel:+201091058098", // دعم رقم الهاتف مع أو بدون "tel:"
+          imageUrl: "assets/images/${AppConstVariables.phone}",
+        ),
+      ],
+    );
   }
 }

@@ -1,72 +1,191 @@
+// import 'package:flutter/material.dart';
+// import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
+// import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/language_sheet.dart';
+// import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/profile_card.dart';
+// import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/theme_sheet.dart';
+// import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/settings_item/settings_item.dart';
+// import 'package:yourseatgraduationproject/utils/navigation.dart';
+// import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
+//
+// import '../../../../../widgets/scaffold/scaffold_f.dart';
+//
+// class SettingsPage extends StatelessWidget {
+//   const SettingsPage({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ScaffoldF(
+//       appBar: AppBar(
+//         backgroundColor: const Color(0xFF2E1371),
+//         title: const HeadAppBar(
+//           title: 'Settings',
+//         ),
+//       ),
+//       body: Center(
+//           child: Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//         children: [
+//           SettingsItem(
+//             title: "Profile",
+//             imageIcon: "assets/images/account.png",
+//             onPress: () {
+//               navigateTo(context: context, screen: const ProfileCard());
+//             },
+//           ),
+//           SettingsItem(
+//               title: "Language",
+//               imageIcon: "assets/images/language.png",
+//               onPress: () {
+//                 showLanguageBottomSheet(context);
+//               }),
+//           SettingsItem(
+//               title: "Theme",
+//               imageIcon: "assets/images/theme.png",
+//               onPress: () {
+//                 showThemeBottomSheet(context);
+//               }),
+//           SettingsItem(
+//               title: "About Us",
+//               imageIcon: "assets/images/account.png",
+//               onPress: () {
+//                 navigateTo(context: context, screen: const AboutUs());
+//               }),
+//           SettingsItem(
+//               title: "LogOut",
+//               imageIcon: "assets/images/logout 1.png",
+//               onPress: () {})
+//         ],
+//       )),
+//     );
+//   }
+//
+//   void showThemeBottomSheet(BuildContext context) {
+//     showModalBottomSheet(
+//         context: context, builder: (context) => const ThemeSheet());
+//   }
+//
+//   void showLanguageBottomSheet(context) {
+//     showModalBottomSheet(
+//         context: context, builder: (context) => const LanguageSheet());
+//   }
+// }
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/language_sheet.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/profile_card.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/theme_sheet.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/settings_item/settings_item.dart';
+import 'package:yourseatgraduationproject/utils/dialog_utilits.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
+import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
-import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_stroage.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../auth/presentation/cubit/auth_cubit.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
+
     return ScaffoldF(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2E1371),
-        title: HeadAppBar(
-          title: 'Settings',
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF2E1371),
+        title: Padding(
+          padding:  EdgeInsetsDirectional.fromSTEB(95.w, 0, 0, 0),
+          child: HeadAppBar(title: lang.settings),
         ),
       ),
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          SettingsItem(
-            title: "Profile",
-            imageIcon: "assets/images/account.png",
-            onPress: () {
-              navigateTo(context: context, screen: const ProfileCard());
-            },
-          ),
-          SettingsItem(
-              title: "Language",
-              imageIcon: "assets/images/language.png",
-              onPress: () {
-                showLanguageBottomSheet(context);
-              }),
-          SettingsItem(
-              title: "Theme",
-              imageIcon: "assets/images/theme.png",
-              onPress: () {
-                showThemeBottomSheet(context);
-              }),
-          SettingsItem(
-              title: "About Us",
-              imageIcon: "assets/images/account.png",
-              onPress: () {
-                navigateTo(context: context, screen: const AboutUs());
-              }),
-          SettingsItem(
-              title: "LogOut",
-              imageIcon: "assets/images/logout 1.png",
-              onPress: () {})
-        ],
-      )),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: _buildSettingsItems(context),
+        ),
+      ),
     );
   }
 
-  void showThemeBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-        context: context, builder: (context) => const ThemeSheet());
+  List<Widget> _buildSettingsItems(BuildContext context) {
+    var lang = S.of(context);
+    return [
+      SettingsItem(
+        title: lang.profile,
+        imageIcon: "assets/images/account.png",
+        onPress: () {
+          // navigateTo(context: context, screen: const ProfileCard());
+        },
+      ),
+      SettingsItem(
+        title: lang.language,
+        imageIcon: "assets/images/language.png",
+        onPress: () {
+
+        },
+        // onPress: () => _showBottomSheet(
+        //   context,
+        //   const LanguageSheet(),
+        // ),
+      ),
+      SettingsItem(
+        title: lang.theme,
+        imageIcon: "assets/images/theme.png",
+        onPress: (){
+
+             //
+             // ThemeSheet();
+
+
+        }
+      ),
+      SettingsItem(
+        title: lang.AboutUs,
+        imageIcon: "assets/images/account.png",
+        onPress: () {
+          navigateTo(context: context, screen: const AboutUs());
+        },
+      ),
+      SettingsItem(
+        title: lang.logOut,
+        imageIcon: "assets/images/logout 1.png",
+        onPress: () {
+          DialogUtils.showMessage(context, lang.areYouSureYouWantToLogOut,
+              posActionTitle: lang.ok,
+              negActionTitle: lang.cancel, posAction: () {
+            bool lang = HiveStorage.get(HiveKeys.isArabic);
+            HiveStorage.set(HiveKeys.role, "");
+            HiveStorage.set(HiveKeys.passUserOnboarding, true);
+            HiveStorage.logOut();
+
+            HiveStorage.set(HiveKeys.isArabic, lang).then((c) {
+              navigateAndRemoveUntil(
+                context: context,
+                screen: const SignIn(),
+              );
+            });
+          }, negAction: () {
+            navigatePop(context: context);
+          });
+        },
+      ),
+    ];
   }
 
-  void showLanguageBottomSheet(context) {
+  void _showBottomSheet(BuildContext context, Widget sheetContent) {
     showModalBottomSheet(
-        context: context, builder: (context) => const LanguageSheet());
+      context: context,
+      builder: (context) => sheetContent,
+    );
   }
 }

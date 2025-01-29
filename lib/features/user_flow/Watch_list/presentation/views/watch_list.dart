@@ -1,73 +1,145 @@
+//
+//
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+// import '../../../../../generated/l10n.dart';
+// import '../../../../../widgets/app_bar/head_appbar.dart';
+// import '../../favorite_movies_provider/favorite_movies_provider.dart';
+// import '../widgets/watch_list_part.dart';
+//
+// class WatchList extends StatelessWidget {
+//   const WatchList({super.key});
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     var lang = S.of(context);
+//
+//     final favoriteMoviesProvider = Provider.of<FavoriteMoviesProvider>(context);
+//     final favoriteMovies = favoriteMoviesProvider.favoriteMovies;
+//
+//     return ScaffoldF(
+//       appBar: AppBar(
+//         automaticallyImplyLeading: false,
+//         backgroundColor: const Color(0xFF2E1371),
+//         title: Padding(
+//           padding: EdgeInsetsDirectional.fromSTEB(100, 0, 0, 0),
+//           child: HeadAppBar(
+//             title: lang.watchlist,
+//           ),
+//         ),
+//       ),
+//       body: favoriteMovies.isEmpty
+//           ? Center(
+//         child: Text(
+//           lang.sorryNoWatchListMoviesYet,
+//           style: Theme.of(context).textTheme.bodyLarge,
+//         ),
+//       )
+//           : SingleChildScrollView(
+//         child: Column(
+//           children: List.generate(
+//             favoriteMovies.length,
+//                 (index) {
+//               final movie = favoriteMovies[index];
+//               return Column(
+//                 children: [
+//                   WatchListPart(
+//                     image: movie.posterImage ?? 'assets/images/img_1.png',
+//                     title: movie.name ?? "",
+//                     time: '${movie.releaseDate} | ${movie.duration}',
+//                     smallimage: 'assets/images/star.png',
+//                     smalltitle: "${movie.rating}",
+//                     onRemove: () {
+//                       favoriteMoviesProvider.removeMovie(movie);
+//                     },
+//                   ),
+//                   Image.asset('assets/images/line.png'),
+//                 ],
+//               );
+//             },
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
-import '../../../home/presentation/views/home_layout.dart';
+
 import '../widgets/watch_list_part.dart';
+
 class WatchList extends StatelessWidget {
   const WatchList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     return ScaffoldF(
-
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-  size: 28
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: const Color(0xFF2E1371),
+          title: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(100, 0, 0, 0),
+            child: HeadAppBar(
+              title: lang.watchlist,
+            ),
+          ),
         ),
-        backgroundColor: const Color(0xFF2E1371),
-        title: HeadAppBar(
-          title: 'Watch List ',
-        ),),
         body: SingleChildScrollView(
-      child: Column(
-        children: [
-
-          const WatchListPart(
-            image: 'assets/images/Avengers.png',
-            title: 'Avengers: End Game',
-            time: '2019 |3h 17 min',
-            smallimage: 'assets/images/star.png',
-            smalltitle: '8.9',
+          child: Column(
+            children: [
+              const WatchListPart(
+                image: 'assets/images/Avengers.png',
+                title: 'Avengers',
+                time: '2019 |3h 17 min',
+                smallimage: 'assets/images/star.png',
+                smalltitle: '8.9',
+              ),
+              Image.asset('assets/images/line.png'),
+              const WatchListPart(
+                image: 'assets/images/Venom.png',
+                title: 'Venom 2',
+                time: '2021 |1h 37 min',
+                smallimage: 'assets/images/star2.png',
+                smalltitle: '6.1',
+              ),
+              Image.asset('assets/images/line.png'),
+              const WatchListPart(
+                image: 'assets/images/boss.png',
+                title: 'Boss Level',
+                time: '2020 |2h 04 min',
+                smallimage: 'assets/images/star2.png',
+                smalltitle: '6.8',
+              ),
+              Image.asset('assets/images/line.png'),
+              const WatchListPart(
+                image: 'assets/images/Wrath.png',
+                title: 'Wrath Of Man',
+                time: '2021 |1h 56 min',
+                smallimage: 'assets/images/star3.png',
+                smalltitle: '5.3',
+              ),
+              Image.asset('assets/images/line.png'),
+              const WatchListPart(
+                image: 'assets/images/No.png',
+                title: 'No Time To Die',
+                time: '2021 |2h 17 min',
+                smallimage: 'assets/images/star2.png',
+                smalltitle: '7.8',
+              ),
+              // HomeLayout()
+              //
+            ],
           ),
-          Image.asset('assets/images/line.png'),
-          const WatchListPart(
-            image: 'assets/images/Venom.png',
-            title: 'Venom 2',
-            time: '2021 |1h 37 min',
-            smallimage: 'assets/images/star2.png',
-            smalltitle: '6.1',
-          ),
-          Image.asset('assets/images/line.png'),
-          const WatchListPart(
-            image: 'assets/images/boss.png',
-            title: 'Boss Level',
-            time: '2020 |2h 04 min',
-            smallimage: 'assets/images/star2.png',
-            smalltitle: '6.8',
-          ),
-          Image.asset('assets/images/line.png'),
-          const WatchListPart(
-            image: 'assets/images/Wrath.png',
-            title: 'Wrath Of Man',
-            time: '2021 |1h 56 min',
-            smallimage: 'assets/images/star3.png',
-            smalltitle: '5.3',
-          ),
-          Image.asset('assets/images/line.png'),
-          const WatchListPart(
-            image: 'assets/images/No.png',
-            title: 'No Time To Die',
-            time: '2021 |2h 17 min',
-            smallimage: 'assets/images/star2.png',
-            smalltitle: '7.8',
-          ),
-          // HomeLayout()
-        //
-        ],
-      ),
-    ));
+        ));
   }
 }

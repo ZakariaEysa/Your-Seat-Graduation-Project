@@ -1,43 +1,48 @@
 import 'package:flutter/material.dart';
-class SignInPart extends StatelessWidget{
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class SignInPart extends StatelessWidget {
   final String title;
-  final IconData icon;
-  const SignInPart({super.key,required this.title, required this.icon,this.onTap});
+  const SignInPart(
+      {super.key, required this.title, this.onTap, this.imagePath});
+
   final void Function()? onTap;
+  final String? imagePath;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width:331,
-        height: 52,
-        decoration: BoxDecoration(color: Color(0xFF2D1468),borderRadius: BorderRadius.circular(40)),
-        child:  Padding(
-          padding: const EdgeInsets.all(8.0),
+        width: 333.w, // تم تعديل العرض باستخدام ScreenUtil
+        height: 57.h, // تم تعديل الارتفاع باستخدام ScreenUtil
+        decoration: BoxDecoration(
+          color: const Color(0xFF2D1468),
+          borderRadius: BorderRadius.circular(
+              40.sp), // تم تعديل الزوايا باستخدام ScreenUtil
+        ),
+        child: Padding(
+          padding: EdgeInsetsDirectional.only(
+              start: 30.w), // تم تعديل التباعد باستخدام ScreenUtil
           child: Row(
             children: [
-              Icon(
-                icon, // Use the provided icon
-                color: Colors.white,
-                size:35,
+              // تم إلغاء الكود المعطل للـ Icon
+              Image.asset(
+                imagePath!,
+                width: 35.w, // تم تعديل العرض باستخدام ScreenUtil
+                height: 35.h, // تم تعديل الارتفاع باستخدام ScreenUtil
               ),
-              const SizedBox(width: 20),
+              SizedBox(width: 20.w), // تم تعديل التباعد باستخدام ScreenUtil
               Text(
                 title,
-                style:theme.textTheme.labelLarge!.copyWith(fontSize: 17),
+                style: theme.textTheme.labelLarge!.copyWith(
+                    fontSize: 17.sp), // تم تعديل الحجم باستخدام ScreenUtil
               ),
-      
             ],
           ),
         ),
-      
-      
-      
-      
-      
       ),
     );
   }
-
 }

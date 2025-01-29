@@ -818,7 +818,7 @@ class _SignUpState extends State<SignUp> {
                               flickerTimeInMilliSeconds: 1000,
                               spreadColor: Colors.white,
                               blurRadius: 20.r,
-                              textSize: 18.sp,
+                              textSize: 14.sp,
                             ),
                           ),
                         ],
@@ -829,8 +829,9 @@ class _SignUpState extends State<SignUp> {
                   FadeInLeft(
                     delay: const Duration(milliseconds: 550),
                     child: Text(
+
                       privacyPolicy ? "" : local.pleaseAcceptPrivacyAndPolicy,
-                      style: const TextStyle(color: Colors.red),
+                      style:  TextStyle(color: Colors.red),
                       textAlign: TextAlign.center,
                     ),
                   ),

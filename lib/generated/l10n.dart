@@ -520,20 +520,20 @@ class S {
     );
   }
 
-  /// `January`
+  /// `Jan`
   String get january {
     return Intl.message(
-      'January',
+      'Jan',
       name: 'january',
       desc: '',
       args: [],
     );
   }
 
-  /// `February`
+  /// `Feb`
   String get february {
     return Intl.message(
-      'February',
+      'Feb',
       name: 'february',
       desc: '',
       args: [],
@@ -590,50 +590,50 @@ class S {
     );
   }
 
-  /// `August`
+  /// `Aug`
   String get august {
     return Intl.message(
-      'August',
+      'Aug',
       name: 'august',
       desc: '',
       args: [],
     );
   }
 
-  /// `September`
+  /// `Sep`
   String get september {
     return Intl.message(
-      'September',
+      'Sep',
       name: 'september',
       desc: '',
       args: [],
     );
   }
 
-  /// `October`
+  /// `Oct`
   String get october {
     return Intl.message(
-      'October',
+      'Oct',
       name: 'october',
       desc: '',
       args: [],
     );
   }
 
-  /// `November`
+  /// `Nove`
   String get november {
     return Intl.message(
-      'November',
+      'Nove',
       name: 'november',
       desc: '',
       args: [],
     );
   }
 
-  /// `December`
+  /// `Dec`
   String get december {
     return Intl.message(
-      'December',
+      'Dec',
       name: 'december',
       desc: '',
       args: [],

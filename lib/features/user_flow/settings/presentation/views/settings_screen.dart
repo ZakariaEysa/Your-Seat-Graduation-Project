@@ -124,24 +124,30 @@ class SettingsPage extends StatelessWidget {
         title: lang.profile,
         imageIcon: "assets/images/account.png",
         onPress: () {
-          navigateTo(context: context, screen: const ProfileCard());
+          // navigateTo(context: context, screen: const ProfileCard());
         },
       ),
       SettingsItem(
         title: lang.language,
         imageIcon: "assets/images/language.png",
-        onPress: () => _showBottomSheet(
-          context,
-          const LanguageSheet(),
-        ),
+        onPress: () {
+
+        },
+        // onPress: () => _showBottomSheet(
+        //   context,
+        //   const LanguageSheet(),
+        // ),
       ),
       SettingsItem(
         title: lang.theme,
         imageIcon: "assets/images/theme.png",
-        onPress: () => _showBottomSheet(
-          context,
-          const ThemeSheet(),
-        ),
+        onPress: (){
+
+             //
+             // ThemeSheet();
+
+
+        }
       ),
       SettingsItem(
         title: lang.AboutUs,

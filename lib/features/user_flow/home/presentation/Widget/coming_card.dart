@@ -70,6 +70,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 
 class ComingCard extends StatelessWidget {
   final String title;
@@ -98,34 +99,34 @@ class ComingCard extends StatelessWidget {
             // Movie Poster
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                imageUrl,
+              child: ImageReplacer(
+                imageUrl: imageUrl,
                 height: 240.sp,
                 width: 160.sp,
                 fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
-                    ),
-                  );
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    height: 240.sp,
-                    width: 160.sp,
-                    color: Colors.grey.shade800,
-                    child: const Icon(
-                      Icons.broken_image,
-                      color: Colors.white,
-                      size: 50,
-                    ),
-                  );
-                },
+                // loadingBuilder: (context, child, loadingProgress) {
+                //   if (loadingProgress == null) return child;
+                //   return Center(
+                //     child: CircularProgressIndicator(
+                //       value: loadingProgress.expectedTotalBytes != null
+                //           ? loadingProgress.cumulativeBytesLoaded /
+                //               loadingProgress.expectedTotalBytes!
+                //           : null,
+                //     ),
+                //   );
+                // },
+                // errorBuilder: (context, error, stackTrace) {
+                //   return Container(
+                //     height: 240.sp,
+                //     width: 160.sp,
+                //     color: Colors.grey.shade800,
+                //     child: const Icon(
+                //       Icons.broken_image,
+                //       color: Colors.white,
+                //       size: 50,
+                //     ),
+                //   );
+                // },
               ),
             ),
             SizedBox(height: 8.h),

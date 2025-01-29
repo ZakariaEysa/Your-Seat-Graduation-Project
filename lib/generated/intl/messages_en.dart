@@ -87,7 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to log out ?"),
         "askmehere": MessageLookupByLibrary.simpleMessage("ask me here..."),
-        "august": MessageLookupByLibrary.simpleMessage("August"),
+        "august": MessageLookupByLibrary.simpleMessage("Aug"),
         "available": MessageLookupByLibrary.simpleMessage("Available"),
         "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
         "bookTicketsForTheLatestMoviesAtTheCinemaNearestToYou":
@@ -138,7 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cvv": MessageLookupByLibrary.simpleMessage("CVV:"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
-        "december": MessageLookupByLibrary.simpleMessage("December"),
+        "december": MessageLookupByLibrary.simpleMessage("Dec"),
         "director": MessageLookupByLibrary.simpleMessage("Director"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("Don’t have an account yet?"),
@@ -174,7 +174,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "favoritesOrWatchlistForQuickAccessToYourBelovedMovies":
             MessageLookupByLibrary.simpleMessage(
                 "Favorites or watchlist for quick access to your beloved movies."),
-        "february": MessageLookupByLibrary.simpleMessage("February"),
+        "february": MessageLookupByLibrary.simpleMessage("Feb"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "fill_all_fields":
             MessageLookupByLibrary.simpleMessage("Please fill all fields"),
@@ -199,7 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid username"),
         "invalid_EmailAddress_format": MessageLookupByLibrary.simpleMessage(
             "Invalid Email Address format"),
-        "january": MessageLookupByLibrary.simpleMessage("January"),
+        "january": MessageLookupByLibrary.simpleMessage("Jan"),
         "july": MessageLookupByLibrary.simpleMessage("July"),
         "june": MessageLookupByLibrary.simpleMessage("June"),
         "language": MessageLookupByLibrary.simpleMessage("language"),
@@ -223,9 +223,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_account":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notification"),
-        "november": MessageLookupByLibrary.simpleMessage("November"),
+        "november": MessageLookupByLibrary.simpleMessage("Nove"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("Now Playing"),
-        "october": MessageLookupByLibrary.simpleMessage("October"),
+        "october": MessageLookupByLibrary.simpleMessage("Oct"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom":
             MessageLookupByLibrary.simpleMessage(
@@ -289,7 +289,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Date & Time"),
         "selectSeat": MessageLookupByLibrary.simpleMessage("Select Seat"),
         "selected": MessageLookupByLibrary.simpleMessage("Selected"),
-        "september": MessageLookupByLibrary.simpleMessage("September"),
+        "september": MessageLookupByLibrary.simpleMessage("Sep"),
         "serviceFees": MessageLookupByLibrary.simpleMessage("Service Fees:"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),

@@ -4,54 +4,64 @@ import 'package:yourseatgraduationproject/features/user_flow/Tickets/presentatio
 
 class TicketCard extends StatelessWidget {
   final Ticket ticket;
-  final bool isFirstTicket; // Add this to track if it's the first ticket
+  final bool isFirstTicket;
 
-  const TicketCard({super.key, required this.ticket, this.isFirstTicket = false}); // Def
+  const TicketCard({super.key, required this.ticket, this.isFirstTicket = false});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.only(bottom: 15),
+      margin: EdgeInsets.only(bottom: 15.h),
       color: Color(0xFF0E0643),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: SizedBox(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+      child: Container(
         height: 185.h,
-
         child: Row(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12),
-                bottomLeft: Radius.circular(12),
+                topLeft: Radius.circular(12.r),
+                bottomLeft: Radius.circular(12.r),
               ),
               child: Image.asset(
                 ticket.imageUrl,
                 height: double.infinity,
-                width: 120,
+                width: 120.w,
                 fit: BoxFit.cover,
               ),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(8.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(ticket.movieName,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white)),
+                    Text(
+                      ticket.movieName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 14.sp,
+                      ),
+                    ),
                     SizedBox(height: 8.h),
                     Row(
                       children: [
                         Image.asset(
                           'assets/icons/clock_icon.png',
-                          width: 20,
-                          height: 20,
+                          width: 18.w,
+                          height: 18.h,
                         ),
                         SizedBox(width: 5.w),
-                        Text('${ticket.time}    ${ticket.date}',
-                            style: TextStyle(color: Colors.white)),
+                        Text(
+                          '${ticket.time}    ${ticket.date}',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(height: 5.h),
@@ -59,11 +69,17 @@ class TicketCard extends StatelessWidget {
                       children: [
                         Image.asset(
                           'assets/icons/location_icon.png',
-                          width: 20,
-                          height: 20,
+                          width: 20.w,
+                          height: 20.h,
                         ),
                         SizedBox(width: 5.w),
-                        Text(ticket.location),
+                        Text(
+                          ticket.location,
+                          style: TextStyle(
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(height: 5.h),
@@ -71,12 +87,18 @@ class TicketCard extends StatelessWidget {
                       children: [
                         Image.asset(
                           'assets/icons/Group 4.png',
-                          width: 19,
-                          height: 15,
+                          width: 19.w,
+                          height: 15.h,
                         ),
                         SizedBox(width: 5.w),
-                        Text('Seat: ${ticket.seats}',
-                            style: TextStyle(color: Colors.white)),
+                        Text(
+                          'Seat: ${ticket.seats}',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(height: 5.h),
@@ -84,32 +106,40 @@ class TicketCard extends StatelessWidget {
                       children: [
                         Image.asset(
                           'assets/icons/price-tag 2.png',
-                          width: 20,
-                          height: 20,
+                          width: 18.w,
+                          height: 20.h,
                         ),
                         SizedBox(width: 5.w),
-                        Text(ticket.price,
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+                        Text(
+                          ticket.price,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                            fontSize: 14.sp,
+                          ),
+                        ),
                       ],
-
                     ),
                     if (isFirstTicket)
                       Padding(
-                        padding: const EdgeInsets.only(left: 100 , ),
+                        padding: EdgeInsets.only(left: 80.w),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFF08086A),
-                            fixedSize: Size(100.w, 10.h),
-                            side: BorderSide(color: Color(0xFFBD1A2F), width: 2.w), // لون وسمك الحدود
+                            fixedSize: Size(140.w, 0.h),
+                            side: BorderSide(
+                              color: Color(0xFFBD1A2F),
+                              width: 1.5.w,
+                            ),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20.r),
                             ),
                           ),
                           onPressed: () {},
                           child: Text(
                             'Cancel',
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 13.sp,
                               color: Colors.red,
                             ),
                           ),
@@ -119,10 +149,11 @@ class TicketCard extends StatelessWidget {
                 ),
               ),
             ),
-
             VerticalStatusCard(
               status: ticket.status,
               imagePath: ticket.statusImage,
+              imageWidth: ticket.statusImageWidth,
+              imageHeight: ticket.statusImageHeight,
             ),
           ],
         ),
@@ -130,6 +161,7 @@ class TicketCard extends StatelessWidget {
     );
   }
 }
+
 
 class Ticket {
   final String movieName;
@@ -141,6 +173,8 @@ class Ticket {
   final String price;
   final String status;
   final String statusImage;
+  final double statusImageWidth;
+  final double statusImageHeight;
 
   Ticket({
     required this.movieName,
@@ -152,5 +186,7 @@ class Ticket {
     required this.price,
     required this.status,
     required this.statusImage,
+    required this.statusImageWidth,
+    required this.statusImageHeight,
   });
 }

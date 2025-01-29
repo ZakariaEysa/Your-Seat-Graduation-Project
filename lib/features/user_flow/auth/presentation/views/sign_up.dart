@@ -875,8 +875,10 @@ class _SignUpState extends State<SignUp> {
               }
               if (state is AuthSuccess) {
                 AppLogs.scussessLog("create");
+
                 // HiveStorage.set(HiveKeys.role, Role.email.toString());
                 navigateAndRemoveUntil(context: context, screen: Otp());
+
               }
             },
             builder: (context, state) {
@@ -897,10 +899,9 @@ class _SignUpState extends State<SignUp> {
   void createAccount() async {
     AuthCubit auth = AuthCubit.get(context);
 
-    // تحقق من صحة النموذج
+
     if (!auth.formKeyRegister.currentState!.validate()) return;
 
-    // تحقق من إدخال تاريخ الميلاد بالكامل
     if (auth.selectedMonth == null ||
         auth.selectedDay == null ||
         auth.selectedYear == null) {
@@ -916,7 +917,7 @@ class _SignUpState extends State<SignUp> {
     // تحقق من قبول سياسة الخصوصية
     if (!privacyPolicy) {
       setState(() {
-        agree = false; // لإعادة عرض الرسالة بشكل مناسب
+        agree = false;
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -927,7 +928,7 @@ class _SignUpState extends State<SignUp> {
       return;
     }
 
-    // تنفيذ تسجيل المستخدم
+
     auth.registerUser(
       userModel: UserModel(
         name: auth.userName.text,

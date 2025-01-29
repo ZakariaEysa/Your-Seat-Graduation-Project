@@ -375,7 +375,7 @@ model.description??"",
                   onTap: () {},
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 51.h,
                 )
               ],
             ),

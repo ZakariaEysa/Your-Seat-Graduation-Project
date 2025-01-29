@@ -878,7 +878,7 @@ class _SignUpState extends State<SignUp> {
                 AppLogs.scussessLog("create");
 
                 // HiveStorage.set(HiveKeys.role, Role.email.toString());
-                navigateAndRemoveUntil(context: context, screen: Otp());
+                navigateTo(context: context, screen: Otp());
 
               }
             },

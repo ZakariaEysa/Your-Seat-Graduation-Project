@@ -1,6 +1,7 @@
 
 import 'package:email_otp_auth/email_otp_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
@@ -33,32 +34,32 @@ class _OtpState extends State<Otp> {
   final FocusNode F5 = FocusNode();
   final FocusNode F6 = FocusNode();
 
-  Future<void> sendOtpResend(String email) async {
-    try {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(child: CircularProgressIndicator());
-        },
-      );
-
-      var res = await EmailOtpAuth.sendOTP(email: email);
-      if (context.mounted) {
-        Navigator.of(context).pop();
-      }
-      if (res["message"] == "Email Send" && context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("OTP Sent Successfully ✅")),
-        );
-      } else if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Invalid E-Mail Address ❌")),
-        );
-      }
-    } catch (error) {
-      throw error.toString();
-    }
-  }
+  // Future<void> sendOtpResend(String email) async {
+  //   try {
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return const Center(child: CircularProgressIndicator());
+  //       },
+  //     );
+  //
+  //     var res = await EmailOtpAuth.sendOTP(email: email);
+  //     if (context.mounted) {
+  //       Navigator.of(context).pop();
+  //     }
+  //     if (res["message"] == "Email Send" && context.mounted) {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text("OTP Sent Successfully ✅")),
+  //       );
+  //     } else if (context.mounted) {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text("Invalid E-Mail Address ❌")),
+  //       );
+  //     }
+  //   } catch (error) {
+  //     throw error.toString();
+  //   }
+  // }
 
   Future<void> verifyOtp(BuildContext context, String otp) async {
     bool isOtpValid = (await EmailOtpAuth.verifyOtp(otp: otp))["message"] == "OTP Verified";
@@ -172,7 +173,7 @@ class _OtpState extends State<Otp> {
                   onResend: () async {
                     String email = AuthCubit.get(context).emailController.text ?? '';
                     if (email.isNotEmpty) {
-                      sendOtpResend(email);
+                      AuthCubit.get(context).sendOtp(email);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("OTP has been resent"),

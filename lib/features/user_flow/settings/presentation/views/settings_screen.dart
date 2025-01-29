@@ -103,8 +103,8 @@ class SettingsPage extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF2E1371),
         title: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(95, 0, 0, 0),
-          child: HeadAppBar(title: lang.setting),
+          padding:  EdgeInsetsDirectional.fromSTEB(95.w, 0, 0, 0),
+          child: HeadAppBar(title: lang.settings),
         ),
       ),
       body: Padding(

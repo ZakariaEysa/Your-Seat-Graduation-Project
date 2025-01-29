@@ -8,12 +8,20 @@ class DraggableFloatingButton extends StatefulWidget {
   const DraggableFloatingButton({super.key});
 
   @override
-  _DraggableFloatingButtonState createState() =>
-      _DraggableFloatingButtonState();
+  _DraggableFloatingButtonState createState() => _DraggableFloatingButtonState();
 }
 
 class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
-  Offset buttonPosition = Offset(300.w, 650.h); // Starting position
+  late Offset buttonPosition;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    buttonPosition = Offset(screenWidth * 0.75, screenHeight * 0.75);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,49 +33,35 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
               left: buttonPosition.dx,
               top: buttonPosition.dy,
               child: Draggable(
-                feedback: GestureDetector(
-                  onTap: () {
-                    navigateTo(context: context, screen: const ChatBottt());
-                  },
-                  child: Image.asset(
-                    'assets/images/chat_bot.png',
-                    width: 80.w,
-                    height: 80.h,
-                  ),
-                ),
+                feedback: FloatingButton(),
                 childWhenDragging: Container(),
                 onDraggableCanceled: (velocity, offset) {
                   setState(() {
-                    double newX = offset.dx;
-                    double newY = offset.dy;
-
-                    if (newX < 0) newX = 0;
-                    if (newY < 0) newY = 0;
-                    if (newX > constraints.maxWidth - 80.w) {
-                      newX = constraints.maxWidth - 80.w;
-                    }
-                    if (newY > constraints.maxHeight - 80.h) {
-                      newY = constraints.maxHeight - 80.h;
-                    }
-
+                    double newX = offset.dx.clamp(0, constraints.maxWidth - 80.w);
+                    double newY = offset.dy.clamp(0, constraints.maxHeight - 80.h);
                     buttonPosition = Offset(newX, newY);
                   });
                 },
                 child: GestureDetector(
-                  onTap: () {
-                    navigateTo(context: context, screen: const ChatBottt());
-                  },
-                  child: Image.asset(
-                    'assets/images/chat_bot.png',
-                    width: 80.w,
-                    height: 80.h,
-                  ),
+                  onTap: () => navigateTo(context: context, screen: const ChatBottt()),
+                  child: FloatingButton(),
                 ),
               ),
             ),
           ],
         );
       },
+    );
+  }
+}
+
+class FloatingButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      'assets/images/chat_bot.png',
+      width: 80.w,
+      height: 80.h,
     );
   }
 }

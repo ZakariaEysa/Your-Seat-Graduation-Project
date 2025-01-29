@@ -19,8 +19,8 @@ class QrState extends StatelessWidget {
               children: [
                 Image.asset(
                   "assets/images/qr.png",
-                  width: 125.w,
-                  height: 125.h,
+                  width: 100.w,
+                  height: 100.h,
                 ),
                 Column(
                   children: [

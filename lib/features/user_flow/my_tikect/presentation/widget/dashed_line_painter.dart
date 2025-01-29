@@ -12,25 +12,25 @@ class DashedLinePainter extends CustomPainter {
     final Paint paint = Paint()
       ..color = Color(0xff1A0E3D)
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 0.8.w;  // جعل سماكة الخط مرنة
+      ..strokeWidth = 0.8.w;
 
     double startX = 0.0;
 
-    // رسم الخط المتقطع
+
     while (startX < size.width) {
-      // رسم الشريطة
+
       canvas.drawLine(
         Offset(startX, 0),
-        Offset(startX + dashWidth.w, 0),  // جعل عرض الشريطة مرن
+        Offset(startX + dashWidth.w, 0),
         paint,
       );
-      // الانتقال إلى الموقع التالي
-      startX += dashWidth.w + dashSpace.w;  // جعل المسافة بين الشرطات مرنة
+
+      startX += dashWidth.w + dashSpace.w;
     }
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;  // لا حاجة لإعادة الرسم إلا إذا تغيّر الكود
+    return false;
   }
 }

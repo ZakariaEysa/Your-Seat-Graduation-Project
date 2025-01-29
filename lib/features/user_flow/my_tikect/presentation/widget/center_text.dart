@@ -77,14 +77,14 @@ class CenterText extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 60.w),
                   child: Text(
-                    '4th floor, Vincom Ocean Park, Da Ton, Gia\n Lam, Ha Noi',
+                    '4th floor, Vincom Ocean Park,\n Da Ton, Gia Lam, Ha Noi',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 14.sp,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
                       height: 1.50,
-                      overflow: TextOverflow.ellipsis,  // Add ellipsis when text overflows
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
@@ -102,7 +102,7 @@ class CenterText extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     Text(
-                      'Show this QR code to the ticket counter\n to receive your ticket',
+                      'Show this QR code to the ticket\n  counter to receive your ticket',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.sp,

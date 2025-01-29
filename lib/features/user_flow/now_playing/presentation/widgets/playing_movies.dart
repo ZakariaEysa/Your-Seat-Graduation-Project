@@ -93,6 +93,8 @@ class _PlayingMoviesState extends State<PlayingMovies> {
           ),
           Text(
             widget.title,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
             style: theme.textTheme.bodySmall!.copyWith(
               fontSize: 14.sp,
               fontWeight: FontWeight.bold,
@@ -158,7 +160,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               ),
             ],
           ),
-          Spacer(),
+          SizedBox(height: 10.h,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,6 +180,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
             ],
           ),
           Spacer(),
+          //SizedBox(height: 15.h,)
         ],
       ),
     );

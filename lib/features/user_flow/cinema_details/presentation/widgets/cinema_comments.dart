@@ -29,7 +29,7 @@ class CinemaComments extends StatelessWidget {
               width: 35.w,
               height: 41.h,
             ),
-            SizedBox(width: 11.w),
+            SizedBox(width: 10.w),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

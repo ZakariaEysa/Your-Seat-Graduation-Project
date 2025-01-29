@@ -9,9 +9,9 @@ class SettingsItem extends StatelessWidget {
   final VoidCallback? onPress;
   const SettingsItem(
       {super.key,
-      required this.title,
-      required this.imageIcon,
-      required this.onPress});
+        required this.title,
+        required this.imageIcon,
+        required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class SettingsItem extends StatelessWidget {
       decoration: ShapeDecoration(
         color: const Color(0xff401C8B).withOpacity(.6),
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,8 +36,12 @@ class SettingsItem extends StatelessWidget {
             height: 25.h,
           ),
           Text(
+
             title,
-            style: theme.textTheme.titleMedium,
+            style: theme.textTheme.bodySmall!.copyWith(
+              fontSize: 22,
+
+            ),
           ),
           IconButton(
             onPressed: onPress,

@@ -40,10 +40,10 @@ class AuthCubit extends Cubit<AuthState> {
 
     response.fold(
 
-      (failure) => emit(GoogleAuthError(failure.errorMsg)),
+      // (failure) => emit(GoogleAuthError(failure.errorMsg)),
 
-      // (failure) => emit(
-      //     GoogleAuthError("Sorry there was an error , please try again later")),
+      (failure) => emit(
+          GoogleAuthError("Sorry there was an error , please try again later")),
 
       (user) => emit(GoogleAuthSuccess(user)),
 
@@ -65,12 +65,13 @@ class AuthCubit extends Cubit<AuthState> {
     var response = await authRepo.checkUserExists(userId, password);
 
     response.fold(
-          (failure) => emit(UserValidationError(failure.errorMsg)),
+          (failure) => emit(UserValidationError("Sorry there was an error , please try again later")),
           (message) {
         if (message == "LoginSuccessful") {
           emit(UserValidationSuccess(message));
         } else {
           emit(UserValidationError(message));
+          //emit(  UserValidationError("Sorry there was an error , please try again later"));
         }
       },
     );

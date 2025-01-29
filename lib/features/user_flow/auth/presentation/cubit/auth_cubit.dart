@@ -95,7 +95,9 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void sendOtp(String email) async {
-    if (await EmailOtpAuth.sendOTP(email: email) as bool) {
+    var res = await EmailOtpAuth.sendOTP(email: email);
+
+    if (res["message"] == "Email Send" ) {
       AppLogs.scussessLog("OTP sent successfully to $email");
     } else {
       AppLogs.scussessLog("Failed to send OTP to $email");

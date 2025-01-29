@@ -1498,6 +1498,46 @@ class S {
     );
   }
 
+  /// `Confirm OTP code`
+  String get ConfirmOTPcode {
+    return Intl.message(
+      'Confirm OTP code',
+      name: 'ConfirmOTPcode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter The 6 Digit Code Sent To Your Email`
+  String get PleaseEnterThe6DigitCodeSentToYourEmail {
+    return Intl.message(
+      'Please Enter The 6 Digit Code Sent To Your Email',
+      name: 'PleaseEnterThe6DigitCodeSentToYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend limit reached for today.`
+  String get Resendlimitreachedfortoday {
+    return Intl.message(
+      'Resend limit reached for today.',
+      name: 'Resendlimitreachedfortoday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend!`
+  String get Resend {
+    return Intl.message(
+      'Resend!',
+      name: 'Resend',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Esam`
   String get Esam1 {
     return Intl.message(

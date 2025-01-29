@@ -58,7 +58,8 @@ class _ComingSoonsState extends State<ComingSoons> {
                 mainAxisSpacing: 20.h,
                 crossAxisCount: 2, // Number of columns
                 crossAxisSpacing: 1.w,
-                childAspectRatio: 0.45,  // Adjust to fit the card design
+                childAspectRatio: 0.45,
+                // Adjust to fit the card design
               ),
               itemCount: movies.length,
               itemBuilder: (context, index) {

@@ -128,26 +128,36 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     return;
                   }
 
-                  // TODO: check if the user exists or not first
-                  final userDoc = await FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(cubit.emailController.text)
-                      .get();
+// TODO: check if the user exists or not first
+try {
+  final userDoc = await FirebaseFirestore.instance
 
-                  if (userDoc.exists) {
-                    cubit.sendOtp(cubit.emailController.text);
-                    navigateTo(
-                        context: context,
-                        screen: Otp(
-                          isSuccessOtp: () async {
-                            navigateAndReplace(
-                                context: context, screen: NewPassword());
-                          },
-                        ));
-                  } else {
-                    BotToast.showText(text: lang.user_not_found);
-                  }
-                },
+      .collection('users')
+
+      .doc(cubit.emailController.text)
+
+
+      .get().timeout(Duration(seconds: 1));
+  if (userDoc.exists) {
+    cubit.sendOtp(cubit.emailController.text);
+    navigateTo(
+        context: context,
+        screen: Otp(
+          isSuccessOtp: () async {
+            navigateAndReplace(
+                context: context, screen: NewPassword());
+          },
+        ));
+  } else {
+    BotToast.showText(text: lang.user_not_found);
+  }
+} catch (e) {
+
+  BotToast.showText(text: " something went wrong please check your network");
+
+
+}
+                } ,
               ),
               SizedBox(
                 height: 60.h,

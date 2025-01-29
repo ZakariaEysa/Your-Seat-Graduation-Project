@@ -56,7 +56,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
             Role.google.toString(),
           );
         }
+        AppLogs.infoLog(user.toString());
+
         AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
+        AppLogs.debugLog(GoogleUserModel.fromFirebaseUser(user).toString());
+
 
         return GoogleUserModel.fromFirebaseUser(user);
       } else {

@@ -48,7 +48,7 @@ dependencies:
   neon_widgets: ^2.0.0
   readmore: ^3.0.0
   image_picker: ^1.1.2
-  image_cropper: ^8.0.2
+#  image_cropper: ^8.0.2
   email_otp_auth: ^1.1.0
 
 dev_dependencies:

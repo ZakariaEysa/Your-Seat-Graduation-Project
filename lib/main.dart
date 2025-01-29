@@ -223,6 +223,7 @@ import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
+import 'features/user_flow/SelectSeat/SelectSeat.dart';
 import 'features/user_flow/Settings/presentation/views/profile_card.dart';
 import 'features/user_flow/Splash_screen/splash_screen.dart';
 import 'package:yourseatgraduationproject/generated/l10n.dart';
@@ -337,7 +338,7 @@ class _MyAppState extends State<MyApp> {
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
               builder: DevicePreview.appBuilder,
-              home:HomeLayout(),
+              home:SplashScreen(),
             );
           });
     });

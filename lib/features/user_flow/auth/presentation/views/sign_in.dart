@@ -42,7 +42,7 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF2E1371),
         title: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(85, 0, 0, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(80, 0, 0, 0),
           child: HeadAppBar(title: lang.sign_in),
         ),
       ),

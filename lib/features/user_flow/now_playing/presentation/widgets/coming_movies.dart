@@ -42,16 +42,14 @@ class _ComingMoviesState extends State<ComingMovies> {
           fit: BoxFit.cover,
         ),
         SizedBox(
-          height: 8.h,
+          height: 2.h,
         ),
         Text(
           widget.title,
           style: theme.textTheme.bodyMedium!
               .copyWith(fontSize: 15.sp, fontWeight: FontWeight.bold),
         ),
-        SizedBox(
-          height: 8.h,
-        ),
+
         Row(
           children: [
             Image.asset(
@@ -86,9 +84,7 @@ class _ComingMoviesState extends State<ComingMovies> {
             ),
           ],
         ),
-        SizedBox(
-          height: 6.h,
-        ),
+
         Row(
           children: [
             Image.asset(

@@ -157,7 +157,7 @@ class WatchListPart extends StatelessWidget {
                   Text(
                     time,
                     style: theme.textTheme.bodyMedium!.copyWith(
-                      fontSize: 14.sp,
+                      fontSize: 11.sp,
                       color: const Color(0XFFD9D9D9),
                     ),
                   ),
@@ -166,7 +166,7 @@ class WatchListPart extends StatelessWidget {
             ),
             const Spacer(),
             Padding(
-              padding:  EdgeInsets.only(bottom: 100.h, right: 5.w),
+              padding:  EdgeInsets.only(bottom: 100.h, right:5.w),
               child: InkWell(
                 onTap: onRemove, // استدعاء دالة الحذف عند النقر
                 child: Icon(

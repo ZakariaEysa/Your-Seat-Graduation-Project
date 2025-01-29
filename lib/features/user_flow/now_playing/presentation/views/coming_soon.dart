@@ -52,7 +52,7 @@ class _ComingSoonsState extends State<ComingSoons> {
           final movies = snapshot.data!;
 
           return Padding(
-            padding: EdgeInsets.only(left: 8.0.w, top: 8.0.h),
+            padding: EdgeInsets.only(left: 8.0.w, top:8.0.h),
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Number of columns

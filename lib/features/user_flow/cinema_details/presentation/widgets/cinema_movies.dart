@@ -13,11 +13,11 @@ class CinemaMovies extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: EdgeInsets.only(left: 10.w),
+      padding: EdgeInsets.only(left:4.w,right:2.w),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Image.asset(
           image,
-          width: 170.w,
+          width: 160.w,
           height: 264.h,
           fit: BoxFit.cover,
         ),

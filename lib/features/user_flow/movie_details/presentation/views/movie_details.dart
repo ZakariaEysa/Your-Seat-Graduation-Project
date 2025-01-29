@@ -120,7 +120,7 @@ class MovieDetails extends StatelessWidget {
                             unratedColor: Color(0xFF575757),
                             ignoreGestures: true,
                             direction: Axis.horizontal,
-                            itemSize:30,
+                            itemSize:29,
                             allowHalfRating: true,
                             itemCount: 5,
                             itemPadding:

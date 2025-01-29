@@ -336,8 +336,15 @@ class _MyAppState extends State<MyApp> {
               ],
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
-              builder: DevicePreview.appBuilder,
-              home:TicketDone(),
+              // builder: DevicePreview.appBuilder,
+              builder: (context, child) {
+                child = BotToastInit()(context, child);  // تهيئة BotToast
+                return DevicePreview.appBuilder(context, child);
+              },
+              navigatorObservers: [BotToastNavigatorObserver()],  // ملاحظة التنقل
+              home:SplashScreen(),
+              // home:TicketDone(),
+
             );
           });
     });

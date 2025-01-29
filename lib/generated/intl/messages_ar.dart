@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("أكشن، خيال علمي"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("المنتقمون: حرب إنفينيتي"),
+        "ConfirmOTPcode":
+            MessageLookupByLibrary.simpleMessage("تاكيد رمز الدخول"),
         "EmailAddress_does_not_exist": MessageLookupByLibrary.simpleMessage(
             "عنوان البريد الالكتروني غير موجود"),
         "Esam": MessageLookupByLibrary.simpleMessage("عصام"),
@@ -37,7 +39,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "مرحبًا، أنا مساعد الذكاء الاصطناعي الخاص بك!"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
+        "PleaseEnterThe6DigitCodeSentToYourEmail":
+            MessageLookupByLibrary.simpleMessage(
+                "الرجاء إدخال الرمز المكون من 6 أرقام المرسل إلى بريدك الإلكتروني"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "Resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال!"),
+        "Resendlimitreachedfortoday": MessageLookupByLibrary.simpleMessage(
+            "تم الوصول إلى حد إعادة الإرسال اليوم."),
         "Roaa": MessageLookupByLibrary.simpleMessage("رؤى"),
         "Roaa1": MessageLookupByLibrary.simpleMessage("رؤى"),
         "ShazamFuryOfTheGods":

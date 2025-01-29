@@ -65,7 +65,7 @@ class CinemaCard extends StatelessWidget {
                 ),
                 Text(largetitle,
                     style: theme.textTheme.bodyMedium!.copyWith(
-                        fontSize: 12.sp, color: const Color(0xFFF2F2F2)))
+                        fontSize: 11.sp, color: const Color(0xFFF2F2F2)))
               ],
             ),
           ],

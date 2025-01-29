@@ -98,9 +98,8 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
-            height: 15.h,
-          ),
+          Spacer(),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -140,9 +139,8 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               ),
             ],
           ),
-          SizedBox(
-            height: 10.h,
-          ),
+          Spacer(),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -160,9 +158,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               ),
             ],
           ),
-          SizedBox(
-            height: 8.h,
-          ),
+          Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,6 +177,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               ),
             ],
           ),
+          Spacer(),
         ],
       ),
     );

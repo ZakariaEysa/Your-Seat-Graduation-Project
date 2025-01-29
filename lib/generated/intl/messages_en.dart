@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("Action, Sci-Fi"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("Avengers: Infinity War"),
+        "ConfirmOTPcode":
+            MessageLookupByLibrary.simpleMessage("Confirm OTP code"),
         "EmailAddress_does_not_exist": MessageLookupByLibrary.simpleMessage(
             "Email Address does not exist"),
         "Esam": MessageLookupByLibrary.simpleMessage("Esam"),
@@ -38,7 +40,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "IMAX_Cinema": MessageLookupByLibrary.simpleMessage("IMAX Cinema"),
         "LoginSuccessful":
             MessageLookupByLibrary.simpleMessage("Login Successful"),
+        "PleaseEnterThe6DigitCodeSentToYourEmail":
+            MessageLookupByLibrary.simpleMessage(
+                "Please Enter The 6 Digit Code Sent To Your Email"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "Resend": MessageLookupByLibrary.simpleMessage("Resend!"),
+        "Resendlimitreachedfortoday": MessageLookupByLibrary.simpleMessage(
+            "Resend limit reached for today."),
         "Roaa": MessageLookupByLibrary.simpleMessage("Roaa"),
         "Roaa1": MessageLookupByLibrary.simpleMessage("Roaa1"),
         "ShazamFuryOfTheGods":

@@ -120,23 +120,22 @@ class MovieDetails extends StatelessWidget {
                             unratedColor: Color(0xFF575757),
                             ignoreGestures: true,
                             direction: Axis.horizontal,
-                            itemSize: 35,
+                            itemSize:30,
                             allowHalfRating: true,
                             itemCount: 5,
                             itemPadding:
                                 const EdgeInsets.symmetric(horizontal: 2.0),
                             itemBuilder: (context, _) => Icon(
                               Icons.star,
-                              size: 2,
+                              size: 1,
                               color: Color(0xFFCCC919),
                             ),
                             onRatingUpdate: (rating) {
                               // print(rating);
                             },
                           ),
-                          SizedBox(
-                            width: 12.w,
-                          ),
+                          Spacer(),
+
                           TextButton.icon(
                               onPressed: () {
 
@@ -145,8 +144,7 @@ class MovieDetails extends StatelessWidget {
                                 VideoLauncher.launchYouTubeVideo(model.trailer??"");
 
 
-
-                              },
+                                },
                               icon: const Icon(
                                 Icons.play_arrow,
                                 color: Colors.white,
@@ -368,16 +366,16 @@ model.description??"",
                   height: 30.h,
                 ),
                 ButtonBuilder(
-                  width: 270.w,
+                  width: 250.w,
                   height: 55.h,
                   image: HiveStorage.get(HiveKeys.isArabic)
                       ? "assets/images/continue_arabic.png"
-                      : "assets/images/Continue1.png",
+                      : "assets/images/img_4.png",
                   text: "",
                   onTap: () {},
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 51.h,
                 )
               ],
             ),

@@ -118,7 +118,7 @@ class CinemaDetails extends StatelessWidget {
             ),
           ]),
           Padding(
-            padding: EdgeInsets.all(10.0.sp),
+            padding: EdgeInsets.all(15.0.sp),
             child: Text(
               lang.movies,
               style: theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
@@ -129,7 +129,7 @@ class CinemaDetails extends StatelessWidget {
               const CinemaMovies(
                   image: "assets/images/movie1.png",
                   title: "Shazam: Fury of the Gods"),
-              SizedBox(width: 10.w),
+              Spacer(),
               const CinemaMovies(
                   image: "assets/images/movies2.png",
                   title: "Avengers: Infinity War")
@@ -145,14 +145,14 @@ class CinemaDetails extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(8.0.sp),
             child: CinemaComments(
-                image: "assets/images/image (1).png",
+                image: "assets/images/image.png",
                 title: lang.GreatSelectionOfMoviesHighlyRecommended,
                 titlename: "@Iva588"),
           ),
           Padding(
             padding: EdgeInsets.all(10.sp),
             child: CinemaComments(
-                image: "assets/images/image (4).png",
+                image: "assets/images/image (1).png",
                 title: lang
                     .theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable,
                 titlename: "@Rana158"),
@@ -160,7 +160,7 @@ class CinemaDetails extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10.0.sp),
             child: CinemaComments(
-                image: "assets/images/image (1).png",
+                image: "assets/images/image.png",
                 title: lang
                     .TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere,
                 titlename: "@Mahmoud"),
@@ -172,7 +172,7 @@ class CinemaDetails extends StatelessWidget {
                 child: TextFormFieldBuilder(
                   controller: TextEditingController(),
                   type: TextInputType.text,
-                  width: 300.w,
+                  width: 270.w,
                   height: 45.h,
                   color: const Color(0xFF110C3B),
                   obsecure: false,

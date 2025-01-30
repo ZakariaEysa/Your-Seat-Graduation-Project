@@ -65,7 +65,9 @@ class AuthCubit extends Cubit<AuthState> {
     var response = await authRepo.checkUserExists(userId, password);
 
     response.fold(
-          (failure) => emit(UserValidationError("Sorry there was an error , please try again later")),
+          // (failure) => emit(UserValidationError("Sorry there was an error , please try again later")),
+            (failure) => emit(UserValidationError("something went wrong please check your network")),
+
           (message) {
         if (message == "LoginSuccessful") {
           emit(UserValidationSuccess(message));
@@ -83,7 +85,20 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
       AppLogs.scussessLog("message");
-      await authRepo.checkUserExistsR(userModel.email);
+      try{
+        await authRepo.checkUserExistsR(userModel.email).timeout(Duration(seconds: 2));
+
+
+
+      }
+      catch(e){
+
+        // BotToast.showText(text: " something went wrong please check your network");
+       emit(AuthError(" something went wrong please check your network"));
+// emit(AuthInitial());
+        return;
+
+      }
       sendOtp(userModel.email);
       this.userModel = userModel;
 
@@ -122,7 +137,7 @@ class AuthCubit extends Cubit<AuthState> {
           'password': newPassword,
         }),
         Future.delayed(timeoutDuration)
-            .then((_) => throw TimeoutException('Request timed out')),
+            .then((_) => throw ('Request timed out')),
       ]);
 
       emit(UpdatePasswordSuccess());

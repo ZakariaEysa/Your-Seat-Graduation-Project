@@ -117,7 +117,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final userDoc =
         await FirebaseFirestore.instance.collection('users').doc(email).get();
     if (userDoc.exists) {
-      throw Exception("User already exists");
+      throw ("User already exists");
     }
   }
 

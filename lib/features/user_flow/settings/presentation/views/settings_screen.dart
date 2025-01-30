@@ -156,10 +156,13 @@ class SettingsPage extends StatelessWidget {
           navigateTo(context: context, screen: const AboutUs());
         },
       ),
+      if(          HiveStorage.get(HiveKeys.role)!=Role.guest.toString()      )
       SettingsItem(
         title: lang.logOut,
         imageIcon: "assets/images/logout 1.png",
         onPress: () {
+          AuthCubit.get(context).emailController.clear();
+          AuthCubit.get(context).passwordController.clear();
           DialogUtils.showMessage(context, lang.areYouSureYouWantToLogOut,
               posActionTitle: lang.ok,
               negActionTitle: lang.cancel, posAction: () {

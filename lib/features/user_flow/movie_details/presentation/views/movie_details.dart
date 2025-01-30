@@ -3,6 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_up.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/widgets/director_actor_card.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
@@ -11,6 +13,7 @@ import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../../utils/dialog_utilits.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../home/presentation/views/home_layout.dart';
@@ -372,7 +375,36 @@ model.description??"",
                       ? "assets/images/continue_arabic.png"
                       : "assets/images/img_4.png",
                   text: "",
-                  onTap: () {},
+                  onTap: () {
+
+    if(          HiveStorage.get(HiveKeys.role)==Role.guest.toString()      ){
+
+    DialogUtils.showMessage(context, "You Have To Sign In To Continue",
+        isCancelable: false,
+
+        posActionTitle: lang.sign_in,
+    negActionTitle: lang.cancel, posAction: () {
+          HiveStorage.set(HiveKeys.role, "");
+
+          navigateAndRemoveUntil(
+            context: context,
+            screen: const SignIn(),
+          );
+
+
+    }, negAction: () {
+    navigatePop(context: context);
+    });
+
+
+
+                    }
+
+
+
+
+
+                  },
                 ),
                 SizedBox(
                   height: 51.h,

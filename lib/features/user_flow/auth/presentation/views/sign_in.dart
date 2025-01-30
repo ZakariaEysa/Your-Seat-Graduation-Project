@@ -246,7 +246,7 @@ class _SignInState extends State<SignIn> {
                           padding: EdgeInsets.all(16.0.sp),
                           child: SignInPart(
                             onTap: () {
-                              cubit.loginWithFacebook();
+                              // cubit.loginWithFacebook();
                             },
                             title: lang.continue_with_facebook,
                             imagePath: "assets/images/facebook.png",

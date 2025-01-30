@@ -856,7 +856,18 @@ class _SignUpState extends State<SignUp> {
                       child: InkWell(
                         onTap: () {
                           cubit.emailController.clear();
-                          cubit.passwordController.clear();
+                          cubit.password.clear();
+                          cubit.confirmPassword.clear();
+
+                          cubit.userName.clear();
+                          cubit.selectedDay=null;
+
+                          cubit.selectedMonth=null;
+
+                          cubit.selectedYear=null;
+
+
+
                           navigateAndReplace(
                             context: context,
                             screen: const SignIn(),

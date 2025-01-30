@@ -67,114 +67,112 @@ class MovieDetails extends StatelessWidget {
                 color: const Color(0xFF2C113D).withOpacity(.81),
                 width: 370.w,
                 height: 170.h,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        model.name??"",
-                        style: theme.textTheme.bodyMedium!
-                            .copyWith(fontSize: 20.sp),
-                      ),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                      Text(
-                        model.releaseDate??"",
-                        style: theme.textTheme.bodyMedium!.copyWith(
-                            fontSize: 13.sp, color: const Color(0xFFD4D0D0)),
-                      ),
-                      SizedBox(height: 25.h),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            lang.review,
-                            textAlign: TextAlign.start,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      model.name??"",
+                      style: theme.textTheme.bodyMedium!
+                          .copyWith(fontSize: 20.sp),
+                    ),
+                    SizedBox(
+                      height: 6.h,
+                    ),
+                    Text(
+                      model.releaseDate??"",
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                          fontSize: 13.sp, color: const Color(0xFFD4D0D0)),
+                    ),
+                    SizedBox(height:15.h),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          lang.review,
+                          textAlign: TextAlign.start,
+                          style: theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 16.sp),
+                        ),
+                        SizedBox(
+                          width: 25.w,
+                        ),
+                        Image.asset(
+                          'assets/images/cinemastar.png',
+                          width: 15.w,
+                          height: 20.h,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Text(model.rating.toString(),
                             style: theme.textTheme.bodyMedium!
-                                .copyWith(fontSize: 16.sp),
+                                .copyWith(fontSize: 12.sp)),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Row(
+                      children: [
+                        RatingBar.builder(
+                          initialRating:model.rating!>=6?model.rating!.toDouble()-5:model.rating!.toDouble() ,
+                          minRating: 1,
+                          unratedColor: Color(0xFF575757),
+                          ignoreGestures: true,
+                          direction: Axis.horizontal,
+                          itemSize:29,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 2.0),
+                          itemBuilder: (context, _) => Icon(
+                            Icons.star,
+                            size: 1,
+                            color: Color(0xFFCCC919),
                           ),
-                          SizedBox(
-                            width: 25.w,
-                          ),
-                          Image.asset(
-                            'assets/images/cinemastar.png',
-                            width: 15.w,
-                            height: 20.h,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Text(model.rating.toString(),
-                              style: theme.textTheme.bodyMedium!
-                                  .copyWith(fontSize: 12.sp)),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Row(
-                        children: [
-                          RatingBar.builder(
-                            initialRating:model.rating!>=6?model.rating!.toDouble()-5:model.rating!.toDouble() ,
-                            minRating: 1,
-                            unratedColor: Color(0xFF575757),
-                            ignoreGestures: true,
-                            direction: Axis.horizontal,
-                            itemSize:29,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemPadding:
-                                const EdgeInsets.symmetric(horizontal: 2.0),
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              size: 1,
-                              color: Color(0xFFCCC919),
+                          onRatingUpdate: (rating) {
+                            // print(rating);
+                          },
+                        ),
+                        Spacer(),
+
+                        TextButton.icon(
+                            onPressed: () {
+
+                               //TODO: GO TO WATCH TRAILER
+
+                              VideoLauncher.launchYouTubeVideo(model.trailer??"");
+
+
+                              },
+                            icon: const Icon(
+                              Icons.play_arrow,
+                              color: Colors.white,
                             ),
-                            onRatingUpdate: (rating) {
-                              // print(rating);
-                            },
-                          ),
-                          Spacer(),
-
-                          TextButton.icon(
-                              onPressed: () {
-
-                                 //TODO: GO TO WATCH TRAILER
-
-                                VideoLauncher.launchYouTubeVideo(model.trailer??"");
-
-
-                                },
-                              icon: const Icon(
-                                Icons.play_arrow,
-                                color: Colors.white,
-                              ),
-                              label: Text(
-                                lang.watchTrailer,
-                                style: theme.textTheme.bodyMedium!.copyWith(
-                                    fontSize: 12.sp, color: Colors.white),
-                              ),
-                              style: ButtonStyle(
-                                  backgroundColor: WidgetStateProperty.all(
-                                      const Color(0xFF2C113D).withOpacity(.91)),
-                                  shape: WidgetStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                      side:
-                                          const BorderSide(color: Colors.white),
-                                      // ... button styles
-                                    ),
-                                  )))
-                        ],
-                      ),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                    ],
-                  ),
+                            label: Text(
+                              lang.watchTrailer,
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                  fontSize: 12.sp, color: Colors.white),
+                            ),
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStateProperty.all(
+                                    const Color(0xFF2C113D).withOpacity(.91)),
+                                shape: WidgetStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    side:
+                                        const BorderSide(color: Colors.white),
+                                    // ... button styles
+                                  ),
+                                )))
+                      ],
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -195,7 +193,7 @@ class MovieDetails extends StatelessWidget {
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
                     SizedBox(
-                      width: 35.w,
+                      width: 34.w,
                     ),
                     Text(
                       model.category??"",
@@ -217,7 +215,7 @@ class MovieDetails extends StatelessWidget {
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
                     SizedBox(
-                      width: 35.w,
+                      width: 42.w,
                     ),
                     Text(
                       model.ageRating??"",
@@ -239,7 +237,7 @@ class MovieDetails extends StatelessWidget {
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
                     SizedBox(
-                      width: 35.w,
+                      width: 57.w,
                     ),
                     Text(
                       model.language??"",

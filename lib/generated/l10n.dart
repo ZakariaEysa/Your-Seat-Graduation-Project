@@ -410,10 +410,10 @@ class S {
     );
   }
 
-  /// `Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.`
+  /// `Password must be at least 8 \n characters long, uppercase letter, \nnumber, special character.`
   String get password_requirements {
     return Intl.message(
-      'Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.',
+      'Password must be at least 8 \n characters long, uppercase letter, \nnumber, special character.',
       name: 'password_requirements',
       desc: '',
       args: [],

@@ -66,7 +66,6 @@ class MovieDetails extends StatelessWidget {
                 padding: EdgeInsets.all(8.sp),
                 color: const Color(0xFF2C113D).withOpacity(.81),
                 width: 370.w,
-                height: 170.h,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -543,6 +543,8 @@ class _SignUpState extends State<SignUp> {
   String verificationId = "";
   FirebaseAuth auth = FirebaseAuth.instance;
 
+  bool isError = false;
+
   final List<int> days = List<int>.generate(31, (index) => index + 1);
   final List<int> years =
       List<int>.generate(80, (index) => DateTime.now().year - index);
@@ -604,7 +606,9 @@ class _SignUpState extends State<SignUp> {
                   FadeInRight(
                     delay: const Duration(milliseconds: 550),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0.sp),
+                      padding:  EdgeInsets.symmetric(horizontal: 16.sp)
+
+,
                       child: TextFormFieldBuilder(
                         height: 80.h,
                         controller: cubit.userName,
@@ -624,10 +628,14 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 10.h),
+
                   FadeInRight(
                     delay: const Duration(milliseconds: 550),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0.sp),
+                      padding:  EdgeInsets.symmetric(horizontal: 16.sp)
+
+,
                       child: TextFormFieldBuilder(
                         height: 80.h,
                         controller: cubit.emailController,
@@ -647,12 +655,15 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 10.h),
                   FadeInRight(
                     delay: const Duration(milliseconds: 550),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0.sp),
+                      padding:  EdgeInsets.symmetric(horizontal: 16.sp)
+
+,
                       child: TextFormFieldBuilder(
-                        height: 80.h,
+                        height: isError? 130.h:80.h,
                         controller: cubit.password,
                         type: TextInputType.text,
                         label: local.password,
@@ -661,8 +672,17 @@ class _SignUpState extends State<SignUp> {
                             return local.enterPassword;
                           }
                           if (!isValidPassword(text)) {
-                            return local.password_validation;
+                            isError = true;
+                            setState(() {
+
+                            });
+                            return local.password_requirements;
+
                           }
+                          isError = false;
+                          setState(() {
+
+                          });
                           return null;
                         },
                         obsecure: obscure,
@@ -681,10 +701,13 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 10.h),
+
                   FadeInRight(
                     delay: const Duration(milliseconds: 550),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0.sp),
+                                        padding: EdgeInsets.symmetric(horizontal: 16.sp),
+
                       child: TextFormFieldBuilder(
                         height: 80.h,
                         controller: cubit.confirmPassword,
@@ -886,7 +909,7 @@ class _SignUpState extends State<SignUp> {
           BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state is AuthError) {
-                BotToast.showText(text: state.errorMessage);
+                showCenteredSnackBar( context, state.errorMessage);
               }
               if (state is AuthSuccess) {
                 AppLogs.scussessLog("create");
@@ -938,17 +961,20 @@ class _SignUpState extends State<SignUp> {
       });
       showCenteredSnackBar(context,S.of(context).pleaseAcceptPrivacyAndPolicy);
 
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(
-      //     content: Text(S.of(context).pleaseAcceptPrivacyAndPolicy),
-      //     duration: const Duration(seconds: 2),
-      //   ),
-      // );
+
+      return;
+    }
+
+    if (auth.selectedMonth == null ||
+        auth.selectedDay == null ||
+        auth.selectedYear == null) {
+      showCenteredSnackBar(context,"Please select your full birth date");
+
       return;
     }
 
 
-    auth.registerUser(
+      auth.registerUser(
       userModel: UserModel(
         name: auth.userName.text,
         password: auth.password.text,

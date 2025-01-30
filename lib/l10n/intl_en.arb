@@ -37,7 +37,7 @@
   "please_enter_EmailAddress": "Please enter your Email Address",
   "wrong_EmailAddress_format": "Wrong Email Address format",
   "please_enter_password": "Please enter your password",
-  "password_requirements": "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.",
+  "password_requirements": "Password must be at least 8 \n characters long, uppercase letter, \nnumber, special character.",
   "password_min_length": "Password must be at least 6 characters.",
   "wrong_password": "Password is wrong",
   "EmailAddress_does_not_exist": "Email Address does not exist",

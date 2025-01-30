@@ -56,28 +56,31 @@ class _SignInState extends State<SignIn> {
                   HiveStorage.set(HiveKeys.role, Role.google.toString());
                   AppLogs.debugLog('${lang.login_successful} ${state.user.name}');
 
-                  BotToast.showText(
-                      text: '${lang.login_successful} ${state.user.name}');
+                  showCenteredSnackBar(context, '${lang.login_successful} ${state.user.name}');
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is FacebookAuthSuccess) {
                   HiveStorage.set(HiveKeys.role, Role.facebook.toString());
 
-                   BotToast.showText(
-                      text: '${lang.login_successful} ${state.user.name}');
+
+                  showCenteredSnackBar(context, '${lang.login_successful} ${state.user.name}');
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is UserValidationSuccess) {
                   HiveStorage.set(HiveKeys.role, Role.email.toString());
-                   BotToast.showText(text: lang.login_successful);
+
+                  showCenteredSnackBar(context, lang.login_successful);
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is GoogleAuthError) {
-                   BotToast.showText(text: state.errorMsg);
+
+                  showCenteredSnackBar(context, state.errorMsg);
                 } else if (state is FacebookAuthError) {
-                   BotToast.showText(text: state.errorMsg);
+
+                  showCenteredSnackBar(context,state.errorMsg);
                 } else if (state is UserValidationError) {
-                   BotToast.showText(text: state.error);
+
+                  showCenteredSnackBar(context, state.error);
                 }
               },
               builder: (context, state) {

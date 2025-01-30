@@ -31,7 +31,7 @@ class RowOfSocialItems extends StatelessWidget {
         SizedBox(width: 22.w), // استخدام ScreenUtil لضبط التباعد
         SocialItem(
           linkUrl: "tel:+201091058098", // دعم رقم الهاتف مع أو بدون "tel:"
-          imageUrl: "assets/images/${AppConstVariables.phone}",
+          imageUrl: "assets/icons/${AppConstVariables.phone}",
         ),
       ],
     );

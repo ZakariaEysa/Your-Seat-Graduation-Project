@@ -550,6 +550,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     var cubit = AuthCubit.get(context);
+
     var local = S.of(context);
     var theme = Theme.of(context);
     final List<String> months = [
@@ -854,6 +855,8 @@ class _SignUpState extends State<SignUp> {
                     child: Center(
                       child: InkWell(
                         onTap: () {
+                          cubit.emailController.clear();
+                          cubit.passwordController.clear();
                           navigateAndReplace(
                             context: context,
                             screen: const SignIn(),
@@ -906,12 +909,14 @@ class _SignUpState extends State<SignUp> {
     if (auth.selectedMonth == null ||
         auth.selectedDay == null ||
         auth.selectedYear == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Please select your full birth date"),
-          duration: Duration(seconds: 2),
-        ),
-      );
+      showCenteredSnackBar(context,"Please select your full birth date");
+      //
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     content: Text(),
+      //     duration: Duration(seconds: 2),
+      //   ),
+      // );
       return;
     }
 
@@ -920,12 +925,14 @@ class _SignUpState extends State<SignUp> {
       setState(() {
         agree = false;
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(S.of(context).pleaseAcceptPrivacyAndPolicy),
-          duration: const Duration(seconds: 2),
-        ),
-      );
+      showCenteredSnackBar(context,S.of(context).pleaseAcceptPrivacyAndPolicy);
+
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text(S.of(context).pleaseAcceptPrivacyAndPolicy),
+      //     duration: const Duration(seconds: 2),
+      //   ),
+      // );
       return;
     }
 

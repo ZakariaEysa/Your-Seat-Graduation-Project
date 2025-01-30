@@ -206,9 +206,12 @@ class _SignInState extends State<SignIn> {
                               cubit.validateUser(cubit.emailController.text,
                                   cubit.passwordController.text);
                             } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text(lang.fill_all_fields)));
+                              showCenteredSnackBar(context,lang.fill_all_fields);
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //
+                              //     SnackBar(
+                              //
+                              //         content: Center(child: Text(lang.fill_all_fields))));
                             }
                           },
                           width: 220.w,
@@ -243,7 +246,7 @@ class _SignInState extends State<SignIn> {
                           padding: EdgeInsets.all(16.0.sp),
                           child: SignInPart(
                             onTap: () {
-                              cubit.loginWithFacebook();
+                              // cubit.loginWithFacebook();
                             },
                             title: lang.continue_with_facebook,
                             imagePath: "assets/images/facebook.png",
@@ -298,6 +301,8 @@ class _SignInState extends State<SignIn> {
                             SizedBox(width: 5.w),
                             InkWell(
                               onTap: () {
+                                cubit.emailController.clear();
+                                cubit.passwordController.clear();
                                 navigateAndReplace(
                                   context: context,
                                   screen: const SignUp(),
@@ -312,6 +317,8 @@ class _SignInState extends State<SignIn> {
                           ],
                         ),
                       ),
+
+                      SizedBox(height: 25.h),
                     ],
                   ),
                 );
@@ -333,4 +340,40 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
+}
+
+void showCenteredSnackBar(BuildContext context, String message) {
+  final overlay = Overlay.of(context);
+  final overlayEntry = OverlayEntry(
+    builder: (context) => Center(
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w, // استخدام ScreenUtil للـ horizontal padding
+            vertical: 12.h, // استخدام ScreenUtil للـ vertical padding
+          ),
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.8),
+            borderRadius: BorderRadius.circular(8.r), // استخدام ScreenUtil للـ borderRadius
+          ),
+          child: Text(
+            message,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14.sp, // استخدام ScreenUtil للـ fontSize
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  // إظهار الـ SnackBar
+  overlay.insert(overlayEntry);
+
+  // إخفاء الـ SnackBar بعد 3 ثواني
+  Future.delayed(Duration(seconds: 3), () {
+    overlayEntry.remove();
+  });
 }

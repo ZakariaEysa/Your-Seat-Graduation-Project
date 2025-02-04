@@ -70,16 +70,10 @@
 //   }
 // }
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
-import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/language_sheet.dart';
-import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/profile_card.dart';
-import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/theme_sheet.dart';
 import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/settings_item/settings_item.dart';
 import 'package:yourseatgraduationproject/utils/dialog_utilits.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';

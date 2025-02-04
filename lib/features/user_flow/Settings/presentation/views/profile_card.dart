@@ -23,6 +23,7 @@ class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
       setState(() {});
@@ -31,6 +32,7 @@ class _ProfileCardState extends State<ProfileCard> {
       setState(() {});
       AppLogs.scussessLog(currentUser.toString());
     }
+
     var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(

@@ -535,6 +535,8 @@ class SignUp extends StatefulWidget {
   State<SignUp> createState() => _SignUpState();
 }
 
+
+
 class _SignUpState extends State<SignUp> {
   bool agree = false; // يبدأ بدون موافقة.
   bool obscure = true;
@@ -547,7 +549,7 @@ class _SignUpState extends State<SignUp> {
 
   final List<int> days = List<int>.generate(31, (index) => index + 1);
   final List<int> years =
-      List<int>.generate(80, (index) => DateTime.now().year - index);
+      List<int>.generate(70, (index) => 2015 - index);
 
   @override
   Widget build(BuildContext context) {

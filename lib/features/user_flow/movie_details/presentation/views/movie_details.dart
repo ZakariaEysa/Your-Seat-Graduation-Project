@@ -50,7 +50,7 @@ class MovieDetails extends StatelessWidget {
               padding: EdgeInsetsDirectional.only(top: 50.h),
               child: IconButton(
                   onPressed: () {
-                    navigateTo(context: context, screen: const HomeLayout());
+                    navigatePop(context: context);
                   },
                   icon: const Icon(
                     Icons.arrow_back,

@@ -4,7 +4,6 @@ import 'comment.dart';
 import 'crew.dart';
 
 class MoviesDetailsModel extends Equatable {
-  // final List<Comment>? comments;
   final List<dynamic>? castImages;
   final List<dynamic>? cast;
   final Crew? crew;
@@ -20,7 +19,6 @@ class MoviesDetailsModel extends Equatable {
   final String? trailer;
 
   const MoviesDetailsModel({
-    // this.comments,
     this.castImages,
     this.cast,
     this.crew,

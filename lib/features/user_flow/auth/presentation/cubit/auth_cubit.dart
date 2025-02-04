@@ -37,16 +37,13 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final response = await authRepo.signInWithGoogle();
 
-
     response.fold(
-
       // (failure) => emit(GoogleAuthError(failure.errorMsg)),
 
       (failure) => emit(
           GoogleAuthError("Sorry there was an error , please try again later")),
 
       (user) => emit(GoogleAuthSuccess(user)),
-
     );
   }
 
@@ -55,8 +52,8 @@ class AuthCubit extends Cubit<AuthState> {
     final response = await authRepo.signInWithFacebook();
 
     response.fold(
-          (failure) => emit(FacebookAuthError(failure.errorMsg)),
-          (user) => emit(FacebookAuthSuccess(user)),
+      (failure) => emit(FacebookAuthError(failure.errorMsg)),
+      (user) => emit(FacebookAuthSuccess(user)),
     );
   }
 
@@ -65,10 +62,11 @@ class AuthCubit extends Cubit<AuthState> {
     var response = await authRepo.checkUserExists(userId, password);
 
     response.fold(
-          // (failure) => emit(UserValidationError("Sorry there was an error , please try again later")),
-            (failure) => emit(UserValidationError("something went wrong please check your network")),
+      // (failure) => emit(UserValidationError("Sorry there was an error , please try again later")),
+      (failure) => emit(UserValidationError(
+          "something went wrong please check your network")),
 
-          (message) {
+      (message) {
         if (message == "LoginSuccessful") {
           emit(UserValidationSuccess(message));
         } else {
@@ -82,38 +80,33 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> registerUser({
     required UserModel userModel,
   }) async {
+    // try {
+    emit(AuthLoading());
+    AppLogs.scussessLog("messageee");
+
     try {
-      emit(AuthLoading());
-      AppLogs.scussessLog("message");
-      try{
-        await authRepo.checkUserExistsR(userModel.email).timeout(Duration(seconds: 2));
-
-
-
-      }
-      catch(e){
-
-        // BotToast.showText(text: " something went wrong please check your network");
-       emit(AuthError(" something went wrong please check your network"));
-// emit(AuthInitial());
-        return;
-
-      }
-      sendOtp(userModel.email);
-      this.userModel = userModel;
-
-      emit(AuthSuccess());
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(e.message ?? ""));
+      await authRepo.checkUserExistsR(userModel.email);
     } catch (e) {
+      // BotToast.showText(text: " something went wrong please check your network");
       emit(AuthError(e.toString()));
+// emit(AuthInitial());
+      return;
     }
+    sendOtp(userModel.email);
+    this.userModel = userModel;
+
+    emit(AuthSuccess());
+    // } on FirebaseAuthException catch (e) {
+    //   emit(AuthError(e.message ?? ""));
+    // } catch (e) {
+    //   emit(AuthError(e.toString()));
+    // }
   }
 
   void sendOtp(String email) async {
     var res = await EmailOtpAuth.sendOTP(email: email);
 
-    if (res["message"] == "Email Send" ) {
+    if (res["message"] == "Email Send") {
       AppLogs.scussessLog("OTP sent successfully to $email");
     } else {
       AppLogs.scussessLog("Failed to send OTP to $email");

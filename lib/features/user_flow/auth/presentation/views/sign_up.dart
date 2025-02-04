@@ -536,6 +536,7 @@ class SignUp extends StatefulWidget {
 }
 
 
+
 class _SignUpState extends State<SignUp> {
   bool agree = false; // يبدأ بدون موافقة.
   bool obscure = true;

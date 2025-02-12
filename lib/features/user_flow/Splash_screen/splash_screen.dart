@@ -63,28 +63,29 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return ScaffoldF(
       body: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
+        color: Colors.white,
         child: Stack(
           children: [
             ...bubbles.map((bubble) => AnimatedBubble(
-                  bubble: bubble,
                   controller: _controller,
+                  bubble: bubble,
                 )),
             Center(
-              child: FadeTransition(
-                opacity: Tween<double>(begin: 0, end: 1).animate(
-                  CurvedAnimation(
-                    parent: _controller,
-                    curve: Interval(0.7, 1.0, curve: Curves.easeIn),
-                  ),
-                ),
-                child: Image.asset(
-                  "assets/images/splash.png",
-                  width: 150,
-                  height: 150,
-                ),
+              child: AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: _controller.value,
+                    child: Opacity(
+                      opacity: _controller.value,
+                      child: Image.asset(
+                        'assets/images/splash.png',
+                        width: 200,
+                        height: 200,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
-import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
@@ -14,25 +14,21 @@ class PlayingMovies extends StatefulWidget {
   final String category;
   final String duration;
   final String rate;
-   final MoviesDetailsModel movies;
-
-
+  final MoviesDetailsModel movies;
 
   const PlayingMovies({
     super.key,
     required this.image,
     required this.title,
-    required this.category, required this.duration, required this.rate,
+    required this.category,
+    required this.duration,
+    required this.rate,
     required this.movies,
   });
-
-
-
 
   @override
   State<PlayingMovies> createState() => _PlayingMoviesState();
 }
-
 
 class _PlayingMoviesState extends State<PlayingMovies> {
   @override
@@ -41,10 +37,11 @@ class _PlayingMoviesState extends State<PlayingMovies> {
     super.initState();
     // تحقق إذا كان الفيلم موجودًا في قائمة Watchlist
     final favoriteMoviesProvider =
-    Provider.of<FavoriteMoviesProvider>(context, listen: false);
+        Provider.of<FavoriteMoviesProvider>(context, listen: false);
     _isBookmarked =
         favoriteMoviesProvider.favoriteMovies.contains(widget.movies);
   }
+
   bool _isBookmarked = false;
   @override
   Widget build(BuildContext context) {
@@ -83,8 +80,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               //     ),
               //   );
               // },
-              imageUrl:
-              widget.image,
+              imageUrl: widget.image,
               width: 200.w,
               height: 250.h,
               fit: BoxFit.cover,
@@ -122,16 +118,20 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               Spacer(),
               GestureDetector(
                 onTap: () {
-                //   setState(() {
-                //     if (!_isBookmarked) {
-                //       Provider.of<FavoriteMoviesProvider>(context, listen: false).addMovie(widget.movies);
-                //       print("Added to favorites: ${widget.movies.name}");
-                //     } else {
-                //       Provider.of<FavoriteMoviesProvider>(context, listen: false).removeMovie(widget.movies);
-                //       print("Removed from favorites: ${widget.movies.name}");
-                //     }
-                //     _isBookmarked = !_isBookmarked;
-                //   });
+                  setState(() {
+                    if (!_isBookmarked) {
+                      Provider.of<FavoriteMoviesProvider>(context,
+                              listen: false)
+                          .addMovie(widget.movies);
+                      print("Added to favorites: ${widget.movies.name}");
+                    } else {
+                      Provider.of<FavoriteMoviesProvider>(context,
+                              listen: false)
+                          .removeMovie(widget.movies);
+                      print("Removed from favorites: ${widget.movies.name}");
+                    }
+                    _isBookmarked = !_isBookmarked;
+                  });
                 },
                 child: Icon(
                   Icons.bookmark,
@@ -162,7 +162,9 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               ),
             ],
           ),
-          SizedBox(height: 10.h,),
+          SizedBox(
+            height: 10.h,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

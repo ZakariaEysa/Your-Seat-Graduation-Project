@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Tickets/presentation/widget/vertical_status_card.dart';
+import 'vertical_status_card.dart';
 
 class TicketCard extends StatelessWidget {
   final Ticket ticket;
   final bool isFirstTicket;
 
-  const TicketCard({super.key, required this.ticket, this.isFirstTicket = false});
+  const TicketCard(
+      {super.key, required this.ticket, this.isFirstTicket = false});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class TicketCard extends StatelessWidget {
       color: const Color(0xFF0E0643),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
       child: Container(
-        height: 185.h,
+        height: 200.h,
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
         child: Row(
           children: [
@@ -28,7 +29,6 @@ class TicketCard extends StatelessWidget {
                 ticket.imageUrl,
                 height: double.infinity,
                 width: 120.w,
-
               ),
             ),
             SizedBox(width: 8.w), // إضافة مسافة صغيرة بين الصورة والنص
@@ -48,9 +48,12 @@ class TicketCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 6.h),
-                  _buildInfoRow('assets/icons/clock_icon.png', '${ticket.time}  |  ${ticket.date}'),
-                  _buildInfoRow('assets/icons/location_icon.png', ticket.location),
-                  _buildInfoRow('assets/icons/Group 4.png', 'Seat: ${ticket.seats}'),
+                  _buildInfoRow('assets/icons/clock_icon.png',
+                      '${ticket.time}  |  ${ticket.date}'),
+                  _buildInfoRow(
+                      'assets/icons/location_icon.png', ticket.location),
+                  _buildInfoRow(
+                      'assets/icons/Group 4.png', 'Seat: ${ticket.seats}'),
                   _buildInfoRow('assets/icons/price-tag 2.png', ticket.price),
                   if (isFirstTicket)
                     Padding(
@@ -59,8 +62,10 @@ class TicketCard extends StatelessWidget {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF08086A),
-                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                            minimumSize: Size(120.w, 35.h), // جعل الزر أكثر مرونة
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 8.h),
+                            minimumSize:
+                                Size(120.w, 35.h), // جعل الزر أكثر مرونة
                             side: BorderSide(
                               color: const Color(0xFFBD1A2F),
                               width: 1.5.w,
@@ -147,7 +152,7 @@ class Ticket {
     required this.seats,
     required this.price,
     required this.status,
-   required this.statusImage,
+    required this.statusImage,
     required this.statusImageWidth,
     required this.statusImageHeight,
   });

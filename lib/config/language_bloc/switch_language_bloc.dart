@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import '../../data/hive_stroage.dart';
 
 import '../../data/hive_keys.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/card_refund.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/widgets/payment_part.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_policy.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_policy_refund.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
+import 'card_refund.dart';
+import '../widgets/payment_part.dart';
+import 'payment_policy.dart';
+import 'payment_policy_refund.dart';
+import '../../../../../utils/navigation.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';

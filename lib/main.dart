@@ -136,7 +136,7 @@ class _MyAppState extends State<MyApp> {
                 return DevicePreview.appBuilder(context, child);
               },
               navigatorObservers: [BotToastNavigatorObserver()],  // ملاحظة التنقل
-              home:SplashScreen(),
+              home:Container(),
               // home:TicketDone(),
 
             );

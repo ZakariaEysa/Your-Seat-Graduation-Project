@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/data/hive_stroage.dart';
-import 'package:yourseatgraduationproject/resources/color_manager.dart';
+import '../data/hive_stroage.dart';
+import 'color_manager.dart';
 
 import '../data/hive_keys.dart';
 

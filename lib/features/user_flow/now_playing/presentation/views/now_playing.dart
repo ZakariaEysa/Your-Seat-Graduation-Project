@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore import
-import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/playing_movies.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../widgets/playing_movies.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';

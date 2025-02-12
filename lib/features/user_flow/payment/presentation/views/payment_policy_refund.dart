@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_refund.dart';
+import 'payment_refund.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/button/button_builder.dart';

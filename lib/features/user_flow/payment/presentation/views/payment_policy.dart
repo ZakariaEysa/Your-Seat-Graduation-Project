@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/widgets/payment_policy_part.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import 'payment.dart';
+import '../widgets/payment_policy_part.dart';
+import '../../../../../utils/navigation.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/button/button_builder.dart';

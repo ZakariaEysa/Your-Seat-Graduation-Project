@@ -14,7 +14,6 @@ class CinemaComments extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      height: 65.h,
       width: 360.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),

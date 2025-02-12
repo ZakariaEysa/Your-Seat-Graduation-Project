@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:yourseatgraduationproject/services/failure_service.dart';
+import '../../../../../services/failure_service.dart';
 
 import '../../../../../data/hive_stroage.dart';
 import '../../domain/repos/auth_repo.dart';

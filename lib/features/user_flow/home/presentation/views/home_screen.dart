@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/head_widget.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/text.dart';
-import 'package:yourseatgraduationproject/generated/l10n.dart';
+import '../Widget/head_widget.dart';
+import '../Widget/text.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../Widget/chatbot_icon.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Notifaction/widgets/NotifactionContent.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../widgets/NotifactionContent.dart';
+import '../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/widget/center_text.dart';
-import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../widget/center_text.dart';
+import '../../../../../widgets/app_bar/head_appbar.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../widget/dashed_line_painter.dart';
 import '../widget/head_myticket.dart';
 import '../widget/qr_state.dart';

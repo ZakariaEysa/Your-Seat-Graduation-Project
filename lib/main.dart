@@ -67,7 +67,8 @@ void main() async {
 
   runApp(
     DevicePreview(
-      enabled: kDebugMode,
+      // enabled: kDebugMode,
+      enabled: false,
       builder: (context) => MultiBlocProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
@@ -136,7 +137,7 @@ class _MyAppState extends State<MyApp> {
                 return DevicePreview.appBuilder(context, child);
               },
               navigatorObservers: [BotToastNavigatorObserver()],  // ملاحظة التنقل
-              home:Container(),
+              home:SplashScreen(),
               // home:TicketDone(),
 
             );

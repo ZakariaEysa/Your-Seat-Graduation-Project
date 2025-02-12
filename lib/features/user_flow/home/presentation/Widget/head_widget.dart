@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Notifaction/views/Notifaction.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../Notifaction/views/Notifaction.dart';
+import '../../../../../utils/navigation.dart';
 
 class HeadWidget extends StatelessWidget {
   const HeadWidget({super.key});

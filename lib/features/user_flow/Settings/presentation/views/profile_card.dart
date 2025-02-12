@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/data/hive_keys.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/widgets/profile_card/profile_edit_card.dart';
-import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/profile_card/personal_info_card.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../../../data/hive_keys.dart';
+import '../widgets/profile_card/profile_edit_card.dart';
+import '../../../settings/presentation/widgets/profile_card/personal_info_card.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -23,6 +23,7 @@ class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       currentUser = HiveStorage.getGoogleUser();
       setState(() {});
@@ -31,6 +32,7 @@ class _ProfileCardState extends State<ProfileCard> {
       setState(() {});
       AppLogs.scussessLog(currentUser.toString());
     }
+
     var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(

@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import '../../../../../utils/app_logs.dart';
 
 import '../../../../../../data/hive_keys.dart';
 import '../../../../../../data/hive_stroage.dart';
@@ -61,7 +63,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
         AppLogs.debugLog(GoogleUserModel.fromFirebaseUser(user).toString());
 
-
         return GoogleUserModel.fromFirebaseUser(user);
       } else {
         throw Exception('Google sign-in failed');
@@ -114,10 +115,29 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<void> checkUserExistsR(String email) async {
-    final userDoc =
-        await FirebaseFirestore.instance.collection('users').doc(email).get();
-    if (userDoc.exists) {
-      throw Exception("User already exists");
+    try {
+      final userDoc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(email)
+          .get()
+          .timeout(Duration(seconds: 2));
+
+      if (userDoc.exists) {
+        throw "User already exists";
+      }
+    } on TimeoutException catch (e) {
+      // Handle timeout exception
+      throw "Request timed out. Please check your network connection.";
+    } on FirebaseException catch (e) {
+      // Handle Firebase specific exceptions
+      throw "Firebase error: ${e.message}";
+    } catch (e) {
+      // Handle other exceptions
+      if (e == "User already exists") {
+        throw e; // Re-throw the specific error
+      } else {
+        throw "Something went wrong. Please check your network.";
+      }
     }
   }
 

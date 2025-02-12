@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
+import '../../../about_us/presentation/views/about_us.dart';
 
 class QrState extends StatelessWidget {
   const QrState({super.key});

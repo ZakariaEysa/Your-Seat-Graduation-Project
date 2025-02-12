@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/seatsType.dart';
-import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+
+import '../../../widgets/app_bar/head_appbar.dart';
+import '../../../widgets/scaffold/scaffold_f.dart';
 import '../home/presentation/views/home_screen.dart';
 import 'Date.dart';
 import 'Time.dart';
 import 'left.dart';
 import 'right.dart';
+import 'seatsType.dart';
 
 class SelectSeat extends StatefulWidget {
   const SelectSeat({super.key});

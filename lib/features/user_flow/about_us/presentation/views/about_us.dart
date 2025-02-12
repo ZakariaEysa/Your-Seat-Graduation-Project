@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/widgets/row_of_social_items.dart';
-import 'package:yourseatgraduationproject/generated/l10n.dart';
-import 'package:yourseatgraduationproject/resources/constants.dart';
-import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../widgets/row_of_social_items.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../../resources/constants.dart';
+import '../../../../../widgets/app_bar/head_appbar.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../widgets/custom_bottom_sheet.dart';
 

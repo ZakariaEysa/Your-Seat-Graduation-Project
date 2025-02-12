@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 
 class FavoriteMoviesProvider extends ChangeNotifier {
   final List<MoviesDetailsModel> _favoriteMovies = [];

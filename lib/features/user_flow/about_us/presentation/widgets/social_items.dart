@@ -71,8 +71,8 @@ class SocialItem extends StatelessWidget {
         }
       },
       child: Container(
-        width: linkUrl.startsWith('tel:') ? 33.w : 42.w,
-        height: linkUrl.startsWith('tel:') ? 32.h : 41.h,
+        width:  42.w,
+        height: 41.h,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(imageUrl),

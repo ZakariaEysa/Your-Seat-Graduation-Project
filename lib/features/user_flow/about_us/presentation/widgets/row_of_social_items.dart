@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/widgets/social_items.dart';
-import 'package:yourseatgraduationproject/resources/constants.dart';
+import 'social_items.dart';
+import '../../../../../resources/constants.dart';
 
 class RowOfSocialItems extends StatelessWidget {
   const RowOfSocialItems({super.key});
@@ -31,7 +31,7 @@ class RowOfSocialItems extends StatelessWidget {
         SizedBox(width: 22.w), // استخدام ScreenUtil لضبط التباعد
         SocialItem(
           linkUrl: "tel:+201091058098", // دعم رقم الهاتف مع أو بدون "tel:"
-          imageUrl: "assets/images/${AppConstVariables.phone}",
+          imageUrl: "assets/icons/${AppConstVariables.phone}",
         ),
       ],
     );

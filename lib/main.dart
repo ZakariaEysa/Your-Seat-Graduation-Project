@@ -67,7 +67,8 @@ void main() async {
 
   runApp(
     DevicePreview(
-      enabled: kDebugMode,
+      // enabled: kDebugMode,
+      enabled: false,
       builder: (context) => MultiBlocProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),

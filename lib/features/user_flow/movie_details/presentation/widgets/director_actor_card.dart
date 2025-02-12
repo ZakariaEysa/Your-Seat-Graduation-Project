@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
 

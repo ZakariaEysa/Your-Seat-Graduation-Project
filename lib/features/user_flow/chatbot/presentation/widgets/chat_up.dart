@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
+import '../../../home/presentation/views/home_layout.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';

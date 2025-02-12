@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:yourseatgraduationproject/services/failure_service.dart';
+import '../../../../../services/failure_service.dart';
 
 import '../../data/model/google_user_model.dart';
 import '../../data/model/user_model.dart';

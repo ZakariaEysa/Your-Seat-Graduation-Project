@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../../../utils/navigation.dart';
 
 import '../../../cinema_details/presentation/views/cinema_details.dart';
 
@@ -40,9 +40,9 @@ class CinemaItem extends StatelessWidget {
             child: Column(
               children: [
                 GestureDetector(
-                  // onTap: () {
-                  //   navigateTo(context: context, screen: const CinemaDetails());
-                  // },
+                  onTap: () {
+                    navigateTo(context: context, screen: const CinemaDetails());
+                  },
                   child: ClipOval(
                     child: Image.asset(
                       movie['image']!,

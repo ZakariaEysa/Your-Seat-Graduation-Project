@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/widgets/chat_ask.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../widgets/chat_ask.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../widgets/chat_up.dart';
 

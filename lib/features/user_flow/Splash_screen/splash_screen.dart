@@ -1,10 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
@@ -12,22 +11,29 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/v
 import 'package:yourseatgraduationproject/features/user_flow/onBoarding/presentation/views/OnBoarding.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
-import '../auth/presentation/cubit/auth_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late List<Bubble> bubbles;
   late Timer _timer;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer(const Duration(seconds: 3), _navigate);
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 3),
+    )..forward();
+
+    bubbles = List.generate(90, (index) => Bubble());
+
+    _timer = Timer(const Duration(seconds: 4), _navigate);
   }
 
   void _navigate() {
@@ -49,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -57,24 +63,121 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return ScaffoldF(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: Colors.white,
         ),
-        width: 1.sw, // width based on screen size
-        height: 1.sh, // height based on screen size
-        child: Center(
-          child: SizedBox(
-            width: 305.w, // relative width
-            height: 260.h, // relative height
-            child: Image.asset("assets/images/splash.png"),
-          ),
+        child: Stack(
+          children: [
+            ...bubbles.map((bubble) => AnimatedBubble(
+                  bubble: bubble,
+                  controller: _controller,
+                )),
+            Center(
+              child: FadeTransition(
+                opacity: Tween<double>(begin: 0, end: 1).animate(
+                  CurvedAnimation(
+                    parent: _controller,
+                    curve: Interval(0.7, 1.0, curve: Curves.easeIn),
+                  ),
+                ),
+                child: Image.asset(
+                  "assets/images/splash.png",
+                  width: 150,
+                  height: 150,
+                ),
+              ),
+            ),
+          ],
         ),
-      )
-          .animate()
-          .then()
-          .shimmer(duration: const Duration(milliseconds: 900))
-          .then()
-          .shimmer(duration: const Duration(milliseconds: 900)),
+      ),
+    );
+  }
+}
+
+class Bubble {
+  final double size;
+  final Color color;
+  final Offset startPosition;
+  final Offset endPosition;
+
+  Bubble()
+      : size = 180 + (120 * Random().nextDouble()),
+        color = _getRandomColor(),
+        startPosition = Offset(
+          Random().nextDouble() * 2 - 0.5,
+          Random().nextDouble() * 2 - 0.5,
+        ),
+        endPosition = Offset(
+          Random().nextDouble() * 2 - 0.5,
+          Random().nextDouble() * 2 - 0.5,
+        );
+
+  static Color _getRandomColor() {
+    List<Color> colors = [
+      Color(0xFF381362),
+      Color(0xFF6E0ADD),
+      Color(0xFF4B0082),
+      Color(0xFF7A1FC8),
+    ];
+    return colors[Random().nextInt(colors.length)];
+  }
+}
+
+class AnimatedBubble extends StatelessWidget {
+  final Bubble bubble;
+  final AnimationController controller;
+
+  const AnimatedBubble({
+    super.key,
+    required this.bubble,
+    required this.controller,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        final double progress = controller.value;
+        final double startX = bubble.startPosition.dx * screenSize.width;
+        final double startY = bubble.startPosition.dy * screenSize.height;
+        final double endX = bubble.endPosition.dx * screenSize.width;
+        final double endY = bubble.endPosition.dy * screenSize.height;
+
+        final double newX = startX + (endX - startX) * progress;
+        final double newY = startY + (endY - startY) * progress;
+
+        final double scale = 1.0 - progress;
+        final double opacity =
+            1.0 - (progress > 0.6 ? (progress - 0.6) * 2 : 0);
+
+        return Positioned(
+          left: newX,
+          top: newY,
+          child: Transform.scale(
+            scale: scale,
+            child: Opacity(
+              opacity: opacity,
+              child: Container(
+                width: bubble.size,
+                height: bubble.size,
+                decoration: BoxDecoration(
+                  color: bubble.color,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

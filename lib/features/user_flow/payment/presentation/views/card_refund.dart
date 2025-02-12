@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/widgets/card_part.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_refund.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/refund_successful.dart';
+import '../../../about_us/presentation/views/about_us.dart';
+import '../widgets/card_part.dart';
+import 'payment_refund.dart';
+import 'refund_successful.dart';
 
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';

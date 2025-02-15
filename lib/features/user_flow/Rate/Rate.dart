@@ -6,7 +6,6 @@ import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import '../../../utils/navigation.dart';
 import '../Notifaction/views/Notifaction.dart';
 import '../home/presentation/Widget/search.dart';
-import '../home/presentation/views/home_layout.dart';
 import 'Rating.dart';
 
 class Rate extends StatelessWidget {

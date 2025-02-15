@@ -1,41 +1,49 @@
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
-import 'package:device_preview/device_preview.dart';
+import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/SelectSeat.dart';
-import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/views/now_playing.dart';
-import 'data/hive_stroage.dart';
-import 'features/user_flow/Rate/Rate.dart';
-import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
-import 'features/user_flow/chatbot/presentation/views/chat_bottt.dart';
-import 'services/simple_bloc_observer_service.dart';
-import 'utils/app_logs.dart';
-import 'widgets/application_theme/applicaton_theme.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
+import 'package:yourseatgraduationproject/features/user_flow/chatbot/presentation/views/chat_bottt.dart';
+import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/cinema_details.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/forget.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/new_password.dart';
+import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/app.dart';
+
+import 'package:yourseatgraduationproject/services/simple_bloc_observer_service.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import 'package:yourseatgraduationproject/widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
 import 'features/user_flow/Settings/presentation/views/profile_card.dart';
 import 'features/user_flow/Splash_screen/splash_screen.dart';
-import 'generated/l10n.dart';
+import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'features/user_flow/Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
 import 'features/user_flow/auth/data/model/google_user_model.dart';
 import 'features/user_flow/auth/data/model/user_model.dart';
 import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
-import 'features/user_flow/home/presentation/views/home_layout.dart';
 import 'features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -51,42 +59,73 @@ void main() async {
     ),
   );
 
-  await FirebaseAppCheck.instance
-      .activate(androidProvider: AndroidProvider.debug);
+  await FirebaseAppCheck.instance.activate(
+    androidProvider: AndroidProvider.debug,
+  );
+
+  // // Initialize Firebase App Check
+  // await FirebaseAppCheck.instance.activate();
+
+  // // Set the language code for Firebase Auth to avoid locale warning
+  // FirebaseAuth.instance.setLanguageCode('en');  // or use 'ar' for Arabic
+
+  // WidgetsFlutterBinding.ensureInitialized();
+  // Platform.isAndroid
+  //     ? await Firebase.initializeApp(
+  //         options: const FirebaseOptions(
+  //             apiKey: 'AIzaSyCREJCsFWlgq_kon3J8_Eu_mhvL0PUNGjs',
+  //             appId: '1:556627768143:android:f217ff5d7d11f450b5cb3a',
+  //             messagingSenderId: '556627768143',
+  //             projectId: 'yourseatgraduationprojec-19068'))
+  //     : await Firebase.initializeApp();
+  // // await Firebase.initializeApp();
+
+  //  await FirebaseAppCheck.instance.activate(
+
+  //   webProvider: ,
+  //   webRecaptchaSiteKey: 'your-recaptcha-site-key', // required only for web
+  // );
   SimpleBlocObserverService();
 
   await HiveStorage.init();
 
+
+
+  // await fetch();
+
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
-    HiveStorage.set(HiveKeys.passUserOnboarding, false);
+    HiveStorage.set(
+      HiveKeys.passUserOnboarding,
+      false,
+    );
   }
+  AppLogs.scussessLog(HiveStorage.get(HiveKeys.role).toString());
 
   GoogleUserModel? currentUser = HiveStorage.getGoogleUser();
   UserModel? currentUser2 = HiveStorage.getDefaultUser();
 
-  if (HiveStorage.get(HiveKeys.isArabic) == null) {
-    HiveStorage.set(HiveKeys.isArabic, false);
-  }
+  AppLogs.errorLog(currentUser.toString());
+  AppLogs.errorLog(currentUser2.toString());
 
-  runApp(
-    DevicePreview(
-      enabled: kDebugMode,
-      builder: (context) => MultiBlocProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
-          BlocProvider<SwitchLanguageCubit>(
-            create: (context) => SwitchLanguageCubit(),
-          ),
-          BlocProvider<AuthCubit>(
-            create: (context) => AuthCubit(AuthRepoImpl(
-                AuthRemoteDataSourceImpl(
-                    FirebaseAuth.instance, GoogleSignIn()))),
-          ),
-        ],
-        child: const MyApp(),
+  if (HiveStorage.get(HiveKeys.isArabic) == null) {
+    HiveStorage.set(
+      HiveKeys.isArabic,
+      false,
+    );
+  }
+  runApp(MultiBlocProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
+      BlocProvider<SwitchLanguageCubit>(
+        create: (context) => SwitchLanguageCubit(),
       ),
-    ),
-  );
+      BlocProvider<AuthCubit>(
+        create: (context) => AuthCubit(AuthRepoImpl(
+            AuthRemoteDataSourceImpl(FirebaseAuth.instance, GoogleSignIn()))),
+      ),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -133,17 +172,35 @@ class _MyAppState extends State<MyApp> {
               ],
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
-              // builder: DevicePreview.appBuilder,
-              builder: (context, child) {
-                child = BotToastInit()(context, child);  // تهيئة BotToast
-                return DevicePreview.appBuilder(context, child);
-              },
-              navigatorObservers: [BotToastNavigatorObserver()],  // ملاحظة التنقل
-              home:SelectSeat(),
-              // home:TicketDone(),
+              builder: BotToastInit(),
+              // home:  Otp(),
+
+              home: SelectSeat(),
 
             );
           });
     });
   }
 }
+
+// Future<void> fetch() async {
+//   final snapshot = await FirebaseFirestore.instance.collection('Movies').get();
+//   List<MoviesDetailsModel> fetchedMovies = snapshot.docs
+//       .map((doc) => MoviesDetailsModel.fromJson(doc.data()))
+//       .toList();
+//
+//   AppLogs.debugLog(fetchedMovies.toString());
+//
+//   AppLogs.debugLog(fetchedMovies.length.toString());
+//
+//   AppLogs.errorLog(fetchedMovies[0].toString());
+//
+//   String formattedMap = JsonEncoder.withIndent('  ').convert(fetchedMovies[0]);
+//
+//   AppLogs.errorLog(formattedMap);
+//
+//   AppLogs.scussessLog(fetchedMovies[0].cast.toString());
+//
+//   AppLogs.errorLog(fetchedMovies[0].crew.toString());
+// }
+//

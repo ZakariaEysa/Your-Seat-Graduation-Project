@@ -10,7 +10,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/SelectSeat.dart';
+import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/views/now_playing.dart';
 import 'data/hive_stroage.dart';
+import 'features/user_flow/Rate/Rate.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/chatbot/presentation/views/chat_bottt.dart';
 import 'services/simple_bloc_observer_service.dart';
@@ -136,7 +139,7 @@ class _MyAppState extends State<MyApp> {
                 return DevicePreview.appBuilder(context, child);
               },
               navigatorObservers: [BotToastNavigatorObserver()],  // ملاحظة التنقل
-              home:SplashScreen(),
+              home:SelectSeat(),
               // home:TicketDone(),
 
             );

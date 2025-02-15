@@ -46,7 +46,6 @@ class Rate extends StatelessWidget {
           ),
         //  SizedBox(height: 5.h),
           const Search(),
-       //   SizedBox(height: 5.h),
           const Rating(),
         //  SizedBox(height: 5.h,),
         ],

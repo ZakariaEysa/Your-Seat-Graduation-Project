@@ -220,6 +220,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("New movies ! Easy booking"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "noResultsFound":
+            MessageLookupByLibrary.simpleMessage("No Results Found"),
         "no_account":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notification"),

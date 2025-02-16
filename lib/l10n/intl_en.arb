@@ -219,5 +219,10 @@
   "total":"Total",
   "egp":"EGP",
   "buyTicket" : "Buy Ticket",
+
+  "Please rate the movie" :"Please rate the movie",
+  "Please rate the cinema" : "Please rate the cinema",
+  "Can you tell us the reason": "Can you tell us the reason",
+  "Your evaluation is interested": "Your evaluation is interested",
   "Roaa1" : "Roaa1"
 }

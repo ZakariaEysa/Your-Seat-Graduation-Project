@@ -11,6 +11,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'data/hive_stroage.dart';
+import 'features/user_flow/Rate/Rate.dart';
+import 'features/user_flow/SelectSeat/SelectSeat.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/chatbot/presentation/views/chat_bottt.dart';
 import 'services/simple_bloc_observer_service.dart';
@@ -139,6 +141,8 @@ class _MyAppState extends State<MyApp> {
               navigatorObservers: [BotToastNavigatorObserver()],  // ملاحظة التنقل
               home:SplashScreen(),
               // home:TicketDone(),
+
+              // home:Rate()
 
             );
           });

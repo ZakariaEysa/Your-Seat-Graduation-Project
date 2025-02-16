@@ -22,7 +22,7 @@ class _DateState extends State<Date> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      height: 120.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: daysInMonths.reduce((a, b) => a + b),
@@ -59,13 +59,13 @@ class _DateState extends State<Date> {
             child: Padding(
               padding:  EdgeInsets.symmetric(horizontal: 6.0.w),
               child: Container(
-                width: 59,
+                width: 59.w,
                 decoration: BoxDecoration(
                   color: isSelected ? Color(0xFF09FBD3) : Color(0xFF1D1D1D),
                   borderRadius: BorderRadius.circular(35),
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start, // Align content at the start
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(height: 20.sp),
                     Text(

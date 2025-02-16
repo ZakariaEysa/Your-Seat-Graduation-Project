@@ -2126,6 +2126,14 @@ class S {
     );
   }
 
+  // skipped getter for the 'Please rate the movie' key
+
+  // skipped getter for the 'Please rate the cinema' key
+
+  // skipped getter for the 'Can you tell us the reason' key
+
+  // skipped getter for the 'Your evaluation is interested' key
+
   /// `Roaa1`
   String get Roaa1 {
     return Intl.message(

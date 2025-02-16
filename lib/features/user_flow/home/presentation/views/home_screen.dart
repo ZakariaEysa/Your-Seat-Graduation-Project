@@ -21,6 +21,14 @@ class HomeScreen extends StatelessWidget {
     return Stack(
       children: [
         ScaffoldF(
+          // appBar: AppBar(
+          //   actions: [
+          //     IconButton(onPressed: (){
+          //       showSearch(context: context, delegate: MySearchDelegate());
+          //
+          //     }, icon: Icon(Icons.search))
+          //   ],
+          // ),
           body: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

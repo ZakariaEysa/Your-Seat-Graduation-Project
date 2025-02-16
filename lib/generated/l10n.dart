@@ -1228,6 +1228,16 @@ class S {
     );
   }
 
+  /// `No Results Found`
+  String get noResultsFound {
+    return Intl.message(
+      'No Results Found',
+      name: 'noResultsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `OK`
   String get ok {
     return Intl.message(

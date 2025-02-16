@@ -216,6 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "noResultsFound": MessageLookupByLibrary.simpleMessage("لا يوجد نتائج"),
         "no_account": MessageLookupByLibrary.simpleMessage("لا تملك حساباً؟"),
         "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),
         "november": MessageLookupByLibrary.simpleMessage("نوفمبر"),

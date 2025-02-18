@@ -11,7 +11,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'data/hive_stroage.dart';
+
+
 import 'features/user_flow/Rate/Rate.dart';
+import 'features/user_flow/Rate/Rating.dart';
 import 'features/user_flow/SelectSeat/SelectSeat.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/chatbot/presentation/views/chat_bottt.dart';
@@ -113,39 +116,39 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
         builder: (context, state) {
-      return ScreenUtilInit(
-          designSize: const Size(375, 812),
-          minTextAdapt: true,
-          useInheritedMediaQuery: true,
-          ensureScreenSize: true,
-          splitScreenMode: true,
-          builder: (_, child) {
-            return MaterialApp(
-              theme: ApplicationTheme.darkTheme,
-              locale: HiveStorage.get(HiveKeys.isArabic)
-                  ? const Locale('ar')
-                  : const Locale('en'),
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              debugShowCheckedModeBanner: false,
-              // builder: DevicePreview.appBuilder,
-              builder: (context, child) {
-                child = BotToastInit()(context, child);  // تهيئة BotToast
-                return DevicePreview.appBuilder(context, child);
-              },
-              navigatorObservers: [BotToastNavigatorObserver()],  // ملاحظة التنقل
-              home:SplashScreen(),
-              // home:TicketDone(),
+          return ScreenUtilInit(
+              designSize: const Size(375, 812),
+              minTextAdapt: true,
+              useInheritedMediaQuery: true,
+              ensureScreenSize: true,
+              splitScreenMode: true,
+              builder: (_, child) {
+                return MaterialApp(
+                  theme: ApplicationTheme.darkTheme,
+                  locale: HiveStorage.get(HiveKeys.isArabic)
+                      ? const Locale('ar')
+                      : const Locale('en'),
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  debugShowCheckedModeBanner: false,
+                  // builder: DevicePreview.appBuilder,
+                  builder: (context, child) {
+                    child = BotToastInit()(context, child);  // تهيئة BotToast
+                    return DevicePreview.appBuilder(context, child);
+                  },
+                  navigatorObservers: [BotToastNavigatorObserver()],  // ملاحظة التنقل
 
-              // home:Rate()
+                  // home:TicketDone(),
 
-            );
-          });
-    });
+                  home:Rate(),
+
+                );
+              });
+        });
   }
 }

@@ -75,11 +75,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyServiceOrProcessingFeesAssociatedWithTheBookingAreNonRefundable":
             MessageLookupByLibrary.simpleMessage(
                 "أي رسوم خدمة أو معالجة مرتبطة بالحجز غير قابلة للاسترداد."),
+        "apr": MessageLookupByLibrary.simpleMessage("ابريل"),
         "april": MessageLookupByLibrary.simpleMessage("أبريل"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
             "هل انت متاكد انك تريد تسجيل الخروج ؟"),
         "askmehere": MessageLookupByLibrary.simpleMessage("اسألني هنا..."),
+        "aug": MessageLookupByLibrary.simpleMessage("اغسطس"),
         "august": MessageLookupByLibrary.simpleMessage("أغسطس"),
         "available": MessageLookupByLibrary.simpleMessage("متاح"),
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
@@ -89,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookingConfirmation":
             MessageLookupByLibrary.simpleMessage("تأكيد الحجز"),
         "buyTicket": MessageLookupByLibrary.simpleMessage("شراء التذكره"),
+        "canYouTellUsTheReason":
+            MessageLookupByLibrary.simpleMessage("هل يمكنك إخبارنا بالسبب"),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
         "cancellationsRefunds":
             MessageLookupByLibrary.simpleMessage("لإلغاءات واسترداد الأموال"),
@@ -131,11 +135,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cvv": MessageLookupByLibrary.simpleMessage("السيرة الذاتية"),
         "dark": MessageLookupByLibrary.simpleMessage("ليلي"),
         "day": MessageLookupByLibrary.simpleMessage("اليوم"),
+        "dec": MessageLookupByLibrary.simpleMessage("ديسمبر"),
         "december": MessageLookupByLibrary.simpleMessage("ديسمبر"),
         "director": MessageLookupByLibrary.simpleMessage("مخرج"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("لا تملك حساباً بعد؟"),
-        "egp": MessageLookupByLibrary.simpleMessage("جنيه"),
+        "egp": MessageLookupByLibrary.simpleMessage("210.000 جنيه"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الالكتروني "),
         "emailAddress":
             MessageLookupByLibrary.simpleMessage("البريد الالكتروني"),
@@ -170,6 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "favoritesOrWatchlistForQuickAccessToYourBelovedMovies":
             MessageLookupByLibrary.simpleMessage(
                 "المفضلات أو قائمة المشاهدة للوصول السريع إلى أفلامك المفضلة."),
+        "feb": MessageLookupByLibrary.simpleMessage("فبراير"),
         "february": MessageLookupByLibrary.simpleMessage("فبراير"),
         "female": MessageLookupByLibrary.simpleMessage("انثي"),
         "fill_all_fields":
@@ -195,8 +201,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اسم المستخدم غير صحيح"),
         "invalid_EmailAddress_format": MessageLookupByLibrary.simpleMessage(
             "صيغة عنوان البريد الالكتروني غير صحيحة"),
+        "jan": MessageLookupByLibrary.simpleMessage("يناير"),
         "january": MessageLookupByLibrary.simpleMessage("يناير"),
+        "jul": MessageLookupByLibrary.simpleMessage("يوليو"),
         "july": MessageLookupByLibrary.simpleMessage("يوليو"),
+        "jun": MessageLookupByLibrary.simpleMessage("يونيو"),
         "june": MessageLookupByLibrary.simpleMessage("يونيو"),
         "language": MessageLookupByLibrary.simpleMessage("اللغه"),
         "light": MessageLookupByLibrary.simpleMessage("نهاري"),
@@ -207,6 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_successful":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
         "male": MessageLookupByLibrary.simpleMessage("ذكر"),
+        "mar": MessageLookupByLibrary.simpleMessage("مارس"),
         "march": MessageLookupByLibrary.simpleMessage("مارس"),
         "may": MessageLookupByLibrary.simpleMessage("مايو"),
         "month": MessageLookupByLibrary.simpleMessage("الشهر"),
@@ -219,8 +229,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "noResultsFound": MessageLookupByLibrary.simpleMessage("لا يوجد نتائج"),
         "no_account": MessageLookupByLibrary.simpleMessage("لا تملك حساباً؟"),
         "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),
+        "nov": MessageLookupByLibrary.simpleMessage("نوفمبر"),
         "november": MessageLookupByLibrary.simpleMessage("نوفمبر"),
         "nowPlaying": MessageLookupByLibrary.simpleMessage("التشغيل الان"),
+        "oct": MessageLookupByLibrary.simpleMessage("اكتوبر"),
         "october": MessageLookupByLibrary.simpleMessage("أكتوبر"),
         "ok": MessageLookupByLibrary.simpleMessage("حسنا"),
         "oncePaymentIsSuccessfulAConfirmationEmailWithTicketDetailsAndBookingInformationWillBeSentToTheRegisteredEmailAddressIfYouDoNotReceiveAConfirmationWithinThirtyMinutesOfPaymentPleaseContactOurSupportTeamAtSupportYourSeatCom":
@@ -258,6 +270,10 @@ class MessageLookup extends MessageLookupByLibrary {
                 "من فضلك أدخل بريدك الإلكتروني لتلقي بطاقة التحقق"),
         "pleaseFillTheCredentials":
             MessageLookupByLibrary.simpleMessage("يرجى ملء البيانات المطلوبة."),
+        "pleaseRateTheCinema":
+            MessageLookupByLibrary.simpleMessage("يرجى تقييم السينما"),
+        "pleaseRateTheMovie":
+            MessageLookupByLibrary.simpleMessage("يرجى تقييم الفيلم"),
         "please_enter_EmailAddress": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال عنوان البريد الالكتروني"),
         "please_enter_password":
@@ -284,6 +300,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اختيار الوقت & التاريخ"),
         "selectSeat": MessageLookupByLibrary.simpleMessage("اختر كرسيك"),
         "selected": MessageLookupByLibrary.simpleMessage("محدد"),
+        "sep": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "september": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "serviceFees": MessageLookupByLibrary.simpleMessage("رسوم الخدمة"),
         "setting": MessageLookupByLibrary.simpleMessage("الاعدادات"),
@@ -333,6 +350,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "youJustNeedToEnterTheOtpSentToTheRegisteredEmailAddress":
             MessageLookupByLibrary.simpleMessage(
                 "فقط أدخل رمز التحقق المرسل إلى عنوان البريد الالكتروني المسجل."),
+        "yourEvaluationIsInterested":
+            MessageLookupByLibrary.simpleMessage("تقييمك محل اهتمام"),
         "zakaria": MessageLookupByLibrary.simpleMessage("زكريا"),
         "zakaria1": MessageLookupByLibrary.simpleMessage("زكريا")
       };

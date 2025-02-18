@@ -8,7 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/SelectSeat.dart';
 import 'data/hive_stroage.dart';
+import 'features/user_flow/Rate/Rate.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'services/simple_bloc_observer_service.dart';
 import 'widgets/application_theme/applicaton_theme.dart';
@@ -161,8 +163,7 @@ class _MyAppState extends State<MyApp> {
                 BotToastNavigatorObserver()
               ], // ملاحظة التنقل
               home: SplashScreen(),
-              // home:TicketDone(),
-              // home:Rate()
+              // home:SelectSeat()
             );
           });
     });

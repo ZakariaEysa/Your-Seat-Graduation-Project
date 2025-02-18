@@ -1,17 +1,30 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CinemaComments extends StatelessWidget {
-  final String image;
-  final String titlename;
+class CinemaComments extends StatefulWidget {
+
+
   final String title;
-  const CinemaComments(
-      {super.key,
-      required this.image,
-      required this.title,
-      required this.titlename});
+  final String name;
+  final String image;
+  const CinemaComments({
+    Key? key,
+    required this.name,
+    required this.image,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  State<CinemaComments> createState() => _CinemaCommentsState();
+}
+
+class _CinemaCommentsState extends State<CinemaComments> {
   @override
   Widget build(BuildContext context) {
+
     final theme = Theme.of(context);
     return Container(
       width: 360.w,
@@ -23,10 +36,13 @@ class CinemaComments extends StatelessWidget {
         padding: EdgeInsets.all(8.0.sp),
         child: Row(
           children: [
-            Image.asset(
-              image,
-              width: 35.w,
-              height: 41.h,
+            CircleAvatar(
+              radius: 20.r,
+              backgroundImage:
+              widget.image.isNotEmpty
+                  ? MemoryImage(base64Decode(widget.image))
+                  : const AssetImage("assets/images/account.png")
+              as ImageProvider,
             ),
             SizedBox(width: 10.w),
             Expanded(
@@ -35,19 +51,19 @@ class CinemaComments extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    titlename,
-                    style:
-                        theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    title,
-                    style:
-                        theme.textTheme.bodyMedium!.copyWith(fontSize: 10.sp),
+                    "@${widget.name}",
+                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
+
+                  Text(
+                    widget.title,
+                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+
                 ],
               ),
             ),

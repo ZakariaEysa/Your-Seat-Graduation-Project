@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../generated/l10n.dart';
+
 class Date extends StatefulWidget {
+
   @override
   _DateState createState() => _DateState();
 }
 
 class _DateState extends State<Date> {
-  final List<String> months = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-  ];
+
 
   final List<int> daysInMonths = [
     31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
@@ -21,6 +21,11 @@ class _DateState extends State<Date> {
 
   @override
   Widget build(BuildContext context) {
+    var lang  =S.of(context);
+    final List<String> months = [
+      lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun,
+      lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec
+    ];
     return SizedBox(
       height: 120.h,
       child: ListView.builder(

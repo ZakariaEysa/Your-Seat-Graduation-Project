@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../data/hive_keys.dart';
+import '../../../data/hive_stroage.dart';
+import '../../../generated/l10n.dart';
 import '../../../widgets/app_bar/head_appbar.dart';
 import '../../../widgets/scaffold/scaffold_f.dart';
 import '../home/presentation/views/home_screen.dart';
@@ -24,7 +27,7 @@ class _SelectSeatState extends State<SelectSeat> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-
+    var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
         leading: IconButton(
@@ -36,7 +39,7 @@ class _SelectSeatState extends State<SelectSeat> {
         backgroundColor: theme.primaryColor,
         title: Padding(
           padding: EdgeInsets.only(left: 31.w, bottom: 15.h),
-          child: const HeadAppBar(title: 'Select Seat'),
+          child: HeadAppBar(title: lang.selectSeat),
         ),
       ),
       body: SingleChildScrollView(
@@ -67,21 +70,23 @@ class _SelectSeatState extends State<SelectSeat> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                seatsType(color: const Color(0xFFF3F3F3), text: 'Available'),
-                seatsType(color: const Color(0xDCB6116B), text: 'Reserved'),
-                seatsType(color: const Color(0xFF09FBD3), text: 'Selected'),
+                seatsType(color: const Color(0xFFF3F3F3), text: lang.available),
+                seatsType(color: const Color(0xFF5b085d), text: lang.reserved),
+                seatsType(color: const Color(0xFF09FBD3), text: lang.selected),
               ],
             ),
             SizedBox(height: 10.h),
             Row(
               children: [
                 Image.asset(
-                  "assets/images/HandRight.png",
+                  HiveStorage.get(HiveKeys.isArabic)
+                      ? "assets/images/leftHand.png"
+                      : "assets/images/HandRight.png",
                   width: 50.w,
                   height: 25.h,
                 ),
                 Text(
-                  'The seat selected is VIP.',
+                  lang.theSeatSelectedIsVIP,
                   style: theme.textTheme.bodySmall?.copyWith(fontSize: 18.sp),
                 ),
               ],
@@ -89,7 +94,7 @@ class _SelectSeatState extends State<SelectSeat> {
             SizedBox(height: 10.h),
             Center(
               child: Text(
-                'Select Date & Time',
+                lang.selectDateTime,
                 style: theme.textTheme.labelSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 24.sp,
@@ -104,7 +109,7 @@ class _SelectSeatState extends State<SelectSeat> {
             ),
             Time(),
             Padding(
-              padding:  EdgeInsets.all(16.0.sp),
+              padding: EdgeInsets.all(16.0.sp),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -112,12 +117,12 @@ class _SelectSeatState extends State<SelectSeat> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Total',
+                        lang.total,
                         style: theme.textTheme.bodySmall
                             ?.copyWith(fontSize: 20.sp),
                       ),
                       Text(
-                        '210.000 EGP',
+                        lang.egp,
                         style: theme.textTheme.bodySmall?.copyWith(
                           fontSize: 20.sp,
                           color: const Color(0xFF09FBD3),
@@ -132,7 +137,7 @@ class _SelectSeatState extends State<SelectSeat> {
                       minimumSize: Size(155.w, 42.h),
                     ),
                     child: Text(
-                      'Buy Ticket',
+                      lang.buyTicket,
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontSize: 19.sp,
                         color: Colors.black,

@@ -212,7 +212,20 @@
   "theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable": "المقاعد الفاخرة ونظام الصوت الغامر تجعلها تجربة لا تُنسى حقًا",
 
   "rahaf1": "رهف",
+
   "Roaa" : "رؤى",
+  "jan" : "يناير",
+  "feb": "فبراير",
+  "mar" : "مارس",
+  "apr": "ابريل",
+  "may" : "مايو",
+  "jun" : "يونيو",
+  "jul": "يوليو",
+  "aug": "اغسطس",
+  "sep": "سبتمبر",
+  "oct": "اكتوبر",
+  "nov": "نوفمبر",
+  "dec": "ديسمبر",
   "selectSeat" : "اختر كرسيك",
   "available" : "متاح",
   "reserved":"محجوز",
@@ -220,13 +233,12 @@
   "theSeatSelectedIsVIP":"المقعد المحدد هو VIP.",
   "selectDateTime":"اختيار الوقت & التاريخ",
   "total":"الاجمالي",
-  "egp":"جنيه",
+  "egp":"210.000 جنيه",
   "buyTicket" : "شراء التذكره",
-
-  "Please rate the movie" :"يرجى تقييم الفيلم",
-  "Please rate the cinema" : "يرجى تقييم السينما",
-  "Can you tell us the reason": "هل يمكنك إخبارنا بالسبب",
-  "Your evaluation is interested": "تقييمك محل اهتمام",
+  "pleaseRateTheMovie" :"يرجى تقييم الفيلم",
+  "pleaseRateTheCinema" : "يرجى تقييم السينما",
+  "canYouTellUsTheReason": "هل يمكنك إخبارنا بالسبب",
+  "yourEvaluationIsInterested": "تقييمك محل اهتمام",
   "Roaa1" : "رؤى"
 
 

@@ -161,6 +161,8 @@ class _MyAppState extends State<MyApp> {
                 BotToastNavigatorObserver()
               ], // ملاحظة التنقل
               home: SplashScreen(),
+              // home:TicketDone(),
+              // home:Rate()
             );
           });
     });

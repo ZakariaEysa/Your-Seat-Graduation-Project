@@ -26,6 +26,7 @@ class Notifications extends StatelessWidget {
         ),
         backgroundColor: const Color(0xFF2E1371),
       ),
+
       body: Column(
         children: [
           SizedBox(height: 30.h),

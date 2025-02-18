@@ -11,7 +11,7 @@ class NotificationContent extends StatelessWidget {
   const NotificationContent({
     super.key,
     required this.imagePath,
-    this.title = 'SALE IS LIVE', // قيمة افتراضية
+    this.title = 'SALE IS LIVE',
     required this.body,
     required this.time,
     this.numOfNotification,
@@ -22,7 +22,7 @@ class NotificationContent extends StatelessWidget {
     var theme = Theme.of(context);
     return Padding(
       padding: EdgeInsetsDirectional.symmetric(
-          horizontal: 20.w), // حواف أفقية باستخدام ScreenUtil
+          horizontal: 20.w),
       child: Column(
         children: [
           Row(
@@ -30,7 +30,6 @@ class NotificationContent extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  // صورة الإشعار
                   Container(
                     width: 60.w,
                     height: 60.h,
@@ -42,7 +41,7 @@ class NotificationContent extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // عدد الإشعارات
+
                   if (numOfNotification != null)
                     Positioned(
                       top: 0,
@@ -76,12 +75,11 @@ class NotificationContent extends StatelessWidget {
                     ),
                 ],
               ),
-              SizedBox(width: 22.w), // مسافة أفقية
+              SizedBox(width: 22.w),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // عنوان الإشعار
                     Text(
                       title,
                       style: theme.textTheme.labelLarge?.copyWith(
@@ -89,21 +87,20 @@ class NotificationContent extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 4.h), // مسافة عمودية
-                    // وصف الإشعار
+                    SizedBox(height: 4.h),
                     Text(
                       body,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         fontSize: 13.sp,
                         color: Colors.grey.shade700,
                       ),
-                      maxLines: 2, // لتجنب النصوص الطويلة
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
               ),
-              // وقت الإشعار
+
               Text(
                 time,
                 style: theme.textTheme.labelLarge?.copyWith(
@@ -113,7 +110,7 @@ class NotificationContent extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20.h), // مسافة عمودية بين الإشعارات
+          SizedBox(height: 20.h),
         ],
       ),
     );

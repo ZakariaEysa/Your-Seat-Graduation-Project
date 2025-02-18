@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Right extends StatelessWidget {
+class Right extends StatefulWidget {
+  Right({super.key});
+
+  @override
+  State<Right> createState() => _RightState();
+}
+
+class _RightState extends State<Right> {
   List<List<String>> rightSeats = [
     ['a', 'a', 'a', 'a', 'a', 'a'],
     ['a', 'a', 'a', 's', 's', 'a'],
@@ -13,29 +20,43 @@ class Right extends StatelessWidget {
     ['r', 'r', 'r', 'r', 'r', 'r'],
   ];
 
-  Right({super.key});
+  void _selectSeat(int x, int y) {
+    setState(() {
+      if (rightSeats[x][y] == 'a') {
+        rightSeats[x][y] = 's';
+      } else if (rightSeats[x][y] == 's') {
+        rightSeats[x][y] = 'a';
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: rightSeats.map((row) {
+      children: List.generate(rightSeats.length, (rowIndex) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: row.map((seat) {
+          children: List.generate(rightSeats[rowIndex].length, (colIndex) {
+            String seat = rightSeats[rowIndex][colIndex];
             String seatImage = _getSeatImage(seat);
-            return Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Image.asset(
-                seatImage,
-                width: 20,
-                height: 20,
+
+            return GestureDetector(
+              onTap: () => _selectSeat(rowIndex, colIndex),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Image.asset(
+                  seatImage,
+                  width: 20,
+                  height: 20,
+                ),
               ),
             );
-          }).toList(),
+          }),
         );
-      }).toList(),
+      }),
     );
   }
+
 
   String _getSeatImage(String seat) {
     if (seat == 'a') {

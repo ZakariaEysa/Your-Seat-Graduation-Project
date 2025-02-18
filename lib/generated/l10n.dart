@@ -2056,6 +2056,116 @@ class S {
     );
   }
 
+  /// `Jan`
+  String get jan {
+    return Intl.message(
+      'Jan',
+      name: 'jan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Feb`
+  String get feb {
+    return Intl.message(
+      'Feb',
+      name: 'feb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mar`
+  String get mar {
+    return Intl.message(
+      'Mar',
+      name: 'mar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apr`
+  String get apr {
+    return Intl.message(
+      'Apr',
+      name: 'apr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jun`
+  String get jun {
+    return Intl.message(
+      'Jun',
+      name: 'jun',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jul`
+  String get jul {
+    return Intl.message(
+      'Jul',
+      name: 'jul',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aug`
+  String get aug {
+    return Intl.message(
+      'Aug',
+      name: 'aug',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sep`
+  String get sep {
+    return Intl.message(
+      'Sep',
+      name: 'sep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oct`
+  String get oct {
+    return Intl.message(
+      'Oct',
+      name: 'oct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nov`
+  String get nov {
+    return Intl.message(
+      'Nov',
+      name: 'nov',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dec`
+  String get dec {
+    return Intl.message(
+      'Dec',
+      name: 'dec',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select Seat`
   String get selectSeat {
     return Intl.message(
@@ -2116,10 +2226,10 @@ class S {
     );
   }
 
-  /// `EGP`
+  /// `210.000EGP`
   String get egp {
     return Intl.message(
-      'EGP',
+      '210.000EGP',
       name: 'egp',
       desc: '',
       args: [],
@@ -2136,13 +2246,45 @@ class S {
     );
   }
 
-  // skipped getter for the 'Please rate the movie' key
+  /// `Please rate the movie`
+  String get pleaseRateTheMovie {
+    return Intl.message(
+      'Please rate the movie',
+      name: 'pleaseRateTheMovie',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Please rate the cinema' key
+  /// `Please rate the cinema`
+  String get pleaseRateTheCinema {
+    return Intl.message(
+      'Please rate the cinema',
+      name: 'pleaseRateTheCinema',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Can you tell us the reason' key
+  /// `Can you tell us the reason`
+  String get canYouTellUsTheReason {
+    return Intl.message(
+      'Can you tell us the reason',
+      name: 'canYouTellUsTheReason',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Your evaluation is interested' key
+  /// `Your evaluation is interested`
+  String get yourEvaluationIsInterested {
+    return Intl.message(
+      'Your evaluation is interested',
+      name: 'yourEvaluationIsInterested',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Roaa1`
   String get Roaa1 {

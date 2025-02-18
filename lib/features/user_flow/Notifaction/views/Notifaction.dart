@@ -26,6 +26,7 @@ class Notifications extends StatelessWidget {
         ),
         backgroundColor: const Color(0xFF2E1371),
       ),
+
       body: Column(
         children: [
           SizedBox(height: 30.h),
@@ -39,7 +40,7 @@ class Notifications extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Container(
-                    padding: EdgeInsetsDirectional.only(end: 20.w),
+                    padding: EdgeInsetsDirectional.only(end: 30.w),
                     child: Text(
                       lang.general,
                       style: theme.textTheme.bodySmall?.copyWith(
@@ -66,33 +67,33 @@ class Notifications extends StatelessWidget {
                 NotificationContent(
                   imagePath: 'assets/images/notif1.png',
                   body:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                   numOfNotification: '2',
                 ),
                 NotificationContent(
                   imagePath: 'assets/images/notif2.png',
                   body:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                   numOfNotification: '2',
                 ),
                 NotificationContent(
                   imagePath: 'assets/images/notif3.png',
                   body:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                 ),
                 NotificationContent(
                   imagePath: 'assets/images/notif4.png',
                   body:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n10 Hrs ago.',
                 ),
                 NotificationContent(
                   imagePath: 'assets/images/notif5.png',
                   body:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n15 Hrs ago.',
                 ),
               ],

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,7 +7,7 @@ class WatchListPart extends StatelessWidget {
   final String title;
   final String smalltitle;
   final String image;
-  final VoidCallback onRemove; // دالة لحذف الفيلم
+  final VoidCallback onRemove;
 
   const WatchListPart({
     super.key,
@@ -17,7 +16,7 @@ class WatchListPart extends StatelessWidget {
     required this.time,
     required this.smallimage,
     required this.smalltitle,
-    required this.onRemove, // تمرير الدالة هنا
+    required this.onRemove,
   });
 
   @override
@@ -42,44 +41,50 @@ class WatchListPart extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(16.sp),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style:
-                        theme.textTheme.bodyMedium!.copyWith(fontSize: 18.sp),
-                  ),
-                  SizedBox(height: 7.h),
-                  Row(
-                    children: [
-                      Image.asset(smallimage, width: 70.w, height: 30.h),
-                      SizedBox(width: 10.w),
-                      Text(
-                        smalltitle,
-                        style: theme.textTheme.bodyMedium!
-                            .copyWith(fontSize: 14.sp),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8.h),
-                  Text(
-                    time,
-                    style: theme.textTheme.bodyMedium!.copyWith(
-                      fontSize: 11.sp,
-                      color: const Color(0XFFD9D9D9),
+            SizedBox(width: 10.w), // إضافة مسافة لمنع الالتصاق
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(16.sp),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                ],
+                    SizedBox(height: 7.h),
+                    Row(
+                      children: [
+                        Image.asset(smallimage, width: 60.w, height: 25.h),
+                        SizedBox(width: 10.w),
+                        Expanded(
+                          child: Text(
+                            smalltitle,
+                            style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      time,
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        fontSize: 11.sp,
+                        color: const Color(0XFFD9D9D9),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            const Spacer(),
             Padding(
               padding: EdgeInsets.only(bottom: 100.h, right: 5.w),
               child: InkWell(
-                onTap: onRemove, // استدعاء دالة الحذف عند النقر
+                onTap: onRemove,
                 child: Icon(
                   Icons.cancel,
                   color: theme.colorScheme.onSecondary,

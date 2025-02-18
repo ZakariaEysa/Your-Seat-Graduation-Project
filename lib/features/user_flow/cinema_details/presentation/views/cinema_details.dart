@@ -1,194 +1,255 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_stroage.dart';
+import '../../../../../utils/app_logs.dart';
 import '../widgets/cinema_comments.dart';
-import '../widgets/cinema_movies.dart';
+
 import '../../../home/presentation/views/home_layout.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
+import '../widgets/cinema_movies.dart';
 
-class CinemaDetails extends StatelessWidget {
-  const CinemaDetails({super.key});
+class CinemaDetails extends StatefulWidget {
+  final String cinemaId;
+
+  const CinemaDetails({super.key, required this.cinemaId});
+
+  @override
+  State<CinemaDetails> createState() => _CinemaDetailsState();
+}
+
+class _CinemaDetailsState extends State<CinemaDetails> {
+  final TextEditingController _commentController = TextEditingController();
+  var currentUser;
+
+  void _addComment() async {
+    if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
+      currentUser = HiveStorage.getGoogleUser();
+    } else {
+      currentUser = HiveStorage.getDefaultUser();
+    }
+
+    if (_commentController.text.isNotEmpty) {
+      await FirebaseFirestore.instance
+          .collection('Cinemas')
+          .doc(widget.cinemaId)  // تحديد السينما المطلوبة
+          .collection('comments') // إضافة التعليق داخل مجموعة التعليقات الخاصة بهذه السينما
+          .add({
+        'text': _commentController.text,
+        'timestamp': FieldValue.serverTimestamp(),
+        'userName': currentUser.name,
+        'image': currentUser.image,
+      });
+
+      _commentController.clear();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     var lang = S.of(context);
+
     return ScaffoldF(
-        body: SingleChildScrollView(
+      body: FutureBuilder<DocumentSnapshot>(
+        future: FirebaseFirestore.instance.collection('Cinemas').doc(widget.cinemaId).get(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (!snapshot.hasData || !snapshot.data!.exists) {
+            return const Center(child: Text("لم يتم العثور على تفاصيل السينما"));
+          }
+
+          final cinemaData = snapshot.data!;
+          final cinemaName = cinemaData['name'] ?? 'Cinema';
+          final description = cinemaData['description'] ?? 'لا يوجد وصف متاح';
+          final imageUrl = cinemaData['poster_image'] ?? '';
+          final rating = cinemaData['rating'] ?? 0.0;  // استرجاع التقييم
+          final ratingCount = cinemaData['rating_count'] ?? 0;  // استرجاع عدد التقييمات
+
+          return SingleChildScrollView(
             child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-          Stack(children: [
-            Image.asset(
-              'assets/icons/cinema_details.png',
-              width: 450.w,
-              height: 390.h,
-              fit: BoxFit.cover,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 50.h),
-              child: IconButton(
-                  onPressed: () {
-                    navigateTo(context: context, screen: const HomeLayout());
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                    size: 25,
-                    weight: 16,
-                  )),
-            ),
-            Positioned(
-              top: 240.h,
-              left: 10.w,
-              right: 10.w,
-              child: Container(
-                padding: EdgeInsets.all(5.sp),
-                color: const Color(0xFF37313B).withOpacity(.71),
-                width: 340.w,
-                height: 160.h,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  clipBehavior: Clip.none, // يسمح بخروج جزء من العنصر خارج الـ Stack
                   children: [
-                    Text(
-                      lang.IMAX_Cinema,
-                      style:
-                          theme.textTheme.bodyMedium!.copyWith(fontSize: 11.sp),
+                    imageUrl.isNotEmpty
+                        ? Image.network(
+                      imageUrl,
+                      width: 450.w,
+                      height: 250.h,
+                      fit: BoxFit.cover,
+                    )
+                        : Container(
+                      width: 450.w,
+                      height: 390.h,
+                      color: Colors.grey,
+                      child: const Icon(Icons.image, color: Colors.white),
                     ),
-                    Text(
-                      lang.StatUpIsPlannedFor2025TypeOfTheaterKnownForItsLargeScreenSizeAndHighQualitySoundSystemItOffersAnImmersiveViewingExperienceForMoviesDocumentariesAndOtherContent,
-                      style: theme.textTheme.bodyMedium!.copyWith(
-                          fontSize: 11.sp, color: const Color(0xFFD4D0D0)),
-                    ),
-                    SizedBox(height: 5.h),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          lang.review,
-                          textAlign: TextAlign.start,
-                          style: theme.textTheme.bodyMedium!
-                              .copyWith(fontSize: 15.sp),
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Image.asset(
-                          'assets/images/cinemastar.png',
-                          width: 12.w,
-                          height: 11.h,
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Text('4.8 (1.222)',
-                            style: theme.textTheme.bodyMedium!
-                                .copyWith(fontSize: 11.sp))
-                      ],
-                    ),
-                    RatingBar.builder(
-                      initialRating: 4,
-                      minRating: 1,
-                      unratedColor: Color(0xFF575757),
-                      ignoreGestures: true,
-                      direction: Axis.horizontal,
-                      itemSize: 33,
-                      //allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star,
-                        size: 2,
-                        color: Color(0xFFCCC919),
+
+                    Padding(
+                      padding: EdgeInsets.only(top: 50.h),
+                      child: IconButton(
+                        onPressed: () {
+                          navigateTo(context: context, screen: const HomeLayout());
+                        },
+                        icon: const Icon(Icons.arrow_back, color: Colors.white, size: 25),
                       ),
-                      onRatingUpdate: (rating) {
-                        // print(rating);
-                      },
+                    ),
+
+                    // جزء التفاصيل الذي يمتد خارج الصورة
+                    Positioned(
+                      bottom: -50.h, // يخرج جزء من الـ Container خارج الصورة
+                      left: 20.w,
+                      child: Container(
+                        padding: EdgeInsets.all(10.sp),
+                        color: const Color(0xFF37313B).withOpacity(.9),
+                        width: 340.w,
+                        height: 180.h,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              cinemaName,
+                              style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
+                            ),
+                            Text(
+                              description,
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                fontSize: 11.sp,
+                                color: const Color(0xFFD4D0D0),
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(height: 5.h),
+                            Row(
+                              children: [
+                                Text(
+                                  lang.review,
+                                  textAlign: TextAlign.start,
+                                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 15.sp),
+                                ),
+                                SizedBox(width: 10.w),
+                                Image.asset(
+                                  'assets/images/cinemastar.png',
+                                  width: 12.w,
+                                  height: 11.h,
+                                ),
+                                SizedBox(width: 10.w),
+                                Text(
+                                  '$rating ($ratingCount)',
+                                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 11.sp),
+                                ),
+                              ],
+                            ),
+                            RatingBar.builder(
+                              initialRating: rating,
+                              minRating: 1,
+                              unratedColor: const Color(0xFF575757),
+                              ignoreGestures: true,
+                              direction: Axis.horizontal,
+                              itemSize: 33,
+                              itemCount: 5,
+                              itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                              itemBuilder: (context, index) {
+                                return Icon(
+                                  rating >= index + 1 ? Icons.star : Icons.star_border,
+                                  size: 2,
+                                  color: rating >= index + 1 ? const Color(0xFFCCC919) : const Color(0xFF575757),
+                                );
+                              },
+                              onRatingUpdate: (rating) {},
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ),
-          ]),
-          Padding(
-            padding: EdgeInsets.all(15.0.sp),
-            child: Text(
-              lang.movies,
-              style: theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
-            ),
-          ),
-          Row(
-            children: [
-              const CinemaMovies(
-                  image: "assets/images/movie1.png",
-                  title: "Shazam: Fury of the Gods"),
-              Spacer(),
-              const CinemaMovies(
-                  image: "assets/images/movies2.png",
-                  title: "Avengers: Infinity War")
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.all(10.0.sp),
-            child: Text(
-              lang.comments,
-              style: theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0.sp),
-            child: CinemaComments(
-                image: "assets/images/image.png",
-                title: lang.GreatSelectionOfMoviesHighlyRecommended,
-                titlename: "@Iva588"),
-          ),
-          Padding(
-            padding: EdgeInsets.all(10.sp),
-            child: CinemaComments(
-                image: "assets/images/image (1).png",
-                title: lang
-                    .theLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable,
-                titlename: "@Rana158"),
-          ),
-          Padding(
-            padding: EdgeInsets.all(10.0.sp),
-            child: CinemaComments(
-                image: "assets/images/image.png",
-                title: lang
-                    .TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere,
-                titlename: "@Mahmoud"),
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(16.0.sp),
-                child: TextFormFieldBuilder(
-                  controller: TextEditingController(),
-                  type: TextInputType.text,
-                  width: 270.w,
-                  height: 45.h,
-                  color: const Color(0xFF110C3B),
-                  obsecure: false,
-                  label: lang.addComment,
+
+                Padding(
+                  padding: EdgeInsets.only(top: 55.0.sp),
+                  child: Text(
+                    lang.movies,
+                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 8,
-              ),
-              Image.asset(
-                "assets/icons/Vector (4).png",
-                width: 25.w,
-                height: 25.h,
-              )
-            ],
-          )
-        ])));
+                SizedBox(height: 400.h, child: CinemaMovies(cinemaId: widget.cinemaId,)),
+                Padding(
+                  padding: EdgeInsets.all(10.0.sp),
+                  child: Text(
+                    lang.comments,
+                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
+                  ),
+                ),
+                StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('Cinemas')
+                      .doc(widget.cinemaId)
+                      .collection('comments')
+                      .orderBy('timestamp', descending: true)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (snapshot.data!.docs.isEmpty) {
+                      return Center(
+                        child: Text(
+                          'لا توجد تعليقات بعد.',
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                      );
+                    }
+                    return Column(
+                      children: snapshot.data!.docs.map((doc) {
+                        return Padding(
+                          padding: EdgeInsets.all(10.sp),
+                          child: CinemaComments(
+                            name: doc['userName'],
+                            image: doc['image'],
+                            title: doc['text'],
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  },
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(16.0.sp),
+                      child: TextFormFieldBuilder(
+                        controller: _commentController,
+                        type: TextInputType.text,
+                        width: 270.w,
+                        height: 45.h,
+                        color: const Color(0xFF110C3B),
+                        obsecure: false,
+                        label: lang.addComment,
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    IconButton(
+                      icon: Icon(Icons.send, color: Colors.white),
+                      onPressed: _addComment,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 }

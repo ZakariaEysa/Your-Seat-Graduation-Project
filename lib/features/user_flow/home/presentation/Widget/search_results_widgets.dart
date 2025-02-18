@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,7 +45,7 @@ class _SearchState extends State<Search> {
     return Scaffold(
       backgroundColor: const Color(0xFF2B1269),
       body: Padding(
-        padding: EdgeInsets.all(14.0.w),
+        padding: EdgeInsets.symmetric(vertical: 35.h,horizontal: 10.w),
         child: Column(
           children: [
             TextFormField(
@@ -85,12 +86,15 @@ class _SearchState extends State<Search> {
               ),
             ),
             searchResults.isEmpty
-                ? Center(
-              child: Text(
-                lang.noResultsFound,
-                style: TextStyle(color: Colors.white70),
-              ),
-            )
+                ? Padding(
+                  padding: EdgeInsets.all(20.sp),
+                  child: Center(
+                                child: Text(
+                  lang.noResultsFound,
+                  style: TextStyle(color: Colors.white70),
+                                ),
+                              ),
+                )
                 : Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
@@ -135,15 +139,16 @@ class _SearchState extends State<Search> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(8.0.r),
-                              child: Image.network(
+                              child:CachedNetworkImage(
+                                imageUrl:
                                 result['poster_image'] ??
                                     'https://via.placeholder.com/50',
                                 width: 80.w,
                                 height: 100.h,
                                 fit: BoxFit.fill,
-                                errorBuilder: (context, error, stackTrace) =>
-                                    Icon(Icons.image_not_supported,
-                                        color: Colors.grey),
+                                // errorBuilder: (context, error, stackTrace) =>
+                                //     Icon(Icons.image_not_supported,
+                                //         color: Colors.grey),
                               ),
                             ),
                             SizedBox(width: 10.w),
@@ -230,22 +235,62 @@ class _SearchState extends State<Search> {
       String capitalizedSearchTerm =
           searchTerm[0].toUpperCase() + searchTerm.substring(1).toLowerCase();
 
-      QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
+      // QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
+      //
+      // for (var doc in moviesSnapshot.docs) {
+      //   Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      //
+      //
+      //
+      //   List<dynamic> castList = data['cast'] ?? [];
+      //   bool hasMatchingActor = castList.any(
+      //           (actor) => actor.toString().toLowerCase().contains(lowerCaseSearchTerm));
+      //
+      //   if (hasMatchingActor && !seenIds.contains(doc.id)) {
+      //     seenIds.add(doc.id);
+      //     results.add({'id': doc.id, ...data});
+      //   }
+      // }
 
-      for (var doc in moviesSnapshot.docs) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      List<QuerySnapshot> moviesSnapshots = await Future.wait([
+        db.collection('movies').where('name', isEqualTo: searchTerm).get(),
+        db
+            .collection('Movies')
+            .where('name', isEqualTo: lowerCaseSearchTerm)
+            .get(),
+        db
+            .collection('Movies')
+            .where('name', isEqualTo: upperCaseSearchTerm)
+            .get(),
+        db
+            .collection('Movies')
+            .where('name', isEqualTo: capitalizedSearchTerm)
+            .get(),
+        db
+            .collection('Movies')
+            .where('name', isGreaterThanOrEqualTo: lowerCaseSearchTerm)
+            .where('name', isLessThan: '$lowerCaseSearchTerm\uf8ff')
+            .get(),
+        db
+            .collection('Movies')
+            .where('name', isGreaterThanOrEqualTo: upperCaseSearchTerm)
+            .where('name', isLessThan: '$upperCaseSearchTerm\uf8ff')
+            .get(),
+      ]);
 
+      for (var snapshot in moviesSnapshots) {
+        for (var doc in snapshot.docs) {
+          if (!results.any((item) => item['id'] == doc.id)) {
+            Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+            results.add(data);
 
-
-        List<dynamic> castList = data['cast'] ?? [];
-        bool hasMatchingActor = castList.any(
-                (actor) => actor.toString().toLowerCase().contains(lowerCaseSearchTerm));
-
-        if (hasMatchingActor && !seenIds.contains(doc.id)) {
-          seenIds.add(doc.id);
-          results.add({'id': doc.id, ...data});
+          }
         }
       }
+
+
+
+
 
       List<QuerySnapshot> cinemasSnapshots = await Future.wait([
         db.collection('cinemas').where('name', isEqualTo: searchTerm).get(),
@@ -328,4 +373,5 @@ class _SearchState extends State<Search> {
     return results;
   }
 }
+
 

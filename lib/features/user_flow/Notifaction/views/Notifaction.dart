@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
+import '../../../../data/hive_keys.dart';
+import '../../../../data/hive_stroage.dart';
 import '../widgets/NotifactionContent.dart';
 import '../../../../widgets/scaffold/scaffold_f.dart';
-
 import '../../../../generated/l10n.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';
 
@@ -17,7 +19,7 @@ class Notifications extends StatelessWidget {
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white,
-          size: 28.sp, // ضبط حجم الأيقونة باستخدام ScreenUtil
+          size: 28.sp,
         ),
         title: HeadAppBar(
           title: lang.notifications,
@@ -26,32 +28,30 @@ class Notifications extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(height: 30.h), // مسافة عمودية باستخدام ScreenUtil
-
+          SizedBox(height: 30.h),
           Padding(
-            padding: EdgeInsetsDirectional.only(
-                start: 5.w), // حافة أفقية باستخدام ScreenUtil
+            padding: EdgeInsetsDirectional.only(end: 5.w),
             child: Align(
-              alignment: Alignment.centerLeft,
+              alignment: HiveStorage.get(HiveKeys.isArabic)
+                  ? Alignment.centerRight
+                  : Alignment.centerLeft,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Container(
-                    padding: EdgeInsetsDirectional.only(
-                        start: 20.w), // حافة داخلية باستخدام ScreenUtil
+                    padding: EdgeInsetsDirectional.only(end: 20.w),
                     child: Text(
                       lang.general,
                       style: theme.textTheme.bodySmall?.copyWith(
-                        fontSize: 18.sp, // ضبط حجم النص باستخدام ScreenUtil
+                        fontSize: 18.sp,
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(
-                        start: 12.w, top: 7.h), // ضبط الحواف
+                    padding: EdgeInsetsDirectional.only(end: 20.w, top: 7.h),
                     child: Container(
-                      height: 2.h, // ارتفاع الخط باستخدام ScreenUtil
-                      width: 90.w, // عرض الخط باستخدام ScreenUtil
+                      height: 2.h,
+                      width: 90.w,
                       color: const Color(0xFFAB44B0),
                     ),
                   ),
@@ -59,40 +59,40 @@ class Notifications extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 10.h), // مسافة إضافية باستخدام ScreenUtil
+          SizedBox(height: 10.h),
           Expanded(
             child: ListView(
               children: const [
                 NotificationContent(
                   imagePath: 'assets/images/notif1.png',
                   body:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                   numOfNotification: '2',
                 ),
                 NotificationContent(
                   imagePath: 'assets/images/notif2.png',
                   body:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                   numOfNotification: '2',
                 ),
                 NotificationContent(
                   imagePath: 'assets/images/notif3.png',
                   body:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n1m ago.',
                 ),
                 NotificationContent(
                   imagePath: 'assets/images/notif4.png',
                   body:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n10 Hrs ago.',
                 ),
                 NotificationContent(
                   imagePath: 'assets/images/notif5.png',
                   body:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                   time: '\n15 Hrs ago.',
                 ),
               ],

@@ -7,6 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../utils/app_logs.dart';
+import '../../../../../utils/dialog_utilits.dart';
+import '../../../auth/presentation/views/sign_in.dart';
 import '../widgets/cinema_comments.dart';
 
 import '../../../home/presentation/views/home_layout.dart';
@@ -29,33 +31,64 @@ class _CinemaDetailsState extends State<CinemaDetails> {
   final TextEditingController _commentController = TextEditingController();
   var currentUser;
 
-  void _addComment() async {
-    if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
-      currentUser = HiveStorage.getGoogleUser();
-    } else {
-      currentUser = HiveStorage.getDefaultUser();
-    }
-
-    if (_commentController.text.isNotEmpty) {
-      await FirebaseFirestore.instance
-          .collection('Cinemas')
-          .doc(widget.cinemaId)  // تحديد السينما المطلوبة
-          .collection('comments') // إضافة التعليق داخل مجموعة التعليقات الخاصة بهذه السينما
-          .add({
-        'text': _commentController.text,
-        'timestamp': FieldValue.serverTimestamp(),
-        'userName': currentUser.name,
-        'image': currentUser.image,
-      });
-
-      _commentController.clear();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
+
     final theme = Theme.of(context);
     var lang = S.of(context);
+    void _addComment() async {
+      if(          HiveStorage.get(HiveKeys.role)==Role.guest.toString()      ){
+
+        DialogUtils.showMessage(context, "You Have To Sign In To Continue",
+            isCancelable: false,
+
+            posActionTitle: lang.sign_in,
+            negActionTitle: lang.cancel, posAction: () {
+              HiveStorage.set(HiveKeys.role, "");
+
+              navigateAndRemoveUntil(
+                context: context,
+                screen: const SignIn(),
+              );
+
+
+            }, negAction: () {
+              navigatePop(context: context);
+            });
+
+
+
+      }
+      else {
+
+        if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
+          currentUser = HiveStorage.getGoogleUser();
+        } else {
+          currentUser = HiveStorage.getDefaultUser();
+        }
+
+        if (_commentController.text.isNotEmpty) {
+          await FirebaseFirestore.instance
+              .collection('Cinemas')
+              .doc(widget.cinemaId)  // تحديد السينما المطلوبة
+              .collection('comments') // إضافة التعليق داخل مجموعة التعليقات الخاصة بهذه السينما
+              .add({
+            'text': _commentController.text,
+            'timestamp': FieldValue.serverTimestamp(),
+            'userName': currentUser.name,
+            'image': currentUser.image,
+          });
+
+          _commentController.clear();
+        }
+
+
+
+      }
+
+    }
+
 
     return ScaffoldF(
       body: FutureBuilder<DocumentSnapshot>(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
 
 import '../../../data/hive_keys.dart';
 import '../../../data/hive_stroage.dart';
@@ -32,9 +33,7 @@ class _SelectSeatState extends State<SelectSeat> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
-          ),
+          onPressed: () => navigatePop(context: context),
         ),
         backgroundColor: theme.primaryColor,
         title: Padding(

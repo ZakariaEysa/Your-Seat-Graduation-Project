@@ -102,7 +102,7 @@ class _SearchState extends State<Search> {
                     child: InkWell(
                       onTap: (){
                         if(result['name'].toString().contains('cinema')){
-                          navigateTo(context: context, screen: CinemaDetails());
+                          // navigateTo(context: context, screen: CinemaDetails());
                         }else{
                           navigateTo(context: context, screen: MovieDetails(model: MoviesDetailsModel(
                             name: result['name'],

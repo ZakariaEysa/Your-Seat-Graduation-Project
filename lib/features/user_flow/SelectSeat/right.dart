@@ -10,7 +10,7 @@ class Right extends StatefulWidget {
 class _RightState extends State<Right> {
   List<List<String>> rightSeats = [
     ['a', 'a', 'a', 'a', 'a', 'a'],
-    ['a', 'a', 'a', 's', 's', 'a'],
+    ['a', 'a', 'a', 'a', 'a', 'a'],
     ['r', 'r', 'a', 'a', 'a', 'r'],
     ['a', 'a', 'a', 'a', 'a', 'a'],
     ['a', 'a', 'a', 'a', 'a', 'a'],

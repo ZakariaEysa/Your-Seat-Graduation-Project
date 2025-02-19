@@ -39,7 +39,13 @@ class MovieDetails extends StatefulWidget {
 }
 
 class _MovieDetailsState extends State<MovieDetails> {
+  String selectedCinema = "";
   void initState() {
+    AppLogs.scussessLog(widget.model.toString());
+
+    AppLogs.scussessLog(widget.model.posterImage.toString());
+    AppLogs.scussessLog(widget.model.toString());
+
     super.initState();
     BlocProvider.of<MovieDetailsCubit>(context)
       ..getRate(widget.model.name.toString())
@@ -386,6 +392,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                       } else {
                         cinemas.addAll(temp);
                       }
+                      cinemas.add("testCinema");
                     }
                   },
                   builder: (context, state) {
@@ -396,8 +403,15 @@ class _MovieDetailsState extends State<MovieDetails> {
                       itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.only(bottom: 30.h),
                         child: CinemaCard(
-                          title: cinemas[0],
+                          onTap: () {
+                            setState(() {
+                              selectedCinema = cinemas[index];
+                            });
+                          },
+                          title: cinemas[index],
                           imageUrl: 'assets/images/cgv.png',
+                          isSelected:
+                              cinemas[index] == selectedCinema ? true : false,
                         ),
                       ),
                     );

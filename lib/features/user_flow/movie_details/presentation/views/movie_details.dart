@@ -1,32 +1,57 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../auth/presentation/views/sign_in.dart';
-import '../../../auth/presentation/views/sign_up.dart';
-import '../../data/model/movies_details_model/movies_details_model.dart';
-import '../widgets/director_actor_card.dart';
-import '../../../../../utils/app_logs.dart';
-import '../../../../../widgets/network_image/image_replacer.dart';
-import '../../../../../widgets/scaffold/scaffold_f.dart';
+import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/SelectSeat.dart';
+
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
+
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/dialog_utilits.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/button/button_builder.dart';
-import '../../../home/presentation/views/home_layout.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../auth/presentation/views/sign_in.dart';
+import '../../data/model/movies_details_model/movies_details_model.dart';
 import '../widgets/cinema_card.dart';
+import '../widgets/director_actor_card.dart';
 
-class MovieDetails extends StatelessWidget {
+class MovieDetails extends StatefulWidget {
   const MovieDetails({
-    super.key, required this.model,
-  });
+    Key? key,
+    required this.model,
+    this.cinema = "",
+  }) : super(key: key);
 
-
-
+  @override
   final MoviesDetailsModel model;
+  final String cinema;
+
+  @override
+  State<MovieDetails> createState() => _MovieDetailsState();
+}
+
+class _MovieDetailsState extends State<MovieDetails> {
+  void initState() {
+    super.initState();
+    BlocProvider.of<MovieDetailsCubit>(context)
+      ..getRate(widget.model.name.toString())
+      ..getCinemas(widget.model.name.toString());
+
+    if (widget.cinema != "") {
+      cinemas.add(widget.cinema);
+    }
+  }
+
+  num rate = 0;
+  List cinemas = [];
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +65,12 @@ class MovieDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
           Stack(children: [
-
-            ImageReplacer(imageUrl: model.posterImage??"",
+            ImageReplacer(
+              imageUrl: widget.model.posterImage ?? "",
               width: 500.w,
               height: 390.h,
-              fit: BoxFit.cover,)
-          ,
+              fit: BoxFit.cover,
+            ),
             Padding(
               padding: EdgeInsetsDirectional.only(top: 50.h),
               child: IconButton(
@@ -71,19 +96,19 @@ class MovieDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      model.name??"",
-                      style: theme.textTheme.bodyMedium!
-                          .copyWith(fontSize: 20.sp),
+                      widget.model.name ?? "",
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
                     ),
                     SizedBox(
                       height: 6.h,
                     ),
                     Text(
-                      model.releaseDate??"",
+                      widget.model.releaseDate ?? "",
                       style: theme.textTheme.bodyMedium!.copyWith(
                           fontSize: 13.sp, color: const Color(0xFFD4D0D0)),
                     ),
-                    SizedBox(height:15.h),
+                    SizedBox(height: 15.h),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -105,68 +130,86 @@ class MovieDetails extends StatelessWidget {
                         SizedBox(
                           width: 10.w,
                         ),
-                        Text(model.rating.toString(),
-                            style: theme.textTheme.bodyMedium!
-                                .copyWith(fontSize: 12.sp)),
+                        BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
+                          builder: (context, state) {
+                            return Text(rate.toString(),
+                                style: theme.textTheme.bodyMedium!
+                                    .copyWith(fontSize: 12.sp));
+                          },
+                        ),
                       ],
                     ),
                     SizedBox(
                       height: 5.h,
                     ),
-                    Row(
-                      children: [
-                        RatingBar.builder(
-                          initialRating:model.rating!>=6?model.rating!.toDouble()-5:model.rating!.toDouble() ,
-                          minRating: 1,
-                          unratedColor: Color(0xFF575757),
-                          ignoreGestures: true,
-                          direction: Axis.horizontal,
-                          itemSize:29,
-                          allowHalfRating: true,
-                          itemCount: 5,
-                          itemPadding:
-                              const EdgeInsets.symmetric(horizontal: 2.0),
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            size: 1,
-                            color: Color(0xFFCCC919),
-                          ),
-                          onRatingUpdate: (rating) {
-                            // print(rating);
-                          },
-                        ),
-                        Spacer(),
-
-                        TextButton.icon(
-                            onPressed: () {
-
-                               //TODO: GO TO WATCH TRAILER
-
-                              VideoLauncher.launchYouTubeVideo(model.trailer??"");
-
-
+                    BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
+                      listener: (context, state) {
+                        AppLogs.debugLog(state.toString());
+                        if (state is GetRateError) {
+                          rate = 4;
+                        }
+                        if (state is GetRateSuccess) {
+                          rate = double.parse(state.rate.split('/')[0]);
+                          rate =
+                              rate >= 6 ? rate.toDouble() / 2 : rate.toDouble();
+                          if (rate == 0) {
+                            rate = 4.1;
+                          }
+                        }
+                      },
+                      builder: (context, state) {
+                        return Row(
+                          children: [
+                            RatingBar.builder(
+                              initialRating: rate.toDouble(),
+                              minRating: 1,
+                              unratedColor: Color(0xFF575757),
+                              ignoreGestures: true,
+                              direction: Axis.horizontal,
+                              itemSize: 29,
+                              allowHalfRating: true,
+                              itemCount: 5,
+                              itemPadding:
+                                  const EdgeInsets.symmetric(horizontal: 2.0),
+                              itemBuilder: (context, _) => Icon(
+                                Icons.star,
+                                size: 1,
+                                color: Color(0xFFCCC919),
+                              ),
+                              onRatingUpdate: (rating) {
+                                // print(rating);
                               },
-                            icon: const Icon(
-                              Icons.play_arrow,
-                              color: Colors.white,
                             ),
-                            label: Text(
-                              lang.watchTrailer,
-                              style: theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 12.sp, color: Colors.white),
-                            ),
-                            style: ButtonStyle(
-                                backgroundColor: WidgetStateProperty.all(
-                                    const Color(0xFF2C113D).withOpacity(.91)),
-                                shape: WidgetStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    side:
-                                        const BorderSide(color: Colors.white),
-                                    // ... button styles
-                                  ),
-                                )))
-                      ],
+                            Spacer(),
+                            TextButton.icon(
+                                onPressed: () {
+                                  VideoLauncher.launchYouTubeVideo(
+                                      widget.model.trailer ?? "");
+                                },
+                                icon: const Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.white,
+                                ),
+                                label: Text(
+                                  lang.watchTrailer,
+                                  style: theme.textTheme.bodyMedium!.copyWith(
+                                      fontSize: 12.sp, color: Colors.white),
+                                ),
+                                style: ButtonStyle(
+                                    backgroundColor: WidgetStateProperty.all(
+                                        const Color(0xFF2C113D)
+                                            .withOpacity(.91)),
+                                    shape: WidgetStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        side: const BorderSide(
+                                            color: Colors.white),
+                                        // ... button styles
+                                      ),
+                                    )))
+                          ],
+                        );
+                      },
                     ),
                     SizedBox(
                       height: 8.h,
@@ -195,7 +238,7 @@ class MovieDetails extends StatelessWidget {
                       width: 34.w,
                     ),
                     Text(
-                      model.category??"",
+                      widget.model.category ?? "",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -217,7 +260,7 @@ class MovieDetails extends StatelessWidget {
                       width: 42.w,
                     ),
                     Text(
-                      model.ageRating??"",
+                      widget.model.ageRating ?? "",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -239,7 +282,7 @@ class MovieDetails extends StatelessWidget {
                       width: 57.w,
                     ),
                     Text(
-                      model.language??"",
+                      widget.model.language ?? "",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -257,7 +300,7 @@ class MovieDetails extends StatelessWidget {
                   height: 30.h,
                 ),
                 ReadMoreText(
-model.description??"",
+                  widget.model.description ?? "",
                   style: theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
                   trimLines: 4,
                   textAlign: TextAlign.start,
@@ -284,25 +327,22 @@ model.description??"",
                 SizedBox(
                   height: 30.h,
                 ),
-                 SingleChildScrollView(
-                   scrollDirection: Axis.horizontal,
-                   child: Row(
-
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
                     children: [
                       Director(
-                          name: model.crew?.director??"",
+                          name: widget.model.crew?.director ?? "",
                           imagePath: "https://picsum.photos/150/150"),
                       Director(
-                          name: model.crew?.producer??"",
-
+                          name: widget.model.crew?.producer ?? "",
                           imagePath: "https://picsum.photos/150/130"),
-
                       Director(
-                          name: model.crew?.writer??"",
+                          name: widget.model.crew?.writer ?? "",
                           imagePath: "https://picsum.photos/150/120"),
                     ],
-                                   ),
-                 ),
+                  ),
+                ),
                 SizedBox(
                   height: 25.h,
                 ),
@@ -312,22 +352,19 @@ model.description??"",
                       .copyWith(fontSize: 24.sp, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-
                   height: 25.h,
                 ),
-              SizedBox(
-                height: 90.h                ,
-                child: ListView.builder(
-
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-
-                  itemBuilder: (context, index) => Director(name: model.cast?[index]??"", imagePath:  model.castImages?[index]??""),
-
-
-                  itemCount: model.cast?.length ?? 0,
+                SizedBox(
+                  height: 90.h,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) => Director(
+                        name: widget.model.cast?[index] ?? "",
+                        imagePath: widget.model.castImages?[index] ?? ""),
+                    itemCount: widget.model.cast?.length ?? 0,
+                  ),
                 ),
-              ),
                 SizedBox(
                   height: 30.h,
                 ),
@@ -338,32 +375,33 @@ model.description??"",
                 SizedBox(
                   height: 25.h,
                 ),
-                const CinemaCard(
-                  title: 'Vincom Ocean Park CGV',
-                  smalltitle: '4.55 km',
-                  largetitle: 'Da Ton, Gia Lam, Ha Noi',
-                  imageUrl: 'assets/images/cgv.png',
-                ),
-                SizedBox(
-                  height: 25.h,
-                ),
-                const CinemaCard(
-                  title: 'Aeon Mall CGV',
-                  smalltitle: '9.32 km',
-                  largetitle: '27 Co Linh, Long Bien, Ha Noi',
-                  imageUrl: 'assets/images/cgv.png',
-                ),
-                SizedBox(
-                  height: 25.h,
-                ),
-                const CinemaCard(
-                  title: 'Lotte Cinema Long Bien',
-                  smalltitle: '14.3 km',
-                  largetitle: '7-9 Nguyen Van Linh, Long Bien, Ha Noi',
-                  imageUrl: 'assets/images/lottr1.png',
-                ),
-                SizedBox(
-                  height: 30.h,
+                BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
+                  listener: (context, state) {
+                    if (state is GetCinemasSuccess) {
+                      List temp = state.cinemas;
+                      if (widget.cinema != "") {
+                        if (temp.contains(cinemas[0])) {
+                          cinemas = temp;
+                        }
+                      } else {
+                        cinemas.addAll(temp);
+                      }
+                    }
+                  },
+                  builder: (context, state) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: cinemas.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: EdgeInsets.only(bottom: 30.h),
+                        child: CinemaCard(
+                          title: cinemas[0],
+                          imageUrl: 'assets/images/cgv.png',
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 ButtonBuilder(
                   width: 250.w,
@@ -373,34 +411,25 @@ model.description??"",
                       : "assets/images/img_4.png",
                   text: "",
                   onTap: () {
+                    if (HiveStorage.get(HiveKeys.role) ==
+                        Role.guest.toString()) {
+                      DialogUtils.showMessage(
+                          context, "You Have To Sign In To Continue",
+                          isCancelable: false,
+                          posActionTitle: lang.sign_in,
+                          negActionTitle: lang.cancel, posAction: () {
+                        HiveStorage.set(HiveKeys.role, "");
 
-    if(          HiveStorage.get(HiveKeys.role)==Role.guest.toString()      ){
-
-    DialogUtils.showMessage(context, "You Have To Sign In To Continue",
-        isCancelable: false,
-
-        posActionTitle: lang.sign_in,
-    negActionTitle: lang.cancel, posAction: () {
-          HiveStorage.set(HiveKeys.role, "");
-
-          navigateAndRemoveUntil(
-            context: context,
-            screen: const SignIn(),
-          );
-
-
-    }, negAction: () {
-    navigatePop(context: context);
-    });
-
-
-
+                        navigateAndRemoveUntil(
+                          context: context,
+                          screen: const SignIn(),
+                        );
+                      }, negAction: () {
+                        navigatePop(context: context);
+                      });
+                    } else {
+                      navigateTo(context: context, screen: SelectSeat());
                     }
-
-
-
-
-
                   },
                 ),
                 SizedBox(
@@ -424,4 +453,3 @@ class VideoLauncher {
     }
   }
 }
-

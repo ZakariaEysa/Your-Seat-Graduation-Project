@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import 'comment.dart';
 import 'crew.dart';
 
 class MoviesDetailsModel extends Equatable {

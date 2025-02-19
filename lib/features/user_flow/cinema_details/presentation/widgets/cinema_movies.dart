@@ -38,12 +38,15 @@ class CinemaMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
-    return FutureBuilder<List<Map<String, dynamic>>>(  // تعديل هنا
+    return FutureBuilder<List<Map<String, dynamic>>>(
+      // تعديل هنا
       future: _fetchMoviesByCinema(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError || !snapshot.hasData || snapshot.data!.isEmpty) {
+        } else if (snapshot.hasError ||
+            !snapshot.hasData ||
+            snapshot.data!.isEmpty) {
           return Center(child: Text(lang.errorSavingUser));
         }
 
@@ -53,7 +56,8 @@ class CinemaMovies extends StatelessWidget {
           padding: EdgeInsets.only(left: 8.0.w, top: 8.0.h),
           child: GridView.builder(
             shrinkWrap: true, // This removes the scroll within the GridView
-            physics: NeverScrollableScrollPhysics(), // This disables scrolling for the GridView
+            physics:
+                NeverScrollableScrollPhysics(), // This disables scrolling for the GridView
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               mainAxisSpacing: 20.h,
               crossAxisCount: 2, // عدد الأعمدة
@@ -67,7 +71,9 @@ class CinemaMovies extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () {
-                  navigateTo(context: context, screen: MovieDetails(model: movie));
+                  navigateTo(
+                      context: context,
+                      screen: MovieDetails(model: movie, cinema: cinemaId));
                 },
                 child: PlayingMovies(
                   movies: movie,

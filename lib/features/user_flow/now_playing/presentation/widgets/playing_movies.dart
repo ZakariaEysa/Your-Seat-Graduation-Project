@@ -40,7 +40,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
     super.initState();
     // تحقق إذا كان الفيلم موجودًا في قائمة Watchlist
     final favoriteMoviesProvider =
-    Provider.of<FavoriteMoviesProvider>(context, listen: false);
+        Provider.of<FavoriteMoviesProvider>(context, listen: false);
     _isBookmarked =
         favoriteMoviesProvider.favoriteMovies.contains(widget.movies);
     BlocProvider.of<MovieDetailsCubit>(context)
@@ -63,30 +63,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: ImageReplacer(
-              // loadingBuilder: (context, child, loadingProgress) {
-              //   if (loadingProgress == null) return child;
-              //   return Center(
-              //     child: CircularProgressIndicator(
-              //       value: loadingProgress.expectedTotalBytes != null
-              //           ? loadingProgress.cumulativeBytesLoaded /
-              //           loadingProgress.expectedTotalBytes!
-              //           : null,
-              //     ),
-              //   );
-              // },
-              // errorBuilder: (context, error, stackTrace) {
-              //   return Container(
-              //     height: 260.sp,
-              //     width: 250.sp,
-              //     color: Colors.grey.shade800,
-              //     child: const Icon(
-              //       Icons.broken_image,
-              //       color: Colors.white,
-              //       size: 50,
-              //     ),
-              //   );
-              // },
-              imageUrl: widget.image,
+                          imageUrl: widget.image,
               width: 200.w,
               height: 250.h,
               fit: BoxFit.cover,
@@ -120,38 +97,42 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
                 listener: (context, state) {
                   AppLogs.debugLog(state.toString());
-                },
-                builder: (context, state) {
-                  num movieRate = 4.0; // Default rate
-
+                  if (state is GetRateError) {
+                    AppLogs.debugLog(state.error.toString());
+                    rate = 4.2;
+                  }
                   if (state is GetRateSuccess) {
-                    movieRate = double.parse(state.rate.split('/')[0]);
-                    movieRate = movieRate >= 6 ? movieRate / 2 : movieRate;
-                    if (movieRate == 0) {
-                      movieRate = 4.1;
+                    rate = double.parse(state.rate.split('/')[0]);
+                    rate = rate >= 6 ? rate.toDouble() / 2 : rate.toDouble();
+                    if (rate == 0) {
+                      rate = 4.1;
                     }
                   }
 
+                  AppLogs.debugLog(widget.title.toString());
+
+                  AppLogs.debugLog(rate.toString());
+                },
+                builder: (context, state) {
                   return Text(
-                    movieRate.toString(),
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp),
+                    rate.toString(),
+                    style:
+                        theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp),
                   );
                 },
               ),
-
-
               Spacer(),
               GestureDetector(
                 onTap: () {
                   setState(() {
                     if (!_isBookmarked) {
                       Provider.of<FavoriteMoviesProvider>(context,
-                          listen: false)
+                              listen: false)
                           .addMovie(widget.movies);
                       print("Added to favorites: ${widget.movies.name}");
                     } else {
                       Provider.of<FavoriteMoviesProvider>(context,
-                          listen: false)
+                              listen: false)
                           .removeMovie(widget.movies);
                       print("Removed from favorites: ${widget.movies.name}");
                     }

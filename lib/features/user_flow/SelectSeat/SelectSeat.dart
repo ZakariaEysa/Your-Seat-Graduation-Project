@@ -59,10 +59,11 @@ class _SelectSeatState extends State<SelectSeat> {
             ),
             Row(
               children: [
-                SizedBox(width: 10.w),
+                SizedBox(width: 15.w),
                 Left(),
-                SizedBox(width: 12.w),
+                Spacer(),
                 Right(),
+                SizedBox(width: 15.w),
               ],
             ),
             SizedBox(height: 15.h),

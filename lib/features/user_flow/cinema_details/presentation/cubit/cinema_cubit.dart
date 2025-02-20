@@ -79,17 +79,24 @@ class CinemaCubit extends Cubit<CinemaState> {
   }
 
   /// **🔹 جلب التعليقات الخاصة بالسينما**
-  void fetchCinemaComments(String cinemaId) {
-    _firestore
-        .collection('Cinemas')
-        .doc(cinemaId)
-        .collection('comments')
-        .orderBy('timestamp', descending: true)
-        .snapshots()
-        .listen((snapshot) {
-      List<Map<String, dynamic>> comments = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
-      emit(CinemaCommentsLoaded(comments));
-    });
+  void fetchCinemaComments(String cinemaId) async {
+    try {
+      emit(CinemaCommentsLoading()); // ✅ إطلاق حالة التحميل
+
+      final snapshot = await _firestore
+          .collection('Cinemas')
+          .doc(cinemaId)
+          .collection('comments')
+          .orderBy('timestamp', descending: true)
+          .get();
+
+      List<Map<String, dynamic>> comments =
+      snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+
+      emit(CinemaCommentsLoaded(comments)); // ✅ تحميل التعليقات بنجاح
+    } catch (e) {
+      emit(CinemaCommentsError("Error fetching comments: $e")); // ✅ في حالة الخطأ
+    }
   }
 
   /// **🔹 إضافة تعليق جديد**

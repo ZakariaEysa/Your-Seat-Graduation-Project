@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../movie_details/presentation/views/movie_details.dart';
 import '../../../now_playing/presentation/widgets/playing_movies.dart';
 import '../cubit/cinema_cubit.dart';
 import '../cubit/cinema_state.dart';
-
 
 class CinemaMovies extends StatelessWidget {
   final String cinemaId;
@@ -42,18 +44,23 @@ class CinemaMovies extends StatelessWidget {
                 itemBuilder: (context, movieIndex) {
                   final movie = movies[movieIndex];
 
-                  return GestureDetector(
-                    onTap: () {
-                      navigateTo(
-                          context: context, screen: MovieDetails(model: movie));
-                    },
-                    child: PlayingMovies(
-                      movies: movie,
-                      rate: movie.rating.toString(),
-                      duration: movie.duration ?? "",
-                      category: movie.category ?? "",
-                      image: movie.posterImage ?? "",
-                      title: movie.name ?? "",
+                  return BlocProvider(
+                    create: (context) => MovieDetailsCubit(MovieDetailsRepoImpl(
+                        MovieDetailsRemoteDataSourceImpl())),
+                    child: GestureDetector(
+                      onTap: () {
+                        navigateTo(
+                            context: context,
+                            screen: MovieDetails(model: movie));
+                      },
+                      child: PlayingMovies(
+                        movies: movie,
+                        rate: movie.rating.toString(),
+                        duration: movie.duration ?? "",
+                        category: movie.category ?? "",
+                        image: movie.posterImage ?? "",
+                        title: movie.name ?? "",
+                      ),
                     ),
                   );
                 },

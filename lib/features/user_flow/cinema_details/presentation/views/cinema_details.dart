@@ -71,8 +71,17 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                       create: (context) => CinemaCubit()..fetchCinemaComments(widget.cinemaId),
                       child: BlocBuilder<CinemaCubit, CinemaState>(
                         builder: (context, state) {
-                          if (state is CinemaLoading) {
+                          if (state is CinemaCommentsLoading) {
+                            // ✅ عند تحميل التعليقات
                             return const Center(child: CircularProgressIndicator());
+                          } else if (state is CinemaCommentsError) {
+
+                            return Center(
+                              child: Text(
+                                state.message,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            );
                           } else if (state is CinemaCommentsLoaded) {
                             final comments = state.comments;
 
@@ -87,7 +96,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
 
                             return ListView.builder(
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: comments.length,
                               itemBuilder: (context, index) {
                                 final comment = comments[index];
@@ -101,19 +110,13 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                                 );
                               },
                             );
-                          } else if (state is CinemaError) {
-                            return Center(
-                              child: Text(
-                                state.message,
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            );
                           } else {
-                            return const SizedBox.shrink();
+                            return const SizedBox.shrink(); // ✅ عند عدم توفر بيانات التعليقات بعد
                           }
                         },
                       ),
                     ),
+
                     Row(
                       children: [
                         Padding(

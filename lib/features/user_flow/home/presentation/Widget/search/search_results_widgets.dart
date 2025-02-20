@@ -9,8 +9,10 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
-import '../../../../../generated/l10n.dart';
-import '../../../movie_details/data/model/movies_details_model/crew.dart';
+
+import '../../../../../../generated/l10n.dart';
+import '../../../../movie_details/data/model/movies_details_model/crew.dart';
+
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -87,14 +89,14 @@ class _SearchState extends State<Search> {
             ),
             searchResults.isEmpty
                 ? Padding(
-                  padding: EdgeInsets.all(20.sp),
-                  child: Center(
-                                child: Text(
+              padding: EdgeInsets.all(20.sp),
+              child: Center(
+                child: Text(
                   lang.noResultsFound,
                   style: TextStyle(color: Colors.white70),
-                                ),
-                              ),
-                )
+                ),
+              ),
+            )
                 : Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
@@ -115,8 +117,8 @@ class _SearchState extends State<Search> {
                             cast: result['cast'],
                             category: result['category'],
                             crew: Crew(director: result['crew']['director'],
-                            producer: result['crew']['producer'],
-                            writer: result['crew']['writer']
+                                producer: result['crew']['producer'],
+                                writer: result['crew']['writer']
                             ),
                             description: result['description'],
                             duration: result['duration'],
@@ -373,5 +375,4 @@ class _SearchState extends State<Search> {
     return results;
   }
 }
-
 

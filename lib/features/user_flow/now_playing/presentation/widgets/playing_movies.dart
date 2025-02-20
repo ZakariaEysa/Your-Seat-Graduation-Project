@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
+import '../../../movie_details/presentation/cubit/movie_details_cubit.dart';
 import '../views/coming_soon.dart';
 
 class PlayingMovies extends StatefulWidget {
@@ -37,12 +40,15 @@ class _PlayingMoviesState extends State<PlayingMovies> {
     super.initState();
     // تحقق إذا كان الفيلم موجودًا في قائمة Watchlist
     final favoriteMoviesProvider =
-        Provider.of<FavoriteMoviesProvider>(context, listen: false);
+    Provider.of<FavoriteMoviesProvider>(context, listen: false);
     _isBookmarked =
         favoriteMoviesProvider.favoriteMovies.contains(widget.movies);
+    BlocProvider.of<MovieDetailsCubit>(context)
+        .getRate(widget.title.toString());
   }
 
   bool _isBookmarked = false;
+  num rate = 0;
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
@@ -111,22 +117,41 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               SizedBox(
                 width: 10.w,
               ),
-              Text(
-                widget.rate,
-                style: theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp),
+              BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
+                listener: (context, state) {
+                  AppLogs.debugLog(state.toString());
+                },
+                builder: (context, state) {
+                  num movieRate = 4.0; // Default rate
+
+                  if (state is GetRateSuccess) {
+                    movieRate = double.parse(state.rate.split('/')[0]);
+                    movieRate = movieRate >= 6 ? movieRate / 2 : movieRate;
+                    if (movieRate == 0) {
+                      movieRate = 4.1;
+                    }
+                  }
+
+                  return Text(
+                    movieRate.toString(),
+                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp),
+                  );
+                },
               ),
+
+
               Spacer(),
               GestureDetector(
                 onTap: () {
                   setState(() {
                     if (!_isBookmarked) {
                       Provider.of<FavoriteMoviesProvider>(context,
-                              listen: false)
+                          listen: false)
                           .addMovie(widget.movies);
                       print("Added to favorites: ${widget.movies.name}");
                     } else {
                       Provider.of<FavoriteMoviesProvider>(context,
-                              listen: false)
+                          listen: false)
                           .removeMovie(widget.movies);
                       print("Removed from favorites: ${widget.movies.name}");
                     }

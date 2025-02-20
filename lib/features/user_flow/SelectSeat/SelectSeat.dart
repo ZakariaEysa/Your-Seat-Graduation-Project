@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_test.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 
 import '../../../data/hive_keys.dart';
@@ -59,10 +61,11 @@ class _SelectSeatState extends State<SelectSeat> {
             ),
             Row(
               children: [
-                SizedBox(width: 10.w),
+                SizedBox(width: 15.w),
                 Left(),
-                SizedBox(width: 12.w),
+                Spacer(),
                 Right(),
+                SizedBox(width: 15.w),
               ],
             ),
             SizedBox(height: 15.h),
@@ -130,7 +133,8 @@ class _SelectSeatState extends State<SelectSeat> {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF09FBD3),
                       minimumSize: Size(155.w, 42.h),

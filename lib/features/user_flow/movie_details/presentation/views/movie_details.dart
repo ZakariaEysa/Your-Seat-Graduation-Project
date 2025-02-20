@@ -393,6 +393,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                         cinemas.addAll(temp);
                       }
                       cinemas.add("testCinema");
+                      selectedCinema = cinemas[0];
+
                     }
                   },
                   builder: (context, state) {
@@ -442,7 +444,12 @@ class _MovieDetailsState extends State<MovieDetails> {
                         navigatePop(context: context);
                       });
                     } else {
-                      navigateTo(context: context, screen: SelectSeat());
+                      if (selectedCinema != "") {
+                        navigateTo(context: context, screen: SelectSeat());
+                      } else {
+                        showCenteredSnackBar(
+                            context, 'please  Select Cinema first ');
+                      }
                     }
                   },
                 ),
@@ -467,3 +474,12 @@ class VideoLauncher {
     }
   }
 }
+//
+// PayMobPayment().payWithPayMob(100).then(
+// (value) {
+// AppLogs.scussessLog("payment token: $value");
+// navigateTo(
+// context: context,
+// screen: PaymentScreen(paymentToken: value ?? ""));
+// },
+// );

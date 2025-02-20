@@ -394,6 +394,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                       }
                       cinemas.add("testCinema");
                       selectedCinema = cinemas[0];
+
                     }
                   },
                   builder: (context, state) {

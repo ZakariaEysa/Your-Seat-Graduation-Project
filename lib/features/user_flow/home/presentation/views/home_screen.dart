@@ -9,7 +9,7 @@ import '../Widget/chatbot_icon.dart';
 import '../Widget/cinema_item.dart';
 import '../Widget/coming_soon.dart';
 import '../Widget/movie_carousel_widget.dart';
-import '../Widget/search.dart';
+import '../Widget/search/search.dart';
 import '../Widget/text_widget.dart';
 
 class HomeScreen extends StatelessWidget {

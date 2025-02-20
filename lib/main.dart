@@ -9,12 +9,14 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/SelectSeat.dart';
+
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
 import 'data/hive_stroage.dart';
 import 'features/user_flow/Rate/Rate.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
+import 'features/user_flow/cinema_details/presentation/cubit/cinema_cubit.dart';
 import 'services/simple_bloc_observer_service.dart';
 import 'widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
@@ -101,6 +103,7 @@ void main() async {
           BlocProvider<SwitchLanguageCubit>(
             create: (context) => SwitchLanguageCubit(),
           ),
+
           BlocProvider<AuthCubit>(
             create: (context) => AuthCubit(AuthRepoImpl(
                 AuthRemoteDataSourceImpl(
@@ -109,6 +112,9 @@ void main() async {
           BlocProvider<MovieDetailsCubit>(
             create: (context) => MovieDetailsCubit(
                 MovieDetailsRepoImpl(MovieDetailsRemoteDataSourceImpl())),
+          ),
+          BlocProvider<CinemaCubit>(
+            create: (context) => CinemaCubit(),
           ),
         ],
         child: const MyApp(),
@@ -168,9 +174,8 @@ class _MyAppState extends State<MyApp> {
               },
               navigatorObservers: [
                 BotToastNavigatorObserver()
-              ], // ملاحظة التنقل
-              home: SplashScreen(),
-              // home:SelectSeat()
+              ],
+                home: SplashScreen(),
             );
           });
     });

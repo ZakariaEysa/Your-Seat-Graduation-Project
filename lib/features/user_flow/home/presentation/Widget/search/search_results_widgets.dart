@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,10 +6,9 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
-
 import '../../../../../../generated/l10n.dart';
+import '../../../../../../widgets/network_image/image_replacer.dart';
 import '../../../../movie_details/data/model/movies_details_model/crew.dart';
-
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -47,7 +43,7 @@ class _SearchState extends State<Search> {
     return Scaffold(
       backgroundColor: const Color(0xFF2B1269),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 35.h,horizontal: 10.w),
+        padding: EdgeInsets.all(14.0.w),
         child: Column(
           children: [
             TextFormField(
@@ -88,9 +84,9 @@ class _SearchState extends State<Search> {
               ),
             ),
             searchResults.isEmpty
-                ? Padding(
-              padding: EdgeInsets.all(20.sp),
-              child: Center(
+                ? Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 17.0),
                 child: Text(
                   lang.noResultsFound,
                   style: TextStyle(color: Colors.white70),
@@ -108,11 +104,11 @@ class _SearchState extends State<Search> {
                     child: InkWell(
                       onTap: (){
                         if(result['name'].toString().contains('cinema')){
-                          // navigateTo(context: context, screen: CinemaDetails());
+                          navigateTo(context: context, screen: CinemaDetails(cinemaId: result['Id'],));
                         }else{
                           navigateTo(context: context, screen: MovieDetails(model: MoviesDetailsModel(
                             name: result['name'],
-                            castImages: result['castImages'],
+                            castImages: result['cast_images'],
                             ageRating: result['ageRating'],
                             cast: result['cast'],
                             category: result['category'],
@@ -123,7 +119,7 @@ class _SearchState extends State<Search> {
                             description: result['description'],
                             duration: result['duration'],
                             language: result['language'],
-                            posterImage: result['posterImage'],
+                            posterImage: result['poster_image'],
                             rating: result['rating'],
                             releaseDate: result['releaseDate'],
                             trailer: result['trailer'],
@@ -141,16 +137,13 @@ class _SearchState extends State<Search> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(8.0.r),
-                              child:CachedNetworkImage(
+                              child: ImageReplacer(
                                 imageUrl:
                                 result['poster_image'] ??
                                     'https://via.placeholder.com/50',
                                 width: 80.w,
                                 height: 100.h,
                                 fit: BoxFit.fill,
-                                // errorBuilder: (context, error, stackTrace) =>
-                                //     Icon(Icons.image_not_supported,
-                                //         color: Colors.grey),
                               ),
                             ),
                             SizedBox(width: 10.w),
@@ -224,6 +217,58 @@ class _SearchState extends State<Search> {
 
 
 
+
+  // Future<List<Map<String, dynamic>>> searchInCollections(String searchTerm) async {
+  //   final db = FirebaseFirestore.instance;
+  //   Set<String> seenIds = {};
+  //   List<Map<String, dynamic>> results = [];
+  //
+  //   if (searchTerm.isEmpty) return results; // ✅ تفريغ الليستة لو البحث فاضي
+  //
+  //   try {
+  //     String lowerCaseSearchTerm = searchTerm.toLowerCase();
+  //
+  //     // ✅ البحث عن الأفلام بالاسم أو جزء منه
+  //     QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
+  //
+  //     for (var doc in moviesSnapshot.docs) {
+  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //
+  //       String movieName = data['name']?.toString().toLowerCase() ?? '';
+  //       if (movieName.contains(lowerCaseSearchTerm) && !seenIds.contains(doc.id)) {
+  //         seenIds.add(doc.id);
+  //         results.add({'id': doc.id, ...data});
+  //       }
+  //
+  //       // ✅ البحث عن الممثلين بالاسم الجزئي
+  //       List<dynamic> castList = data['cast'] ?? [];
+  //       bool hasMatchingActor = castList.any(
+  //               (actor) => actor.toString().toLowerCase().contains(lowerCaseSearchTerm));
+  //
+  //       if (hasMatchingActor && !seenIds.contains(doc.id)) {
+  //         seenIds.add(doc.id);
+  //         results.add({'id': doc.id, ...data});
+  //       }
+  //     }
+  //
+  //     // ✅ البحث في السينمات بنفس المنطق
+  //     QuerySnapshot cinemasSnapshot = await db.collection('Cinemas').get();
+  //     for (var doc in cinemasSnapshot.docs) {
+  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //
+  //       String cinemaName = data['name']?.toString().toLowerCase() ?? '';
+  //       if (cinemaName.contains(lowerCaseSearchTerm) && !seenIds.contains(doc.id)) {
+  //         seenIds.add(doc.id);
+  //         results.add({'id': doc.id, ...data});
+  //       }
+  //     }
+  //   } catch (e) {
+  //     print('❌ Error searching: $e');
+  //   }
+  //
+  //   return results; // ✅ إرجاع النتائج بعد التحديث
+  // }
+
   Future<List<Map<String, dynamic>>> searchInCollections(String searchTerm) async {
     final db = FirebaseFirestore.instance;
     Set<String> seenIds = {};
@@ -233,138 +278,39 @@ class _SearchState extends State<Search> {
 
     try {
       String lowerCaseSearchTerm = searchTerm.toLowerCase();
-      String upperCaseSearchTerm = searchTerm.toUpperCase();
-      String capitalizedSearchTerm =
-          searchTerm[0].toUpperCase() + searchTerm.substring(1).toLowerCase();
+      bool isSingleLetter = lowerCaseSearchTerm.length == 1; // ✅ التحقق إذا كان البحث بحرف واحد فقط
 
-      // QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
-      //
-      // for (var doc in moviesSnapshot.docs) {
-      //   Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-      //
-      //
-      //
-      //   List<dynamic> castList = data['cast'] ?? [];
-      //   bool hasMatchingActor = castList.any(
-      //           (actor) => actor.toString().toLowerCase().contains(lowerCaseSearchTerm));
-      //
-      //   if (hasMatchingActor && !seenIds.contains(doc.id)) {
-      //     seenIds.add(doc.id);
-      //     results.add({'id': doc.id, ...data});
-      //   }
-      // }
-
-      List<QuerySnapshot> moviesSnapshots = await Future.wait([
-        db.collection('movies').where('name', isEqualTo: searchTerm).get(),
-        db
-            .collection('Movies')
-            .where('name', isEqualTo: lowerCaseSearchTerm)
-            .get(),
-        db
-            .collection('Movies')
-            .where('name', isEqualTo: upperCaseSearchTerm)
-            .get(),
-        db
-            .collection('Movies')
-            .where('name', isEqualTo: capitalizedSearchTerm)
-            .get(),
-        db
-            .collection('Movies')
-            .where('name', isGreaterThanOrEqualTo: lowerCaseSearchTerm)
-            .where('name', isLessThan: '$lowerCaseSearchTerm\uf8ff')
-            .get(),
-        db
-            .collection('Movies')
-            .where('name', isGreaterThanOrEqualTo: upperCaseSearchTerm)
-            .where('name', isLessThan: '$upperCaseSearchTerm\uf8ff')
-            .get(),
-      ]);
-
-      for (var snapshot in moviesSnapshots) {
-        for (var doc in snapshot.docs) {
-          if (!results.any((item) => item['id'] == doc.id)) {
-            Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-            results.add(data);
-
-          }
-        }
-      }
-
-
-
-
-
-      List<QuerySnapshot> cinemasSnapshots = await Future.wait([
-        db.collection('cinemas').where('name', isEqualTo: searchTerm).get(),
-        db
-            .collection('Cinemas')
-            .where('name', isEqualTo: lowerCaseSearchTerm)
-            .get(),
-        db
-            .collection('Cinemas')
-            .where('name', isEqualTo: upperCaseSearchTerm)
-            .get(),
-        db
-            .collection('Cinemas')
-            .where('name', isEqualTo: capitalizedSearchTerm)
-            .get(),
-        db
-            .collection('Cinemas')
-            .where('name', isGreaterThanOrEqualTo: lowerCaseSearchTerm)
-            .where('name', isLessThan: '$lowerCaseSearchTerm\uf8ff')
-            .get(),
-        db
-            .collection('Cinemas')
-            .where('name', isGreaterThanOrEqualTo: upperCaseSearchTerm)
-            .where('name', isLessThan: '$upperCaseSearchTerm\uf8ff')
-            .get(),
-      ]);
-
-      for (var snapshot in cinemasSnapshots) {
-        for (var doc in snapshot.docs) {
-          if (!results.any((item) => item['id'] == doc.id)) {
-            Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-            results.add(data);
-
-          }
-        }
-      }
-    } catch (e) {
-      print('❌ Error searching: $e');
-    }
-
-    return results;
-  }
-
-
-  Future<List<Map<String, dynamic>>> castSearch(String searchTerm) async {
-    final db = FirebaseFirestore.instance;
-    List<Map<String, dynamic>> results = [];
-
-    if (searchTerm.isEmpty) return results; // لو البحث فاضي، الليستة تبقى فاضية
-
-    try {
-      String lowerCaseSearchTerm = searchTerm.toLowerCase();
-
-      /// 🟢 البحث عن الأفلام
+      // ✅ البحث عن الأفلام بالاسم فقط إذا كان البحث بحرف واحد
       QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
-      results.clear(); // 🛑 تفريغ الليستة في كل مرة عشان تتجدد بالنتائج الجديدة
 
       for (var doc in moviesSnapshot.docs) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
-        // ✅ البحث في اسم الفيلم جزئيًا
         String movieName = data['name']?.toString().toLowerCase() ?? '';
-        bool movieMatch = movieName.contains(lowerCaseSearchTerm);
-
-        // ✅ البحث في قائمة الممثلين جزئيًا
         List<dynamic> castList = data['cast'] ?? [];
-        bool actorMatch = castList.any(
-                (actor) => actor.toString().toLowerCase().contains(lowerCaseSearchTerm));
 
-        // ✅ إضافة النتيجة لو تطابقت مع اسم الفيلم أو الممثلين
-        if ((movieMatch || actorMatch) &&
-            !results.any((item) => item['id'] == doc.id)) {
+        bool movieMatches = isSingleLetter
+            ? movieName.startsWith(lowerCaseSearchTerm) // ✅ لو حرف واحد، يبحث فقط في بداية اسم الفيلم
+            : movieName.contains(lowerCaseSearchTerm); // ✅ لو أكثر من حرف، يمكن أن يكون في أي مكان
+
+        bool actorMatches = !isSingleLetter &&
+            castList.any((actor) => actor.toString().toLowerCase() == lowerCaseSearchTerm);
+        // ✅ البحث عن اسم الممثل كاملاً فقط إذا كان البحث بأكثر من حرف
+
+        if ((movieMatches || actorMatches) && !seenIds.contains(doc.id)) {
+          seenIds.add(doc.id);
+          results.add({'id': doc.id, ...data});
+        }
+      }
+
+      // ✅ البحث في السينمات بنفس منطق البحث عن الأفلام
+      QuerySnapshot cinemasSnapshot = await db.collection('Cinemas').get();
+      for (var doc in cinemasSnapshot.docs) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+
+        String cinemaName = data['name']?.toString().toLowerCase() ?? '';
+        if (cinemaName.startsWith(lowerCaseSearchTerm) && !seenIds.contains(doc.id)) {
+          seenIds.add(doc.id);
           results.add({'id': doc.id, ...data});
         }
       }
@@ -372,7 +318,47 @@ class _SearchState extends State<Search> {
       print('❌ Error searching: $e');
     }
 
-    return results;
+    return results; // ✅ إرجاع النتائج بعد التحديث
   }
+
+
+
+// Future<List<Map<String, dynamic>>> castSearch(String searchTerm) async {
+  //   final db = FirebaseFirestore.instance;
+  //   List<Map<String, dynamic>> results = [];
+  //
+  //   if (searchTerm.isEmpty) return results; // لو البحث فاضي، الليستة تبقى فاضية
+  //
+  //   try {
+  //     String lowerCaseSearchTerm = searchTerm.toLowerCase();
+  //
+  //     /// 🟢 البحث عن الأفلام
+  //     QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
+  //     results.clear(); // 🛑 تفريغ الليستة في كل مرة عشان تتجدد بالنتائج الجديدة
+  //
+  //     for (var doc in moviesSnapshot.docs) {
+  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //
+  //       // ✅ البحث في اسم الفيلم جزئيًا
+  //       String movieName = data['name']?.toString().toLowerCase() ?? '';
+  //       bool movieMatch = movieName.contains(lowerCaseSearchTerm);
+  //
+  //       // ✅ البحث في قائمة الممثلين جزئيًا
+  //       List<dynamic> castList = data['cast'] ?? [];
+  //       bool actorMatch = castList.any(
+  //               (actor) => actor.toString().toLowerCase().contains(lowerCaseSearchTerm));
+  //
+  //       // ✅ إضافة النتيجة لو تطابقت مع اسم الفيلم أو الممثلين
+  //       if ((movieMatch || actorMatch) &&
+  //           !results.any((item) => item['id'] == doc.id)) {
+  //         results.add({'id': doc.id, ...data});
+  //       }
+  //     }
+  //   } catch (e) {
+  //     print('❌ Error searching: $e');
+  //   }
+  //
+  //   return results;
+  // }
 }
 

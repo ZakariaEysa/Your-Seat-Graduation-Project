@@ -500,12 +500,9 @@
 //
 
 import 'package:animate_do/animate_do.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:neon_widgets/neon_widgets.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
@@ -514,7 +511,6 @@ import 'package:yourseatgraduationproject/generated/l10n.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/utils/dialog_utilits.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/utils/validation_utils.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';

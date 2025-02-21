@@ -1,14 +1,10 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../cubit/auth_cubit.dart';
-import 'otp.dart';
 import 'sign_up.dart';
 import '../widgets/sign_in_part.dart';
 import '../../../home/presentation/views/home_layout.dart';

@@ -1,15 +1,13 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:yourseatgraduationproject/core/Network/ApiService.dart';
 import 'package:yourseatgraduationproject/core/Network/end_points.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_successful.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
+import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 class PayMobPayment {
   Dio dio = Dio();
@@ -18,13 +16,11 @@ class PayMobPayment {
     try {
       final token = await getAuthToken();
       AppLogs.errorLog("token : $token");
-
       final orderId =
           await getOrderId(token: token!, amount: (100 * amount).toString());
       final paymentKey = await getPaymentKey(
           token: token, orderId: orderId, amount: (100 * amount).toString());
       AppLogs.scussessLog(paymentKey.toString());
-
       return paymentKey;
     } catch (e) {
       rethrow;
@@ -123,7 +119,7 @@ class PayMobPayment {
 
 class PaymentScreen extends StatefulWidget {
   final String paymentToken;
-  PaymentScreen({required this.paymentToken});
+  const PaymentScreen({super.key, required this.paymentToken});
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -146,9 +142,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text("إتمام الدفع")),
+    return ScaffoldF(
+
+
+
+        appBar: AppBar(
+           iconTheme:  IconThemeData( color: Colors.white) ,
+          title: Text(" إتمام الدفع",style: TextStyle(color: Colors.white),)
+          , backgroundColor: const Color(0xFF2E1371),
+
+
+        ),
+
+
         body: InAppWebView(
+
           initialOptions: InAppWebViewGroupOptions(
             crossPlatform: InAppWebViewOptions(
               javaScriptEnabled: true,

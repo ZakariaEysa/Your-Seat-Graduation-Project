@@ -125,7 +125,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (userDoc.exists) {
         throw "User already exists";
       }
-    } on TimeoutException catch (e) {
+    } on TimeoutException {
       // Handle timeout exception
       throw "Request timed out. Please check your network connection.";
     } on FirebaseException catch (e) {

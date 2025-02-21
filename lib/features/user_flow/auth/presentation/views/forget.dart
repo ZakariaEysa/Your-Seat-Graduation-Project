@@ -19,7 +19,6 @@ import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 import '../../data/remote_data_source/auth_remote_data_source.dart';
 import '../../data/repos_impl/auth_repo_impl.dart';
-import '../../../home/presentation/views/home_layout.dart';
 import 'new_password.dart';
 
 class ForgotPassword extends StatefulWidget {

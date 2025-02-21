@@ -62,6 +62,7 @@ class Payment extends StatelessWidget {
                       ),
                       Spacer(),
                       Text(
+                        
                         lang.payWithCard,
                         style: theme.textTheme.bodyMedium!
                             .copyWith(fontSize: 16.sp),

@@ -103,8 +103,9 @@ class _SearchState extends State<Search> {
                     padding: EdgeInsets.all(8.0.w),
                     child: InkWell(
                       onTap: (){
-                        if(result['name'].toString().contains('cinema')){
-                          navigateTo(context: context, screen: CinemaDetails(cinemaId: result['Id'],));
+                        AppLogs.errorLog(result['name'].toString());
+                        if(result['name'].toString().contains('Cinema')){
+                          navigateTo(context: context, screen: CinemaDetails(cinemaId: result['name'],));
                         }else{
                           navigateTo(context: context, screen: MovieDetails(model: MoviesDetailsModel(
                             name: result['name'],
@@ -269,6 +270,23 @@ class _SearchState extends State<Search> {
   //   return results; // ✅ إرجاع النتائج بعد التحديث
   // }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   Future<List<Map<String, dynamic>>> searchInCollections(String searchTerm) async {
     final db = FirebaseFirestore.instance;
     Set<String> seenIds = {};
@@ -320,6 +338,86 @@ class _SearchState extends State<Search> {
 
     return results; // ✅ إرجاع النتائج بعد التحديث
   }
+
+
+
+
+
+  // Future<List<Map<String, dynamic>>> searchInCollections(String searchTerm) async {
+  //   final db = FirebaseFirestore.instance;
+  //   Set<String> seenIds = {};
+  //   List<Map<String, dynamic>> results = [];
+  //
+  //   if (searchTerm.isEmpty) return results; // ✅ تفريغ الليستة لو البحث فاضي
+  //
+  //   try {
+  //     String lowerCaseSearchTerm = searchTerm.toLowerCase();
+  //     bool isSingleLetter = lowerCaseSearchTerm.length == 1; // ✅ التحقق إذا كان البحث بحرف واحد فقط
+  //
+  //     // ✅ البحث عن الأفلام بالاسم فقط إذا كان البحث بحرف واحد
+  //     QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
+  //
+  //     for (var doc in moviesSnapshot.docs) {
+  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //
+  //       String movieName = data['name']?.toString().toLowerCase() ?? '';
+  //       List<dynamic> castList = data['cast'] ?? [];
+  //
+  //       bool movieMatches = isSingleLetter
+  //           ? movieName.startsWith(lowerCaseSearchTerm) // ✅ لو حرف واحد، يبحث فقط في بداية اسم الفيلم
+  //           : movieName.contains(lowerCaseSearchTerm); // ✅ لو أكثر من حرف، يمكن أن يكون في أي مكان
+  //
+  //       bool actorMatches = castList.any((actor) =>
+  //           actor.toString().toLowerCase().startsWith(lowerCaseSearchTerm));
+  //       // ✅ البحث فقط عن الممثلين اللي اسمهم يبدأ بالحروف المدخلة
+  //
+  //       if ((movieMatches || actorMatches) && !seenIds.contains(doc.id)) {
+  //         seenIds.add(doc.id);
+  //         results.add({'id': doc.id, ...data});
+  //       }
+  //     }
+  //
+  //     // ✅ البحث في السينمات بنفس منطق البحث عن الأفلام
+  //     QuerySnapshot cinemasSnapshot = await db.collection('Cinemas').get();
+  //     for (var doc in cinemasSnapshot.docs) {
+  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  //
+  //       String cinemaName = data['name']?.toString().toLowerCase() ?? '';
+  //       if (cinemaName.startsWith(lowerCaseSearchTerm) && !seenIds.contains(doc.id)) {
+  //         seenIds.add(doc.id);
+  //         results.add({'id': doc.id, ...data});
+  //       }
+  //     }
+  //   } catch (e) {
+  //     print('❌ Error searching: $e');
+  //   }
+  //
+  //   return results; // ✅ إرجاع النتائج بعد التحديث
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

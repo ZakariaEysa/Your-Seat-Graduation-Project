@@ -10,7 +10,9 @@ import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 class PayMobPayment {
-  Dio dio = Dio();
+  Dio dio = Dio(BaseOptions(
+    validateStatus: (status) => true, // يقبل أي status code
+  ));
 
   Future<String?> payWithPayMob(int amount) async {
     try {
@@ -115,71 +117,37 @@ class PayMobPayment {
       rethrow;
     }
   }
+
+  Future<void> refundPayment(
+      {required String transactionId, required int amount}) async {
+    try {
+      final token = await getAuthToken();
+
+      AppLogs.errorLog(token.toString());
+
+      final response = await dio.post(
+        "https://accept.paymob.com/api/acceptance/void_refund/refund",
+        data: {
+          "auth_token": token,
+          "transaction_id": transactionId,
+          "amount_cents": 100 * amount,
+        },
+      );
+
+      AppLogs.errorLog(response.data.toString());
+      if (response.statusCode != 200 || response.statusCode != 201) {
+        AppLogs.errorLog(response.data["message"].toString());
+      }
+      // if (response.statusCode == 200 && response.data["success"] == true) {
+      //   AppLogs.scussessLog("Refund successful for transaction $transactionId");
+      // } else {
+      //   AppLogs.errorLog("Refund failed: ${response.data}");
+      // }
+    } catch (e) {
+      AppLogs.errorLog("Refund request failed: ${e.toString()}");
+    }
+  }
 }
-
-// class PaymentScreen extends StatefulWidget {
-//   final String paymentToken;
-//   const PaymentScreen({super.key, required this.paymentToken});
-
-//   @override
-//   _PaymentScreenState createState() => _PaymentScreenState();
-// }
-
-// class _PaymentScreenState extends State<PaymentScreen> {
-//   late final InAppWebViewController _controller;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
-
-//   void startPayment() {
-//     _controller.loadUrl(
-//         urlRequest: URLRequest(
-//             url: WebUri(
-//                 "https://accept.paymob.com/api/acceptance/iframes/901395?payment_token=${widget.paymentToken}")));
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ScaffoldF(
-
-//         appBar: AppBar(
-//            iconTheme:  IconThemeData( color: Colors.white) ,
-//           title: Text(" إتمام الدفع",style: TextStyle(color: Colors.white),)
-//           , backgroundColor: const Color(0xFF2E1371),
-
-//         ),
-
-//         body: InAppWebView(
-
-//           initialOptions: InAppWebViewGroupOptions(
-//             crossPlatform: InAppWebViewOptions(
-//               javaScriptEnabled: true,
-//             ),
-//           ),
-//           onWebViewCreated: (InAppWebViewController controller) {
-//             _controller = controller;
-//             startPayment();
-//           },
-//           onReceivedError: (controller, request, error) {
-//             AppLogs.errorLog(error.toString());
-//           },
-//           onLoadStop: (controller, url) {
-//             if (url != null &&
-//                 url.queryParameters.containsKey("success") &&
-//                 url.queryParameters["success"] == "true") {
-//               navigateTo(context: context, screen: PaymentSuccessful());
-//               AppLogs.debugLog("success");
-//             } else if (url != null &&
-//                 url.queryParameters.containsKey("success") &&
-//                 url.queryParameters["success"] == "false") {
-//               AppLogs.debugLog("failure");
-//             }
-//           },
-//         ));
-//   }
-// }
 
 /* 
   PayMobPayment().payWithPayMob(100).then(

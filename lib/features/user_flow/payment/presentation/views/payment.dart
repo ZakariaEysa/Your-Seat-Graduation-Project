@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/card.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_test.dart';
 import '../../../../../utils/app_logs.dart';
 import '../widgets/payment_part.dart';
@@ -68,6 +69,8 @@ class Payment extends StatelessWidget {
                         Spacer(),
                         IconButton(
                             onPressed: () {
+                              // PayMobPayment().refundPayment(
+                              //     transactionId: "266671705", amount: 100);
                               PayMobPayment().payWithPayMob(100).then(
                                 (value) {
                                   AppLogs.scussessLog("payment token: $value");
@@ -77,7 +80,6 @@ class Payment extends StatelessWidget {
                                           paymentToken: value ?? ""));
                                 },
                               );
-                              //  navigateTo(context: context, screen: PaymentCard());
                             },
                             icon: Icon(
                               Icons.arrow_forward_ios_sharp,

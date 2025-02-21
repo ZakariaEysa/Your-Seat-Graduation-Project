@@ -169,7 +169,7 @@ class _MyAppState extends State<MyApp> {
               navigatorObservers: [
                 BotToastNavigatorObserver()
               ], // ملاحظة التنقل
-              home: SplashScreen(),
+              home:SplashScreen(),
               // home:SelectSeat()
             );
           });

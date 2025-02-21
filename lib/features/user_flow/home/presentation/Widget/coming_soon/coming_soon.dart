@@ -61,9 +61,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../../../../../utils/navigation.dart';
-import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
-import '../../../movie_details/presentation/views/movie_details.dart';
+import '../../../../../../utils/navigation.dart';
+import '../../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../../../movie_details/presentation/views/movie_details.dart';
 import 'coming_card.dart';
 
 class ComingSoon extends StatefulWidget {

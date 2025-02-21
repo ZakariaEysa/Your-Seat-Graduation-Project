@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/search_results_widgets.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/search/search_results_widgets.dart';
 
 class SearchBarWidget extends StatelessWidget {
   @override

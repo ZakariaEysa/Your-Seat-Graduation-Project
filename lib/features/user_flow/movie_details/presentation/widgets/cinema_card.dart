@@ -50,7 +50,7 @@ class _CinemaCardState extends State<CinemaCard> {
                   Text(
                     widget.title,
                     style:
-                        theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
+                        theme.textTheme.bodyMedium!.copyWith(fontSize: 18.sp),
                   ),
                   const Spacer(),
                   Image.asset(

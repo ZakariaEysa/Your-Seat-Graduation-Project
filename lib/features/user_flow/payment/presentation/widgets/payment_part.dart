@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 import '../views/card.dart';
 import '../../../../../utils/navigation.dart';
 
@@ -38,8 +39,8 @@ class PaymentPart extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 5.w),
-                    child: Image.asset(
-                      "assets/images/film11111.png",
+                    child: ImageReplacer(
+                      imageUrl: "assets/images/film11111.png",
                       width: 95.w,
                       height: 105.h,
                     ),

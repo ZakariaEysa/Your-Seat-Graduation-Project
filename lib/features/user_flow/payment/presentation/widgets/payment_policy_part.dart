@@ -19,7 +19,6 @@ class _PaymentPolicyPartState extends State<PaymentPolicyPart> {
     return SingleChildScrollView(
       child: Container(
         width: 350.w,
-        height: 930.h,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: Color(0xFF2F1472).withOpacity(.69),

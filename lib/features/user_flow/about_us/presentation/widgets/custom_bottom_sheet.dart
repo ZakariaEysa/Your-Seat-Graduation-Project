@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../resources/app_styles_manager.dart';
-import '../../../../../utils/app_logs.dart';
 
 class CustomBottomSheet extends StatefulWidget {
   final double initialHeight;

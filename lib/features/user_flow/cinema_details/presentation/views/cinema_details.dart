@@ -1,8 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../movie_details/presentation/cubit/movie_details_cubit.dart';
+import '../../../../../utils/app_logs.dart';
 import '../cubit/cinema_cubit.dart';
 import '../cubit/cinema_state.dart';
 import '../widgets/cinema_comments.dart';
@@ -33,10 +32,13 @@ class _CinemaDetailsState extends State<CinemaDetails> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     var lang = S.of(context);
+    AppLogs.errorLog(widget.cinemaId.toString());
+
 
     return ScaffoldF(
       body: BlocProvider(
         create: (context) => CinemaCubit()..fetchCinemaDetails(widget.cinemaId),
+
         child: BlocBuilder<CinemaCubit, CinemaState>(
           builder: (context, state) {
             if (state is CinemaLoading) {

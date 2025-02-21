@@ -25,12 +25,11 @@ import '../widgets/director_actor_card.dart';
 
 class MovieDetails extends StatefulWidget {
   const MovieDetails({
-    Key? key,
+    super.key,
     required this.model,
     this.cinema = "",
-  }) : super(key: key);
+  });
 
-  @override
   final MoviesDetailsModel model;
   final String cinema;
 
@@ -40,6 +39,7 @@ class MovieDetails extends StatefulWidget {
 
 class _MovieDetailsState extends State<MovieDetails> {
   String selectedCinema = "";
+  @override
   void initState() {
     AppLogs.scussessLog(widget.model.toString());
 
@@ -47,6 +47,7 @@ class _MovieDetailsState extends State<MovieDetails> {
     AppLogs.scussessLog(widget.model.toString());
 
     super.initState();
+
     BlocProvider.of<MovieDetailsCubit>(context)
       ..getRate(widget.model.name.toString())
       ..getCinemas(widget.model.name.toString());
@@ -176,7 +177,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                               allowHalfRating: true,
                               itemCount: 5,
                               itemPadding:
-                                  const EdgeInsets.symmetric(horizontal: 2.0),
+                              const EdgeInsets.symmetric(horizontal: 2.0),
                               itemBuilder: (context, _) => Icon(
                                 Icons.star,
                                 size: 1,
@@ -215,6 +216,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                                     )))
                           ],
                         );
+
+
                       },
                     ),
                     SizedBox(

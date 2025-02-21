@@ -17,7 +17,7 @@ class PersonalInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var lang = S.of(context);
+    S.of(context);
     var theme = Theme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15.w),

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
-import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../movie_details/presentation/views/movie_details.dart';
 import '../../../now_playing/presentation/widgets/playing_movies.dart';

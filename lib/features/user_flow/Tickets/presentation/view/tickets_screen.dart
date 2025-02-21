@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../about_us/presentation/views/about_us.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../widget/ticket_card.dart';
-import '../widget/vertical_status_card.dart';
 
 class TicketPage extends StatelessWidget {
   final List<Ticket> tickets = [

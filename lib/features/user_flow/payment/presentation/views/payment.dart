@@ -71,6 +71,9 @@ class Payment extends StatelessWidget {
                             onPressed: () {
                               // PayMobPayment().refundPayment(
                               //     transactionId: "266671705", amount: 100);
+
+                              // PayMobPayment().getAllTransactions();
+
                               PayMobPayment().payWithPayMob(100).then(
                                 (value) {
                                   AppLogs.scussessLog("payment token: $value");

@@ -135,7 +135,7 @@ class PayMobPayment {
       );
 
       AppLogs.errorLog(response.data.toString());
-      if (response.statusCode != 200 || response.statusCode != 201) {
+      if (response.statusCode != 200 && response.statusCode != 201) {
         AppLogs.errorLog(response.data["message"].toString());
       }
       // if (response.statusCode == 200 && response.data["success"] == true) {
@@ -145,6 +145,40 @@ class PayMobPayment {
       // }
     } catch (e) {
       AppLogs.errorLog("Refund request failed: ${e.toString()}");
+    }
+  }
+
+  Future<List<dynamic>> getAllTransactions(
+      {int limit = 10, int page = 1}) async {
+    try {
+      final token = await getAuthToken(); // جلب التوكن
+
+      final response = await dio.get(
+        "https://accept.paymob.com/api/acceptance/transactions",
+        queryParameters: {
+          "page": page, // تحديد رقم الصفحة
+          "limit": limit, // عدد النتائج في كل صفحة
+        },
+        options: Options(
+          headers: {
+            "Authorization": "Bearer $token",
+            "Content-Type": "application/json",
+          },
+        ),
+      );
+      AppLogs.scussessLog("Transactions: ${response.data["results"].length}");
+      AppLogs.scussessLog("Transactions: ${response.data["results"][0]}");
+
+      if (response.statusCode == 200) {
+        AppLogs.scussessLog("Transactions: ${response.data["results"].length}");
+        return response.data["results"] ?? []; // إرجاع المعاملات
+      } else {
+        AppLogs.errorLog("Error fetching transactions: ${response.data}");
+        return [];
+      }
+    } catch (e) {
+      AppLogs.errorLog("Failed to fetch transactions: ${e.toString()}");
+      return [];
     }
   }
 }

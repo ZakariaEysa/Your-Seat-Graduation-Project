@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -29,34 +30,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'features/user_flow/Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
 import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
-
-// Future<void> renameDocument(
-//     String collectionName, String oldDocId, String newDocId) async {
-//   FirebaseFirestore firestore = FirebaseFirestore.instance;
-//   DocumentReference oldDocRef =
-//       firestore.collection(collectionName).doc(oldDocId);
-//   DocumentReference newDocRef =
-//       firestore.collection(collectionName).doc(newDocId);
-
-//   try {
-//     // جلب البيانات من الوثيقة القديمة
-//     DocumentSnapshot oldDoc = await oldDocRef.get();
-
-//     if (oldDoc.exists) {
-//       // نسخ البيانات إلى الوثيقة الجديدة
-//       await newDocRef.set(oldDoc.data());
-
-//       // حذف الوثيقة القديمة
-//       await oldDocRef.delete();
-
-//       print("تمت إعادة تسمية الوثيقة بنجاح من $oldDocId إلى $newDocId");
-//     } else {
-//       print("⚠ الوثيقة القديمة غير موجودة!");
-//     }
-//   } catch (e) {
-//     print("❌ حدث خطأ أثناء إعادة التسمية: $e");
-//   }
-// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -91,8 +64,6 @@ void main() async {
     HiveStorage.set(HiveKeys.isArabic, false);
   }
 
-  // await renameDocument('Cinemas', '4DX Cinema', 'Point 90 Cinema');
-
   runApp(
     DevicePreview(
       enabled: kDebugMode,
@@ -103,7 +74,6 @@ void main() async {
           BlocProvider<SwitchLanguageCubit>(
             create: (context) => SwitchLanguageCubit(),
           ),
-
           BlocProvider<AuthCubit>(
             create: (context) => AuthCubit(AuthRepoImpl(
                 AuthRemoteDataSourceImpl(
@@ -172,10 +142,8 @@ class _MyAppState extends State<MyApp> {
                 child = BotToastInit()(context, child); // تهيئة BotToast
                 return DevicePreview.appBuilder(context, child);
               },
-              navigatorObservers: [
-                BotToastNavigatorObserver()
-              ],
-                home: SplashScreen(),
+              navigatorObservers: [BotToastNavigatorObserver()],
+              home: SplashScreen(),
             );
           });
     });

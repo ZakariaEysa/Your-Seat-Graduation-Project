@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-//import 'package:yourseatgraduationproject/features/user_flow/Rate/widgets/Rating.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 import 'Rating.dart';
@@ -16,7 +15,7 @@ class Rate extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 130.h),
-            Rating(),
+            Rating()
           ],
         ),
       ),

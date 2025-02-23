@@ -18,7 +18,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    var lang = S.of(context); // Localization instance
+    var lang = S.of(context);
     final theme = Theme.of(context);
     final mediaQuery = MediaQuery.of(context);
     final screenWidth = mediaQuery.size.width;
@@ -31,7 +31,7 @@ class _AppState extends State<App> {
         appBar: AppBar(
           backgroundColor: const Color(0xFF0F0A2B).withOpacity(.02),
           elevation: 0,
-          leadingWidth: screenWidth * 0.1, // Adjust dynamically
+          leadingWidth: screenWidth * 0.1,
           leading: IconButton(
             onPressed: () {
               navigatePop(context: context);
@@ -39,12 +39,12 @@ class _AppState extends State<App> {
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,
-              size: screenWidth * 0.06, // Adjust size dynamically
+              size: screenWidth * 0.06,
             ),
           ),
           title: Container(
-            width: screenWidth * 0.8, // Adjust width dynamically
-            height: mediaQuery.size.height * 0.05, // Adjust height dynamically
+            width: screenWidth * 0.8,
+            height: mediaQuery.size.height * 0.05,
             decoration: BoxDecoration(
               color: const Color(0xFF0F0A2B).withOpacity(.30),
               borderRadius:
@@ -52,7 +52,7 @@ class _AppState extends State<App> {
             ),
             child: TabBar(
               dividerColor: Colors.transparent,
-              labelColor: const Color(0xFFEB68E3), // Selected tab text color
+              labelColor: const Color(0xFFEB68E3),
               unselectedLabelColor: Colors.white, // Unselected tab text color
               indicatorColor: const Color(0xFFEB68E3), // Highlight color
               labelStyle: theme.textTheme.labelLarge!.copyWith(fontSize: screenWidth * 0.04),

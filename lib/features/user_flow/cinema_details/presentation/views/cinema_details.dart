@@ -92,7 +92,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                         if (comments.isEmpty) {
                           return Center(
                             child: Text(
-                              'لا توجد تعليقات بعد.',
+                              'There are no comments yet.',
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           );
@@ -123,38 +123,52 @@ class _CinemaDetailsState extends State<CinemaDetails> {
 
                   Row(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.all(16.0.sp),
-                        child: TextFormFieldBuilder(
-                          controller:
-                              context.read<CinemaCubit>().getCommentController,
-                          type: TextInputType.text,
-                          width: 270.w,
-                          height: 45.h,
-                          color: const Color(0xFF110C3B),
-                          obsecure: false,
-                          label: lang.addComment,
+                      /// ✅ حقل إدخال التعليقات (متجاوب)
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.all(12.sp), // استخدام .sp لجعل التباعد متجاوبًا
+                          child: TextFormFieldBuilder(
+                            controller: context.read<CinemaCubit>().getCommentController,
+                            type: TextInputType.text,
+                            width: double.infinity, // استخدام `double.infinity` لجعله يتمدد تلقائيًا
+                            height: 45.h, // استخدام .h لجعل الارتفاع متجاوبًا
+                            color: const Color(0xFF110C3B),
+                            obsecure: false,
+                            label: lang.addComment,
+                          ),
                         ),
                       ),
-                      SizedBox(width: 8),
-                      IconButton(
-                        icon: Icon(Icons.send, color: Colors.white),
-                        onPressed: () async {
-                          await CinemaCubit.get(context).addComment(
+
+                      /// ✅ التباعد بين العناصر (متجاوب)
+                      SizedBox(width: 10.w),
+
+                      /// ✅ زر الإرسال (متجاوب)
+                      Container(
+                        width: 50.w, // استخدام .w لجعل الحجم متجاوبًا
+                        height: 45.h, // استخدام .h لجعل الحجم متجاوبًا
+                        decoration: BoxDecoration(
+                          color: Color(0xFF110C3B),
+                          borderRadius: BorderRadius.circular(12.r), // استخدام .r لتكبير الحواف بشكل متناسق
+                        ),
+                        child: IconButton(
+                          icon: Icon(Icons.send, color: Colors.white, size: 20.sp),
+                          onPressed: () async {
+                            await CinemaCubit.get(context).addComment(
                               widget.cinemaId,
                               context,
                               lang.signin,
                               lang.cancel,
-                              context.read<CinemaCubit>().getCommentController);
+                              context.read<CinemaCubit>().getCommentController,
+                            );
 
-                          await CinemaCubit.get(context)
-                              .fetchCinemaComments(widget.cinemaId);
-
-                          // setState(() {}); // تحديث واجهة المستخدم يدويًا
-                        },
+                            await CinemaCubit.get(context).fetchCinemaComments(widget.cinemaId);
+                          },
+                        ),
                       ),
+                      SizedBox(width: 18.w),
                     ],
                   ),
+
                 ],
               ),
             );

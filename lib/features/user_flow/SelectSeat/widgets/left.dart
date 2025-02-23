@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Left extends StatefulWidget {
- Left({super.key});
+ final Function(int) updateTotalPrice;
+
+ final Function(int) updateSeatCategory; // إضافة الدالة الجديدة
+
+ const Left({super.key, required this.updateTotalPrice, required this.updateSeatCategory});
+
 
  @override
  _LeftState createState() => _LeftState();
@@ -10,7 +15,7 @@ class Left extends StatefulWidget {
 class _LeftState extends State<Left> {
  List<List<String>> lightSeats = [
   ['a', 'a', 'a', 'a', 'a', 'a'],
-  ['r', 'r', 'r', 'r', 'r', 'r'],
+  ['a', 'a', 'r', 'r', 'r', 'r'],
   ['r', 'r', 'r', 'r', 'r', 'r'],
   ['a', 'a', 'a', 'a', 'a', 'a'],
   ['a', 'a', 'a', 'a', 'a', 'a'],
@@ -23,8 +28,11 @@ class _LeftState extends State<Left> {
  void _selectSeat(int x, int y) {
   setState(() {
    if (lightSeats[x][y] == 'a') {
+    widget.updateSeatCategory(x);
+    widget.updateTotalPrice(_calculateSeatPrice(x));
     lightSeats[x][y] = 's';
    } else if (lightSeats[x][y] == 's') {
+    widget.updateTotalPrice(-_calculateSeatPrice(x));
     lightSeats[x][y] = 'a';
    }
   });
@@ -58,14 +66,25 @@ class _LeftState extends State<Left> {
  }
 
  String _getSeatImage(String seat) {
-  if (seat == 'a') {
-   return 'assets/images/avaliableSeat.png'; // Available seat image
-  } else if (seat == 'r') {
-   return 'assets/images/reversedSeat.png'; // Reserved seat image
-  } else if (seat == 's') {
-   return 'assets/images/selectSeat.png'; // Selected seat image
+  switch (seat) {
+   case 'a':
+    return 'assets/images/avaliableSeat.png';
+   case 'r':
+    return 'assets/images/reversedSeat.png';
+   case 's':
+    return 'assets/images/selectSeat.png';
+   default:
+    return 'assets/images/default.png';
+  }
+ }
+
+ int _calculateSeatPrice(int row) {
+  if (row < 2) {
+   return 150;
+  } else if (row < 4) {
+   return 120;
   } else {
-   return 'assets/images/default.png'; // Default image if no match
+   return 100;
   }
  }
 }

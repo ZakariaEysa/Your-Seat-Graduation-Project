@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../Notifaction/views/Notifaction.dart';
 import '../../../../../utils/navigation.dart';
+import '../../../Rate/Rate.dart';
 
 class HeadWidget extends StatelessWidget {
   const HeadWidget({super.key});
@@ -21,7 +22,9 @@ class HeadWidget extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigateTo(context: context, screen:  Notifications());
+              // navigateTo(context: context, screen:  Notifications());
+              navigateTo(context: context, screen:  Rate());
+
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),

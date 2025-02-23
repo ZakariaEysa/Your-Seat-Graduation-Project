@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../utils/navigation.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 import '../../../cinema_details/presentation/views/cinema_details.dart';
 
 class CinemaItem extends StatelessWidget {
@@ -43,38 +44,41 @@ class CinemaItem extends StatelessWidget {
                           screen: CinemaDetails(cinemaId: cinemaId),
                         );
                       },
-                      child: ClipOval(
-                        child: imageUrl.isNotEmpty
-                            ? Image.network(
-                          imageUrl,
-                          height: 120.h,
-                          width: 120.w,
-                          fit: BoxFit.cover,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return SizedBox(
-                              height: 120.h,
-                              width: 120.w,
-                              child: const Center(child: CircularProgressIndicator()),
-                            );
-                          },
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              height: 120.h,
-                              width: 120.w,
-                              color: Colors.grey,
-                              child: const Icon(Icons.error, color: Colors.red),
-                            );
-                          },
-                        )
-                            : Container(
-                          height: 120.h,
-                          width: 120.w,
-                          color: Colors.grey,
-                          child: const Icon(Icons.image, color: Colors.white),
-                        ),
-                      ),
-                    ),
+                      child:  ImageReplacer(imageUrl: imageUrl, fit: BoxFit.fill,isCircle: true,
+                        width: 140.w,
+                        height: 140.h,
+                      // child: ClipOval(child: imageUrl.isNotEmpty
+                      //       ?
+                      //   Image.network(
+                      //     imageUrl,
+                      //     height: 120.h,
+                      //     width: 120.w,
+                      //     fit: BoxFit.cover,
+                      //     loadingBuilder: (context, child, loadingProgress) {
+                      //       if (loadingProgress == null) return child;
+                      //       return SizedBox(
+                      //         height: 120.h,
+                      //         width: 120.w,
+                      //         child: const Center(child: CircularProgressIndicator()),
+                      //       );
+                      //     },
+                      //     errorBuilder: (context, error, stackTrace) {
+                      //       return Container(
+                      //         height: 120.h,
+                      //         width: 120.w,
+                      //         color: Colors.grey,
+                      //         child: const Icon(Icons.error, color: Colors.red),
+                      //       );
+                      //     },
+                      //   )
+                      //       : Container(
+                      //     height: 120.h,
+                      //     width: 120.w,
+                      //     color: Colors.grey,
+                      //     child: const Icon(Icons.image, color: Colors.white),
+                      //   ),
+                      // ),
+                    ),),
                     SizedBox(height: 8.h),
                     Text(
                       name,

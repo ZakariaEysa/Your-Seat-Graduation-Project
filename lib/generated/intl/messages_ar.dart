@@ -298,7 +298,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "seeMore": MessageLookupByLibrary.simpleMessage("رؤية المزيد"),
         "selectDateTime":
             MessageLookupByLibrary.simpleMessage("اختيار الوقت & التاريخ"),
-        "selectSeat": MessageLookupByLibrary.simpleMessage("اختر كرسيك"),
+        "selectSeat": MessageLookupByLibrary.simpleMessage("اختر مقعدك"),
         "selected": MessageLookupByLibrary.simpleMessage("محدد"),
         "sep": MessageLookupByLibrary.simpleMessage("سبتمبر"),
         "september": MessageLookupByLibrary.simpleMessage("سبتمبر"),

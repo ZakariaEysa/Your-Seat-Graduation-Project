@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Time extends StatefulWidget {
-  const Time({Key? key}) : super(key: key);
+  final List times;
+
+  const Time({Key? key, required this.times}) : super(key: key);
 
   @override
   _TimeState createState() => _TimeState();
 }
 
 class _TimeState extends State<Time> {
-  final List<String> times = ['11:05', '14:15', '16:30', '17:00', '20:20'];
-  int _selectedTimeIndex = 1;
+  int _selectedTimeIndex = 0; // البداية على أول عنصر افتراضيًا
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class _TimeState extends State<Time> {
       height: 60.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: times.length,
+        itemCount: widget.times.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
@@ -40,7 +41,7 @@ class _TimeState extends State<Time> {
               ),
               child: Center(
                 child: Text(
-                  times[index],
+                  widget.times[index],
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     fontSize: 18.sp,
                   ),

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Right extends StatefulWidget {
-  Right({super.key});
+  final Function(int) updateTotalPrice;
+  final Function(int) updateSeatCategory; // إضافة الدالة الجديدة
+
+  const Right({super.key, required this.updateTotalPrice, required this.updateSeatCategory});
+
 
   @override
   State<Right> createState() => _RightState();
@@ -23,8 +27,11 @@ class _RightState extends State<Right> {
   void _selectSeat(int x, int y) {
     setState(() {
       if (rightSeats[x][y] == 'a') {
+        widget.updateTotalPrice(_calculateSeatPrice(x));
+        widget.updateSeatCategory(x);
         rightSeats[x][y] = 's';
       } else if (rightSeats[x][y] == 's') {
+        widget.updateTotalPrice(- _calculateSeatPrice(x));
         rightSeats[x][y] = 'a';
       }
     });
@@ -66,5 +73,15 @@ class _RightState extends State<Right> {
     } else {
       return 'assets/images/selectSeat.png';
     }
+  }
+}
+
+int _calculateSeatPrice(int row) {
+  if (row < 2) {
+    return 150;
+  } else if (row < 4) {
+    return 120;
+  } else {
+    return 100;
   }
 }

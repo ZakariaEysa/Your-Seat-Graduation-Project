@@ -47,7 +47,7 @@ class TicketCard extends StatelessWidget {
                       fontSize: 14.sp,
                     ),
                   ),
-                  SizedBox(height: 6.h),
+                  SizedBox(height: 8.h),
                   _buildInfoRow('assets/icons/clock_icon.png',
                       '${ticket.time}  |  ${ticket.date}'),
                   _buildInfoRow(

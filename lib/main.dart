@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/SelectSeat.dart';
+import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/view/SelectSeat.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
@@ -28,41 +28,16 @@ import 'features/user_flow/Watch_list/favorite_movies_provider/favorite_movies_p
 import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
 
-// Future<void> renameDocument(
-//     String collectionName, String oldDocId, String newDocId) async {
-//   FirebaseFirestore firestore = FirebaseFirestore.instance;
-//   DocumentReference oldDocRef =
-//       firestore.collection(collectionName).doc(oldDocId);
-//   DocumentReference newDocRef =
-//       firestore.collection(collectionName).doc(newDocId);
-
-//   try {
-//     // جلب البيانات من الوثيقة القديمة
-//     DocumentSnapshot oldDoc = await oldDocRef.get();
-
-//     if (oldDoc.exists) {
-//       // نسخ البيانات إلى الوثيقة الجديدة
-//       await newDocRef.set(oldDoc.data());
-
-//       // حذف الوثيقة القديمة
-//       await oldDocRef.delete();
-
-//       print("تمت إعادة تسمية الوثيقة بنجاح من $oldDocId إلى $newDocId");
-//     } else {
-//       print("⚠ الوثيقة القديمة غير موجودة!");
-//     }
-//   } catch (e) {
-//     print("❌ حدث خطأ أثناء إعادة التسمية: $e");
-//   }
-// }
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // قفل التدوير على الوضع العمودي
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
+  // تهيئة Firebase
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: 'AIzaSyCREJCsFWlgq_kon3J8_Eu_mhvL0PUNGjs',
@@ -72,29 +47,21 @@ void main() async {
     ),
   );
 
-  await FirebaseAppCheck.instance
-      .activate(androidProvider: AndroidProvider.debug);
+  await FirebaseAppCheck.instance.activate(androidProvider: AndroidProvider.debug);
   SimpleBlocObserverService();
-
   await HiveStorage.init();
 
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(HiveKeys.passUserOnboarding, false);
   }
 
-  // GoogleUserModel? currentUser = HiveStorage.getGoogleUser();
-  // UserModel? currentUser2 = HiveStorage.getDefaultUser();
-
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(HiveKeys.isArabic, false);
   }
 
-  // await renameDocument('Cinemas', '4DX Cinema', 'Point 90 Cinema');
-
   runApp(
     DevicePreview(
-      enabled: kDebugMode,
-      // enabled: false,
+      enabled: kDebugMode, // يعمل فقط في وضع التطوير
       builder: (context) => MultiBlocProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
@@ -103,8 +70,7 @@ void main() async {
           ),
           BlocProvider<AuthCubit>(
             create: (context) => AuthCubit(AuthRepoImpl(
-                AuthRemoteDataSourceImpl(
-                    FirebaseAuth.instance, GoogleSignIn()))),
+                AuthRemoteDataSourceImpl(FirebaseAuth.instance, GoogleSignIn()))),
           ),
           BlocProvider<MovieDetailsCubit>(
             create: (context) => MovieDetailsCubit(
@@ -140,8 +106,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
-        builder: (context, state) {
-      return ScreenUtilInit(
+      builder: (context, state) {
+        return ScreenUtilInit(
           designSize: const Size(375, 812),
           minTextAdapt: true,
           useInheritedMediaQuery: true,
@@ -161,18 +127,18 @@ class _MyAppState extends State<MyApp> {
               ],
               supportedLocales: S.delegate.supportedLocales,
               debugShowCheckedModeBanner: false,
-              // builder: DevicePreview.appBuilder,
               builder: (context, child) {
-                child = BotToastInit()(context, child); // تهيئة BotToast
+                child = BotToastInit()(context, child);
                 return DevicePreview.appBuilder(context, child);
               },
               navigatorObservers: [
                 BotToastNavigatorObserver()
-              ], // ملاحظة التنقل
-              home: SplashScreen(),
-              // home:SelectSeat()
+              ],
+              home: SelectSeat(),
             );
-          });
-    });
+          },
+        );
+      },
+    );
   }
 }

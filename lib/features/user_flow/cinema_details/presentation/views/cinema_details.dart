@@ -98,26 +98,41 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                           );
                         }
 
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: comments.length,
-                          itemBuilder: (context, index) {
-                            final comment = comments[index];
-                            return Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: CinemaComments(
-                                name: comment['userName'],
-                                image: comment['image'],
-                                title: comment['text'],
+                        return Column(
+                          children: [
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: comments.length,
+                              itemBuilder: (context, index) {
+                                final comment = comments[index];
+                                return Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: CinemaComments(
+                                    name: comment['userName'],
+                                    image: comment['image'],
+                                    title: comment['text'],
+                                  ),
+                                );
+                              },
+                            ),
+
+                            /// ✅ زر "Show More" عند وجود تعليقات إضافية
+                            if (comments.length < CinemaCubit.get(context).allComments.length)
+                              TextButton(
+                                onPressed: () {
+                                  CinemaCubit.get(context).loadMoreComments();
+                                },
+                                child: Text("Show More.." , style: TextStyle(
+                                  color: Color(0xFFCF4FDD)
+                                ),),
                               ),
-                            );
-                          },
+                          ],
                         );
                       } else {
-                        return const SizedBox
-                            .shrink(); // ✅ عند عدم توفر بيانات التعليقات بعد
+                        return const SizedBox.shrink();
                       }
+
                     },
                   ),
 

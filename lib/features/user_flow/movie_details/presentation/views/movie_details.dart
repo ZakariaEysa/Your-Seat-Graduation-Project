@@ -5,7 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/SelectSeat.dart';
+import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/select_seat.dart';
 
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
 

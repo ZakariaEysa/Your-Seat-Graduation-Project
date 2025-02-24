@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_policy.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../../data/hive_keys.dart';
 import '../../../../data/hive_stroage.dart';
@@ -119,7 +120,7 @@ class _SelectSeatState extends State<SelectSeat> {
           List<dynamic> moviesList = List.from(cinemaData['movies']);
 
           var selectedMovie = moviesList.firstWhere(
-                (movie) => movie['name'] == movieName,
+            (movie) => movie['name'] == movieName,
             orElse: () => null,
           );
 
@@ -131,14 +132,8 @@ class _SelectSeatState extends State<SelectSeat> {
               times = timesList.map((e) => e['time']).toList();
               dates = timesList.map((e) => e['date']).toList();
 
-              days = dates.map((date) =>
-              DateTime
-                  .parse(date)
-                  .day).toList();
-              months = dates.map((date) =>
-              DateTime
-                  .parse(date)
-                  .month).toList();
+              days = dates.map((date) => DateTime.parse(date).day).toList();
+              months = dates.map((date) => DateTime.parse(date).month).toList();
             });
 
             print(selectedMovie['times'].toString());
@@ -253,12 +248,14 @@ class _SelectSeatState extends State<SelectSeat> {
             SizedBox(height: 10.h),
 
             /**/
-            Date(days: days,months: months,),
+            Date(
+              days: days,
+              months: months,
+            ),
             SizedBox(
               height: 30.h,
             ),
-            Time(times: times)
-            ,
+            Time(times: times),
             Padding(
               padding: EdgeInsets.all(16.0.sp),
               child: Row(
@@ -282,7 +279,9 @@ class _SelectSeatState extends State<SelectSeat> {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      navigateTo(context: context, screen: PaymentPolicy());
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF09FBD3),
                       minimumSize: Size(155.w, 42.h),
@@ -304,5 +303,3 @@ class _SelectSeatState extends State<SelectSeat> {
     );
   }
 }
-
-

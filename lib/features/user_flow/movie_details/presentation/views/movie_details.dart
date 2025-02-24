@@ -177,7 +177,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                               allowHalfRating: true,
                               itemCount: 5,
                               itemPadding:
-                              const EdgeInsets.symmetric(horizontal: 2.0),
+                                  const EdgeInsets.symmetric(horizontal: 2.0),
                               itemBuilder: (context, _) => Icon(
                                 Icons.star,
                                 size: 1,
@@ -216,8 +216,6 @@ class _MovieDetailsState extends State<MovieDetails> {
                                     )))
                           ],
                         );
-
-
                       },
                     ),
                     SizedBox(
@@ -397,7 +395,6 @@ class _MovieDetailsState extends State<MovieDetails> {
                       }
                       cinemas.add("testCinema");
                       selectedCinema = cinemas[0];
-
                     }
                   },
                   builder: (context, state) {

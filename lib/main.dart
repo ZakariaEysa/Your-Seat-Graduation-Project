@@ -85,6 +85,8 @@ void main() async {
           BlocProvider<CinemaCubit>(
             create: (context) => CinemaCubit(),
           ),
+          BlocProvider(create: (context) => SearchCubit(),)
+
         ],
         child: const MyApp(),
       ),
@@ -116,35 +118,35 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
         builder: (context, state) {
-      return ScreenUtilInit(
-          designSize: const Size(375, 812),
-          minTextAdapt: true,
-          useInheritedMediaQuery: true,
-          ensureScreenSize: true,
-          splitScreenMode: true,
-          builder: (_, child) {
-            return MaterialApp(
-              theme: ApplicationTheme.darkTheme,
-              locale: HiveStorage.get(HiveKeys.isArabic)
-                  ? const Locale('ar')
-                  : const Locale('en'),
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              debugShowCheckedModeBanner: false,
-              // builder: DevicePreview.appBuilder,
-              builder: (context, child) {
-                child = BotToastInit()(context, child); // تهيئة BotToast
-                return DevicePreview.appBuilder(context, child);
-              },
-              navigatorObservers: [BotToastNavigatorObserver()],
-              home: SplashScreen(),
-            );
-          });
-    });
+          return ScreenUtilInit(
+              designSize: const Size(375, 812),
+              minTextAdapt: true,
+              useInheritedMediaQuery: true,
+              ensureScreenSize: true,
+              splitScreenMode: true,
+              builder: (_, child) {
+                return MaterialApp(
+                  theme: ApplicationTheme.darkTheme,
+                  locale: HiveStorage.get(HiveKeys.isArabic)
+                      ? const Locale('ar')
+                      : const Locale('en'),
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  debugShowCheckedModeBanner: false,
+                  // builder: DevicePreview.appBuilder,
+                  builder: (context, child) {
+                    child = BotToastInit()(context, child); // تهيئة BotToast
+                    return DevicePreview.appBuilder(context, child);
+                  },
+                  navigatorObservers: [BotToastNavigatorObserver()],
+                  home: SplashScreen(),
+              );
+              });
+        });
   }
 }

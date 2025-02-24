@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/select_seat.dart';
@@ -56,9 +57,13 @@ import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
 //     print("❌ حدث خطأ أثناء إعادة التسمية: $e");
 //   }
 // }
-
+Future<void> requestPermissions() async {
+  await Permission.camera.request();
+  await Permission.storage.request();
+}
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await requestPermissions();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

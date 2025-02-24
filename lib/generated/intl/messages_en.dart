@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookingConfirmation":
             MessageLookupByLibrary.simpleMessage("Booking Confirmation :"),
         "buyTicket": MessageLookupByLibrary.simpleMessage("Buy Ticket"),
+        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "canYouTellUsTheReason":
             MessageLookupByLibrary.simpleMessage("Can you tell us the reason"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -141,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "currency": MessageLookupByLibrary.simpleMessage("Currency:"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV:"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
+        "dataUpdatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Data Updated Successfully"),
         "day": MessageLookupByLibrary.simpleMessage("Day"),
         "dec": MessageLookupByLibrary.simpleMessage("Dec"),
         "december": MessageLookupByLibrary.simpleMessage("Dec"),
@@ -188,6 +191,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forget Password"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
@@ -353,6 +357,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password is wrong"),
         "year": MessageLookupByLibrary.simpleMessage("Year"),
         "yes": MessageLookupByLibrary.simpleMessage(" Yes"),
+        "youHaveToSignInToContinue": MessageLookupByLibrary.simpleMessage(
+            "You Have To Sign In To Continue"),
         "youJustNeedToEnterTheOtpSentToTheRegisteredEmailAddress":
             MessageLookupByLibrary.simpleMessage(
                 "You just need to enter the OTP sent to the registered Email Address."),

@@ -20,6 +20,7 @@ class CinemaCubit extends Cubit<CinemaState> {
   List<MoviesDetailsModel> moviesList = [];
   List<Map<String, dynamic>> commentsList = [];
   List<MoviesDetailsModel> moviesDataList = [];
+  List<Map<String, dynamic>> allComments = []; // ✅ جميع التعليقات المحملة
 
   CinemaCubit() : super(CinemaInitial());
 
@@ -94,11 +95,11 @@ class CinemaCubit extends Cubit<CinemaState> {
     }
   }
 
-  /// **🔹 جلب التعليقات الخاصة بالسينما**
+
   Future<void> fetchCinemaComments(String cinemaId) async {
     try {
       AppLogs.debugLog("Fetching comments for cinema: $cinemaId");
-      emit(CinemaCommentsLoading()); // ✅ إطلاق حالة التحميل
+      emit(CinemaCommentsLoading());
 
       final snapshot = await _firestore
           .collection('Cinemas')
@@ -107,21 +108,35 @@ class CinemaCubit extends Cubit<CinemaState> {
           .orderBy('timestamp', descending: true)
           .get();
 
-      List<Map<String, dynamic>> comments = snapshot.docs
+      allComments = snapshot.docs
           .map((doc) => doc.data() as Map<String, dynamic>)
           .toList();
-      AppLogs.debugLog(" comments for cinema: $cinemaId");
-      commentsList = comments;
-      emit(CinemaCommentsLoaded(comments)); // ✅ تحميل التعليقات بنجاح
-    } catch (e) {
-      AppLogs.debugLog(" error  comments for cinema: $cinemaId");
 
-      emit(CinemaCommentsError(
-          "Error fetching comments: $e")); // ✅ في حالة الخطأ
+      AppLogs.debugLog("Fetched ${allComments.length} comments");
+
+      // ✅ تحميل أول 5 تعليقات فقط
+      commentsList = allComments.take(5).toList();
+
+      emit(CinemaCommentsLoaded(commentsList));
+    } catch (e) {
+      AppLogs.debugLog("Error fetching comments: $e");
+      emit(CinemaCommentsError("Error fetching comments: $e"));
     }
   }
 
-  /// **🔹 إضافة تعليق جديد**
+  /// ✅ **تحميل المزيد من التعليقات عند الضغط على "Show More"**
+  void loadMoreComments() {
+    final currentLength = commentsList.length;
+    final remainingComments = allComments.length - currentLength;
+
+    if (remainingComments > 0) {
+      final nextBatch = allComments.skip(currentLength).take(5).toList();
+      commentsList.addAll(nextBatch);
+      emit(CinemaCommentsLoaded(commentsList));
+    }
+  }
+
+  /// ✅ **إضافة تعليق جديد وتحديث القائمة بعد الإضافة**
   Future<void> addComment(
       String cinemaId,
       BuildContext context,
@@ -159,6 +174,9 @@ class CinemaCubit extends Cubit<CinemaState> {
         });
 
         commentController.clear();
+
+        /// ✅ تحديث التعليقات تلقائيًا بعد الإضافة
+        await fetchCinemaComments(cinemaId);
       }
     }
   }

@@ -125,8 +125,12 @@
 
   "ahmedSayed" : "احمد سيد",
   "noResultsFound" : "لا يوجد نتائج",
+  "youHaveToSignInToContinue" : "يجب عليك تسجيل الدخول اولا",
   "sorryNoWatchListMoviesYet": "عذرًا لا توجد أفلام في قائمة المشاهدة حتى الآن",
   "ok": "موافق",
+  "dataUpdatedSuccessfully" : "تم تحديث البيانات بنجاح",
+  "camera" : "الكاميرا",
+  "gallery" : "الاستوديو",
   "cancel": "الغاء",
   "areYouSureYouWantToLogOut" : "هل انت متاكد انك تريد تسجيل الخروج ؟",
   "enterEmailAddress" : "ادخل عنوان البريد الالكتروني",

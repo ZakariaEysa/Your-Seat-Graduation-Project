@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import '../../../../../../widgets/loading_indicator.dart';
 import 'info_container.dart';
 import '../../../../../../widgets/button/button_builder.dart';
 
@@ -42,7 +43,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     "November",
     "December",
   ];
-  final List<String> gender = ["Male", "Female", ""];
+  final List<String> gender = ["Male", "Female"];
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
@@ -107,13 +108,82 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
   }
 
-  Future<void> updateProfile() async {
-    try {
-      var userDoc = FirebaseFirestore.instance
-          .collection('users')
-          .doc(currentUser.email);
+  // Future<void> updateProfile() async {
+  //   try {
+  //     var userDoc = FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc(currentUser.email);
+  //
+  //     // إعداد الحقول التي سيتم تحديثها فقط إذا تغيرت
+  //     Map<String, dynamic> updatedData = {};
+  //
+  //     if (userController.text.isNotEmpty && userController.text != currentUser.name) {
+  //       updatedData['name'] = userController.text;
+  //     }
+  //
+  //     if (selectedDay != null && selectedMonth != null && selectedYear != null) {
+  //       String newDateOfBirth = '$selectedDay/$selectedMonth/$selectedYear';
+  //       if (newDateOfBirth != currentUser.dateOfBirth) {
+  //         updatedData['dateOfBirth'] = newDateOfBirth;
+  //       }
+  //     }
+  //
+  //     if (selectedGender != null && selectedGender != currentUser.gender) {
+  //       updatedData['gender'] = selectedGender;
+  //     }
+  //
+  //     if (!_isValidBase64(selectedImageBase64)) {
+  //       selectedImageBase64 = ""; // إذا كانت الصورة غير صالحة، يتم تفريغها
+  //     }
+  //
+  //     if (selectedImageBase64 != currentUser.image) {
+  //       updatedData['image'] = selectedImageBase64 ?? "";
+  //     }
+  //
+  //     // إذا لم يكن هناك تغييرات، أوقف العملية
+  //     if (updatedData.isEmpty) {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text("No changes detected")),
+  //       );
+  //       return;
+  //     }
+  //
+  //     // تحديث البيانات في Firestore
+  //     await userDoc.update(updatedData);
+  //
+  //     // تحديث البيانات في Hive
+  //     HiveStorage.saveDefaultUser(UserModel(
+  //       name: updatedData['name'] ?? currentUser.name,
+  //       email: currentUser.email,
+  //       password: currentUser.password, // نستخدم القيم الحالية
+  //       dateOfBirth: updatedData['dateOfBirth'] ?? currentUser.dateOfBirth,
+  //       gender: updatedData['gender'] ?? currentUser.gender,
+  //       image: updatedData['image'] ?? currentUser.image,
+  //     ));
+  //
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text("Data Updated Successfully")),
+  //     );
+  //
+  //     AppLogs.infoLog(HiveStorage.getDefaultUser().toString());
+  //   } catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text("Something Went Wrong")),
+  //     );
+  //     AppLogs.errorLog("Update profile failed: $e");
+  //   }
+  // }
 
-      // إعداد الحقول التي سيتم تحديثها فقط إذا تغيرت
+  bool isLoading = false; // متغير لتتبع حالة اللودينج
+
+  Future<void> updateProfile() async {
+    setState(() {
+      isLoading = true; // إظهار اللودينج
+    });
+
+    try {
+      var userDoc = FirebaseFirestore.instance.collection('users').doc(currentUser.email);
+
       Map<String, dynamic> updatedData = {};
 
       if (userController.text.isNotEmpty && userController.text != currentUser.name) {
@@ -132,29 +202,29 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       }
 
       if (!_isValidBase64(selectedImageBase64)) {
-        selectedImageBase64 = ""; // إذا كانت الصورة غير صالحة، يتم تفريغها
+        selectedImageBase64 = "";
       }
 
       if (selectedImageBase64 != currentUser.image) {
         updatedData['image'] = selectedImageBase64 ?? "";
       }
 
-      // إذا لم يكن هناك تغييرات، أوقف العملية
       if (updatedData.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("No changes detected")),
         );
+        setState(() {
+          isLoading = false; // إخفاء اللودينج
+        });
         return;
       }
 
-      // تحديث البيانات في Firestore
       await userDoc.update(updatedData);
 
-      // تحديث البيانات في Hive
       HiveStorage.saveDefaultUser(UserModel(
         name: updatedData['name'] ?? currentUser.name,
         email: currentUser.email,
-        password: currentUser.password, // نستخدم القيم الحالية
+        password: currentUser.password,
         dateOfBirth: updatedData['dateOfBirth'] ?? currentUser.dateOfBirth,
         gender: updatedData['gender'] ?? currentUser.gender,
         image: updatedData['image'] ?? currentUser.image,
@@ -171,7 +241,12 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       );
       AppLogs.errorLog("Update profile failed: $e");
     }
+
+    setState(() {
+      isLoading = false; // إخفاء اللودينج بعد الانتهاء
+    });
   }
+
 
   Future<void> _pickImage() async {
     showModalBottomSheet(
@@ -184,7 +259,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
             children: [
               ListTile(
                 leading: const Icon(Icons.photo_library, color: Colors.white),
-                title: const Text('Gallery',
+                title:  Text(lang.gallery,
                     style: TextStyle(color: Colors.white)),
                 onTap: () async {
                   Navigator.of(context).pop();
@@ -202,7 +277,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
               ListTile(
                 leading: const Icon(Icons.camera_alt, color: Colors.white),
                 title:
-                const Text('Camera', style: TextStyle(color: Colors.white)),
+                Text(lang.camera, style: const TextStyle(color: Colors.white)),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
@@ -383,11 +458,22 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   ],
                 ),
               ),
+              if (isLoading)
+                Positioned.fill(
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: const Center(
+                      child: LoadingIndicator(),
+                    ),
+                  ),
+                ),
+
             ],
           ),
         ),
       ),
     );
+
   }
 
   Widget _buildLabel(ThemeData theme, String text) {

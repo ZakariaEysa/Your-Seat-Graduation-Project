@@ -25,11 +25,14 @@ class _ProfileCardState extends State<ProfileCard> {
     var theme = Theme.of(context);
 
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
-      currentUser = HiveStorage.getGoogleUser();
+      setState(() {
+        currentUser = HiveStorage.getGoogleUser();
+      });
       setState(() {});
     } else {
-      currentUser = HiveStorage.getDefaultUser();
-      setState(() {});
+      setState(() {
+        currentUser = HiveStorage.getDefaultUser();
+      });
       AppLogs.scussessLog(currentUser.toString());
     }
 
@@ -38,9 +41,18 @@ class _ProfileCardState extends State<ProfileCard> {
       appBar: AppBar(
         actions: [
           InkWell(
-            onTap: () {
-              navigateTo(context: context, screen: const ProfileEditCard());
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfileEditCard()),
+              );
+              setState(() {
+                currentUser = HiveStorage.get(HiveKeys.role) == Role.google.toString()
+                    ? HiveStorage.getGoogleUser()
+                    : HiveStorage.getDefaultUser();
+              });
             },
+
             child: Icon(
               Icons.edit,
               size: 27.sp,

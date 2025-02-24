@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bookingConfirmation":
             MessageLookupByLibrary.simpleMessage("تأكيد الحجز"),
         "buyTicket": MessageLookupByLibrary.simpleMessage("شراء التذكره"),
+        "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "canYouTellUsTheReason":
             MessageLookupByLibrary.simpleMessage("هل يمكنك إخبارنا بالسبب"),
         "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
@@ -134,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "currency": MessageLookupByLibrary.simpleMessage("عملة"),
         "cvv": MessageLookupByLibrary.simpleMessage("السيرة الذاتية"),
         "dark": MessageLookupByLibrary.simpleMessage("ليلي"),
+        "dataUpdatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم تحديث البيانات بنجاح"),
         "day": MessageLookupByLibrary.simpleMessage("اليوم"),
         "dec": MessageLookupByLibrary.simpleMessage("ديسمبر"),
         "december": MessageLookupByLibrary.simpleMessage("ديسمبر"),
@@ -184,6 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(" نسيت كلمة المرور"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور؟"),
+        "gallery": MessageLookupByLibrary.simpleMessage("الاستوديو"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "general": MessageLookupByLibrary.simpleMessage("عام"),
         "hello": MessageLookupByLibrary.simpleMessage("مرحبًا"),
@@ -347,6 +351,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمة المرور غير صحيحة"),
         "year": MessageLookupByLibrary.simpleMessage("السنة"),
         "yes": MessageLookupByLibrary.simpleMessage("نعم "),
+        "youHaveToSignInToContinue":
+            MessageLookupByLibrary.simpleMessage("يجب عليك تسجيل الدخول اولا"),
         "youJustNeedToEnterTheOtpSentToTheRegisteredEmailAddress":
             MessageLookupByLibrary.simpleMessage(
                 "فقط أدخل رمز التحقق المرسل إلى عنوان البريد الالكتروني المسجل."),

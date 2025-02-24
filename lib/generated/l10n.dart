@@ -1358,6 +1358,46 @@ class S {
     );
   }
 
+  /// `You Have To Sign In To Continue`
+  String get youHaveToSignInToContinue {
+    return Intl.message(
+      'You Have To Sign In To Continue',
+      name: 'youHaveToSignInToContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get gallery {
+    return Intl.message(
+      'Gallery',
+      name: 'gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data Updated Successfully`
+  String get dataUpdatedSuccessfully {
+    return Intl.message(
+      'Data Updated Successfully',
+      name: 'dataUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `New movies ! Easy booking`
   String get newMoviesEasyBooking {
     return Intl.message(

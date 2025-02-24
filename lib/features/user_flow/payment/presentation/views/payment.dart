@@ -92,6 +92,7 @@ class Payment extends StatelessWidget {
                                         "Something went wrong please try again and check your connection");
                                   }
                                 },
+
                                 child: IconButton(
                                     onPressed: () {
                                      

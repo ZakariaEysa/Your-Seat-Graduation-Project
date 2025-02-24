@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore import
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
 import '../widgets/playing_movies.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
@@ -44,9 +48,9 @@ class NowPlaying extends StatelessWidget {
           final movies = snapshot.data!;
 
           return Padding(
-            padding: EdgeInsets.only(left: 8.0.w,top: 8.0.h),
+            padding: EdgeInsets.only(left: 8.0.w, top: 8.0.h),
             child: GridView.builder(
-              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 20.h,
                 crossAxisCount: 2, // Number of columns
                 crossAxisSpacing: 1.w,
@@ -55,17 +59,25 @@ class NowPlaying extends StatelessWidget {
               itemCount: movies.length,
               itemBuilder: (context, index) {
                 final movie = movies[index];
-                return GestureDetector(
-                  onTap: (){
-                    navigateTo(context: context, screen: MovieDetails(model:movie,));
-                  },
-                  child: PlayingMovies(
+                return BlocProvider(
+                  create: (context) => MovieDetailsCubit(
+                      MovieDetailsRepoImpl(MovieDetailsRemoteDataSourceImpl())),
+                  child: GestureDetector(
+                    onTap: () {
+                      navigateTo(
+                          context: context,
+                          screen: MovieDetails(
+                            model: movie,
+                          ));
+                    },
+                    child: PlayingMovies(
                       movies: movie,
                       rate: movie.rating.toString(),
-                      duration: movie.duration??"",
-                      category: movie.category??"",
-                      image: movie.posterImage??"",
-                      title: movie.name??"",
+                      duration: movie.duration ?? "",
+                      category: movie.category ?? "",
+                      image: movie.posterImage ?? "",
+                      title: movie.name ?? "",
+                    ),
                   ),
                 );
               },
@@ -76,5 +88,3 @@ class NowPlaying extends StatelessWidget {
     );
   }
 }
-
-

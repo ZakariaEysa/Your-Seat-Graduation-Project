@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
@@ -21,9 +25,8 @@ List<Map<String, dynamic>> movies = [];
 class _ComingSoonsState extends State<ComingSoons> {
   Future<List<MoviesDetailsModel>> _fetchMovies() async {
     try {
-      final snapshot = await FirebaseFirestore.instance
-          .collection('Movies')
-          .get();
+      final snapshot =
+          await FirebaseFirestore.instance.collection('Movies').get();
       return snapshot.docs
           .map((doc) => MoviesDetailsModel.fromJson(doc.data()))
           .toList();
@@ -52,7 +55,7 @@ class _ComingSoonsState extends State<ComingSoons> {
           final movies = snapshot.data!;
 
           return Padding(
-            padding: EdgeInsets.only(left: 8.0.w, top:8.0.h),
+            padding: EdgeInsets.only(left: 8.0.w, top: 8.0.h),
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 20.h,
@@ -64,20 +67,25 @@ class _ComingSoonsState extends State<ComingSoons> {
               itemCount: movies.length,
               itemBuilder: (context, index) {
                 final movie = movies[index];
-                return GestureDetector(
-                  onTap: (){
-                    navigateTo(context: context, screen: MovieDetails(model: movie,));
-
-
-                  },
-
-                  child: PlayingMovies(
-                    movies: movie,
-                    rate: movie.rating.toString(),
-                    duration: movie.duration ?? "",
-                    category: movie.category ?? "",
-                    image: movie.posterImage ?? "",
-                    title: movie.name ?? "",
+                return BlocProvider(
+                  create: (context) => MovieDetailsCubit(
+                      MovieDetailsRepoImpl(MovieDetailsRemoteDataSourceImpl())),
+                  child: GestureDetector(
+                    onTap: () {
+                      navigateTo(
+                          context: context,
+                          screen: MovieDetails(
+                            model: movie,
+                          ));
+                    },
+                    child: PlayingMovies(
+                      movies: movie,
+                      rate: movie.rating.toString(),
+                      duration: movie.duration ?? "",
+                      category: movie.category ?? "",
+                      image: movie.posterImage ?? "",
+                      title: movie.name ?? "",
+                    ),
                   ),
                 );
               },

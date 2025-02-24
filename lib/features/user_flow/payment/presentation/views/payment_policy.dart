@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/data/remote_data_source/payment_remote_data_source.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/data/repos_impl/payment_repo_impl.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
 import 'payment.dart';
 import '../widgets/payment_policy_part.dart';
 import '../../../../../utils/navigation.dart';
@@ -160,7 +164,13 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
               text: lang.continnue,
               onTap: () {
                 if (isChecked) {
-                  navigateAndReplace(context: context, screen: Payment());
+                  navigateAndReplace(
+                      context: context,
+                      screen: BlocProvider(
+                        create: (context) => PaymentCubit(
+                            PaymentRepoImpl(PaymentRemoteDataSourceImpl())),
+                        child: Payment(),
+                      ));
                 } else {
                   showCenteredSnackBar(context, "pleaseAgreeWithPrivacyPolicy");
                 }

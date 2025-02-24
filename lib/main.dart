@@ -30,9 +30,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'features/user_flow/Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
 import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
-
+import 'package:permission_handler/permission_handler.dart';
+Future<void> requestPermissions() async {
+  await Permission.camera.request();
+  await Permission.storage.request();
+}
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await requestPermissions();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

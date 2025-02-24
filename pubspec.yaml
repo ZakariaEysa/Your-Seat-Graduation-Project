@@ -53,7 +53,6 @@ dependencies:
   timeline_calendar: ^1.0.2
   url_launcher: ^6.1.5
   permission_handler: ^11.0.1
-
   webview_flutter: ^4.10.0
 
 dev_dependencies:

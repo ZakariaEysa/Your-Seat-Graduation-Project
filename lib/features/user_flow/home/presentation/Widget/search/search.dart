@@ -2,16 +2,20 @@
 import 'package:flutter/material.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/search/search_results_widgets.dart';
 
+import '../../../../../../generated/l10n.dart';
+
 class SearchBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
+
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: GestureDetector(
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Search()),
+            MaterialPageRoute(builder: (context) => SearchResultWidget()),
           );
         },
         child: AbsorbPointer(
@@ -21,7 +25,7 @@ class SearchBarWidget extends StatelessWidget {
                 padding: EdgeInsets.all(12.0),
                 child: Icon(Icons.search, color: Colors.white70),
               ),
-              hintText: "Search...",
+              hintText: lang.search,
               hintStyle: TextStyle(color: Colors.white70, fontSize: 14.0),
               filled: true,
               fillColor: Colors.white.withOpacity(0.3),

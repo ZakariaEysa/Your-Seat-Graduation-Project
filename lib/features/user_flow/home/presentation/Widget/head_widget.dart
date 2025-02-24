@@ -9,6 +9,7 @@ class HeadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
       height: 120.h,
       child: Row(

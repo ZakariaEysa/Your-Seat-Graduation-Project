@@ -1,32 +1,31 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/cinema_details.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/search/search_cubit/search_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../../widgets/network_image/image_replacer.dart';
 import '../../../../movie_details/data/model/movies_details_model/crew.dart';
 
-class Search extends StatefulWidget {
-  const Search({super.key});
+class SearchResultWidget extends StatefulWidget {
+  const SearchResultWidget({super.key});
 
   @override
-  _SearchState createState() => _SearchState();
+  _SearchResultWidgetState createState() => _SearchResultWidgetState();
 }
 
-class _SearchState extends State<Search> {
+class _SearchResultWidgetState extends State<SearchResultWidget> {
   final FocusNode _focusNode = FocusNode();
   final TextEditingController _controller = TextEditingController();
-  List<Map<String, dynamic>> searchResults = [];
 
   @override
   void initState() {
     super.initState();
     _controller.addListener(() {
-      fetchData();
+      context.read<SearchCubit>().fetchData(_controller.text);
     });
   }
 
@@ -83,115 +82,141 @@ class _SearchState extends State<Search> {
                 fontSize: 14.sp,
               ),
             ),
-            searchResults.isEmpty
-                ? Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 17.0),
-                child: Text(
-                  lang.noResultsFound,
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ),
-            )
-                : Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: searchResults.length,
-                itemBuilder: (context, index) {
-                  final result = searchResults[index];
-                  return Padding(
-                    padding: EdgeInsets.all(8.0.w),
-                    child: InkWell(
-                      onTap: (){
-                        AppLogs.errorLog(result['name'].toString());
-                        if(result['name'].toString().contains('Cinema')){
-                          navigateTo(context: context, screen: CinemaDetails(cinemaId: result['name'],));
-                        }else{
-                          navigateTo(context: context, screen: MovieDetails(model: MoviesDetailsModel(
-                            name: result['name'],
-                            castImages: result['cast_images'],
-                            ageRating: result['ageRating'],
-                            cast: result['cast'],
-                            category: result['category'],
-                            crew: Crew(director: result['crew']['director'],
-                                producer: result['crew']['producer'],
-                                writer: result['crew']['writer']
-                            ),
-                            description: result['description'],
-                            duration: result['duration'],
-                            language: result['language'],
-                            posterImage: result['poster_image'],
-                            rating: result['rating'],
-                            releaseDate: result['releaseDate'],
-                            trailer: result['trailer'],
-                          )));
-                        }
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(8.0.w),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0.r),
-                          color: Colors.black.withOpacity(0.2),
+            Expanded(
+              child: BlocBuilder<SearchCubit, SearchState>(
+                builder: (context, state) {
+                  if (state is SearchLoading) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (state is SearchSuccess) {
+                    if (state.data.isEmpty) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 17.0),
+                          child: Text(
+                            lang.noResultsFound,
+                            style: TextStyle(color: Colors.white70),
+                          ),
                         ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0.r),
-                              child: ImageReplacer(
-                                imageUrl:
-                                result['poster_image'] ??
-                                    'https://via.placeholder.com/50',
-                                width: 80.w,
-                                height: 100.h,
-                                fit: BoxFit.fill,
+                      );
+                    }
+                    return ListView.builder(
+                      itemCount: state.data.length,
+                      itemBuilder: (context, index) {
+                        final result = state.data[index];
+                        return Padding(
+                          padding: EdgeInsets.all(8.0.w),
+                          child: InkWell(
+                            onTap: () {
+                              if (result['name'].toString().contains('cinema')) {
+                                navigateTo(
+                                  context: context,
+                                  screen: CinemaDetails(cinemaId: result['Id']),
+                                );
+                              } else {
+                                navigateTo(
+                                  context: context,
+                                  screen: MovieDetails(
+                                    model: MoviesDetailsModel(
+                                      name: result['name'],
+                                      castImages: result['cast_images'],
+                                      ageRating: result['ageRating'],
+                                      cast: result['cast'],
+                                      category: result['category'],
+                                      crew: Crew(
+                                        director: result['crew']['director'],
+                                        producer: result['crew']['producer'],
+                                        writer: result['crew']['writer'],
+                                      ),
+                                      description: result['description'],
+                                      duration: result['duration'],
+                                      language: result['language'],
+                                      posterImage: result['poster_image'],
+                                      rating: result['rating'],
+                                      releaseDate: result['releaseDate'],
+                                      trailer: result['trailer'],
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(8.0.w),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0.r),
+                                color: Colors.black.withOpacity(0.2),
                               ),
-                            ),
-                            SizedBox(width: 10.w),
-                            Expanded(
-                              child: Column(
+                              child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    result['name'] ??
-                                        result['title'] ??
-                                        'Unknown',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.bold),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0.r),
+                                    child: ImageReplacer(
+                                      imageUrl: result['poster_image'] ??
+                                          'https://via.placeholder.com/50',
+                                      width: 80.w,
+                                      height: 100.h,
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
-                                  SizedBox(height: 5.h),
-                                  Text(
-                                    result['category'] ?? 'Cinema',
-                                    style: TextStyle(
-                                        color: Colors.white70, fontSize: 14.sp),
-                                  ),
-                                  SizedBox(height: 5.h),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        result['rating']?.toString() ??
-                                            'Unknown',
-                                        style: TextStyle(
+                                  SizedBox(width: 10.w),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          result['name'] ??
+                                              result['title'] ??
+                                              'Unknown',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        SizedBox(height: 5.h),
+                                        Text(
+                                          result['category'] ?? 'Cinema',
+                                          style: TextStyle(
                                             color: Colors.white70,
-                                            fontSize: 14.sp),
-                                      ),
-                                      SizedBox(width: 5.w),
-                                      Icon(Icons.star,
-                                          color: Colors.yellow, size: 17.sp),
-                                    ],
+                                            fontSize: 14.sp,
+                                          ),
+                                        ),
+                                        SizedBox(height: 5.h),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              result['rating']?.toString() ?? 'Unknown',
+                                              style: TextStyle(
+                                                color: Colors.white70,
+                                                fontSize: 14.sp,
+                                              ),
+                                            ),
+                                            SizedBox(width: 5.w),
+                                            Icon(Icons.star,
+                                                color: Colors.yellow, size: 17.sp),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        );
+                      },
+                    );
+                  } else if (state is SearchError) {
+                    return Center(
+                      child: Text(
+                        state.message,
+                        style: TextStyle(color: Colors.white70),
                       ),
-                    ),
-                  );
+                    );
+                  }
+                  return Center(child: Text('ابدأ البحث الآن', style: TextStyle(color: Colors.white70)));
                 },
               ),
             ),
@@ -200,263 +225,9 @@ class _SearchState extends State<Search> {
       ),
     );
   }
-
-  Future<void> fetchData() async {
-    String searchTerm = _controller.text.trim();
-    if (searchTerm.isEmpty) {
-      setState(() => searchResults.clear());
-      return;
-    }
-
-    List<Map<String, dynamic>> results = await searchInCollections(searchTerm);
-    if (mounted) {
-      setState(() {
-        searchResults = results;
-      });
-    }
-  }
-
-
-
-
-  // Future<List<Map<String, dynamic>>> searchInCollections(String searchTerm) async {
-  //   final db = FirebaseFirestore.instance;
-  //   Set<String> seenIds = {};
-  //   List<Map<String, dynamic>> results = [];
-  //
-  //   if (searchTerm.isEmpty) return results; // ✅ تفريغ الليستة لو البحث فاضي
-  //
-  //   try {
-  //     String lowerCaseSearchTerm = searchTerm.toLowerCase();
-  //
-  //     // ✅ البحث عن الأفلام بالاسم أو جزء منه
-  //     QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
-  //
-  //     for (var doc in moviesSnapshot.docs) {
-  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-  //
-  //       String movieName = data['name']?.toString().toLowerCase() ?? '';
-  //       if (movieName.contains(lowerCaseSearchTerm) && !seenIds.contains(doc.id)) {
-  //         seenIds.add(doc.id);
-  //         results.add({'id': doc.id, ...data});
-  //       }
-  //
-  //       // ✅ البحث عن الممثلين بالاسم الجزئي
-  //       List<dynamic> castList = data['cast'] ?? [];
-  //       bool hasMatchingActor = castList.any(
-  //               (actor) => actor.toString().toLowerCase().contains(lowerCaseSearchTerm));
-  //
-  //       if (hasMatchingActor && !seenIds.contains(doc.id)) {
-  //         seenIds.add(doc.id);
-  //         results.add({'id': doc.id, ...data});
-  //       }
-  //     }
-  //
-  //     // ✅ البحث في السينمات بنفس المنطق
-  //     QuerySnapshot cinemasSnapshot = await db.collection('Cinemas').get();
-  //     for (var doc in cinemasSnapshot.docs) {
-  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-  //
-  //       String cinemaName = data['name']?.toString().toLowerCase() ?? '';
-  //       if (cinemaName.contains(lowerCaseSearchTerm) && !seenIds.contains(doc.id)) {
-  //         seenIds.add(doc.id);
-  //         results.add({'id': doc.id, ...data});
-  //       }
-  //     }
-  //   } catch (e) {
-  //     print('❌ Error searching: $e');
-  //   }
-  //
-  //   return results; // ✅ إرجاع النتائج بعد التحديث
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  Future<List<Map<String, dynamic>>> searchInCollections(String searchTerm) async {
-    final db = FirebaseFirestore.instance;
-    Set<String> seenIds = {};
-    List<Map<String, dynamic>> results = [];
-
-    if (searchTerm.isEmpty) return results; // ✅ تفريغ الليستة لو البحث فاضي
-
-    try {
-      String lowerCaseSearchTerm = searchTerm.toLowerCase();
-      bool isSingleLetter = lowerCaseSearchTerm.length == 1; // ✅ التحقق إذا كان البحث بحرف واحد فقط
-
-      // ✅ البحث عن الأفلام بالاسم فقط إذا كان البحث بحرف واحد
-      QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
-
-      for (var doc in moviesSnapshot.docs) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-
-        String movieName = data['name']?.toString().toLowerCase() ?? '';
-        List<dynamic> castList = data['cast'] ?? [];
-
-        bool movieMatches = isSingleLetter
-            ? movieName.startsWith(lowerCaseSearchTerm) // ✅ لو حرف واحد، يبحث فقط في بداية اسم الفيلم
-            : movieName.contains(lowerCaseSearchTerm); // ✅ لو أكثر من حرف، يمكن أن يكون في أي مكان
-
-        bool actorMatches = !isSingleLetter &&
-            castList.any((actor) => actor.toString().toLowerCase() == lowerCaseSearchTerm);
-        // ✅ البحث عن اسم الممثل كاملاً فقط إذا كان البحث بأكثر من حرف
-
-        if ((movieMatches || actorMatches) && !seenIds.contains(doc.id)) {
-          seenIds.add(doc.id);
-          results.add({'id': doc.id, ...data});
-        }
-      }
-
-      // ✅ البحث في السينمات بنفس منطق البحث عن الأفلام
-      QuerySnapshot cinemasSnapshot = await db.collection('Cinemas').get();
-      for (var doc in cinemasSnapshot.docs) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-
-        String cinemaName = data['name']?.toString().toLowerCase() ?? '';
-        if (cinemaName.startsWith(lowerCaseSearchTerm) && !seenIds.contains(doc.id)) {
-          seenIds.add(doc.id);
-          results.add({'id': doc.id, ...data});
-        }
-      }
-    } catch (e) {
-      print('❌ Error searching: $e');
-    }
-
-    return results; // ✅ إرجاع النتائج بعد التحديث
-  }
-
-
-
-
-
-  // Future<List<Map<String, dynamic>>> searchInCollections(String searchTerm) async {
-  //   final db = FirebaseFirestore.instance;
-  //   Set<String> seenIds = {};
-  //   List<Map<String, dynamic>> results = [];
-  //
-  //   if (searchTerm.isEmpty) return results; // ✅ تفريغ الليستة لو البحث فاضي
-  //
-  //   try {
-  //     String lowerCaseSearchTerm = searchTerm.toLowerCase();
-  //     bool isSingleLetter = lowerCaseSearchTerm.length == 1; // ✅ التحقق إذا كان البحث بحرف واحد فقط
-  //
-  //     // ✅ البحث عن الأفلام بالاسم فقط إذا كان البحث بحرف واحد
-  //     QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
-  //
-  //     for (var doc in moviesSnapshot.docs) {
-  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-  //
-  //       String movieName = data['name']?.toString().toLowerCase() ?? '';
-  //       List<dynamic> castList = data['cast'] ?? [];
-  //
-  //       bool movieMatches = isSingleLetter
-  //           ? movieName.startsWith(lowerCaseSearchTerm) // ✅ لو حرف واحد، يبحث فقط في بداية اسم الفيلم
-  //           : movieName.contains(lowerCaseSearchTerm); // ✅ لو أكثر من حرف، يمكن أن يكون في أي مكان
-  //
-  //       bool actorMatches = castList.any((actor) =>
-  //           actor.toString().toLowerCase().startsWith(lowerCaseSearchTerm));
-  //       // ✅ البحث فقط عن الممثلين اللي اسمهم يبدأ بالحروف المدخلة
-  //
-  //       if ((movieMatches || actorMatches) && !seenIds.contains(doc.id)) {
-  //         seenIds.add(doc.id);
-  //         results.add({'id': doc.id, ...data});
-  //       }
-  //     }
-  //
-  //     // ✅ البحث في السينمات بنفس منطق البحث عن الأفلام
-  //     QuerySnapshot cinemasSnapshot = await db.collection('Cinemas').get();
-  //     for (var doc in cinemasSnapshot.docs) {
-  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-  //
-  //       String cinemaName = data['name']?.toString().toLowerCase() ?? '';
-  //       if (cinemaName.startsWith(lowerCaseSearchTerm) && !seenIds.contains(doc.id)) {
-  //         seenIds.add(doc.id);
-  //         results.add({'id': doc.id, ...data});
-  //       }
-  //     }
-  //   } catch (e) {
-  //     print('❌ Error searching: $e');
-  //   }
-  //
-  //   return results; // ✅ إرجاع النتائج بعد التحديث
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Future<List<Map<String, dynamic>>> castSearch(String searchTerm) async {
-  //   final db = FirebaseFirestore.instance;
-  //   List<Map<String, dynamic>> results = [];
-  //
-  //   if (searchTerm.isEmpty) return results; // لو البحث فاضي، الليستة تبقى فاضية
-  //
-  //   try {
-  //     String lowerCaseSearchTerm = searchTerm.toLowerCase();
-  //
-  //     /// 🟢 البحث عن الأفلام
-  //     QuerySnapshot moviesSnapshot = await db.collection('Movies').get();
-  //     results.clear(); // 🛑 تفريغ الليستة في كل مرة عشان تتجدد بالنتائج الجديدة
-  //
-  //     for (var doc in moviesSnapshot.docs) {
-  //       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-  //
-  //       // ✅ البحث في اسم الفيلم جزئيًا
-  //       String movieName = data['name']?.toString().toLowerCase() ?? '';
-  //       bool movieMatch = movieName.contains(lowerCaseSearchTerm);
-  //
-  //       // ✅ البحث في قائمة الممثلين جزئيًا
-  //       List<dynamic> castList = data['cast'] ?? [];
-  //       bool actorMatch = castList.any(
-  //               (actor) => actor.toString().toLowerCase().contains(lowerCaseSearchTerm));
-  //
-  //       // ✅ إضافة النتيجة لو تطابقت مع اسم الفيلم أو الممثلين
-  //       if ((movieMatch || actorMatch) &&
-  //           !results.any((item) => item['id'] == doc.id)) {
-  //         results.add({'id': doc.id, ...data});
-  //       }
-  //     }
-  //   } catch (e) {
-  //     print('❌ Error searching: $e');
-  //   }
-  //
-  //   return results;
-  // }
 }
+
+
+
+
 

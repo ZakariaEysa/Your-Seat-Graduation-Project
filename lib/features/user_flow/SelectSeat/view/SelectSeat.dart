@@ -187,20 +187,10 @@ class _SelectSeatState extends State<SelectSeat> {
                 fit: BoxFit.cover,
               ),
             ),
-            Row(
-              children: [
-                Left(
-                  updateTotalPrice: _updateTotalPrice,
-                  updateSeatCategory: _updateSeatCategory,
-                  reservedSeats: reservedSeats,
-                ),
-                SizedBox(width: 12.w),
-                Right(
-                  updateTotalPrice: _updateTotalPrice,
-                  updateSeatCategory: _updateSeatCategory,
-                  reservedSeats: reservedSeats,
-                ),
-              ],
+            SeatsGrid(
+              updateTotalPrice: _updateTotalPrice,
+              updateSeatCategory: _updateSeatCategory,
+              reservedSeats: reservedSeats,
             ),
             SizedBox(height: 25.h),
             Row(

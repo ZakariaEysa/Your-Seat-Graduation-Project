@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Right extends StatefulWidget {
+class SeatsGrid extends StatefulWidget {
   final Function(int) updateTotalPrice;
   final Function(int) updateSeatCategory;
-  final List<String> reservedSeats; // ✅ المقاعد المحجوزة المتغيرة
+  final List<String> reservedSeats;
 
-  const Right({
+  const SeatsGrid({
     Key? key,
     required this.updateTotalPrice,
     required this.updateSeatCategory,
@@ -13,11 +13,11 @@ class Right extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _RightState createState() => _RightState();
+  _SeatsGridState createState() => _SeatsGridState();
 }
 
-class _RightState extends State<Right> {
-  List<List<String>> rightSeats = [];
+class _SeatsGridState extends State<SeatsGrid> {
+  List<List<String>> seats = [];
 
   @override
   void initState() {
@@ -26,7 +26,7 @@ class _RightState extends State<Right> {
   }
 
   @override
-  void didUpdateWidget(covariant Right oldWidget) {
+  void didUpdateWidget(covariant SeatsGrid oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.reservedSeats != oldWidget.reservedSeats) {
       _initializeSeats(); // ✅ تحديث المقاعد عند تغير `reservedSeats`
@@ -34,26 +34,32 @@ class _RightState extends State<Right> {
   }
 
   void _initializeSeats() {
-    rightSeats = List.generate(9, (_) => List.filled(6, 'a'));
+    int totalColumns = 13; // ✅ عدد الأعمدة مع إضافة الممر في المنتصف
+    seats = List.generate(9, (_) => List.filled(totalColumns, 'a'));
+
     for (var seat in widget.reservedSeats) {
-      int row = int.parse(seat) ~/ 6;
-      int col = int.parse(seat) % 6;
-      if (row < rightSeats.length && col < rightSeats[row].length) {
-        rightSeats[row][col] = 'r';
+      int seatNumber = int.parse(seat);
+      int row = seatNumber ~/ 12;
+      int col = seatNumber % 12;
+      if (col >= 6) col++; // ✅ تعويض الممر في الحسابات
+      if (row < seats.length && col < seats[row].length) {
+        seats[row][col] = 'r'; // ✅ تحديث حالة المقعد كمحجوز
       }
     }
     setState(() {});
   }
 
   void _selectSeat(int x, int y) {
+    if (seats[x][y] == 'r') return; // ❌ لا يمكن تحديد المقعد المحجوز
+
     setState(() {
-      if (rightSeats[x][y] == 'a') {
+      if (seats[x][y] == 'a') {
         widget.updateSeatCategory(x);
         widget.updateTotalPrice(_calculateSeatPrice(x));
-        rightSeats[x][y] = 's';
-      } else if (rightSeats[x][y] == 's') {
+        seats[x][y] = 's';
+      } else if (seats[x][y] == 's') {
         widget.updateTotalPrice(-_calculateSeatPrice(x));
-        rightSeats[x][y] = 'a';
+        seats[x][y] = 'a';
       }
     });
   }
@@ -61,15 +67,18 @@ class _RightState extends State<Right> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: List.generate(rightSeats.length, (rowIndex) {
+      children: List.generate(seats.length, (rowIndex) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(rightSeats[rowIndex].length, (colIndex) {
-            String seat = rightSeats[rowIndex][colIndex];
+          children: List.generate(seats[rowIndex].length, (colIndex) {
+            if (colIndex == 6) {
+              return const SizedBox(width: 30); // ✅ الممر بين الجانبين
+            }
+            String seat = seats[rowIndex][colIndex];
             String seatImage = _getSeatImage(seat);
 
             return GestureDetector(
-              onTap: seat == 'r' ? null : () => _selectSeat(rowIndex, colIndex),
+              onTap: () => _selectSeat(rowIndex, colIndex),
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Image.asset(

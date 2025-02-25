@@ -32,6 +32,7 @@ class _SelectSeatState extends State<SelectSeat> {
   List<int> days = [];
   List<int> months = [];
   String _seatCategory = '';
+  String _highestSeatCategory = '';
 
   int? _selectedDay;
   List<Map<String, dynamic>> filteredTimes = [];
@@ -272,6 +273,7 @@ class _SelectSeatState extends State<SelectSeat> {
                         showCenteredSnackBar(
                             context, "you cant select more than 5 seats");
                       } else {
+                        _getHiestSeatCategory();
                         navigateTo(
                             context: context,
                             screen: PaymentPolicy(
@@ -279,7 +281,7 @@ class _SelectSeatState extends State<SelectSeat> {
                                 date: _selectedDay.toString(),
                                 time: _selectedTime ?? "00:00",
                                 model: widget.movie,
-                                seatCategory: _seatCategory,
+                                seatCategory: _highestSeatCategory,
                                 seats: selectedSeats,
                                 price: _totalPrice,
                                 location: " -"));
@@ -304,5 +306,21 @@ class _SelectSeatState extends State<SelectSeat> {
         ),
       ),
     );
+  }
+
+  void _getHiestSeatCategory() {
+    selectedSeats.sort((a, b) => num.parse(a).compareTo(num.parse(b)));
+
+    num seatNumber = num.parse(selectedSeats[0]);
+    AppLogs.debugLog(selectedSeats.toString());
+
+    AppLogs.debugLog(seatNumber.toString());
+    if (seatNumber <= 24) {
+      _highestSeatCategory = "VIP";
+    } else if (seatNumber <= 48) {
+      _highestSeatCategory = "Premium";
+    } else {
+      _highestSeatCategory = "Standard";
+    }
   }
 }

@@ -7,6 +7,7 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/
 import 'package:yourseatgraduationproject/features/user_flow/payment/data/remote_data_source/payment_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/data/repos_impl/payment_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'payment.dart';
 import '../widgets/payment_policy_part.dart';
 import '../../../../../utils/navigation.dart';
@@ -24,7 +25,8 @@ class PaymentPolicy extends StatefulWidget {
       required this.price,
       required this.location,
       required this.date,
-      required this.time, required this.cinemaId});
+      required this.time,
+      required this.cinemaId});
   final MoviesDetailsModel model;
   final String seatCategory;
   final List seats;
@@ -33,7 +35,6 @@ class PaymentPolicy extends StatefulWidget {
   final String date;
   final String time;
   final String cinemaId;
-
 
   @override
   State<PaymentPolicy> createState() => _PaymentPolicyState();
@@ -44,6 +45,7 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
 
   @override
   Widget build(BuildContext context) {
+    AppLogs.scussessLog(widget.seatCategory.toString());
     var lang = S.of(context);
     final theme = Theme.of(context);
     return ScaffoldF(

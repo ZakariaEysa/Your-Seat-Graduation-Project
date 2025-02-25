@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/card.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_test.dart';
@@ -14,7 +15,25 @@ import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 
 class Payment extends StatelessWidget {
-  const Payment({super.key});
+  const Payment(
+      {super.key,
+      required this.model,
+      required this.seatCategory,
+      required this.seats,
+      required this.price,
+      required this.location,
+      required this.date,
+      required this.time,
+      required this.cinemaId});
+  final MoviesDetailsModel model;
+  final List seats;
+  final String seatCategory;
+
+  final num price;
+  final String location;
+  final String date;
+  final String time;
+  final String cinemaId;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +68,12 @@ class Payment extends StatelessWidget {
                       height: 20.h,
                     ),
                     PaymentPart(
-                      total: '210.0 EGP',
+                      date:date,
+                      time:time,
+                      location: location,
+                      model: model,
+                      seats: seats,
+                      total: '$price EGP',
                       title: lang.paymentMethod,
                     ),
                     Container(
@@ -92,10 +116,8 @@ class Payment extends StatelessWidget {
                                         "Something went wrong please try again and check your connection");
                                   }
                                 },
-
                                 child: IconButton(
                                     onPressed: () {
-                                     
                                       PaymentCubit.get(context)
                                           .payWithPayMob(100);
 

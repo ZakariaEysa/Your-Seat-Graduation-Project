@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_policy.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/app_logs.dart';
@@ -12,14 +16,17 @@ import '../widgets/seats_grid.dart';
 import '../widgets/seats_type.dart';
 
 class SelectSeat extends StatefulWidget {
-  const SelectSeat({super.key});
+  const SelectSeat({super.key, required this.cinemaId, required this.movie});
 
+  final String cinemaId;
+
+  final MoviesDetailsModel movie;
   @override
   _SelectSeatState createState() => _SelectSeatState();
 }
 
 class _SelectSeatState extends State<SelectSeat> {
-  int _totalPrice = 0;
+  num _totalPrice = 0;
   List<Map<String, dynamic>> timesList = [];
   List<String> dates = [];
   List<int> days = [];
@@ -34,7 +41,8 @@ class _SelectSeatState extends State<SelectSeat> {
   @override
   void initState() {
     super.initState();
-    _fetchMovieTimes("Point 90 Cinema", "The Dark Knight");
+    // _fetchMovieTimes("Point 90 Cinema", "The Dark Knight");
+    _fetchMovieTimes(widget.cinemaId, widget.movie.name.toString());
   }
 
   void _updateTotalPrice(int priceChange) {
@@ -256,7 +264,27 @@ class _SelectSeatState extends State<SelectSeat> {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (selectedSeats.isEmpty) {
+                        showCenteredSnackBar(
+                            context, "you have to select seats");
+                      } else if (selectedSeats.length > 5) {
+                        showCenteredSnackBar(
+                            context, "you cant select more than 5 seats");
+                      } else {
+                        navigateTo(
+                            context: context,
+                            screen: PaymentPolicy(
+                                cinemaId: widget.cinemaId,
+                                date: _selectedDay.toString(),
+                                time: _selectedTime ?? "00:00",
+                                model: widget.movie,
+                                seatCategory: _seatCategory,
+                                seats: selectedSeats,
+                                price: _totalPrice,
+                                location: " -"));
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF09FBD3),
                       minimumSize: Size(155.w, 42.h),

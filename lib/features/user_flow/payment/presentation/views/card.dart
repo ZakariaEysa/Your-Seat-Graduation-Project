@@ -37,7 +37,7 @@ class _PaymentCardState extends State<PaymentCard> {
           backgroundColor: const Color(0xFF2E1371),
           leading: IconButton(
               onPressed: () {
-                navigateTo(context: context, screen: Payment());
+                // navigateTo(context: context, screen: Payment());
               },
               icon: Icon(
                 Icons.arrow_back,

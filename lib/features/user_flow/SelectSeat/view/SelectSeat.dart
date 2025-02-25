@@ -112,6 +112,7 @@ class _SelectSeatState extends State<SelectSeat> {
   /// دالة لتصفية الأوقات بناءً على اليوم المحدد
   void _filterTimesForSelectedDay() {
     if (_selectedDay != null) {
+      AppLogs.scussessLog(timesList.toString());
       setState(() {
         filteredTimes = timesList
             .where((e) => DateTime.parse(e['date']).day == _selectedDay)

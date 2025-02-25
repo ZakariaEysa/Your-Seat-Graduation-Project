@@ -2,36 +2,57 @@ import 'package:flutter/material.dart';
 
 class Right extends StatefulWidget {
   final Function(int) updateTotalPrice;
-  final Function(int) updateSeatCategory; // إضافة الدالة الجديدة
+  final Function(int) updateSeatCategory;
+  final List<String> reservedSeats; // ✅ المقاعد المحجوزة المتغيرة
 
-  const Right({super.key, required this.updateTotalPrice, required this.updateSeatCategory});
-
+  const Right({
+    Key? key,
+    required this.updateTotalPrice,
+    required this.updateSeatCategory,
+    required this.reservedSeats,
+  }) : super(key: key);
 
   @override
-  State<Right> createState() => _RightState();
+  _RightState createState() => _RightState();
 }
 
 class _RightState extends State<Right> {
-  List<List<String>> rightSeats = [
-    ['a', 'a', 'a', 'a', 'a', 'a'],
-    ['a', 'a', 'a', 'a', 'a', 'a'],
-    ['r', 'r', 'a', 'a', 'a', 'r'],
-    ['a', 'a', 'a', 'a', 'a', 'a'],
-    ['a', 'a', 'a', 'a', 'a', 'a'],
-    ['a', 'a', 'a', 'a', 'a', 'a'],
-    ['a', 'a', 'a', 'a', 'a', 'a'],
-    ['a', 'a', 'a', 'a', 'a', 'a'],
-    ['r', 'r', 'r', 'r', 'r', 'r'],
-  ];
+  List<List<String>> rightSeats = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeSeats();
+  }
+
+  @override
+  void didUpdateWidget(covariant Right oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.reservedSeats != oldWidget.reservedSeats) {
+      _initializeSeats(); // ✅ تحديث المقاعد عند تغير `reservedSeats`
+    }
+  }
+
+  void _initializeSeats() {
+    rightSeats = List.generate(9, (_) => List.filled(6, 'a'));
+    for (var seat in widget.reservedSeats) {
+      int row = int.parse(seat) ~/ 6;
+      int col = int.parse(seat) % 6;
+      if (row < rightSeats.length && col < rightSeats[row].length) {
+        rightSeats[row][col] = 'r';
+      }
+    }
+    setState(() {});
+  }
 
   void _selectSeat(int x, int y) {
     setState(() {
       if (rightSeats[x][y] == 'a') {
-        widget.updateTotalPrice(_calculateSeatPrice(x));
         widget.updateSeatCategory(x);
+        widget.updateTotalPrice(_calculateSeatPrice(x));
         rightSeats[x][y] = 's';
       } else if (rightSeats[x][y] == 's') {
-        widget.updateTotalPrice(- _calculateSeatPrice(x));
+        widget.updateTotalPrice(-_calculateSeatPrice(x));
         rightSeats[x][y] = 'a';
       }
     });
@@ -48,7 +69,7 @@ class _RightState extends State<Right> {
             String seatImage = _getSeatImage(seat);
 
             return GestureDetector(
-              onTap: () => _selectSeat(rowIndex, colIndex),
+              onTap: seat == 'r' ? null : () => _selectSeat(rowIndex, colIndex),
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Image.asset(
@@ -64,24 +85,22 @@ class _RightState extends State<Right> {
     );
   }
 
-
   String _getSeatImage(String seat) {
-    if (seat == 'a') {
-      return 'assets/images/avaliableSeat.png';
-    } else if (seat == 'r') {
-      return 'assets/images/reversedSeat.png';
-    } else {
-      return 'assets/images/selectSeat.png';
+    switch (seat) {
+      case 'a':
+        return 'assets/images/avaliableSeat.png';
+      case 'r':
+        return 'assets/images/reversedSeat.png';
+      case 's':
+        return 'assets/images/selectSeat.png';
+      default:
+        return 'assets/images/default.png';
     }
   }
-}
 
-int _calculateSeatPrice(int row) {
-  if (row < 2) {
-    return 150;
-  } else if (row < 4) {
-    return 120;
-  } else {
+  int _calculateSeatPrice(int row) {
+    if (row < 2) return 150;
+    if (row < 4) return 120;
     return 100;
   }
 }

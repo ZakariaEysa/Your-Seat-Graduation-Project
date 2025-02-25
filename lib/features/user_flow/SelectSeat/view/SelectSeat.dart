@@ -192,13 +192,13 @@ class _SelectSeatState extends State<SelectSeat> {
                 Left(
                   updateTotalPrice: _updateTotalPrice,
                   updateSeatCategory: _updateSeatCategory,
-                  // reservedSeats: reservedSeats,
+                  reservedSeats: reservedSeats,
                 ),
                 SizedBox(width: 12.w),
                 Right(
                   updateTotalPrice: _updateTotalPrice,
                   updateSeatCategory: _updateSeatCategory,
-                  // reservedSeats: reservedSeats,
+                  reservedSeats: reservedSeats,
                 ),
               ],
             ),

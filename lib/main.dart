@@ -31,10 +31,12 @@ import 'features/user_flow/Watch_list/favorite_movies_provider/favorite_movies_p
 import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
 import 'package:permission_handler/permission_handler.dart';
+
 Future<void> requestPermissions() async {
   await Permission.camera.request();
   await Permission.storage.request();
 }
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await requestPermissions();
@@ -91,8 +93,9 @@ void main() async {
           BlocProvider<CinemaCubit>(
             create: (context) => CinemaCubit(),
           ),
-          BlocProvider(create: (context) => SearchCubit(),)
-
+          BlocProvider(
+            create: (context) => SearchCubit(),
+          )
         ],
         child: const MyApp(),
       ),
@@ -124,35 +127,112 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
         builder: (context, state) {
-          return ScreenUtilInit(
-              designSize: const Size(375, 812),
-              minTextAdapt: true,
-              useInheritedMediaQuery: true,
-              ensureScreenSize: true,
-              splitScreenMode: true,
-              builder: (_, child) {
-                return MaterialApp(
-                  theme: ApplicationTheme.darkTheme,
-                  locale: HiveStorage.get(HiveKeys.isArabic)
-                      ? const Locale('ar')
-                      : const Locale('en'),
-                  localizationsDelegates: const [
-                    S.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                  ],
-                  supportedLocales: S.delegate.supportedLocales,
-                  debugShowCheckedModeBanner: false,
-                  // builder: DevicePreview.appBuilder,
-                  builder: (context, child) {
-                    child = BotToastInit()(context, child); // تهيئة BotToast
-                    return DevicePreview.appBuilder(context, child);
-                  },
-                  navigatorObservers: [BotToastNavigatorObserver()],
-                  home: SplashScreen(),
-              );
-              });
-        });
+      return ScreenUtilInit(
+          designSize: const Size(375, 812),
+          minTextAdapt: true,
+          useInheritedMediaQuery: true,
+          ensureScreenSize: true,
+          splitScreenMode: true,
+          builder: (_, child) {
+            return MaterialApp(
+              theme: ApplicationTheme.darkTheme,
+              locale: HiveStorage.get(HiveKeys.isArabic)
+                  ? const Locale('ar')
+                  : const Locale('en'),
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              debugShowCheckedModeBanner: false,
+              // builder: DevicePreview.appBuilder,
+              builder: (context, child) {
+                child = BotToastInit()(context, child); // تهيئة BotToast
+                return DevicePreview.appBuilder(context, child);
+              },
+              navigatorObservers: [BotToastNavigatorObserver()],
+              home: SplashScreen(),
+            );
+          });
+    });
   }
 }
+
+// updateMovieTimes(
+//     cinemaId: "Renaissance Cinema", // معرف السينما
+//     movieName: "El-Hareefa 2", // اسم الفيلم
+//     targetDate: "2025-05-04", // التاريخ الذي تريد تعديله
+//   );
+// Future<void> updateMovieTimes({
+//   required String cinemaId,
+//   required String movieName,
+//   required String targetDate, // التاريخ بصيغة "yyyy-MM-dd"
+// }) async {
+//   try {
+//     // 🔹 جلب مرجع السينما من Firestore
+//     DocumentReference cinemaRef =
+//         FirebaseFirestore.instance.collection('Cinemas').doc(cinemaId);
+
+//     // 🔹 جلب بيانات السينما
+//     DocumentSnapshot cinemaSnapshot = await cinemaRef.get();
+
+//     if (cinemaSnapshot.exists) {
+//       Map<String, dynamic>? cinemaData =
+//           cinemaSnapshot.data() as Map<String, dynamic>?;
+
+//       if (cinemaData != null && cinemaData.containsKey('movies')) {
+//         List<dynamic> moviesList = List.from(cinemaData['movies']);
+
+//         // 🔹 البحث عن الفيلم المطلوب
+//         int movieIndex =
+//             moviesList.indexWhere((movie) => movie['name'] == movieName);
+
+//         if (movieIndex != -1) {
+//           List<dynamic> timesList = List.from(moviesList[movieIndex]['times']);
+
+//           // 🔹 تحديث `times` لليوم المحدد فقط
+//           for (var i = 0; i < timesList.length; i++) {
+//             if (timesList[i]['date'] == targetDate) {
+//               timesList[i] = {
+//                 "date": targetDate,
+//                 "hall": "hall 3",
+//                 "time": [
+//                   {
+//                     "time": "14:00",
+//                     "reservedSeats": ["1", "2", "3"]
+//                   },
+//                   {
+//                     "time": "16:30",
+//                     "reservedSeats": ["4", "5"]
+//                   },
+//                   {
+//                     "time": "19:00",
+//                     "reservedSeats": ["8", "9"]
+//                   }
+//                 ]
+//               };
+//             }
+//           }
+
+//           // 🔹 تحديث Firestore بالبيانات الجديدة
+//           moviesList[movieIndex]['times'] = timesList;
+//           await cinemaRef.update({'movies': moviesList});
+
+//           print(
+//               "✅ تم تحديث أوقات الفيلم '$movieName' في السينما '$cinemaId' لليوم $targetDate.");
+//         } else {
+//           print(
+//               "⚠️ لم يتم العثور على الفيلم '$movieName' في السينما '$cinemaId'.");
+//         }
+//       } else {
+//         print("⚠️ لا توجد أفلام في السينما '$cinemaId'.");
+//       }
+//     } else {
+//       print("⚠️ لم يتم العثور على سينما بالمعرّف '$cinemaId'.");
+//     }
+//   } catch (e) {
+//     print("❌ خطأ أثناء تحديث الأوقات: $e");
+//   }
+// }

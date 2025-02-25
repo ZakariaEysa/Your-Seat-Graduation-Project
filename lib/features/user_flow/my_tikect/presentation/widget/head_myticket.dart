@@ -15,7 +15,7 @@ class HeadMyticket extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 60.h , left: 20.w),
                 child: Image.asset(
-                  "assets/images/tik_film.png",
+                  "assets/images/Rectangle 22.png",
                   width: 100.w, // تقليل العرض ليناسب iPhone
                   height: 160.h,
                 ),

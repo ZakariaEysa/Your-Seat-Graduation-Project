@@ -199,23 +199,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   }
                 },
               ),
-              ListTile(
-                leading: const Icon(Icons.camera_alt, color: Colors.white),
-                title:
-                const Text('Camera', style: TextStyle(color: Colors.white)),
-                onTap: () async {
-                  Navigator.of(context).pop();
-                  final ImagePicker picker = ImagePicker();
-                  final XFile? image =
-                  await picker.pickImage(source: ImageSource.camera);
-                  if (image != null) {
-                    final bytes = await File(image.path).readAsBytes();
-                    setState(() {
-                      selectedImageBase64 = base64Encode(bytes);
-                    });
-                  }
-                },
-              ),
+
             ],
           ),
         );

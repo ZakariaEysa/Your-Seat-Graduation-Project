@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import '../../../about_us/presentation/views/about_us.dart';
 
 class QrState extends StatelessWidget {
-  const QrState({super.key});
-
+   QrState({super.key});
+  Map<String,dynamic> ahmed = {
+    "ahmed" : "1235",
+    "cinema" : "Plaza",
+    "movie" : "Avengers"
+    };
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding:  EdgeInsetsDirectional.fromSTEB(0, 560.h, 0, 0),
       child: Column(
@@ -17,11 +23,11 @@ class QrState extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image.asset(
-                  "assets/images/qr.png",
-                  width: 100.w,
-                  height: 100.h,
-                ),
+                QrImageView(
+                    data: ahmed.toString(),
+                    size: 150,
+                    backgroundColor: Colors.white,
+                  ),
                 Column(
                   children: [
                     Text(

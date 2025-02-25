@@ -14,6 +14,7 @@ import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/SelectSe
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
+import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 import 'data/hive_stroage.dart';
 import 'features/user_flow/Rate/Rate.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';

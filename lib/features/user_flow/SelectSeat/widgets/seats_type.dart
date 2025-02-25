@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class seatsType extends StatelessWidget {
+class SeatsType extends StatelessWidget {
   final Color color;
   final String text;
-  const seatsType({required this.color, required this.text});
+  const SeatsType({required this.color, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,10 @@ class seatsType extends StatelessWidget {
           ),
         ),
         SizedBox(width: 4.sp),
-        Text(text,style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16),),
+        Text(
+          text,
+          style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16),
+        ),
       ],
     );
   }

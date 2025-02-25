@@ -1,19 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_policy.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
-import '../../../../data/hive_keys.dart';
-import '../../../../data/hive_stroage.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/app_logs.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../widgets/scaffold/scaffold_f.dart';
 import '../widgets/date.dart';
 import '../widgets/time.dart';
-import '../widgets/left.dart';
-import '../widgets/right.dart';
-import '../widgets/seatsType.dart';
+import '../widgets/seats_grid.dart';
+import '../widgets/seats_type.dart';
 
 class SelectSeat extends StatefulWidget {
   const SelectSeat({super.key});
@@ -196,9 +192,9 @@ class _SelectSeatState extends State<SelectSeat> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                seatsType(color: const Color(0xFFF3F3F3), text: lang.available),
-                seatsType(color: const Color(0xFF5b085d), text: lang.reserved),
-                seatsType(color: const Color(0xFF09FBD3), text: lang.selected),
+                SeatsType(color: const Color(0xFFF3F3F3), text: lang.available),
+                SeatsType(color: const Color(0xFF5b085d), text: lang.reserved),
+                SeatsType(color: const Color(0xFF09FBD3), text: lang.selected),
               ],
             ),
             SizedBox(height: 20.h),
@@ -238,6 +234,7 @@ class _SelectSeatState extends State<SelectSeat> {
                 setState(() {
                   _selectedTime = newTime;
                   _updateReservedSeats(newTime);
+                  _totalPrice = 0;
                 });
               },
             ),

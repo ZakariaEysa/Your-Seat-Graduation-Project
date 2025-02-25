@@ -24,19 +24,21 @@ class SelectSeat extends StatefulWidget {
 
 class _SelectSeatState extends State<SelectSeat> {
   int _totalPrice = 0;
-  List timesList = [];
-  List<dynamic> times = [];
-  List<dynamic> dates = [];
+  List<Map<String, dynamic>> timesList = [];
+  List<String> dates = [];
   List<int> days = [];
   List<int> months = [];
-  String _seatCategory = '';
+  String _seatCategory = ''; // ✅ استعادة متغير فئة التذكرة
+
+  int? _selectedDay;
+  List<String> filteredTimes = [];
+  String? _selectedTime;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _fetchMovieTimes("Point 90 Cinema", "Terap El-Mas");
-  } // متغير لتحديد فئة المقعد
+  }
 
   void _updateTotalPrice(int priceChange) {
     setState(() {
@@ -55,56 +57,6 @@ class _SelectSeatState extends State<SelectSeat> {
       }
     });
   }
-
-  // Future<void> _fetchMovieTimes(String cinemaId, String movieName) async {
-  //   try {
-  //     // جلب بيانات السينما المحددة باستخدام cinemaId
-  //     var docSnapshot = await FirebaseFirestore.instance
-  //         .collection('Cinemas')
-  //         .doc(cinemaId)
-  //         .get();
-  //
-  //     if (docSnapshot.exists) {
-  //       // تحويل البيانات القادمة من Firestore إلى Map
-  //       Map<String, dynamic>? cinemaData = docSnapshot.data();
-  //
-  //       if (cinemaData != null && cinemaData.containsKey('movies')) {
-  //         List<dynamic> moviesList = List.from(cinemaData['movies']);
-  //
-  //         // البحث عن الفيلم الذي يطابق movieName
-  //         var selectedMovie = moviesList.firstWhere(
-  //               (movie) => movie['name'] == movieName,
-  //           orElse: () => null, // إذا لم يتم العثور على الفيلم
-  //         );
-  //
-  //         if (selectedMovie != null) {
-  //           AppLogs.scussessLog("Movie '$movieName' found!");
-  //           // print("Movie details: $selectedMovie");
-  //           // print("Movie details: ${selectedMovie['times']}");
-  //
-  //           setState(() {
-  //             timesList = selectedMovie['times'];
-  //             times = timesList.map((e) => e['time']).toList();
-  //           });
-  //           print(selectedMovie['times'].toString());
-  //           print(times);
-  //         } else {
-  //           print("Movie '$movieName' not found in cinema $cinemaId.");
-  //         }
-  //       } else {
-  //         print("No movies found in cinema $cinemaId.");
-  //       }
-  //     }
-  //     else {
-  //       print("No cinema found with ID: $cinemaId");
-  //     }
-  //     AppLogs.scussessLog("message");
-  //     print(timesList);
-  //     print(movieName);
-  //   } catch (e) {
-  //     print("Error fetching movies data: $e");
-  //   }
-  // }
 
   Future<void> _fetchMovieTimes(String cinemaId, String movieName) async {
     try {
@@ -128,19 +80,21 @@ class _SelectSeatState extends State<SelectSeat> {
             AppLogs.scussessLog("Movie '$movieName' found!");
 
             setState(() {
-              timesList = selectedMovie['times'];
-              times = timesList.map((e) => e['time']).toList();
-              dates = timesList.map((e) => e['date']).toList();
-
+              timesList =
+                  List<Map<String, dynamic>>.from(selectedMovie['times']);
+              dates = timesList.map((e) => e['date'].toString()).toList();
               days = dates.map((date) => DateTime.parse(date).day).toList();
               months = dates.map((date) => DateTime.parse(date).month).toList();
-            });
 
-            print(selectedMovie['times'].toString());
-            print("Times: $times");
-            print("Dates: $dates");
-            print("Days: $days");
-            print("Months: $months"); // طباعة الـ dates للتحقق
+              if (days.isNotEmpty) {
+                _selectedDay = days.first;
+                _filterTimesForSelectedDay();
+              } else {
+                _selectedDay = null;
+                filteredTimes = [];
+                _selectedTime = null;
+              }
+            });
           } else {
             print("Movie '$movieName' not found in cinema $cinemaId.");
           }
@@ -150,21 +104,37 @@ class _SelectSeatState extends State<SelectSeat> {
       } else {
         print("No cinema found with ID: $cinemaId");
       }
-
-      AppLogs.scussessLog("message");
-      print(timesList);
-      print(movieName);
     } catch (e) {
       print("Error fetching movies data: $e");
     }
   }
 
-  int _selectedTimeIndex = 1;
+  /// دالة لتصفية الأوقات بناءً على اليوم المحدد
+  void _filterTimesForSelectedDay() {
+    if (_selectedDay != null) {
+      setState(() {
+        filteredTimes = timesList
+            .where((e) => DateTime.parse(e['date']).day == _selectedDay)
+            .expand((e) => e['time'] is List
+                ? List<String>.from(e['time'])
+                : [e['time'].toString()])
+            .toList();
+
+        _selectedTime = filteredTimes.isNotEmpty ? filteredTimes.first : null;
+      });
+    } else {
+      setState(() {
+        filteredTimes = [];
+        _selectedTime = null;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var lang = S.of(context);
+
     return ScaffoldF(
       appBar: AppBar(
         leading: IconButton(
@@ -198,42 +168,27 @@ class _SelectSeatState extends State<SelectSeat> {
                 SizedBox(width: 10.w),
                 Left(
                   updateTotalPrice: _updateTotalPrice,
-                  updateSeatCategory: _updateSeatCategory,
+                  updateSeatCategory:
+                      _updateSeatCategory, // ✅ تحديث نوع التذكرة عند اختيار المقعد
                 ),
                 SizedBox(width: 12.w),
                 Right(
                   updateTotalPrice: _updateTotalPrice,
-                  updateSeatCategory: _updateSeatCategory,
+                  updateSeatCategory:
+                      _updateSeatCategory, // ✅ تحديث نوع التذكرة عند اختيار المقعد
                 ),
               ],
             ),
             SizedBox(height: 25.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                seatsType(color: const Color(0xFFF3F3F3), text: lang.available),
-                seatsType(color: const Color(0xFF5b085d), text: lang.reserved),
-                seatsType(color: const Color(0xFF09FBD3), text: lang.selected),
-              ],
+
+            // ✅ عرض نوع التذكرة المختارة
+            Text(
+              _seatCategory.isNotEmpty
+                  ? "The selected seat is $_seatCategory"
+                  : "No seat selected",
+              style: theme.textTheme.bodySmall?.copyWith(fontSize: 18.sp),
             ),
-            SizedBox(height: 20.h),
-            Row(
-              children: [
-                Image.asset(
-                  HiveStorage.get(HiveKeys.isArabic)
-                      ? "assets/images/leftHand.png"
-                      : "assets/images/HandRight.png",
-                  width: 50.w,
-                  height: 25.h,
-                ),
-                Text(
-                  _seatCategory.isNotEmpty
-                      ? "The selected seat is $_seatCategory"
-                      : "No seat selected",
-                  style: theme.textTheme.bodySmall?.copyWith(fontSize: 18.sp),
-                ),
-              ],
-            ),
+
             SizedBox(height: 15.h),
             Center(
               child: Text(
@@ -247,15 +202,30 @@ class _SelectSeatState extends State<SelectSeat> {
             ),
             SizedBox(height: 10.h),
 
-            /**/
             Date(
               days: days,
               months: months,
+              selectedDay: _selectedDay ?? (days.isNotEmpty ? days.first : 1),
+              onDaySelected: (newDay) {
+                setState(() {
+                  _selectedDay = newDay;
+                  _filterTimesForSelectedDay();
+                });
+              },
             ),
-            SizedBox(
-              height: 30.h,
+            SizedBox(height: 30.h),
+
+            Time(
+              times: filteredTimes.isNotEmpty ? filteredTimes : [],
+              selectedTime: _selectedTime,
+              onTimeSelected: (newTime) {
+                AppLogs.scussessLog(newTime);
+                setState(() {
+                  _selectedTime = newTime;
+                });
+              },
             ),
-            Time(times: times),
+
             Padding(
               padding: EdgeInsets.all(16.0.sp),
               child: Row(
@@ -282,17 +252,7 @@ class _SelectSeatState extends State<SelectSeat> {
                     onPressed: () {
                       navigateTo(context: context, screen: PaymentPolicy());
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF09FBD3),
-                      minimumSize: Size(155.w, 42.h),
-                    ),
-                    child: Text(
-                      lang.buyTicket,
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        fontSize: 19.sp,
-                        color: Colors.black,
-                      ),
-                    ),
+                    child: Text(lang.buyTicket),
                   ),
                 ],
               ),

@@ -188,7 +188,9 @@ class _CinemaDetailsState extends State<CinemaDetails> {
               ),
             );
           } else {
-            return const SizedBox();
+            return  Center(
+              child: CircularProgressIndicator(),
+            );
           }
         },
       ),

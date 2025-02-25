@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Time extends StatefulWidget {
-  final List<String> times;
+  final List<Map<String, dynamic>> times;
   final String? selectedTime;
   final Function(String) onTimeSelected;
 
@@ -26,17 +26,20 @@ class _TimeState extends State<Time> {
         scrollDirection: Axis.horizontal,
         itemCount: widget.times.length,
         itemBuilder: (context, index) {
-          bool isSelected = widget.times[index] == widget.selectedTime;
+          String timeValue = widget.times[index]["time"];
+          bool isSelected = timeValue == widget.selectedTime;
 
           return GestureDetector(
             onTap: () {
-              widget.onTimeSelected(widget.times[index]);
+              widget.onTimeSelected(timeValue);
             },
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 3.w),
               padding: EdgeInsets.symmetric(horizontal: 30.w),
               decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFF321131) : const Color(0xFF1E1E1E),
+                color: isSelected
+                    ? const Color(0xFF321131)
+                    : const Color(0xFF1E1E1E),
                 border: isSelected
                     ? Border.all(color: const Color(0xFF09FBD3), width: 2.w)
                     : null,
@@ -44,10 +47,11 @@ class _TimeState extends State<Time> {
               ),
               child: Center(
                 child: Text(
-                  widget.times[index],
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontSize: 18.sp,
-                      ),
+                  timeValue,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(fontSize: 18.sp),
                 ),
               ),
             ),

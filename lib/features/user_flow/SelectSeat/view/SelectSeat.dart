@@ -28,11 +28,12 @@ class _SelectSeatState extends State<SelectSeat> {
   List<String> dates = [];
   List<int> days = [];
   List<int> months = [];
-  String _seatCategory = ''; // ✅ استعادة متغير فئة التذكرة
+  String _seatCategory = '';
 
   int? _selectedDay;
-  List<String> filteredTimes = [];
+  List<Map<String, dynamic>> filteredTimes = [];
   String? _selectedTime;
+  List<String> reservedSeats = [];
 
   @override
   void initState() {
@@ -73,10 +74,10 @@ class _SelectSeatState extends State<SelectSeat> {
 
           var selectedMovie = moviesList.firstWhere(
             (movie) => movie['name'] == movieName,
-            orElse: () => null,
+            orElse: () => <String, dynamic>{},
           );
 
-          if (selectedMovie != null) {
+          if (selectedMovie.isNotEmpty) {
             AppLogs.scussessLog("Movie '$movieName' found!");
 
             setState(() {
@@ -93,6 +94,7 @@ class _SelectSeatState extends State<SelectSeat> {
                 _selectedDay = null;
                 filteredTimes = [];
                 _selectedTime = null;
+                reservedSeats = [];
               }
             });
           } else {
@@ -109,26 +111,47 @@ class _SelectSeatState extends State<SelectSeat> {
     }
   }
 
-  /// دالة لتصفية الأوقات بناءً على اليوم المحدد
   void _filterTimesForSelectedDay() {
     if (_selectedDay != null) {
-      AppLogs.scussessLog(timesList.toString());
       setState(() {
         filteredTimes = timesList
             .where((e) => DateTime.parse(e['date']).day == _selectedDay)
-            .expand((e) => e['time'] is List
-                ? List<String>.from(e['time'])
-                : [e['time'].toString()])
+            .expand((e) => (e['time'] as List).map((timeData) => {
+                  "time": timeData["time"].toString(),
+                  "reservedSeats":
+                      List<String>.from(timeData["reservedSeats"] ?? [])
+                }))
             .toList();
 
-        _selectedTime = filteredTimes.isNotEmpty ? filteredTimes.first : null;
+        if (filteredTimes.isNotEmpty) {
+          _selectedTime = filteredTimes.first["time"];
+          _updateReservedSeats(_selectedTime!);
+        } else {
+          _selectedTime = null;
+          reservedSeats = [];
+        }
       });
     } else {
       setState(() {
         filteredTimes = [];
         _selectedTime = null;
+        reservedSeats = [];
       });
     }
+  }
+
+  void _updateReservedSeats(String selectedTime) {
+    var selectedTimeData = filteredTimes.firstWhere(
+      (e) => e["time"] == selectedTime,
+      orElse: () => <String, Object>{"reservedSeats": <String>[]},
+    );
+
+    setState(() {
+      reservedSeats =
+          List<String>.from(selectedTimeData["reservedSeats"] as List);
+    });
+
+    AppLogs.scussessLog("Reserved seats for $selectedTime: $reservedSeats");
   }
 
   @override
@@ -166,30 +189,35 @@ class _SelectSeatState extends State<SelectSeat> {
             ),
             Row(
               children: [
-                SizedBox(width: 10.w),
                 Left(
                   updateTotalPrice: _updateTotalPrice,
-                  updateSeatCategory:
-                      _updateSeatCategory, // ✅ تحديث نوع التذكرة عند اختيار المقعد
+                  updateSeatCategory: _updateSeatCategory,
+                  // reservedSeats: reservedSeats,
                 ),
                 SizedBox(width: 12.w),
                 Right(
                   updateTotalPrice: _updateTotalPrice,
-                  updateSeatCategory:
-                      _updateSeatCategory, // ✅ تحديث نوع التذكرة عند اختيار المقعد
+                  updateSeatCategory: _updateSeatCategory,
+                  // reservedSeats: reservedSeats,
                 ),
               ],
             ),
             SizedBox(height: 25.h),
-
-            // ✅ عرض نوع التذكرة المختارة
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                seatsType(color: const Color(0xFFF3F3F3), text: lang.available),
+                seatsType(color: const Color(0xFF5b085d), text: lang.reserved),
+                seatsType(color: const Color(0xFF09FBD3), text: lang.selected),
+              ],
+            ),
+            SizedBox(height: 20.h),
             Text(
               _seatCategory.isNotEmpty
                   ? "The selected seat is $_seatCategory"
                   : "No seat selected",
               style: theme.textTheme.bodySmall?.copyWith(fontSize: 18.sp),
             ),
-
             SizedBox(height: 15.h),
             Center(
               child: Text(
@@ -201,12 +229,10 @@ class _SelectSeatState extends State<SelectSeat> {
                 ),
               ),
             ),
-            SizedBox(height: 10.h),
-
             Date(
               days: days,
               months: months,
-              selectedDay: _selectedDay ?? (days.isNotEmpty ? days.first : 1),
+              selectedDay: _selectedDay ?? days.first,
               onDaySelected: (newDay) {
                 setState(() {
                   _selectedDay = newDay;
@@ -214,19 +240,17 @@ class _SelectSeatState extends State<SelectSeat> {
                 });
               },
             ),
-            SizedBox(height: 30.h),
-
+            SizedBox(height: 12.h),
             Time(
-              times: filteredTimes.isNotEmpty ? filteredTimes : [],
+              times: filteredTimes,
               selectedTime: _selectedTime,
               onTimeSelected: (newTime) {
-                AppLogs.scussessLog(newTime);
                 setState(() {
                   _selectedTime = newTime;
+                  _updateReservedSeats(newTime);
                 });
               },
             ),
-
             Padding(
               padding: EdgeInsets.all(16.0.sp),
               child: Row(
@@ -235,25 +259,27 @@ class _SelectSeatState extends State<SelectSeat> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        lang.total,
-                        style: theme.textTheme.bodySmall
-                            ?.copyWith(fontSize: 20.sp),
-                      ),
-                      Text(
-                        "$_totalPrice EGP",
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          fontSize: 20.sp,
-                          color: const Color(0xFF09FBD3),
-                        ),
-                      ),
+                      Text(lang.total,
+                          style: theme.textTheme.bodySmall
+                              ?.copyWith(fontSize: 20.sp)),
+                      Text("$_totalPrice EGP",
+                          style: theme.textTheme.bodySmall?.copyWith(
+                              fontSize: 20.sp, color: const Color(0xFF09FBD3))),
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      navigateTo(context: context, screen: PaymentPolicy());
-                    },
-                    child: Text(lang.buyTicket),
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF09FBD3),
+                      minimumSize: Size(155.w, 42.h),
+                    ),
+                    child: Text(
+                      lang.buyTicket,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontSize: 19.sp,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
                 ],
               ),

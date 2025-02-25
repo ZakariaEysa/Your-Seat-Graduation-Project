@@ -34,7 +34,7 @@ class _SelectSeatState extends State<SelectSeat> {
   @override
   void initState() {
     super.initState();
-    _fetchMovieTimes("Point 90 Cinema", "Terap El-Mas");
+    _fetchMovieTimes("Point 90 Cinema", "The Dark Knight");
   }
 
   void _updateTotalPrice(int priceChange) {
@@ -223,6 +223,7 @@ class _SelectSeatState extends State<SelectSeat> {
                 setState(() {
                   _selectedDay = newDay;
                   _filterTimesForSelectedDay();
+                  _totalPrice = 0;
                 });
               },
             ),

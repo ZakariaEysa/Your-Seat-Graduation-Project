@@ -18,6 +18,7 @@ class SeatsGrid extends StatefulWidget {
 
 class _SeatsGridState extends State<SeatsGrid> {
   List<List<String>> seats = [];
+  List<String> selectedSeats = []; // ✅ قائمة المقاعد التي اختارها المستخدم
 
   @override
   void initState() {
@@ -36,6 +37,7 @@ class _SeatsGridState extends State<SeatsGrid> {
   void _initializeSeats() {
     int totalColumns = 13; // ✅ عدد الأعمدة مع إضافة الممر في المنتصف
     seats = List.generate(9, (_) => List.filled(totalColumns, 'a'));
+    selectedSeats.clear(); // ✅ تصفير القائمة عند التحديث
 
     for (var seat in widget.reservedSeats) {
       int seatNumber = int.parse(seat);
@@ -53,13 +55,18 @@ class _SeatsGridState extends State<SeatsGrid> {
     if (seats[x][y] == 'r') return; // ❌ لا يمكن تحديد المقعد المحجوز
 
     setState(() {
+      int seatNumber =
+          (x * 12) + (y >= 6 ? y - 1 : y); // ✅ حساب رقم المقعد الصحيح
+
       if (seats[x][y] == 'a') {
         widget.updateSeatCategory(x);
         widget.updateTotalPrice(_calculateSeatPrice(x));
         seats[x][y] = 's';
+        selectedSeats.add(seatNumber.toString()); // ✅ إضافة الرقم إلى القائمة
       } else if (seats[x][y] == 's') {
         widget.updateTotalPrice(-_calculateSeatPrice(x));
         seats[x][y] = 'a';
+        selectedSeats.remove(seatNumber.toString()); // ✅ إزالة الرقم من القائمة
       }
     });
   }
@@ -67,30 +74,40 @@ class _SeatsGridState extends State<SeatsGrid> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: List.generate(seats.length, (rowIndex) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(seats[rowIndex].length, (colIndex) {
-            if (colIndex == 6) {
-              return const SizedBox(width: 30); // ✅ الممر بين الجانبين
-            }
-            String seat = seats[rowIndex][colIndex];
-            String seatImage = _getSeatImage(seat);
+      children: [
+        Column(
+          children: List.generate(seats.length, (rowIndex) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(seats[rowIndex].length, (colIndex) {
+                if (colIndex == 6) {
+                  return const SizedBox(width: 30); // ✅ الممر بين الجانبين
+                }
+                String seat = seats[rowIndex][colIndex];
+                String seatImage = _getSeatImage(seat);
 
-            return GestureDetector(
-              onTap: () => _selectSeat(rowIndex, colIndex),
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Image.asset(
-                  seatImage,
-                  width: 20,
-                  height: 20,
-                ),
-              ),
+                return GestureDetector(
+                  onTap: () => _selectSeat(rowIndex, colIndex),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Image.asset(
+                      seatImage,
+                      width: 20,
+                      height: 20,
+                    ),
+                  ),
+                );
+              }),
             );
           }),
-        );
-      }),
+        ),
+        // const SizedBox(height: 20),
+        // Text(
+        //   "Selected Seats: ${selectedSeats.join(", ")}", // ✅ طباعة المقاعد المحددة
+        //   style: const TextStyle(
+        //       fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+        // ),
+      ],
     );
   }
 

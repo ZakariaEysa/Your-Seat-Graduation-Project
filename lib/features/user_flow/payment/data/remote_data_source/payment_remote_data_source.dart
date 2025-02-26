@@ -37,8 +37,7 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
       AppLogs.errorLog("token : $token");
       final orderId =
           await getOrderId(token: token!, amount: (100 * amount).toString());
-      PaymentCubit(PaymentRepoImpl(PaymentRemoteDataSourceImpl())).orderId =
-          orderId.toString();
+     
       final paymentKey = await getPaymentKey(
           token: token, orderId: orderId, amount: (100 * amount).toString());
       AppLogs.scussessLog(paymentKey.toString());

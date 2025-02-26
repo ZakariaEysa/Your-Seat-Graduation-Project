@@ -2,14 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/domain/repos/payment_repo.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 
 part 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
   final PaymentRepo paymentRepo;
 
-
- String orderId="";
+  String orderIdForPaymentTicket = "";
   PaymentCubit(this.paymentRepo) : super(PaymentInitial());
   static PaymentCubit get(context) => BlocProvider.of<PaymentCubit>(context);
 
@@ -23,9 +23,54 @@ class PaymentCubit extends Cubit<PaymentState> {
     );
   }
 
+  Future<void> payWithPayMobToGetOrderId(num amount) async {
+    emit(PaymentLoading());
+
+    final authResult = await paymentRepo.getAuthToken();
+    final token = authResult.fold(
+      (failure) {
+        emit(PaymentError(failure.errorMsg));
+        return null;
+      },
+      (token) => token,
+    );
+
+    if (token == null) return;
+
+    final orderResult = await paymentRepo.getOrderId(
+      token: token,
+      amount: (100 * amount).toString(),
+    );
+
+    final orderId = orderResult.fold(
+      (failure) {
+        emit(PaymentError(failure.errorMsg));
+        return null;
+      },
+      (id) => id.toString(), // الاحتفاظ به كنص
+    );
+
+    if (orderId == null) return;
+
+    orderIdForPaymentTicket = orderId;
+
+    final paymentKeyResult = await paymentRepo.getPaymentKey(
+      token: token,
+      orderId: int.parse(orderId), // تحويل إلى int عند الحاجة
+      amount: (100 * amount).toString(),
+    );
+
+    paymentKeyResult.fold(
+      (failure) => emit(PaymentError(failure.errorMsg)),
+      (payToken) => emit(PaymentSuccess(payToken)),
+    );
+  }
+
   Future<void> payWithPayMob(num amount) async {
     emit(PaymentLoading());
+
     final result = await paymentRepo.payWithPayMob(amount);
+
     result.fold(
       (failure) => emit(PaymentError(failure.errorMsg)),
       (payToken) => emit(PaymentSuccess(payToken)),

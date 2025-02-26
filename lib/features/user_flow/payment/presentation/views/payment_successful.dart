@@ -19,11 +19,14 @@ class PaymentSuccessful extends StatelessWidget {
       required this.location,
       required this.date,
       required this.time,
-      required this.cinemaId, required this.transactionId, required this.hall});
+      required this.cinemaId,
+      required this.hall,
+      required this.orderId});
+  final String orderId;
+
   final MoviesDetailsModel model;
   final List<String> seats;
   final String seatCategory;
-  final String transactionId;
   final String hall;
 
   final num price;
@@ -64,7 +67,8 @@ class PaymentSuccessful extends StatelessWidget {
             navigateAndReplace(
                 context: context,
                 screen: TicketDone(
-                  hall:hall,
+                  orderId: orderId,
+                  hall: hall,
                   model: model,
                   seatCategory: seatCategory,
                   seats: seats,

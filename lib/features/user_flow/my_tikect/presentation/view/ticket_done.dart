@@ -21,6 +21,8 @@ class TicketDone extends StatelessWidget {
   final String time;
   final String hall;
   final String cinemaId;
+  final String orderId;
+
   const TicketDone(
       {super.key,
       required this.model,
@@ -31,7 +33,8 @@ class TicketDone extends StatelessWidget {
       required this.date,
       required this.time,
       required this.cinemaId,
-      required this.hall});
+      required this.hall,
+      required this.orderId});
 
   @override
   Widget build(BuildContext context) {

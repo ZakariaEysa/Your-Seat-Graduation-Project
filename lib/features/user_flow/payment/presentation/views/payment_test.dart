@@ -8,7 +8,6 @@ import 'package:yourseatgraduationproject/core/Network/end_points.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_successful.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
@@ -25,13 +24,14 @@ class PaymentScreen extends StatefulWidget {
   final MoviesDetailsModel model;
   final List<String> seats;
   final String seatCategory;
-  final String hall;
 
   final num price;
   final String location;
   final String date;
   final String time;
+  final String hall;
   final String cinemaId;
+  final String orderId;
   const PaymentScreen({
     super.key,
     required this.paymentToken,
@@ -44,6 +44,7 @@ class PaymentScreen extends StatefulWidget {
     required this.time,
     required this.cinemaId,
     required this.hall,
+    required this.orderId,
   });
 
   @override
@@ -57,6 +58,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   void initState() {
     super.initState();
+    _handlePaymentSuccess();
   }
 
   void startPayment() {
@@ -173,19 +175,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
           _controller = controller;
           startPayment();
         },
-        onLoadStop: (controller, url) {
+        onLoadStop: (controller, url) async {
+          injectScript();
           if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "true") {
-            String? transactionId = url.queryParameters["transaction_id"];
-            if (transactionId != null && transactionId.isNotEmpty) {
-              AppLogs.debugLog("✅ الدفع ناجح - Transaction ID: $transactionId");
-
-              // _handlePaymentSuccess(transactionId);
-            } else {
-              AppLogs.errorLog(
-                  "❌ فشل في جلب transaction_id، التحقق من الـ URL!");
-            }
+            await _handlePaymentSuccess();
           } else if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "false") {
@@ -205,11 +200,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
     required String selectedTime,
     required String selectedDate,
     required List<String> newSelectedSeats, // المقاعد الجديدة المختارة
-    required String userId, // معرف المستخدم
-    required String seatCategory,
-    required num totalPrice,
-    required String transactionId,
-    required String hall,
   }) async {
     try {
       // 🔹 مرجع السينما في Firestore
@@ -234,51 +224,43 @@ class _PaymentScreenState extends State<PaymentScreen> {
             List<dynamic> timesList =
                 List.from(moviesList[movieIndex]['times']);
 
-            // 🔹 البحث عن التوقيت المحدد داخل الفيلم
-            int timeIndex = timesList.indexWhere((time) =>
-                time['time'] == selectedTime && time['date'] == selectedDate);
+            int timeIndex = timesList.indexWhere((timeEntry) {
+              if (timeEntry['date'] != selectedDate) return false;
+
+              List<dynamic> availableTimes = List.from(timeEntry['time']);
+              return availableTimes
+                  .any((t) => t['time'].toString() == selectedTime);
+            });
 
             if (timeIndex != -1) {
-              List<String> existingReservedSeats = List<String>.from(
-                  timesList[timeIndex]['reservedSeats'] ?? []);
+              List<dynamic> availableTimes =
+                  List.from(timesList[timeIndex]['time']);
 
-              // ✅ تحديث المقاعد المحجوزة وإضافة المقاعد الجديدة
-              existingReservedSeats.addAll(newSelectedSeats);
-              existingReservedSeats =
-                  existingReservedSeats.toSet().toList(); // إزالة التكرارات
+              int specificTimeIndex = availableTimes
+                  .indexWhere((t) => t['time'].toString() == selectedTime);
 
-              timesList[timeIndex]['reservedSeats'] = existingReservedSeats;
-              moviesList[movieIndex]['times'] = timesList;
+              if (specificTimeIndex != -1) {
+                List<String> existingReservedSeats = List<String>.from(
+                    availableTimes[specificTimeIndex]['reservedSeats'] ?? []);
 
-              // ✅ تحديث Firestore بالبيانات الجديدة
-              await cinemaRef.update({'movies': moviesList});
+                // ✅ تحديث المقاعد المحجوزة وإضافة الجديدة
+                existingReservedSeats.addAll(newSelectedSeats);
+                existingReservedSeats =
+                    existingReservedSeats.toSet().toList(); // إزالة التكرارات
 
-              print("✅ تم تحديث المقاعد المحجوزة بنجاح!");
+                availableTimes[specificTimeIndex]['reservedSeats'] =
+                    existingReservedSeats;
+                timesList[timeIndex]['time'] = availableTimes;
+                moviesList[movieIndex]['times'] = timesList;
 
-              // 🔹 تحديث بيانات المستخدم وإضافة التذكرة
-              await FirebaseFirestore.instance
-                  .collection('Users')
-                  .doc(userId)
-                  .update({
-                'tickets': FieldValue.arrayUnion([
-                  {
-                    " hall": hall,
-                    "movieName": movieName,
-                    "cinemaId": cinemaId,
-                    "date": selectedDate,
-                    "time": selectedTime,
-                    "seats": newSelectedSeats,
-                    "seatCategory": seatCategory,
-                    "totalPrice": totalPrice,
-                    "transactionId": transactionId,
-                    "purchaseTime": FieldValue.serverTimestamp(), // وقت الشراء
-                  }
-                ])
-              });
-
-              print("🎟️✅ تم حفظ التذكرة بنجاح في حساب المستخدم!");
+                // ✅ تحديث Firestore
+                await cinemaRef.update({'movies': moviesList});
+                print("✅ تم تحديث المقاعد المحجوزة بنجاح!");
+              } else {
+                print("❌ لم يتم العثور على الوقت المحدد داخل قائمة الأوقات!");
+              }
             } else {
-              print("❌ لم يتم العثور على الوقت المحدد!");
+              print("❌ لم يتم العثور على الوقت المحدد في القائمة!");
             }
           } else {
             print("❌ لم يتم العثور على الفيلم المحدد!");
@@ -294,9 +276,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     }
   }
 
-  Future<void> _handlePaymentSuccess(String transactionId) async {
-    AppLogs.debugLog("✅ الدفع ناجح - Transaction ID: $transactionId");
-
+  Future<void> _handlePaymentSuccess() async {
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       setState(() {
         currentUser = HiveStorage.getGoogleUser();
@@ -309,20 +289,24 @@ class _PaymentScreenState extends State<PaymentScreen> {
       AppLogs.scussessLog(currentUser.toString());
     }
     await updateReservedSeatsAndSaveTicket(
-        hall: widget.hall,
-        cinemaId: widget.cinemaId,
-        movieName: widget.model.name.toString(),
-        selectedTime: widget.time,
-        selectedDate: widget.date,
-        newSelectedSeats: widget.seats,
-        userId: currentUser?.name,
-        seatCategory: widget.seatCategory,
-        totalPrice: widget.price,
-        transactionId: transactionId);
+     
+      cinemaId: widget.cinemaId,
+      movieName: widget.model.name.toString(),
+      selectedTime: widget.time,
+      selectedDate: widget.date,
+      newSelectedSeats: widget.seats,
+      //  orderId: widget.orderId,
+      // hall: widget.hall,
+      // userId: currentUser?.name ?? "No name",
+      // seatCategory: widget.seatCategory,
+      // totalPrice: widget.price,
+    );
 
     navigateAndRemoveUntil(
       context: context,
       screen: PaymentSuccessful(
+        orderId: widget.orderId,
+
         hall: widget.hall,
         model: widget.model,
         seatCategory: widget.seatCategory,
@@ -332,7 +316,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         date: widget.date,
         time: widget.time,
         cinemaId: widget.cinemaId,
-        transactionId: transactionId, // ✅ تمرير رقم المعاملة إلى الصفحة التالية
+        // ✅ تمرير رقم المعاملة إلى الصفحة التالية
       ),
     );
   }

@@ -109,11 +109,14 @@ class Payment extends StatelessWidget {
                                     AppLogs.errorLog(state.payToken.toString());
                                     AppLogs.debugLog("order id is ");
                                     AppLogs.scussessLog(
-                                        PaymentCubit.get(context).orderId);
+                                        PaymentCubit.get(context)
+                                            .orderIdForPaymentTicket);
 
                                     navigateTo(
                                         context: context,
                                         screen: PaymentScreen(
+                                          orderId:PaymentCubit.get(context)
+                                            .orderIdForPaymentTicket,
                                             hall: hall,
                                             model: model,
                                             seatCategory: seatCategory,
@@ -153,7 +156,7 @@ class Payment extends StatelessWidget {
                                       }
 
                                       PaymentCubit.get(context)
-                                          .payWithPayMob(price);
+                                          .payWithPayMobToGetOrderId(price);
 
                                       // PayMobPayment().refundPayment(
                                       //     transactionId: "266671705", amount: 100);

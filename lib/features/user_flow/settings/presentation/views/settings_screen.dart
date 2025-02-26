@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/profile_card.dart';
+import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/settings_item/settings_item.dart';
+import 'package:yourseatgraduationproject/utils/dialog_utilits.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
+import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
+import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_stroage.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../auth/presentation/cubit/auth_cubit.dart';
+import 'language_sheet.dart';
+import 'theme_sheet.dart';
+
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var lang = S.of(context);
+
+    return ScaffoldF(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF2E1371),
+        title: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(95.w, 0, 0, 0),
+          child: HeadAppBar(title: lang.settings),
+        ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: _buildSettingsItems(context),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildSettingsItems(BuildContext context) {
+    var lang = S.of(context);
+    return [
+      SettingsItem(
+        title: lang.profile,
+        imageIcon: "assets/images/account.png",
+        onPress: () {
+          if (HiveStorage.get(HiveKeys.role) == Role.guest.toString()) {
+            DialogUtils.showMessage(context, lang.youHaveToSignInToContinue,
+
+                isCancelable: false,
+                posActionTitle: lang.sign_in,
+                negActionTitle: lang.cancel, posAction: () {
+              HiveStorage.set(HiveKeys.role, "");
+
+              navigateAndRemoveUntil(
+                context: context,
+                screen: const SignIn(),
+              );
+            }, negAction: () {
+              navigatePop(context: context);
+            });
+          } else {
+            navigateTo(context: context, screen: const ProfileCard());
+          }
+        },
+      ),
+      SettingsItem(
+        title: lang.language,
+        imageIcon: "assets/images/language.png",
+        onPress: () => _showBottomSheet(
+          context,
+          const LanguageSheet(),
+        ),
+      ),
+      SettingsItem(
+          title: lang.theme,
+          imageIcon: "assets/images/theme.png",
+          onPress: () {
+            ThemeSheet();
+          }),
+      SettingsItem(
+        title: lang.AboutUs,
+        imageIcon: "assets/images/account.png",
+        onPress: () {
+          navigateTo(context: context, screen: const AboutUs());
+        },
+      ),
+      if (HiveStorage.get(HiveKeys.role) != Role.guest.toString())
+        SettingsItem(
+          title: lang.logOut,
+          imageIcon: "assets/images/logout 1.png",
+          onPress: () {
+            AuthCubit.get(context).emailController.clear();
+            AuthCubit.get(context).passwordController.clear();
+            DialogUtils.showMessage(context, lang.areYouSureYouWantToLogOut,
+                posActionTitle: lang.ok,
+                negActionTitle: lang.cancel, posAction: () {
+              bool lang = HiveStorage.get(HiveKeys.isArabic);
+              HiveStorage.set(HiveKeys.role, "");
+              HiveStorage.set(HiveKeys.passUserOnboarding, true);
+              HiveStorage.logOut();
+
+              HiveStorage.set(HiveKeys.isArabic, lang).then((c) {
+                navigateAndRemoveUntil(
+                  context: context,
+                  screen: const SignIn(),
+                );
+              });
+            }, negAction: () {
+              navigatePop(context: context);
+            });
+          },
+        ),
+    ];
+  }
+
+  void _showBottomSheet(BuildContext context, Widget sheetContent) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => sheetContent,
+    );
+  }
+}

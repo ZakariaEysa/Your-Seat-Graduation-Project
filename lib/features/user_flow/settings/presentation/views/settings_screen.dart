@@ -123,6 +123,7 @@ class SettingsPage extends StatelessWidget {
         onPress: () {
           if (HiveStorage.get(HiveKeys.role) == Role.guest.toString()) {
             DialogUtils.showMessage(context, lang.youHaveToSignInToContinue,
+
                 isCancelable: false,
                 posActionTitle: lang.sign_in,
                 negActionTitle: lang.cancel, posAction: () {

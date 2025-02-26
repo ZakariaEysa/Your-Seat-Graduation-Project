@@ -154,7 +154,7 @@ class _MyAppState extends State<MyApp> {
                 return DevicePreview.appBuilder(context, child);
               },
               navigatorObservers: [BotToastNavigatorObserver()],
-              home: TicketDone(),
+              home: SplashScreen(),
             );
           });
     });

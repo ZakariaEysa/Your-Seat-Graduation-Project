@@ -46,7 +46,6 @@ class _CinemaDetailsState extends State<CinemaDetails> {
               CinemaCubit.get(context).cinemaDataMap.isNotEmpty) {
             final cinemaData = CinemaCubit.get(context)
                 .cinemaDataMap; // ✅ تعريف cinemaData هنا
-
             return SingleChildScrollView(
               child: Column(
                 children: [
@@ -56,7 +55,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                   Padding(
                     padding: EdgeInsets.only(top: 55.0.sp),
                     child: Text(
-                      lang.movies,
+                      lang.moviess,
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
                     ),
@@ -76,7 +75,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                     builder: (context, state) {
                       AppLogs.scussessLog(state.toString());
                       if (state is CinemaCommentsLoading) {
-                        // ✅ عند تحميل التعليقات
+
                         return const Center(child: CircularProgressIndicator());
                       } else if (state is CinemaCommentsError) {
                         return Center(
@@ -92,7 +91,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                         if (comments.isEmpty) {
                           return Center(
                             child: Text(
-                              'There are no comments yet.',
+                              lang.Therearenocommentsyet,
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           );
@@ -117,7 +116,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                               },
                             ),
 
-                            /// ✅ زر "Show More" عند وجود تعليقات إضافية
+
                             if (comments.length < CinemaCubit.get(context).allComments.length)
                               TextButton(
                                 onPressed: () {
@@ -183,6 +182,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                       SizedBox(width: 18.w),
                     ],
                   ),
+
 
                 ],
               ),

@@ -372,6 +372,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
       // 🔹 إنشاء بيانات التذكرة بدون `serverTimestamp()`
       Map<String, dynamic> ticketData = {
+        "status": "active",
         "orderId": orderId,
         "hall": hall,
         "movieName": movieName,
@@ -417,6 +418,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
       // 🔹 إنشاء بيانات التذكرة بدون `serverTimestamp()`
       Map<String, dynamic> ticketData = {
+        "status": "active",
         "orderId": orderId,
         "hall": hall,
         "movieName": movieName,

@@ -21,7 +21,8 @@ class PaymentSuccessful extends StatelessWidget {
       required this.time,
       required this.cinemaId,
       required this.hall,
-      required this.orderId});
+      required this.orderId,
+      });
   final String orderId;
 
   final MoviesDetailsModel model;

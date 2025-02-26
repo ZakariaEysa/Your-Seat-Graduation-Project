@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 
 class HeadMyticket extends StatelessWidget {
-  const HeadMyticket({super.key});
+  String? imageUrl;
+  String? movieName;
+  String? movieDuration;
+  String? movieCategory;
+  String? seatCategory;
+  String? movieTime;
+  String? movieDate;
+  List<String>? seats;
+  String? hall;
+
+
+
+   HeadMyticket({
+  required this.imageUrl,
+  required this.movieName,
+  required this.movieDuration,
+  required this.movieCategory,
+  required this.seatCategory,
+  required this.movieTime,
+  required this.movieDate,
+  required this.seats,
+  required this.hall
+  ,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +37,14 @@ class HeadMyticket extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 60.h , left: 20.w),
-                child: Image.asset(
-                  "assets/images/Rectangle 22.png",
-                  width: 100.w, // تقليل العرض ليناسب iPhone
-                  height: 160.h,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.r),
+                  child: ImageReplacer(
+                    imageUrl:
+                    imageUrl??"",
+                    width: 100.w, // تقليل العرض ليناسب iPhone
+                    height: 160.h,
+                  ),
                 ),
               ),
               SizedBox(width: 10.w), // تباعد مناسب
@@ -29,7 +56,7 @@ class HeadMyticket extends StatelessWidget {
                     Padding(
                       padding:  EdgeInsets.only(right:  18.0 ,top:10 ),
                       child: Text(
-                        "Vip",
+                        seatCategory??"",
                         style: TextStyle(
                           fontSize: 22.sp, // تقليل الحجم ليناسب الشاشات الصغيرة
                           fontWeight: FontWeight.bold,
@@ -41,7 +68,7 @@ class HeadMyticket extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
-                        "Avengers: Infinity War",
+                        movieName??"",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -63,7 +90,7 @@ class HeadMyticket extends StatelessWidget {
                         SizedBox(width: 5.w),
                         Expanded(
                           child: Text(
-                            "2 hours 29 minutes",
+                            movieDuration??"",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(color: Colors.black, fontSize: 14.sp),
@@ -83,7 +110,7 @@ class HeadMyticket extends StatelessWidget {
                         SizedBox(width: 5.w),
                         Expanded(
                           child: Text(
-                            "Action, Adventure, Sci-Fi",
+                            movieCategory??"",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(color: Colors.black, fontSize: 14.sp),
@@ -96,7 +123,7 @@ class HeadMyticket extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20.h),
+          SizedBox(height: 30.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly, // توزيع العناصر بالتساوي
             children: [
@@ -104,19 +131,19 @@ class HeadMyticket extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/icons/calendar.png',
-                    width: 70.w,
-                    height: 70.h,
+                    width: 40.w,
+                    height: 40.h,
                   ),
-                  SizedBox(width: 5.w),
+                  SizedBox(width: 2.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "14h15’",
+                        movieTime??"",
                         style: TextStyle(color: Colors.black, fontSize: 14.sp),
                       ),
                       Text(
-                        "10.12.2022",
+                        movieDate??"",
                         style: TextStyle(color: Colors.black, fontSize: 14.sp),
                       ),
                     ],
@@ -127,19 +154,19 @@ class HeadMyticket extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/icons/vYzyIu_2_.png',
-                    width: 70.w,
-                    height: 70.h,
+                    width: 40.w,
+                    height: 40.h,
                   ),
-                  SizedBox(width: 5.w),
+                  SizedBox(width: 3.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Seat F10",
+                        "Seats ${seats??""}",
                         style: TextStyle(color: Colors.black, fontSize: 14.sp),
                       ),
                       Text(
-                        "Section 4",
+                        "Section ${hall??''}",
                         style: TextStyle(color: Colors.black, fontSize: 14.sp),
                       ),
                     ],

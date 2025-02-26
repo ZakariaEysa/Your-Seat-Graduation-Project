@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CenterText extends StatelessWidget {
-  const CenterText({super.key});
+  String? cost;
+  String? cinemaId;
+  String? location;
+   CenterText({
+    super.key,
+    required this.cost,
+    required this.location,
+    required this.cinemaId
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +37,7 @@ class CenterText extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     Text(
-                      '210.000 VND',
+                      '${cost??""} EGP',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.sp,
@@ -55,7 +63,7 @@ class CenterText extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     Text(
-                      'Vincom Ocean Park',
+                      cinemaId??"",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.sp,
@@ -77,7 +85,7 @@ class CenterText extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 60.w),
                   child: Text(
-                    '4th floor, Vincom Ocean Park,\n Da Ton, Gia Lam, Ha Noi',
+                    location??"",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 14.sp,

@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -115,8 +119,8 @@ class Payment extends StatelessWidget {
                                     navigateTo(
                                         context: context,
                                         screen: PaymentScreen(
-                                          orderId:PaymentCubit.get(context)
-                                            .orderIdForPaymentTicket,
+                                            orderId: PaymentCubit.get(context)
+                                                .orderIdForPaymentTicket,
                                             hall: hall,
                                             model: model,
                                             seatCategory: seatCategory,

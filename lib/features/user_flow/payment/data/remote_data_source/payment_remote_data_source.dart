@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 
 import 'package:yourseatgraduationproject/core/Network/end_points.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/data/repos_impl/payment_repo_impl.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
 import '../../../../../utils/app_logs.dart';
 
 import '../../../../../../data/hive_keys.dart';
@@ -35,6 +37,8 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
       AppLogs.errorLog("token : $token");
       final orderId =
           await getOrderId(token: token!, amount: (100 * amount).toString());
+      PaymentCubit(PaymentRepoImpl(PaymentRemoteDataSourceImpl())).orderId =
+          orderId.toString();
       final paymentKey = await getPaymentKey(
           token: token, orderId: orderId, amount: (100 * amount).toString());
       AppLogs.scussessLog(paymentKey.toString());

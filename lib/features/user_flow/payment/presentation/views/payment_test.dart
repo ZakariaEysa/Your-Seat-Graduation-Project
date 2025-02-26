@@ -8,6 +8,7 @@ import 'package:yourseatgraduationproject/core/Network/end_points.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_successful.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
@@ -24,6 +25,7 @@ class PaymentScreen extends StatefulWidget {
   final MoviesDetailsModel model;
   final List<String> seats;
   final String seatCategory;
+  final String hall;
 
   final num price;
   final String location;
@@ -41,6 +43,7 @@ class PaymentScreen extends StatefulWidget {
     required this.date,
     required this.time,
     required this.cinemaId,
+    required this.hall,
   });
 
   @override
@@ -171,13 +174,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
           startPayment();
         },
         onLoadStop: (controller, url) {
-          injectScript();
           if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "true") {
             String? transactionId = url.queryParameters["transaction_id"];
             if (transactionId != null && transactionId.isNotEmpty) {
-              _handlePaymentSuccess(transactionId);
+              AppLogs.debugLog("✅ الدفع ناجح - Transaction ID: $transactionId");
+
+              // _handlePaymentSuccess(transactionId);
             } else {
               AppLogs.errorLog(
                   "❌ فشل في جلب transaction_id، التحقق من الـ URL!");
@@ -205,6 +209,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     required String seatCategory,
     required num totalPrice,
     required String transactionId,
+    required String hall,
   }) async {
     try {
       // 🔹 مرجع السينما في Firestore
@@ -257,6 +262,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   .update({
                 'tickets': FieldValue.arrayUnion([
                   {
+                    " hall": hall,
                     "movieName": movieName,
                     "cinemaId": cinemaId,
                     "date": selectedDate,
@@ -303,6 +309,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       AppLogs.scussessLog(currentUser.toString());
     }
     await updateReservedSeatsAndSaveTicket(
+        hall: widget.hall,
         cinemaId: widget.cinemaId,
         movieName: widget.model.name.toString(),
         selectedTime: widget.time,
@@ -316,6 +323,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     navigateAndRemoveUntil(
       context: context,
       screen: PaymentSuccessful(
+        hall: widget.hall,
         model: widget.model,
         seatCategory: widget.seatCategory,
         seats: widget.seats,

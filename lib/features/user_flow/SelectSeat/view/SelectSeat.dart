@@ -35,11 +35,13 @@ class _SelectSeatState extends State<SelectSeat> {
   String _seatCategory = '';
   String _highestSeatCategory = '';
   String? _selectedDate;
+  String? _selectedHall;
 
   int? _selectedDay;
   List<Map<String, dynamic>> filteredTimes = [];
   String? _selectedTime;
   List<String> reservedSeats = [];
+  List<String> halls = [];
 
   @override
   void initState() {
@@ -90,6 +92,8 @@ class _SelectSeatState extends State<SelectSeat> {
             setState(() {
               timesList =
                   List<Map<String, dynamic>>.from(selectedMovie['times']);
+              halls = timesList.map((e) => e['hall'].toString()).toList();
+
               dates = timesList.map((e) => e['date'].toString()).toList();
               days = dates.map((date) => DateTime.parse(date).day).toList();
               months = dates.map((date) => DateTime.parse(date).month).toList();
@@ -249,6 +253,7 @@ class _SelectSeatState extends State<SelectSeat> {
                             "$newYear-${newMonth.toString().padLeft(2, '0')}-${newDay.toString().padLeft(2, '0')}"; // ✅ تخزين التاريخ بالكامل
                         _filterTimesForSelectedDay();
                         _totalPrice = 0;
+                        AppLogs.scussessLog("date is $_selectedDate");
                       });
                     },
                   ),
@@ -290,10 +295,13 @@ class _SelectSeatState extends State<SelectSeat> {
                               showCenteredSnackBar(
                                   context, "you cant select more than 5 seats");
                             } else {
-                              _getHiestSeatCategory();
+                              _getHighestSeatCategory();
+                              getHall();
+
                               navigateTo(
                                   context: context,
                                   screen: PaymentPolicy(
+                                      hall: _selectedHall ?? "noHall",
                                       cinemaId: widget.cinemaId,
                                       date: _selectedDate.toString(),
                                       time: _selectedTime ?? "00:00",
@@ -325,7 +333,15 @@ class _SelectSeatState extends State<SelectSeat> {
     );
   }
 
-  void _getHiestSeatCategory() {
+  void getHall() {
+    int selectedDateIndex = dates.indexOf(_selectedDate ?? "");
+    AppLogs.debugLog(selectedDateIndex.toString());
+    AppLogs.debugLog(_selectedDate.toString());
+    _selectedHall = halls[selectedDateIndex];
+    AppLogs.debugLog(halls[selectedDateIndex]);
+  }
+
+  void _getHighestSeatCategory() {
     selectedSeats.sort((a, b) => num.parse(a).compareTo(num.parse(b)));
 
     num seatNumber = num.parse(selectedSeats[0]);
@@ -339,7 +355,7 @@ class _SelectSeatState extends State<SelectSeat> {
     } else {
       _highestSeatCategory = "Standard";
     }
-    if (dates.isNotEmpty) {
+    if (dates.isNotEmpty && _selectedDate == null) {
       DateTime firstDate = DateTime.parse(dates.first);
       _selectedDay = firstDate.day;
       _selectedDate =

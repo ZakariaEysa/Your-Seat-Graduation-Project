@@ -25,10 +25,12 @@ class Payment extends StatelessWidget {
       required this.location,
       required this.date,
       required this.time,
-      required this.cinemaId});
+      required this.cinemaId,
+      required this.hall});
   final MoviesDetailsModel model;
   final List<String> seats;
   final String seatCategory;
+  final String hall;
 
   final num price;
   final String location;
@@ -105,15 +107,19 @@ class Payment extends StatelessWidget {
                                   AppLogs.errorLog(state.toString());
                                   if (state is PaymentSuccess) {
                                     AppLogs.errorLog(state.payToken.toString());
+                                    AppLogs.debugLog("order id is ");
+                                    AppLogs.scussessLog(
+                                        PaymentCubit.get(context).orderId);
 
                                     navigateTo(
                                         context: context,
                                         screen: PaymentScreen(
+                                            hall: hall,
                                             model: model,
                                             seatCategory: seatCategory,
                                             seats: seats,
                                             price: price,
-                                            location:location,
+                                            location: location,
                                             date: date,
                                             time: time,
                                             cinemaId: cinemaId,

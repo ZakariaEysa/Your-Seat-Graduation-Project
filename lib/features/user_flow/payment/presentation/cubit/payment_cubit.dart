@@ -8,6 +8,8 @@ part 'payment_state.dart';
 class PaymentCubit extends Cubit<PaymentState> {
   final PaymentRepo paymentRepo;
 
+
+ String orderId="";
   PaymentCubit(this.paymentRepo) : super(PaymentInitial());
   static PaymentCubit get(context) => BlocProvider.of<PaymentCubit>(context);
 

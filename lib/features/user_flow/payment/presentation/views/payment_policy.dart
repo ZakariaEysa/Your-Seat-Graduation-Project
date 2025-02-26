@@ -26,7 +26,8 @@ class PaymentPolicy extends StatefulWidget {
       required this.location,
       required this.date,
       required this.time,
-      required this.cinemaId});
+      required this.cinemaId,
+      required this.hall});
   final MoviesDetailsModel model;
   final String seatCategory;
   final List<String> seats;
@@ -34,6 +35,7 @@ class PaymentPolicy extends StatefulWidget {
   final String location;
   final String date;
   final String time;
+  final String hall;
   final String cinemaId;
 
   @override
@@ -46,6 +48,7 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
   @override
   Widget build(BuildContext context) {
     AppLogs.scussessLog(widget.seatCategory.toString());
+    AppLogs.scussessLog(widget.hall.toString());
     var lang = S.of(context);
     final theme = Theme.of(context);
     return ScaffoldF(
@@ -190,6 +193,7 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
                         create: (context) => PaymentCubit(
                             PaymentRepoImpl(PaymentRemoteDataSourceImpl())),
                         child: Payment(
+                           hall: widget.hall,
                           model: widget.model,
                           seatCategory: widget.seatCategory,
                           seats: widget.seats,

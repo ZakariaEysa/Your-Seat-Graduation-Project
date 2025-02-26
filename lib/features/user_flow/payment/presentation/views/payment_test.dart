@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -48,6 +49,7 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen> {
   late final InAppWebViewController _controller;
+  var currentUser;
 
   @override
   void initState() {
@@ -173,28 +175,156 @@ class _PaymentScreenState extends State<PaymentScreen> {
           if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "true") {
-            navigateAndRemoveUntil(
-                context: context,
-                screen: PaymentSuccessful(
-                  model: widget.model,
-                  seatCategory: widget.seatCategory,
-                  seats: widget.seats,
-                  price: widget.price,
-                  location: widget.location,
-                  date: widget.date,
-                  time: widget.time,
-                  cinemaId: widget.cinemaId,
-                ));
-            AppLogs.debugLog("success");
+            String? transactionId = url.queryParameters["transaction_id"];
+            if (transactionId != null && transactionId.isNotEmpty) {
+              _handlePaymentSuccess(transactionId);
+            } else {
+              AppLogs.errorLog(
+                  "❌ فشل في جلب transaction_id، التحقق من الـ URL!");
+            }
           } else if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "false") {
-            AppLogs.debugLog("failure");
+            AppLogs.debugLog("❌ فشل في الدفع!");
           }
         },
         onReceivedError: (controller, request, error) {
           AppLogs.errorLog(error.toString());
         },
+      ),
+    );
+  }
+
+  Future<void> updateReservedSeatsAndSaveTicket({
+    required String cinemaId,
+    required String movieName,
+    required String selectedTime,
+    required String selectedDate,
+    required List<String> newSelectedSeats, // المقاعد الجديدة المختارة
+    required String userId, // معرف المستخدم
+    required String seatCategory,
+    required num totalPrice,
+    required String transactionId,
+  }) async {
+    try {
+      // 🔹 مرجع السينما في Firestore
+      DocumentReference cinemaRef =
+          FirebaseFirestore.instance.collection('Cinemas').doc(cinemaId);
+
+      // 🔹 جلب بيانات السينما
+      DocumentSnapshot cinemaSnapshot = await cinemaRef.get();
+
+      if (cinemaSnapshot.exists) {
+        Map<String, dynamic>? cinemaData =
+            cinemaSnapshot.data() as Map<String, dynamic>?;
+
+        if (cinemaData != null && cinemaData.containsKey('movies')) {
+          List<dynamic> moviesList = List.from(cinemaData['movies']);
+
+          // 🔹 البحث عن الفيلم المحدد
+          int movieIndex =
+              moviesList.indexWhere((movie) => movie['name'] == movieName);
+
+          if (movieIndex != -1) {
+            List<dynamic> timesList =
+                List.from(moviesList[movieIndex]['times']);
+
+            // 🔹 البحث عن التوقيت المحدد داخل الفيلم
+            int timeIndex = timesList.indexWhere((time) =>
+                time['time'] == selectedTime && time['date'] == selectedDate);
+
+            if (timeIndex != -1) {
+              List<String> existingReservedSeats = List<String>.from(
+                  timesList[timeIndex]['reservedSeats'] ?? []);
+
+              // ✅ تحديث المقاعد المحجوزة وإضافة المقاعد الجديدة
+              existingReservedSeats.addAll(newSelectedSeats);
+              existingReservedSeats =
+                  existingReservedSeats.toSet().toList(); // إزالة التكرارات
+
+              timesList[timeIndex]['reservedSeats'] = existingReservedSeats;
+              moviesList[movieIndex]['times'] = timesList;
+
+              // ✅ تحديث Firestore بالبيانات الجديدة
+              await cinemaRef.update({'movies': moviesList});
+
+              print("✅ تم تحديث المقاعد المحجوزة بنجاح!");
+
+              // 🔹 تحديث بيانات المستخدم وإضافة التذكرة
+              await FirebaseFirestore.instance
+                  .collection('Users')
+                  .doc(userId)
+                  .update({
+                'tickets': FieldValue.arrayUnion([
+                  {
+                    "movieName": movieName,
+                    "cinemaId": cinemaId,
+                    "date": selectedDate,
+                    "time": selectedTime,
+                    "seats": newSelectedSeats,
+                    "seatCategory": seatCategory,
+                    "totalPrice": totalPrice,
+                    "transactionId": transactionId,
+                    "purchaseTime": FieldValue.serverTimestamp(), // وقت الشراء
+                  }
+                ])
+              });
+
+              print("🎟️✅ تم حفظ التذكرة بنجاح في حساب المستخدم!");
+            } else {
+              print("❌ لم يتم العثور على الوقت المحدد!");
+            }
+          } else {
+            print("❌ لم يتم العثور على الفيلم المحدد!");
+          }
+        } else {
+          print("❌ لا يوجد أفلام مسجلة في السينما!");
+        }
+      } else {
+        print("❌ لم يتم العثور على السينما!");
+      }
+    } catch (e) {
+      print("❌ خطأ أثناء تحديث البيانات: $e");
+    }
+  }
+
+  Future<void> _handlePaymentSuccess(String transactionId) async {
+    AppLogs.debugLog("✅ الدفع ناجح - Transaction ID: $transactionId");
+
+    if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
+      setState(() {
+        currentUser = HiveStorage.getGoogleUser();
+      });
+      setState(() {});
+    } else {
+      setState(() {
+        currentUser = HiveStorage.getDefaultUser();
+      });
+      AppLogs.scussessLog(currentUser.toString());
+    }
+    await updateReservedSeatsAndSaveTicket(
+        cinemaId: widget.cinemaId,
+        movieName: widget.model.name.toString(),
+        selectedTime: widget.time,
+        selectedDate: widget.date,
+        newSelectedSeats: widget.seats,
+        userId: currentUser?.name,
+        seatCategory: widget.seatCategory,
+        totalPrice: widget.price,
+        transactionId: transactionId);
+
+    navigateAndRemoveUntil(
+      context: context,
+      screen: PaymentSuccessful(
+        model: widget.model,
+        seatCategory: widget.seatCategory,
+        seats: widget.seats,
+        price: widget.price,
+        location: widget.location,
+        date: widget.date,
+        time: widget.time,
+        cinemaId: widget.cinemaId,
+        transactionId: transactionId, // ✅ تمرير رقم المعاملة إلى الصفحة التالية
       ),
     );
   }

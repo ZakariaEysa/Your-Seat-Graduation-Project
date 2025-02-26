@@ -19,10 +19,11 @@ class PaymentSuccessful extends StatelessWidget {
       required this.location,
       required this.date,
       required this.time,
-      required this.cinemaId});
+      required this.cinemaId, required this.transactionId});
   final MoviesDetailsModel model;
   final List<String> seats;
   final String seatCategory;
+  final String transactionId;
 
   final num price;
   final String location;

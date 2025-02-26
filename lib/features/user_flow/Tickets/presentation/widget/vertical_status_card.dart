@@ -30,7 +30,7 @@ class VerticalStatusCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RotatedBox(
-              quarterTurns: 3, // دوران 90 درجة باتجاه عقارب الساعة
+              quarterTurns: 3,
               child: Text(
                 status,
                 style: TextStyle(
@@ -40,13 +40,13 @@ class VerticalStatusCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 12.h), // تقليل المسافة بين النص والصورة
+            SizedBox(height: 12.h),
             ClipOval(
               child: Image.asset(
                 imagePath,
-                width: imageWidth.w,  // التأكد من توافق الحجم مع `screenUtil`
+                width: imageWidth.w,
                 height: imageHeight.h,
-             // يمنع التشويه إذا لم تكن الصورة مربعة
+
               ),
             ),
           ],

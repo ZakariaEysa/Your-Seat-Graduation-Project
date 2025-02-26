@@ -371,6 +371,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
       // 🔹 إنشاء بيانات التذكرة بدون `serverTimestamp()`
       Map<String, dynamic> ticketData = {
+        "poster_image": widget.model.posterImage,
         "status": "active",
         "orderId": orderId,
         "hall": hall,
@@ -417,6 +418,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
       // 🔹 إنشاء بيانات التذكرة بدون `serverTimestamp()`
       Map<String, dynamic> ticketData = {
+        "poster_image": widget.model.posterImage,
         "status": "active",
         "orderId": orderId,
         "hall": hall,

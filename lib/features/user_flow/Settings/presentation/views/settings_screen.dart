@@ -122,7 +122,6 @@ class SettingsPage extends StatelessWidget {
         imageIcon: "assets/images/account.png",
         onPress: () {
           if (HiveStorage.get(HiveKeys.role) == Role.guest.toString()) {
-            DialogUtils.showMessage(context, "You Have To Sign In To Continue",
                 isCancelable: false,
                 posActionTitle: lang.sign_in,
                 negActionTitle: lang.cancel, posAction: () {

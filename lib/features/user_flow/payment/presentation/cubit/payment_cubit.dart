@@ -21,7 +21,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     );
   }
 
-  Future<void> payWithPayMob(int amount) async {
+  Future<void> payWithPayMob(num amount) async {
     emit(PaymentLoading());
     final result = await paymentRepo.payWithPayMob(amount);
     result.fold(

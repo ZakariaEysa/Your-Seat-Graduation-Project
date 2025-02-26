@@ -1,13 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/view/ticket_done.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/button/button_builder.dart';
 
 class PaymentSuccessful extends StatelessWidget {
-  const PaymentSuccessful({super.key});
+  const PaymentSuccessful(
+      {super.key,
+      required this.model,
+      required this.seats,
+      required this.seatCategory,
+      required this.price,
+      required this.location,
+      required this.date,
+      required this.time,
+      required this.cinemaId});
+  final MoviesDetailsModel model;
+  final List<String> seats;
+  final String seatCategory;
+
+  final num price;
+  final String location;
+  final String date;
+  final String time;
+  final String cinemaId;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +58,20 @@ class PaymentSuccessful extends StatelessWidget {
         ),
         ButtonBuilder(
           text: lang.ticket,
-          onTap: () {},
+          onTap: () {
+            navigateAndReplace(
+                context: context,
+                screen: TicketDone(
+                  model: model,
+                  seatCategory: seatCategory,
+                  seats: seats,
+                  price: price,
+                  location: location,
+                  date: date,
+                  time: time,
+                  cinemaId: cinemaId,
+                ));
+          },
           width: 173.w,
           height: 50.h,
         )

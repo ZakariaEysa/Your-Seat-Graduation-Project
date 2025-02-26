@@ -90,7 +90,7 @@ class _PaymentCardState extends State<PaymentCard> {
                     fontSize: 16.sp,
                   ),
                   onTap: () {
-                    navigateTo(context: context, screen: PaymentSuccessful());
+                    // navigateTo(context: context, screen: PaymentSuccessful());
                   },
                 ),
               ])),

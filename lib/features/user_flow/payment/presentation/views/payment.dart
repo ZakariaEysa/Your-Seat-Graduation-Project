@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +27,7 @@ class Payment extends StatelessWidget {
       required this.time,
       required this.cinemaId});
   final MoviesDetailsModel model;
-  final List seats;
+  final List<String> seats;
   final String seatCategory;
 
   final num price;
@@ -68,8 +69,8 @@ class Payment extends StatelessWidget {
                       height: 20.h,
                     ),
                     PaymentPart(
-                      date:date,
-                      time:time,
+                      date: date,
+                      time: time,
                       location: location,
                       model: model,
                       seats: seats,
@@ -108,6 +109,14 @@ class Payment extends StatelessWidget {
                                     navigateTo(
                                         context: context,
                                         screen: PaymentScreen(
+                                            model: model,
+                                            seatCategory: seatCategory,
+                                            seats: seats,
+                                            price: price,
+                                            location:location,
+                                            date: date,
+                                            time: time,
+                                            cinemaId: cinemaId,
                                             paymentToken:
                                                 state.payToken ?? ""));
                                   } else if (state is PaymentError) {
@@ -117,9 +126,28 @@ class Payment extends StatelessWidget {
                                   }
                                 },
                                 child: IconButton(
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      AppLogs.debugLog(date.toString());
+                                      AppLogs.debugLog(time.toString());
+
+                                      AppLogs.debugLog(seats.toString());
+                                      bool canProceed =
+                                          await checkSeatsAvailability(
+                                        selectedSeats: seats,
+                                        cinemaName: cinemaId,
+                                        movieName: model.name.toString(),
+                                        date: date.toString(),
+                                        time: time,
+                                      );
+
+                                      if (!canProceed) {
+                                        showCenteredSnackBar(context,
+                                            "some seats are not available");
+                                        return;
+                                      }
+
                                       PaymentCubit.get(context)
-                                          .payWithPayMob(100);
+                                          .payWithPayMob(price);
 
                                       // PayMobPayment().refundPayment(
                                       //     transactionId: "266671705", amount: 100);
@@ -197,7 +225,7 @@ class Payment extends StatelessWidget {
                       height: 40.h,
                     ),
                     Container(
-                      width: 208.w,
+                      width: 238.w,
                       height: 36.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
@@ -212,13 +240,13 @@ class Payment extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              lang.completeYourPaymentIn,
+                              " " + lang.completeYourPaymentIn,
                               style: theme.textTheme.bodyMedium!
                                   .copyWith(fontSize: 11.sp),
                             ),
                             Spacer(),
                             Text(
-                              "15:00",
+                              "15:00  ",
                               style: theme.textTheme.bodyMedium!.copyWith(
                                   fontSize: 11.sp, color: Color(0xFFC11E88)),
                             ),
@@ -246,5 +274,89 @@ class Payment extends StatelessWidget {
             ),
           ],
         ));
+  }
+
+  Future<bool> checkSeatsAvailability({
+    required List<String> selectedSeats,
+    required String cinemaName,
+    required String movieName,
+    required String date,
+    required String time,
+  }) async {
+    try {
+      // 🔹 جلب بيانات السينما
+      DocumentSnapshot cinemaSnapshot = await FirebaseFirestore.instance
+          .collection('Cinemas')
+          .doc(cinemaName)
+          .get();
+
+      if (!cinemaSnapshot.exists) {
+        print("⚠️ السينما غير موجودة: $cinemaName");
+        return false; // السينما غير موجودة، لا يمكن الحجز
+      }
+
+      Map<String, dynamic>? cinemaData =
+          cinemaSnapshot.data() as Map<String, dynamic>?;
+      if (cinemaData == null || !cinemaData.containsKey('movies')) {
+        print("⚠️ لا يوجد أفلام في هذه السينما.");
+        return false;
+      }
+
+      // 🔹 البحث عن الفيلم
+      List<dynamic> moviesList = List.from(cinemaData['movies']);
+      var selectedMovie = moviesList.firstWhere(
+        (movie) => movie['name'] == movieName,
+        orElse: () => <String, dynamic>{},
+      );
+
+      if (selectedMovie.isEmpty) {
+        print("⚠️ الفيلم غير موجود في السينما: $movieName");
+        return false;
+      }
+
+      // 🔹 البحث عن اليوم داخل الفيلم
+      List<dynamic> timesList = List.from(selectedMovie['times']);
+      var selectedDay = timesList.firstWhere(
+        (e) => e['date'] == date,
+        orElse: () => <String, dynamic>{},
+      );
+
+      if (selectedDay.isEmpty) {
+        print("⚠️ لا يوجد عرض لهذا الفيلم في هذا اليوم: $date");
+        return false;
+      }
+
+      // 🔹 البحث عن الوقت داخل اليوم
+      List<dynamic> times = List.from(selectedDay['time']);
+      var selectedTime = times.firstWhere(
+        (e) => e['time'] == time,
+        orElse: () => <String, dynamic>{},
+      );
+
+      if (selectedTime.isEmpty) {
+        print("⚠️ لا يوجد عرض في هذا الوقت: $time");
+        return false;
+      }
+
+      // 🔹 جلب المقاعد المحجوزة من الوقت المحدد
+      List<String> reservedSeats =
+          List<String>.from(selectedTime["reservedSeats"] ?? []);
+
+      // 🔹 مقارنة المقاعد المختارة بالمقاعد المحجوزة
+      bool isAnySeatReserved =
+          selectedSeats.any((seat) => reservedSeats.contains(seat));
+
+      if (isAnySeatReserved) {
+        print(
+            "❌ بعض المقاعد محجوزة بالفعل: ${selectedSeats.where((seat) => reservedSeats.contains(seat)).toList()}");
+        return false; // ❌ يوجد مقاعد محجوزة، لا يمكن إتمام الحجز
+      }
+
+      print("✅ المقاعد متاحة للحجز!");
+      return true; // ✅ يمكن إتمام الحجز
+    } catch (e) {
+      print("❌ خطأ أثناء التحقق من توفر المقاعد: $e");
+      return false;
+    }
   }
 }

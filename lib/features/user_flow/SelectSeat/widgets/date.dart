@@ -6,13 +6,15 @@ class Date extends StatefulWidget {
   final List<int> days;
   final List<int> months;
   final int selectedDay;
-  final Function(int) onDaySelected;
+    final List<int> years; // ✅ أضف هذا المتغير
+
+  final Function(int, int, int) onDaySelected; // ✅ عدّل هنا ليستقبل (يوم، شهر، سنة)
 
   Date({
     required this.days,
     required this.months,
     required this.selectedDay,
-    required this.onDaySelected,
+    required this.onDaySelected, required this.years,
   });
 
   @override
@@ -34,18 +36,19 @@ class _DateState extends State<Date> {
         scrollDirection: Axis.horizontal,
         itemCount: widget.days.length,
         itemBuilder: (context, index) {
-          int dayInMonth = widget.days[index];
-          int monthIndex = widget.months[index] - 1;
+         int dayInMonth = widget.days[index];
+  int monthIndex = widget.months[index] - 1;
+  int year = widget.years[index]; // ✅ أضف السنة
+  
+  String formattedDay = dayInMonth.toString().padLeft(2, '0');
+  String formattedMonth = months[monthIndex];
 
-          String formattedDay = dayInMonth.toString().padLeft(2, '0');
-          String formattedMonth = months[monthIndex];
+  bool isSelected = dayInMonth == widget.selectedDay;
 
-          bool isSelected = dayInMonth == widget.selectedDay;
-
-          return GestureDetector(
-            onTap: () {
-              widget.onDaySelected(dayInMonth);
-            },
+  return GestureDetector(
+    onTap: () {
+      widget.onDaySelected(dayInMonth, widget.months[index], year); // ✅ رجّع اليوم، الشهر، والسنة
+    },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 6.0.w),
               child: Container(

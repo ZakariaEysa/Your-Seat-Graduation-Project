@@ -6,6 +6,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:yourseatgraduationproject/core/Network/end_points.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_successful.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
@@ -15,192 +16,30 @@ class PayMobPayment {
   Dio dio = Dio(BaseOptions(
     validateStatus: (status) => true, // يقبل أي status code
   ));
-
-//   Future<String?> payWithPayMob(int amount) async {
-//     try {
-//       final token = await getAuthToken();
-//       AppLogs.errorLog("token : $token");
-//       final orderId =
-//           await getOrderId(token: token!, amount: (100 * amount).toString());
-//       final paymentKey = await getPaymentKey(
-//           token: token, orderId: orderId, amount: (100 * amount).toString());
-//       AppLogs.scussessLog(paymentKey.toString());
-//       return paymentKey;
-//     } catch (e) {
-//       rethrow;
-//     }
-//   }
-
-//   Future<String?> getAuthToken() async {
-//     try {
-//       final response = await dio.post(
-//         "https://accept.paymob.com/api/auth/tokens",
-
-//         // headers: {"Content-Type": "application/json"},
-//         data: {"api_key": EndPoints.api_key},
-//       );
-//       AppLogs.errorLog(response.data.toString());
-//       AppLogs.debugLog(response.statusCode.toString());
-//       AppLogs.scussessLog(response.data["token"].toString());
-
-//       return response.data["token"];
-//     } catch (e) {
-//       rethrow;
-//     }
-//   }
-
-//   Future<int> getOrderId(
-//       {required String token, required String amount}) async {
-//     try {
-//       final response = await dio
-//           .post("https://accept.paymob.com/api/ecommerce/orders", data: {
-//         "auth_token": token,
-//         "delivery_needed": "true",
-//         "amount_cents": amount,
-//         "currency": "EGP",
-//         "items": [],
-//       });
-//       AppLogs.debugLog(response.data.toString());
-//       AppLogs.debugLog(response.statusCode.toString());
-
-//       AppLogs.scussessLog(response.data["id"].toString());
-
-//       return response.data["id"];
-//     } catch (e) {
-//       rethrow;
-//     }
-//   }
-
-//   Future<String> getPaymentKey(
-//       {required String token,
-//       required int orderId,
-//       required String amount}) async {
-//     try {
-//       var currentUser;
-
-//       if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
-//         currentUser = HiveStorage.getGoogleUser();
-//       } else {
-//         currentUser = HiveStorage.getDefaultUser();
-//       }
-//       //4979915 vc
-//       //visa 4979914
-
-//       final response = await dio
-//           .post("https://accept.paymob.com/api/acceptance/payment_keys", data: {
-//         "auth_token": token,
-//         "amount_cents": amount,
-//         "currency": "EGP",
-//         "integration_id": 4979914,
-//         "order_id": orderId,
-//         "lock_order_when_paid": "false",
-//         "billing_data": {
-//           "apartment": "NA",
-//           "email": currentUser.email ?? "zakariaeysa@gmail.com",
-//           "floor": "NA",
-//           "first_name": currentUser.name ?? "ziko",
-//           "street": "NA",
-//           "building": "NA",
-//           "phone_number": "NA",
-//           "shipping_method": "NA",
-//           "city": "NA",
-//           "country": "NA",
-//           "postal_code": "NA",
-//           "last_name": currentUser.name ?? "ziko",
-//           "state": "NA"
-//         }
-//       });
-//       AppLogs.infoLog(response.data.toString());
-//       AppLogs.debugLog(response.statusCode.toString());
-
-//       return response.data["token"];
-//     } catch (e) {
-//       AppLogs.errorLog(e.toString());
-//       rethrow;
-//     }
-//   }
-
-//   Future<void> refundPayment(
-//       {required String transactionId, required int amount}) async {
-//     try {
-//       final token = await getAuthToken();
-
-//       AppLogs.errorLog(token.toString());
-
-//       final response = await dio.post(
-//         "https://accept.paymob.com/api/acceptance/void_refund/refund",
-//         data: {
-//           "auth_token": token,
-//           "transaction_id": transactionId,
-//           "amount_cents": 100 * amount,
-//         },
-//       );
-
-//       AppLogs.errorLog(response.data.toString());
-//       if (response.statusCode != 200 && response.statusCode != 201) {
-//         AppLogs.errorLog(response.data["message"].toString());
-//       }
-//       // if (response.statusCode == 200 && response.data["success"] == true) {
-//       //   AppLogs.scussessLog("Refund successful for transaction $transactionId");
-//       // } else {
-//       //   AppLogs.errorLog("Refund failed: ${response.data}");
-//       // }
-//     } catch (e) {
-//       AppLogs.errorLog("Refund request failed: ${e.toString()}");
-//     }
-//   }
-
-//   Future<List<dynamic>> getAllTransactions(
-//       {int limit = 10, int page = 1}) async {
-//     try {
-//       final token = await getAuthToken(); // جلب التوكن
-
-//       final response = await dio.get(
-//         "https://accept.paymob.com/api/acceptance/transactions",
-//         queryParameters: {
-//           "page": page, // تحديد رقم الصفحة
-//           "limit": limit, // عدد النتائج في كل صفحة
-//         },
-//         options: Options(
-//           headers: {
-//             "Authorization": "Bearer $token",
-//             "Content-Type": "application/json",
-//           },
-//         ),
-//       );
-//       AppLogs.scussessLog("Transactions: ${response.data["results"].length}");
-//       AppLogs.scussessLog("Transactions: ${response.data["results"][0]}");
-
-//       if (response.statusCode == 200) {
-//         AppLogs.scussessLog("Transactions: ${response.data["results"].length}");
-//         return response.data["results"] ?? []; // إرجاع المعاملات
-//       } else {
-//         AppLogs.errorLog("Error fetching transactions: ${response.data}");
-//         return [];
-//       }
-//     } catch (e) {
-//       AppLogs.errorLog("Failed to fetch transactions: ${e.toString()}");
-//       return [];
-//     }
-//   }
 }
-
-/* 
-  PayMobPayment().payWithPayMob(100).then(
-                        (value) {
-                          AppLogs.scussessLog("payment token: $value");
-                          navigateTo(
-                              context: context,
-                              screen: PaymentScreen(paymentToken: value ?? ""));
-                        },
-                      ); 
-                       */
 
 class PaymentScreen extends StatefulWidget {
   final String paymentToken;
+  final MoviesDetailsModel model;
+  final List<String> seats;
+  final String seatCategory;
+
+  final num price;
+  final String location;
+  final String date;
+  final String time;
+  final String cinemaId;
   const PaymentScreen({
     super.key,
     required this.paymentToken,
+    required this.model,
+    required this.seats,
+    required this.seatCategory,
+    required this.price,
+    required this.location,
+    required this.date,
+    required this.time,
+    required this.cinemaId,
   });
 
   @override
@@ -334,7 +173,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
           if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "true") {
-            navigateTo(context: context, screen: PaymentSuccessful());
+            navigateAndRemoveUntil(
+                context: context,
+                screen: PaymentSuccessful(
+                  model: widget.model,
+                  seatCategory: widget.seatCategory,
+                  seats: widget.seats,
+                  price: widget.price,
+                  location: widget.location,
+                  date: widget.date,
+                  time: widget.time,
+                  cinemaId: widget.cinemaId,
+                ));
             AppLogs.debugLog("success");
           } else if (url != null &&
               url.queryParameters.containsKey("success") &&

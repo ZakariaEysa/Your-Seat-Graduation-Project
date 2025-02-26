@@ -9,7 +9,7 @@ import '../../../../../../data/hive_keys.dart';
 import '../../../../../../data/hive_stroage.dart';
 
 abstract class PaymentRemoteDataSource {
-  Future<String?> payWithPayMob(int amount);
+  Future<String?> payWithPayMob(num amount);
   Future<String?> getAuthToken();
 
   Future<int> getOrderId({required String token, required String amount});
@@ -29,7 +29,7 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
     validateStatus: (status) => true, // يقبل أي status code
   ));
   @override
-  Future<String?> payWithPayMob(int amount) async {
+  Future<String?> payWithPayMob(num amount) async {
     try {
       final token = await getAuthToken();
       AppLogs.errorLog("token : $token");

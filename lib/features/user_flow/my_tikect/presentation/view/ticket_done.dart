@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../widget/center_text.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -8,7 +11,25 @@ import '../widget/head_myticket.dart';
 import '../widget/qr_state.dart';
 
 class TicketDone extends StatelessWidget {
-  const TicketDone({super.key});
+  final MoviesDetailsModel model;
+  final List<String> seats;
+  final String seatCategory;
+
+  final num price;
+  final String location;
+  final String date;
+  final String time;
+  final String cinemaId;
+  const TicketDone(
+      {super.key,
+      required this.model,
+      required this.seats,
+      required this.seatCategory,
+      required this.price,
+      required this.location,
+      required this.date,
+      required this.time,
+      required this.cinemaId});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +39,20 @@ class TicketDone extends StatelessWidget {
     return ScaffoldF(
       appBar: AppBar(
         backgroundColor: Color(0xFF2E1371),
-        iconTheme: IconThemeData(
-            color: Colors.white,
-            size: 28.sp
-        ),
+        iconTheme: IconThemeData(color: Colors.white, size: 28.sp),
         title: Padding(
-          padding: EdgeInsetsDirectional.only(start: 45.w, top: 0, bottom: 15.h),
-          child: HeadAppBar(title: "My ticket"),
+          padding:
+              EdgeInsetsDirectional.only(start: 45.w, top: 0, bottom: 15.h),
+          child: HeadAppBar(
+            title: "My ticket",
+            onBackPressed: () {
+              navigateAndRemoveUntil(context: context, screen: HomeLayout());
+            },
+          ),
         ),
       ),
-      body: SingleChildScrollView( // Add scroll functionality
+      body: SingleChildScrollView(
+        // Add scroll functionality
         child: Stack(
           children: [
             Padding(

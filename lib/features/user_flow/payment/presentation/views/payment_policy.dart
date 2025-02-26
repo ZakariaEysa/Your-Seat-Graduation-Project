@@ -29,7 +29,7 @@ class PaymentPolicy extends StatefulWidget {
       required this.cinemaId});
   final MoviesDetailsModel model;
   final String seatCategory;
-  final List seats;
+  final List<String> seats;
   final num price;
   final String location;
   final String date;
@@ -194,7 +194,7 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
                           seatCategory: widget.seatCategory,
                           seats: widget.seats,
                           price: widget.price,
-                          location: " -",
+                          location: widget.location,
                           date: widget.date,
                           time: widget.time,
                           cinemaId: widget.cinemaId,

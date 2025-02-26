@@ -3,7 +3,7 @@ import '../../../../../services/failure_service.dart';
 
 
 abstract class PaymentRepo {
-  Future<Either<FailureService, String?>> payWithPayMob(int amount);
+  Future<Either<FailureService, String?>> payWithPayMob(num amount);
   Future<Either<FailureService, String?>> getAuthToken();
  
   Future<Either<FailureService,int>> getOrderId(

@@ -1,7 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_policy.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
+import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/app_logs.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';
@@ -12,29 +17,37 @@ import '../widgets/seats_grid.dart';
 import '../widgets/seats_type.dart';
 
 class SelectSeat extends StatefulWidget {
-  const SelectSeat({super.key});
+  const SelectSeat({super.key, required this.cinemaId, required this.movie});
 
+  final String cinemaId;
+
+  final MoviesDetailsModel movie;
   @override
   _SelectSeatState createState() => _SelectSeatState();
 }
 
 class _SelectSeatState extends State<SelectSeat> {
-  int _totalPrice = 0;
+  num _totalPrice = 0;
   List<Map<String, dynamic>> timesList = [];
   List<String> dates = [];
   List<int> days = [];
   List<int> months = [];
   String _seatCategory = '';
+  String _highestSeatCategory = '';
+  String? _selectedDate;
+  String? _selectedHall;
 
   int? _selectedDay;
   List<Map<String, dynamic>> filteredTimes = [];
   String? _selectedTime;
   List<String> reservedSeats = [];
+  List<String> halls = [];
 
   @override
   void initState() {
     super.initState();
-    _fetchMovieTimes("Point 90 Cinema", "The Dark Knight");
+    // _fetchMovieTimes("Point 90 Cinema", "The Dark Knight");
+    _fetchMovieTimes(widget.cinemaId, widget.movie.name.toString());
   }
 
   void _updateTotalPrice(int priceChange) {
@@ -79,6 +92,8 @@ class _SelectSeatState extends State<SelectSeat> {
             setState(() {
               timesList =
                   List<Map<String, dynamic>>.from(selectedMovie['times']);
+              halls = timesList.map((e) => e['hall'].toString()).toList();
+
               dates = timesList.map((e) => e['date'].toString()).toList();
               days = dates.map((date) => DateTime.parse(date).day).toList();
               months = dates.map((date) => DateTime.parse(date).month).toList();
@@ -167,114 +182,184 @@ class _SelectSeatState extends State<SelectSeat> {
           child: HeadAppBar(title: lang.selectSeat),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: 333.w,
-              height: 3.h,
-              color: const Color(0xFFF834FC),
-            ),
-            Center(
-              child: Image.asset(
-                "assets/images/shadwo.png",
-                width: double.infinity,
-                height: 50.h,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SeatsGrid(
-              updateTotalPrice: _updateTotalPrice,
-              updateSeatCategory: _updateSeatCategory,
-              reservedSeats: reservedSeats,
-            ),
-            SizedBox(height: 25.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SeatsType(color: const Color(0xFFF3F3F3), text: lang.available),
-                SeatsType(color: const Color(0xFF5b085d), text: lang.reserved),
-                SeatsType(color: const Color(0xFF09FBD3), text: lang.selected),
-              ],
-            ),
-            SizedBox(height: 20.h),
-            Text(
-              _seatCategory.isNotEmpty
-                  ? "The selected seat is $_seatCategory"
-                  : "No seat selected",
-              style: theme.textTheme.bodySmall?.copyWith(fontSize: 18.sp),
-            ),
-            SizedBox(height: 15.h),
-            Center(
-              child: Text(
-                lang.selectDateTime,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24.sp,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Date(
-              days: days,
-              months: months,
-              selectedDay: _selectedDay ?? days.first,
-              onDaySelected: (newDay) {
-                setState(() {
-                  _selectedDay = newDay;
-                  _filterTimesForSelectedDay();
-                  _totalPrice = 0;
-                });
-              },
-            ),
-            SizedBox(height: 12.h),
-            Time(
-              times: filteredTimes,
-              selectedTime: _selectedTime,
-              onTimeSelected: (newTime) {
-                setState(() {
-                  _selectedTime = newTime;
-                  _updateReservedSeats(newTime);
-                  _totalPrice = 0;
-                });
-              },
-            ),
-            Padding(
-              padding: EdgeInsets.all(16.0.sp),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: timesList.isEmpty
+          ? const AbsorbPointer(
+              absorbing: true,
+              child: LoadingIndicator(),
+            )
+          : SingleChildScrollView(
+              child: Column(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Container(
+                    width: 333.w,
+                    height: 3.h,
+                    color: const Color(0xFFF834FC),
+                  ),
+                  Center(
+                    child: Image.asset(
+                      "assets/images/shadwo.png",
+                      width: double.infinity,
+                      height: 50.h,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  SeatsGrid(
+                    updateTotalPrice: _updateTotalPrice,
+                    updateSeatCategory: _updateSeatCategory,
+                    reservedSeats: reservedSeats,
+                  ),
+                  SizedBox(height: 25.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(lang.total,
-                          style: theme.textTheme.bodySmall
-                              ?.copyWith(fontSize: 20.sp)),
-                      Text("$_totalPrice EGP",
-                          style: theme.textTheme.bodySmall?.copyWith(
-                              fontSize: 20.sp, color: const Color(0xFF09FBD3))),
+                      SeatsType(
+                          color: const Color(0xFFF3F3F3), text: lang.available),
+                      SeatsType(
+                          color: const Color(0xFF5b085d), text: lang.reserved),
+                      SeatsType(
+                          color: const Color(0xFF09FBD3), text: lang.selected),
                     ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF09FBD3),
-                      minimumSize: Size(155.w, 42.h),
-                    ),
+                  SizedBox(height: 20.h),
+                  Text(
+                    _seatCategory.isNotEmpty
+                        ? "The selected seat is $_seatCategory"
+                        : "No seat selected",
+                    style: theme.textTheme.bodySmall?.copyWith(fontSize: 18.sp),
+                  ),
+                  SizedBox(height: 15.h),
+                  Center(
                     child: Text(
-                      lang.buyTicket,
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        fontSize: 19.sp,
-                        color: Colors.black,
+                      lang.selectDateTime,
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.sp,
+                        color: Colors.white,
                       ),
+                    ),
+                  ),
+                  Date(
+                    days: days,
+                    months: months,
+                    years: dates
+                        .map((date) => DateTime.parse(date).year)
+                        .toList(), // ✅ تمرير السنوات
+                    selectedDay: _selectedDay ?? days.first,
+                    onDaySelected: (newDay, newMonth, newYear) {
+                      // ✅ استقبل السنة أيضًا
+                      setState(() {
+                        _selectedDay = newDay;
+                        _selectedDate =
+                            "$newYear-${newMonth.toString().padLeft(2, '0')}-${newDay.toString().padLeft(2, '0')}"; // ✅ تخزين التاريخ بالكامل
+                        _filterTimesForSelectedDay();
+                        _totalPrice = 0;
+                        AppLogs.scussessLog("date is $_selectedDate");
+                      });
+                    },
+                  ),
+                  SizedBox(height: 12.h),
+                  Time(
+                    times: filteredTimes,
+                    selectedTime: _selectedTime,
+                    onTimeSelected: (newTime) {
+                      setState(() {
+                        _selectedTime = newTime;
+                        _updateReservedSeats(newTime);
+                        _totalPrice = 0;
+                      });
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(16.0.sp),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(lang.total,
+                                style: theme.textTheme.bodySmall
+                                    ?.copyWith(fontSize: 20.sp)),
+                            Text("$_totalPrice EGP",
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                    fontSize: 20.sp,
+                                    color: const Color(0xFF09FBD3))),
+                          ],
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            if (selectedSeats.isEmpty) {
+                              showCenteredSnackBar(
+                                  context, "you have to select seats");
+                            } else if (selectedSeats.length > 5) {
+                              showCenteredSnackBar(
+                                  context, "you cant select more than 5 seats");
+                            } else {
+                              _getHighestSeatCategory();
+                              getHall();
+
+                              navigateTo(
+                                  context: context,
+                                  screen: PaymentPolicy(
+                                      hall: _selectedHall ?? "noHall",
+                                      cinemaId: widget.cinemaId,
+                                      date: _selectedDate.toString(),
+                                      time: _selectedTime ?? "00:00",
+                                      model: widget.movie,
+                                      seatCategory: _highestSeatCategory,
+                                      seats: selectedSeats,
+                                      price: _totalPrice,
+                                      location: " -"));
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF09FBD3),
+                            minimumSize: Size(155.w, 42.h),
+                          ),
+                          child: Text(
+                            lang.buyTicket,
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              fontSize: 19.sp,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
-      ),
     );
+  }
+
+  void getHall() {
+    int selectedDateIndex = dates.indexOf(_selectedDate ?? "");
+    AppLogs.debugLog(selectedDateIndex.toString());
+    AppLogs.debugLog(_selectedDate.toString());
+    _selectedHall = halls[selectedDateIndex];
+    AppLogs.debugLog(halls[selectedDateIndex]);
+  }
+
+  void _getHighestSeatCategory() {
+    selectedSeats.sort((a, b) => num.parse(a).compareTo(num.parse(b)));
+
+    num seatNumber = num.parse(selectedSeats[0]);
+    AppLogs.debugLog(selectedSeats.toString());
+
+    AppLogs.debugLog(seatNumber.toString());
+    if (seatNumber <= 24) {
+      _highestSeatCategory = "VIP";
+    } else if (seatNumber <= 48) {
+      _highestSeatCategory = "Premium";
+    } else {
+      _highestSeatCategory = "Standard";
+    }
+    if (dates.isNotEmpty && _selectedDate == null) {
+      DateTime firstDate = DateTime.parse(dates.first);
+      _selectedDay = firstDate.day;
+      _selectedDate =
+          "${firstDate.year}-${firstDate.month.toString().padLeft(2, '0')}-${firstDate.day.toString().padLeft(2, '0')}";
+    }
   }
 }

@@ -3,13 +3,15 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 
 import 'package:yourseatgraduationproject/core/Network/end_points.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/data/repos_impl/payment_repo_impl.dart';
+import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
 import '../../../../../utils/app_logs.dart';
 
 import '../../../../../../data/hive_keys.dart';
 import '../../../../../../data/hive_stroage.dart';
 
 abstract class PaymentRemoteDataSource {
-  Future<String?> payWithPayMob(int amount);
+  Future<String?> payWithPayMob(num amount);
   Future<String?> getAuthToken();
 
   Future<int> getOrderId({required String token, required String amount});
@@ -29,12 +31,13 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
     validateStatus: (status) => true, // يقبل أي status code
   ));
   @override
-  Future<String?> payWithPayMob(int amount) async {
+  Future<String?> payWithPayMob(num amount) async {
     try {
       final token = await getAuthToken();
       AppLogs.errorLog("token : $token");
       final orderId =
           await getOrderId(token: token!, amount: (100 * amount).toString());
+     
       final paymentKey = await getPaymentKey(
           token: token, orderId: orderId, amount: (100 * amount).toString());
       AppLogs.scussessLog(paymentKey.toString());

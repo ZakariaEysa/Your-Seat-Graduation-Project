@@ -61,7 +61,7 @@ class PaymentRepoImpl implements PaymentRepo {
   }
 
   @override
-  Future<Either<FailureService, String?>> payWithPayMob(int amount) async {
+  Future<Either<FailureService, String?>> payWithPayMob(num amount) async {
     try {
       final paymentToken = await paymentRemoteDataSource.payWithPayMob(amount);
 

@@ -16,9 +16,11 @@ class SeatsGrid extends StatefulWidget {
   _SeatsGridState createState() => _SeatsGridState();
 }
 
+List<String> selectedSeats = [];
+
 class _SeatsGridState extends State<SeatsGrid> {
   List<List<String>> seats = [];
-  List<String> selectedSeats = []; // ✅ قائمة المقاعد التي اختارها المستخدم
+  // ✅ قائمة المقاعد التي اختارها المستخدم
 
   @override
   void initState() {

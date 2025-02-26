@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:yourseatgraduationproject/features/user_flow/SelectSeat/view/SelectSeat.dart';
 
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
+import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
 
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
@@ -385,39 +386,62 @@ class _MovieDetailsState extends State<MovieDetails> {
                 BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
                   listener: (context, state) {
                     if (state is GetCinemasSuccess) {
-                      List temp = state.cinemas;
-                      if (widget.cinema != "") {
-                        if (temp.contains(cinemas[0])) {
-                          cinemas = temp;
-                        }
-                      } else {
-                        cinemas.addAll(temp);
+                      cinemas = state.cinemas;
+                      // List temp = state.cinemas;
+                      // if (widget.cinema != "") {
+                      //   if (temp.contains(cinemas[0])) {
+                      //     cinemas = temp;
+                      //   }
+                      // } else {
+                      //   cinemas.addAll(temp);
+                      // }
+                      // // cinemas.add("testCinema");
+                      if (cinemas.isNotEmpty) {
+                        selectedCinema = cinemas[0];
+                      } else if (cinemas.isEmpty) {
+                        selectedCinema = "null";
                       }
-                      cinemas.add("testCinema");
-                      selectedCinema = cinemas[0];
                     }
                   },
                   builder: (context, state) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: cinemas.length,
-                      itemBuilder: (context, index) => Padding(
-                        padding: EdgeInsets.only(bottom: 30.h),
-                        child: CinemaCard(
-                          onTap: () {
-                            setState(() {
-                              selectedCinema = cinemas[index];
-                            });
-                          },
-                          title: cinemas[index],
-                          imageUrl: 'assets/images/cgv.png',
-                          isSelected:
-                              cinemas[index] == selectedCinema ? true : false,
+                    if (cinemas.isNotEmpty) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: cinemas.length,
+                        itemBuilder: (context, index) => Padding(
+                          padding: EdgeInsets.only(bottom: 30.h),
+                          child: CinemaCard(
+                            onTap: () {
+                              setState(() {
+                                selectedCinema = cinemas[index];
+                              });
+                            },
+                            title: cinemas[index],
+                            imageUrl: 'assets/images/cgv.png',
+                            isSelected:
+                                cinemas[index] == selectedCinema ? true : false,
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    } else if (selectedCinema == "null") {
+                      return Center(
+                        child: Text(
+                          "there is no cinemas present this movie yet",
+                          style: theme.textTheme.bodyMedium!
+                              .copyWith(fontSize: 20.sp),
+                        ),
+                      );
+                    } else {
+                      return const AbsorbPointer(
+                        absorbing: true,
+                        child: LoadingIndicator(),
+                      );
+                    }
                   },
+                ),
+                SizedBox(
+                  height: 20.h,
                 ),
                 ButtonBuilder(
                   width: 250.w,
@@ -444,11 +468,17 @@ class _MovieDetailsState extends State<MovieDetails> {
                         navigatePop(context: context);
                       });
                     } else {
-                      if (selectedCinema != "") {
-                        navigateTo(context: context, screen: SelectSeat());
+                      if (selectedCinema != "" && selectedCinema != "null") {
+                        AppLogs.errorLog(widget.model.name.toString());
+                        AppLogs.errorLog(widget.cinema.toString());
+                        navigateTo(
+                            context: context,
+                            screen: SelectSeat(
+                                movie: widget.model,
+                                cinemaId: selectedCinema.toString()));
                       } else {
-                        showCenteredSnackBar(
-                            context, 'please  Select Cinema first ');
+                        showCenteredSnackBar(context,
+                            'this movie  is not available for booking ');
                       }
                     }
                   },

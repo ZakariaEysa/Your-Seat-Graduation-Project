@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/data/remote_data_source/payment_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/data/repos_impl/payment_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'payment.dart';
 import '../widgets/payment_policy_part.dart';
 import '../../../../../utils/navigation.dart';
@@ -15,7 +17,26 @@ import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/button/button_builder.dart';
 
 class PaymentPolicy extends StatefulWidget {
-  const PaymentPolicy({super.key});
+  const PaymentPolicy(
+      {super.key,
+      required this.model,
+      required this.seatCategory,
+      required this.seats,
+      required this.price,
+      required this.location,
+      required this.date,
+      required this.time,
+      required this.cinemaId,
+      required this.hall});
+  final MoviesDetailsModel model;
+  final String seatCategory;
+  final List<String> seats;
+  final num price;
+  final String location;
+  final String date;
+  final String time;
+  final String hall;
+  final String cinemaId;
 
   @override
   State<PaymentPolicy> createState() => _PaymentPolicyState();
@@ -26,6 +47,8 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
 
   @override
   Widget build(BuildContext context) {
+    AppLogs.scussessLog(widget.seatCategory.toString());
+    AppLogs.scussessLog(widget.hall.toString());
     var lang = S.of(context);
     final theme = Theme.of(context);
     return ScaffoldF(
@@ -165,12 +188,22 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
               onTap: () {
                 if (isChecked) {
                   navigateAndReplace(
-                      context: context,
-                      screen: BlocProvider(
+                    context: context,
+                    screen: BlocProvider(
                         create: (context) => PaymentCubit(
                             PaymentRepoImpl(PaymentRemoteDataSourceImpl())),
-                        child: Payment(),
-                      ));
+                        child: Payment(
+                           hall: widget.hall,
+                          model: widget.model,
+                          seatCategory: widget.seatCategory,
+                          seats: widget.seats,
+                          price: widget.price,
+                          location: widget.location,
+                          date: widget.date,
+                          time: widget.time,
+                          cinemaId: widget.cinemaId,
+                        )),
+                  );
                 } else {
                   showCenteredSnackBar(context, "pleaseAgreeWithPrivacyPolicy");
                 }

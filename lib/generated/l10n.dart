@@ -1458,6 +1458,26 @@ class S {
     );
   }
 
+  /// `Movies`
+  String get moviess {
+    return Intl.message(
+      'Movies',
+      name: 'moviess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no comments yet.`
+  String get Therearenocommentsyet {
+    return Intl.message(
+      'There are no comments yet.',
+      name: 'Therearenocommentsyet',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Home`
   String get home {
     return Intl.message(

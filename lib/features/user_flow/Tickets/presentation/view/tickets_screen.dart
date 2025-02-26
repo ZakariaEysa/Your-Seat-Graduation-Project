@@ -11,7 +11,7 @@ class TicketPage extends StatelessWidget {
     Ticket(
       movieName: 'Avengers: Infinity War',
       location: 'Vincom Ocean Park CGV',
-      imageUrl: 'assets/images/avg_ticket.png',
+      imageUrl: 'assets/images/avger_ticket.png',
       time: '14:15 pm',
       date: '25.9.2024',
       seats: '10,11,12',
@@ -24,7 +24,7 @@ class TicketPage extends StatelessWidget {
     Ticket(
       movieName: 'Batman v Superman',
       location: 'Vincom Ocean Park CGV',
-      imageUrl: 'assets/images/bat_ticket.png',
+      imageUrl: 'assets/images/bata_ticket.png',
       time: '14:15 pm',
       date: '25.9.2024',
       seats: '10,11,12',
@@ -37,7 +37,7 @@ class TicketPage extends StatelessWidget {
     Ticket(
       movieName: 'Guardians of the Galaxy',
       location: 'Vincom Ocean Park CGV',
-      imageUrl: 'assets/images/Gua_ticket.png',
+      imageUrl: 'assets/images/Gua_tickett.png',
       time: '14:15 pm',
       date: '25.9.2024',
       seats: '10,11,12',
@@ -79,7 +79,7 @@ class TicketPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return TicketCard(
                     ticket: tickets[index],
-                    isFirstTicket: index == 0, // تحديد البطاقة الأولى
+                    isFirstTicket: index == 0,
                   );
                 },
               ),

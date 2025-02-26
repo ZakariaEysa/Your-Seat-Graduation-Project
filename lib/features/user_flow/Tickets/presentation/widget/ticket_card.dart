@@ -31,7 +31,7 @@ class TicketCard extends StatelessWidget {
                 width: 120.w,
               ),
             ),
-            SizedBox(width: 8.w), // إضافة مسافة صغيرة بين الصورة والنص
+            SizedBox(width: 8.w),
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

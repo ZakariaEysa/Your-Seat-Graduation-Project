@@ -58,7 +58,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   void initState() {
     super.initState();
-    _handlePaymentSuccess();
+    // _handlePaymentSuccess();
   }
 
   void startPayment() {
@@ -281,32 +281,55 @@ class _PaymentScreenState extends State<PaymentScreen> {
       setState(() {
         currentUser = HiveStorage.getGoogleUser();
       });
-      setState(() {});
     } else {
       setState(() {
         currentUser = HiveStorage.getDefaultUser();
       });
       AppLogs.scussessLog(currentUser.toString());
     }
+
+    String userEmail = currentUser?.email ?? "unknown@email.com";
+
     await updateReservedSeatsAndSaveTicket(
-     
       cinemaId: widget.cinemaId,
       movieName: widget.model.name.toString(),
       selectedTime: widget.time,
       selectedDate: widget.date,
       newSelectedSeats: widget.seats,
-      //  orderId: widget.orderId,
-      // hall: widget.hall,
-      // userId: currentUser?.name ?? "No name",
-      // seatCategory: widget.seatCategory,
-      // totalPrice: widget.price,
+    );
+
+    // 🔹 حفظ التذكرة للمستخدم
+    await saveUserTicket(
+      email: userEmail,
+      orderId: widget.orderId,
+      hall: widget.hall,
+      cinemaId: widget.cinemaId,
+      movieName: widget.model.name.toString(),
+      selectedTime: widget.time,
+      selectedDate: widget.date,
+      selectedSeats: widget.seats,
+      seatCategory: widget.seatCategory,
+      totalPrice: widget.price,
+    );
+
+    // 🔹 حفظ التذكرة داخل السينما
+    await saveCinemaTicket(
+      email: userEmail,
+      orderId: widget.orderId,
+      hall: widget.hall,
+      cinemaId: widget.cinemaId,
+      movieName: widget.model.name.toString(),
+      selectedTime: widget.time,
+      selectedDate: widget.date,
+      selectedSeats: widget.seats,
+      seatCategory: widget.seatCategory,
+      totalPrice: widget.price,
     );
 
     navigateAndRemoveUntil(
       context: context,
       screen: PaymentSuccessful(
         orderId: widget.orderId,
-
         hall: widget.hall,
         model: widget.model,
         seatCategory: widget.seatCategory,
@@ -316,8 +339,108 @@ class _PaymentScreenState extends State<PaymentScreen> {
         date: widget.date,
         time: widget.time,
         cinemaId: widget.cinemaId,
-        // ✅ تمرير رقم المعاملة إلى الصفحة التالية
       ),
     );
+  }
+
+  Future<void> saveUserTicket({
+    required String email,
+    required String orderId,
+    required String cinemaId,
+    required String movieName,
+    required String selectedTime,
+    required String selectedDate,
+    required List<String> selectedSeats,
+    required String seatCategory,
+    required num totalPrice,
+    required String hall,
+  }) async {
+    try {
+      DocumentReference userRef =
+          FirebaseFirestore.instance.collection('users').doc(email);
+
+      // 🔹 جلب بيانات المستخدم
+      DocumentSnapshot userSnapshot = await userRef.get();
+
+      if (!userSnapshot.exists) {
+        // 🔹 إنشاء المستخدم إذا لم يكن موجودًا
+        await userRef.set({
+          'email': email,
+          'myTickets': [] // إنشاء حقل التذاكر فارغًا
+        });
+      }
+
+      // 🔹 إنشاء بيانات التذكرة بدون `serverTimestamp()`
+      Map<String, dynamic> ticketData = {
+        "orderId": orderId,
+        "hall": hall,
+        "movieName": movieName,
+        "cinemaId": cinemaId,
+        "date": selectedDate,
+        "time": selectedTime,
+        "seats": selectedSeats,
+        "seatCategory": seatCategory,
+        "totalPrice": totalPrice,
+      };
+
+      // 🔹 إضافة التذكرة إلى `myTickets`
+      await userRef.update({
+        'myTickets': FieldValue.arrayUnion([ticketData])
+      });
+
+      // 🔹 تحديث `purchaseTime` بشكل منفصل
+      await userRef.update({
+        'purchaseTime': FieldValue.serverTimestamp(),
+      });
+
+      print("✅ تم حفظ التذكرة بنجاح في حساب المستخدم!");
+    } catch (e) {
+      print("❌ خطأ أثناء حفظ التذكرة للمستخدم: $e");
+    }
+  }
+
+  Future<void> saveCinemaTicket({
+    required String cinemaId,
+    required String orderId,
+    required String movieName,
+    required String selectedTime,
+    required String selectedDate,
+    required List<String> selectedSeats,
+    required String seatCategory,
+    required num totalPrice,
+    required String hall,
+    required String email,
+  }) async {
+    try {
+      DocumentReference cinemaRef =
+          FirebaseFirestore.instance.collection('Cinemas').doc(cinemaId);
+
+      // 🔹 إنشاء بيانات التذكرة بدون `serverTimestamp()`
+      Map<String, dynamic> ticketData = {
+        "orderId": orderId,
+        "hall": hall,
+        "movieName": movieName,
+        "date": selectedDate,
+        "time": selectedTime,
+        "seats": selectedSeats,
+        "seatCategory": seatCategory,
+        "totalPrice": totalPrice,
+        "userEmail": email,
+      };
+
+      // 🔹 إضافة التذكرة إلى `tickets`
+      await cinemaRef.update({
+        'tickets': FieldValue.arrayUnion([ticketData])
+      });
+
+      // 🔹 تحديث `purchaseTime` بشكل منفصل
+      await cinemaRef.update({
+        'purchaseTime': FieldValue.serverTimestamp(),
+      });
+
+      print("✅ تم حفظ التذكرة في قسم التذاكر الخاص بالسينما!");
+    } catch (e) {
+      print("❌ خطأ أثناء حفظ التذكرة في مجموعة السينما: $e");
+    }
   }
 }

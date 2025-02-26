@@ -72,7 +72,18 @@ class TicketDone extends StatelessWidget {
                 ),
               ),
             ),
-            HeadMyticket(),
+            HeadMyticket(imageUrl: model.posterImage,
+            hall: hall,
+              movieCategory: model.category,
+              movieDate: date,
+              movieDuration: model.duration,
+              movieTime: time,
+              movieName: model.name,
+              seatCategory: seatCategory,
+              seats: seats,
+
+
+            ),
             Positioned(
               bottom: 0,
               left: 342.w, // Responsive to screen width
@@ -111,7 +122,9 @@ class TicketDone extends StatelessWidget {
               endIndent: 40.sp,
               thickness: 1,
             ),
-            const CenterText(),
+             CenterText(cinemaId: cinemaId,
+             cost: price.toString(),
+             location: location,),
             QrState()
           ],
         ),

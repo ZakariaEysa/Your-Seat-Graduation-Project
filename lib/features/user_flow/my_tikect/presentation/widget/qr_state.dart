@@ -159,6 +159,7 @@ class QrState extends StatelessWidget {
           return pw.Container(
             padding: pw.EdgeInsets.all(16),
             decoration: pw.BoxDecoration(
+              color: PdfColor.fromHex("#1E0460"),
               borderRadius: pw.BorderRadius.circular(10),
               border: pw.Border.all(color: PdfColors.black, width: 2),
             ),
@@ -167,40 +168,40 @@ class QrState extends StatelessWidget {
               children: [
                 // Movie Image
                 pw.Center(
-                  //child: pw.Image(pw.MemoryImage(), width: 100, height: 150),
+                  //child: pw.Image(pw.MemoryImage(Uint8List(length)), width: 100, height: 150),
                 ),
-                pw.SizedBox(height: 10),
+                pw.SizedBox(height: 10.h),
 
                 // Movie Title
-                pw.Text(ticketData['movie'], style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
+                pw.Text(ticketData['movie'], style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold,color: PdfColors.white)),
 
                 // Movie Details
-                pw.Text("Duration: ${ticketData['duration']}", style: pw.TextStyle(fontSize: 14)),
-                pw.Text("Genre: ${ticketData['genre']}", style: pw.TextStyle(fontSize: 14)),
-                pw.SizedBox(height: 10),
+                pw.Text("Duration: ${ticketData['duration']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
+                pw.Text("Genre: ${ticketData['genre']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
+                pw.SizedBox(height: 10.h),
 
                 // Time & Seat
                 pw.Row(
                   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                   children: [
-                    pw.Text("${ticketData['time']} ${ticketData['date']}", style: pw.TextStyle(fontSize: 14)),
-                    pw.Text("Seat: ${ticketData['seat']}", style: pw.TextStyle(fontSize: 14)),
+                    pw.Text("${ticketData['time']} ${ticketData['date']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
+                    pw.Text("Seat: ${ticketData['seat']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
                   ],
                 ),
-                pw.SizedBox(height: 10),
+                pw.SizedBox(height: 10.h),
 
                 // Price & Cinema
-                pw.Text("Price: ${ticketData['price']} VND", style: pw.TextStyle(fontSize: 14)),
-                pw.Text("Cinema: ${ticketData['cinema']}", style: pw.TextStyle(fontSize: 14)),
-                pw.SizedBox(height: 10),
+                pw.Text("Price: ${ticketData['price']} VND", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
+                pw.Text("Cinema: ${ticketData['cinema']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
+                pw.SizedBox(height: 10.h),
 
                 // QR Code
                 pw.Center(
                   child: pw.Image(pw.MemoryImage(qrBytes), width: 100, height: 100),
                 ),
 
-                pw.SizedBox(height: 10),
-                pw.Text("Payment: ${ticketData['payment']} | Status: ${ticketData['status']}", style: pw.TextStyle(fontSize: 14)),
+                pw.SizedBox(height: 10.h),
+                pw.Text("Payment: ${ticketData['payment']} | Status: ${ticketData['status']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
               ],
             ),
           );
@@ -208,7 +209,7 @@ class QrState extends StatelessWidget {
       ),
     );
     final downloadPath = await getDownloadPath();
-    final file = File("$downloadPath/ticket.pdf");
+    final file = File("$downloadPath/YourSeat Ticket.pdf");
     await file.writeAsBytes(await pdf.save());
 
     // إشعار المستخدم
@@ -258,8 +259,8 @@ class QrState extends StatelessWidget {
                             padding: EdgeInsetsDirectional.only(start: 5.w),
                             child: Image.asset(
                               "assets/icons/img_4.png",
-                              width: 15.w,
-                              height: 15.h,
+                              width: 20.w,
+                              height: 20.h,
                             ),
                           ),
                         ),

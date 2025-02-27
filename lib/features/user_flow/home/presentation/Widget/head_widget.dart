@@ -23,8 +23,8 @@ class HeadWidget extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              // navigateTo(context: context, screen:  Notifications());
-              navigateTo(context: context, screen:  Rate());
+              navigateTo(context: context, screen:  Notifications());
+              // navigateTo(context: context, screen:  Rate());
 
             },
             child: Padding(

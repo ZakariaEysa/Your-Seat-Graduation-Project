@@ -300,6 +300,16 @@ class S {
     return Intl.message('Search', name: 'search', desc: '', args: []);
   }
 
+  /// `My Ticket`
+  String get myTicket {
+    return Intl.message(
+      'My Ticket',
+      name: 'myTicket',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please fill all fields`
   String get fill_all_fields {
     return Intl.message(

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../../../generated/l10n.dart';
 import '../widget/center_text.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -22,6 +23,8 @@ class TicketDone extends StatelessWidget {
   final String hall;
   final String cinemaId;
   final String orderId;
+  final String status;
+
 
   const TicketDone(
       {super.key,
@@ -34,25 +37,28 @@ class TicketDone extends StatelessWidget {
       required this.time,
       required this.cinemaId,
       required this.hall,
+        required this.status,
       required this.orderId});
 
   @override
   Widget build(BuildContext context) {
-    // Initializing ScreenUtil to get screen size
+    var lang = S.of(context);
     ScreenUtil.init(context, designSize: Size(375, 812), minTextAdapt: true);
 
     return ScaffoldF(
       appBar: AppBar(
+        leading: InkWell(
+            onTap: (){
+               navigateAndRemoveUntil(context: context, screen: HomeLayout());
+            },
+            child: Icon(Icons.arrow_back_outlined,color: Colors.white,)),
         backgroundColor: Color(0xFF2E1371),
         iconTheme: IconThemeData(color: Colors.white, size: 28.sp),
         title: Padding(
           padding:
               EdgeInsetsDirectional.only(start: 45.w, top: 0, bottom: 15.h),
           child: HeadAppBar(
-            title: "My ticket",
-            onBackPressed: () {
-              navigateAndRemoveUntil(context: context, screen: HomeLayout());
-            },
+            title: lang.myTicket,
           ),
         ),
       ),
@@ -72,8 +78,8 @@ class TicketDone extends StatelessWidget {
                 ),
               ),
             ),
-            HeadMyticket(imageUrl: model.posterImage,
-            hall: hall,
+            HeadMyTicket(imageUrl: model.posterImage,
+              hall: hall,
               movieCategory: model.category,
               movieDate: date,
               movieDuration: model.duration,
@@ -125,7 +131,20 @@ class TicketDone extends StatelessWidget {
              CenterText(cinemaId: cinemaId,
              cost: price.toString(),
              location: location,),
-            QrState()
+            QrState(
+              status: status,
+              orderId: orderId,
+              hall: hall,
+              movieCategory: model.category,
+              movieDate: date,
+              movieDuration: model.duration,
+              movieTime: time,
+              movieName: model.name,
+              seatCategory: seatCategory,
+              seats: seats,
+              cinemaId: cinemaId,
+              cost: price.toString(),
+              location: location,)
           ],
         ),
       ),

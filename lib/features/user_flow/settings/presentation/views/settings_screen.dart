@@ -127,15 +127,15 @@ class SettingsPage extends StatelessWidget {
                 isCancelable: false,
                 posActionTitle: lang.sign_in,
                 negActionTitle: lang.cancel, posAction: () {
-              HiveStorage.set(HiveKeys.role, "");
+                  HiveStorage.set(HiveKeys.role, "");
 
-              navigateAndRemoveUntil(
-                context: context,
-                screen: const SignIn(),
-              );
-            }, negAction: () {
-              navigatePop(context: context);
-            });
+                  navigateAndRemoveUntil(
+                    context: context,
+                    screen: const SignIn(),
+                  );
+                }, negAction: () {
+                  navigatePop(context: context);
+                });
           } else {
             navigateTo(context: context, screen: const ProfileCard());
           }
@@ -172,20 +172,20 @@ class SettingsPage extends StatelessWidget {
             DialogUtils.showMessage(context, lang.areYouSureYouWantToLogOut,
                 posActionTitle: lang.ok,
                 negActionTitle: lang.cancel, posAction: () {
-              bool lang = HiveStorage.get(HiveKeys.isArabic);
-              HiveStorage.set(HiveKeys.role, "");
-              HiveStorage.set(HiveKeys.passUserOnboarding, true);
-              HiveStorage.logOut();
+                  bool lang = HiveStorage.get(HiveKeys.isArabic);
+                  HiveStorage.set(HiveKeys.role, "");
+                  HiveStorage.set(HiveKeys.passUserOnboarding, true);
+                  HiveStorage.logOut();
 
-              HiveStorage.set(HiveKeys.isArabic, lang).then((c) {
-                navigateAndRemoveUntil(
-                  context: context,
-                  screen: const SignIn(),
-                );
-              });
-            }, negAction: () {
-              navigatePop(context: context);
-            });
+                  HiveStorage.set(HiveKeys.isArabic, lang).then((c) {
+                    navigateAndRemoveUntil(
+                      context: context,
+                      screen: const SignIn(),
+                    );
+                  });
+                }, negAction: () {
+                  navigatePop(context: context);
+                });
           },
         ),
     ];

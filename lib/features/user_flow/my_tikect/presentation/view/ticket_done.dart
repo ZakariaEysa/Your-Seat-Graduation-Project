@@ -72,7 +72,7 @@ class TicketDone extends StatelessWidget {
                 ),
               ),
             ),
-            HeadMyticket(imageUrl: model.posterImage,
+            HeadMyTicket(imageUrl: model.posterImage,
             hall: hall,
               movieCategory: model.category,
               movieDate: date,
@@ -125,7 +125,7 @@ class TicketDone extends StatelessWidget {
              CenterText(cinemaId: cinemaId,
              cost: price.toString(),
              location: location,),
-            QrState()
+            QrState(orderId: orderId,)
           ],
         ),
       ),

@@ -91,7 +91,9 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 
 class QrState extends StatelessWidget {
-  QrState({super.key});
+  String orderId;
+  QrState({super.key,
+    required this.orderId});
 
   Map<String, dynamic> ticketData = {
     "id": "44444",
@@ -116,7 +118,7 @@ class QrState extends StatelessWidget {
 
     // إنشاء QR Code كصورة
     final qrImage = await QrPainter(
-      data: ticketData.toString(),
+      data: orderId,
       version: QrVersions.auto,
       gapless: false,
     ).toImage(200);
@@ -124,33 +126,33 @@ class QrState extends StatelessWidget {
     final ByteData? byteData = await qrImage.toByteData(format: ImageByteFormat.png);
     final Uint8List qrBytes = byteData!.buffer.asUint8List();
 
-    // إنشاء ملف PDF
-    // pdf.addPage(
-    //   pw.Page(
-    //     pageFormat: PdfPageFormat.a4,
-    //     build: (pw.Context context) {
-    //       return pw.Center(
-    //         child: pw.Column(
-    //           mainAxisAlignment: pw.MainAxisAlignment.center,
-    //           children: [
-    //             pw.Text("Booked Cinema Ticket",
-    //                 style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
-    //             pw.SizedBox(height: 10),
-    //             pw.Text("Movie: ${ticketData['movie']}", style: pw.TextStyle(fontSize: 18)),
-    //             pw.Text("Cinema: ${ticketData['cinema']}", style: pw.TextStyle(fontSize: 18)),
-    //             pw.Text("Payment: ${ticketData['payment']}", style: pw.TextStyle(fontSize: 18)),
-    //             pw.Text("Status: ${ticketData['status']}", style: pw.TextStyle(fontSize: 18)),
-    //             pw.SizedBox(height: 30),
-    //             pw.Image(pw.MemoryImage(qrBytes), width: 150, height: 150),
-    //
-    //           ],
-    //         ),
-    //       );
-    //     },
-    //   ),
-    // );
+    //إنشاء ملف PDF
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          return pw.Center(
+            child: pw.Column(
+              mainAxisAlignment: pw.MainAxisAlignment.center,
+              children: [
+                pw.Text("Booked Cinema Ticket",
+                    style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
+                pw.SizedBox(height: 10),
+                pw.Text("Movie: ${ticketData['movie']}", style: pw.TextStyle(fontSize: 18)),
+                pw.Text("Cinema: ${ticketData['cinema']}", style: pw.TextStyle(fontSize: 18)),
+                pw.Text("Payment: ${ticketData['payment']}", style: pw.TextStyle(fontSize: 18)),
+                pw.Text("Status: ${ticketData['status']}", style: pw.TextStyle(fontSize: 18)),
+                pw.SizedBox(height: 30),
+                pw.Image(pw.MemoryImage(qrBytes), width: 150, height: 150),
 
-    // حفظ الملف في مجلد التنزيلات
+              ],
+            ),
+          );
+        },
+      ),
+    );
+
+  //  حفظ الملف في مجلد التنزيلات
 
     pdf.addPage(
       pw.Page(
@@ -214,7 +216,7 @@ class QrState extends StatelessWidget {
 
     // إشعار المستخدم
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("📄 تم حفظ التذكرة في التنزيلات: ${file.path}")),
+      SnackBar(content: Text("📄 Your Ticket saved in ${file.path}")),
     );
   }
 
@@ -231,7 +233,7 @@ class QrState extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 QrImageView(
-                  data: ticketData.toString(),
+                  data: orderId,
                   size: 120.sp,
                   backgroundColor: Colors.white,
                 ),

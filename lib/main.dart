@@ -16,6 +16,7 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/prese
 import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 import 'data/hive_stroage.dart';
 import 'features/user_flow/Rate/Rate.dart';
+import 'features/user_flow/Tickets/presentation/widget/test_tickets.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/cinema_details/presentation/cubit/cinema_cubit.dart';
 import 'features/user_flow/home/presentation/Widget/search/search_cubit/search_cubit.dart';

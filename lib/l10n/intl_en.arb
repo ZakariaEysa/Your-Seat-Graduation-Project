@@ -33,6 +33,7 @@
   "promoDiscount": "Promotions & Discounts",
   "cinema": "Cinema",
   "search": "Search",
+  "myTicket" : "My Ticket",
   "fill_all_fields": "Please fill all fields",
   "please_enter_EmailAddress": "Please enter your Email Address",
   "wrong_EmailAddress_format": "Wrong Email Address format",

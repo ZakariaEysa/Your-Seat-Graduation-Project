@@ -55,7 +55,7 @@ class HeadMyTicket extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 18.0, top: 10),
+                      padding: EdgeInsets.only(right: 18.w, top: 10.h),
                       child: Text(
                         seatCategory ?? "",
                         style: TextStyle(

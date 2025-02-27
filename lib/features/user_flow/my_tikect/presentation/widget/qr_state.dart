@@ -91,24 +91,43 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 
 class QrState extends StatelessWidget {
+  String? movieName;
+  String? movieDuration;
+  String? movieCategory;
+  String? seatCategory;
+  String? movieTime;
+  String? movieDate;
+  List<String>? seats;
+  String? hall;
   String orderId;
-  QrState({super.key,
-    required this.orderId});
-
-  Map<String, dynamic> ticketData = {
-    "id": "44444",
-    "cinema": "City Center Almaza",
-    "movie": "Fury",
-    "payment": "Paid",
-    "status": "Active"
-  };
+  String? cost;
+  String? cinemaId;
+  String? location;
+  String status;
+  QrState(
+      {super.key,
+      required this.movieName,
+      required this.movieDuration,
+      required this.movieCategory,
+      required this.seatCategory,
+      required this.movieTime,
+      required this.movieDate,
+      required this.seats,
+      required this.hall,
+      required this.cost,
+      required this.status,
+      required this.location,
+      required this.cinemaId,
+      required this.orderId});
 
   Future<String> getDownloadPath() async {
     Directory? directory;
     if (Platform.isAndroid) {
-      directory = Directory('/storage/emulated/0/Download'); // مجلد التنزيلات في أندرويد
+      directory = Directory(
+          '/storage/emulated/0/Download'); // مجلد التنزيلات في أندرويد
     } else {
-      directory = await getApplicationDocumentsDirectory(); // المسار الافتراضي في iOS
+      directory =
+          await getApplicationDocumentsDirectory(); // المسار الافتراضي في iOS
     }
     return directory.path;
   }
@@ -123,36 +142,9 @@ class QrState extends StatelessWidget {
       gapless: false,
     ).toImage(200);
 
-    final ByteData? byteData = await qrImage.toByteData(format: ImageByteFormat.png);
+    final ByteData? byteData =
+        await qrImage.toByteData(format: ImageByteFormat.png);
     final Uint8List qrBytes = byteData!.buffer.asUint8List();
-
-    //إنشاء ملف PDF
-    pdf.addPage(
-      pw.Page(
-        pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
-          return pw.Center(
-            child: pw.Column(
-              mainAxisAlignment: pw.MainAxisAlignment.center,
-              children: [
-                pw.Text("Booked Cinema Ticket",
-                    style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
-                pw.SizedBox(height: 10),
-                pw.Text("Movie: ${ticketData['movie']}", style: pw.TextStyle(fontSize: 18)),
-                pw.Text("Cinema: ${ticketData['cinema']}", style: pw.TextStyle(fontSize: 18)),
-                pw.Text("Payment: ${ticketData['payment']}", style: pw.TextStyle(fontSize: 18)),
-                pw.Text("Status: ${ticketData['status']}", style: pw.TextStyle(fontSize: 18)),
-                pw.SizedBox(height: 30),
-                pw.Image(pw.MemoryImage(qrBytes), width: 150, height: 150),
-
-              ],
-            ),
-          );
-        },
-      ),
-    );
-
-  //  حفظ الملف في مجلد التنزيلات
 
     pdf.addPage(
       pw.Page(
@@ -161,49 +153,55 @@ class QrState extends StatelessWidget {
           return pw.Container(
             padding: pw.EdgeInsets.all(16),
             decoration: pw.BoxDecoration(
-              color: PdfColor.fromHex("#1E0460"),
+              //color: PdfColor.fromHex("#1E0460"),
               borderRadius: pw.BorderRadius.circular(10),
               border: pw.Border.all(color: PdfColors.black, width: 2),
             ),
             child: pw.Column(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
-                // Movie Image
-                pw.Center(
-                  //child: pw.Image(pw.MemoryImage(Uint8List(length)), width: 100, height: 150),
-                ),
                 pw.SizedBox(height: 10.h),
 
-                // Movie Title
-                pw.Text(ticketData['movie'], style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold,color: PdfColors.white)),
+                pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                    children: [
+                      pw.Text(movieName ?? "",
+                          style: pw.TextStyle(
+                            fontSize: 25.sp,
+                            fontWeight: pw.FontWeight.bold,
+                          )),
+                      pw.Image(pw.MemoryImage(qrBytes),
+                          width: 150.w, height: 120.h),
+                    ]),
 
-                // Movie Details
-                pw.Text("Duration: ${ticketData['duration']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
-                pw.Text("Genre: ${ticketData['genre']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
+                pw.SizedBox(height: 15.h),
+                pw.Text("Duration: ${movieDuration ?? ""}",
+                    style: pw.TextStyle(fontSize: 14)),
+                pw.Text("Category: ${movieCategory ?? ""}",
+                    style: pw.TextStyle(fontSize: 14)),
+                pw.SizedBox(height: 10.h),
+                pw.Text("Price: ${cost ?? ""} EGP",
+                    style: pw.TextStyle(fontSize: 14)),
+                pw.Text("Cinema: ${cinemaId ?? ""}",
+                    style: pw.TextStyle(fontSize: 14)),
+                pw.Text("Location: ${location ?? ""}",
+                    style: pw.TextStyle(fontSize: 14)),
                 pw.SizedBox(height: 10.h),
 
-                // Time & Seat
                 pw.Row(
                   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                   children: [
-                    pw.Text("${ticketData['time']} ${ticketData['date']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
-                    pw.Text("Seat: ${ticketData['seat']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
+                    pw.Text("Time: ${movieTime ?? ""}",
+                        style: pw.TextStyle(fontSize: 14)),
+                    pw.Text("Date: ${movieDate ?? ""}",
+                        style: pw.TextStyle(fontSize: 14)),
+                    pw.Text("Seat: ${seats ?? ""}",
+                        style: pw.TextStyle(fontSize: 14)),
+                    pw.Text("Hall: ${hall ?? ""}",
+                        style: pw.TextStyle(fontSize: 14)),
                   ],
                 ),
-                pw.SizedBox(height: 10.h),
 
-                // Price & Cinema
-                pw.Text("Price: ${ticketData['price']} VND", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
-                pw.Text("Cinema: ${ticketData['cinema']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
-                pw.SizedBox(height: 10.h),
-
-                // QR Code
-                pw.Center(
-                  child: pw.Image(pw.MemoryImage(qrBytes), width: 100, height: 100),
-                ),
-
-                pw.SizedBox(height: 10.h),
-                pw.Text("Payment: ${ticketData['payment']} | Status: ${ticketData['status']}", style: pw.TextStyle(fontSize: 14,color: PdfColors.white)),
               ],
             ),
           );
@@ -240,12 +238,12 @@ class QrState extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      "Payment : ${ticketData['payment']}",
+                      "Payment : Paid",
                       style: TextStyle(color: Colors.black, fontSize: 14.sp),
                     ),
                     SizedBox(height: 5.h),
                     Text(
-                      "Status : ${ticketData['status']}",
+                      "Status : ${status??""}",
                       style: TextStyle(color: Colors.black, fontSize: 14.sp),
                     ),
                     SizedBox(height: 7.h),
@@ -253,7 +251,8 @@ class QrState extends StatelessWidget {
                       children: [
                         Text(
                           "Download ticket",
-                          style: TextStyle(color: Colors.black, fontSize: 14.sp),
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 14.sp),
                         ),
                         InkWell(
                           onTap: () => generateAndSavePDF(context),

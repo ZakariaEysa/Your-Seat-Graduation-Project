@@ -69,7 +69,7 @@ class CenterText extends StatelessWidget {
                         fontSize: 16.sp,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w400,
-                        height: 1.25,
+                        height: 1.25.h,
                         overflow: TextOverflow.ellipsis,  // Add ellipsis when text overflows
                       ),
                     ),
@@ -116,7 +116,7 @@ class CenterText extends StatelessWidget {
                         fontSize: 16.sp,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w400,
-                        height: 1.50,
+                        height: 1.50.h,
                         overflow: TextOverflow.ellipsis,  // Add ellipsis when text overflows
                       ),
                     ),

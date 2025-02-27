@@ -230,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "month": MessageLookupByLibrary.simpleMessage("Month"),
         "movieGenre": MessageLookupByLibrary.simpleMessage("Movie genre:"),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
+        "myTicket": MessageLookupByLibrary.simpleMessage("My Ticket"),
         "newMoviesEasyBooking":
             MessageLookupByLibrary.simpleMessage("New movies ! Easy booking"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),

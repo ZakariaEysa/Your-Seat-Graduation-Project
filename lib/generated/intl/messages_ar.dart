@@ -225,6 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "may": MessageLookupByLibrary.simpleMessage("مايو"),
         "month": MessageLookupByLibrary.simpleMessage("الشهر"),
         "movieGenre": MessageLookupByLibrary.simpleMessage("نوع الفيلم:"),
+        "myTicket": MessageLookupByLibrary.simpleMessage("تذكرتي"),
         "newMoviesEasyBooking":
             MessageLookupByLibrary.simpleMessage("أفلام جديدة! حجز سهل"),
         "newPassword":

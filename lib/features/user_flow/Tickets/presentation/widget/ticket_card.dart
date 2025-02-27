@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 import 'vertical_status_card.dart';
 
 class TicketCard extends StatelessWidget {
@@ -25,10 +26,9 @@ class TicketCard extends StatelessWidget {
                 topLeft: Radius.circular(12.r),
                 bottomLeft: Radius.circular(12.r),
               ),
-              child: Image.asset(
-                ticket.imageUrl,
+              child: ImageReplacer(
                 height: double.infinity,
-                width: 120.w,
+                width: 120.w, imageUrl:  ticket.imageUrl,
               ),
             ),
             SizedBox(width: 8.w),
@@ -129,7 +129,7 @@ class TicketCard extends StatelessWidget {
   }
 }
 
-// تعريف كلاس Ticket
+
 class Ticket {
   final String movieName;
   final String location;

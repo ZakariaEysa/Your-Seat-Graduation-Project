@@ -1,6 +1,7 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
+import '../../../Settings/presentation/views/setting_page.dart';
 import 'home_screen.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../Tickets/presentation/view/tickets_screen.dart';

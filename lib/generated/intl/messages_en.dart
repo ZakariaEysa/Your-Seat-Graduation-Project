@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable":
             MessageLookupByLibrary.simpleMessage(
                 "The luxurious seats and immersive sound system make for a truly unforgettable experience."),
+        "Therearenocommentsyet":
+            MessageLookupByLibrary.simpleMessage("There are no comments yet."),
         "TwoHoursFiveMinutes":
             MessageLookupByLibrary.simpleMessage("2 hours 5 minutes"),
         "UserDoesNotExistOrPasswordIsIncorrect":
@@ -230,6 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "month": MessageLookupByLibrary.simpleMessage("Month"),
         "movieGenre": MessageLookupByLibrary.simpleMessage("Movie genre:"),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
+        "moviess": MessageLookupByLibrary.simpleMessage("Movies"),
         "myTicket": MessageLookupByLibrary.simpleMessage("My Ticket"),
         "newMoviesEasyBooking":
             MessageLookupByLibrary.simpleMessage("New movies ! Easy booking"),

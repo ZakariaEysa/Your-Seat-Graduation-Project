@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere":
             MessageLookupByLibrary.simpleMessage(
                 "يخلق التصميم الحديث للسينما والديكور الجميل أجواءً ترحيبية"),
+        "Therearenocommentsyet":
+            MessageLookupByLibrary.simpleMessage("لا توجد تعليقات حتى الآن."),
         "TwoHoursFiveMinutes":
             MessageLookupByLibrary.simpleMessage("ساعة و 5 دقائق 2"),
         "actor": MessageLookupByLibrary.simpleMessage("ممثل"),
@@ -225,6 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "may": MessageLookupByLibrary.simpleMessage("مايو"),
         "month": MessageLookupByLibrary.simpleMessage("الشهر"),
         "movieGenre": MessageLookupByLibrary.simpleMessage("نوع الفيلم:"),
+        "moviess": MessageLookupByLibrary.simpleMessage("الافلام"),
         "myTicket": MessageLookupByLibrary.simpleMessage("تذكرتي"),
         "newMoviesEasyBooking":
             MessageLookupByLibrary.simpleMessage("أفلام جديدة! حجز سهل"),

@@ -9,7 +9,7 @@ import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../widget/dashed_line_painter.dart';
 import '../widget/head_myticket.dart';
-import '../widget/qr_state.dart';
+import '../widget/qr_state/qr_widget.dart';
 
 class TicketDone extends StatelessWidget {
   final MoviesDetailsModel model;
@@ -131,7 +131,7 @@ class TicketDone extends StatelessWidget {
              CenterText(cinemaId: cinemaId,
              cost: price.toString(),
              location: location,),
-            QrState(
+            QrWidget(
               status: status,
               orderId: orderId,
               hall: hall,

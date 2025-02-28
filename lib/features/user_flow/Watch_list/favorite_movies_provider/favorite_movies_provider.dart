@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../data/hive_stroage.dart';
+import '../../../../utils/app_logs.dart';
 import '../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 
 class FavoriteMoviesProvider extends ChangeNotifier {
@@ -9,6 +11,7 @@ class FavoriteMoviesProvider extends ChangeNotifier {
   void addMovie(MoviesDetailsModel movie) {
     if (!_favoriteMovies.contains(movie)) {
       _favoriteMovies.add(movie);
+
       notifyListeners();
     }
   }

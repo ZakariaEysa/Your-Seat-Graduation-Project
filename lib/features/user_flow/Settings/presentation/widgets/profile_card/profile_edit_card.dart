@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import '../../../../../../widgets/loading_indicator.dart';
 import 'info_container.dart';
 import '../../../../../../widgets/button/button_builder.dart';
 
@@ -25,24 +26,25 @@ class ProfileEditCard extends StatefulWidget {
 }
 
 class _ProfileEditCardState extends State<ProfileEditCard> {
+  bool isLoading = false;
   final List<int> days = List<int>.generate(31, (index) => index + 1);
   final List<int> years =
   List<int>.generate(80, (index) => DateTime.now().year - index);
   final List<String> months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
-  final List<String> gender = ["Male", "Female", ""];
+  final List<String> gender = ["Male", "Female"];
 
   TextEditingController emailController = TextEditingController();
   TextEditingController userController = TextEditingController();
@@ -107,13 +109,82 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
   }
 
+  // Future<void> updateProfile() async {
+  //   try {
+  //     var userDoc = FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc(currentUser.email);
+  //
+  //     // إعداد الحقول التي سيتم تحديثها فقط إذا تغيرت
+  //     Map<String, dynamic> updatedData = {};
+  //
+  //     if (userController.text.isNotEmpty && userController.text != currentUser.name) {
+  //       updatedData['name'] = userController.text;
+  //     }
+  //
+  //     if (selectedDay != null && selectedMonth != null && selectedYear != null) {
+  //       String newDateOfBirth = '$selectedDay/$selectedMonth/$selectedYear';
+  //       if (newDateOfBirth != currentUser.dateOfBirth) {
+  //         updatedData['dateOfBirth'] = newDateOfBirth;
+  //       }
+  //     }
+  //
+  //     if (selectedGender != null && selectedGender != currentUser.gender) {
+  //       updatedData['gender'] = selectedGender;
+  //     }
+  //
+  //     if (!_isValidBase64(selectedImageBase64)) {
+  //       selectedImageBase64 = ""; // إذا كانت الصورة غير صالحة، يتم تفريغها
+  //     }
+  //
+  //     if (selectedImageBase64 != currentUser.image) {
+  //       updatedData['image'] = selectedImageBase64 ?? "";
+  //     }
+  //
+  //     // إذا لم يكن هناك تغييرات، أوقف العملية
+  //     if (updatedData.isEmpty) {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text("No changes detected")),
+  //       );
+  //       return;
+  //     }
+  //
+  //     // تحديث البيانات في Firestore
+  //     await userDoc.update(updatedData);
+  //
+  //     // تحديث البيانات في Hive
+  //     HiveStorage.saveDefaultUser(UserModel(
+  //       name: updatedData['name'] ?? currentUser.name,
+  //       email: currentUser.email,
+  //       password: currentUser.password, // نستخدم القيم الحالية
+  //       dateOfBirth: updatedData['dateOfBirth'] ?? currentUser.dateOfBirth,
+  //       gender: updatedData['gender'] ?? currentUser.gender,
+  //       image: updatedData['image'] ?? currentUser.image,
+  //     ));
+  //
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text("Data Updated Successfully")),
+  //     );
+  //
+  //     AppLogs.infoLog(HiveStorage.getDefaultUser().toString());
+  //   } catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text("Something Went Wrong")),
+  //     );
+  //     AppLogs.errorLog("Update profile failed: $e");
+  //   }
+  // }
+
   Future<void> updateProfile() async {
+    setState(() {
+      isLoading = true;
+    });
+
     try {
       var userDoc = FirebaseFirestore.instance
           .collection('users')
           .doc(currentUser.email);
 
-      // إعداد الحقول التي سيتم تحديثها فقط إذا تغيرت
       Map<String, dynamic> updatedData = {};
 
       if (userController.text.isNotEmpty && userController.text != currentUser.name) {
@@ -132,29 +203,29 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       }
 
       if (!_isValidBase64(selectedImageBase64)) {
-        selectedImageBase64 = ""; // إذا كانت الصورة غير صالحة، يتم تفريغها
+        selectedImageBase64 = "";
       }
 
       if (selectedImageBase64 != currentUser.image) {
         updatedData['image'] = selectedImageBase64 ?? "";
       }
 
-      // إذا لم يكن هناك تغييرات، أوقف العملية
       if (updatedData.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("No changes detected")),
         );
+        setState(() {
+          isLoading = false;
+        });
         return;
       }
 
-      // تحديث البيانات في Firestore
       await userDoc.update(updatedData);
 
-      // تحديث البيانات في Hive
       HiveStorage.saveDefaultUser(UserModel(
         name: updatedData['name'] ?? currentUser.name,
         email: currentUser.email,
-        password: currentUser.password, // نستخدم القيم الحالية
+        password: currentUser.password,
         dateOfBirth: updatedData['dateOfBirth'] ?? currentUser.dateOfBirth,
         gender: updatedData['gender'] ?? currentUser.gender,
         image: updatedData['image'] ?? currentUser.image,
@@ -170,8 +241,13 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
         const SnackBar(content: Text("Something Went Wrong")),
       );
       AppLogs.errorLog("Update profile failed: $e");
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
+
 
   Future<void> _pickImage() async {
     showModalBottomSheet(
@@ -209,6 +285,13 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return Stack(
+        children: [
+          LoadingIndicator()
+      ],
+      );
+    }
     var lang = S.of(context);
     var theme = Theme.of(context);
 
@@ -372,9 +455,12 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
         ),
       ),
     );
+
   }
 
+
   Widget _buildLabel(ThemeData theme, String text) {
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Text(

@@ -19,7 +19,7 @@ class SearchCubit extends Cubit<SearchState> {
       List<Map<String, dynamic>> results = await searchInCollections(searchTerm);
       emit(SearchSuccess(results));
     } catch (e) {
-      emit(SearchError('حدث خطأ أثناء البحث: $e'));
+      emit(SearchError('Something went wrong $e'));
     }
   }
 

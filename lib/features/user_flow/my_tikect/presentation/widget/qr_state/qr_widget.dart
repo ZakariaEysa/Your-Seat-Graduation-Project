@@ -90,7 +90,7 @@ import 'package:printing/printing.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 
-class QrState extends StatelessWidget {
+class QrWidget extends StatelessWidget {
   String? movieName;
   String? movieDuration;
   String? movieCategory;
@@ -104,7 +104,7 @@ class QrState extends StatelessWidget {
   String? cinemaId;
   String? location;
   String status;
-  QrState(
+  QrWidget(
       {super.key,
       required this.movieName,
       required this.movieDuration,
@@ -209,10 +209,10 @@ class QrState extends StatelessWidget {
       ),
     );
     final downloadPath = await getDownloadPath();
-    final file = File("$downloadPath/YourSeat Ticket.pdf");
+    final timestamp = DateTime.now().millisecondsSinceEpoch;
+    final file = File("$downloadPath/YourSeat_Ticket_$timestamp.pdf");
     await file.writeAsBytes(await pdf.save());
 
-    // إشعار المستخدم
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text("📄 Your Ticket saved in ${file.path}")),
     );

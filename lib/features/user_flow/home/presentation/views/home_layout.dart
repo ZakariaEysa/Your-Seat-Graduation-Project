@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeLayout> {
     const HomeScreen(),
     const WatchList(),
     TicketPage(),
-    const SettingsPage(),
+     SettingsPage(),
   ];
 
   @override

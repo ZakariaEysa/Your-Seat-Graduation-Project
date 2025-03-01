@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_stroage.dart';
 import 'vertical_status_card.dart';
 
 class TicketCard extends StatelessWidget {
   final Ticket ticket;
   final bool isFirstTicket;
+  final VoidCallback onCancel;
 
-  const TicketCard(
-      {super.key, required this.ticket, this.isFirstTicket = false});
+  const TicketCard({
+    super.key,
+    required this.ticket,
+    this.isFirstTicket = false,
+    required this.onCancel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +36,8 @@ class TicketCard extends StatelessWidget {
               ),
               child: ImageReplacer(
                 height: double.infinity,
-                width: 120.w, imageUrl:  ticket.imageUrl,
+                width: 120.w,
+                imageUrl: ticket.imageUrl,
               ),
             ),
             SizedBox(width: 8.w),
@@ -48,24 +57,19 @@ class TicketCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8.h),
-                  _buildInfoRow('assets/icons/clock_icon.png',
-                      '${ticket.time}  |  ${ticket.date}'),
-                  _buildInfoRow(
-                      'assets/icons/location_icon.png', ticket.location),
-                  _buildInfoRow(
-                      'assets/icons/Group 4.png', 'Seat: ${ticket.seats}'),
+                  _buildInfoRow('assets/icons/clock_icon.png', '${ticket.time}  |  ${ticket.date}'),
+                  _buildInfoRow('assets/icons/location_icon.png', ticket.location),
+                  _buildInfoRow('assets/icons/Group 4.png', 'Seat: ${ticket.seats}'),
                   _buildInfoRow('assets/icons/price-tag 2.png', ticket.price),
-                  if (isFirstTicket)
+                  if (ticket.status == "active")
                     Padding(
                       padding: EdgeInsets.only(top: 8.h),
                       child: Center(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF08086A),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.w, vertical: 8.h),
-                            minimumSize:
-                                Size(120.w, 35.h), // جعل الزر أكثر مرونة
+                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                            minimumSize: Size(120.w, 35.h),
                             side: BorderSide(
                               color: const Color(0xFFBD1A2F),
                               width: 1.5.w,
@@ -74,7 +78,7 @@ class TicketCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20.r),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: onCancel,
                           child: Text(
                             'Cancel',
                             style: TextStyle(
@@ -129,7 +133,6 @@ class TicketCard extends StatelessWidget {
   }
 }
 
-
 class Ticket {
   final String movieName;
   final String location;
@@ -142,9 +145,10 @@ class Ticket {
   final String statusImage;
   final double statusImageWidth;
   final double statusImageHeight;
-
+  final String orderId;
   Ticket({
     required this.movieName,
+    required this.orderId,
     required this.location,
     required this.imageUrl,
     required this.time,

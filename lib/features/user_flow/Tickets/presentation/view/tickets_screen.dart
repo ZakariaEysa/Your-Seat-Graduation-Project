@@ -8,213 +8,250 @@ import '../../../../../data/hive_stroage.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../../my_tikect/presentation/view/ticket_done.dart';
 import '../widget/ticket_card.dart';
 
 class TicketPage extends StatefulWidget {
-@override
-_TicketPageState createState() => _TicketPageState();
+  @override
+  _TicketPageState createState() => _TicketPageState();
 }
 
 class _TicketPageState extends State<TicketPage> {
-final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-List<Map<String, dynamic>> tickets = [];
-bool isLoading = true;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  List<Map<String, dynamic>> tickets = [];
+  bool isLoading = true;
 
-Future<void> fetchTickets() async {
-try {
-String? userEmail = HiveStorage.get(HiveKeys.role) == Role.google.toString()
-? HiveStorage.getGoogleUser()?.email
-    : HiveStorage.getDefaultUser()?.email;
+  Future<void> fetchTickets() async {
+    try {
+      String? userEmail =
+          HiveStorage.get(HiveKeys.role) == Role.google.toString()
+              ? HiveStorage.getGoogleUser()?.email
+              : HiveStorage.getDefaultUser()?.email;
 
-if (userEmail == null) {
-print("❌ Error: No user email found");
-return;
-}
+      if (userEmail == null) {
+        print("❌ Error: No user email found");
+        return;
+      }
 
-DocumentSnapshot userDoc = await _firestore.collection('users').doc(userEmail).get();
-if (userDoc.exists) {
-List<dynamic>? myTickets = userDoc.get('myTickets');
-if (myTickets != null) {
-setState(() {
-tickets = List<Map<String, dynamic>>.from(myTickets);
-});
-}
-}
-} catch (e) {
-print("❌ Error fetching tickets: $e");
-}
-setState(() {
-isLoading = false;
-});
-}
+      DocumentSnapshot userDoc =
+          await _firestore.collection('users').doc(userEmail).get();
+      if (userDoc.exists) {
+        List<dynamic>? myTickets = userDoc.get('myTickets');
+        if (myTickets != null) {
+          setState(() {
+            tickets = List<Map<String, dynamic>>.from(myTickets);
+          });
+        }
+      }
+    } catch (e) {
+      print("❌ Error fetching tickets: $e");
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
 
-Future<void> cancelTicket(int index) async {
-try {
-String? userEmail = HiveStorage.get(HiveKeys.role) == Role.google.toString()
-? HiveStorage.getGoogleUser()?.email
-    : HiveStorage.getDefaultUser()?.email;
+  Future<void> cancelTicket(int index) async {
+    try {
+      String? userEmail =
+          HiveStorage.get(HiveKeys.role) == Role.google.toString()
+              ? HiveStorage.getGoogleUser()?.email
+              : HiveStorage.getDefaultUser()?.email;
 
-if (userEmail == null) {
-print("❌ Error: No user email found");
-return;
-}
+      if (userEmail == null) {
+        print("❌ Error: No user email found");
+        return;
+      }
 
 // تحديث الحالة محليًا إلى "pending"
-setState(() {
-tickets[index]['status'] = 'pending';
-});
+      setState(() {
+        tickets[index]['status'] = 'pending';
+      });
 
 // تحديث التذكرة في مجموعة `users`
-await _firestore.collection('users').doc(userEmail).update({
-'myTickets': tickets,
-});
+      await _firestore.collection('users').doc(userEmail).update({
+        'myTickets': tickets,
+      });
 
 // تحديث التذكرة في `Cinemas`
-await updateTicketStatus(tickets[index]['cinemaId'], tickets[index]['orderId']);
+      await updateTicketStatus(
+          tickets[index]['cinemaId'], tickets[index]['orderId']);
 
 // إضافة التذكرة إلى `pending_tickets`
-await ticketspending(tickets[index]);
+      await ticketspending(tickets[index]);
 
-print("✅ تم تحديث الحالة بنجاح في جميع الأماكن.");
-} catch (e) {
-print("❌ Error canceling ticket: $e");
-}
-}
-Future<void> updateTicketStatus(String cinemaId, String orderId) async {
-  try {
-    DocumentReference cinemaRef = _firestore.collection('Cinemas').doc(cinemaId);
+      print("✅ تم تحديث الحالة بنجاح في جميع الأماكن.");
+    } catch (e) {
+      print("❌ Error canceling ticket: $e");
+    }
+  }
 
-    DocumentSnapshot cinemaSnapshot = await cinemaRef.get();
+  Future<void> updateTicketStatus(String cinemaId, String orderId) async {
+    try {
+      DocumentReference cinemaRef =
+          _firestore.collection('Cinemas').doc(cinemaId);
 
-    if (cinemaSnapshot.exists) {
-      Map<String, dynamic>? cinemaData = cinemaSnapshot.data() as Map<String, dynamic>?;
+      DocumentSnapshot cinemaSnapshot = await cinemaRef.get();
 
-      if (cinemaData != null && cinemaData.containsKey('tickets')) {
-        List<dynamic> tickets = List.from(cinemaData['tickets']);
+      if (cinemaSnapshot.exists) {
+        Map<String, dynamic>? cinemaData =
+            cinemaSnapshot.data() as Map<String, dynamic>?;
 
-        // تحديث حالة التذكرة المطلوبة
-        bool updated = false;
-        for (int i = 0; i < tickets.length; i++) {
-          if (tickets[i]['orderId'] == orderId) {
-            tickets[i]['status'] = 'pending';
-            updated = true;
-            break;
+        if (cinemaData != null && cinemaData.containsKey('tickets')) {
+          List<dynamic> tickets = List.from(cinemaData['tickets']);
+
+          // تحديث حالة التذكرة المطلوبة
+          bool updated = false;
+          for (int i = 0; i < tickets.length; i++) {
+            if (tickets[i]['orderId'] == orderId) {
+              tickets[i]['status'] = 'pending';
+              updated = true;
+              break;
+            }
           }
-        }
 
-        if (updated) {
-          await cinemaRef.update({'tickets': tickets});
-          print('✅ تم تحديث التذكرة في السينما إلى "pending" للطلب: $orderId');
+          if (updated) {
+            await cinemaRef.update({'tickets': tickets});
+            print(
+                '✅ تم تحديث التذكرة في السينما إلى "pending" للطلب: $orderId');
+          } else {
+            print('❌ لم يتم العثور على التذكرة داخل قائمة التذاكر.');
+          }
         } else {
-          print('❌ لم يتم العثور على التذكرة داخل قائمة التذاكر.');
+          print('❌ لا تحتوي هذه السينما على قائمة تذاكر.');
         }
       } else {
-        print('❌ لا تحتوي هذه السينما على قائمة تذاكر.');
+        print('❌ السينما غير موجودة.');
       }
-    } else {
-      print('❌ السينما غير موجودة.');
+    } catch (e) {
+      print('❌ خطأ أثناء تحديث التذكرة في السينما: $e');
     }
-  } catch (e) {
-    print('❌ خطأ أثناء تحديث التذكرة في السينما: $e');
   }
-}
 
+  Future<void> ticketspending(Map<String, dynamic> ticketData) async {
+    try {
+      String orderId = ticketData['orderId'];
 
-Future<void> ticketspending(Map<String, dynamic> ticketData) async {
-try {
-String orderId = ticketData['orderId'];
+      DocumentReference ticketRef =
+          _firestore.collection('pending_tickets').doc(orderId);
 
-DocumentReference ticketRef = _firestore.collection('pending_tickets').doc(orderId);
+      await ticketRef.set({
+        ...ticketData,
+        'status': 'pending',
+      });
 
-await ticketRef.set({
-...ticketData,
-'status': 'pending',
-});
+      print('✅ تم إضافة التذكرة إلى pending_tickets باسم المستند: $orderId');
+    } catch (e) {
+      print('❌ خطأ أثناء إضافة التذكرة إلى pending_tickets: $e');
+    }
+  }
 
-print('✅ تم إضافة التذكرة إلى pending_tickets باسم المستند: $orderId');
-} catch (e) {
-print('❌ خطأ أثناء إضافة التذكرة إلى pending_tickets: $e');
-}
-}
+  @override
+  void initState() {
+    super.initState();
+    fetchTickets();
+  }
 
-@override
-void initState() {
-super.initState();
-fetchTickets();
-}
+  @override
+  Widget build(BuildContext context) {
+    var lang = S.of(context);
+    return ScaffoldF(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF2E1371),
+        title: Center(
+          child: Padding(
+            padding: EdgeInsetsDirectional.only(start: 80.w),
+            child: HeadAppBar(title: lang.tickets),
+          ),
+        ),
+      ),
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : tickets.isEmpty
+              ? Center(child: Text("No tickets"))
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                    child: Column(
+                      children: [
+                        ListView.builder(
+                          padding: EdgeInsets.symmetric(vertical: 10.h),
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: tickets.length,
+                          itemBuilder: (context, index) {
+                            final ticket = tickets[index];
+                            return InkWell(
+                              onTap: () {
+                                if (ticket['status'].toString().toLowerCase() == 'active') {
+                                  navigateTo(
+                                    context: context,
+                                    screen: TicketDone(
+                                      model: MoviesDetailsModel(
+                                        name: ticket['movieName'],
+                                        category: ticket['category'],
+                                        duration: ticket['duration'],
+                                        posterImage: ticket['poster_image'],
+                                      ),
+                                      seats: List<String>.from(ticket['seats']),
+                                      seatCategory: ticket['seatCategory'],
+                                      price: ticket['totalPrice'],
+                                      location: ticket['cinemaId'],
+                                      date: ticket['date'],
+                                      time: ticket['time'],
+                                      cinemaId: ticket['cinemaId'],
+                                      hall: ticket['hall'],
+                                      orderId: ticket['orderId'],
+                                      status: ticket['status'],
+                                    ),
+                                  );
+                                } else {
+                                  print("🚫 لا يمكن عرض التذكرة لأن حالتها ليست 'active'");
+                                }
+                              },
 
-@override
-Widget build(BuildContext context) {
-var lang = S.of(context);
-return ScaffoldF(
-appBar: AppBar(
-automaticallyImplyLeading: false,
-backgroundColor: const Color(0xFF2E1371),
-title: Center(
-child: Padding(
-padding: EdgeInsetsDirectional.only(start: 80.w),
-child: HeadAppBar(title: lang.tickets),
-),
-),
-),
-body: isLoading
-? Center(child: CircularProgressIndicator())
-    : tickets.isEmpty
-? Center(child: Text("No tickets"))
-    : SingleChildScrollView(
-child: Padding(
-padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-child: Column(
-children: [
-ListView.builder(
-padding: EdgeInsets.symmetric(vertical: 10.h),
-shrinkWrap: true,
-physics: NeverScrollableScrollPhysics(),
-itemCount: tickets.length,
-itemBuilder: (context, index) {
-final ticket = tickets[index];
-return InkWell(
-onTap: () {
-navigateTo(context: context, screen: WatchList());
-},
-child: TicketCard(
-ticket: Ticket(
-orderId: ticket["orderId"],
-movieName: ticket['movieName'],
-location: ticket['cinemaId'],
-imageUrl: ticket['poster_image'],
-time: ticket['time'],
-date: ticket['date'],
-seats: ticket['seats'].join(', '),
-price: ticket['totalPrice']?.toString() ?? '0 EGP',
-status: ticket['status'],
-statusImage: getStatusImage(ticket['status']),
-statusImageWidth: 28.w,
-statusImageHeight: 28.h,
-),
-isFirstTicket: ticket['status'] == "active",
-onCancel: () => cancelTicket(index),
-),
-);
-},
-),
-],
-),
-),
-),
-);
-}
+                              child: TicketCard(
+                                ticket: Ticket(
+                                  orderId: ticket["orderId"],
+                                  movieName: ticket['movieName'],
+                                  location: ticket['cinemaId'],
+                                  imageUrl: ticket['poster_image'],
+                                  time: ticket['time'],
+                                  date: ticket['date'],
+                                  seats: ticket['seats'].join(', '),
+                                  price: ticket['totalPrice']?.toString() ??
+                                      '0 EGP',
+                                  status: ticket['status'],
+                                  statusImage: getStatusImage(ticket['status']),
+                                  statusImageWidth: 28.w,
+                                  statusImageHeight: 28.h,
+                                ),
+                                isFirstTicket: ticket['status'] == "active",
+                                onCancel: () => cancelTicket(index),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+    );
+  }
 
-String getStatusImage(String status) {
-switch (status.toLowerCase()) {
-case 'active':
-return 'assets/icons/icon_active.png';
-case 'used':
-return 'assets/icons/user.png';
-case 'cancelled':
-return 'assets/icons/canllll.png';
-default:
-return 'assets/icons/pending.png';
-}
-}
+  String getStatusImage(String status) {
+    switch (status.toLowerCase()) {
+      case 'active':
+        return 'assets/icons/icon_active.png';
+      case 'used':
+        return 'assets/icons/user.png';
+      case 'cancelled':
+        return 'assets/icons/canllll.png';
+      default:
+        return 'assets/icons/pending.png';
+    }
+  }
 }

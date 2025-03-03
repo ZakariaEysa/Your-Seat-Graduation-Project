@@ -125,6 +125,8 @@
 
   "ahmedSayed" : "احمد سيد",
   "myTicket" : "تذكرتي",
+  "downloadTicket" : "تحميل التذكرة",
+  "showThisQRCodeToTheTicketCounterToReceiveYourTicket" : "أظهر رمز الاستجابة السريعة هذا أمام شباك\n التذاكر لتحصل على تذكرتك",
   "noResultsFound" : "لا يوجد نتائج",
   "youHaveToSignInToContinue" : "يجب عليك تسجيل الدخول اولا",
   "sorryNoWatchListMoviesYet": "عذرًا لا توجد أفلام في قائمة المشاهدة حتى الآن",

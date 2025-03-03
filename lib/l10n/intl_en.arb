@@ -121,6 +121,7 @@
 
   "ahmedSayed" : "Ahmed Sayed",
   "noResultsFound" : "No Results Found",
+  "showThisQRCodeToTheTicketCounterToReceiveYourTicket" : "Show this QR code to the ticket\n  counter to receive your ticket",
   "ok": "OK",
   "cancel": "Cancel",
   "sorryNoWatchListMoviesYet": "Sorry No WatchList Movies Yet",
@@ -130,6 +131,7 @@
   "welcomeToYourSeat" : "Welcome to YourSeat !",
   "startUsingTheApp" : "Start Using the App ->",
   "skip" : "Skip",
+  "downloadTicket" : "Download ticket",
   "next" : "Next",
   "male" : "Male",
   "female" : "Female",

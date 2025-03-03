@@ -1248,6 +1248,16 @@ class S {
     );
   }
 
+  /// `Show this QR code to the ticket\n  counter to receive your ticket`
+  String get showThisQRCodeToTheTicketCounterToReceiveYourTicket {
+    return Intl.message(
+      'Show this QR code to the ticket\n  counter to receive your ticket',
+      name: 'showThisQRCodeToTheTicketCounterToReceiveYourTicket',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `OK`
   String get ok {
     return Intl.message(
@@ -1333,6 +1343,16 @@ class S {
     return Intl.message(
       'Skip',
       name: 'skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download ticket`
+  String get downloadTicket {
+    return Intl.message(
+      'Download ticket',
+      name: 'downloadTicket',
       desc: '',
       args: [],
     );

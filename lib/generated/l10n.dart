@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `No notifications yet`
+  String get noNotificationsYet {
+    return Intl.message(
+      'No notifications yet',
+      name: 'noNotificationsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `User not found`
   String get user_not_found {
     return Intl.message(
@@ -1668,20 +1678,20 @@ class S {
     );
   }
 
-  /// `Movie genre:`
+  /// `Movie genre : `
   String get movieGenre {
     return Intl.message(
-      'Movie genre:',
+      'Movie genre : ',
       name: 'movieGenre',
       desc: '',
       args: [],
     );
   }
 
-  /// `Censorship:`
+  /// `Censorship : `
   String get censorship {
     return Intl.message(
-      'Censorship:',
+      'Censorship : ',
       name: 'censorship',
       desc: '',
       args: [],

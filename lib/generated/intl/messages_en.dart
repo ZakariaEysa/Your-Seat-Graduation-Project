@@ -110,7 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardInformation":
             MessageLookupByLibrary.simpleMessage("Card information"),
         "cardNumber": MessageLookupByLibrary.simpleMessage("Card Number:"),
-        "censorship": MessageLookupByLibrary.simpleMessage("Censorship:"),
+        "censorship": MessageLookupByLibrary.simpleMessage("Censorship : "),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
         "comments": MessageLookupByLibrary.simpleMessage("Comments"),
@@ -230,7 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),
-        "movieGenre": MessageLookupByLibrary.simpleMessage("Movie genre:"),
+        "movieGenre": MessageLookupByLibrary.simpleMessage("Movie genre : "),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
         "moviess": MessageLookupByLibrary.simpleMessage("Movies"),
         "myTicket": MessageLookupByLibrary.simpleMessage("My Ticket"),
@@ -238,6 +238,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("New movies ! Easy booking"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "noNotificationsYet":
+            MessageLookupByLibrary.simpleMessage("No notifications yet"),
         "noResultsFound":
             MessageLookupByLibrary.simpleMessage("No Results Found"),
         "no_account":

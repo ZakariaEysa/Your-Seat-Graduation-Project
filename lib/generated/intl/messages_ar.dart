@@ -103,12 +103,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardInformation":
             MessageLookupByLibrary.simpleMessage("معلومات البطاقة"),
         "cardNumber": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
-        "censorship": MessageLookupByLibrary.simpleMessage("الرقابة:"),
+        "censorship": MessageLookupByLibrary.simpleMessage("الرقابة"),
         "cinema": MessageLookupByLibrary.simpleMessage("سينما"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("قريباً"),
         "comments": MessageLookupByLibrary.simpleMessage("تعليقات"),
         "completeYourPaymentIn":
-            MessageLookupByLibrary.simpleMessage("أكمل دفعتك في"),
+            MessageLookupByLibrary.simpleMessage("أكمل عملية الدفع خلال  "),
         "completeYourPurchase":
             MessageLookupByLibrary.simpleMessage("أكمل عملية الشراء"),
         "confirmOtpCode":
@@ -213,7 +213,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "july": MessageLookupByLibrary.simpleMessage("يوليو"),
         "jun": MessageLookupByLibrary.simpleMessage("يونيو"),
         "june": MessageLookupByLibrary.simpleMessage("يونيو"),
-        "language": MessageLookupByLibrary.simpleMessage("اللغه"),
+        "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "light": MessageLookupByLibrary.simpleMessage("نهاري"),
         "location": MessageLookupByLibrary.simpleMessage("الموقع"),
         "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
@@ -226,7 +226,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "march": MessageLookupByLibrary.simpleMessage("مارس"),
         "may": MessageLookupByLibrary.simpleMessage("مايو"),
         "month": MessageLookupByLibrary.simpleMessage("الشهر"),
-        "movieGenre": MessageLookupByLibrary.simpleMessage("نوع الفيلم:"),
+        "movieGenre": MessageLookupByLibrary.simpleMessage("نوع الفيلم"),
         "moviess": MessageLookupByLibrary.simpleMessage("الافلام"),
         "myTicket": MessageLookupByLibrary.simpleMessage("تذكرتي"),
         "newMoviesEasyBooking":
@@ -234,6 +234,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "noNotificationsYet":
+            MessageLookupByLibrary.simpleMessage("لا يوجد اشعارات حتى الان"),
         "noResultsFound": MessageLookupByLibrary.simpleMessage("لا يوجد نتائج"),
         "no_account": MessageLookupByLibrary.simpleMessage("لا تملك حساباً؟"),
         "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),

@@ -152,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "director": MessageLookupByLibrary.simpleMessage("Director"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("Don’t have an account yet?"),
+        "downloadTicket":
+            MessageLookupByLibrary.simpleMessage("Download ticket"),
         "egp": MessageLookupByLibrary.simpleMessage("210.000EGP"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
@@ -322,6 +324,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceFees": MessageLookupByLibrary.simpleMessage("Service Fees:"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "showThisQRCodeToTheTicketCounterToReceiveYourTicket":
+            MessageLookupByLibrary.simpleMessage(
+                "Show this QR code to the ticket\n  counter to receive your ticket"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign Up"),

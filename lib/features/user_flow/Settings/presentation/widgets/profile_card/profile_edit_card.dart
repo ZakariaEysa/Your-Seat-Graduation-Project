@@ -109,71 +109,6 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
   }
 
-  // Future<void> updateProfile() async {
-  //   try {
-  //     var userDoc = FirebaseFirestore.instance
-  //         .collection('users')
-  //         .doc(currentUser.email);
-  //
-  //     // إعداد الحقول التي سيتم تحديثها فقط إذا تغيرت
-  //     Map<String, dynamic> updatedData = {};
-  //
-  //     if (userController.text.isNotEmpty && userController.text != currentUser.name) {
-  //       updatedData['name'] = userController.text;
-  //     }
-  //
-  //     if (selectedDay != null && selectedMonth != null && selectedYear != null) {
-  //       String newDateOfBirth = '$selectedDay/$selectedMonth/$selectedYear';
-  //       if (newDateOfBirth != currentUser.dateOfBirth) {
-  //         updatedData['dateOfBirth'] = newDateOfBirth;
-  //       }
-  //     }
-  //
-  //     if (selectedGender != null && selectedGender != currentUser.gender) {
-  //       updatedData['gender'] = selectedGender;
-  //     }
-  //
-  //     if (!_isValidBase64(selectedImageBase64)) {
-  //       selectedImageBase64 = ""; // إذا كانت الصورة غير صالحة، يتم تفريغها
-  //     }
-  //
-  //     if (selectedImageBase64 != currentUser.image) {
-  //       updatedData['image'] = selectedImageBase64 ?? "";
-  //     }
-  //
-  //     // إذا لم يكن هناك تغييرات، أوقف العملية
-  //     if (updatedData.isEmpty) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text("No changes detected")),
-  //       );
-  //       return;
-  //     }
-  //
-  //     // تحديث البيانات في Firestore
-  //     await userDoc.update(updatedData);
-  //
-  //     // تحديث البيانات في Hive
-  //     HiveStorage.saveDefaultUser(UserModel(
-  //       name: updatedData['name'] ?? currentUser.name,
-  //       email: currentUser.email,
-  //       password: currentUser.password, // نستخدم القيم الحالية
-  //       dateOfBirth: updatedData['dateOfBirth'] ?? currentUser.dateOfBirth,
-  //       gender: updatedData['gender'] ?? currentUser.gender,
-  //       image: updatedData['image'] ?? currentUser.image,
-  //     ));
-  //
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text("Data Updated Successfully")),
-  //     );
-  //
-  //     AppLogs.infoLog(HiveStorage.getDefaultUser().toString());
-  //   } catch (e) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text("Something Went Wrong")),
-  //     );
-  //     AppLogs.errorLog("Update profile failed: $e");
-  //   }
-  // }
 
   Future<void> updateProfile() async {
     setState(() {
@@ -310,6 +245,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
                 child: Container(
+                  padding: EdgeInsets.only(bottom: 20.h),
                   margin: EdgeInsets.only(top: 40.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -403,6 +339,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                                   : "assets/images/Cancel.png",
                                   () => navigatePop(context: context),
                             ),
+                            SizedBox(width: 5.w,),
                             _buildButton(
                               HiveStorage.get(HiveKeys.isArabic)
                                   ? "assets/images/save_changes_arabic.png"
@@ -428,8 +365,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                       as ImageProvider,
                     ),
                     Positioned(
-                      bottom: 0,
-                      right: 0,
+                      bottom: 0.h,
+                      right: 0.w,
                       child: GestureDetector(
                         onTap: _pickImage,
                         child: Container(
@@ -483,8 +420,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
   Widget _buildButton(String imagePath, VoidCallback onTap) {
     return ButtonBuilder(
       text: "",
-      height: 49,
-      width: 167,
+      height: 49.w,
+      width: 160.h,
       image: imagePath,
       onTap: onTap,
     );

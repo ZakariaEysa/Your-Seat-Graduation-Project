@@ -145,6 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "director": MessageLookupByLibrary.simpleMessage("مخرج"),
         "dontHaveAnyAccountYet":
             MessageLookupByLibrary.simpleMessage("لا تملك حساباً بعد؟"),
+        "downloadTicket": MessageLookupByLibrary.simpleMessage("تحميل التذكرة"),
         "egp": MessageLookupByLibrary.simpleMessage("210.000 جنيه"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الالكتروني "),
         "emailAddress":
@@ -315,6 +316,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceFees": MessageLookupByLibrary.simpleMessage("رسوم الخدمة"),
         "setting": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "showThisQRCodeToTheTicketCounterToReceiveYourTicket":
+            MessageLookupByLibrary.simpleMessage(
+                "أظهر رمز الاستجابة السريعة هذا أمام شباك\n التذاكر لتحصل على تذكرتك"),
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "sign_up": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),

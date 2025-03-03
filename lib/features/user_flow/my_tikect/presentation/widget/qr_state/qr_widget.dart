@@ -90,6 +90,8 @@ import 'package:printing/printing.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 
+import '../../../../../../generated/l10n.dart';
+
 class QrWidget extends StatelessWidget {
   String? movieName;
   String? movieDuration;
@@ -151,11 +153,11 @@ class QrWidget extends StatelessWidget {
         pageFormat: PdfPageFormat.letter,
         build: (pw.Context context) {
           return pw.Container(
-            padding: pw.EdgeInsets.all(16),
+            padding: pw.EdgeInsets.all(16.sp),
             decoration: pw.BoxDecoration(
               //color: PdfColor.fromHex("#1E0460"),
-              borderRadius: pw.BorderRadius.circular(10),
-              border: pw.Border.all(color: PdfColors.black, width: 2),
+              borderRadius: pw.BorderRadius.circular(10.r),
+              border: pw.Border.all(color: PdfColors.black, width: 2.w),
             ),
             child: pw.Column(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
@@ -176,29 +178,29 @@ class QrWidget extends StatelessWidget {
 
                 pw.SizedBox(height: 15.h),
                 pw.Text("Duration: ${movieDuration ?? ""}",
-                    style: pw.TextStyle(fontSize: 14)),
+                    style: pw.TextStyle(fontSize: 14.sp)),
                 pw.Text("Category: ${movieCategory ?? ""}",
-                    style: pw.TextStyle(fontSize: 14)),
+                    style: pw.TextStyle(fontSize: 14.sp)),
                 pw.SizedBox(height: 10.h),
                 pw.Text("Price: ${cost ?? ""} EGP",
-                    style: pw.TextStyle(fontSize: 14)),
+                    style: pw.TextStyle(fontSize: 14.sp)),
                 pw.Text("Cinema: ${cinemaId ?? ""}",
-                    style: pw.TextStyle(fontSize: 14)),
+                    style: pw.TextStyle(fontSize: 14.sp)),
                 pw.Text("Location: ${location ?? ""}",
-                    style: pw.TextStyle(fontSize: 14)),
+                    style: pw.TextStyle(fontSize: 14.sp)),
                 pw.SizedBox(height: 10.h),
 
                 pw.Row(
                   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                   children: [
                     pw.Text("Time: ${movieTime ?? ""}",
-                        style: pw.TextStyle(fontSize: 14)),
+                        style: pw.TextStyle(fontSize: 14.sp)),
                     pw.Text("Date: ${movieDate ?? ""}",
-                        style: pw.TextStyle(fontSize: 14)),
+                        style: pw.TextStyle(fontSize: 14.sp)),
                     pw.Text("Seat: ${seats ?? ""}",
-                        style: pw.TextStyle(fontSize: 14)),
+                        style: pw.TextStyle(fontSize: 14.sp)),
                     pw.Text("Hall: ${hall ?? ""}",
-                        style: pw.TextStyle(fontSize: 14)),
+                        style: pw.TextStyle(fontSize: 14.sp)),
                   ],
                 ),
 
@@ -220,54 +222,60 @@ class QrWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0, 560.h, 0, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.only(bottom: 70.h),
+            padding: EdgeInsetsDirectional.only(bottom: 70.h,end: 10.w),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                SizedBox(width: 20,),
                 QrImageView(
                   data: orderId,
                   size: 120.sp,
                   backgroundColor: Colors.white,
                 ),
-                Column(
-                  children: [
-                    Text(
-                      "Payment : Paid",
-                      style: TextStyle(color: Colors.black, fontSize: 14.sp),
-                    ),
-                    SizedBox(height: 5.h),
-                    Text(
-                      "Status : ${status??""}",
-                      style: TextStyle(color: Colors.black, fontSize: 14.sp),
-                    ),
-                    SizedBox(height: 7.h),
-                    Row(
-                      children: [
-                        Text(
-                          "Download ticket",
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 14.sp),
-                        ),
-                        InkWell(
-                          onTap: () => generateAndSavePDF(context),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.only(start: 5.w),
-                            child: Image.asset(
-                              "assets/icons/img_4.png",
-                              width: 20.w,
-                              height: 20.h,
+                Padding(
+                  padding:  EdgeInsets.only(right: 30.w,left: 30.w),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Payment : Paid",
+                        style: TextStyle(color: Colors.black, fontSize: 14.sp),
+                      ),
+                      SizedBox(height: 5.h),
+                      Text(
+                        "Status : ${status??""}",
+                        style: TextStyle(color: Colors.black, fontSize: 14.sp),
+                      ),
+                      SizedBox(height: 7.h),
+                      Row(
+                        children: [
+                          Text(
+                            lang.downloadTicket,
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 14.sp),
+                          ),
+                          InkWell(
+                            onTap: () => generateAndSavePDF(context),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.only(start: 5.w),
+                              child: Image.asset(
+                                "assets/icons/img_4.png",
+                                width: 20.w,
+                                height: 20.h,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

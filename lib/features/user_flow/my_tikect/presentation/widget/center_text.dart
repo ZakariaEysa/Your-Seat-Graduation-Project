@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../generated/l10n.dart';
+
 class CenterText extends StatelessWidget {
   String? cost;
   String? cinemaId;
@@ -14,6 +16,8 @@ class CenterText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
+
     return Padding(
       padding: EdgeInsetsDirectional.only(top: 370.h),
       child: SingleChildScrollView( // Wrap content in a scroll view
@@ -110,7 +114,7 @@ class CenterText extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     Text(
-                      'Show this QR code to the ticket\n  counter to receive your ticket',
+                      lang.showThisQRCodeToTheTicketCounterToReceiveYourTicket,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.sp,

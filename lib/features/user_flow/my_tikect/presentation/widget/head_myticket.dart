@@ -39,7 +39,7 @@ class HeadMyTicket extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 60.h, left: 20.w),
+                padding: EdgeInsets.only(top: 60.h, left: 20.w,right: 10.w),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.r),
                   child: ImageReplacer(
@@ -55,7 +55,7 @@ class HeadMyTicket extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 18.w, top: 10.h),
+                      padding: EdgeInsets.only(right: 18.w, top: 30.h,left: 18.w,),
                       child: Text(
                         seatCategory ?? "",
                         style: TextStyle(
@@ -65,17 +65,20 @@ class HeadMyTicket extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 15.h),
                     Align(
                       alignment: Alignment.bottomLeft,
-                      child: Text(
-                        movieName ?? "",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                      child: Padding(
+                        padding:  EdgeInsets.only(left: 15.w),
+                        child: Text(
+                          movieName ?? "",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

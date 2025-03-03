@@ -146,7 +146,7 @@ class PaymentPart extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 40.w, top: 20.h),
+              padding: EdgeInsetsDirectional.only(start: 20.w, top: 20.h),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -171,7 +171,7 @@ class PaymentPart extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 40.w, top: 15.h),
+              padding: EdgeInsetsDirectional.only(start: 20.w, top: 15.h),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,

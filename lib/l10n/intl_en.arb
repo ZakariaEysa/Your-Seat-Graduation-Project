@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "zakaria": "zakaria",
+  "noNotificationsYet": "No notifications yet",
   "user_not_found": "User not found",
   "password_updated_successfully": "Password updated successfully",
   "hello": "Hello",
@@ -166,8 +167,8 @@
   "nowPlaying": "Now Playing",
   "comingSoon": "Coming Soon",
   "watchTrailer": "Watch Trailer",
-  "movieGenre": "Movie genre:",
-  "censorship": "Censorship:",
+  "movieGenre": "Movie genre : ",
+  "censorship": "Censorship : " ,
   "language": "language",
   "storyLine": "StoryLine",
   "director": "Director",

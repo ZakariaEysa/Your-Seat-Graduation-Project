@@ -238,7 +238,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      lang.movieGenre,
+                      lang.movieGenre + " : ",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -260,7 +260,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      lang.censorship,
+                      lang.censorship + " : ",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -282,7 +282,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      lang.language,
+                      lang.language + " : ",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),

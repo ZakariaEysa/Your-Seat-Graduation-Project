@@ -90,7 +90,7 @@ class Payment extends StatelessWidget {
                           color: Color(0xFF382076).withOpacity(.90),
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 10.w),
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -203,7 +203,7 @@ class Payment extends StatelessWidget {
                           color: Color(0xFF382076).withOpacity(.90),
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 10.w),
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -239,7 +239,7 @@ class Payment extends StatelessWidget {
                     ),
                     Container(
                       width: 238.w,
-                      height: 36.h,
+                      height: 38.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Color(0xFF31215B),

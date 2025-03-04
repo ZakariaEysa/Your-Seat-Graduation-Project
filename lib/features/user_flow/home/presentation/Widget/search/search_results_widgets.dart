@@ -5,6 +5,7 @@ import 'package:yourseatgraduationproject/features/user_flow/cinema_details/pres
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/search/search_cubit/search_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../../widgets/network_image/image_replacer.dart';
@@ -108,12 +109,14 @@ class _SearchResultWidgetState extends State<SearchResultWidget> {
                             padding: EdgeInsets.all(8.0.w),
                             child: InkWell(
                               onTap: () {
-                                if (result['name'].toString().contains('cinema')) {
-                                  navigateTo(
-                                    context: context,
-                                    screen: CinemaDetails(cinemaId: result['Id']),
-                                  );
+                                AppLogs.scussessLog(result.toString());
+                                if (result['id'].toString().contains('Cinema')) {
+                                 navigateTo(
+                                   context: context,
+                                   screen: CinemaDetails(cinemaModel: result ,),
+                                 );
                                 } else {
+
                                   navigateTo(
                                     context: context,
                                     screen: MovieDetails(

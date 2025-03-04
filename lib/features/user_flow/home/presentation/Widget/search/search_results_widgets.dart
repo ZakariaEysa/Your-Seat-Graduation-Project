@@ -111,10 +111,10 @@ class _SearchResultWidgetState extends State<SearchResultWidget> {
                               onTap: () {
                                 AppLogs.scussessLog(result.toString());
                                 if (result['id'].toString().contains('Cinema')) {
-                                 // navigateTo(
-                                 //   context: context,
-                                 //   screen: CinemaDetails(cinemaId: result['id']),
-                                 // );
+                                 navigateTo(
+                                   context: context,
+                                   screen: CinemaDetails(cinemaModel: result ,),
+                                 );
                                 } else {
 
                                   navigateTo(

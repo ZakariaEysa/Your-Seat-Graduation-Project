@@ -19,19 +19,19 @@ class CinemaItem extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text("لا توجد سينمات متاحة"));
+            return const Center(child: CircularProgressIndicator());
           }
 
-          final cinemas = snapshot.data!.docs;
+          final cinemas = snapshot.data!.docs; // الاحتفاظ بالبيانات الأصلية
 
           return ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: cinemas.length,
             itemBuilder: (context, index) {
-              final cinema = cinemas[index];
-              final cinemaId = cinema.id;
-              final name = cinema['name'] ?? 'Cinema';
-              final imageUrl = cinema['poster_image'] ?? '';
+              final cinema = cinemas[index]; // بيانات السينما الأصلية
+              final data = cinema.data() as Map<String, dynamic>; // تحويل البيانات إلى Map
+              final name = data["name"] ?? "Cinema";
+              final imageUrl = data["poster_image"] ?? "";
 
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -41,44 +41,17 @@ class CinemaItem extends StatelessWidget {
                       onTap: () {
                         navigateTo(
                           context: context,
-                          screen: CinemaDetails(cinemaId: cinemaId),
+                          screen: CinemaDetails(cinemaModel: data), // ✅ تمرير البيانات الأصلية
                         );
                       },
-                      child:  ImageReplacer(imageUrl: imageUrl, fit: BoxFit.fill,isCircle: true,
+                      child: ImageReplacer(
+                        imageUrl: imageUrl,
+                        fit: BoxFit.fill,
+                        isCircle: true,
                         width: 140.w,
                         height: 140.h,
-                      // child: ClipOval(child: imageUrl.isNotEmpty
-                      //       ?
-                      //   Image.network(
-                      //     imageUrl,
-                      //     height: 120.h,
-                      //     width: 120.w,
-                      //     fit: BoxFit.cover,
-                      //     loadingBuilder: (context, child, loadingProgress) {
-                      //       if (loadingProgress == null) return child;
-                      //       return SizedBox(
-                      //         height: 120.h,
-                      //         width: 120.w,
-                      //         child: const Center(child: CircularProgressIndicator()),
-                      //       );
-                      //     },
-                      //     errorBuilder: (context, error, stackTrace) {
-                      //       return Container(
-                      //         height: 120.h,
-                      //         width: 120.w,
-                      //         color: Colors.grey,
-                      //         child: const Icon(Icons.error, color: Colors.red),
-                      //       );
-                      //     },
-                      //   )
-                      //       : Container(
-                      //     height: 120.h,
-                      //     width: 120.w,
-                      //     color: Colors.grey,
-                      //     child: const Icon(Icons.image, color: Colors.white),
-                      //   ),
-                      // ),
-                    ),),
+                      ),
+                    ),
                     SizedBox(height: 8.h),
                     Text(
                       name,

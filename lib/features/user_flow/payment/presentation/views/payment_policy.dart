@@ -184,7 +184,7 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
               height: 30.h,
             ),
             ButtonBuilder(
-              text: lang.continnue,
+              text: lang.continuee,
               onTap: () {
                 if (isChecked) {
                   navigateAndReplace(
@@ -193,7 +193,7 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
                         create: (context) => PaymentCubit(
                             PaymentRepoImpl(PaymentRemoteDataSourceImpl())),
                         child: Payment(
-                           hall: widget.hall,
+                          hall: widget.hall,
                           model: widget.model,
                           seatCategory: widget.seatCategory,
                           seats: widget.seats,

@@ -118,7 +118,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "contactUsContent": MessageLookupByLibrary.simpleMessage(
             "يسعدنا سماعك! سواء كان لديك استفسارات، تحتاج إلى دعم، تريد مشاركة ملاحظات، أو لديك اقتراحات، فريقنا هنا لمساعدتك. لا تتردد في التواصل معنا باستخدام النموذج أدناه \nالملاحظات والاقتراحات:\nنقدر مدخلاتك بشدة! إذا كانت لديك اقتراحات لتحسين تجربتك مع YourSeat، يرجى مشاركتها في حقل الرسالة بنموذج الاتصال أو إرسالها مباشرة إلى بريدنا الإلكتروني.\n\nتواصل معنا على قنوات التواصل الاجتماعي الخاصة بنا للحصول على أحدث التحديثات والعروض الترويجية والمزيد:"),
-        "continnue": MessageLookupByLibrary.simpleMessage("يكمل"),
         "continueAsGuest":
             MessageLookupByLibrary.simpleMessage("المتابعة كضيف"),
         "continueWithFacebook":

@@ -2066,16 +2066,6 @@ class S {
     );
   }
 
-  /// `Continue`
-  String get continnue {
-    return Intl.message(
-      'Continue',
-      name: 'continnue',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Card information`
   String get cardInformation {
     return Intl.message(

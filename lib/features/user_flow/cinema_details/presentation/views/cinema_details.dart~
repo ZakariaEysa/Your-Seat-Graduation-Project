@@ -52,7 +52,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
             ),
           ),
           SizedBox(
-              height: 450.h,
+              height: 400.h,
               child: CinemaMovies( movies: widget.cinemaModel['movies'],)),
           Padding(
             padding: EdgeInsets.all(10.0.sp),

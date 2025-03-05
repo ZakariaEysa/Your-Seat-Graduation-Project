@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Watch_list/presentation/views/watch_list.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
@@ -186,6 +187,7 @@ class _TicketPageState extends State<TicketPage> {
                             final ticket = tickets[index];
                             return InkWell(
                               onTap: () {
+                                AppLogs.scussessLog(ticket.toString());
                                 if (ticket['status'].toString().toLowerCase() == 'active') {
                                   navigateTo(
                                     context: context,
@@ -194,7 +196,7 @@ class _TicketPageState extends State<TicketPage> {
                                         name: ticket['movieName'],
                                         category: ticket['category'],
                                         duration: ticket['duration'],
-                                        posterImage: ticket['poster_image'],
+                                        posterImage: ticket['poster_image']??'',
                                       ),
                                       seats: List<String>.from(ticket['seats']),
                                       seatCategory: ticket['seatCategory'],
@@ -218,7 +220,7 @@ class _TicketPageState extends State<TicketPage> {
                                   orderId: ticket["orderId"],
                                   movieName: ticket['movieName'],
                                   location: ticket['cinemaId'],
-                                  imageUrl: ticket['poster_image'],
+                                  imageUrl: ticket['poster_image']??'',
                                   time: ticket['time'],
                                   date: ticket['date'],
                                   seats: ticket['seats'].join(', '),

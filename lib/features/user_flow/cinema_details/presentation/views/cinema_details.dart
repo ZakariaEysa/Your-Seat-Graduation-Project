@@ -37,9 +37,11 @@ class _CinemaDetailsState extends State<CinemaDetails> {
 
 
     return ScaffoldF(
+
       body:  SingleChildScrollView(
       child: Column(
         children: [
+
           CinemaHeaderDescription(cinemaData: widget.cinemaModel),
           Padding(
             padding: EdgeInsets.only(top: 55.0.sp),

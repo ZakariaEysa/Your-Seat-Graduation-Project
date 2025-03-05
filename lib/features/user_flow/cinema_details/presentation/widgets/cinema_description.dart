@@ -24,6 +24,7 @@ class CinemaHeaderDescription extends StatelessWidget {
     final ratingCount = cinemaData['rating_count'] ?? 0;
 
     return Stack(
+
       clipBehavior: Clip.none,
       children: [
         /// ✅ صورة الخلفية (تتكيف مع جميع الشاشات)
@@ -42,9 +43,8 @@ class CinemaHeaderDescription extends StatelessWidget {
         ),
 
         /// ✅ زر الرجوع (متجاوب)
-        Positioned(
-          top: 50.h,
-          left: 20.w,
+        Padding(
+          padding:  EdgeInsets.only(top: 50.0.h , left: 20.w),
           child: IconButton(
             onPressed: () {
               navigateTo(context: context, screen: const HomeLayout());

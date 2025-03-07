@@ -18,6 +18,7 @@ import '../../../../../../utils/navigation.dart';
 import '../../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../auth/data/model/user_model.dart';
 import '../../../../auth/presentation/widgets/BirthDateDropdown.dart';
+
 class ProfileEditCard extends StatefulWidget {
   const ProfileEditCard({super.key});
 
@@ -29,7 +30,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
   bool isLoading = false;
   final List<int> days = List<int>.generate(31, (index) => index + 1);
   final List<int> years =
-  List<int>.generate(80, (index) => DateTime.now().year - index);
+      List<int>.generate(80, (index) => DateTime.now().year - index);
   final List<String> months = [
     "Jan",
     "Feb",
@@ -92,7 +93,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
     userController.text = currentUser.name;
     selectedGender =
-    gender.contains(currentUser.gender) ? currentUser.gender : null;
+        gender.contains(currentUser.gender) ? currentUser.gender : null;
     selectedImageBase64 = currentUser.image;
   }
 
@@ -109,25 +110,25 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
   }
 
-
-
   Future<void> updateProfile() async {
     setState(() {
       isLoading = true;
     });
 
     try {
-      var userDoc = FirebaseFirestore.instance
-          .collection('users')
-          .doc(currentUser.email);
+      var userDoc =
+          FirebaseFirestore.instance.collection('users').doc(currentUser.email);
 
       Map<String, dynamic> updatedData = {};
 
-      if (userController.text.isNotEmpty && userController.text != currentUser.name) {
+      if (userController.text.isNotEmpty &&
+          userController.text != currentUser.name) {
         updatedData['name'] = userController.text;
       }
 
-      if (selectedDay != null && selectedMonth != null && selectedYear != null) {
+      if (selectedDay != null &&
+          selectedMonth != null &&
+          selectedYear != null) {
         String newDateOfBirth = '$selectedDay/$selectedMonth/$selectedYear';
         if (newDateOfBirth != currentUser.dateOfBirth) {
           updatedData['dateOfBirth'] = newDateOfBirth;
@@ -184,7 +185,6 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
   }
 
-
   Future<void> _pickImage() async {
     showModalBottomSheet(
       context: context,
@@ -202,7 +202,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
                   final XFile? image =
-                  await picker.pickImage(source: ImageSource.gallery);
+                      await picker.pickImage(source: ImageSource.gallery);
                   if (image != null) {
                     final bytes = await File(image.path).readAsBytes();
                     setState(() {
@@ -211,7 +211,6 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   }
                 },
               ),
-
             ],
           ),
         );
@@ -221,7 +220,6 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
   @override
   Widget build(BuildContext context) {
-
     var lang = S.of(context);
     var theme = Theme.of(context);
 
@@ -235,170 +233,168 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Stack(
-
-            children: [
-
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
-                child: Container(
-                  margin: EdgeInsets.only(top: 40.h),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(51.r),
-                      topRight: Radius.circular(48.r),
-                    ),
-                    color: const Color(0xFF00002B),
+            child: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
+              child: Container(
+                margin: EdgeInsets.only(top: 40.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(51.r),
+                    topRight: Radius.circular(51.r),
+                    bottomLeft:Radius.circular(51.r),
+                    bottomRight:Radius.circular(51.r) ,
                   ),
-                  child: Padding(
-                    padding:
-                    EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        _buildLabel(theme, lang.username),
-                        SizedBox(height: 15.h),
-                        InfoContainer(
-                          onChanged: (value) => userController.text = value,
-                          controller: userController,
-                          type: TextInputType.text,
-                          title: "",
+                  color: const Color(0xFF00002B),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _buildLabel(theme, lang.username),
+                      SizedBox(height: 15.h),
+                      InfoContainer(
+                        onChanged: (value) => userController.text = value,
+                        controller: userController,
+                        type: TextInputType.text,
+                        title: "",
+                      ),
+                      SizedBox(height: 15.h),
+                      _buildLabel(theme, lang.emailAddress),
+                      SizedBox(height: 15.h),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 12.w),
+                        padding: EdgeInsets.all(15.sp),
+                        alignment: Alignment.centerLeft,
+                        width: double.infinity,
+                        height: 55.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(23.r),
+                          color: theme.colorScheme.onSecondary,
                         ),
-                        SizedBox(height: 15.h),
-                        _buildLabel(theme, lang.emailAddress ),
-                        SizedBox(height: 15.h),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 12.w),
-                          padding: EdgeInsets.all(15.sp),
-                          alignment: Alignment.centerLeft,
-                          width: double.infinity,
-                          height: 55.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(23.r),
-                            color: theme.colorScheme.onSecondary,
-                          ),
-                          child: Text(currentUser.email),
-                        ),
-                        SizedBox(height: 15.h),
-                        _buildLabel(theme, lang.birthDate),
-                        SizedBox(height: 15.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: _buildDropdown(
-                                  lang.month, selectedMonth, months,
-                                      (String? newValue) {
-                                    setState(() {
-                                      selectedMonth = newValue;
-                                    });
-                                  }),
-                            ),
-                            SizedBox(width: 10.w),
-                            Expanded(
-                              child: _buildDropdown(lang.day, selectedDay, days,
-                                      (int? newValue) {
-                                    setState(() {
-                                      selectedDay = newValue;
-                                    });
-                                  }),
-                            ),
-                            SizedBox(width: 10.w),
-                            Expanded(
-                              child:
-                              _buildDropdown(lang.year, selectedYear, years,
-                                      (int? newValue) {
-                                    setState(() {
-                                      selectedYear = newValue;
-                                    });
-                                  }),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 15.h),
-                        _buildLabel(theme, lang.gender),
-                        SizedBox(height: 15.h),
-                        _buildDropdown(lang.gender, selectedGender, gender,
+                        child: Text(currentUser.email),
+                      ),
+                      SizedBox(height: 15.h),
+                      _buildLabel(theme, lang.birthDate),
+                      SizedBox(height: 15.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: _buildDropdown(
+                                lang.month, selectedMonth, months,
                                 (String? newValue) {
                               setState(() {
-                                selectedGender = newValue;
+                                selectedMonth = newValue;
                               });
                             }),
-                        SizedBox(height: 45.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            _buildButton(
-                              HiveStorage.get(HiveKeys.isArabic)
-                                  ? "assets/images/cancel_arabic.png"
-                                  : "assets/images/Cancel.png",
-                                  () => navigatePop(context: context),
-                            ),
-                            _buildButton(
-                              HiveStorage.get(HiveKeys.isArabic)
-                                  ? "assets/images/save_changes_arabic.png"
-                                  : "assets/images/Save Changes.png",
-                              updateProfile,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                          SizedBox(width: 10.w),
+                          Expanded(
+                            child: _buildDropdown(lang.day, selectedDay, days,
+                                (int? newValue) {
+                              setState(() {
+                                selectedDay = newValue;
+                              });
+                            }),
+                          ),
+                          SizedBox(width: 10.w),
+                          Expanded(
+                            child:
+                                _buildDropdown(lang.year, selectedYear, years,
+                                    (int? newValue) {
+                              setState(() {
+                                selectedYear = newValue;
+                              });
+                            }),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 15.h),
+                      _buildLabel(theme, lang.gender),
+                      SizedBox(height: 15.h),
+                      _buildDropdown(lang.gender, selectedGender, gender,
+                          (String? newValue) {
+                        setState(() {
+                          selectedGender = newValue;
+                        });
+                      }),
+                      SizedBox(height: 45.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _buildButton(
+                            HiveStorage.get(HiveKeys.isArabic)
+                                ? "assets/images/cancel_arabic.png"
+                                : "assets/images/Cancel.png",
+                            () => navigatePop(context: context),
+                          ),
+                          SizedBox(width: 5.w,),
+                          _buildButton(
+                            HiveStorage.get(HiveKeys.isArabic)
+                                ? "assets/images/save_changes_arabic.png"
+                                : "assets/images/Save Changes.png",
+                            updateProfile,
+                          ),
+                        ],
+                      ),
+                   SizedBox(height: 45.h,)
+                    ],
                   ),
                 ),
               ),
-              Positioned(
-                left: 105.w,
-                child: Stack(
-                  children: [
-                    CircleAvatar(
-                      radius: 80.r,
-                      backgroundImage: _isValidBase64(selectedImageBase64)
-                          ? MemoryImage(base64Decode(selectedImageBase64!))
-                          : const AssetImage("assets/images/account.png")
-                      as ImageProvider,
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: GestureDetector(
-                        onTap: _pickImage,
-                        child: Container(
-                          height: 30.h,
-                          width: 30.w,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.camera_alt,
-                            size: 20.sp,
-                            color: Colors.grey,
-                          ),
+            ),
+            Positioned(
+              left: 115.w,
+              child: Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 80.r,
+                    backgroundImage: _isValidBase64(selectedImageBase64)
+                        ? MemoryImage(base64Decode(selectedImageBase64!))
+                        : const AssetImage("assets/images/account.png")
+                            as ImageProvider,
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: _pickImage,
+                      child: Container(
+                        height: 30.h,
+                        width: 30.w,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.camera_alt,
+                          size: 20.sp,
+                          color: Colors.grey,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              isLoading?   Positioned(
-                left: 120.w,
-                  top: 100.h,
-                  bottom: 100.h,
-                  child: Center(child: LoadingIndicator())) :Container(),
-            ],
-
-          )
-        ),
+            ),
+            isLoading
+                ? Positioned(
+                    left: 120.w,
+                    top: 100.h,
+                    bottom: 100.h,
+                    child: Center(child: LoadingIndicator()))
+                : Container(),
+          ],
+        )),
       ),
     );
-
   }
 
-
   Widget _buildLabel(ThemeData theme, String text) {
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Text(
@@ -422,7 +418,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     return ButtonBuilder(
       text: "",
       height: 49,
-      width: 167,
+      width: 150,
       image: imagePath,
       onTap: onTap,
     );

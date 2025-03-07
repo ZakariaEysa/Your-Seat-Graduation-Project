@@ -156,6 +156,7 @@ class _TicketPageState extends State<TicketPage> {
 
   @override
   Widget build(BuildContext context) {
+
     var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
@@ -183,8 +184,10 @@ class _TicketPageState extends State<TicketPage> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: tickets.length,
+
                           itemBuilder: (context, index) {
                             final ticket = tickets[index];
+
                             return InkWell(
                               onTap: () {
                                 AppLogs.scussessLog(ticket.toString());
@@ -195,7 +198,7 @@ class _TicketPageState extends State<TicketPage> {
                                       model: MoviesDetailsModel(
                                         name: ticket['movieName'],
                                         category: ticket['category'],
-                                        duration: ticket['duration'],
+                                        duration: ticket['duration']??"",
                                         posterImage: ticket['poster_image']??'',
                                       ),
                                       seats: List<String>.from(ticket['seats']),
@@ -217,6 +220,7 @@ class _TicketPageState extends State<TicketPage> {
 
                               child: TicketCard(
                                 ticket: Ticket(
+
                                   orderId: ticket["orderId"],
                                   movieName: ticket['movieName'],
                                   location: ticket['cinemaId'],

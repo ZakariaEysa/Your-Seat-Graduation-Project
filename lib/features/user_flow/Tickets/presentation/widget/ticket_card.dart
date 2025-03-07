@@ -146,6 +146,7 @@ class Ticket {
   final double statusImageWidth;
   final double statusImageHeight;
   final String orderId;
+
   Ticket({
     required this.movieName,
     required this.orderId,

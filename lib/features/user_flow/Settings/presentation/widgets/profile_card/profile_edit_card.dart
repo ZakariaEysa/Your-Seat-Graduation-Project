@@ -110,6 +110,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
   }
 
 
+
   Future<void> updateProfile() async {
     setState(() {
       isLoading = true;
@@ -220,13 +221,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
-      return Stack(
-        children: [
-          LoadingIndicator()
-      ],
-      );
-    }
+
     var lang = S.of(context);
     var theme = Theme.of(context);
 
@@ -241,11 +236,12 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
+
             children: [
+
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
                 child: Container(
-                  padding: EdgeInsets.only(bottom: 20.h),
                   margin: EdgeInsets.only(top: 40.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -339,7 +335,6 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                                   : "assets/images/Cancel.png",
                                   () => navigatePop(context: context),
                             ),
-                            SizedBox(width: 5.w,),
                             _buildButton(
                               HiveStorage.get(HiveKeys.isArabic)
                                   ? "assets/images/save_changes_arabic.png"
@@ -365,8 +360,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                       as ImageProvider,
                     ),
                     Positioned(
-                      bottom: 0.h,
-                      right: 0.w,
+                      bottom: 0,
+                      right: 0,
                       child: GestureDetector(
                         onTap: _pickImage,
                         child: Container(
@@ -387,8 +382,14 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   ],
                 ),
               ),
+              isLoading?   Positioned(
+                left: 120.w,
+                  top: 100.h,
+                  bottom: 100.h,
+                  child: Center(child: LoadingIndicator())) :Container(),
             ],
-          ),
+
+          )
         ),
       ),
     );
@@ -420,8 +421,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
   Widget _buildButton(String imagePath, VoidCallback onTap) {
     return ButtonBuilder(
       text: "",
-      height: 49.w,
-      width: 160.h,
+      height: 49,
+      width: 167,
       image: imagePath,
       onTap: onTap,
     );

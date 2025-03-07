@@ -382,6 +382,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
         "seats": selectedSeats,
         "seatCategory": seatCategory,
         "totalPrice": totalPrice,
+        "duration"  : widget.model.duration,
+        "category": widget.model.category,
       };
 
       // 🔹 إضافة التذكرة إلى `myTickets`
@@ -429,6 +431,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
         "seatCategory": seatCategory,
         "totalPrice": totalPrice,
         "userEmail": email,
+        "duration"  : widget.model.duration,
+        "category": widget.model.category,
       };
 
       // 🔹 إضافة التذكرة إلى `tickets`

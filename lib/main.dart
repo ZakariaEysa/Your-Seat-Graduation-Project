@@ -91,9 +91,9 @@ void main() async {
           BlocProvider<CinemaCubit>(
             create: (context) => CinemaCubit(),
           ),
-          BlocProvider(
-            create: (context) => SearchCubit(),
-          )
+          // BlocProvider(
+          //   create: (context) => SearchCubit(),
+          // )
         ],
         child: const MyApp(),
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/app.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../data/hive_keys.dart';
@@ -20,6 +22,9 @@ class TicketCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppLogs.errorLog("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+    print(ticket.time);
+    AppLogs.errorLog("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
     return Card(
       margin: EdgeInsets.only(bottom: 15.h),
       color: const Color(0xFF0E0643),
@@ -147,7 +152,8 @@ class Ticket {
   final double statusImageHeight;
   final String orderId;
 
-  Ticket({
+
+  Ticket( {
     required this.movieName,
     required this.orderId,
     required this.location,

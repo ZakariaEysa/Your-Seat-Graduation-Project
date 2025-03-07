@@ -22,6 +22,7 @@ class _ProfileCardState extends State<ProfileCard> {
 
   @override
   Widget build(BuildContext context) {
+   AppLogs.scussessLog((HiveStorage.get(HiveKeys.role) == Role.email.toString()).toString());
     var theme = Theme.of(context);
 
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
@@ -42,10 +43,15 @@ class _ProfileCardState extends State<ProfileCard> {
         actions: [
           InkWell(
             onTap: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfileEditCard()),
-              );
+           if( HiveStorage.get(HiveKeys.role) == Role.google.toString()){
+
+           }else{
+             await Navigator.push(
+               context,
+               MaterialPageRoute(builder: (context) => const ProfileEditCard()),
+             );
+           }
+
               setState(() {
                 currentUser = HiveStorage.get(HiveKeys.role) == Role.google.toString()
                     ? HiveStorage.getGoogleUser()
@@ -53,11 +59,12 @@ class _ProfileCardState extends State<ProfileCard> {
               });
             },
 
-            child: Icon(
+            child: HiveStorage.get(HiveKeys.role) == Role.google.toString()? Container():
+            Icon (
               Icons.edit,
               size: 27.sp,
               color: Colors.white,
-            ),
+            )
           ),
           SizedBox(
             width: 12.w,

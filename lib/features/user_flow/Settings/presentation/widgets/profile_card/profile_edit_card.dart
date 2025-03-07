@@ -109,71 +109,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     }
   }
 
-  // Future<void> updateProfile() async {
-  //   try {
-  //     var userDoc = FirebaseFirestore.instance
-  //         .collection('users')
-  //         .doc(currentUser.email);
-  //
-  //     // إعداد الحقول التي سيتم تحديثها فقط إذا تغيرت
-  //     Map<String, dynamic> updatedData = {};
-  //
-  //     if (userController.text.isNotEmpty && userController.text != currentUser.name) {
-  //       updatedData['name'] = userController.text;
-  //     }
-  //
-  //     if (selectedDay != null && selectedMonth != null && selectedYear != null) {
-  //       String newDateOfBirth = '$selectedDay/$selectedMonth/$selectedYear';
-  //       if (newDateOfBirth != currentUser.dateOfBirth) {
-  //         updatedData['dateOfBirth'] = newDateOfBirth;
-  //       }
-  //     }
-  //
-  //     if (selectedGender != null && selectedGender != currentUser.gender) {
-  //       updatedData['gender'] = selectedGender;
-  //     }
-  //
-  //     if (!_isValidBase64(selectedImageBase64)) {
-  //       selectedImageBase64 = ""; // إذا كانت الصورة غير صالحة، يتم تفريغها
-  //     }
-  //
-  //     if (selectedImageBase64 != currentUser.image) {
-  //       updatedData['image'] = selectedImageBase64 ?? "";
-  //     }
-  //
-  //     // إذا لم يكن هناك تغييرات، أوقف العملية
-  //     if (updatedData.isEmpty) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text("No changes detected")),
-  //       );
-  //       return;
-  //     }
-  //
-  //     // تحديث البيانات في Firestore
-  //     await userDoc.update(updatedData);
-  //
-  //     // تحديث البيانات في Hive
-  //     HiveStorage.saveDefaultUser(UserModel(
-  //       name: updatedData['name'] ?? currentUser.name,
-  //       email: currentUser.email,
-  //       password: currentUser.password, // نستخدم القيم الحالية
-  //       dateOfBirth: updatedData['dateOfBirth'] ?? currentUser.dateOfBirth,
-  //       gender: updatedData['gender'] ?? currentUser.gender,
-  //       image: updatedData['image'] ?? currentUser.image,
-  //     ));
-  //
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text("Data Updated Successfully")),
-  //     );
-  //
-  //     AppLogs.infoLog(HiveStorage.getDefaultUser().toString());
-  //   } catch (e) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(content: Text("Something Went Wrong")),
-  //     );
-  //     AppLogs.errorLog("Update profile failed: $e");
-  //   }
-  // }
+
 
   Future<void> updateProfile() async {
     setState(() {
@@ -285,13 +221,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
-      return Stack(
-        children: [
-          LoadingIndicator()
-      ],
-      );
-    }
+
     var lang = S.of(context);
     var theme = Theme.of(context);
 
@@ -306,7 +236,9 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
+
             children: [
+
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.w),
                 child: Container(
@@ -450,8 +382,14 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   ],
                 ),
               ),
+              isLoading?   Positioned(
+                left: 120.w,
+                  top: 100.h,
+                  bottom: 100.h,
+                  child: Center(child: LoadingIndicator())) :Container(),
             ],
-          ),
+
+          )
         ),
       ),
     );

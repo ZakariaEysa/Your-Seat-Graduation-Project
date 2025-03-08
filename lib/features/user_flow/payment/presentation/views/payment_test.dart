@@ -94,11 +94,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
             console.log("Submit button clicked");
           } else {
             console.log("Submit button is disabled, retrying...");
-            setTimeout(clickSubmitButton, 500);
+            setTimeout(clickSubmitButton, 300);
           }
         } else {
           console.log("Submit button not found, retrying...");
-          setTimeout(clickSubmitButton, 500);
+          setTimeout(clickSubmitButton, 300);
         }
       }
       
@@ -137,17 +137,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
       
       document.addEventListener("DOMContentLoaded", function() {
         console.log("DOM fully loaded, attempting to click submit button");
-        setTimeout(clickSubmitButton, 500);
+        setTimeout(clickSubmitButton, 300);
         monitorPageChanges();
       });
 
       window.onload = function () {
         console.log("Page fully loaded, attempting to click submit button");
-        setTimeout(clickSubmitButton, 500);
+        setTimeout(clickSubmitButton, 300);
         monitorPageChanges();
       };
 
-      setTimeout(clickSubmitButton, 1500); // محاولة الضغط بعد 1.5 ثانية لضمان تحميل الصفحة
+      setTimeout(clickSubmitButton, 600); // محاولة الضغط بعد 1.5 ثانية لضمان تحميل الصفحة
     """);
   }
 
@@ -382,7 +382,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         "seats": selectedSeats,
         "seatCategory": seatCategory,
         "totalPrice": totalPrice,
-        "duration"  : widget.model.duration,
+        "duration": widget.model.duration,
         "category": widget.model.category,
       };
 
@@ -431,7 +431,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         "seatCategory": seatCategory,
         "totalPrice": totalPrice,
         "userEmail": email,
-        "duration"  : widget.model.duration,
+        "duration": widget.model.duration,
         "category": widget.model.category,
       };
 

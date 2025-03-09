@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SeatsGrid extends StatefulWidget {
   final Function(int) updateTotalPrice;
@@ -75,41 +76,38 @@ class _SeatsGridState extends State<SeatsGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Column(
-          children: List.generate(seats.length, (rowIndex) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(seats[rowIndex].length, (colIndex) {
-                if (colIndex == 6) {
-                  return const SizedBox(width: 30); // ✅ الممر بين الجانبين
-                }
-                String seat = seats[rowIndex][colIndex];
-                String seatImage = _getSeatImage(seat);
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 5.w),
+      child: Column(
+        children: [
+          Column(
+            children: List.generate(seats.length, (rowIndex) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(seats[rowIndex].length, (colIndex) {
+                  if (colIndex == 6) {
+                    return SizedBox(width: 20.w); // ✅ الممر بين الجانبين
+                  }
+                  String seat = seats[rowIndex][colIndex];
+                  String seatImage = _getSeatImage(seat);
 
-                return GestureDetector(
-                  onTap: () => _selectSeat(rowIndex, colIndex),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Image.asset(
-                      seatImage,
-                      width: 20,
-                      height: 20,
+                  return GestureDetector(
+                    onTap: () => _selectSeat(rowIndex, colIndex),
+                    child: Padding(
+                      padding: EdgeInsets.all(4.0.sp),
+                      child: Image.asset(
+                        seatImage,
+                        width: 18.w,
+                        height: 18.h,
+                      ),
                     ),
-                  ),
-                );
-              }),
-            );
-          }),
-        ),
-        // const SizedBox(height: 20),
-        // Text(
-        //   "Selected Seats: ${selectedSeats.join(", ")}", // ✅ طباعة المقاعد المحددة
-        //   style: const TextStyle(
-        //       fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-        // ),
-      ],
+                  );
+                }),
+              );
+            }),
+          ),
+        ],
+      ),
     );
   }
 

@@ -13,7 +13,7 @@ platform :android do
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
       groups: "YourSeatTesting",
-      release_notes: "First FastLane Distribution",
+      release_notes: "App is ready for testing  fixed search & ticket & language Bugs",
     )
   end
 end

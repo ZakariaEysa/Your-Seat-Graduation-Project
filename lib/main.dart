@@ -68,6 +68,7 @@ void main() async {
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(HiveKeys.isArabic, false);
   }
+  // HiveStorage.set(HiveKeys.passUserOnboarding, false);
 
   runApp(
     DevicePreview(
@@ -100,7 +101,6 @@ void main() async {
     ),
   );
 }
-
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -158,4 +158,3 @@ class _MyAppState extends State<MyApp> {
     });
   }
 }
-

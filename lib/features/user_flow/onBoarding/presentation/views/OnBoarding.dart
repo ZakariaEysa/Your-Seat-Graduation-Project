@@ -25,6 +25,11 @@ class _OnBoardingState extends State<OnBoarding> {
   int currentPage = 0;
 
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
@@ -69,10 +74,9 @@ class _OnBoardingState extends State<OnBoarding> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: List.generate(
-                                getOnBoardingContents(context).length,
-                                (dotIndex) {
-                              return buildDot(dotIndex);
-                            }),
+                              getOnBoardingContents(context).length,
+                              (dotIndex) => buildDot(dotIndex),
+                            ),
                           ),
                           SizedBox(height: 15.h),
                           Text(
@@ -94,16 +98,11 @@ class _OnBoardingState extends State<OnBoarding> {
                               ? ButtonBuilder(
                                   text: lang.startUsingTheApp,
                                   onTap: () {
-                                    // Navigate to the SignIn screen
                                     HiveStorage.set(
-                                      HiveKeys.passUserOnboarding,
-                                      true,
-                                    );
-
+                                        HiveKeys.passUserOnboarding, true);
                                     navigateAndRemoveUntil(
-                                      context: context,
-                                      screen: const SignIn(),
-                                    );
+                                        context: context,
+                                        screen: const SignIn());
                                   },
                                   width: 300.w,
                                   height: 55.h,
@@ -117,14 +116,11 @@ class _OnBoardingState extends State<OnBoarding> {
                                         text: lang.skip,
                                         onTap: () {
                                           HiveStorage.set(
-                                            HiveKeys.passUserOnboarding,
-                                            true,
-                                          );
-
+                                              HiveKeys.passUserOnboarding,
+                                              true);
                                           navigateAndRemoveUntil(
-                                            context: context,
-                                            screen: const SignIn(),
-                                          );
+                                              context: context,
+                                              screen: const SignIn());
                                         },
                                         height: 55.h,
                                       ),
@@ -164,9 +160,11 @@ class _OnBoardingState extends State<OnBoarding> {
   }
 
   Widget buildDot(int index) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300), // نفس مدة انتقال الصفحة
+      curve: Curves.easeInOut,
       height: 10.h,
-      width: currentPage == index ? 20.w : 10.w,
+      width: currentPage == index ? 20.w : 10.w, // الدوت النشط يكبر
       margin: EdgeInsets.only(right: 5.w),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.sp),

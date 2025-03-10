@@ -49,6 +49,15 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
   Widget build(BuildContext context) {
     AppLogs.scussessLog(widget.seatCategory.toString());
     AppLogs.scussessLog(widget.hall.toString());
+    AppLogs.scussessLog(widget.cinemaId.toString());
+    AppLogs.scussessLog(widget.model.toString());
+    AppLogs.scussessLog(widget.price.toString());
+    AppLogs.scussessLog(widget.date.toString());
+    AppLogs.scussessLog(widget.time.toString());
+    AppLogs.scussessLog(widget.location.toString());
+    AppLogs.scussessLog(widget.seatCategory.toString());
+    AppLogs.scussessLog(widget.seats.toString());
+
     var lang = S.of(context);
     final theme = Theme.of(context);
     return ScaffoldF(

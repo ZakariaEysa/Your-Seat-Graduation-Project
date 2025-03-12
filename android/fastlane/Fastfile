@@ -3,7 +3,6 @@ default_platform(:android)
 
 platform :android do
   desc "Lane For Android FireBase App Distribution"
-  ENV["FIREBASE_TIMEOUT"] = "600"
   lane :firebase_distribution do
     sh "flutter clean"
     sh "flutter build apk --release --no-tree-shake-icons"
@@ -13,7 +12,9 @@ platform :android do
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
       groups: "YourSeatTesting",
-      release_notes: "App is ready for testing  fixed search & ticket & language Bugs",
+      release_notes: "Not for testing, just an experimental build.",
+      upload_timeout: 5000 # بدل timeout
+
     )
   end
 end

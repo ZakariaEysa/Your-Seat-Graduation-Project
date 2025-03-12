@@ -1698,20 +1698,20 @@ class S {
     );
   }
 
-  /// `Movie genre : `
+  /// `Movie genre  `
   String get movieGenre {
     return Intl.message(
-      'Movie genre : ',
+      'Movie genre  ',
       name: 'movieGenre',
       desc: '',
       args: [],
     );
   }
 
-  /// `Censorship : `
+  /// `Censorship  `
   String get censorship {
     return Intl.message(
-      'Censorship : ',
+      'Censorship  ',
       name: 'censorship',
       desc: '',
       args: [],

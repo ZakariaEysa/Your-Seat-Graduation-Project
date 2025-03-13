@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeLayout> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const WatchList(),
+     WatchList(),
     TicketPage(),
      SettingsPage(),
   ];

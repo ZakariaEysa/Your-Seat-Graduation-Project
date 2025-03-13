@@ -1,23 +1,98 @@
-
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/views/movie_details.dart';
+import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_stroage.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
-import '../../favorite_movies_provider/favorite_movies_provider.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../widgets/watch_list_part.dart';
 
-class WatchList extends StatelessWidget {
-  const WatchList({super.key});
+class WatchList extends StatefulWidget {
+  WatchList({super.key});
 
+  @override
+  _WatchListState createState() => _WatchListState();
+}
+
+class _WatchListState extends State<WatchList> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  var currentUser;
+  List<MoviesDetailsModel> watchList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchWatchList();
+  }
+
+  /// 🟢 جلب الأفلام من Firestore
+  Future<void> fetchWatchList() async {
+    if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
+      currentUser = HiveStorage.getGoogleUser();
+    } else {
+      currentUser = HiveStorage.getDefaultUser();
+    }
+
+    try {
+      DocumentSnapshot userDoc =
+      await _firestore.collection('users').doc(currentUser.email).get();
+
+      if (!userDoc.exists) {
+        print("❌ المستخدم غير موجود!");
+        return;
+      }
+
+      List<dynamic>? watchListData = userDoc['watch_list'];
+
+      if (watchListData == null || watchListData.isEmpty) {
+        print("🚀 لا توجد أفلام في قائمة المشاهدة");
+        return;
+      }
+
+      setState(() {
+        watchList = watchListData.map((movie) {
+          return MoviesDetailsModel.fromJson(movie as Map<String, dynamic>);
+        }).toList();
+      });
+    } catch (e) {
+      print("❌ خطأ أثناء جلب قائمة المشاهدة: $e");
+    }
+  }
+
+  /// 🔴 حذف فيلم من `watch_list`
+  Future<void> removeFromWatchList(String movieId) async {
+    try {
+      DocumentReference userDocRef =
+      _firestore.collection('users').doc(currentUser.email);
+
+      DocumentSnapshot userDoc = await userDocRef.get();
+
+      if (!userDoc.exists) {
+        print("❌ المستخدم غير موجود!");
+        return;
+      }
+
+      List<dynamic> watchListData = List.from(userDoc['watch_list'] ?? []);
+      watchListData.removeWhere((movie) => movie['name'] == movieId);
+
+      await userDocRef.update({'watch_list': watchListData});
+
+      setState(() {
+        watchList.removeWhere((movie) => movie.name == movieId);
+      });
+
+      print("✅ تم حذف الفيلم بنجاح!");
+    } catch (e) {
+      print("❌ خطأ أثناء حذف الفيلم: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
-
-    final favoriteMoviesProvider = Provider.of<FavoriteMoviesProvider>(context);
-    final favoriteMovies = favoriteMoviesProvider.favoriteMovies;
 
     return ScaffoldF(
       appBar: AppBar(
@@ -30,7 +105,7 @@ class WatchList extends StatelessWidget {
           ),
         ),
       ),
-      body: favoriteMovies.isEmpty
+      body: watchList.isEmpty
           ? Center(
         child: Text(
           lang.sorryNoWatchListMoviesYet,
@@ -40,20 +115,39 @@ class WatchList extends StatelessWidget {
           : SingleChildScrollView(
         child: Column(
           children: List.generate(
-            favoriteMovies.length,
+            watchList.length,
                 (index) {
-              final movie = favoriteMovies[index];
+              final movie = watchList[index];
               return Column(
                 children: [
-                  WatchListPart(
-                    image: movie.posterImage ?? 'assets/images/img_1.png',
-                    title: movie.name ?? "",
-                    time: '${movie.releaseDate} | ${movie.duration}',
-                    smallimage: 'assets/images/star.png',
-                    smalltitle: "${movie.rating}",
-                    onRemove: () {
-                      favoriteMoviesProvider.removeMovie(movie);
+                  InkWell(
+                    onTap: (){
+                      navigateTo(context: context, screen: MovieDetails(model: MoviesDetailsModel(
+                        trailer: movie.trailer,
+                        releaseDate: movie.releaseDate,
+                        rating: movie.rating,
+                        posterImage: movie.posterImage,
+                        language: movie.language,
+                        duration: movie.duration,
+                        description: movie.description,
+                        crew: movie.crew,
+                        category: movie.category,
+                        cast: movie.cast,
+                        castImages: movie.castImages,
+                        ageRating: movie.ageRating,
+                        name: movie.name
+                      )));
                     },
+                    child: WatchListPart(
+                      image: movie.posterImage ?? 'assets/images/img_1.png',
+                      title: movie.name ?? "",
+                      time: '${movie.releaseDate} | ${movie.duration}',
+                      smallimage: 'assets/images/star.png',
+                      smalltitle: "${movie.rating}",
+                      onRemove: () async {
+                        await removeFromWatchList(movie.name??"");
+                      },
+                    ),
                   ),
                   Image.asset('assets/images/line.png'),
                 ],
@@ -65,7 +159,3 @@ class WatchList extends StatelessWidget {
     );
   }
 }
-
-
-
-

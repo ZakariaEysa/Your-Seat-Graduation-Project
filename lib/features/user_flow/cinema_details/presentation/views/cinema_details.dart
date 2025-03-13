@@ -109,7 +109,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                             CinemaCubit.get(context).loadMoreComments();
                           },
                           child: Text(
-                            "Show More..",
+                            lang.showMore,
                             style: TextStyle(color: Color(0xFFCF4FDD)),
                           ),
                         ),

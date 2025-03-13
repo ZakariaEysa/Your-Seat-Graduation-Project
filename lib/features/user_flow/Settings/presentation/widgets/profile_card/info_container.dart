@@ -33,6 +33,7 @@ class _InfoContainerState extends State<InfoContainer> {
             borderRadius: BorderRadius.circular(23.r),
             color: theme.colorScheme.onSecondary),
         child: TextFormField(
+          cursorColor: Colors.white,
           onChanged: widget.onChanged,
           textAlign: TextAlign.start,
           controller: widget.controller,

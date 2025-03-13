@@ -1248,6 +1248,16 @@ class S {
     );
   }
 
+  /// `Show More..`
+  String get showMore {
+    return Intl.message(
+      'Show More..',
+      name: 'showMore',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No Results Found`
   String get noResultsFound {
     return Intl.message(

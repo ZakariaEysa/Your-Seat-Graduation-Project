@@ -41,8 +41,8 @@ class _PlayingMoviesState extends State<PlayingMovies> {
     // تحقق إذا كان الفيلم موجودًا في قائمة Watchlist
     final favoriteMoviesProvider =
         Provider.of<FavoriteMoviesProvider>(context, listen: false);
-    _isBookmarked =
-        favoriteMoviesProvider.favoriteMovies.contains(widget.movies);
+    _isBookmarked = favoriteMoviesProvider.favoriteMovies
+        .any((movie) => movie.name == widget.movies.name);
     BlocProvider.of<MovieDetailsCubit>(context)
         .getRate(widget.title.toString());
   }

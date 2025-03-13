@@ -323,6 +323,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceFees": MessageLookupByLibrary.simpleMessage("Service Fees:"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "showMore": MessageLookupByLibrary.simpleMessage("Show More.."),
         "showThisQRCodeToTheTicketCounterToReceiveYourTicket":
             MessageLookupByLibrary.simpleMessage(
                 "Show this QR code to the ticket\n  counter to receive your ticket"),

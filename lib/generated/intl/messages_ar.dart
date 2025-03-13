@@ -315,6 +315,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceFees": MessageLookupByLibrary.simpleMessage("رسوم الخدمة"),
         "setting": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "showMore": MessageLookupByLibrary.simpleMessage("عرض المزيد.."),
         "showThisQRCodeToTheTicketCounterToReceiveYourTicket":
             MessageLookupByLibrary.simpleMessage(
                 "أظهر رمز الاستجابة السريعة هذا أمام شباك\n التذاكر لتحصل على تذكرتك"),

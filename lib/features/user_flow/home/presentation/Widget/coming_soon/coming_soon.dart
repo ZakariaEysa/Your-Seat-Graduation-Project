@@ -117,8 +117,6 @@ class _ComingSoonState extends State<ComingSoon> {
         return GestureDetector(
           onTap: (){
             navigateTo(context: context, screen: MovieDetails(model: MoviesDetailsModel.fromJson(movies[index]),));
-
-
           },
           child: Padding(
             padding: const EdgeInsets.all(5),

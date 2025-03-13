@@ -15,11 +15,12 @@ import '../cubit/cinema_state.dart';
 class CinemaMovies extends StatelessWidget {
   final List movies;
 
+
   const CinemaMovies({super.key, required this.movies});
 
   @override
   Widget build(BuildContext context) {
-    return    Padding(
+    return Padding(
       padding: EdgeInsets.only(left: 8.0.w, top: 8.0.h),
       child: GridView.builder(
         shrinkWrap: true,
@@ -35,55 +36,54 @@ class CinemaMovies extends StatelessWidget {
           final movie = movies[movieIndex];
 
           return BlocProvider(
-            create: (context) => MovieDetailsCubit(MovieDetailsRepoImpl(
-                MovieDetailsRemoteDataSourceImpl())),
+            create: (context) => MovieDetailsCubit(
+                MovieDetailsRepoImpl(MovieDetailsRemoteDataSourceImpl())),
             child: GestureDetector(
               onTap: () {
                 navigateTo(
                     context: context,
-                    screen: MovieDetails(model: MoviesDetailsModel(
-                        ageRating: movie["ageRating"],
-                        castImages: movie["cast_images"],
-                        cast: movie["cast"],
-                        category: movie["category"]
-                        ,crew: Crew(director: movie["crew"]["director"],
-                        producer: movie["crew"]["producer"],
-                        writer:  movie["crew"]["writer"]
-                    ),
-                        description: movie["description"]  ,
-                        duration: movie["duration"],
-                        language: movie["language"]    ,
-                        name: movie["name"],
-                        posterImage: movie["poster_image"]  ,
-                        rating: movie["rating"]   ,
-                        releaseDate: movie["releaseDate"] ,
-                        trailer: movie["trailer"]
-                    )));
+                    screen: MovieDetails(
+                        model: MoviesDetailsModel(
+                            ageRating: movie["ageRating"],
+                            castImages: movie["cast_images"],
+                            cast: movie["cast"],
+                            category: movie["category"],
+                            crew: Crew(
+                                director: movie["crew"]["director"],
+                                producer: movie["crew"]["producer"],
+                                writer: movie["crew"]["writer"]),
+                            description: movie["description"],
+                            duration: movie["duration"],
+                            language: movie["language"],
+                            name: movie["name"],
+                            posterImage: movie["poster_image"],
+                            rating: movie["rating"],
+                            releaseDate: movie["release_date"],
+                            trailer: movie["trailer"])));
               },
               child: PlayingMovies(
                 movies: MoviesDetailsModel(
-                  ageRating: movie["ageRating"],
-                      castImages: movie["cast_images"],
-                  cast: movie["cast"],
-                  category: movie["category"]
-,crew: Crew(director: movie["crew"]["director"],
-                producer: movie["crew"]["producer"],
-                writer:  movie["crew"]["writer"]
-                ),
-description: movie["description"]  ,
-duration: movie["duration"],
-language: movie["language"]    ,
-name: movie["name"],
-posterImage: movie["poster_image"]  ,
-rating: movie["rating"]   ,
-releaseDate: movie["releaseDate"] ,
-trailer: movie["trailer"]
-                ),
-                rate:movie["rating"].toString()  ,
-                duration:movie["duration"] ?? "",
-                category:  movie["category"] ?? "",
-                image:  movie["poster_image"] ?? "",
-                title:movie["name"] ?? "",
+                    ageRating: movie["ageRating"],
+                    castImages: movie["cast_images"],
+                    cast: movie["cast"],
+                    category: movie["category"],
+                    crew: Crew(
+                    director: movie["crew"]["director"],
+                    producer: movie["crew"]["producer"],
+                    writer: movie["crew"]["writer"]),
+                    description: movie["description"],
+                    duration: movie["duration"],
+                    language: movie["language"],
+                    name: movie["name"],
+                    posterImage: movie["poster_image"],
+                    rating: movie["rating"],
+                    releaseDate: movie["release_date"],
+                    trailer: movie["trailer"]),
+                rate: movie["rating"].toString(),
+                duration: movie["duration"] ?? "",
+                category: movie["category"] ?? "",
+                image: movie["poster_image"] ?? "",
+                title: movie["name"] ?? "",
               ),
             ),
           );

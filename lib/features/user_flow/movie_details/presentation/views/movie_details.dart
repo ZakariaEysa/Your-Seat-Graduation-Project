@@ -282,7 +282,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      lang.language + " : ",
+                      lang.language + "  : ",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -335,20 +335,23 @@ class _MovieDetailsState extends State<MovieDetails> {
                 SizedBox(
                   height: 30.h,
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      Director(
-                          name: widget.model.crew?.director ?? "",
-                          imagePath: "https://picsum.photos/150/150"),
-                      Director(
-                          name: widget.model.crew?.producer ?? "",
-                          imagePath: "https://picsum.photos/150/130"),
-                      Director(
-                          name: widget.model.crew?.writer ?? "",
-                          imagePath: "https://picsum.photos/150/120"),
-                    ],
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        Director(
+                            name: widget.model.crew?.director ?? "",
+                            imagePath: "https://picsum.photos/150/150"),
+                        Director(
+                            name: widget.model.crew?.producer ?? "",
+                            imagePath: "https://picsum.photos/150/130"),
+                        Director(
+                            name: widget.model.crew?.writer ?? "",
+                            imagePath: "https://picsum.photos/150/120"),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -362,15 +365,18 @@ class _MovieDetailsState extends State<MovieDetails> {
                 SizedBox(
                   height: 25.h,
                 ),
-                SizedBox(
-                  height: 90.h,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => Director(
-                        name: widget.model.cast?[index] ?? "",
-                        imagePath: widget.model.castImages?[index] ?? ""),
-                    itemCount: widget.model.cast?.length ?? 0,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: SizedBox(
+                    height: 90.h,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => Director(
+                          name: widget.model.cast?[index] ?? "",
+                          imagePath: widget.model.castImages?[index] ?? ""),
+                      itemCount: widget.model.cast?.length ?? 0,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -410,7 +416,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: cinemas.length,
                         itemBuilder: (context, index) => Padding(
-                          padding: EdgeInsets.only(bottom: 30.h),
+                          padding: EdgeInsetsDirectional.only(
+                              bottom: 30.h, end: 20.w),
                           child: CinemaCard(
                             onTap: () {
                               setState(() {

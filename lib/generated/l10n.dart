@@ -790,10 +790,10 @@ class S {
     );
   }
 
-  /// `Enter EmailAddress `
+  /// `Enter Email Address `
   String get enterEmailAddress {
     return Intl.message(
-      'Enter EmailAddress ',
+      'Enter Email Address ',
       name: 'enterEmailAddress',
       desc: '',
       args: [],

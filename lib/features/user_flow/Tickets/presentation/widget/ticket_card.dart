@@ -22,9 +22,7 @@ class TicketCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppLogs.errorLog("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-    print(ticket.time);
-    AppLogs.errorLog("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+
     return Card(
       margin: EdgeInsets.only(bottom: 15.h),
       color: const Color(0xFF0E0643),

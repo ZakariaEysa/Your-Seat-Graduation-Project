@@ -75,7 +75,7 @@
   "no_account": "Don’t have an account?",
   "sign_up": "Sign Up",
   "enterUsername": "Enter your username",
-  "enterEmailAddress": "Enter EmailAddress ",
+  "enterEmailAddress": "Enter Email Address ",
   "wrongEmailAddressFormat": "Wrong Email Address format",
   "enterPassword": "Enter password",
   "password_validation": "Password must meet the requirements",

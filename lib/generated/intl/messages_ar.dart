@@ -253,7 +253,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password_min_length": MessageLookupByLibrary.simpleMessage(
             "يجب أن تكون كلمة المرور 6 أحرف على الأقل."),
         "password_requirements": MessageLookupByLibrary.simpleMessage(
-            "يجب أن تكون كلمة المرور 8 أحرف على الأقل، تحتوي على حرف كبير واحد، ورقم واحد، وحرف خاص."),
+            "يجب أن تكون كلمة المرور 8 أحرف على الأقل، تحتوي \nعلى حرف كبير واحد، ورقم واحد، وحرف خاص."),
         "password_updated_successfully":
             MessageLookupByLibrary.simpleMessage("تم تحديث كلمة المرور بنجاح"),
         "password_validation": MessageLookupByLibrary.simpleMessage(

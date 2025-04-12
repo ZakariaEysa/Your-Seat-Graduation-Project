@@ -44,6 +44,7 @@ class _SignInState extends State<SignIn> {
         ),
       ),
       body: Stack(
+        
         children: [
           SingleChildScrollView(
             child: BlocConsumer<AuthCubit, AuthState>(

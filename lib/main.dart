@@ -15,6 +15,7 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/prese
 import 'data/hive_stroage.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/cinema_details/presentation/cubit/cinema_cubit.dart';
+import 'features/user_flow/home/presentation/Widget/Cinema_item/Cubit/item_cubit.dart';
 import 'features/user_flow/home/presentation/Widget/search/search_cubit/search_cubit.dart';
 import 'services/simple_bloc_observer_service.dart';
 import 'widgets/application_theme/applicaton_theme.dart';
@@ -76,6 +77,7 @@ void main() async {
       // enabled: false,
       builder: (context) => MultiBlocProvider(
         providers: [
+
           ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
           BlocProvider<SwitchLanguageCubit>(
             create: (context) => SwitchLanguageCubit(),
@@ -95,12 +97,16 @@ void main() async {
           // BlocProvider(
           //   create: (context) => SearchCubit(),
           // )
+          BlocProvider<CinemaaItemCubit>(
+            create: (context) => CinemaaItemCubit(),
+          ),
         ],
         child: const MyApp(),
       ),
     ),
   );
 }
+
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -158,3 +164,4 @@ class _MyAppState extends State<MyApp> {
     });
   }
 }
+

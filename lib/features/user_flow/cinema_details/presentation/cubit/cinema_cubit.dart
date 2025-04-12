@@ -15,6 +15,7 @@ class CinemaCubit extends Cubit<CinemaState> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final TextEditingController commentController = TextEditingController();
   var currentUser;
+  bool isAddingComment = false; // ✅ متغير لمنع الإرسال المتكرر
 
   Map<String, dynamic> cinemaDataMap = {};
   List<MoviesDetailsModel> moviesList = [];
@@ -24,35 +25,22 @@ class CinemaCubit extends Cubit<CinemaState> {
 
   CinemaCubit() : super(CinemaInitial());
 
-  static CinemaCubit get(BuildContext context) =>
-      BlocProvider.of<CinemaCubit>(context);
+  static CinemaCubit get(BuildContext context) => BlocProvider.of<CinemaCubit>(context);
 
-  /// Getter to access the commentController from outside
   TextEditingController get getCommentController => commentController;
 
-  /// **🔹 جلب بيانات السينما + الأفلام**
   Future<void> fetchCinemaDetails(String cinemaId) async {
     try {
       emit(CinemaLoading());
-
-      // جلب بيانات السينما
       DocumentSnapshot snapshot =
-          await _firestore.collection('Cinemas').doc(cinemaId).get();
+      await _firestore.collection('Cinemas').doc(cinemaId).get();
 
       if (snapshot.exists) {
-        Map<String, dynamic> cinemaData =
-            snapshot.data() as Map<String, dynamic>;
-
-        // 🔹 جلب الأفلام الخاصة بالسينما
+        Map<String, dynamic> cinemaData = snapshot.data() as Map<String, dynamic>;
         List<MoviesDetailsModel> movies = await fetchMoviesByCinema(cinemaId);
-
-        print("✅ عدد الأفلام المسترجعة: ${movies.length}");
-
         cinemaDataMap = cinemaData;
         moviesList = movies;
-
-        emit(
-            CinemaLoaded(cinemaData: cinemaData, comments: [], movies: movies));
+        emit(CinemaLoaded(cinemaData: cinemaData, comments: [], movies: movies));
       } else {
         emit(CinemaError("No cinema details found"));
       }
@@ -61,74 +49,50 @@ class CinemaCubit extends Cubit<CinemaState> {
     }
   }
 
-  /// **🔹 جلب الأفلام الخاصة بالسينما**
   Future<List<MoviesDetailsModel>> fetchMoviesByCinema(String cinemaId) async {
     try {
-      emit(CinemaMoviesLoading()); // ✅ إطلاق حالة التحميل
-
-      final snapshot =
-          await _firestore.collection('Cinemas').doc(cinemaId).get();
+      emit(CinemaMoviesLoading());
+      final snapshot = await _firestore.collection('Cinemas').doc(cinemaId).get();
 
       if (snapshot.exists) {
         var cinemaData = snapshot.data();
         var movies = cinemaData?['movies'] as List? ?? [];
-
-        List<MoviesDetailsModel> moviesList = movies
-            .map((movie) =>
-                MoviesDetailsModel.fromJson(movie as Map<String, dynamic>))
-            .toList();
-
-        print("🎬 الأفلام المسترجعة: ${moviesList.length}");
-
+        List<MoviesDetailsModel> moviesList = movies.map((movie) =>
+            MoviesDetailsModel.fromJson(movie as Map<String, dynamic>)).toList();
         moviesDataList = moviesList;
-        emit(CinemaMoviesLoaded(moviesList)); // ✅ إرسال البيانات بعد التحميل
-
+        emit(CinemaMoviesLoaded(moviesList));
         return moviesList;
       } else {
         emit(CinemaMoviesError("No movies found"));
         return [];
       }
     } catch (e) {
-      print("❌ Error fetching movies: $e");
       emit(CinemaMoviesError("Error fetching movies: $e"));
       return [];
     }
   }
 
-
   Future<void> fetchCinemaComments(String cinemaId) async {
     try {
       AppLogs.debugLog("Fetching comments for cinema: $cinemaId");
       emit(CinemaCommentsLoading());
-
       final snapshot = await _firestore
           .collection('Cinemas')
           .doc(cinemaId)
           .collection('comments')
           .orderBy('timestamp', descending: true)
           .get();
-
-      allComments = snapshot.docs
-          .map((doc) => doc.data() as Map<String, dynamic>)
-          .toList();
-
-      AppLogs.debugLog("Fetched ${allComments.length} comments");
-
-      // ✅ تحميل أول 5 تعليقات فقط
+      allComments = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
       commentsList = allComments.take(5).toList();
-
       emit(CinemaCommentsLoaded(commentsList));
     } catch (e) {
-      AppLogs.debugLog("Error fetching comments: $e");
       emit(CinemaCommentsError("Error fetching comments: $e"));
     }
   }
 
-  /// ✅ **تحميل المزيد من التعليقات عند الضغط على "Show More"**
   void loadMoreComments() {
     final currentLength = commentsList.length;
     final remainingComments = allComments.length - currentLength;
-
     if (remainingComments > 0) {
       final nextBatch = allComments.skip(currentLength).take(5).toList();
       commentsList.addAll(nextBatch);
@@ -136,13 +100,17 @@ class CinemaCubit extends Cubit<CinemaState> {
     }
   }
 
-  /// ✅ **إضافة تعليق جديد وتحديث القائمة بعد الإضافة**
   Future<void> addComment(
       String cinemaId,
       BuildContext context,
       String signInText,
       String cancelText,
-      TextEditingController getCommentController) async {
+      TextEditingController getCommentController,
+      ) async {
+    if (isAddingComment) return;
+    isAddingComment = true;
+    emit(CinemaCommentsLoading());
+
     if (HiveStorage.get(HiveKeys.role) == Role.guest.toString()) {
       DialogUtils.showMessage(
         context,
@@ -156,17 +124,18 @@ class CinemaCubit extends Cubit<CinemaState> {
         },
         negAction: () => navigatePop(context: context),
       );
-    } else {
-      currentUser = HiveStorage.get(HiveKeys.role) == Role.google.toString()
-          ? HiveStorage.getGoogleUser()
-          : HiveStorage.getDefaultUser();
+      isAddingComment = false;
+      return;
+    }
 
-      if (commentController.text.isNotEmpty) {
-        await _firestore
-            .collection('Cinemas')
-            .doc(cinemaId)
-            .collection('comments')
-            .add({
+    currentUser = HiveStorage.get(HiveKeys.role) == Role.google.toString()
+        ? HiveStorage.getGoogleUser()
+        : HiveStorage.getDefaultUser();
+
+    if (commentController.text.isNotEmpty) {
+      try {
+        // ✅ إضافة التعليق الجديد
+        await _firestore.collection('Cinemas').doc(cinemaId).collection('comments').add({
           'text': commentController.text,
           'timestamp': FieldValue.serverTimestamp(),
           'userName': currentUser.name,
@@ -175,9 +144,43 @@ class CinemaCubit extends Cubit<CinemaState> {
 
         commentController.clear();
 
-        /// ✅ تحديث التعليقات تلقائيًا بعد الإضافة
+        // ✅ تحديث جميع التعليقات السابقة بالاسم الجديد
+        await _updateOldComments(cinemaId, currentUser.name, currentUser.image);
+
         await fetchCinemaComments(cinemaId);
+      } catch (e) {
+        emit(CinemaCommentsError("Error adding comment: $e"));
       }
+    }
+    isAddingComment = false;
+  }
+
+  Future<void> _updateOldComments(String cinemaId, String newName, String newImage) async {
+    try {
+      // ✅ جلب كل تعليقات المستخدم الحالي
+      final snapshot = await _firestore
+          .collection('Cinemas')
+          .doc(cinemaId)
+          .collection('comments')
+          .where('userName', isEqualTo: currentUser.name) // البحث بالاسم القديم
+          .get();
+
+      // ✅ تحديث كل تعليق بالاسم والصورة الجديدة
+      for (var doc in snapshot.docs) {
+        await _firestore
+            .collection('Cinemas')
+            .doc(cinemaId)
+            .collection('comments')
+            .doc(doc.id)
+            .update({
+          'userName': newName,
+          'image': newImage,
+        });
+      }
+
+      AppLogs.debugLog("Updated all old comments with new name: $newName");
+    } catch (e) {
+      AppLogs.errorLog("Error updating old comments: $e");
     }
   }
 }

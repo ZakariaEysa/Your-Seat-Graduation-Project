@@ -12,7 +12,7 @@ class HiveStorage {
   static Future<void> init() async {
     await Hive.initFlutter();
 
-    // Register the GoogleUserModel adapter
+    // Register adapters
     Hive.registerAdapter(GoogleUserModelAdapter());
     Hive.registerAdapter(UserModelAdapter());
 
@@ -47,10 +47,6 @@ class HiveStorage {
 
   // Save GoogleUserModel to the box
   static Future<void> saveGoogleUser(GoogleUserModel user) async {
-
-
-    
-
     await box1.put(HiveKeys.userGData, user);
   }
 
@@ -70,8 +66,9 @@ class HiveStorage {
   }
 
   static Future<void> logOut() async {
-    // await box.clear();
     await box1.clear();
     await box2.clear();
   }
+
+
 }

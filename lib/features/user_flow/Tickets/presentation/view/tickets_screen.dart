@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Watch_list/presentation/views/watch_list.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import '../../../../../data/hive_keys.dart';
@@ -26,9 +25,9 @@ class _TicketPageState extends State<TicketPage> {
   Future<void> fetchTickets() async {
     try {
       String? userEmail =
-          HiveStorage.get(HiveKeys.role) == Role.google.toString()
-              ? HiveStorage.getGoogleUser()?.email
-              : HiveStorage.getDefaultUser()?.email;
+      HiveStorage.get(HiveKeys.role) == Role.google.toString()
+          ? HiveStorage.getGoogleUser()?.email
+          : HiveStorage.getDefaultUser()?.email;
 
       if (userEmail == null) {
         print("❌ Error: No user email found");
@@ -36,7 +35,7 @@ class _TicketPageState extends State<TicketPage> {
       }
 
       DocumentSnapshot userDoc =
-          await _firestore.collection('users').doc(userEmail).get();
+      await _firestore.collection('users').doc(userEmail).get();
       if (userDoc.exists) {
         List<dynamic>? myTickets = userDoc.get('myTickets');
         if (myTickets != null) {
@@ -56,48 +55,139 @@ class _TicketPageState extends State<TicketPage> {
   Future<void> cancelTicket(int index) async {
     try {
       String? userEmail =
-          HiveStorage.get(HiveKeys.role) == Role.google.toString()
-              ? HiveStorage.getGoogleUser()?.email
-              : HiveStorage.getDefaultUser()?.email;
+      HiveStorage.get(HiveKeys.role) == Role.google.toString()
+          ? HiveStorage.getGoogleUser()?.email
+          : HiveStorage.getDefaultUser()?.email;
 
       if (userEmail == null) {
         print("❌ Error: No user email found");
         return;
       }
 
-// تحديث الحالة محليًا إلى "pending"
+      // تحديث الحالة محليًا إلى "pending"
       setState(() {
         tickets[index]['status'] = 'pending';
       });
 
-// تحديث التذكرة في مجموعة `users`
+      // تحديث التذكرة في مجموعة `users`
       await _firestore.collection('users').doc(userEmail).update({
         'myTickets': tickets,
       });
 
-// تحديث التذكرة في `Cinemas`
-      await updateTicketStatus(
-          tickets[index]['cinemaId'], tickets[index]['orderId']);
+      // تحديث التذكرة في `Cinemas`
+      await updateTicketStatus(tickets[index]['cinemaId'], tickets[index]['orderId']);
 
-// إضافة التذكرة إلى `pending_tickets`
+      // إضافة التذكرة إلى `pending_tickets`
       await ticketspending(tickets[index]);
-
+      await cancelReservedSeats(
+        hall: tickets[index]['hall'],
+        cinemaName:        tickets[index]['cinemaId'],
+     movieName:    tickets[index]['movieName'],
+       date:  tickets[index]['date'],
+   time:      tickets[index]['time'],
+      seatsToCancel:   List<String>.from(tickets[index]['seats']),
+      );
       print("✅ تم تحديث الحالة بنجاح في جميع الأماكن.");
     } catch (e) {
       print("❌ Error canceling ticket: $e");
     }
   }
 
+
+
+  Future<void> cancelReservedSeats({
+    required String cinemaName,
+    required String movieName,
+    required String date,
+    required String time,
+    required String hall,
+    required List<String> seatsToCancel,
+  }) async {
+    try {
+      final firestore = FirebaseFirestore.instance;
+
+      // جلب وثيقة السينما
+      final cinemaDocSnapshot =
+      await firestore.collection('Cinemas').doc(cinemaName).get();
+
+      if (!cinemaDocSnapshot.exists) {
+        print('❌ Cinema not found');
+        return;
+      }
+
+      final cinemaData = cinemaDocSnapshot.data();
+      final moviesList = cinemaData?['movies'] as List<dynamic>;
+
+      // البحث عن الفيلم بالاسم
+      final movie = moviesList.firstWhere(
+            (m) => m['name'] == movieName,
+        orElse: () => null,
+      );
+
+      if (movie == null) {
+        print('❌ Movie not found');
+        return;
+      }
+
+      final timesList = movie['times'] as List<dynamic>;
+
+      // البحث عن entry تحتوي على نفس التاريخ والقاعة
+      final timeEntryIndex = timesList.indexWhere((entry) =>
+      entry['date'] == date && entry['hall'] == hall);
+
+      if (timeEntryIndex == -1) {
+        print('❌ Matching date & hall not found');
+        return;
+      }
+
+      final currentEntry = timesList[timeEntryIndex];
+
+      final timeList = currentEntry['time'] as List<dynamic>;
+
+      // نبحث عن التوقيت المطلوب داخل لستة التواقيت
+      final exactTimeIndex =
+      timeList.indexWhere((t) => t['time'] == time);
+
+      if (exactTimeIndex == -1) {
+        print('❌ Time not found');
+        return;
+      }
+
+      final timeObject = timeList[exactTimeIndex];
+
+      final reservedSeats = timeObject['reservedSeats'] as List<dynamic>;
+
+      // نحذف الكراسي المطلوبة
+      final updatedSeats = reservedSeats
+          .where((seat) => !seatsToCancel.contains(seat))
+          .toList();
+
+      // نحدث لستة الكراسي داخل التوقيت
+      timeObject['reservedSeats'] = updatedSeats;
+
+      // نحدث الوثيقة كلها
+      await firestore.collection('Cinemas').doc(cinemaName).update({
+        'movies': moviesList,
+      });
+
+      print('✅ Reserved seats updated successfully');
+    } catch (e) {
+      print('🔥 Error: $e');
+    }
+  }
+
+
+
   Future<void> updateTicketStatus(String cinemaId, String orderId) async {
     try {
       DocumentReference cinemaRef =
-          _firestore.collection('Cinemas').doc(cinemaId);
+      _firestore.collection('Cinemas').doc(cinemaId);
 
       DocumentSnapshot cinemaSnapshot = await cinemaRef.get();
 
       if (cinemaSnapshot.exists) {
         Map<String, dynamic>? cinemaData =
-            cinemaSnapshot.data() as Map<String, dynamic>?;
+        cinemaSnapshot.data() as Map<String, dynamic>?;
 
         if (cinemaData != null && cinemaData.containsKey('tickets')) {
           List<dynamic> tickets = List.from(cinemaData['tickets']);
@@ -135,7 +225,7 @@ class _TicketPageState extends State<TicketPage> {
       String orderId = ticketData['orderId'];
 
       DocumentReference ticketRef =
-          _firestore.collection('pending_tickets').doc(orderId);
+      _firestore.collection('pending_tickets').doc(orderId);
 
       await ticketRef.set({
         ...ticketData,
@@ -156,7 +246,6 @@ class _TicketPageState extends State<TicketPage> {
 
   @override
   Widget build(BuildContext context) {
-
     var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
@@ -172,79 +261,77 @@ class _TicketPageState extends State<TicketPage> {
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : tickets.isEmpty
-              ? Center(child: Text("No tickets"))
-              : SingleChildScrollView(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                    child: Column(
-                      children: [
-                        ListView.builder(
-                          padding: EdgeInsets.symmetric(vertical: 10.h),
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: tickets.length,
+          ? Center(child: Text("No tickets"))
+          : SingleChildScrollView(
+        child: Padding(
+          padding:
+          EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+          child: Column(
+            children: [
+              ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: tickets.length,
 
-                          itemBuilder: (context, index) {
-                            final ticket = tickets[index];
+                itemBuilder: (context, index) {
+                  final ticket = tickets[index];
 
-                            return InkWell(
-                              onTap: () {
-                                AppLogs.scussessLog(ticket.toString());
-                                if (ticket['status'].toString().toLowerCase() == 'active') {
-                                  navigateTo(
-                                    context: context,
-                                    screen: TicketDone(
-                                      model: MoviesDetailsModel(
-                                        name: ticket['movieName'],
-                                        category: ticket['category'],
-                                        duration: ticket['duration']??"",
-                                        posterImage: ticket['poster_image']??'',
-                                      ),
-                                      seats: List<String>.from(ticket['seats']),
-                                      seatCategory: ticket['seatCategory'],
-                                      price: ticket['totalPrice'],
-                                      location: ticket['cinemaId'],
-                                      date: ticket['date'],
-                                      time: ticket['time'],
-                                      cinemaId: ticket['cinemaId'],
-                                      hall: ticket['hall'],
-                                      orderId: ticket['orderId'],
-                                      status: ticket['status'],
-                                    ),
-                                  );
-                                } else {
-                                  print("🚫 لا يمكن عرض التذكرة لأن حالتها ليست 'active'");
-                                }
-                              },
+                  return InkWell(
+                    onTap: () {
+                      AppLogs.scussessLog(ticket.toString());
+                      if (ticket['status'].toString().toLowerCase() == 'active') {
+                        navigateTo(
+                          context: context,
+                          screen: TicketDone(
+                            model: MoviesDetailsModel(
+                              name: ticket['movieName'],
+                              category: ticket['category'],
+                              duration: ticket['duration']??"",
+                              posterImage: ticket['poster_image']??'',
+                            ),
+                            seats: List<String>.from(ticket['seats']),
+                            seatCategory: ticket['seatCategory'],
+                            price: ticket['totalPrice'],
+                            location: ticket['cinemaId'],
+                            date: ticket['date'],
+                            time: ticket['time'],
+                            cinemaId: ticket['cinemaId'],
+                            hall: ticket['hall'],
+                            orderId: ticket['orderId'],
+                            status: ticket['status'],
+                          ),
+                        );
+                      } else {
+                        print("🚫 لا يمكن عرض التذكرة لأن حالتها ليست 'active'");
+                      }
+                    },
 
-                              child: TicketCard(
-                                ticket: Ticket(
-
-                                  orderId: ticket["orderId"],
-                                  movieName: ticket['movieName'],
-                                  location: ticket['cinemaId'],
-                                  imageUrl: ticket['poster_image']??'',
-                                  time: ticket['time'],
-                                  date: ticket['date'],
-                                  seats: ticket['seats'].join(', '),
-                                  price: ticket['totalPrice']?.toString() ??
-                                      '0 EGP',
-                                  status: ticket['status'],
-                                  statusImage: getStatusImage(ticket['status']),
-                                  statusImageWidth: 28.w,
-                                  statusImageHeight: 28.h,
-                                ),
-                                isFirstTicket: ticket['status'] == "active",
-                                onCancel: () => cancelTicket(index),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                    child: TicketCard(
+                      ticket: Ticket(
+                        orderId: ticket["orderId"],
+                        movieName: ticket['movieName'],
+                        location: ticket['cinemaId'],
+                        imageUrl: ticket['poster_image']??'',
+                        time: ticket['time'],
+                        date: ticket['date'],
+                        seats: ticket['seats'].join(', '),
+                        price: ticket['totalPrice']?.toString() ?? '0 EGP',
+                        status: ticket['status'],
+                        statusImage: getStatusImage(ticket['status']),
+                        statusImageWidth: 28.w,
+                        statusImageHeight: 28.h,
+                      ),
+                      isFirstTicket: ticket['status'] == "active",
+                      onCancel: () => cancelTicket(index),
                     ),
-                  ),
-                ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 

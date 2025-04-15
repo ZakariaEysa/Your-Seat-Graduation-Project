@@ -196,10 +196,8 @@ class _SignInState extends State<SignIn> {
                         delay: const Duration(milliseconds: 750),
                         child: ButtonBuilder(
                           // image:"assets/images/SignInAR.png",
-                          image: HiveStorage.get(HiveKeys.isArabic)
-                              ? "assets/images/SignInAR.png"
-                              : "assets/images/SignIn.png",
-                          text: "",
+
+                          text: lang.sign_in,
                           onTap: () async {
                             if (cubit.formKeyLogin.currentState!.validate()) {
                               cubit.validateUser(cubit.emailController.text,

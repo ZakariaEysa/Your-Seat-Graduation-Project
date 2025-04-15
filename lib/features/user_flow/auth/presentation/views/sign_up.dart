@@ -46,7 +46,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     var cubit = AuthCubit.get(context);
-
+    var lang = S.of(context);
     var local = S.of(context);
     var theme = Theme.of(context);
     final List<String> months = [
@@ -342,10 +342,8 @@ class _SignUpState extends State<SignUp> {
                   FadeInUp(
                     delay: const Duration(milliseconds: 550),
                     child: ButtonBuilder(
-                      image: HiveStorage.get(HiveKeys.isArabic)
-                          ? "assets/images/sign_up_arabic.png"
-                          : "assets/images/Sign up.png",
-                      text: "",
+
+                      text: lang.sign_up,
                       onTap: createAccount,
                       width: 220.w,
                       height: 55.h,

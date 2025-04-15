@@ -115,10 +115,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ButtonBuilder(
                 width: 191.w,
                 height: 48.h,
-                image: HiveStorage.get(HiveKeys.isArabic)
-                    ? "assets/icons/send11_arabic.png"
-                    : "assets/icons/send11.png",
-                text: '',
+
+                text: 'Send' , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 25),
                 onTap: () async {
                   if (!formKeyForgot.currentState!.validate()) return;
                   if (isValidEmail(cubit.emailController.text)) {

@@ -326,22 +326,40 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          _buildButton(
-                            HiveStorage.get(HiveKeys.isArabic)
-                                ? "assets/images/cancel_arabic.png"
-                                : "assets/images/Cancel.png",
-                            () => navigatePop(context: context),
+                          TextButton(
+                            onPressed: () => navigatePop(context: context),
+                            style: TextButton.styleFrom(
+                              backgroundColor: Color(0xff421aa3), // لون خلفية الزر
+                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                            ),
+                            child: Text(
+                              HiveStorage.get(HiveKeys.isArabic) ? 'إلغاء' : 'Cancel',
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                          SizedBox(width: 5.w,),
-                          _buildButton(
-                            HiveStorage.get(HiveKeys.isArabic)
-                                ? "assets/images/save_changes_arabic.png"
-                                : "assets/images/Save Changes.png",
-                            updateProfile,
+                          SizedBox(width: 5.w),
+                          TextButton(
+                            onPressed: updateProfile,
+                            style: TextButton.styleFrom(
+                              backgroundColor: Color(0xff421aa3), // لون خلفية الزر
+                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                            ),
+                            child: Text(
+                              HiveStorage.get(HiveKeys.isArabic) ? 'حفظ التغييرات' : 'Save Changes',
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                   SizedBox(height: 45.h,)
+
+
+                      SizedBox(height: 45.h,)
                     ],
                   ),
                 ),
@@ -414,13 +432,5 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     );
   }
 
-  Widget _buildButton(String imagePath, VoidCallback onTap) {
-    return ButtonBuilder(
-      text: "",
-      height: 49,
-      width: 150,
-      image: imagePath,
-      onTap: onTap,
-    );
-  }
+
 }

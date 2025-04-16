@@ -1,3 +1,5 @@
 {
-    "cmake.sourceDirectory": "F:/projects/Your-Seat-Graduation-Project-master/linux"
+    "cmake.sourceDirectory": "F:/projects/Your-Seat-Graduation-Project-master/linux",
+    "cmake.ignoreCMakeListsMissing": true,
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

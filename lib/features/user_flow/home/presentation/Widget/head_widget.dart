@@ -33,6 +33,7 @@ class HeadWidget extends StatelessWidget {
                 "assets/icons/notification_icon.png",
                 width: 36.w,
                 height: 115.h,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
           ),

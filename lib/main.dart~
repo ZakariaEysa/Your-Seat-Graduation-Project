@@ -212,7 +212,7 @@ class _MyAppState extends State<MyApp> {
                   return DevicePreview.appBuilder(context, child);
                 },
                 navigatorObservers: [BotToastNavigatorObserver()],
-                home:  SplashScreen( )
+                home:  RouteMapPage( )
 
                 //destinationAddress: " مستشفي الندي التخصصي ب الفيوم"
                 // home: GoogleMap(

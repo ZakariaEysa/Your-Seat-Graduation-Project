@@ -50,7 +50,7 @@ class _TimeState extends State<Time> {
                   timeValue,
                   style: Theme.of(context)
                       .textTheme
-                      .bodySmall
+                      .titleLarge
                       ?.copyWith(fontSize: 18.sp),
                 ),
               ),

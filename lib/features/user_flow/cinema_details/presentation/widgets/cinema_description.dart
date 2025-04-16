@@ -24,27 +24,26 @@ class CinemaHeaderDescription extends StatelessWidget {
     final ratingCount = cinemaData['rating_count'] ?? 0;
 
     return Stack(
-
       clipBehavior: Clip.none,
       children: [
         /// ✅ صورة الخلفية (تتكيف مع جميع الشاشات)
         imageUrl.isNotEmpty
             ? ImageReplacer(
-          imageUrl: imageUrl,
-          width: 1.sw, // استخدم عرض الشاشة بالكامل
-          height: 0.3.sh, // نسبة 30% من ارتفاع الشاشة
-          fit: BoxFit.cover,
-        )
+                imageUrl: imageUrl,
+                width: 1.sw, // استخدم عرض الشاشة بالكامل
+                height: 0.3.sh, // نسبة 30% من ارتفاع الشاشة
+                fit: BoxFit.cover,
+              )
             : Container(
-          width: 1.sw,
-          height: 0.3.sh,
-          color: Colors.grey,
-          child: const Icon(Icons.image, color: Colors.white),
-        ),
+                width: 1.sw,
+                height: 0.3.sh,
+                color: Colors.grey,
+                child: const Icon(Icons.image, color: Colors.white),
+              ),
 
         /// ✅ زر الرجوع (متجاوب)
         Padding(
-          padding:  EdgeInsets.only(top: 50.0.h , left: 20.w),
+          padding: EdgeInsets.only(top: 50.0.h, left: 20.w),
           child: IconButton(
             onPressed: () {
               navigateTo(context: context, screen: const HomeLayout());
@@ -62,16 +61,18 @@ class CinemaHeaderDescription extends StatelessWidget {
             width: 0.88.sw, // 90% من عرض الشاشة
             height: 0.22.sh, // نسبة 22% من ارتفاع الشاشة
             decoration: BoxDecoration(
-              color: const Color(0xFF37313B).withOpacity(0.9),
+              color: Theme.of(context)
+                  .colorScheme
+                  .secondaryContainer
+                  .withOpacity(0.8),
               borderRadius: BorderRadius.circular(12.r),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Text(
                   cinemaName,
-                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                  style: theme.textTheme.bodyMedium!.copyWith(color: Colors.white,fontSize: 16.sp),
                 ),
                 SizedBox(height: 5.h),
 
@@ -89,7 +90,8 @@ class CinemaHeaderDescription extends StatelessWidget {
                   children: [
                     Text(
                       lang.review,
-                      style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(color: Colors.white,fontSize: 14.sp),
                     ),
                     SizedBox(width: 8.w),
                     Image.asset(
@@ -100,7 +102,8 @@ class CinemaHeaderDescription extends StatelessWidget {
                     SizedBox(width: 8.w),
                     Text(
                       '${rating.toStringAsFixed(1)} ($ratingCount)',
-                      style: theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp),
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(color: Colors.white,fontSize: 12.sp),
                     ),
                   ],
                 ),
@@ -116,7 +119,9 @@ class CinemaHeaderDescription extends StatelessWidget {
                   itemCount: 5,
                   itemBuilder: (context, index) => Icon(
                     rating >= index + 1 ? Icons.star : Icons.star_border,
-                    color: rating >= index + 1 ? const Color(0xFFCCC919) : const Color(0xFF575757),
+                    color: rating >= index + 1
+                        ? const Color(0xFFCCC919)
+                        : const Color(0xFF575757),
                   ),
                   onRatingUpdate: (rating) {},
                 ),

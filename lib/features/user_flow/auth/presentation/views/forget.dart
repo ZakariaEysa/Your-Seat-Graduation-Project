@@ -39,6 +39,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: Theme.of(context).colorScheme.onPrimary,
+            size: 28.sp,
+          ),
           leading: IconButton(
             onPressed: () {
               navigateAndRemoveUntil(
@@ -53,11 +57,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             },
             icon: Icon(
               Icons.arrow_back,
-              color: Colors.white,
               size: 25,
             ),
           ),
-          backgroundColor: const Color(0xFF2E1371),
           title: Text(
             lang.forgetPassword,
             style: theme.textTheme.labelLarge!.copyWith(fontSize: 28.sp),
@@ -107,7 +109,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 obsecure: false,
                 label: "Email",
                 imagePath: "assets/images/email 2.png",
-                color: Color(0xFF1E126E),
+                color: Theme.of(context).colorScheme.primary,
               ),
               SizedBox(
                 height: 60.h,
@@ -116,7 +118,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 width: 191.w,
                 height: 48.h,
 
-                text: 'Send' , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 25),
+                text: 'Send',
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
                 onTap: () async {
                   if (!formKeyForgot.currentState!.validate()) return;
                   if (isValidEmail(cubit.emailController.text)) {

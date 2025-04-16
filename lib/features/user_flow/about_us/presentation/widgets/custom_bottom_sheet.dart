@@ -47,7 +47,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
         builder:
             (BuildContext context, ScrollController innerScrollController) {
           return Container(
-            decoration: AppStylesManager.backGroundDecorations(),
+            decoration: AppStylesManager.backGroundDecorations(context),
             child: Column(
               children: [
                 GestureDetector(

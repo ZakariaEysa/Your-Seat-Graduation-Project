@@ -22,7 +22,7 @@
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyD7VmrfzhvvuttRBIRVcWix-1eOjLtI1bU"/>
+               android:value="AIzaSyCREJCsFWlgq_kon3J8_Eu_mhvL0PUNGjs"/>
 
         <!-- Main Activity -->
         <activity

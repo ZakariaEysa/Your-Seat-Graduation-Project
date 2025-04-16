@@ -453,10 +453,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                 ButtonBuilder(
                   width: 250.w,
                   height: 55.h,
-                  image: HiveStorage.get(HiveKeys.isArabic)
-                      ? "assets/images/continue_arabic.png"
-                      : "assets/images/img_4.png",
-                  text: "",
+
+                  text: "continue" , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 25 ),
                   onTap: () {
                     if (HiveStorage.get(HiveKeys.role) ==
                         Role.guest.toString()) {

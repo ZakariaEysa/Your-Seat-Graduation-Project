@@ -9,8 +9,7 @@ import '../../../../../utils/navigation.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../movie_details/presentation/views/movie_details.dart';
 import '../../../now_playing/presentation/widgets/playing_movies.dart';
-import '../cubit/cinema_cubit.dart';
-import '../cubit/cinema_state.dart';
+
 
 class CinemaMovies extends StatelessWidget {
   final List movies;

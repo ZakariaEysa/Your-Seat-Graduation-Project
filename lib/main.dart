@@ -12,6 +12,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'data/hive_stroage.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/cinema_details/presentation/cubit/cinema_cubit.dart';
@@ -30,15 +31,70 @@ import 'features/user_flow/Watch_list/favorite_movies_provider/favorite_movies_p
 import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:geolocator/geolocator.dart';
 
 Future<void> requestPermissions() async {
   await Permission.camera.request();
   await Permission.storage.request();
+  await Permission.location.request();
+}
+
+Future<void> printUserLocation() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  // Check if location services are enabled
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    _showMessage('Location services are disabled. Please enable them.');
+    await Geolocator.openLocationSettings(); // Open location settings
+    return;
+  }
+
+  // Check and request permission
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      _showMessage('Location permissions are denied.');
+      return;
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    _showMessage(
+      'Location permissions are permanently denied. Please enable them from app settings.',
+    );
+    await Geolocator
+        .openAppSettings(); // Open app settings for manual permission
+    return;
+  }
+
+  // Get current location
+  try {
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+
+    String message =
+        'User location: ${position.latitude}, ${position.longitude}';
+    print(message);
+    _showMessage(message);
+  } catch (e) {
+    print('Error getting location: $e');
+    _showMessage('Error getting location: $e');
+  }
+}
+
+// Helper to show SnackBar message
+void _showMessage(String message) {
+  AppLogs.debugLog(message);
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await requestPermissions();
+  // await printUserLocation();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -63,21 +119,15 @@ void main() async {
     HiveStorage.set(HiveKeys.passUserOnboarding, false);
   }
 
-  // GoogleUserModel? currentUser = HiveStorage.getGoogleUser();
-  // UserModel? currentUser2 = HiveStorage.getDefaultUser();
-
   if (HiveStorage.get(HiveKeys.isArabic) == null) {
     HiveStorage.set(HiveKeys.isArabic, false);
   }
-  // HiveStorage.set(HiveKeys.passUserOnboarding, false);
 
   runApp(
     DevicePreview(
       enabled: kDebugMode,
-      // enabled: false,
       builder: (context) => MultiBlocProvider(
         providers: [
-
           ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
           BlocProvider<SwitchLanguageCubit>(
             create: (context) => SwitchLanguageCubit(),
@@ -94,9 +144,6 @@ void main() async {
           BlocProvider<CinemaCubit>(
             create: (context) => CinemaCubit(),
           ),
-          // BlocProvider(
-          //   create: (context) => SearchCubit(),
-          // )
           BlocProvider<CinemaaItemCubit>(
             create: (context) => CinemaaItemCubit(),
           ),
@@ -106,7 +153,6 @@ void main() async {
     ),
   );
 }
-
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -164,4 +210,3 @@ class _MyAppState extends State<MyApp> {
     });
   }
 }
-

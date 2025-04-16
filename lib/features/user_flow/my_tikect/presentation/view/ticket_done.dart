@@ -100,7 +100,7 @@ class TicketDone extends StatelessWidget {
               top: 340.h, // Responsive to screen height
               child: Image.asset(
                 'assets/icons/img.png',
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
               ),
             ),
             Padding(
@@ -122,7 +122,7 @@ class TicketDone extends StatelessWidget {
               top: 340.h,
               child: Image.asset(
                 'assets/icons/img_1.png',
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
                 width: 30.w, // Responsive width
               ),
             ),

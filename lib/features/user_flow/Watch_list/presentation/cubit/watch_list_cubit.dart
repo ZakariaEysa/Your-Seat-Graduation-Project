@@ -8,6 +8,7 @@ import '../../../movie_details/data/model/movies_details_model/movies_details_mo
 
 class WatchListCubit extends Cubit<WatchListState> {
   WatchListCubit() : super(WatchListInitial());
+  static WatchListCubit get(context) => BlocProvider.of<WatchListCubit>(context);
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   var currentUser;

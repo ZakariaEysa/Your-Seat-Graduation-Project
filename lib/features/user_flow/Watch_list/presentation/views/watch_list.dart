@@ -174,8 +174,18 @@ import '../cubit/watch_list_cubit.dart';
 import '../cubit/watch_list_state.dart';
 import '../widgets/watch_list_part.dart';
 
-class WatchList extends StatelessWidget {
+class WatchList extends StatefulWidget {
   @override
+  State<WatchList> createState() => _WatchListState();
+}
+
+class _WatchListState extends State<WatchList> {
+
+  @override
+  void initState() {
+    WatchListCubit.get(context).fetchWatchList();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
@@ -192,9 +202,12 @@ class WatchList extends StatelessWidget {
       ),
       body: BlocBuilder<WatchListCubit, WatchListState>(
         builder: (context, state) {
+          AppLogs.scussessLog(state.toString());
+
           if (state is WatchListLoading) {
             return Center(child: CircularProgressIndicator(color: Colors.red,));
           } else if (state is WatchListLoaded) {
+            AppLogs.scussessLog("loaded");
             return state.watchList.isEmpty
                 ? Center(
               child: Text(
@@ -257,10 +270,10 @@ class WatchList extends StatelessWidget {
           } else if (state is WatchListError) {
             return Center(child: Text(state.message));
           }
+
           return Container();
         },
       ),
     );
   }
-
 }

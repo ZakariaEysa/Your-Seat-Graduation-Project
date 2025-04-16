@@ -96,8 +96,7 @@ class _OtpState extends State<Otp> {
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white, size: 28),
-        backgroundColor: const Color(0xFF2E1371),
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.onPrimary, size: 28),
         title: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(25.w, 0, 0, 20.h),
           child:  HeadAppBar(
@@ -173,8 +172,10 @@ class _OtpState extends State<Otp> {
                     if (email.isNotEmpty) {
                       AuthCubit.get(context).sendOtp(email);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("OTP has been resent"),
+                         SnackBar(
+                          content: Text("OTP has been resent",style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),),
                           backgroundColor: Colors.green,
                         ),
                       );

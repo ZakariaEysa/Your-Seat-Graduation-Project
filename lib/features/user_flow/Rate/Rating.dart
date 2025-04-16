@@ -70,7 +70,7 @@ class _RatingState extends State<Rating> {
         padding: EdgeInsets.all(20.sp),
         width: 300.w,
         decoration: BoxDecoration(
-          color: Color(0x4DD9D9D9).withOpacity(0.1),
+            color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.1),
           borderRadius: BorderRadius.circular(50.sp),
         ),
         child: Column(
@@ -80,7 +80,7 @@ class _RatingState extends State<Rating> {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
-                icon: const Icon(Icons.close, color: Colors.white),
+                icon:  Icon(Icons.close, color: Theme.of(context).colorScheme.onPrimary,),
                 onPressed: () => Navigator.pop(context),
               ),
             ),
@@ -116,13 +116,13 @@ class _RatingState extends State<Rating> {
             SizedBox(height: 5.h),
             TextField(
               controller: _commentController,
-              style: const TextStyle(color: Colors.white),
+              style:  TextStyle(color: Theme.of(context).colorScheme.onPrimary,),
               decoration: InputDecoration(
                 filled: true,
-                fillColor: const Color(0x4DD9D9D9),
+                fillColor: Theme.of(context).colorScheme.primary,
                 hintText: lang.yourEvaluationIsInterested,
                 hintStyle: theme.textTheme.bodySmall!
-                    .copyWith(fontSize: 13.sp, color: Colors.grey),
+                    .copyWith(fontSize: 13.sp,),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(33.sp),
                   borderSide: BorderSide.none,

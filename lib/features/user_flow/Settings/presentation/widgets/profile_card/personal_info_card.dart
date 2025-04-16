@@ -29,14 +29,17 @@ class PersonalInfoCard extends StatelessWidget {
               icon,
             ),
             size: 25.sp,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
           const SizedBox(
             width: 18,
           ),
           Text(
             title,
-            style: theme.textTheme.titleLarge,
+            style: theme.textTheme.titleLarge!.copyWith(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+
           ),
           SizedBox(
             width: 10.w,

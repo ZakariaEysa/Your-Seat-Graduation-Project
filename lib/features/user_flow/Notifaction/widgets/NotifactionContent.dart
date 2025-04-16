@@ -65,7 +65,7 @@ class NotificationContent extends StatelessWidget {
                             numOfNotification!,
                             style: theme.textTheme.titleSmall?.copyWith(
                               fontSize: 12.sp,
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.onPrimary,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
@@ -92,7 +92,7 @@ class NotificationContent extends StatelessWidget {
                       body,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         fontSize: 13.sp,
-                        color: Colors.grey.shade700,
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -105,7 +105,7 @@ class NotificationContent extends StatelessWidget {
                 time,
                 style: theme.textTheme.labelLarge?.copyWith(
                   fontSize: 14.sp,
-                  color: const Color(0xFF6C6C6C),
+                    color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
             ],

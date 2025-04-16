@@ -69,9 +69,10 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                       keyboardType: TextInputType.multiline, // دعم النصوص متعددة الأسطر
                       maxLines: null, // يسمح بعدد غير محدود من الأسطر
                       decoration: InputDecoration(
-                        hintText: lang.addComment, // سيختفي عند الكتابة
+                        hintText: lang.addComment,
+                        hintStyle: TextStyle(color: Color(0XFFFAF8F0)),// سيختفي عند الكتابة
                         filled: true,
-                        fillColor: const Color(0xFF110C3B), // لون الخلفية
+                        fillColor:Theme.of(context).colorScheme.primaryContainer, // لون الخلفية
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide: BorderSide.none,
@@ -86,14 +87,13 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                   width: 50.w,
                   height: 45.h,
                   decoration: BoxDecoration(
-                    color: Color(0xFF110C3B),
                     borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: BlocBuilder<CinemaCubit, CinemaState>(
                     builder: (context, state) {
                       bool isAdding = CinemaCubit.get(context).isAddingComment;
                       return IconButton(
-                        icon: Icon(Icons.send, color: Colors.white, size: 20.sp),
+                        icon: Icon(Icons.send, color: Theme.of(context).colorScheme.onPrimary, size:28.sp),
                         onPressed: isAdding
                             ? null
                             : () async {

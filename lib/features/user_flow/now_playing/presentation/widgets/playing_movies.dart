@@ -158,6 +158,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
                 "assets/icons/clock.png",
                 width: 18.w,
                 height: 18.h,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               SizedBox(
                 width: 10.w,
@@ -179,6 +180,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
                 "assets/icons/video.png",
                 width: 18.w,
                 height: 18.h,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               SizedBox(
                 width: 10.w,

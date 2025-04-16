@@ -180,7 +180,10 @@ class _SelectSeatState extends State<SelectSeat> {
     return ScaffoldF(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
           onPressed: () => navigatePop(context: context),
         ),
         backgroundColor: theme.primaryColor,
@@ -217,16 +220,27 @@ class _SelectSeatState extends State<SelectSeat> {
                   ),
                   SizedBox(height: 25.h),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SeatsType(
-                          color: const Color(0xFFF3F3F3), text: lang.available),
-                      SeatsType(
-                          color: const Color(0xFF5b085d), text: lang.reserved),
-                      SeatsType(
-                          color: const Color(0xFF09FBD3), text: lang.selected),
-                    ],
-                  ),
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SeatsType(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surface, // available
+                          text: lang.available,
+                        ),
+                        SeatsType(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface, // reserved
+                          text: lang.reserved,
+                        ),
+                        SeatsType(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surfaceVariant, // selected
+                          text: lang.selected,
+                        ),
+                      ]),
                   SizedBox(height: 20.h),
                   Text(
                     _seatCategory.isNotEmpty
@@ -238,10 +252,10 @@ class _SelectSeatState extends State<SelectSeat> {
                   Center(
                     child: Text(
                       lang.selectDateTime,
-                      style: theme.textTheme.labelSmall?.copyWith(
+                      style: theme.textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 24.sp,
-                        color: Colors.white,
+
                       ),
                     ),
                   ),

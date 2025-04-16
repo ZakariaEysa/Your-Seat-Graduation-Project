@@ -80,10 +80,10 @@ class _CinemaItemState extends State<CinemaItem> {
                       SizedBox(height: 8.h),
                       Text(
                         name,
-                        style: const TextStyle(
+                        style:  TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     ],

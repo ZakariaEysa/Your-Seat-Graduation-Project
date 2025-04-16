@@ -195,9 +195,9 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
           child: Wrap(
             children: [
               ListTile(
-                leading: const Icon(Icons.photo_library, color: Colors.white),
-                title: const Text('Gallery',
-                    style: TextStyle(color: Colors.white)),
+                leading: Icon(Icons.photo_library,  color: Theme.of(context).colorScheme.onPrimary,),
+                title:  Text('Gallery',
+                    style: TextStyle( color: Theme.of(context).colorScheme.onPrimary,)),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
@@ -225,10 +225,10 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
     return ScaffoldF(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF2E1371),
+
         iconTheme: IconThemeData(
           size: 28.sp,
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
       ),
       body: SafeArea(
@@ -246,7 +246,12 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                     bottomLeft:Radius.circular(51.r),
                     bottomRight:Radius.circular(51.r) ,
                   ),
-                  color: const Color(0xFF00002B),
+                  color: Theme.of(context).colorScheme. secondaryFixed,
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.5),
+                    width: 1.w,
+                  ),
+
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
@@ -273,9 +278,9 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                         height: 55.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(23.r),
-                          color: theme.colorScheme.onSecondary,
+                          color: theme.colorScheme.primary.withOpacity(0.7),
                         ),
-                        child: Text(currentUser.email),
+                        child: Text(currentUser.email,style:TextStyle(fontSize: 16.sp),),
                       ),
                       SizedBox(height: 15.h),
                       _buildLabel(theme, lang.birthDate),

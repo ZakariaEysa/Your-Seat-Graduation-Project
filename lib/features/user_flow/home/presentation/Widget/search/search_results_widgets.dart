@@ -44,7 +44,7 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     var lang = S.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFF2B1269),
+     backgroundColor: Theme.of(context).colorScheme.primary,
       body: Padding(
         padding: EdgeInsets.all(14.0.w),
         child: Column(
@@ -55,44 +55,52 @@ class _SearchState extends State<Search> {
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.0.r),
-                  borderSide: BorderSide.none,
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
+                    width: 1.5,
+                  ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.0.r),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    width: 2,
+                  ),
                 ),
+
                 suffixIcon: InkWell(
                   onTap: () {
                     navigatePop(context: context);
                   },
                   child: Padding(
                     padding: EdgeInsets.all(12.sp),
-                    child: Icon(Icons.cancel_rounded, color: Colors.white70),
+                    child: Icon(Icons.cancel_rounded, color: Theme.of(context).colorScheme.onPrimary,),
                   ),
                 ),
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(12.sp),
-                  child: Icon(Icons.search, color: Colors.white70),
+                  child: Icon(Icons.search, color: Theme.of(context).colorScheme.onPrimary,),
                 ),
                 hintText: lang.search,
                 hintStyle: TextStyle(
-                  color: Colors.white70,
+                  color: Theme.of(context).colorScheme.onPrimary,
                   fontSize: 14.sp,
                 ),
                 filled: true,
                 fillColor: Colors.white.withOpacity(0.3),
               ),
               style: TextStyle(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
                 fontSize: 14.sp,
               ),
             ),
             searchResults.isEmpty
                 ? Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 17.0),
+                padding:  EdgeInsets.symmetric(vertical: 17.0),
                 child: Text(
                   lang.noResultsFound,
-                  style: TextStyle(color: Colors.white70),
+                  style: TextStyle (color: Theme.of(context).colorScheme.onPrimary,),
                 ),
               ),
             )
@@ -162,7 +170,7 @@ class _SearchState extends State<Search> {
                                         result['title'] ??
                                         'Unknown',
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Theme.of(context).colorScheme.onPrimary,
                                         fontSize: 18.sp,
                                         fontWeight: FontWeight.bold),
                                     maxLines: 1,
@@ -172,7 +180,7 @@ class _SearchState extends State<Search> {
                                   Text(
                                     result['category'] ?? 'Cinema',
                                     style: TextStyle(
-                                        color: Colors.white70, fontSize: 14.sp),
+                                        color: Theme.of(context).colorScheme.onPrimary, fontSize: 14.sp),
                                   ),
                                   SizedBox(height: 5.h),
                                   Row(
@@ -181,7 +189,7 @@ class _SearchState extends State<Search> {
                                         result['rating']?.toStringAsFixed(1) ??
                                             'Unknown',
                                         style: TextStyle(
-                                            color: Colors.white70,
+                                            color: Theme.of(context).colorScheme.onPrimary,
                                             fontSize: 14.sp),
                                       ),
                                       SizedBox(width: 5.w),

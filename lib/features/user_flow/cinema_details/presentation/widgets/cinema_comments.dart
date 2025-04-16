@@ -29,7 +29,11 @@ class _CinemaCommentsState extends State<CinemaComments> {
       width: 360.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: const Color(0xFF150B34),
+          color: Theme.of(context).colorScheme.primary,
+        border: Border.all(
+         color: Color(0XFF2E1371),
+          width: 1,
+        ),
       ),
       child: Padding(
         padding: EdgeInsets.all(8.0.sp),

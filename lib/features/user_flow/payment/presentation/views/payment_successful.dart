@@ -47,6 +47,7 @@ class PaymentSuccessful extends StatelessWidget {
             "assets/images/check .png",
             width: 209.w,
             height: 209.h,
+            color: Theme.of(context).colorScheme.onPrimary,
           ),
         ),
         SizedBox(

@@ -73,8 +73,7 @@ class WatchListPart extends StatelessWidget {
                     Text(
                       time,
                       style: theme.textTheme.bodyMedium!.copyWith(
-                        fontSize: 11.sp,
-                        color: const Color(0XFFD9D9D9),
+                        fontSize: 12.sp,
                       ),
                     ),
                   ],

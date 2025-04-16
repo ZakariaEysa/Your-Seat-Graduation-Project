@@ -152,9 +152,12 @@ class SettingsPage extends StatelessWidget {
       SettingsItem(
           title: lang.theme,
           imageIcon: "assets/images/theme.png",
-          onPress: () {
-            ThemeSheet();
-          }),
+
+            onPress: () => _showBottomSheet(
+              context,
+              const ThemeSheet(),
+            )
+          ),
       SettingsItem(
         title: lang.AboutUs,
         imageIcon: "assets/images/account.png",

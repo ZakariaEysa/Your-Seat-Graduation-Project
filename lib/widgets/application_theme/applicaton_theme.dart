@@ -2,9 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ApplicationTheme {
-  static bool isDark = true;
+import '../../data/hive_keys.dart';
+import '../../data/hive_stroage.dart';
 
+
+class ApplicationTheme extends ChangeNotifier {
+  static bool _isDark =  HiveStorage.get(HiveKeys.isDark);
+
+  // للحصول على حالة الثيم (داكن أو فاتح)
+  bool get isDark => _isDark;
+
+  // لتغيير الثيم
+  void toggleTheme({required bool isDark}) {
+    if (_isDark == isDark) {
+      return; // إذا كان الثيم الحالي هو نفسه، لا نقوم بأي تغيير
+    }
+    _isDark = isDark;
+    HiveStorage.set(HiveKeys.isDark, _isDark);
+    notifyListeners(); // إخطار الـ listeners بالتحديث
+  }
+
+  // إعادة الثيم بناءً على الحالة الحالية
+  ThemeData get currentTheme {
+    return _isDark ? darkTheme : lightTheme;
+  }
   static ThemeData lightTheme = ThemeData(
       primaryColor: const Color(0xFFFCFCFC),
       colorScheme: ColorScheme.fromSeed(

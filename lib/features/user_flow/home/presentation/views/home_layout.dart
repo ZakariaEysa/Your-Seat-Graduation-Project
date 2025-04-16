@@ -104,10 +104,6 @@ class _HomeScreenState extends State<HomeLayout> {
     }
   }
 
-  @override
-  initState() {
-    printUserLocation(context);
-  }
 
   int selectedIndex = 0;
 

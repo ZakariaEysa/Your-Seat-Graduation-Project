@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -13,12 +12,10 @@ import 'package:device_preview/device_preview.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'data/hive_stroage.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/cinema_details/presentation/cubit/cinema_cubit.dart';
 import 'features/user_flow/home/presentation/Widget/Cinema_item/Cubit/item_cubit.dart';
-import 'features/user_flow/home/presentation/Widget/search/search_cubit/search_cubit.dart';
 import 'services/simple_bloc_observer_service.dart';
 import 'widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
@@ -31,83 +28,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'features/user_flow/Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
 import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.dart';
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
-Future<void> requestPermissions() async {
-  await Permission.camera.request();
-  await Permission.storage.request();
-  await Permission.location.request();
-}
-
-Future<void> printUserLocation() async {
-  bool serviceEnabled;
-  LocationPermission permission;
-
-  // Check if location services are enabled
-  serviceEnabled = await Geolocator.isLocationServiceEnabled();
-  if (!serviceEnabled) {
-    _showMessage('Location services are disabled. Please enable them.');
-    await Geolocator.openLocationSettings(); // Open location settings
-    return;
-  }
-
-  // Check and request permission
-  permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      _showMessage('Location permissions are denied.');
-      return;
-    }
-  }
-
-  if (permission == LocationPermission.deniedForever) {
-    _showMessage(
-      'Location permissions are permanently denied. Please enable them from app settings.',
-    );
-    await Geolocator
-        .openAppSettings(); // Open app settings for manual permission
-    return;
-  }
-
-  // Get current location
-  try {
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-
-    String message =
-        'User location: ${position.latitude}, ${position.longitude}';
-    print(message);
-    _showMessage(message);
-  } catch (e) {
-    print('Error getting location: $e');
-    _showMessage('Error getting location: $e');
-  }
-}
-
-// Helper to show SnackBar message
-void _showMessage(String message) {
-  AppLogs.debugLog(message);
-}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await requestPermissions();
-  // await printUserLocation();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: 'AIzaSyCREJCsFWlgq_kon3J8_Eu_mhvL0PUNGjs',
@@ -117,12 +47,15 @@ void main() async {
     ),
   );
 
-  await FirebaseAppCheck.instance
-      .activate(androidProvider: AndroidProvider.debug);
+  await FirebaseAppCheck.instance.activate(androidProvider: AndroidProvider.debug);
   SimpleBlocObserverService();
 
   await HiveStorage.init();
 
+
+  if (HiveStorage.get(HiveKeys.isDark) == null) {
+    HiveStorage.set(HiveKeys.isDark, true);
+  }
   if (HiveStorage.get(HiveKeys.passUserOnboarding) == null) {
     HiveStorage.set(HiveKeys.passUserOnboarding, false);
   }
@@ -181,20 +114,21 @@ class _MyAppState extends State<MyApp> {
       key = UniqueKey();
     });
   }
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SwitchLanguageCubit, SwitchLanguageState>(
-        builder: (context, state) {
-      return ScreenUtilInit(
-          designSize: const Size(375, 812),
-          minTextAdapt: true,
-          useInheritedMediaQuery: true,
-          ensureScreenSize: true,
-          splitScreenMode: true,
-          builder: (_, child) {
-            return MaterialApp(
-                theme: ApplicationTheme.darkTheme,
+    return ChangeNotifierProvider(
+      create: (context) => ApplicationTheme(),
+      child: Consumer<ApplicationTheme>(
+        builder: (context, theme, child) {
+          return ScreenUtilInit(
+            designSize: const Size(375, 812),
+            minTextAdapt: true,
+            useInheritedMediaQuery: true,
+            ensureScreenSize: true,
+            splitScreenMode: true,
+            builder: (_, child) {
+              return MaterialApp(
+                theme: theme.currentTheme, // استخدم الثيم الحالي
                 locale: HiveStorage.get(HiveKeys.isArabic)
                     ? const Locale('ar')
                     : const Locale('en'),
@@ -206,24 +140,18 @@ class _MyAppState extends State<MyApp> {
                 ],
                 supportedLocales: S.delegate.supportedLocales,
                 debugShowCheckedModeBanner: false,
-                // builder: DevicePreview.appBuilder,
                 builder: (context, child) {
-                  child = BotToastInit()(context, child); // تهيئة BotToast
+                  child = BotToastInit()(context, child);
                   return DevicePreview.appBuilder(context, child);
                 },
                 navigatorObservers: [BotToastNavigatorObserver()],
-                home:  SplashScreen( )
-
-                //destinationAddress: " مستشفي الندي التخصصي ب الفيوم"
-                // home: GoogleMap(
-                //   initialCameraPosition: CameraPosition(
-                //     target: LatLng(29.3282106, 30.8452057),
-                //   ),
-
-                // ),
-                );
-          });
-    });
+                home:  SplashScreen(),
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }
 

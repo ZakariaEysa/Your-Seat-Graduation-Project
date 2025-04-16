@@ -10,9 +10,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/coming_soon/coming_soon.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_cubit.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/movie_carousel_widget.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
+import 'package:yourseatgraduationproject/features/user_flow/now_playing/cubit/coming_soon_cubit.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'data/hive_stroage.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
@@ -155,6 +159,15 @@ void main() async {
           BlocProvider<CinemaaItemCubit>(
             create: (context) => CinemaaItemCubit(),
           ),
+          BlocProvider(
+            create: (context) => MovieCarouselCubit(),
+            child: MovieCarouselWidget(),
+          ),
+          BlocProvider(
+            create: (context) => ComingSoonCubit(),
+            child: ComingSoon(),
+          )
+
         ],
         child: MyApp(),
       ),

@@ -77,7 +77,7 @@ class TextFormFieldBuilder extends StatelessWidget {
         obscureText: obsecure,
         textAlignVertical: textAlignVer ?? TextAlignVertical.top,
         style: TextStyle(
-          color: theme.colorScheme.onSurface,
+          color: theme.colorScheme.onPrimary,
         ),
         validator: validator,
         onChanged: onChanged,

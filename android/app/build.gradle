@@ -25,8 +25,8 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.example.yourseatgraduationproject"
-    compileSdk = 34 // تم التحديث إلى 34 (أو يمكنك استخدام 33 إذا كنت تريد تجنب تحديث AGP)
-    ndkVersion = flutter.ndkVersion
+    compileSdk = 35
+    ndkVersion = "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -39,7 +39,7 @@ android {
     defaultConfig {
         applicationId = "com.example.yourseatgraduationproject"
         minSdk = 23
-        targetSdk = 34 // تم التحديث إلى 34 (أو 33 إذا كنت تستخدم compileSdk 33)
+        targetSdk = 35
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }

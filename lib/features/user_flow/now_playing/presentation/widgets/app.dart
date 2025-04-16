@@ -27,9 +27,11 @@ class _AppState extends State<App> {
       length: 2,
       initialIndex: widget.initialTab,
       child: Scaffold(
-        backgroundColor: const Color(0xFF2E1371).withOpacity(.99),
         appBar: AppBar(
-          backgroundColor: const Color(0xFF0F0A2B).withOpacity(.02),
+          iconTheme: IconThemeData(
+            color: Theme.of(context).colorScheme.onPrimary,
+            size: 28.sp,
+          ),
           elevation: 0,
           leadingWidth: screenWidth * 0.1,
           leading: IconButton(
@@ -38,7 +40,6 @@ class _AppState extends State<App> {
             },
             icon: Icon(
               Icons.arrow_back,
-              color: Colors.white,
               size: screenWidth * 0.06,
             ),
           ),
@@ -53,7 +54,8 @@ class _AppState extends State<App> {
             child: TabBar(
               dividerColor: Colors.transparent,
               labelColor: const Color(0xFFEB68E3),
-              unselectedLabelColor: Colors.white, // Unselected tab text color
+              unselectedLabelColor:Theme.of(context).colorScheme.onPrimary,
+            // Unselected tab text color
               indicatorColor: const Color(0xFFEB68E3), // Highlight color
               labelStyle: theme.textTheme.labelLarge!.copyWith(fontSize: screenWidth * 0.04),
               tabs: [

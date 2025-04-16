@@ -24,7 +24,7 @@ class BirthDateDropdown<T> extends StatelessWidget {
       width: 100.w,
       height: 51.h,
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFF9C24D9), width: 2.w),
+        border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer.withOpacity(0.5), width: 1.w),
         borderRadius: BorderRadius.circular(5.r),
       ),
       child: DropdownButton<T>(
@@ -34,11 +34,12 @@ class BirthDateDropdown<T> extends StatelessWidget {
           hintText,
           style: theme.textTheme.bodyLarge?.copyWith(fontSize: 18.sp),
         ),
-        dropdownColor: const Color(0xFF2E1371),
+        dropdownColor:  Theme.of(context).colorScheme.primary,
         icon: Image.asset(
           'assets/images/arrow_down.png',
           width: 16.w,
           height: 16.h,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
         items: itemsList.map((T item) {
           return DropdownMenuItem<T>(

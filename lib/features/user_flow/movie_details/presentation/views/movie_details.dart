@@ -106,7 +106,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                     Text(
                       widget.model.name ?? "",
                       style:
-                          theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
+                          theme.textTheme.titleLarge!.copyWith(fontSize:18.sp),
+
                     ),
                     SizedBox(
                       height: 6.h,
@@ -124,7 +125,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                         Text(
                           lang.review,
                           textAlign: TextAlign.start,
-                          style: theme.textTheme.bodyMedium!
+                          style: theme.textTheme.titleLarge!
                               .copyWith(fontSize: 16.sp),
                         ),
                         SizedBox(
@@ -141,7 +142,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                         BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
                           builder: (context, state) {
                             return Text(rate.toString(),
-                                style: theme.textTheme.bodyMedium!
+                                style: theme.textTheme.titleLarge!
                                     .copyWith(fontSize: 12.sp));
                           },
                         ),
@@ -454,7 +455,9 @@ class _MovieDetailsState extends State<MovieDetails> {
                   width: 250.w,
                   height: 55.h,
 
-                  text: "continue" , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 25 ),
+                  text: "continue" , style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
                   onTap: () {
                     if (HiveStorage.get(HiveKeys.role) ==
                         Role.guest.toString()) {

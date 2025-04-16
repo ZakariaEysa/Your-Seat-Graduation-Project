@@ -250,7 +250,7 @@ class _TicketPageState extends State<TicketPage> {
     return ScaffoldF(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFF2E1371),
+
         title: Center(
           child: Padding(
             padding: EdgeInsetsDirectional.only(start: 80.w),

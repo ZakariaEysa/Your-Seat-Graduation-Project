@@ -98,7 +98,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
               )
@@ -112,10 +112,10 @@ class _CountdownTimerState extends State<CountdownTimer> {
               ))
         : Text(
             _formatTime(remainingSeconds),
-            style: const TextStyle(
+            style:  TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
           );
   }

@@ -51,9 +51,8 @@ class TicketDone extends StatelessWidget {
             onTap: (){
                navigateAndRemoveUntil(context: context, screen: HomeLayout());
             },
-            child: Icon(Icons.arrow_back_outlined,color: Colors.white,)),
-        backgroundColor: Color(0xFF2E1371),
-        iconTheme: IconThemeData(color: Colors.white, size: 28.sp),
+            child: Icon(Icons.arrow_back_outlined,  color: Theme.of(context).colorScheme.onPrimary,)),
+
         title: Padding(
           padding:
               EdgeInsetsDirectional.only(start: 45.w, top: 0, bottom: 15.h),
@@ -75,7 +74,11 @@ class TicketDone extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
-                ),
+
+                border: Border.all(
+                  color: Theme.of(context).colorScheme. primaryContainer,
+                  width:2.w,
+                ),)
               ),
             ),
             HeadMyTicket(imageUrl: model.posterImage,
@@ -97,6 +100,7 @@ class TicketDone extends StatelessWidget {
               top: 340.h, // Responsive to screen height
               child: Image.asset(
                 'assets/icons/img.png',
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
             Padding(
@@ -118,6 +122,7 @@ class TicketDone extends StatelessWidget {
               top: 340.h,
               child: Image.asset(
                 'assets/icons/img_1.png',
+                color: Theme.of(context).colorScheme.primary,
                 width: 30.w, // Responsive width
               ),
             ),

@@ -21,7 +21,6 @@ List<String> selectedSeats = [];
 
 class _SeatsGridState extends State<SeatsGrid> {
   List<List<String>> seats = [];
-  // ✅ قائمة المقاعد التي اختارها المستخدم
 
   @override
   void initState() {
@@ -89,7 +88,7 @@ class _SeatsGridState extends State<SeatsGrid> {
                     return SizedBox(width: 20.w); // ✅ الممر بين الجانبين
                   }
                   String seat = seats[rowIndex][colIndex];
-                  String seatImage = _getSeatImage(seat);
+                  String seatImage = _getSeatImage(seat, context);  // تعديل هنا لاستخدام الألوان من الثيم
 
                   return GestureDetector(
                     onTap: () => _selectSeat(rowIndex, colIndex),
@@ -97,6 +96,7 @@ class _SeatsGridState extends State<SeatsGrid> {
                       padding: EdgeInsets.all(4.0.sp),
                       child: Image.asset(
                         seatImage,
+                        color: _getSeatColor(seat, context),  // إضافة اللون بناءً على الحالة
                         width: 18.w,
                         height: 18.h,
                       ),
@@ -111,16 +111,33 @@ class _SeatsGridState extends State<SeatsGrid> {
     );
   }
 
-  String _getSeatImage(String seat) {
+  String _getSeatImage(String seat, BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     switch (seat) {
       case 'a':
-        return 'assets/images/avaliableSeat.png';
+        return 'assets/images/avaliableSeat.png'; // الصورة للمقعد المتاح
       case 'r':
-        return 'assets/images/reversedSeat.png';
+        return 'assets/images/reversedSeat.png';  // الصورة للمقعد المحجوز
       case 's':
-        return 'assets/images/selectSeat.png';
+        return 'assets/images/selectSeat.png'; // الصورة للمقعد المختار
       default:
-        return 'assets/images/default.png';
+        return 'assets/images/default.png'; // صورة الافتراضي
+    }
+  }
+
+  Color _getSeatColor(String seat, BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    switch (seat) {
+      case 'a':
+        return colorScheme.surface;  // اللون المتاح من الثيم
+      case 'r':
+        return colorScheme.onSurface; // اللون المحجوز من الثيم
+      case 's':
+        return colorScheme.surfaceVariant; // اللون المختار من الثيم
+      default:
+        return Colors.grey;  // لو في حالة غير معرفة
     }
   }
 

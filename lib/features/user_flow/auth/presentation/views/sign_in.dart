@@ -37,7 +37,6 @@ class _SignInState extends State<SignIn> {
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF2E1371),
         title: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(80, 0, 0, 0),
           child: HeadAppBar(title: lang.sign_in),
@@ -143,7 +142,7 @@ class _SignInState extends State<SignIn> {
                                   obscure2
                                       ? Icons.visibility_off
                                       : Icons.visibility,
-                                  color: Colors.grey),
+                                color: Theme.of(context).colorScheme.onPrimary,),
                             ),
                             controller: cubit.passwordController,
                             label: lang.password,
@@ -184,7 +183,7 @@ class _SignInState extends State<SignIn> {
                                 lang.forgotPassword,
                                 style: theme.textTheme.bodyMedium!.copyWith(
                                   fontSize: 14.sp,
-                                  color: const Color(0xFFC1B2B2),
+
                                 ),
                                 textAlign: TextAlign.right,
                               ),
@@ -223,17 +222,18 @@ class _SignInState extends State<SignIn> {
                           padding: EdgeInsets.all(8.0.sp),
                           child: Row(
                             children: [
-                              const Expanded(
+                              Expanded(
+
                                   child: Divider(
-                                      color: Colors.white, thickness: 1)),
+                                      color: Theme.of(context).colorScheme.onPrimary, thickness: 2)),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.h),
                                 child: Text(lang.or,
                                     style: theme.textTheme.titleMedium),
                               ),
-                              const Expanded(
+                              Expanded(
                                   child: Divider(
-                                      color: Colors.white, thickness: 1)),
+                                      color: Theme.of(context).colorScheme.onPrimary, thickness: 2)),
                             ],
                           ),
                         ),
@@ -247,7 +247,8 @@ class _SignInState extends State<SignIn> {
                               // cubit.loginWithFacebook();
                             },
                             title: lang.continue_with_facebook,
-                            imagePath: "assets/images/facebook.png",
+                            imagePath: "assets/images/la_facebook.png",
+
                           ),
                         ),
                       ),

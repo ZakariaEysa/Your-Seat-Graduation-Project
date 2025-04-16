@@ -152,6 +152,18 @@ class _MyAppState extends State<MyApp> {
         },
       ),
     );
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/coming_soon/coming_soon.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_cubit.dart';
+import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/movie_carousel_widget.dart';
+          BlocProvider(
+            create: (context) => MovieCarouselCubit(),
+            child: MovieCarouselWidget(),
+          ),
+          BlocProvider(
+            create: (context) => ComingSoonCubit(),
+            child: ComingSoon(),
+          )
+
   }
 }
 

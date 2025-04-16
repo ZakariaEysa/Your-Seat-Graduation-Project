@@ -144,7 +144,7 @@ class _MyAppState extends State<MyApp> {
           splitScreenMode: true,
           builder: (_, child) {
             return MaterialApp(
-              theme: ApplicationTheme.lightTheme ,
+              theme: ApplicationTheme.darkTheme ,
               locale: HiveStorage.get(HiveKeys.isArabic)
                   ? const Locale('ar')
                   : const Locale('en'),

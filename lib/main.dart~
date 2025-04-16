@@ -16,7 +16,6 @@ import 'data/hive_stroage.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/cinema_details/presentation/cubit/cinema_cubit.dart';
 import 'features/user_flow/home/presentation/Widget/Cinema_item/Cubit/item_cubit.dart';
-import 'features/user_flow/now_playing/cubit/coming_soon_cubit.dart';
 import 'services/simple_bloc_observer_service.dart';
 import 'widgets/application_theme/applicaton_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
@@ -35,9 +34,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/coming_soon/coming_soon.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_cubit.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/movie_carousel_widget.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,11 +47,11 @@ void main() async {
     ),
   );
 
-  await FirebaseAppCheck.instance
-      .activate(androidProvider: AndroidProvider.debug);
+  await FirebaseAppCheck.instance.activate(androidProvider: AndroidProvider.debug);
   SimpleBlocObserverService();
 
   await HiveStorage.init();
+
 
   if (HiveStorage.get(HiveKeys.isDark) == null) {
     HiveStorage.set(HiveKeys.isDark, true);
@@ -91,14 +88,6 @@ void main() async {
           BlocProvider<CinemaaItemCubit>(
             create: (context) => CinemaaItemCubit(),
           ),
-          BlocProvider(
-            create: (context) => MovieCarouselCubit(),
-            child: MovieCarouselWidget(),
-          ),
-          BlocProvider(
-            create: (context) => ComingSoonCubit(),
-            child: ComingSoon(),
-          )
         ],
         child: MyApp(),
       ),
@@ -125,7 +114,6 @@ class _MyAppState extends State<MyApp> {
       key = UniqueKey();
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -157,7 +145,7 @@ class _MyAppState extends State<MyApp> {
                   return DevicePreview.appBuilder(context, child);
                 },
                 navigatorObservers: [BotToastNavigatorObserver()],
-                home: SplashScreen(),
+                home:  SplashScreen(),
               );
             },
           );
@@ -168,6 +156,8 @@ class _MyAppState extends State<MyApp> {
 }
 
 const String googleApiKey = 'AIzaSyD7VmrfzhvvuttRBIRVcWix-1eOjLtI1bU';
+
+
 
 class RouteMapPage extends StatefulWidget {
   @override
@@ -239,8 +229,7 @@ class _RouteMapPageState extends State<RouteMapPage> {
 
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       request: PolylineRequest(
-        origin:
-            PointLatLng(currentLocation!.latitude, currentLocation!.longitude),
+        origin: PointLatLng(currentLocation!.latitude, currentLocation!.longitude),
         destination: PointLatLng(destination!.latitude, destination!.longitude),
         mode: TravelMode.driving,
       ),
@@ -275,15 +264,15 @@ class _RouteMapPageState extends State<RouteMapPage> {
       body: currentLocation == null
           ? Center(child: CircularProgressIndicator())
           : GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: currentLocation!,
-                zoom: 14,
-              ),
-              polylines: polylines,
-              onMapCreated: (controller) => mapController = controller,
-              myLocationEnabled: true,
-              myLocationButtonEnabled: true,
-            ),
+        initialCameraPosition: CameraPosition(
+          target: currentLocation!,
+          zoom: 14,
+        ),
+        polylines: polylines,
+        onMapCreated: (controller) => mapController = controller,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+      ),
     );
   }
 }

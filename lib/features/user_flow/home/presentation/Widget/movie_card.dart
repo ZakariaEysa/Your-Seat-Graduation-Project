@@ -152,7 +152,7 @@ class MovieCard extends StatelessWidget {
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
 
@@ -162,7 +162,7 @@ class MovieCard extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12.sp,
-              color: Colors.white70,
+                color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
 
@@ -176,7 +176,7 @@ class MovieCard extends StatelessWidget {
                 '${movie['rating'] ?? 'N/A'}',
                 style: TextStyle(
                   fontSize: 12.sp,
-                  color: Colors.white70,
+                    color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
             ],

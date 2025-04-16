@@ -67,14 +67,13 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
           style: theme.textTheme.labelLarge!.copyWith(fontSize: 23.sp),
         ),
         titleSpacing: 40.0,
-        backgroundColor: const Color(0xFF2E1371),
         leading: IconButton(
             onPressed: () {
               navigatePop(context: context);
             },
             icon: Icon(
               Icons.arrow_back,
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onPrimary,
               size: 25.sp,
             )),
       ),
@@ -84,13 +83,27 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
             SizedBox(
               height: 10.h,
             ),
-            Container(
-              width: 350.w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                  color: Color(0xFF2F1472).withOpacity(.69),
-                  border: Border.all(color: Color(0xFF815AE2), width: 1.w)),
-              padding: EdgeInsets.all(16.sp),
+        Container(
+          width: 350.w,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.69),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.secondary,
+              width: 1.w,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Theme.of(context).shadowColor.withOpacity(0.3),
+                blurRadius: 10,
+                spreadRadius:5,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+
+
+        padding: EdgeInsets.all(16.sp),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,

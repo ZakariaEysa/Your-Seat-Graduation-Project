@@ -97,7 +97,6 @@ class _WatchListState extends State<WatchList> {
     return ScaffoldF(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFF2E1371),
         title: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(100, 0, 0, 0),
           child: HeadAppBar(

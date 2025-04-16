@@ -1,6 +1,7 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../Settings/presentation/views/setting_page.dart';
 import 'home_screen.dart';
 import '../../../../../generated/l10n.dart';
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeLayout> {
     return Scaffold(
       body: pages[selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: const Color(0xff140B2D),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         color: const Color(0xFF27125B),
         onTap: (index) {
           setState(() {
@@ -46,10 +47,10 @@ class _HomeScreenState extends State<HomeLayout> {
               selectedIndex == 0
                   ? const AssetImage("assets/icons/home_bold.png")
                   : const AssetImage("assets/icons/home.png"),
-              color: Colors.white,
+             color: Colors.white,
             ),
             label: selectedIndex == 0 ? lang.home : '',
-            labelStyle: const TextStyle(color: Colors.white),
+            labelStyle:  TextStyle(color: Colors.white,  fontSize: 16.sp),
           ),
           CurvedNavigationBarItem(
             child: ImageIcon(
@@ -59,7 +60,7 @@ class _HomeScreenState extends State<HomeLayout> {
               color: Colors.white,
             ),
             label: selectedIndex == 1 ? lang.watchlist : '',
-            labelStyle: const TextStyle(color: Colors.white),
+            labelStyle:  TextStyle(color: Colors.white,  fontSize: 16.sp),
           ),
           CurvedNavigationBarItem(
             child: ImageIcon(
@@ -69,7 +70,8 @@ class _HomeScreenState extends State<HomeLayout> {
               color: Colors.white,
             ),
             label: selectedIndex == 2 ? lang.tickets : '',
-            labelStyle: const TextStyle(color: Colors.white),
+            labelStyle: TextStyle(color: Colors.white,  fontSize:17.sp),
+
           ),
           CurvedNavigationBarItem(
             child: ImageIcon(
@@ -79,7 +81,7 @@ class _HomeScreenState extends State<HomeLayout> {
               color: Colors.white,
             ),
             label: selectedIndex == 3 ? lang.settings : '',
-            labelStyle: const TextStyle(color: Colors.white),
+            labelStyle: TextStyle(color: Colors.white,  fontSize: 17.sp),
           ),
         ],
       ),

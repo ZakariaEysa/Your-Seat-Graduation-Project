@@ -17,10 +17,9 @@ class AboutUs extends StatelessWidget {
 
     return ScaffoldF(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF2E1371),
         iconTheme: IconThemeData(
           size: 28.sp, // ضبط حجم الأيقونة باستخدام ScreenUtil
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
         title: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 0, 20),

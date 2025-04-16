@@ -10,7 +10,7 @@ class TextS extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.onPrimary,
         fontSize: 24.sp,
         fontFamily: 'SF Pro',
         fontWeight: FontWeight.w700,

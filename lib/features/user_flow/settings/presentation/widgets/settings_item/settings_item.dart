@@ -30,7 +30,7 @@ class SettingsItem extends StatelessWidget {
         height: 70.h,
         padding: EdgeInsets.all(16.sp),
         decoration: ShapeDecoration(
-          color: const Color(0xff401C8B).withOpacity(.6),
+            color: Theme.of(context).colorScheme.onPrimary.withOpacity(.1),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.r),
           ),
@@ -42,6 +42,7 @@ class SettingsItem extends StatelessWidget {
               imageIcon,
               width: 25.w,
               height: 25.h,
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
             Text(
               title,

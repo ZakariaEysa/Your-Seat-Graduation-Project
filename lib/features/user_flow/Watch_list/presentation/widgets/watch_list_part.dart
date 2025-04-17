@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 
 class WatchListPart extends StatelessWidget {
   final String smallimage;
@@ -34,13 +35,20 @@ class WatchListPart extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15.r),
-              child: Image.network(
-                image,
+            child: ImageReplacer(imageUrl: image,
+              height: 150.h,
                 width: 100.w,
-                height: 150.h,
                 fit: BoxFit.cover,
               ),
             ),
+            // ClipRRect(
+            //   child: Image.network(
+            //     image,
+            //     width: 100.w,
+            //     height: 150.h,
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
             SizedBox(width: 10.w), // إضافة مسافة لمنع الالتصاق
             Expanded(
               child: Padding(
@@ -73,7 +81,8 @@ class WatchListPart extends StatelessWidget {
                     Text(
                       time,
                       style: theme.textTheme.bodyMedium!.copyWith(
-                        fontSize: 12.sp,
+                        fontSize: 11.sp,
+                        color: const Color(0XFFD9D9D9),
                       ),
                     ),
                   ],

@@ -51,6 +51,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
               );
             },
+
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,

@@ -37,13 +37,19 @@ class _SignInState extends State<SignIn> {
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(80, 0, 0, 0),
-          child: HeadAppBar(title: lang.sign_in),
-        ),
-      ),
+          centerTitle: true,
+          backgroundColor: const Color(0xFF2E1371),
+        title:Text(lang.sign_in
+        , style:  TextStyle(
+            fontSize: 28.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        )
+
+      )
+      ,
       body: Stack(
-        
         children: [
           SingleChildScrollView(
             child: BlocConsumer<AuthCubit, AuthState>(
@@ -251,8 +257,7 @@ class _SignInState extends State<SignIn> {
                               // cubit.loginWithFacebook();
                             },
                             title: lang.continue_with_facebook,
-                            imagePath: "assets/images/la_facebook.png",
-
+                            imagePath: "assets/images/facebook.png",
                           ),
                         ),
                       ),

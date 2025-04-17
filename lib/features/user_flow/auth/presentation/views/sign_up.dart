@@ -68,13 +68,17 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         iconTheme:IconThemeData(size: 28, color: Theme.of(context).colorScheme.onPrimary,),
         backgroundColor: theme.primaryColor,
-        title: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 0, 20),
-          child: HeadAppBar(
-            title: local.signUp,
+        centerTitle: true, // دي بتخلي العنوان في النص على iOS تلقائيًا
+        title: Text(  local.signUp,
+          style:  TextStyle(
+            fontSize: 28.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
+
       ),
+
       body: Stack(
         children: [
           Form(

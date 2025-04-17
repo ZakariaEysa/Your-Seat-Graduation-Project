@@ -96,11 +96,14 @@ class _OtpState extends State<Otp> {
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.onPrimary, size: 28),
-        title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(25.w, 0, 0, 20.h),
-          child:  HeadAppBar(
-            title: lang.ConfirmOTPcode,
+          centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.white, size: 28),
+        backgroundColor: const Color(0xFF2E1371),
+        title: Text( lang.ConfirmOTPcode ,
+          style:  TextStyle(
+            fontSize: 28.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       ),

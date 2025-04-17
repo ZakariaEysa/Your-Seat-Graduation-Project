@@ -26,32 +26,32 @@
 //           child: Column(
 //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //         children: [
-//           SettingsItem(
+//           SettingsItemClass(
 //             title: "Profile",
 //             imageIcon: "assets/images/account.png",
 //             onPress: () {
 //               navigateTo(context: context, screen: const ProfileCard());
 //             },
 //           ),
-//           SettingsItem(
+//           SettingsItemClass(
 //               title: "Language",
 //               imageIcon: "assets/images/language.png",
 //               onPress: () {
 //                 showLanguageBottomSheet(context);
 //               }),
-//           SettingsItem(
+//           SettingsItemClass(
 //               title: "Theme",
 //               imageIcon: "assets/images/theme.png",
 //               onPress: () {
 //                 showThemeBottomSheet(context);
 //               }),
-//           SettingsItem(
+//           SettingsItemClass(
 //               title: "About Us",
 //               imageIcon: "assets/images/account.png",
 //               onPress: () {
 //                 navigateTo(context: context, screen: const AboutUs());
 //               }),
-//           SettingsItem(
+//           SettingsItemClass(
 //               title: "LogOut",
 //               imageIcon: "assets/images/logout 1.png",
 //               onPress: () {})
@@ -76,7 +76,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/profile_card.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
-import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/settings_item/settings_item.dart';
 import 'package:yourseatgraduationproject/utils/dialog_utilits.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
@@ -86,6 +85,7 @@ import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../auth/presentation/cubit/auth_cubit.dart';
+import '../widgets/SettingsItemfolder/settings_item_widget.dart';
 import 'language_sheet.dart';
 import 'theme_sheet.dart';
 
@@ -109,16 +109,16 @@ class SettingsPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: _buildSettingsItems(context),
+          children: _buildSettingsItemClasss(context),
         ),
       ),
     );
   }
 
-  List<Widget> _buildSettingsItems(BuildContext context) {
+  List<Widget> _buildSettingsItemClasss(BuildContext context) {
     var lang = S.of(context);
     return [
-      SettingsItem(
+      SettingsItemClass(
         title: lang.profile,
         imageIcon: "assets/images/account.png",
         onPress: () {
@@ -142,7 +142,7 @@ class SettingsPage extends StatelessWidget {
           }
         },
       ),
-      SettingsItem(
+      SettingsItemClass(
         title: lang.language,
         imageIcon: "assets/images/language.png",
         onPress: () => _showBottomSheet(
@@ -150,13 +150,13 @@ class SettingsPage extends StatelessWidget {
           const LanguageSheet(),
         ),
       ),
-      SettingsItem(
+      SettingsItemClass(
           title: lang.theme,
           imageIcon: "assets/images/theme.png",
           onPress: () {
             ThemeSheet();
           }),
-      SettingsItem(
+      SettingsItemClass(
         title: lang.AboutUs,
         imageIcon: "assets/images/account.png",
         onPress: () {
@@ -164,7 +164,7 @@ class SettingsPage extends StatelessWidget {
         },
       ),
       if (HiveStorage.get(HiveKeys.role) != Role.guest.toString())
-        SettingsItem(
+        SettingsItemClass(
           title: lang.logOut,
           imageIcon: "assets/images/logout 1.png",
           onPress: () {

@@ -1,5 +1,6 @@
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,14 +42,40 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/W
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/movie_carousel_widget.dart';
 
-
 import 'package:permission_handler/permission_handler.dart';
-
 
 Future<void> requestPermissions() async {
   await Permission.camera.request();
   await Permission.storage.request();
   await Permission.location.request();
+}
+
+late final FirebaseMessaging messaging;
+
+Future<void> setupFirebaseMessaging() async {
+  messaging = FirebaseMessaging.instance;
+
+  NotificationSettings settings = await messaging.requestPermission();
+  print('🔔 User granted permission: ${settings.authorizationStatus}');
+
+  final token = await messaging.getToken();
+  print("📱 FCM Token: $token");
+
+  // استقبال الرسائل أثناء تشغيل التطبيق (foreground)
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('💡 New message: ${message.notification?.title}');
+    if (message.notification != null) {
+      _showMessage(
+          "📢 ${message.notification!.title}: ${message.notification!.body}");
+    }
+  });
+
+  // الرسائل لما المستخدم يضغط عليها ويفتح التطبيق من background
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    print('🚀 Opened app via message: ${message.notification?.title}');
+    _showMessage(
+        "🚀 ${message.notification?.title}: ${message.notification?.body}");
+  });
 }
 
 Future<void> printUserLocation() async {
@@ -98,12 +125,11 @@ Future<void> printUserLocation() async {
   }
 }
 
-
-
 // Helper to show SnackBar message
 void _showMessage(String message) {
   AppLogs.debugLog(message);
 }
+
 Future<void> requestCameraAndLocationPermissions() async {
   // طلب صلاحية الكاميرا
   final cameraStatus = await Permission.camera.request();
@@ -128,6 +154,11 @@ Future<void> requestCameraAndLocationPermissions() async {
   }
 }
 
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // معالجة النوتيفيكيشن لما التطبيق مقفول
+  print("رسالة في الخلفية: ${message.notification?.title}");
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await requestPermissions();
@@ -145,27 +176,25 @@ void main() async {
     ),
   );
 
+  await FirebaseMessaging.instance.requestPermission();
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   requestCameraAndLocationPermissions();
+  await setupFirebaseMessaging();
 
   await FirebaseAppCheck.instance
       .activate(androidProvider: AndroidProvider.debug);
   SimpleBlocObserverService();
 
-
-
   await HiveStorage.init();
-
 
   // fayoum
   // giza
   // alex
   // cairo
 
-
   // new sign up
   // reserve seat
   // cancel
-
 
   if (HiveStorage.get(HiveKeys.isDark) == null) {
     HiveStorage.set(HiveKeys.isDark, true);
@@ -202,23 +231,15 @@ void main() async {
           BlocProvider<CinemaaItemCubit>(
             create: (context) => CinemaaItemCubit(),
           ),
-
-
           BlocProvider<MovieCarouselCubit>(
             create: (context) => MovieCarouselCubit(),
-
           ),
           BlocProvider<ComingSoonCubit>(
             create: (context) => ComingSoonCubit(),
-
           ),
           BlocProvider<WatchListCubit>(
             create: (context) => WatchListCubit(),
-
           )
-
-
-
         ],
         child: MyApp(),
       ),

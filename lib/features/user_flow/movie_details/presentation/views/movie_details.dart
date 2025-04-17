@@ -310,7 +310,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                 ),
                 ReadMoreText(
                   widget.model.description ?? "",
-                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
+                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 10.sp),
                   trimLines: 4,
                   textAlign: TextAlign.start,
                   trimMode: TrimMode.Line,

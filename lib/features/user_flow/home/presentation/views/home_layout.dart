@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeLayout> {
     return Scaffold(
       body: pages[selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         color: const Color(0xFF27125B),
         onTap: (index) {
           setState(() {

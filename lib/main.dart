@@ -14,6 +14,7 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import 'data/hive_stroage.dart';
 import 'features/user_flow/Watch_list/presentation/cubit/watch_list_cubit.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
@@ -46,6 +47,45 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> initLocalNotifications() async {
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+
+  const InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+  );
+
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+  );
+}
+
+Future<void> showLocalNotification(String title, String body) async {
+  const AndroidNotificationDetails androidPlatformChannelSpecifics =
+      AndroidNotificationDetails(
+    'your_channel_id',
+    'Your Channel Name',
+    channelDescription: 'Your channel description',
+    importance: Importance.max,
+    priority: Priority.high,
+    ticker: 'ticker',
+  );
+
+  const NotificationDetails platformChannelSpecifics =
+      NotificationDetails(android: androidPlatformChannelSpecifics);
+
+  await flutterLocalNotificationsPlugin.show(
+    0, // notification ID
+    title,
+    body,
+    platformChannelSpecifics,
+    payload: 'Default_Sound',
+  );
+}
 
 Future<void> requestPermissions() async {
   await Permission.camera.request();
@@ -121,6 +161,7 @@ Future<void> printUserLocation() async {
 
 void _showMessage(String message) {
   AppLogs.debugLog(message);
+  showLocalNotification("📢 تنبيه", message); // Notification local
 }
 
 Future<void> requestCameraAndLocationPermissions() async {
@@ -185,6 +226,8 @@ void main() async {
     HiveStorage.set(HiveKeys.isArabic, false);
   }
 
+  await initLocalNotifications(); // Initialize local notifications
+
   runApp(
     DevicePreview(
       enabled: kDebugMode,
@@ -248,25 +291,24 @@ class _MyAppState extends State<MyApp> {
             splitScreenMode: true,
             builder: (_, child) {
               return MaterialApp(
-                theme: theme.currentTheme,
-                locale: HiveStorage.get(HiveKeys.isArabic)
-                    ? const Locale('ar')
-                    : const Locale('en'),
-                localizationsDelegates: const [
-                  S.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: S.delegate.supportedLocales,
-                debugShowCheckedModeBanner: false,
-                builder: (context, child) {
-                  child = BotToastInit()(context, child);
-                  return DevicePreview.appBuilder(context, child);
-                },
-                navigatorObservers: [BotToastNavigatorObserver()],
-                home: SplashScreen(),
-              );
+                  theme: theme.currentTheme,
+                  locale: HiveStorage.get(HiveKeys.isArabic)
+                      ? const Locale('ar')
+                      : const Locale('en'),
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  debugShowCheckedModeBanner: false,
+                  builder: (context, child) {
+                    child = BotToastInit()(context, child);
+                    return DevicePreview.appBuilder(context, child);
+                  },
+                  navigatorObservers: [BotToastNavigatorObserver()],
+                  home: SplashScreen());
             },
           );
         },
@@ -275,111 +317,12 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-const String googleApiKey = 'AIzaSyD7VmrfzhvvuttRBIRVcWix-1eOjLtI1bU';
 
-class RouteMapPage extends StatefulWidget {
-  @override
-  _RouteMapPageState createState() => _RouteMapPageState();
-}
-
-class _RouteMapPageState extends State<RouteMapPage> {
-  GoogleMapController? mapController;
-  Set<Polyline> polylines = {};
-  LatLng? currentLocation;
-  LatLng? destination;
-
-  @override
-  void initState() {
-    super.initState();
-    _initLocationAndRoute();
-  }
-
-  Future<void> _initLocationAndRoute() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      setState(() {
-        currentLocation = LatLng(position.latitude, position.longitude);
-      });
-
-      print("🚀 Current location: $currentLocation");
-
-      LatLng destinationLatLng = await _getLatLngFromPlaceName("جامعة الفيوم");
-      setState(() {
-        destination = destinationLatLng;
-      });
-
-      print("🎯 Destination location: $destinationLatLng");
-
-      await _drawRoute();
-    } catch (e) {
-      print("❌ Error: $e");
-    }
-  }
-
-  Future<LatLng> _getLatLngFromPlaceName(String place) async {
-    final uri = Uri.https("maps.googleapis.com", "/maps/api/geocode/json",
-        {"address": place, "key": googleApiKey});
-    final response = await http.get(uri);
-    final data = jsonDecode(response.body);
-
-    if (data['status'] == "OK") {
-      final location = data['results'][0]['geometry']['location'];
-      return LatLng(location['lat'], location['lng']);
-    } else {
-      throw Exception("Failed to fetch location: ${data['status']}");
-    }
-  }
-
-  Future<void> _drawRoute() async {
-    if (currentLocation == null || destination == null) return;
-
-    PolylinePoints polylinePoints = PolylinePoints();
-
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      request: PolylineRequest(
-        origin:
-            PointLatLng(currentLocation!.latitude, currentLocation!.longitude),
-        destination: PointLatLng(destination!.latitude, destination!.longitude),
-        mode: TravelMode.driving,
-      ),
-      googleApiKey: googleApiKey,
-    );
-
-    print("📍 Route status: ${result.status}");
-    print("📌 Points count: ${result.points.length}");
-
-    if (result.points.isNotEmpty) {
-      List<LatLng> routePoints = result.points
-          .map((point) => LatLng(point.latitude, point.longitude))
-          .toList();
-
-      setState(() {
-        polylines.add(Polyline(
-            polylineId: PolylineId("route"),
-            color: Colors.blue,
-            width: 5,
-            points: routePoints));
-      });
-    } else {
-      throw Exception("No route found.");
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Route Map")),
-      body: currentLocation == null
-          ? Center(child: CircularProgressIndicator())
-          : GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: currentLocation!,
-                zoom: 14,
-              ),
-              onMapCreated: (controller) => mapController = controller,
-              polylines: polylines,
-            ),
-    );
-  }
-}
+// ScaffoldF(
+//                   body: ElevatedButton(
+//                     onPressed: () {
+//                       showLocalNotification("عنوان الإشعار", "محتوى الإشعار");
+//                     },
+//                     child: Text("إظهار إشعار محلي"),
+//                   ),
+//                 ),

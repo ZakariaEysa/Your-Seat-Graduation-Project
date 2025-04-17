@@ -44,6 +44,9 @@ import 'package:yourseatgraduationproject/features/user_flow/home/presentation/W
 
 import 'package:permission_handler/permission_handler.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 Future<void> requestPermissions() async {
   await Permission.camera.request();
   await Permission.storage.request();
@@ -61,7 +64,6 @@ Future<void> setupFirebaseMessaging() async {
   final token = await messaging.getToken();
   print("📱 FCM Token: $token");
 
-  // استقبال الرسائل أثناء تشغيل التطبيق (foreground)
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     print('💡 New message: ${message.notification?.title}');
     if (message.notification != null) {
@@ -70,7 +72,6 @@ Future<void> setupFirebaseMessaging() async {
     }
   });
 
-  // الرسائل لما المستخدم يضغط عليها ويفتح التطبيق من background
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
     print('🚀 Opened app via message: ${message.notification?.title}');
     _showMessage(
@@ -82,15 +83,13 @@ Future<void> printUserLocation() async {
   bool serviceEnabled;
   LocationPermission permission;
 
-  // Check if location services are enabled
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
     _showMessage('Location services are disabled. Please enable them.');
-    await Geolocator.openLocationSettings(); // Open location settings
+    await Geolocator.openLocationSettings();
     return;
   }
 
-  // Check and request permission
   permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
@@ -102,19 +101,14 @@ Future<void> printUserLocation() async {
 
   if (permission == LocationPermission.deniedForever) {
     _showMessage(
-      'Location permissions are permanently denied. Please enable them from app settings.',
-    );
-    await Geolocator
-        .openAppSettings(); // Open app settings for manual permission
+        'Location permissions are permanently denied. Please enable them from app settings.');
+    await Geolocator.openAppSettings();
     return;
   }
 
-  // Get current location
   try {
     Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-
+        desiredAccuracy: LocationAccuracy.high);
     String message =
         'User location: ${position.latitude}, ${position.longitude}';
     print(message);
@@ -125,13 +119,11 @@ Future<void> printUserLocation() async {
   }
 }
 
-// Helper to show SnackBar message
 void _showMessage(String message) {
   AppLogs.debugLog(message);
 }
 
 Future<void> requestCameraAndLocationPermissions() async {
-  // طلب صلاحية الكاميرا
   final cameraStatus = await Permission.camera.request();
   if (cameraStatus.isGranted) {
     print("تم منح صلاحية الكاميرا ✅");
@@ -142,7 +134,6 @@ Future<void> requestCameraAndLocationPermissions() async {
     await openAppSettings();
   }
 
-  // طلب صلاحية اللوكيشن
   final locationStatus = await Permission.locationWhenInUse.request();
   if (locationStatus.isGranted) {
     print("تم منح صلاحية اللوكيشن ✅");
@@ -155,18 +146,14 @@ Future<void> requestCameraAndLocationPermissions() async {
 }
 
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // معالجة النوتيفيكيشن لما التطبيق مقفول
   print("رسالة في الخلفية: ${message.notification?.title}");
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await requestPermissions();
-  // await printUserLocation();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: 'AIzaSyCREJCsFWlgq_kon3J8_Eu_mhvL0PUNGjs',
@@ -187,15 +174,6 @@ void main() async {
 
   await HiveStorage.init();
 
-  // fayoum
-  // giza
-  // alex
-  // cairo
-
-  // new sign up
-  // reserve seat
-  // cancel
-
   if (HiveStorage.get(HiveKeys.isDark) == null) {
     HiveStorage.set(HiveKeys.isDark, true);
   }
@@ -214,32 +192,21 @@ void main() async {
         providers: [
           ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
           BlocProvider<SwitchLanguageCubit>(
-            create: (context) => SwitchLanguageCubit(),
-          ),
+              create: (context) => SwitchLanguageCubit()),
           BlocProvider<AuthCubit>(
-            create: (context) => AuthCubit(AuthRepoImpl(
-                AuthRemoteDataSourceImpl(
-                    FirebaseAuth.instance, GoogleSignIn()))),
-          ),
+              create: (context) => AuthCubit(AuthRepoImpl(
+                  AuthRemoteDataSourceImpl(
+                      FirebaseAuth.instance, GoogleSignIn())))),
           BlocProvider<MovieDetailsCubit>(
-            create: (context) => MovieDetailsCubit(
-                MovieDetailsRepoImpl(MovieDetailsRemoteDataSourceImpl())),
-          ),
-          BlocProvider<CinemaCubit>(
-            create: (context) => CinemaCubit(),
-          ),
+              create: (context) => MovieDetailsCubit(
+                  MovieDetailsRepoImpl(MovieDetailsRemoteDataSourceImpl()))),
+          BlocProvider<CinemaCubit>(create: (context) => CinemaCubit()),
           BlocProvider<CinemaaItemCubit>(
-            create: (context) => CinemaaItemCubit(),
-          ),
+              create: (context) => CinemaaItemCubit()),
           BlocProvider<MovieCarouselCubit>(
-            create: (context) => MovieCarouselCubit(),
-          ),
-          BlocProvider<ComingSoonCubit>(
-            create: (context) => ComingSoonCubit(),
-          ),
-          BlocProvider<WatchListCubit>(
-            create: (context) => WatchListCubit(),
-          )
+              create: (context) => MovieCarouselCubit()),
+          BlocProvider<ComingSoonCubit>(create: (context) => ComingSoonCubit()),
+          BlocProvider<WatchListCubit>(create: (context) => WatchListCubit())
         ],
         child: MyApp(),
       ),
@@ -281,7 +248,7 @@ class _MyAppState extends State<MyApp> {
             splitScreenMode: true,
             builder: (_, child) {
               return MaterialApp(
-                theme: theme.currentTheme, // استخدم الثيم الحالي
+                theme: theme.currentTheme,
                 locale: HiveStorage.get(HiveKeys.isArabic)
                     ? const Locale('ar')
                     : const Locale('en'),
@@ -297,7 +264,6 @@ class _MyAppState extends State<MyApp> {
                   child = BotToastInit()(context, child);
                   return DevicePreview.appBuilder(context, child);
                 },
-
                 navigatorObservers: [BotToastNavigatorObserver()],
                 home: SplashScreen(),
               );
@@ -330,18 +296,14 @@ class _RouteMapPageState extends State<RouteMapPage> {
 
   Future<void> _initLocationAndRoute() async {
     try {
-      // 1. احصل على الموقع الحالي
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-
+          desiredAccuracy: LocationAccuracy.high);
       setState(() {
         currentLocation = LatLng(position.latitude, position.longitude);
       });
 
       print("🚀 Current location: $currentLocation");
 
-      // 2. اعمل تحويل اسم المكان لإحداثيات (مثال: "جامعة الفيوم")
       LatLng destinationLatLng = await _getLatLngFromPlaceName("جامعة الفيوم");
       setState(() {
         destination = destinationLatLng;
@@ -349,7 +311,6 @@ class _RouteMapPageState extends State<RouteMapPage> {
 
       print("🎯 Destination location: $destinationLatLng");
 
-      // 3. ارسم المسار
       await _drawRoute();
     } catch (e) {
       print("❌ Error: $e");
@@ -357,12 +318,8 @@ class _RouteMapPageState extends State<RouteMapPage> {
   }
 
   Future<LatLng> _getLatLngFromPlaceName(String place) async {
-    final uri = Uri.https(
-      "maps.googleapis.com",
-      "/maps/api/geocode/json",
-      {"address": place, "key": googleApiKey},
-    );
-
+    final uri = Uri.https("maps.googleapis.com", "/maps/api/geocode/json",
+        {"address": place, "key": googleApiKey});
     final response = await http.get(uri);
     final data = jsonDecode(response.body);
 
@@ -399,11 +356,10 @@ class _RouteMapPageState extends State<RouteMapPage> {
 
       setState(() {
         polylines.add(Polyline(
-          polylineId: PolylineId("route"),
-          color: Colors.blue,
-          width: 5,
-          points: routePoints,
-        ));
+            polylineId: PolylineId("route"),
+            color: Colors.blue,
+            width: 5,
+            points: routePoints));
       });
     } else {
       throw Exception("No route found.");
@@ -421,123 +377,9 @@ class _RouteMapPageState extends State<RouteMapPage> {
                 target: currentLocation!,
                 zoom: 14,
               ),
-              polylines: polylines,
               onMapCreated: (controller) => mapController = controller,
-              myLocationEnabled: true,
-              myLocationButtonEnabled: true,
+              polylines: polylines,
             ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-// class RouteMapPage extends StatefulWidget {
-//   const RouteMapPage({Key? key}) : super(key: key);
-//
-//   @override
-//   State<RouteMapPage> createState() => _RouteMapPageState();
-// }
-//
-// class _RouteMapPageState extends State<RouteMapPage> {
-//   Completer<GoogleMapController> _controller = Completer();
-//   LatLng _currentLocation = LatLng(29.309948, 30.841800); // المسلة
-//   LatLng _destinationLocation = LatLng(29.308960, 30.896508); // جامعة الفيوم
-//
-//   Set<Polyline> _polylines = {};
-//   List<LatLng> _polylineCoordinates = [];
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _createRoute();
-//   }
-//
-//   Future<void> _createRoute() async {
-//     final polylinePoints = PolylinePoints();
-//     final result = await polylinePoints.getRouteBetweenCoordinates(
-//       googleApiKey: googleMapsApiKey,
-//       request: PolylineRequest(
-//         origin: PointLatLng(
-//             _currentLocation.latitude, _currentLocation.longitude),
-//         destination: PointLatLng(
-//             _destinationLocation.latitude, _destinationLocation.longitude),
-//         mode: TravelMode.driving,
-//       ),
-//     );
-//
-//     if (result.points.isNotEmpty) {
-//       _polylineCoordinates = result.points
-//           .map((e) => LatLng(e.latitude, e.longitude))
-//           .toList();
-//
-//       setState(() {
-//         _polylines.add(Polyline(
-//           polylineId: PolylineId('route'),
-//           points: _polylineCoordinates,
-//           color: Colors.blue,
-//           width: 5,
-//         ));
-//       });
-//
-//       final controller = await _controller.future;
-//       controller.animateCamera(CameraUpdate.newLatLngBounds(
-//         LatLngBounds(
-//           southwest: LatLng(
-//             _currentLocation.latitude <= _destinationLocation.latitude
-//                 ? _currentLocation.latitude
-//                 : _destinationLocation.latitude,
-//             _currentLocation.longitude <= _destinationLocation.longitude
-//                 ? _currentLocation.longitude
-//                 : _destinationLocation.longitude,
-//           ),
-//           northeast: LatLng(
-//             _currentLocation.latitude >= _destinationLocation.latitude
-//                 ? _currentLocation.latitude
-//                 : _destinationLocation.latitude,
-//             _currentLocation.longitude >= _destinationLocation.longitude
-//                 ? _currentLocation.longitude
-//                 : _destinationLocation.longitude,
-//           ),
-//         ),
-//         100,
-//       ));
-//     } else {
-//       print("❌ Unable to get route: ${result.errorMessage}");
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('الاتجاهات')),
-//       body: GoogleMap(
-//         initialCameraPosition: CameraPosition(
-//           target: _currentLocation,
-//           zoom: 13,
-//         ),
-//         onMapCreated: (controller) => _controller.complete(controller),
-//         markers: {
-//           Marker(
-//             markerId: MarkerId('current'),
-//             position: _currentLocation,
-//             infoWindow: InfoWindow(title: ' مستشفي الندي التخصصي ب الفيوم'),
-//           ),
-//           Marker(
-//             markerId: MarkerId('destination'),
-//             position: _destinationLocation,
-//             infoWindow: InfoWindow(title: 'جامعة الفيوم'),
-//           ),
-//         },
-//         polylines: _polylines,
-//       ),
-//     );
-//   }
-// }

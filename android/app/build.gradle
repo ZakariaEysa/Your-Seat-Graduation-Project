@@ -1,8 +1,8 @@
 plugins {
     id "com.android.application"
-    id 'com.google.gms.google-services'
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
 }
 
 def localProperties = new Properties()
@@ -28,20 +28,24 @@ android {
     compileSdk = 35
     ndkVersion = "25.1.8937393"
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     defaultConfig {
         applicationId = "com.example.yourseatgraduationproject"
         minSdk = 23
         targetSdk = 35
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+
+        // ✅ تمكين coreLibraryDesugaring
+        coreLibraryDesugaringEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 
     buildTypes {
@@ -58,8 +62,10 @@ flutter {
 dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
     implementation 'com.google.firebase:firebase-messaging:23.4.1'
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.android.gms:play-services-auth:20.2.0")
+    implementation platform("com.google.firebase:firebase-bom:33.5.1")
+    implementation "com.google.firebase:firebase-auth"
+    implementation "com.google.android.gms:play-services-auth:20.2.0"
+
+    // ✅ مكتبة دعم desugaring
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 }
-apply plugin: 'com.google.gms.google-services'

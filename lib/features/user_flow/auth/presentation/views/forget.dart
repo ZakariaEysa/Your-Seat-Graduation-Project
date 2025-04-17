@@ -57,6 +57,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               size: 25,
             ),
           ),
+
           backgroundColor: const Color(0xFF2E1371),
           title: Text(
             lang.forgetPassword,

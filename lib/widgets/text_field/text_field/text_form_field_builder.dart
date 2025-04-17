@@ -31,6 +31,7 @@ class TextFormFieldBuilder extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.hinitText,
+    this.style, // <-- تمت الإضافة هنا
   });
 
   final String? label;
@@ -60,6 +61,7 @@ class TextFormFieldBuilder extends StatelessWidget {
   final Widget? suffixIcon;
   final String? hinitText;
   final VoidCallback? onTap;
+  final TextStyle? style; // <-- تمت الإضافة هنا
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +78,7 @@ class TextFormFieldBuilder extends StatelessWidget {
         controller: controller,
         obscureText: obsecure,
         textAlignVertical: textAlignVer ?? TextAlignVertical.top,
-        style: TextStyle(
+        style: style ?? TextStyle( // <-- التعديل هنا
           color: theme.colorScheme.onPrimary,
         ),
         validator: validator,
@@ -102,23 +104,13 @@ class TextFormFieldBuilder extends StatelessWidget {
               color: theme.colorScheme.onPrimary,
             ),
           )
-              : (prefixIcon ??
-              (isIcon
-                  ? Icon(
-                prefix,
-                color: theme.colorScheme. onPrimary,
-              )
-                  : null)),
-          suffixIcon: suffixIcon ??
-              (obsecure
-                  ? IconButton(
-                icon: Icon(
-                  Icons.remove_red_eye,
-                  color: theme.colorScheme.onPrimary.withOpacity(0.5),
-                ),
-                onPressed: () {},
-              )
-                  : null),
+              : (prefixIcon ?? (isIcon ? Icon(prefix, color: theme.colorScheme.onPrimary) : null)),
+          suffixIcon: suffixIcon ?? (obsecure
+              ? IconButton(
+            icon: Icon(Icons.remove_red_eye, color: theme.colorScheme.onPrimary.withOpacity(0.5)),
+            onPressed: () {},
+          )
+              : null),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: Color(0x40000000), width: 1.0),

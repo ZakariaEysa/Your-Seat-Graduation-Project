@@ -102,6 +102,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   }
                   return null;
                 },
+                style: TextStyle(
+                  fontSize: 15.sp,),
                 width: 312.w,
                 height: 80.h,
                 controller: cubit.emailController,

@@ -119,6 +119,8 @@ class _SignInState extends State<SignIn> {
                               }
                               return null;
                             },
+                            style: TextStyle(
+                              fontSize: 15.sp,),
                             obsecure: false,
                             type: TextInputType.emailAddress,
                             imagePath: 'assets/images/email 2.png',
@@ -156,6 +158,8 @@ class _SignInState extends State<SignIn> {
 
                               return null;
                             },
+                            style: TextStyle(
+                              fontSize: 15.sp,),
                           ),
                         ),
                       ),

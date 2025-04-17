@@ -120,6 +120,7 @@ class _RatingState extends State<Rating> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Theme.of(context).colorScheme.primary,
+
                 hintText: lang.yourEvaluationIsInterested,
                 hintStyle: theme.textTheme.bodySmall!
                     .copyWith(fontSize: 13.sp,),

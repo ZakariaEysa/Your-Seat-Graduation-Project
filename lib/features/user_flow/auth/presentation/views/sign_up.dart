@@ -117,6 +117,8 @@ class _SignUpState extends State<SignUp> {
                           }
                           return null;
                         },
+                        style: TextStyle(
+                          fontSize: 18.sp,),
                         imagePath: 'assets/images/user.png',
                       ),
                     ),
@@ -139,6 +141,8 @@ class _SignUpState extends State<SignUp> {
                           }
                           return null;
                         },
+                        style: TextStyle(
+                          fontSize: 18.sp,),
                         obsecure: false,
                         type: TextInputType.emailAddress,
                         imagePath: 'assets/images/email 2.png',
@@ -168,6 +172,8 @@ class _SignUpState extends State<SignUp> {
                           setState(() {});
                           return null;
                         },
+                        style: TextStyle(
+                          fontSize: 18.sp,),
                         obsecure: obscure,
                         imagePath: "assets/images/padlock.png",
                         suffixIcon: InkWell(
@@ -202,6 +208,8 @@ class _SignUpState extends State<SignUp> {
                           }
                           return null;
                         },
+                        style: TextStyle(
+                          fontSize: 18.sp,),
                         type: TextInputType.text,
                         obsecure: obscure2,
                         imagePath: "assets/images/access.png",
@@ -336,7 +344,7 @@ class _SignUpState extends State<SignUp> {
                     delay: const Duration(milliseconds: 550),
                     child: Text(
                       privacyPolicy ? "" : local.pleaseAcceptPrivacyAndPolicy,
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: Colors.red,fontSize: 17.sp),
                       textAlign: TextAlign.center,
                     ),
                   ),

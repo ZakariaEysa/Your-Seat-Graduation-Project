@@ -115,6 +115,8 @@ class _NewPasswordState extends State<NewPassword> {
                             }
                             return null;
                           },
+                          style: TextStyle(
+                            fontSize: 15.sp,),
                           width: 330.w,
                           height: 80.h,
                           controller: newPasswordController,
@@ -149,6 +151,8 @@ class _NewPasswordState extends State<NewPassword> {
                             }
                             return null;
                           },
+                          style: TextStyle(
+                            fontSize: 15.sp,),
                           width: 330.w,
                           height: 80.h,
                           controller: confirmPasswordController,

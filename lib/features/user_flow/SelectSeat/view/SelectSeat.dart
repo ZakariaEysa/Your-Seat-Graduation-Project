@@ -1,16 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_policy.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
-import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/app_logs.dart';
+import '../../../../utils/navigation.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';
+import '../../../../widgets/loading_indicator.dart';
 import '../../../../widgets/scaffold/scaffold_f.dart';
+import '../../auth/presentation/views/sign_in.dart';
+import '../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../payment/presentation/views/payment_policy.dart';
 import '../widgets/date.dart';
 import '../widgets/time.dart';
 import '../widgets/seats_grid.dart';
@@ -169,11 +168,22 @@ class _SelectSeatState extends State<SelectSeat> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var lang = S.of(context);
+    AppLogs.debugLog(selectedSeats.toString());
+    AppLogs.debugLog(_seatCategory.toString());
+    AppLogs.debugLog(_highestSeatCategory.toString());
+    if (selectedSeats.isEmpty) {
+      _highestSeatCategory = '';
+
+      _seatCategory = '';
+    }
 
     return ScaffoldF(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
           onPressed: () => navigatePop(context: context),
         ),
         backgroundColor: theme.primaryColor,
@@ -210,16 +220,27 @@ class _SelectSeatState extends State<SelectSeat> {
                   ),
                   SizedBox(height: 25.h),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SeatsType(
-                          color: const Color(0xFFF3F3F3), text: lang.available),
-                      SeatsType(
-                          color: const Color(0xFF5b085d), text: lang.reserved),
-                      SeatsType(
-                          color: const Color(0xFF09FBD3), text: lang.selected),
-                    ],
-                  ),
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SeatsType(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surface, // available
+                          text: lang.available,
+                        ),
+                        SeatsType(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface, // reserved
+                          text: lang.reserved,
+                        ),
+                        SeatsType(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surfaceVariant, // selected
+                          text: lang.selected,
+                        ),
+                      ]),
                   SizedBox(height: 20.h),
                   Text(
                     _seatCategory.isNotEmpty
@@ -231,10 +252,10 @@ class _SelectSeatState extends State<SelectSeat> {
                   Center(
                     child: Text(
                       lang.selectDateTime,
-                      style: theme.textTheme.labelSmall?.copyWith(
+                      style: theme.textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 24.sp,
-                        color: Colors.white,
+
                       ),
                     ),
                   ),
@@ -253,6 +274,10 @@ class _SelectSeatState extends State<SelectSeat> {
                             "$newYear-${newMonth.toString().padLeft(2, '0')}-${newDay.toString().padLeft(2, '0')}"; // ✅ تخزين التاريخ بالكامل
                         _filterTimesForSelectedDay();
                         _totalPrice = 0;
+
+                        _highestSeatCategory = '';
+
+                        _seatCategory = '';
                         AppLogs.scussessLog("date is $_selectedDate");
                       });
                     },
@@ -266,6 +291,9 @@ class _SelectSeatState extends State<SelectSeat> {
                         _selectedTime = newTime;
                         _updateReservedSeats(newTime);
                         _totalPrice = 0;
+                        _highestSeatCategory = '';
+
+                        _seatCategory = '';
                       });
                     },
                   ),
@@ -348,6 +376,7 @@ class _SelectSeatState extends State<SelectSeat> {
     AppLogs.debugLog(selectedSeats.toString());
 
     AppLogs.debugLog(seatNumber.toString());
+
     if (seatNumber <= 24) {
       _highestSeatCategory = "VIP";
     } else if (seatNumber <= 48) {

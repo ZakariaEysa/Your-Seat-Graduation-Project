@@ -41,7 +41,7 @@ class OtpFieldWidget extends StatelessWidget {
         ],
         decoration: InputDecoration(
           filled: true,
-          fillColor: const Color(0xFF2E1371),
+          fillColor: Theme.of(context).colorScheme.primary,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: Colors.black, width: 2),
@@ -56,7 +56,7 @@ class OtpFieldWidget extends StatelessWidget {
           ),
           counterText: "",
         ),
-        style: const TextStyle(color: Colors.white, fontSize: 18),
+        style:TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 18),
         textDirection: TextDirection.ltr, // Force left-to-right text direction
       ),
     );

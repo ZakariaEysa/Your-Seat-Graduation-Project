@@ -45,7 +45,7 @@ class Director extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: 12.w, left: 11.w),
                 child: Text(name,
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 12.sp)),
+                    style: theme.textTheme.titleLarge!.copyWith(fontSize: 12.sp)),
               ),
               SizedBox(height: 5.h),
             ],

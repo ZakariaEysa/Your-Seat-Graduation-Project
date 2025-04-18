@@ -26,32 +26,32 @@
 //           child: Column(
 //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //         children: [
-//           SettingsItemClass(
+//           SettingsItem(
 //             title: "Profile",
 //             imageIcon: "assets/images/account.png",
 //             onPress: () {
 //               navigateTo(context: context, screen: const ProfileCard());
 //             },
 //           ),
-//           SettingsItemClass(
+//           SettingsItem(
 //               title: "Language",
 //               imageIcon: "assets/images/language.png",
 //               onPress: () {
 //                 showLanguageBottomSheet(context);
 //               }),
-//           SettingsItemClass(
+//           SettingsItem(
 //               title: "Theme",
 //               imageIcon: "assets/images/theme.png",
 //               onPress: () {
 //                 showThemeBottomSheet(context);
 //               }),
-//           SettingsItemClass(
+//           SettingsItem(
 //               title: "About Us",
 //               imageIcon: "assets/images/account.png",
 //               onPress: () {
 //                 navigateTo(context: context, screen: const AboutUs());
 //               }),
-//           SettingsItemClass(
+//           SettingsItem(
 //               title: "LogOut",
 //               imageIcon: "assets/images/logout 1.png",
 //               onPress: () {})
@@ -76,6 +76,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Settings/presentation/views/profile_card.dart';
 import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
+import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/widgets/settings_item/settings_item.dart';
 import 'package:yourseatgraduationproject/utils/dialog_utilits.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
@@ -85,7 +86,6 @@ import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../auth/presentation/cubit/auth_cubit.dart';
-import '../widgets/SettingsItemfolder/settings_item_widget.dart';
 import 'language_sheet.dart';
 import 'theme_sheet.dart';
 
@@ -99,7 +99,6 @@ class SettingsPage extends StatelessWidget {
     return ScaffoldF(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFF2E1371),
         title: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(95.w, 0, 0, 0),
           child: HeadAppBar(title: lang.settings),
@@ -109,16 +108,16 @@ class SettingsPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: _buildSettingsItemClasss(context),
+          children: _buildSettingsItems(context),
         ),
       ),
     );
   }
 
-  List<Widget> _buildSettingsItemClasss(BuildContext context) {
+  List<Widget> _buildSettingsItems(BuildContext context) {
     var lang = S.of(context);
     return [
-      SettingsItemClass(
+      SettingsItem(
         title: lang.profile,
         imageIcon: "assets/images/account.png",
         onPress: () {
@@ -142,7 +141,7 @@ class SettingsPage extends StatelessWidget {
           }
         },
       ),
-      SettingsItemClass(
+      SettingsItem(
         title: lang.language,
         imageIcon: "assets/images/language.png",
         onPress: () => _showBottomSheet(
@@ -150,13 +149,16 @@ class SettingsPage extends StatelessWidget {
           const LanguageSheet(),
         ),
       ),
-      SettingsItemClass(
+      SettingsItem(
           title: lang.theme,
           imageIcon: "assets/images/theme.png",
-          onPress: () {
-            ThemeSheet();
-          }),
-      SettingsItemClass(
+
+            onPress: () => _showBottomSheet(
+              context,
+              const ThemeSheet(),
+            )
+          ),
+      SettingsItem(
         title: lang.AboutUs,
         imageIcon: "assets/images/account.png",
         onPress: () {
@@ -164,7 +166,7 @@ class SettingsPage extends StatelessWidget {
         },
       ),
       if (HiveStorage.get(HiveKeys.role) != Role.guest.toString())
-        SettingsItemClass(
+        SettingsItem(
           title: lang.logOut,
           imageIcon: "assets/images/logout 1.png",
           onPress: () {

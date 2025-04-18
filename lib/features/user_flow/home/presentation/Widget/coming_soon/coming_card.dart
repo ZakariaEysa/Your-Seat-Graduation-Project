@@ -148,7 +148,7 @@ class ComingCard extends StatelessWidget {
             Text(
               genre,
               style: TextStyle(
-                color: Colors.white70,
+                color: Theme.of(context).colorScheme.onPrimary,
                 fontSize: 12.sp,
               ),
             ),
@@ -158,7 +158,7 @@ class ComingCard extends StatelessWidget {
             Text(
               date,
               style: TextStyle(
-                color: Colors.white70,
+                color: Theme.of(context).colorScheme.onPrimary,
                 fontSize: 12.sp,
               ),
             ),

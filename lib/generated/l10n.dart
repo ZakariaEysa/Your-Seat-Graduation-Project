@@ -1248,6 +1248,16 @@ class S {
     );
   }
 
+  /// `Show More..`
+  String get showMore {
+    return Intl.message(
+      'Show More..',
+      name: 'showMore',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No Results Found`
   String get noResultsFound {
     return Intl.message(
@@ -1698,20 +1708,20 @@ class S {
     );
   }
 
-  /// `Movie genre : `
+  /// `Movie genre  `
   String get movieGenre {
     return Intl.message(
-      'Movie genre : ',
+      'Movie genre  ',
       name: 'movieGenre',
       desc: '',
       args: [],
     );
   }
 
-  /// `Censorship : `
+  /// `Censorship  `
   String get censorship {
     return Intl.message(
-      'Censorship : ',
+      'Censorship  ',
       name: 'censorship',
       desc: '',
       args: [],

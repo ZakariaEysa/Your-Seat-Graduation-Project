@@ -19,11 +19,7 @@ class HeadAppBar extends StatelessWidget {
         padding: EdgeInsetsDirectional.only(top: 20.h, end: 85.w),
         child: Text(
           title,
-          style:  TextStyle(
-            fontSize: 28.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style:  Theme.of(context).textTheme.bodyLarge,
         ),
       ),
     );

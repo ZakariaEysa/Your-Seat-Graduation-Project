@@ -53,14 +53,14 @@ class Payment extends StatelessWidget {
             style: theme.textTheme.labelLarge!.copyWith(fontSize: 24.sp),
           ),
           titleSpacing: 80.0,
-          backgroundColor: const Color(0xFF2E1371),
+
           leading: IconButton(
               onPressed: () {
                 navigatePop(context: context);
               },
               icon: Icon(
                 Icons.arrow_back,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
                 size: 26.sp,
               )),
         ),
@@ -102,7 +102,7 @@ class Payment extends StatelessWidget {
                               Spacer(),
                               Text(
                                 lang.payWithCard,
-                                style: theme.textTheme.bodyMedium!
+                                style: theme.textTheme.titleLarge!
                                     .copyWith(fontSize: 16.sp),
                               ),
                               Spacer(),
@@ -215,7 +215,7 @@ class Payment extends StatelessWidget {
                               Spacer(),
                               Text(
                                 lang.instapay,
-                                style: theme.textTheme.bodyMedium!
+                                style: theme.textTheme.titleLarge!
                                     .copyWith(fontSize: 16.sp),
                               ),
                               Spacer(),
@@ -254,13 +254,13 @@ class Payment extends StatelessWidget {
                           children: [
                             Text(
                               " " + lang.completeYourPaymentIn,
-                              style: theme.textTheme.bodyMedium!
+                              style: theme.textTheme.titleLarge!
                                   .copyWith(fontSize: 11.sp),
                             ),
                             Spacer(),
                             Text(
                               "15:00  ",
-                              style: theme.textTheme.bodyMedium!.copyWith(
+                              style: theme.textTheme.titleLarge!.copyWith(
                                   fontSize: 11.sp, color: Color(0xFFC11E88)),
                             ),
                           ],

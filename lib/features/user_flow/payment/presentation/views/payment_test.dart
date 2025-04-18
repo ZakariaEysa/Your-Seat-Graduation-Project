@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:yourseatgraduationproject/core/Network/end_points.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
@@ -94,11 +95,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
             console.log("Submit button clicked");
           } else {
             console.log("Submit button is disabled, retrying...");
-            setTimeout(clickSubmitButton, 500);
+            setTimeout(clickSubmitButton, 300);
           }
         } else {
           console.log("Submit button not found, retrying...");
-          setTimeout(clickSubmitButton, 500);
+          setTimeout(clickSubmitButton, 300);
         }
       }
       
@@ -137,32 +138,35 @@ class _PaymentScreenState extends State<PaymentScreen> {
       
       document.addEventListener("DOMContentLoaded", function() {
         console.log("DOM fully loaded, attempting to click submit button");
-        setTimeout(clickSubmitButton, 500);
+        setTimeout(clickSubmitButton, 300);
         monitorPageChanges();
       });
 
       window.onload = function () {
         console.log("Page fully loaded, attempting to click submit button");
-        setTimeout(clickSubmitButton, 500);
+        setTimeout(clickSubmitButton, 300);
         monitorPageChanges();
       };
 
-      setTimeout(clickSubmitButton, 1500); // محاولة الضغط بعد 1.5 ثانية لضمان تحميل الصفحة
+      setTimeout(clickSubmitButton, 600); // محاولة الضغط بعد 1.5 ثانية لضمان تحميل الصفحة
     """);
   }
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData( color: Theme.of(context).colorScheme.onPrimary,),
         title: Center(
           child: Text(
             "إتمام عملية الدفع",
-            style: TextStyle(color: Colors.white),
+            style: theme.textTheme.bodyLarge?.copyWith(
+              fontSize: 25.sp,
+            ),
           ),
         ),
-        backgroundColor: const Color(0xFF2E1371),
+
       ),
       body: InAppWebView(
         initialOptions: InAppWebViewGroupOptions(
@@ -382,7 +386,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         "seats": selectedSeats,
         "seatCategory": seatCategory,
         "totalPrice": totalPrice,
-        "duration"  : widget.model.duration,
+        "duration": widget.model.duration,
         "category": widget.model.category,
       };
 
@@ -431,7 +435,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         "seatCategory": seatCategory,
         "totalPrice": totalPrice,
         "userEmail": email,
-        "duration"  : widget.model.duration,
+        "duration": widget.model.duration,
         "category": widget.model.category,
       };
 

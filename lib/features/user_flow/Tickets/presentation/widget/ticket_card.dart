@@ -25,7 +25,7 @@ class TicketCard extends StatelessWidget {
 
     return Card(
       margin: EdgeInsets.only(bottom: 15.h),
-      color: const Color(0xFF0E0643),
+      color: Theme.of(context).colorScheme.secondary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
       child: Container(
         height: 200.h,
@@ -55,22 +55,22 @@ class TicketCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontSize: 14.sp,
                     ),
                   ),
                   SizedBox(height: 8.h),
-                  _buildInfoRow('assets/icons/clock_icon.png', '${ticket.time}  |  ${ticket.date}'),
-                  _buildInfoRow('assets/icons/location_icon.png', ticket.location),
-                  _buildInfoRow('assets/icons/Group 4.png', 'Seat: ${ticket.seats}'),
-                  _buildInfoRow('assets/icons/price-tag 2.png', ticket.price),
+                  _buildInfoRow(context,'assets/icons/clock_icon.png', '${ticket.time}  |  ${ticket.date}'),
+                  _buildInfoRow(context,'assets/icons/location_icon.png', ticket.location),
+                  _buildInfoRow(context,'assets/icons/Group 4.png', 'Seat: ${ticket.seats}'),
+                  _buildInfoRow(context,'assets/icons/price-tag 2.png', ticket.price),
                   if (ticket.status == "active")
                     Padding(
                       padding: EdgeInsets.only(top: 8.h),
                       child: Center(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF08086A),
+                            backgroundColor:Theme.of(context).colorScheme.primary,
                             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                             minimumSize: Size(120.w, 35.h),
                             side: BorderSide(
@@ -85,7 +85,7 @@ class TicketCard extends StatelessWidget {
                           child: Text(
                             'Cancel',
                             style: TextStyle(
-                              fontSize: 13.sp,
+                              fontSize: 15.sp,
                               color: Colors.red,
                             ),
                           ),
@@ -107,7 +107,7 @@ class TicketCard extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(String iconPath, String text) {
+  Widget _buildInfoRow(BuildContext context,String iconPath, String text) {
     return Padding(
       padding: EdgeInsets.only(bottom: 4.h),
       child: Row(
@@ -116,6 +116,9 @@ class TicketCard extends StatelessWidget {
             iconPath,
             width: 18.w,
             height: 18.h,
+            color: Theme.of(context).colorScheme.onSecondary,
+
+
           ),
           SizedBox(width: 5.w),
           Flexible(
@@ -124,7 +127,6 @@ class TicketCard extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: Colors.white,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w400,
               ),

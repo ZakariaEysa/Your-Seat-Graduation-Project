@@ -31,9 +31,9 @@ class TextFormFieldBuilder extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.hinitText,
-    //this.initialValue,
+    this.style, // <-- تمت الإضافة هنا
   });
-  //final String? initialValue ;
+
   final String? label;
   final Function(String)? onChanged;
   final Function(String)? onSubmitted;
@@ -61,14 +61,16 @@ class TextFormFieldBuilder extends StatelessWidget {
   final Widget? suffixIcon;
   final String? hinitText;
   final VoidCallback? onTap;
+  final TextStyle? style; // <-- تمت الإضافة هنا
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SizedBox(
       width: width ?? 333.w,
       height: height ?? 60.h,
       child: TextFormField(
-        // initialValue: initialValue,
         onTap: onTap,
         textAlign: textAlign ?? TextAlign.start,
         maxLines: maxlines ? 1 : null,
@@ -76,16 +78,21 @@ class TextFormFieldBuilder extends StatelessWidget {
         controller: controller,
         obscureText: obsecure,
         textAlignVertical: textAlignVer ?? TextAlignVertical.top,
-        style: const TextStyle(color: Colors.white),
+        style: style ?? TextStyle( // <-- التعديل هنا
+          color: theme.colorScheme.onPrimary,
+        ),
         validator: validator,
         onChanged: onChanged,
         onFieldSubmitted: onSubmitted,
         keyboardType: type,
         decoration: InputDecoration(
           hintText: label,
-          hintStyle: TextStyle(color: Colors.grey, fontSize: 13.sp),
+          hintStyle: TextStyle(
+            color: theme.colorScheme.onPrimary.withOpacity(0.6),
+            fontSize: 13.sp,
+          ),
           filled: true,
-          fillColor: const Color(0xff2E126E).withOpacity(.4),
+          fillColor: theme.colorScheme.primary.withOpacity(0.4),
           prefixIcon: imagePath != null
               ? Padding(
             padding: EdgeInsets.all(12.0.sp),
@@ -94,42 +101,31 @@ class TextFormFieldBuilder extends StatelessWidget {
               width: 24.w,
               height: 24.h,
               fit: BoxFit.fill,
+              color: theme.colorScheme.onPrimary,
             ),
           )
-              : (prefixIcon ??
-              (isIcon
-                  ? Icon(prefix, color: const Color(0xFFA8A6A6))
-                  : null)),
-          suffixIcon: suffixIcon ??
-              (obsecure
-                  ? IconButton(
-                icon: const Icon(Icons.remove_red_eye,
-                    color: Colors.white54),
-                onPressed: () {
-                  // Toggle password visibility
-                },
-              )
-                  : null),
+              : (prefixIcon ?? (isIcon ? Icon(prefix, color: theme.colorScheme.onPrimary) : null)),
+          suffixIcon: suffixIcon ?? (obsecure
+              ? IconButton(
+            icon: Icon(Icons.remove_red_eye, color: theme.colorScheme.onPrimary.withOpacity(0.5)),
+            onPressed: () {},
+          )
+              : null),
           enabledBorder: OutlineInputBorder(
-
             borderRadius: BorderRadius.circular(8),
-            borderSide:BorderSide(color: Color(0x40000000), width: 1.0),
-
-          ),  focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-
-          borderSide:
-          const BorderSide(color: Colors.blue, width: 1.5),
-        ),
+            borderSide: const BorderSide(color: Color(0x40000000), width: 1.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Colors.blue, width: 1.5),
+          ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
-            borderSide:
-            const BorderSide(width: 1.5, color: Colors.red),
+            borderSide: const BorderSide(width: 1.5, color: Colors.red),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),
-            borderSide:
-            const BorderSide(width: 2, color: Colors.blue),
+            borderSide: const BorderSide(width: 2, color: Colors.blue),
           ),
         ),
       ),

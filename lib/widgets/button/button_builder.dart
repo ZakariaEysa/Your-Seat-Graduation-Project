@@ -64,7 +64,7 @@ class ButtonBuilder extends StatelessWidget {
                       ),
                     Text(
                       text,
-                      style: style ?? theme.textTheme.labelLarge,
+                      style: style ?? theme.textTheme.titleLarge,
                     ),
                   ],
                 ),

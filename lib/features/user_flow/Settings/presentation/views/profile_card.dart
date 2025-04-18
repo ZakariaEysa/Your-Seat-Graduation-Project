@@ -63,17 +63,17 @@ class _ProfileCardState extends State<ProfileCard> {
             Icon (
               Icons.edit,
               size: 27.sp,
-              color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
             )
           ),
           SizedBox(
             width: 12.w,
           ),
         ],
-        backgroundColor: const Color(0xFF2E1371),
+
         iconTheme: IconThemeData(
           size: 28.sp,
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
       ),
       body: Stack(
@@ -87,7 +87,11 @@ class _ProfileCardState extends State<ProfileCard> {
                   topLeft: Radius.circular(51.r),
                   topRight: Radius.circular(48.r),
                 ),
-                color: const Color(0xFF00002B),
+                color: Theme.of(context).colorScheme. secondaryFixed.withOpacity(0.9),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.5),
+                  width: 1.w,
+                ),
               ),
               child: Center(
                 child: Padding(
@@ -103,7 +107,8 @@ class _ProfileCardState extends State<ProfileCard> {
                         style: TextStyle(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onPrimary,
+
                         ),
                       ),
                       SizedBox(height: 10.h),
@@ -114,14 +119,15 @@ class _ProfileCardState extends State<ProfileCard> {
                           width: 150.w,
                           height: 38.h,
                           decoration: BoxDecoration(
-                            color: const Color(0xFFD9D9D9).withOpacity(0.6),
+                              color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(15.r),
                           ),
                           child: Text(
                             lang.personalInfo,
                             textAlign: TextAlign.start,
-                            style: theme.textTheme.titleLarge!
-                                .copyWith(fontSize: 18.sp),
+                            style:theme.textTheme.titleLarge!.copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary,fontSize:
+                              18.sp),
                           ),
                         ),
                       ),

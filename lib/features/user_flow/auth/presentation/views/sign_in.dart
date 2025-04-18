@@ -125,6 +125,8 @@ class _SignInState extends State<SignIn> {
                               }
                               return null;
                             },
+                            style: TextStyle(
+                              fontSize: 15.sp,),
                             obsecure: false,
                             type: TextInputType.emailAddress,
                             imagePath: 'assets/images/email 2.png',
@@ -148,7 +150,7 @@ class _SignInState extends State<SignIn> {
                                   obscure2
                                       ? Icons.visibility_off
                                       : Icons.visibility,
-                                  color: Colors.grey),
+                                color: Theme.of(context).colorScheme.onPrimary,),
                             ),
                             controller: cubit.passwordController,
                             label: lang.password,
@@ -162,6 +164,8 @@ class _SignInState extends State<SignIn> {
 
                               return null;
                             },
+                            style: TextStyle(
+                              fontSize: 15.sp,),
                           ),
                         ),
                       ),
@@ -189,7 +193,7 @@ class _SignInState extends State<SignIn> {
                                 lang.forgotPassword,
                                 style: theme.textTheme.bodyMedium!.copyWith(
                                   fontSize: 14.sp,
-                                  color: const Color(0xFFC1B2B2),
+
                                 ),
                                 textAlign: TextAlign.right,
                               ),
@@ -228,17 +232,18 @@ class _SignInState extends State<SignIn> {
                           padding: EdgeInsets.all(8.0.sp),
                           child: Row(
                             children: [
-                              const Expanded(
+                              Expanded(
+
                                   child: Divider(
-                                      color: Colors.white, thickness: 1)),
+                                      color: Theme.of(context).colorScheme.onPrimary, thickness: 2)),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.h),
                                 child: Text(lang.or,
                                     style: theme.textTheme.titleMedium),
                               ),
-                              const Expanded(
+                              Expanded(
                                   child: Divider(
-                                      color: Colors.white, thickness: 1)),
+                                      color: Theme.of(context).colorScheme.onPrimary, thickness: 2)),
                             ],
                           ),
                         ),

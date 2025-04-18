@@ -110,7 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardInformation":
             MessageLookupByLibrary.simpleMessage("Card information"),
         "cardNumber": MessageLookupByLibrary.simpleMessage("Card Number:"),
-        "censorship": MessageLookupByLibrary.simpleMessage("Censorship : "),
+        "censorship": MessageLookupByLibrary.simpleMessage("Censorship  "),
         "cinema": MessageLookupByLibrary.simpleMessage("Cinema"),
         "comingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
         "comments": MessageLookupByLibrary.simpleMessage("Comments"),
@@ -231,7 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "march": MessageLookupByLibrary.simpleMessage("March"),
         "may": MessageLookupByLibrary.simpleMessage("May"),
         "month": MessageLookupByLibrary.simpleMessage("Month"),
-        "movieGenre": MessageLookupByLibrary.simpleMessage("Movie genre : "),
+        "movieGenre": MessageLookupByLibrary.simpleMessage("Movie genre  "),
         "movies": MessageLookupByLibrary.simpleMessage("Movies"),
         "moviess": MessageLookupByLibrary.simpleMessage("Movies"),
         "myTicket": MessageLookupByLibrary.simpleMessage("My Ticket"),
@@ -323,6 +323,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceFees": MessageLookupByLibrary.simpleMessage("Service Fees:"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "showMore": MessageLookupByLibrary.simpleMessage("Show More.."),
         "showThisQRCodeToTheTicketCounterToReceiveYourTicket":
             MessageLookupByLibrary.simpleMessage(
                 "Show this QR code to the ticket\n  counter to receive your ticket"),

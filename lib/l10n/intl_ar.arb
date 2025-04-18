@@ -42,7 +42,7 @@
   "please_enter_EmailAddress": "يرجى إدخال عنوان البريد الالكتروني",
   "wrong_EmailAddress_format": "صيغة عنوان البريد الالكتروني غير صحيحة",
   "please_enter_password": "يرجى إدخال كلمة المرور",
-  "password_requirements": "يجب أن تكون كلمة المرور 8 أحرف على الأقل، تحتوي على حرف كبير واحد، ورقم واحد، وحرف خاص.",
+  "password_requirements": "يجب أن تكون كلمة المرور 8 أحرف على الأقل، تحتوي \nعلى حرف كبير واحد، ورقم واحد، وحرف خاص.",
   "password_min_length": "يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
   "wrong_password": "كلمة المرور غير صحيحة",
   "EmailAddress_does_not_exist": "عنوان البريد الالكتروني غير موجود",
@@ -125,6 +125,7 @@
   "zakaria1": "زكريا",
 
   "ahmedSayed" : "احمد سيد",
+  "showMore" : "عرض المزيد..",
   "myTicket" : "تذكرتي",
   "downloadTicket" : "تحميل التذكرة",
   "showThisQRCodeToTheTicketCounterToReceiveYourTicket" : "أظهر رمز الاستجابة السريعة هذا أمام شباك\n التذاكر لتحصل على تذكرتك",

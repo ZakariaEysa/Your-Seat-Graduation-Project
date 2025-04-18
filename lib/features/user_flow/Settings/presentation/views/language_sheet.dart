@@ -66,12 +66,12 @@ class LanguageSheet extends StatelessWidget {
                           name,
                           style: theme.textTheme.labelLarge?.copyWith(
                             // color: currentLang == code ? Colors.white : theme.primaryColor,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.onPrimary,
                           ),
                         ),
                         if (currentLang == code)
                           Icon(Icons.check_rounded,
-                              color: Colors.white, size: 20.sp),
+                              color: Theme.of(context).colorScheme.onPrimary, size: 20.sp),
                       ],
                     ),
                   ),

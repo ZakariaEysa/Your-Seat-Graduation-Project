@@ -105,7 +105,7 @@ class _OtpState extends State<Otp> {
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
-        )
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -175,8 +175,10 @@ class _OtpState extends State<Otp> {
                     if (email.isNotEmpty) {
                       AuthCubit.get(context).sendOtp(email);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("OTP has been resent"),
+                         SnackBar(
+                          content: Text("OTP has been resent",style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),),
                           backgroundColor: Colors.green,
                         ),
                       );

@@ -40,14 +40,14 @@ class _NewPasswordState extends State<NewPassword> {
     var lang = S.of(context);
     return ScaffoldF(
         appBar: AppBar(
-          backgroundColor: Color(0xFF2E1371),
+
           leading: IconButton(
               onPressed: () {
                 navigateTo(context: context, screen: ForgotPassword());
               },
               icon: Icon(
                 Icons.arrow_back,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
                 size: 25,
               )),
           title: Text(
@@ -115,6 +115,8 @@ class _NewPasswordState extends State<NewPassword> {
                             }
                             return null;
                           },
+                          style: TextStyle(
+                            fontSize: 15.sp,),
                           width: 330.w,
                           height: 80.h,
                           controller: newPasswordController,
@@ -133,7 +135,7 @@ class _NewPasswordState extends State<NewPassword> {
                                 obscure
                                     ? Icons.visibility_off
                                     : Icons.visibility,
-                                color: Colors.grey,
+                                color: Theme.of(context).colorScheme.onPrimary,
                               )),
                         ),
                         SizedBox(
@@ -149,6 +151,8 @@ class _NewPasswordState extends State<NewPassword> {
                             }
                             return null;
                           },
+                          style: TextStyle(
+                            fontSize: 15.sp,),
                           width: 330.w,
                           height: 80.h,
                           controller: confirmPasswordController,
@@ -168,7 +172,7 @@ class _NewPasswordState extends State<NewPassword> {
                                 obscure2
                                     ? Icons.visibility_off
                                     : Icons.visibility,
-                                color: Colors.grey,
+                                color: Theme.of(context).colorScheme.onPrimary,
                               )),
                         ),
                         SizedBox(

@@ -154,7 +154,7 @@ class PaymentPart extends StatelessWidget {
                   Text(
                     lang.seat,
                     style:
-                        theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
+                        theme.textTheme.titleLarge!.copyWith(fontSize: 15.sp),
                   ),
                   SizedBox(
                     width: 15.w,
@@ -163,8 +163,8 @@ class PaymentPart extends StatelessWidget {
                         padding: EdgeInsetsDirectional.only(end: 8.w),
                         child: Text(
                           seat.toString(),
-                          style: theme.textTheme.bodyMedium!
-                              .copyWith(fontSize: 20.sp),
+                          style: theme.textTheme.titleLarge!
+                              .copyWith(fontSize: 15.sp),
                         ),
                       ))
                 ],
@@ -179,14 +179,14 @@ class PaymentPart extends StatelessWidget {
                   Text(
                     lang.total,
                     style:
-                        theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
+                        theme.textTheme.titleLarge!.copyWith(fontSize:15.sp),
                   ),
                   SizedBox(
                     width: 15.w,
                   ),
                   Text(total,
                       style:
-                          theme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp))
+                          theme.textTheme.titleLarge!.copyWith(fontSize:15.sp))
                 ],
               ),
             ),

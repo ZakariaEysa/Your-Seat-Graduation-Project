@@ -1,5 +1,7 @@
 class HiveKeys {
   static const String isArabic = 'isArabic';
+  static const String isDark = 'isDark';
+
   static const String passUserOnboarding = 'skipped';
 
   static const String role = "role";

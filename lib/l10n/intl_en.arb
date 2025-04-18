@@ -121,6 +121,7 @@
   "zakaria1": "zakaria1",
 
   "ahmedSayed" : "Ahmed Sayed",
+  "showMore" : "Show More..",
   "noResultsFound" : "No Results Found",
   "showThisQRCodeToTheTicketCounterToReceiveYourTicket" : "Show this QR code to the ticket\n  counter to receive your ticket",
   "ok": "OK",
@@ -169,8 +170,10 @@
   "nowPlaying": "Now Playing",
   "comingSoon": "Coming Soon",
   "watchTrailer": "Watch Trailer",
-  "movieGenre": "Movie genre : ",
-  "censorship": "Censorship : " ,
+  "movieGenre": "Movie genre  ",
+  
+  "censorship": "Censorship  " ,
+
   "language": "language",
   "storyLine": "StoryLine",
   "director": "Director",

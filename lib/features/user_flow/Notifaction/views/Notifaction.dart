@@ -17,13 +17,13 @@ class Notifications extends StatelessWidget {
     return ScaffoldF(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.onPrimary,
           size: 28.sp,
         ),
         title: HeadAppBar(
           title: lang.notifications,
         ),
-        backgroundColor: const Color(0xFF2E1371),
+
       ),
 
       body: Center(

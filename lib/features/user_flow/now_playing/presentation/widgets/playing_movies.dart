@@ -41,8 +41,8 @@ class _PlayingMoviesState extends State<PlayingMovies> {
     // تحقق إذا كان الفيلم موجودًا في قائمة Watchlist
     final favoriteMoviesProvider =
         Provider.of<FavoriteMoviesProvider>(context, listen: false);
-    _isBookmarked =
-        favoriteMoviesProvider.favoriteMovies.contains(widget.movies);
+    _isBookmarked = favoriteMoviesProvider.favoriteMovies
+        .any((movie) => movie.name == widget.movies.name);
     BlocProvider.of<MovieDetailsCubit>(context)
         .getRate(widget.title.toString());
   }
@@ -158,6 +158,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
                 "assets/icons/clock.png",
                 width: 18.w,
                 height: 18.h,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               SizedBox(
                 width: 10.w,
@@ -179,6 +180,7 @@ class _PlayingMoviesState extends State<PlayingMovies> {
                 "assets/icons/video.png",
                 width: 18.w,
                 height: 18.h,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               SizedBox(
                 width: 10.w,

@@ -66,7 +66,7 @@ class _SignUpState extends State<SignUp> {
 
     return ScaffoldF(
       appBar: AppBar(
-        iconTheme: const IconThemeData(size: 28, color: Colors.white),
+        iconTheme:IconThemeData(size: 28, color: Theme.of(context).colorScheme.onPrimary,),
         backgroundColor: theme.primaryColor,
         centerTitle: true, // دي بتخلي العنوان في النص على iOS تلقائيًا
         title: Text(  local.signUp,
@@ -109,6 +109,7 @@ class _SignUpState extends State<SignUp> {
                         height: 80.h,
                         controller: cubit.userName,
                         type: TextInputType.text,
+
                         obsecure: false,
                         label: local.username,
                         validator: (value) {
@@ -120,6 +121,8 @@ class _SignUpState extends State<SignUp> {
                           }
                           return null;
                         },
+                        style: TextStyle(
+                          fontSize: 18.sp,),
                         imagePath: 'assets/images/user.png',
                       ),
                     ),
@@ -142,6 +145,8 @@ class _SignUpState extends State<SignUp> {
                           }
                           return null;
                         },
+                        style: TextStyle(
+                          fontSize: 18.sp,),
                         obsecure: false,
                         type: TextInputType.emailAddress,
                         imagePath: 'assets/images/email 2.png',
@@ -171,6 +176,8 @@ class _SignUpState extends State<SignUp> {
                           setState(() {});
                           return null;
                         },
+                        style: TextStyle(
+                          fontSize: 18.sp,),
                         obsecure: obscure,
                         imagePath: "assets/images/padlock.png",
                         suffixIcon: InkWell(
@@ -181,7 +188,7 @@ class _SignUpState extends State<SignUp> {
                           },
                           child: Icon(
                             obscure ? Icons.visibility_off : Icons.visibility,
-                            color: Colors.grey,
+                            color: Theme.of(context).colorScheme.onPrimary,
                           ),
                         ),
                       ),
@@ -205,6 +212,8 @@ class _SignUpState extends State<SignUp> {
                           }
                           return null;
                         },
+                        style: TextStyle(
+                          fontSize: 18.sp,),
                         type: TextInputType.text,
                         obsecure: obscure2,
                         imagePath: "assets/images/access.png",
@@ -216,7 +225,7 @@ class _SignUpState extends State<SignUp> {
                           },
                           child: Icon(
                             obscure2 ? Icons.visibility_off : Icons.visibility,
-                            color: Colors.grey,
+                            color: Theme.of(context).colorScheme.onPrimary,
                           ),
                         ),
                       ),
@@ -300,7 +309,7 @@ class _SignUpState extends State<SignUp> {
                                     agree ? Colors.purple : Colors.transparent,
                                 shape: BoxShape.circle,
                                 border:
-                                    Border.all(color: Colors.white, width: 2.w),
+                                    Border.all(color: Theme.of(context).colorScheme.onPrimary, width: 2.w),
                               ),
                               child: Icon(
                                 Icons.check,
@@ -322,11 +331,12 @@ class _SignUpState extends State<SignUp> {
                                   context: context, screen: const AboutUs());
                             },
                             child: FlickerNeonText(
+                              textColor:  Theme.of(context).colorScheme.onPrimary,
                               text: local.privacyPolicy,
                               flickerTimeInMilliSeconds: 1000,
-                              spreadColor: Colors.white,
+                              spreadColor: Theme.of(context).colorScheme. onPrimary,
                               blurRadius: 20.r,
-                              textSize: 14.sp,
+                              textSize:16 .sp,
                             ),
                           ),
                         ],
@@ -338,7 +348,7 @@ class _SignUpState extends State<SignUp> {
                     delay: const Duration(milliseconds: 550),
                     child: Text(
                       privacyPolicy ? "" : local.pleaseAcceptPrivacyAndPolicy,
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: Colors.red,fontSize: 17.sp),
                       textAlign: TextAlign.center,
                     ),
                   ),

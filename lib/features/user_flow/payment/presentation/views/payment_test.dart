@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:yourseatgraduationproject/core/Network/end_points.dart';
@@ -13,6 +14,8 @@ import 'package:yourseatgraduationproject/features/user_flow/payment/presentatio
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
+
+import '../../../../../generated/l10n.dart';
 
 class PayMobPayment {
   Dio dio = Dio(BaseOptions(
@@ -155,18 +158,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var lang = S.of(context);
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData( color: Theme.of(context).colorScheme.onPrimary,),
+        iconTheme: IconThemeData(
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
         title: Center(
           child: Text(
-            "إتمام عملية الدفع",
+            lang.Checkout,
+            textAlign: TextAlign.center,
             style: theme.textTheme.bodyLarge?.copyWith(
               fontSize: 25.sp,
             ),
           ),
         ),
-
       ),
       body: InAppWebView(
         initialOptions: InAppWebViewGroupOptions(
@@ -183,7 +189,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
           if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "true") {
-            await _handlePaymentSuccess();
+            await _handlePaymentSuccess(lang
+                .The_ticket_has_been_booked_successfully_Enjoy_watching_the_movie);
           } else if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "false") {
@@ -279,7 +286,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     }
   }
 
-  Future<void> _handlePaymentSuccess() async {
+  Future<void> _handlePaymentSuccess(String noteText) async {
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       setState(() {
         currentUser = HiveStorage.getGoogleUser();
@@ -328,6 +335,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
       seatCategory: widget.seatCategory,
       totalPrice: widget.price,
     );
+
+//تم حجز التذكره بنجاح استمتع ب المشاهده
+    await showLocalNotification("YourSeatNotifications", noteText);
 
     navigateAndRemoveUntil(
       context: context,
@@ -453,5 +463,31 @@ class _PaymentScreenState extends State<PaymentScreen> {
     } catch (e) {
       print("❌ خطأ أثناء حفظ التذكرة في مجموعة السينما: $e");
     }
+  }
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  Future<void> showLocalNotification(String title, String body) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'default_channel_id',
+      'default_notifications',
+      channelDescription: 'YourSeat channel ',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+    );
+
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      333,
+      title,
+      body,
+      platformChannelSpecifics,
+      payload: 'Default_Sound',
+    );
   }
 }

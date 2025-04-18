@@ -67,9 +67,9 @@ Future<void> initLocalNotifications() async {
 Future<void> showLocalNotification(String title, String body) async {
   const AndroidNotificationDetails androidPlatformChannelSpecifics =
       AndroidNotificationDetails(
-    'your_channel_id',
-    'Your Channel Name',
-    channelDescription: 'Your channel description',
+    'default_channel_id',
+    'default_notifications',
+    channelDescription: 'YourSeat channel ',
     importance: Importance.max,
     priority: Priority.high,
     ticker: 'ticker',
@@ -80,8 +80,9 @@ Future<void> showLocalNotification(String title, String body) async {
 
   await flutterLocalNotificationsPlugin.show(
     0, // notification ID
-    title,
     body,
+    "",
+
     platformChannelSpecifics,
     payload: 'Default_Sound',
   );
@@ -309,6 +310,16 @@ class _MyAppState extends State<MyApp> {
                   },
                   navigatorObservers: [BotToastNavigatorObserver()],
                   home: SplashScreen());
+              //   home: ScaffoldF(
+              //     body: ElevatedButton(
+              //       onPressed: () {
+              //         showLocalNotification(
+              //             "YourSeatNotifications", "welcome to your seat");
+              //       },
+              //       child: Text("إظهار إشعار محلي"),
+              //     ),
+              //   ),
+              // );
             },
           );
         },
@@ -316,7 +327,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
 
 // ScaffoldF(
 //                   body: ElevatedButton(
@@ -326,3 +336,236 @@ class _MyAppState extends State<MyApp> {
 //                     child: Text("إظهار إشعار محلي"),
 //                   ),
 //                 ),
+
+const String googleApiKey = 'AIzaSyD7VmrfzhvvuttRBIRVcWix-1eOjLtI1bU';
+
+class RouteMapPage extends StatefulWidget {
+  @override
+  _RouteMapPageState createState() => _RouteMapPageState();
+}
+
+class _RouteMapPageState extends State<RouteMapPage> {
+  GoogleMapController? mapController;
+  Set<Polyline> polylines = {};
+  LatLng? currentLocation;
+  LatLng? destination;
+
+  @override
+  void initState() {
+    super.initState();
+    _initLocationAndRoute();
+  }
+
+  Future<void> _initLocationAndRoute() async {
+    try {
+      // 1. احصل على الموقع الحالي
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+
+      setState(() {
+        currentLocation = LatLng(position.latitude, position.longitude);
+      });
+
+      print("🚀 Current location: $currentLocation");
+
+      // 2. اعمل تحويل اسم المكان لإحداثيات (مثال: "جامعة الفيوم")
+      LatLng destinationLatLng = await _getLatLngFromPlaceName("جامعة الفيوم");
+      setState(() {
+        destination = destinationLatLng;
+      });
+
+      print("🎯 Destination location: $destinationLatLng");
+
+      // 3. ارسم المسار
+      await _drawRoute();
+    } catch (e) {
+      print("❌ Error: $e");
+    }
+  }
+
+  Future<LatLng> _getLatLngFromPlaceName(String place) async {
+    final uri = Uri.https(
+      "maps.googleapis.com",
+      "/maps/api/geocode/json",
+      {"address": place, "key": googleApiKey},
+    );
+
+    final response = await http.get(uri);
+    final data = jsonDecode(response.body);
+
+    if (data['status'] == "OK") {
+      final location = data['results'][0]['geometry']['location'];
+      return LatLng(location['lat'], location['lng']);
+    } else {
+      throw Exception("Failed to fetch location: ${data['status']}");
+    }
+  }
+
+  Future<void> _drawRoute() async {
+    if (currentLocation == null || destination == null) return;
+
+    PolylinePoints polylinePoints = PolylinePoints();
+
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      request: PolylineRequest(
+        origin:
+            PointLatLng(currentLocation!.latitude, currentLocation!.longitude),
+        destination: PointLatLng(destination!.latitude, destination!.longitude),
+        mode: TravelMode.driving,
+      ),
+      googleApiKey: googleApiKey,
+    );
+
+    print("📍 Route status: ${result.status}");
+    print("📌 Points count: ${result.points.length}");
+
+    if (result.points.isNotEmpty) {
+      List<LatLng> routePoints = result.points
+          .map((point) => LatLng(point.latitude, point.longitude))
+          .toList();
+
+      setState(() {
+        polylines.add(Polyline(
+          polylineId: PolylineId("route"),
+          color: Colors.blue,
+          width: 5,
+          points: routePoints,
+        ));
+      });
+    } else {
+      throw Exception("No route found.");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Route Map")),
+      body: currentLocation == null
+          ? Center(child: CircularProgressIndicator())
+          : GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: currentLocation!,
+                zoom: 14,
+              ),
+              polylines: polylines,
+              onMapCreated: (controller) => mapController = controller,
+              myLocationEnabled: true,
+              myLocationButtonEnabled: true,
+            ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// class RouteMapPage extends StatefulWidget {
+//   const RouteMapPage({Key? key}) : super(key: key);
+//
+//   @override
+//   State<RouteMapPage> createState() => _RouteMapPageState();
+// }
+//
+// class _RouteMapPageState extends State<RouteMapPage> {
+//   Completer<GoogleMapController> _controller = Completer();
+//   LatLng _currentLocation = LatLng(29.309948, 30.841800); // المسلة
+//   LatLng _destinationLocation = LatLng(29.308960, 30.896508); // جامعة الفيوم
+//
+//   Set<Polyline> _polylines = {};
+//   List<LatLng> _polylineCoordinates = [];
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _createRoute();
+//   }
+//
+//   Future<void> _createRoute() async {
+//     final polylinePoints = PolylinePoints();
+//     final result = await polylinePoints.getRouteBetweenCoordinates(
+//       googleApiKey: googleMapsApiKey,
+//       request: PolylineRequest(
+//         origin: PointLatLng(
+//             _currentLocation.latitude, _currentLocation.longitude),
+//         destination: PointLatLng(
+//             _destinationLocation.latitude, _destinationLocation.longitude),
+//         mode: TravelMode.driving,
+//       ),
+//     );
+//
+//     if (result.points.isNotEmpty) {
+//       _polylineCoordinates = result.points
+//           .map((e) => LatLng(e.latitude, e.longitude))
+//           .toList();
+//
+//       setState(() {
+//         _polylines.add(Polyline(
+//           polylineId: PolylineId('route'),
+//           points: _polylineCoordinates,
+//           color: Colors.blue,
+//           width: 5,
+//         ));
+//       });
+//
+//       final controller = await _controller.future;
+//       controller.animateCamera(CameraUpdate.newLatLngBounds(
+//         LatLngBounds(
+//           southwest: LatLng(
+//             _currentLocation.latitude <= _destinationLocation.latitude
+//                 ? _currentLocation.latitude
+//                 : _destinationLocation.latitude,
+//             _currentLocation.longitude <= _destinationLocation.longitude
+//                 ? _currentLocation.longitude
+//                 : _destinationLocation.longitude,
+//           ),
+//           northeast: LatLng(
+//             _currentLocation.latitude >= _destinationLocation.latitude
+//                 ? _currentLocation.latitude
+//                 : _destinationLocation.latitude,
+//             _currentLocation.longitude >= _destinationLocation.longitude
+//                 ? _currentLocation.longitude
+//                 : _destinationLocation.longitude,
+//           ),
+//         ),
+//         100,
+//       ));
+//     } else {
+//       print("❌ Unable to get route: ${result.errorMessage}");
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: Text('الاتجاهات')),
+//       body: GoogleMap(
+//         initialCameraPosition: CameraPosition(
+//           target: _currentLocation,
+//           zoom: 13,
+//         ),
+//         onMapCreated: (controller) => _controller.complete(controller),
+//         markers: {
+//           Marker(
+//             markerId: MarkerId('current'),
+//             position: _currentLocation,
+//             infoWindow: InfoWindow(title: ' مستشفي الندي التخصصي ب الفيوم'),
+//           ),
+//           Marker(
+//             markerId: MarkerId('destination'),
+//             position: _destinationLocation,
+//             infoWindow: InfoWindow(title: 'جامعة الفيوم'),
+//           ),
+//         },
+//         polylines: _polylines,
+//       ),
+//     );
+//   }
+// }

@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("Action, Sci-Fi"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("Avengers: Infinity War"),
+        "Checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "ConfirmOTPcode":
             MessageLookupByLibrary.simpleMessage("Confirm OTP code"),
         "EmailAddress_does_not_exist": MessageLookupByLibrary.simpleMessage(
@@ -65,6 +66,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "TheLuxuriousSeatsAndImmersiveSoundSystemMakeForATrulyUnforgettable":
             MessageLookupByLibrary.simpleMessage(
                 "The luxurious seats and immersive sound system make for a truly unforgettable experience."),
+        "The_ticket_has_been_booked_successfully_Enjoy_watching_the_movie":
+            MessageLookupByLibrary.simpleMessage(
+                "The ticket has been booked successfully Enjoy watching the movie"),
         "Therearenocommentsyet":
             MessageLookupByLibrary.simpleMessage("There are no comments yet."),
         "TwoHoursFiveMinutes":

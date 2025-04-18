@@ -100,6 +100,26 @@ class S {
     );
   }
 
+  /// `Checkout`
+  String get Checkout {
+    return Intl.message(
+      'Checkout',
+      name: 'Checkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The ticket has been booked successfully Enjoy watching the movie`
+  String get The_ticket_has_been_booked_successfully_Enjoy_watching_the_movie {
+    return Intl.message(
+      'The ticket has been booked successfully Enjoy watching the movie',
+      name: 'The_ticket_has_been_booked_successfully_Enjoy_watching_the_movie',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign In`
   String get signin {
     return Intl.message(

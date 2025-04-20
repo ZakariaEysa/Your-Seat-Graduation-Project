@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("Action, Sci-Fi"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("Avengers: Infinity War"),
+        "Booked_successfully":
+            MessageLookupByLibrary.simpleMessage("Booked successfully ✅"),
         "Checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "ConfirmOTPcode":
             MessageLookupByLibrary.simpleMessage("Confirm OTP code"),

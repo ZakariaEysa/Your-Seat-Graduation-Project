@@ -189,8 +189,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
           if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "true") {
-            await _handlePaymentSuccess(lang
-                .The_ticket_has_been_booked_successfully_Enjoy_watching_the_movie);
+            await _handlePaymentSuccess(lang.Booked_successfully,
+                lang.The_ticket_has_been_booked_successfully_Enjoy_watching_the_movie);
           } else if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "false") {
@@ -286,7 +286,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     }
   }
 
-  Future<void> _handlePaymentSuccess(String noteText) async {
+  Future<void> _handlePaymentSuccess(String title, String body) async {
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
       setState(() {
         currentUser = HiveStorage.getGoogleUser();
@@ -337,7 +337,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
 
 //تم حجز التذكره بنجاح استمتع ب المشاهده
-    await showLocalNotification("YourSeatNotifications", noteText);
+    await showLocalNotification(title, body);
 
     navigateAndRemoveUntil(
       context: context,

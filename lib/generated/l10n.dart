@@ -100,6 +100,16 @@ class S {
     );
   }
 
+  /// `Booked successfully ✅`
+  String get Booked_successfully {
+    return Intl.message(
+      'Booked successfully ✅',
+      name: 'Booked_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Checkout`
   String get Checkout {
     return Intl.message(

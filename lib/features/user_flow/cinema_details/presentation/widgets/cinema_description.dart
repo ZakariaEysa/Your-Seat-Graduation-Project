@@ -19,6 +19,7 @@ class CinemaHeaderDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     AppLogs.errorLog(cinemaData["lat"].toString());
     AppLogs.errorLog(cinemaData["lng"].toString());
+
     final theme = Theme.of(context);
     var lang = S.of(context);
     final cinemaName = cinemaData['name'] ?? 'Cinema';
@@ -30,7 +31,7 @@ class CinemaHeaderDescription extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        /// ✅ صورة الخلفية (تتكيف مع جميع الشاشات)
+        // صورة الخلفية
         imageUrl.isNotEmpty
             ? ImageReplacer(
                 imageUrl: imageUrl,
@@ -45,7 +46,7 @@ class CinemaHeaderDescription extends StatelessWidget {
                 child: const Icon(Icons.image, color: Colors.white),
               ),
 
-        /// ✅ زر الرجوع (متجاوب)
+        // زر الرجوع
         Padding(
           padding: EdgeInsets.only(top: 50.0.h, left: 20.w),
           child: IconButton(
@@ -56,7 +57,7 @@ class CinemaHeaderDescription extends StatelessWidget {
           ),
         ),
 
-        /// ✅ معلومات السينما (تم تحسين التناسق والتجاوب)
+        // معلومات السينما
         Positioned(
           bottom: -50.h,
           left: 20.w,
@@ -111,45 +112,54 @@ class CinemaHeaderDescription extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 8.h),
-                Row(
-                  children: [
-                    RatingBar.builder(
-                      initialRating: rating,
-                      minRating: 1,
-                      ignoreGestures: true,
-                      direction: Axis.horizontal,
-                      itemSize: 25.sp, // حجم النجوم متجاوب
-                      itemCount: 5,
-                      itemBuilder: (context, index) => Icon(
-                        rating >= index + 1 ? Icons.star : Icons.star_border,
-                        color: rating >= index + 1
-                            ? const Color(0xFFCCC919)
-                            : const Color(0xFF575757),
-                      ),
-                      onRatingUpdate: (rating) {},
-                    ),
-                    Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        AppLogs.scussessLog('Navigate to RouteMapPage');
-                        AppLogs.scussessLog(cinemaData["lat"].toString());
-                        AppLogs.scussessLog(cinemaData["lng"].toString());
-                        navigateTo(
-                          context: context,
-                          screen: RouteMapPage(
-                            destinationLat: cinemaData["lat"],
-                            destinationLng: cinemaData["lng"],
-                          ),
-                        );
-                      },
-                      child: Container(
-                          width: 28.w,
-                          height: 28.h,
-                          child: Image.asset('assets/images/location.png')),
-                    ),
-                  ],
+                RatingBar.builder(
+                  initialRating: rating,
+                  minRating: 1,
+                  ignoreGestures: true,
+                  direction: Axis.horizontal,
+                  itemSize: 25.sp, // حجم النجوم متجاوب
+                  itemCount: 5,
+                  itemBuilder: (context, index) => Icon(
+                    rating >= index + 1 ? Icons.star : Icons.star_border,
+                    color: rating >= index + 1
+                        ? const Color(0xFFCCC919)
+                        : const Color(0xFF575757),
+                  ),
+
+                  onRatingUpdate: (rating) {},
                 ),
               ],
+            ),
+          ),
+        ),
+
+        Positioned(
+          right: 40.w,
+          top: 124.h,
+          child: GestureDetector(
+            onTap: () {
+              AppLogs.scussessLog('Navigate to RouteMapPage');
+              AppLogs.scussessLog(cinemaData["lat"].toString());
+              AppLogs.scussessLog(cinemaData["lng"].toString());
+
+              // تأكد من وجود lat و lng
+              if (cinemaData["lat"] != null && cinemaData["lng"] != null) {
+                navigateTo(
+                  context: context,
+                  screen: RouteMapPage(
+                    destinationLat: cinemaData["lat"],
+                    destinationLng: cinemaData["lng"],
+                  ),
+                );
+              } else {
+                AppLogs.errorLog("Latitude or Longitude is null");
+              }
+            },
+            child: Container(
+              width: 28.w,
+              height: 28.h,
+              color: Colors.transparent, // تأكد من الشفافية
+              child: Image.asset('assets/images/location.png'),
             ),
           ),
         ),

@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("أكشن، خيال علمي"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("المنتقمون: حرب إنفينيتي"),
+        "Booked_successfully":
+            MessageLookupByLibrary.simpleMessage(" تم الحجز بنجاح ✅"),
         "Checkout": MessageLookupByLibrary.simpleMessage("إتمام عملية الدفع"),
         "ConfirmOTPcode":
             MessageLookupByLibrary.simpleMessage("تاكيد رمز الدخول"),

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/route_map.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -15,6 +17,8 @@ class CinemaHeaderDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppLogs.errorLog(cinemaData["lat"].toString());
+    AppLogs.errorLog(cinemaData["lng"].toString());
     final theme = Theme.of(context);
     var lang = S.of(context);
     final cinemaName = cinemaData['name'] ?? 'Cinema';
@@ -59,7 +63,6 @@ class CinemaHeaderDescription extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.all(12.sp),
             width: 0.88.sw, // 90% من عرض الشاشة
-            height: 0.22.sh, // نسبة 22% من ارتفاع الشاشة
             decoration: BoxDecoration(
               color: Theme.of(context)
                   .colorScheme
@@ -72,10 +75,10 @@ class CinemaHeaderDescription extends StatelessWidget {
               children: [
                 Text(
                   cinemaName,
-                  style: theme.textTheme.bodyMedium!.copyWith(color: Colors.white,fontSize: 16.sp),
+                  style: theme.textTheme.bodyMedium!
+                      .copyWith(color: Colors.white, fontSize: 16.sp),
                 ),
                 SizedBox(height: 5.h),
-
                 Text(
                   description,
                   style: theme.textTheme.bodyMedium!.copyWith(
@@ -90,8 +93,8 @@ class CinemaHeaderDescription extends StatelessWidget {
                   children: [
                     Text(
                       lang.review,
-                      style:
-                          theme.textTheme.bodyMedium!.copyWith(color: Colors.white,fontSize: 14.sp),
+                      style: theme.textTheme.bodyMedium!
+                          .copyWith(color: Colors.white, fontSize: 14.sp),
                     ),
                     SizedBox(width: 8.w),
                     Image.asset(
@@ -102,28 +105,49 @@ class CinemaHeaderDescription extends StatelessWidget {
                     SizedBox(width: 8.w),
                     Text(
                       '${rating.toStringAsFixed(1)} ($ratingCount)',
-                      style:
-                          theme.textTheme.bodyMedium!.copyWith(color: Colors.white,fontSize: 12.sp),
+                      style: theme.textTheme.bodyMedium!
+                          .copyWith(color: Colors.white, fontSize: 12.sp),
                     ),
                   ],
                 ),
                 SizedBox(height: 8.h),
-
-                /// ✅ Rating Bar (متجاوب)
-                RatingBar.builder(
-                  initialRating: rating,
-                  minRating: 1,
-                  ignoreGestures: true,
-                  direction: Axis.horizontal,
-                  itemSize: 25.sp, // حجم النجوم متجاوب
-                  itemCount: 5,
-                  itemBuilder: (context, index) => Icon(
-                    rating >= index + 1 ? Icons.star : Icons.star_border,
-                    color: rating >= index + 1
-                        ? const Color(0xFFCCC919)
-                        : const Color(0xFF575757),
-                  ),
-                  onRatingUpdate: (rating) {},
+                Row(
+                  children: [
+                    RatingBar.builder(
+                      initialRating: rating,
+                      minRating: 1,
+                      ignoreGestures: true,
+                      direction: Axis.horizontal,
+                      itemSize: 25.sp, // حجم النجوم متجاوب
+                      itemCount: 5,
+                      itemBuilder: (context, index) => Icon(
+                        rating >= index + 1 ? Icons.star : Icons.star_border,
+                        color: rating >= index + 1
+                            ? const Color(0xFFCCC919)
+                            : const Color(0xFF575757),
+                      ),
+                      onRatingUpdate: (rating) {},
+                    ),
+                    Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        AppLogs.scussessLog('Navigate to RouteMapPage');
+                        AppLogs.scussessLog(cinemaData["lat"].toString());
+                        AppLogs.scussessLog(cinemaData["lng"].toString());
+                        navigateTo(
+                          context: context,
+                          screen: RouteMapPage(
+                            destinationLat: cinemaData["lat"],
+                            destinationLng: cinemaData["lng"],
+                          ),
+                        );
+                      },
+                      child: Container(
+                          width: 28.w,
+                          height: 28.h,
+                          child: Image.asset('assets/images/location.png')),
+                    ),
+                  ],
                 ),
               ],
             ),

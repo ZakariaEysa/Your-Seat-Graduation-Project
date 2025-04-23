@@ -47,7 +47,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
               ),
             ),
             SizedBox(
-              height: 500.h,
+              height: 400.h,
               child: CinemaMovies(movies: widget.cinemaModel['movies']),
             ),
             Padding(
@@ -70,7 +70,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                       maxLines: null, // يسمح بعدد غير محدود من الأسطر
                       decoration: InputDecoration(
                         hintText: lang.addComment,
-                        hintStyle: TextStyle(color: Color(0XFFFAF8F0)),// سيختفي عند الكتابة
+                        hintStyle: TextStyle(color: Colors.white70 , fontSize: 18),// سيختفي عند الكتابة
                         filled: true,
                         fillColor:Theme.of(context).colorScheme.primaryContainer, // لون الخلفية
                         border: OutlineInputBorder(
@@ -78,7 +78,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                           borderSide: BorderSide.none,
                         ),
                       ),
-                      style: TextStyle(color: Colors.white), // لون النص داخل الحقل
+                      style: TextStyle(color: Colors.white , fontSize: 18 ), // لون النص داخل الحقل
                     ),
                   ),
                 ),

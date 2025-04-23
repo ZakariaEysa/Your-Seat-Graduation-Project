@@ -22,19 +22,17 @@ class WatchList extends StatelessWidget {
     return ScaffoldF(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFF2E1371),
-        title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(100, 0, 0, 0),
-          child: HeadAppBar(
-            title: lang.watchlist,
-          ),
-        ),
+        title:
+        Text(lang.watchlist) ,
+
       ),
       body: favoriteMovies.isEmpty
           ? Center(
         child: Text(
           lang.sorryNoWatchListMoviesYet,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+            fontSize: 18
+          ),
         ),
       )
           : SingleChildScrollView(

@@ -89,7 +89,7 @@ class ApplicationTheme extends ChangeNotifier {
         onPrimary: Colors.white,
         onSecondary: const Color(0xFFD9D9D9).withOpacity(0.6),
         primary: const Color(0xFF2E1371),
-        secondary: const Color(0xFF190552),
+        secondary: const Color(0xFF130B2B),
         secondaryFixed: const Color(0xFF191645),
         onBackground:Color(0xFF191645),
         seedColor: const Color(0xFF2E1371),
@@ -102,24 +102,24 @@ class ApplicationTheme extends ChangeNotifier {
         surfaceVariant: const Color(0xFF09FBD3),    // selected
       ),
       appBarTheme: AppBarTheme(
-          iconTheme: const IconThemeData(
+          iconTheme:  IconThemeData(
             color: Colors.white,
-
           ),
           //  elevation: 0.0,
           // backgroundColor: Colors.transparent,
           backgroundColor: Color(0xFF2E1371),
-          titleTextStyle: GoogleFonts.elMessiri(
-              fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
+          titleTextStyle: GoogleFonts.aDLaMDisplay(
+              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
           centerTitle: true),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xFFB7935F),
-        selectedIconTheme: IconThemeData(color: Colors.black, size: 52),
-        selectedItemColor: Colors.black,
-        unselectedIconTheme: IconThemeData(color: Colors.white, size: 30),
-        unselectedItemColor: Colors.white,
-      ),
+
+      // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      //   type: BottomNavigationBarType.fixed,
+      //   backgroundColor: Color(0xFFB7935F),
+      //   selectedIconTheme: IconThemeData(color: Colors.black, size: 52),
+      //   selectedItemColor: Colors.black,
+      //   unselectedIconTheme: IconThemeData(color: Colors.white, size: 30),
+      //   unselectedItemColor: Colors.white,
+      // ),
 
       textTheme: TextTheme(
           labelLarge: GoogleFonts.aDLaMDisplay(

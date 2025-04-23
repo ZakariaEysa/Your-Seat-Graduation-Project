@@ -37,14 +37,10 @@ class _SignInState extends State<SignIn> {
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: const Color(0xFF2E1371),
+
+
         title:Text(lang.sign_in
-        , style:  TextStyle(
-            fontSize: 28.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+
         )
 
       )
@@ -214,11 +210,6 @@ class _SignInState extends State<SignIn> {
                                   cubit.passwordController.text);
                             } else {
                               showCenteredSnackBar(context,lang.fill_all_fields);
-                              // ScaffoldMessenger.of(context).showSnackBar(
-                              //
-                              //     SnackBar(
-                              //
-                              //         content: Center(child: Text(lang.fill_all_fields))));
                             }
                           },
                           width: 220.w,
@@ -257,7 +248,7 @@ class _SignInState extends State<SignIn> {
                               // cubit.loginWithFacebook();
                             },
                             title: lang.continue_with_facebook,
-                            imagePath: "assets/images/facebook.png",
+                            imagePath: "assets/images/f_c.png",
                           ),
                         ),
                       ),

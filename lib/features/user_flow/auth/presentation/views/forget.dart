@@ -39,6 +39,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
+
           iconTheme: IconThemeData(
             color: Theme.of(context).colorScheme.onPrimary,
             size: 28.sp,

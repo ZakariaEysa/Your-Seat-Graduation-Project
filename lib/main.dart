@@ -49,11 +49,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+FlutterLocalNotificationsPlugin();
 
 Future<void> initLocalNotifications() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
+  AndroidInitializationSettings('@mipmap/ic_launcher');
 
   const InitializationSettings initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
@@ -66,7 +66,9 @@ Future<void> initLocalNotifications() async {
 
 Future<void> showLocalNotification(String title, String body) async {
   const AndroidNotificationDetails androidPlatformChannelSpecifics =
-      AndroidNotificationDetails(
+
+  AndroidNotificationDetails(
+
     'default_channel_id',
     'default_notifications',
     channelDescription: 'YourSeat channel ',
@@ -76,7 +78,7 @@ Future<void> showLocalNotification(String title, String body) async {
   );
 
   const NotificationDetails platformChannelSpecifics =
-      NotificationDetails(android: androidPlatformChannelSpecifics);
+  NotificationDetails(android: androidPlatformChannelSpecifics);
 
   await flutterLocalNotificationsPlugin.show(
     0, // notification ID
@@ -171,7 +173,7 @@ Future<void> requestCameraAndLocationPermissions() async {
   } else if (cameraStatus.isDenied) {
     print("تم رفض صلاحية الكاميرا ❌");
   } else if (cameraStatus.isPermanentlyDenied) {
-    print("صلاحية الكاميرا مرفوضة نهائياً، افتح الإعدادات يدويًا ⚠️");
+    print("صلاحية الكاميرا مرفوضة نهائياً، افتح الإعدادات يدويًا ⚠");
     await openAppSettings();
   }
 
@@ -181,7 +183,7 @@ Future<void> requestCameraAndLocationPermissions() async {
   } else if (locationStatus.isDenied) {
     print("تم رفض صلاحية اللوكيشن ❌");
   } else if (locationStatus.isPermanentlyDenied) {
-    print("صلاحية اللوكيشن مرفوضة نهائياً، افتح الإعدادات يدويًا ⚠️");
+    print("صلاحية اللوكيشن مرفوضة نهائياً، افتح الإعدادات يدويًا ⚠");
     await openAppSettings();
   }
 }

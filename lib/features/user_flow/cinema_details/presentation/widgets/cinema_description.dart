@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/route_map.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
@@ -13,7 +15,7 @@ import '../../../home/presentation/views/home_layout.dart';
 class CinemaHeaderDescription extends StatelessWidget {
   final Map<String, dynamic> cinemaData;
 
-  const CinemaHeaderDescription({super.key, required this.cinemaData});
+   CinemaHeaderDescription({super.key, required this.cinemaData});
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +143,7 @@ class CinemaHeaderDescription extends StatelessWidget {
               AppLogs.scussessLog('Navigate to RouteMapPage');
               AppLogs.scussessLog(cinemaData["lat"].toString());
               AppLogs.scussessLog(cinemaData["lng"].toString());
+              printUserLocation();
 
               // تأكد من وجود lat و lng
               if (cinemaData["lat"] != null && cinemaData["lng"] != null) {
@@ -166,4 +169,76 @@ class CinemaHeaderDescription extends StatelessWidget {
       ],
     );
   }
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
+  void _showMessage(String message) {
+    AppLogs.debugLog(message);
+    showLocalNotification("📢 تنبيه", message); // Notification local
+  }
+  Future<void> showLocalNotification(String title, String body) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails(
+      'default_channel_id',
+      'default_notifications',
+      channelDescription: 'YourSeat channel ',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+    );
+
+
+    const NotificationDetails platformChannelSpecifics =
+    NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      33, // notification ID
+      title,
+      body,
+      platformChannelSpecifics,
+      payload: 'Default_Sound',
+    );
+  }
+
+
+  Future<void> printUserLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      _showMessage('Location services are disabled. Please enable them.');
+      await Geolocator.openLocationSettings();
+      return;
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        _showMessage('Location permissions are denied.');
+        return;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      _showMessage(
+          'Location permissions are permanently denied. Please enable them from app settings.');
+      await Geolocator.openAppSettings();
+      return;
+    }
+
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      String message =
+          'User location: ${position.latitude}, ${position.longitude}';
+      print(message);
+      // _showMessage(message);
+    } catch (e) {
+      print('Error getting location: $e');
+      _showMessage('Error getting location: $e');
+    }
+  }
+
 }

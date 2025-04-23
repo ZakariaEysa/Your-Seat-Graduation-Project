@@ -97,12 +97,10 @@ class SettingsPage extends StatelessWidget {
     var lang = S.of(context);
 
     return ScaffoldF(
+
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(95.w, 0, 0, 0),
-          child: HeadAppBar(title: lang.settings),
-        ),
+        title: Text(lang.settings),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),

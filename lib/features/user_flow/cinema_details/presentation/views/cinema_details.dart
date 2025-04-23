@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
 import '../cubit/cinema_cubit.dart';
 import '../cubit/cinema_state.dart';
@@ -12,7 +10,6 @@ import '../../../../../generated/l10n.dart';
 import '../widgets/cinema_description.dart';
 import '../widgets/cinema_fetch_comment.dart';
 import '../widgets/cinema_movies.dart';
-import 'route_map.dart';
 
 class CinemaDetails extends StatefulWidget {
   final Map<String, dynamic> cinemaModel;
@@ -32,8 +29,6 @@ class _CinemaDetailsState extends State<CinemaDetails> {
 
   @override
   Widget build(BuildContext context) {
-    AppLogs.scussessLog(widget.cinemaModel["lat"].toString());
-    AppLogs.scussessLog(widget.cinemaModel["lng"].toString());
     final theme = Theme.of(context);
     var lang = S.of(context);
 
@@ -41,9 +36,8 @@ class _CinemaDetailsState extends State<CinemaDetails> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // CinemaHeaderDescription this is cover and description
             CinemaHeaderDescription(cinemaData: widget.cinemaModel),
-
-          
             // Padding Contains text movies
             Padding(
               padding: EdgeInsets.only(top: 55.0.sp),
@@ -53,7 +47,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
               ),
             ),
             SizedBox(
-              height: 500.h,
+              height: 400.h,
               child: CinemaMovies(movies: widget.cinemaModel['movies']),
             ),
             Padding(
@@ -71,26 +65,20 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                   child: Padding(
                     padding: EdgeInsets.all(12.sp),
                     child: TextFormField(
-                      controller:
-                          context.read<CinemaCubit>().getCommentController,
-                      keyboardType:
-                          TextInputType.multiline, // دعم النصوص متعددة الأسطر
+                      controller: context.read<CinemaCubit>().getCommentController,
+                      keyboardType: TextInputType.multiline, // دعم النصوص متعددة الأسطر
                       maxLines: null, // يسمح بعدد غير محدود من الأسطر
                       decoration: InputDecoration(
                         hintText: lang.addComment,
-                        hintStyle: TextStyle(
-                            color: Color(0XFFFAF8F0)), // سيختفي عند الكتابة
+                        hintStyle: TextStyle(color: Colors.white70 , fontSize: 18),// سيختفي عند الكتابة
                         filled: true,
-                        fillColor: Theme.of(context)
-                            .colorScheme
-                            .primaryContainer, // لون الخلفية
+                        fillColor:Theme.of(context).colorScheme.primaryContainer, // لون الخلفية
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide: BorderSide.none,
                         ),
                       ),
-                      style:
-                          TextStyle(color: Colors.white), // لون النص داخل الحقل
+                      style: TextStyle(color: Colors.white , fontSize: 18 ), // لون النص داخل الحقل
                     ),
                   ),
                 ),
@@ -105,22 +93,18 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                     builder: (context, state) {
                       bool isAdding = CinemaCubit.get(context).isAddingComment;
                       return IconButton(
-                        icon: Icon(Icons.send,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            size: 28.sp),
+                        icon: Icon(Icons.send, color: Theme.of(context).colorScheme.onPrimary, size:28.sp),
                         onPressed: isAdding
                             ? null
                             : () async {
-                                await CinemaCubit.get(context).addComment(
-                                  widget.cinemaModel['name'],
-                                  context,
-                                  lang.signin,
-                                  lang.cancel,
-                                  context
-                                      .read<CinemaCubit>()
-                                      .getCommentController,
-                                );
-                              },
+                          await CinemaCubit.get(context).addComment(
+                            widget.cinemaModel['name'],
+                            context,
+                            lang.signin,
+                            lang.cancel,
+                            context.read<CinemaCubit>().getCommentController,
+                          );
+                        },
                       );
                     },
                   ),
@@ -128,6 +112,7 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                 SizedBox(width: 18.w),
               ],
             ),
+
           ],
         ),
       ),

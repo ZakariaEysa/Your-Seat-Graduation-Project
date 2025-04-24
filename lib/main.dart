@@ -66,7 +66,9 @@ Future<void> initLocalNotifications() async {
 
 Future<void> showLocalNotification(String title, String body) async {
   const AndroidNotificationDetails androidPlatformChannelSpecifics =
+
   AndroidNotificationDetails(
+
     'default_channel_id',
     'default_notifications',
     channelDescription: 'YourSeat channel ',

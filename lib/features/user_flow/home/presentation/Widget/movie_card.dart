@@ -92,6 +92,8 @@
 //   }
 // }
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -102,6 +104,12 @@ class MovieCard extends StatelessWidget {
 
   const MovieCard({super.key, required this.movie});
 
+  bool _isNetworkImage(String? image) {
+    if (image == null) return false;
+    final uri = Uri.tryParse(image);
+    return uri != null && (uri.isScheme('http') || uri.isScheme('https'));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -110,39 +118,56 @@ class MovieCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Movie Image
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(15),
+          //   child: ImageReplacer(
+          //     imageUrl:
+          //     movie['poster_image'] ?? 'https://via.placeholder.com/300',
+          //     fit: BoxFit.cover,
+          //     height: 350.h,
+          //     width: double.infinity,
+          //     // loadingBuilder: (context, child, loadingProgress) {
+          //     //   if (loadingProgress == null) return child;
+          //     //   return Center(
+          //     //     child: CircularProgressIndicator(
+          //     //       value: loadingProgress.expectedTotalBytes != null
+          //     //           ? loadingProgress.cumulativeBytesLoaded /
+          //     //               loadingProgress.expectedTotalBytes!
+          //     //           : null,
+          //     //     ),
+          //     //   );
+          //     // },
+          //     // errorBuilder: (context, error, stackTrace) {
+          //     //   return Container(
+          //     //     height: 350.sp,
+          //     //     width: 250.sp,
+          //     //     color: Colors.grey.shade800,
+          //     //     child: const Icon(
+          //     //       Icons.broken_image,
+          //     //       color: Colors.white,
+          //     //       size: 50,
+          //     //     ),
+          //     //   );
+          //     // },
+          //   ),
+          // ),
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: ImageReplacer(
-              imageUrl:
-              movie['poster_image'] ?? 'https://via.placeholder.com/300',
+            child: _isNetworkImage(movie['poster_image'])
+                ? Image.network(
+              movie['poster_image'],
               fit: BoxFit.cover,
               height: 350.h,
               width: double.infinity,
-              // loadingBuilder: (context, child, loadingProgress) {
-              //   if (loadingProgress == null) return child;
-              //   return Center(
-              //     child: CircularProgressIndicator(
-              //       value: loadingProgress.expectedTotalBytes != null
-              //           ? loadingProgress.cumulativeBytesLoaded /
-              //               loadingProgress.expectedTotalBytes!
-              //           : null,
-              //     ),
-              //   );
-              // },
-              // errorBuilder: (context, error, stackTrace) {
-              //   return Container(
-              //     height: 350.sp,
-              //     width: 250.sp,
-              //     color: Colors.grey.shade800,
-              //     child: const Icon(
-              //       Icons.broken_image,
-              //       color: Colors.white,
-              //       size: 50,
-              //     ),
-              //   );
-              // },
+            )
+                : Image.memory(
+              base64Decode(movie['poster_image']),
+              fit: BoxFit.cover,
+              height: 350.h,
+              width: double.infinity,
             ),
           ),
+
           SizedBox(height: 10.h),
 
           // Movie Title

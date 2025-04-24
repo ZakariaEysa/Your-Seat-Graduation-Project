@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -60,7 +62,11 @@ class _MovieDetailsState extends State<MovieDetails> {
 
   num rate = 0;
   List cinemas = [];
-
+  // دالة للتحقق إذا كانت الصورة بصيغة Base64
+  bool isBase64(String? imageUrl) {
+    final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
+    return base64Pattern.hasMatch(imageUrl??"");
+  }
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -73,6 +79,13 @@ class _MovieDetailsState extends State<MovieDetails> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
           Stack(children: [
+            isBase64(widget.model.posterImage)?
+            Image.memory(
+              base64Decode(widget.model.posterImage ?? ""),
+              width: 500.w,
+              height: 390.h,
+              fit: BoxFit.cover,
+            ):
             ImageReplacer(
               imageUrl: widget.model.posterImage ?? "",
               width: 500.w,

@@ -67,10 +67,10 @@ class AuthCubit extends Cubit<AuthState> {
       (message) {
         if (message == "LoginSuccessful") {
           emit(UserValidationSuccess(message));
-          showLocalNotification("Logged In Successfully ✅", "Welcome Back !");
+          showLocalNotification("Logged In Successfully ✅","Welcome Back !");
         } else {
           emit(UserValidationError(message));
-          showLocalNotification("Something Went Wrong", "Please try again");
+          showLocalNotification("Something Went Wrong","Please try again");
           //emit(  UserValidationError("Sorry there was an error , please try again later"));
         }
       },
@@ -118,8 +118,9 @@ class AuthCubit extends Cubit<AuthState> {
     await authRepo.saveUser(
         userModel: userModel ??
             UserModel(name: "", email: "", password: "", dateOfBirth: ""));
-    final String name = userModel?.name ?? "";
-    showLocalNotification("Registered Successfully ✅", "Hello! $name");
+    final String name = userModel?.name??"" ;
+    showLocalNotification("Registered Successfully ✅","Hello! $name");
+
   }
 
   Future<void> updateUserPassword(String userEmail, String newPassword) async {

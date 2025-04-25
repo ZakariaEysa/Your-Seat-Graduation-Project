@@ -178,7 +178,7 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                   Expanded(
                     child: PageView.builder(
                       controller: _pageController,
-                      itemCount: movies.length,
+                      itemCount: 5,
                       itemBuilder: (context, index) {
                         return AnimatedBuilder(
                           animation: _pageController,
@@ -216,12 +216,12 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                 ],
               ),
               Positioned(
-                bottom: 60.h,
+                bottom: 45.h,
                 left: 0.w,
                 right: 0.w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(movies.length, (index) {
+                  children: List.generate(5, (index) {
                     return AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
                       margin: EdgeInsets.symmetric(horizontal: 5.sp),

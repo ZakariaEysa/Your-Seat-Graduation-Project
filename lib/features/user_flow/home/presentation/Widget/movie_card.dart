@@ -92,6 +92,121 @@
 //   }
 // }
 
+// import 'dart:convert';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+//
+// import '../../../../../widgets/network_image/image_replacer.dart';
+//
+// class MovieCard extends StatelessWidget {
+//   final Map<String, dynamic> movie;
+//
+//   const MovieCard({super.key, required this.movie});
+//
+//   bool _isNetworkImage(String? image) {
+//     if (image == null || image.isEmpty) return false;
+//     final uri = Uri.tryParse(image);
+//     return uri != null && (uri.isScheme('http') || uri.isScheme('https'));
+//   }
+//
+//   bool _isBase64Image(String? image) {
+//     if (image == null || image.isEmpty) return false;
+//     try {
+//       base64Decode(image);
+//       return true;
+//     } catch (_) {
+//       return false;
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final imageString = movie['poster_image'] ?? '';
+//
+//     Widget imageWidget;
+//
+//     if (_isNetworkImage(imageString)) {
+//       imageWidget = ImageReplacer(
+//         imageUrl: imageString,
+//         fit: BoxFit.cover,
+//         height: 350.h,
+//         width: double.infinity,
+//       );
+//     } else if (_isBase64Image(imageString)) {
+//       imageWidget = Image.memory(
+//         base64Decode(imageString),
+//         fit: BoxFit.cover,
+//         height: 350.h,
+//         width: double.infinity,
+//       );
+//     } else {
+//       imageWidget = _buildErrorImage();
+//     }
+//
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: [
+//           ClipRRect(
+//             borderRadius: BorderRadius.circular(15),
+//             child: imageWidget,
+//           ),
+//
+//           SizedBox(height: 10.h),
+//
+//           Text(
+//             movie['name'] ?? 'Unknown Title',
+//             textAlign: TextAlign.center,
+//             style: TextStyle(
+//               fontSize: 18.sp,
+//               fontWeight: FontWeight.bold,
+//               color: Theme.of(context).colorScheme.onPrimary,
+//             ),
+//           ),
+//
+//           Text(
+//             '${movie['duration'] ?? 'N/A'} • ${movie['category'] ?? 'Unknown'}',
+//             textAlign: TextAlign.center,
+//             style: TextStyle(
+//               fontSize: 12.sp,
+//               color: Theme.of(context).colorScheme.onPrimary,
+//             ),
+//           ),
+//
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               const Icon(Icons.star, color: Colors.yellow, size: 16),
+//               SizedBox(width: 4.w),
+//               Text(
+//                 '${movie['rating'] ?? 'N/A'}',
+//                 style: TextStyle(
+//                   fontSize: 12.sp,
+//                   color: Theme.of(context).colorScheme.onPrimary,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+//
+//   Widget _buildErrorImage() {
+//     return Container(
+//       height: 350.h,
+//       width: double.infinity,
+//       color: Colors.grey.shade800,
+//       child: const Icon(
+//         Icons.broken_image,
+//         color: Colors.white,
+//         size: 50,
+//       ),
+//     );
+//   }
+// }
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -104,10 +219,15 @@ class MovieCard extends StatelessWidget {
 
   const MovieCard({super.key, required this.movie});
 
-  bool _isNetworkImage(String? image) {
-    if (image == null) return false;
-    final uri = Uri.tryParse(image);
-    return uri != null && (uri.isScheme('http') || uri.isScheme('https'));
+  // bool _isNetworkImage(String? image) {
+  //   if (image == null) return false;
+  //   final uri = Uri.tryParse(image);
+  //   return uri != null && (uri.isScheme('http') || uri.isScheme('https'));
+  // }
+
+  bool isBase64(String? imageUrl) {
+    final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
+    return base64Pattern.hasMatch(imageUrl??"");
   }
 
   @override
@@ -153,15 +273,14 @@ class MovieCard extends StatelessWidget {
           // ),
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: _isNetworkImage(movie['poster_image'])
-                ? Image.network(
-              movie['poster_image'],
+            child: isBase64(movie['poster_image'])
+                ? Image.memory(
+              base64Decode(movie['poster_image']),
               fit: BoxFit.cover,
               height: 350.h,
               width: double.infinity,
-            )
-                : Image.memory(
-              base64Decode(movie['poster_image']),
+            ):Image.network(
+              movie['poster_image'],
               fit: BoxFit.cover,
               height: 350.h,
               width: double.infinity,
@@ -177,7 +296,7 @@ class MovieCard extends StatelessWidget {
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
 
@@ -187,7 +306,7 @@ class MovieCard extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12.sp,
-                color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
           ),
 
@@ -201,7 +320,7 @@ class MovieCard extends StatelessWidget {
                 '${movie['rating'] ?? 'N/A'}',
                 style: TextStyle(
                   fontSize: 12.sp,
-                    color: Theme.of(context).colorScheme.onPrimary,
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
             ],

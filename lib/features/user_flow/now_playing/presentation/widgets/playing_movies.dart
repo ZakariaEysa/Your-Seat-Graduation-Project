@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,6 +56,10 @@ class _PlayingMoviesState extends State<PlayingMovies> {
     var lang = S.of(context);
     final theme = Theme.of(context);
 
+    bool isBase64(String? imageUrl) {
+      final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
+      return base64Pattern.hasMatch(imageUrl??"");
+    }
     return Padding(
       padding: EdgeInsets.only(right: 8.w, left: 8.w),
       child: Column(
@@ -62,8 +68,15 @@ class _PlayingMoviesState extends State<PlayingMovies> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: ImageReplacer(
-                          imageUrl: widget.image,
+            child: isBase64(widget.image)?
+            Image.memory(
+              base64Decode(widget.image ?? ""),
+              width: 200.w,
+              height: 250.h,
+              fit: BoxFit.cover,
+            )
+            :ImageReplacer(
+              imageUrl: widget.image,
               width: 200.w,
               height: 250.h,
               fit: BoxFit.cover,

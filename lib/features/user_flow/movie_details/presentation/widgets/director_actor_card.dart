@@ -16,6 +16,10 @@ class Director extends StatelessWidget {
     required this.name,
     required this.imagePath,
   });
+  bool isBase64(String? imageUrl) {
+    final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
+    return base64Pattern.hasMatch(imageUrl??"");
+  }
 
   bool isBase64(String? imageUrl) {
     final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
@@ -40,6 +44,20 @@ class Director extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
+ 
+                padding:  EdgeInsetsDirectional.only(start: 5.w),
+                child:isBase64(imagePath)? ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Image.memory(base64Decode(imagePath) ,
+                    fit: BoxFit.fill,
+                    width: 50.w,
+                    height: 50.h,
+                  ),
+                ):ImageReplacer(imageUrl: imagePath, fit: BoxFit.fill,isCircle: true,
+
+                width: 50.w,
+                  height: 50.h,
+                )
                 padding: EdgeInsetsDirectional.only(start: 5.w),
                 child: isBase64(imagePath)
                     ? Image.memory(
@@ -54,7 +72,7 @@ class Director extends StatelessWidget {
                         isCircle: true,
                         width: 50.w,
                         height: 50.h,
-                      ),
+                    
               ),
               SizedBox(width: 2.w),
               Padding(

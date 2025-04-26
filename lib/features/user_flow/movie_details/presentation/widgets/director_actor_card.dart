@@ -21,6 +21,11 @@ class Director extends StatelessWidget {
     return base64Pattern.hasMatch(imageUrl??"");
   }
 
+  bool isBase64(String? imageUrl) {
+    final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
+    return base64Pattern.hasMatch(imageUrl ?? "");
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -28,7 +33,7 @@ class Director extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Padding(
-        padding:  EdgeInsetsDirectional.only(end: 13.w),
+        padding: EdgeInsetsDirectional.only(end: 13.w),
         child: Container(
           height: 58.h,
           decoration: BoxDecoration(
@@ -38,8 +43,8 @@ class Director extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               Padding(
+ 
                 padding:  EdgeInsetsDirectional.only(start: 5.w),
                 child:isBase64(imagePath)? ClipRRect(
                   borderRadius: BorderRadius.circular(25),
@@ -52,13 +57,29 @@ class Director extends StatelessWidget {
 
                 width: 50.w,
                   height: 50.h,
-                ),
+                )
+                padding: EdgeInsetsDirectional.only(start: 5.w),
+                child: isBase64(imagePath)
+                    ? Image.memory(
+                        base64Decode(imagePath ?? ""),
+                        width: 50.w,
+                        height: 50.h,
+                        fit: BoxFit.fill,
+                      )
+                    : ImageReplacer(
+                        imageUrl: imagePath,
+                        fit: BoxFit.fill,
+                        isCircle: true,
+                        width: 50.w,
+                        height: 50.h,
+                    
               ),
               SizedBox(width: 2.w),
               Padding(
                 padding: EdgeInsets.only(right: 12.w, left: 11.w),
                 child: Text(name,
-                    style: theme.textTheme.titleLarge!.copyWith(fontSize: 12.sp)),
+                    style:
+                        theme.textTheme.titleLarge!.copyWith(fontSize: 12.sp)),
               ),
               SizedBox(height: 5.h),
             ],

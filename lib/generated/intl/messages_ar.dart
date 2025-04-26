@@ -26,6 +26,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "ActionSciFi": MessageLookupByLibrary.simpleMessage("أكشن، خيال علمي"),
         "AvengersInfinityWar":
             MessageLookupByLibrary.simpleMessage("المنتقمون: حرب إنفينيتي"),
+        "Booked_successfully":
+            MessageLookupByLibrary.simpleMessage(" تم الحجز بنجاح ✅"),
+        "Checkout": MessageLookupByLibrary.simpleMessage("إتمام عملية الدفع"),
         "ConfirmOTPcode":
             MessageLookupByLibrary.simpleMessage("تاكيد رمز الدخول"),
         "EmailAddress_does_not_exist": MessageLookupByLibrary.simpleMessage(
@@ -61,6 +64,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "TheCinemasModernDesignAndAestheticallyPleasingDecorCreateAWelcomingAtmosphere":
             MessageLookupByLibrary.simpleMessage(
                 "يخلق التصميم الحديث للسينما والديكور الجميل أجواءً ترحيبية"),
+        "The_ticket_has_been_booked_successfully_Enjoy_watching_the_movie":
+            MessageLookupByLibrary.simpleMessage(
+                "تم حجز التذكرة بنجاح، يمكنك مشاهدة الفيلم"),
         "Therearenocommentsyet":
             MessageLookupByLibrary.simpleMessage("لا توجد تعليقات حتى الآن."),
         "TwoHoursFiveMinutes":

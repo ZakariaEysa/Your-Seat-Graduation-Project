@@ -252,16 +252,15 @@ class _TicketPageState extends State<TicketPage> {
         automaticallyImplyLeading: false,
 
         title: Center(
-          child: Padding(
-            padding: EdgeInsetsDirectional.only(start: 80.w),
-            child: HeadAppBar(title: lang.tickets),
-          ),
+          child: Text(lang.tickets),
         ),
       ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : tickets.isEmpty
-          ? Center(child: Text("No tickets"))
+          ? Center(child: Text("No tickets" ,  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          fontSize: 18
+      ),) , )
           : SingleChildScrollView(
         child: Padding(
           padding:

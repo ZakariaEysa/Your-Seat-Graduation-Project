@@ -46,7 +46,7 @@ class Director extends StatelessWidget {
                         base64Decode(imagePath ?? ""),
                         width: 50.w,
                         height: 50.h,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                       )
                     : ImageReplacer(
                         imageUrl: imagePath,

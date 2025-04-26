@@ -42,6 +42,7 @@ class Director extends StatelessWidget {
 
 
 
+
               Padding(
                 padding:  EdgeInsetsDirectional.only(start: 5.w),
                 child:isBase64(imagePath)? ClipRRect(

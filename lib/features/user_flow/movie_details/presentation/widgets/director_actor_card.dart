@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +16,10 @@ class Director extends StatelessWidget {
     required this.name,
     required this.imagePath,
   });
+  bool isBase64(String? imageUrl) {
+    final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
+    return base64Pattern.hasMatch(imageUrl??"");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,14 @@ class Director extends StatelessWidget {
 
               Padding(
                 padding:  EdgeInsetsDirectional.only(start: 5.w),
-                child: ImageReplacer(imageUrl: imagePath, fit: BoxFit.fill,isCircle: true,
+                child:isBase64(imagePath)? ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Image.memory(base64Decode(imagePath) ,
+                    fit: BoxFit.fill,
+                    width: 50.w,
+                    height: 50.h,
+                  ),
+                ):ImageReplacer(imageUrl: imagePath, fit: BoxFit.fill,isCircle: true,
 
                 width: 50.w,
                   height: 50.h,

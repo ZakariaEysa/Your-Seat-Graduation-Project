@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
@@ -14,7 +13,6 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 import 'data/hive_stroage.dart';
 import 'features/user_flow/Watch_list/presentation/cubit/watch_list_cubit.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
@@ -35,17 +33,10 @@ import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/coming_soon/coming_soon.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_cubit.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/movie_carousel_widget.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -329,123 +320,3 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-// ScaffoldF(
-//                   body: ElevatedButton(
-//                     onPressed: () {
-//                       showLocalNotification("عنوان الإشعار", "محتوى الإشعار");
-//                     },
-//                     child: Text("إظهار إشعار محلي"),
-//                   ),
-//                 ),
-
-
-
-
-
-
-
-
-
-
-// class RouteMapPage extends StatefulWidget {
-//   const RouteMapPage({Key? key}) : super(key: key);
-//
-//   @override
-//   State<RouteMapPage> createState() => _RouteMapPageState();
-// }
-//
-// class _RouteMapPageState extends State<RouteMapPage> {
-//   Completer<GoogleMapController> _controller = Completer();
-//   LatLng _currentLocation = LatLng(29.309948, 30.841800); // المسلة
-//   LatLng _destinationLocation = LatLng(29.308960, 30.896508); // جامعة الفيوم
-//
-//   Set<Polyline> _polylines = {};
-//   List<LatLng> _polylineCoordinates = [];
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _createRoute();
-//   }
-//
-//   Future<void> _createRoute() async {
-//     final polylinePoints = PolylinePoints();
-//     final result = await polylinePoints.getRouteBetweenCoordinates(
-//       googleApiKey: googleMapsApiKey,
-//       request: PolylineRequest(
-//         origin: PointLatLng(
-//             _currentLocation.latitude, _currentLocation.longitude),
-//         destination: PointLatLng(
-//             _destinationLocation.latitude, _destinationLocation.longitude),
-//         mode: TravelMode.driving,
-//       ),
-//     );
-//
-//     if (result.points.isNotEmpty) {
-//       _polylineCoordinates = result.points
-//           .map((e) => LatLng(e.latitude, e.longitude))
-//           .toList();
-//
-//       setState(() {
-//         _polylines.add(Polyline(
-//           polylineId: PolylineId('route'),
-//           points: _polylineCoordinates,
-//           color: Colors.blue,
-//           width: 5,
-//         ));
-//       });
-//
-//       final controller = await _controller.future;
-//       controller.animateCamera(CameraUpdate.newLatLngBounds(
-//         LatLngBounds(
-//           southwest: LatLng(
-//             _currentLocation.latitude <= _destinationLocation.latitude
-//                 ? _currentLocation.latitude
-//                 : _destinationLocation.latitude,
-//             _currentLocation.longitude <= _destinationLocation.longitude
-//                 ? _currentLocation.longitude
-//                 : _destinationLocation.longitude,
-//           ),
-//           northeast: LatLng(
-//             _currentLocation.latitude >= _destinationLocation.latitude
-//                 ? _currentLocation.latitude
-//                 : _destinationLocation.latitude,
-//             _currentLocation.longitude >= _destinationLocation.longitude
-//                 ? _currentLocation.longitude
-//                 : _destinationLocation.longitude,
-//           ),
-//         ),
-//         100,
-//       ));
-//     } else {
-//       print("❌ Unable to get route: ${result.errorMessage}");
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('الاتجاهات')),
-//       body: GoogleMap(
-//         initialCameraPosition: CameraPosition(
-//           target: _currentLocation,
-//           zoom: 13,
-//         ),
-//         onMapCreated: (controller) => _controller.complete(controller),
-//         markers: {
-//           Marker(
-//             markerId: MarkerId('current'),
-//             position: _currentLocation,
-//             infoWindow: InfoWindow(title: ' مستشفي الندي التخصصي ب الفيوم'),
-//           ),
-//           Marker(
-//             markerId: MarkerId('destination'),
-//             position: _destinationLocation,
-//             infoWindow: InfoWindow(title: 'جامعة الفيوم'),
-//           ),
-//         },
-//         polylines: _polylines,
-//       ),
-//     );
-//   }
-// }

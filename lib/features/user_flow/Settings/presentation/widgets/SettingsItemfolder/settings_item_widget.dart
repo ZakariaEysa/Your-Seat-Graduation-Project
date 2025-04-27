@@ -3,14 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../generated/l10n.dart';
 
-class SettingsItem extends StatelessWidget {
+class SettingsItemClass extends StatelessWidget {
   final String title;
   final String imageIcon;
   final VoidCallback? onPress;
 
 
 
-  const SettingsItem({
+
+
+
+
+  const SettingsItemClass({
     super.key,
     required this.title,
     required this.imageIcon,

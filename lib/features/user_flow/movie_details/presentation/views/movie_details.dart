@@ -65,8 +65,9 @@ class _MovieDetailsState extends State<MovieDetails> {
   // دالة للتحقق إذا كانت الصورة بصيغة Base64
   bool isBase64(String? imageUrl) {
     final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
-    return base64Pattern.hasMatch(imageUrl??"");
+    return base64Pattern.hasMatch(imageUrl ?? "");
   }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -79,19 +80,19 @@ class _MovieDetailsState extends State<MovieDetails> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
           Stack(children: [
-            isBase64(widget.model.posterImage)?
-            Image.memory(
-              base64Decode(widget.model.posterImage ?? ""),
-              width: 500.w,
-              height: 390.h,
-              fit: BoxFit.cover,
-            ):
-            ImageReplacer(
-              imageUrl: widget.model.posterImage ?? "",
-              width: 500.w,
-              height: 390.h,
-              fit: BoxFit.cover,
-            ),
+            isBase64(widget.model.posterImage)
+                ? Image.memory(
+                    base64Decode(widget.model.posterImage ?? ""),
+                    width: 500.w,
+                    height: 390.h,
+                    fit: BoxFit.cover,
+                  )
+                : ImageReplacer(
+                    imageUrl: widget.model.posterImage ?? "",
+                    width: 500.w,
+                    height: 390.h,
+                    fit: BoxFit.cover,
+                  ),
             Padding(
               padding: EdgeInsetsDirectional.only(top: 50.h),
               child: IconButton(
@@ -119,8 +120,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                     Text(
                       widget.model.name ?? "",
                       style:
-                          theme.textTheme.titleLarge!.copyWith(fontSize:18.sp),
-
+                          theme.textTheme.titleLarge!.copyWith(fontSize: 18.sp),
                     ),
                     SizedBox(
                       height: 6.h,
@@ -357,7 +357,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                       children: [
                         Director(
                             name: widget.model.crew?.director ?? "",
-                            imagePath: "https://picsum.photos/150/150"),
+                            imagePath: "https://picsum.photos/150/130"),
                         Director(
                             name: widget.model.crew?.producer ?? "",
                             imagePath: "https://picsum.photos/150/130"),
@@ -467,10 +467,10 @@ class _MovieDetailsState extends State<MovieDetails> {
                 ButtonBuilder(
                   width: 250.w,
                   height: 55.h,
-
-                  text: "continue" , style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                  text: "continue",
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                   onTap: () {
                     if (HiveStorage.get(HiveKeys.role) ==
                         Role.guest.toString()) {

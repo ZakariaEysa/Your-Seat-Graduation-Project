@@ -43,10 +43,12 @@ class Director extends StatelessWidget {
                 padding: EdgeInsetsDirectional.only(start: 5.w),
                 child: isBase64(imagePath)
                     ? Image.memory(
+                      
+                      
                         base64Decode(imagePath ?? ""),
-                        width: 500.w,
-                        height: 390.h,
-                        fit: BoxFit.cover,
+                        width: 50.w,
+                        height: 50.h,
+                        fit: BoxFit.fill,
                       )
                     : ImageReplacer(
                         imageUrl: imagePath,

@@ -38,6 +38,7 @@ class PersonalInfoCard extends StatelessWidget {
             title,
             style: theme.textTheme.titleLarge!.copyWith(
               color: Theme.of(context).colorScheme.onPrimary,
+              fontSize: 20.sp
             ),
 
           ),
@@ -50,7 +51,9 @@ class PersonalInfoCard extends StatelessWidget {
               child: Text(
                 info ?? "",
                 textAlign: TextAlign.end,
-                style: theme.textTheme.bodyMedium,
+                style: theme.textTheme.bodyMedium!.copyWith(
+                  fontSize: 13.sp,
+                ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ),

@@ -252,7 +252,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      lang.movieGenre + " : ",
+                      "${lang.movieGenre} : ",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -274,7 +274,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      lang.censorship + " : ",
+                      "${lang.censorship} : ",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -296,7 +296,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      lang.language + "  : ",
+                      "${lang.language}  : ",
                       style:
                           theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     ),
@@ -357,13 +357,13 @@ class _MovieDetailsState extends State<MovieDetails> {
                       children: [
                         Director(
                             name: widget.model.crew?.director ?? "",
-                            imagePath: "https://picsum.photos/150/130"),
+                            imagePath: widget.model.crewImages?['director']?? "https://picsum.photos/150/130"),
                         Director(
                             name: widget.model.crew?.producer ?? "",
-                            imagePath: "https://picsum.photos/150/130"),
+                            imagePath: widget.model.crewImages?["producer"]??"https://picsum.photos/150/130"),
                         Director(
                             name: widget.model.crew?.writer ?? "",
-                            imagePath: "https://picsum.photos/150/120"),
+                            imagePath: widget.model.crewImages?["writer"]??"https://picsum.photos/150/130"),
                       ],
                     ),
                   ),

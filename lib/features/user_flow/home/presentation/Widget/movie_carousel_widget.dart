@@ -200,6 +200,7 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                           },
                           child: GestureDetector(
                             onTap: () {
+                              print(MoviesDetailsModel().crewImages);
                               navigateTo(
                                 context: context,
                                 screen: MovieDetails(

@@ -4,7 +4,7 @@ import 'crew.dart';
 
 class MoviesDetailsModel extends Equatable {
   final List<dynamic>? castImages;
-  final List<dynamic>? crewImages;
+  final Map<String,dynamic>? crewImages;
   final List<dynamic>? cast;
   final Crew? crew;
   final String? category;
@@ -37,11 +37,12 @@ class MoviesDetailsModel extends Equatable {
 
   factory MoviesDetailsModel.fromJson(Map<String, dynamic> json) {
     return MoviesDetailsModel(
-      // comments: (json['Comments'] as List<dynamic>?)
-      //     ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
-      //     .toList(),
       castImages: json['cast_images'] as List<dynamic>?,
-      crewImages: json['crew_images'] as List<dynamic>?,
+      crewImages: json['crew_images'] as Map<String,dynamic>? ??{
+        'director' : "https://picsum.photos/150/130",
+        'producer' : "https://picsum.photos/150/130",
+        'writer' : "https://picsum.photos/150/130"
+      },
       cast: json['cast'] as List<dynamic>?,
       crew: json['crew'] == null
           ? null

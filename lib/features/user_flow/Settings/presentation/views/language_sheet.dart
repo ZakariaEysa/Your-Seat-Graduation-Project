@@ -41,7 +41,7 @@ class LanguageSheet extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     HiveStorage.set(HiveKeys.isArabic, code == "ar");
-                    MyApp.restartApp(context);
+                    //MyApp.restartApp(context);
                   },
                   child: Container(
                     padding:

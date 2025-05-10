@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
@@ -12,8 +14,10 @@ class WatchList extends StatelessWidget {
   const WatchList({super.key});
 
 
+
   @override
   Widget build(BuildContext context) {
+
     var lang = S.of(context);
 
     final favoriteMoviesProvider = Provider.of<FavoriteMoviesProvider>(context);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
 import '../../../Notifaction/views/Notifaction.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../Rate/Rate.dart';
@@ -24,7 +25,6 @@ class HeadWidget extends StatelessWidget {
           GestureDetector(
             onTap: () {
               navigateTo(context: context, screen:  Notifications());
-              // navigateTo(context: context, screen:  Rate());
 
             },
             child: Padding(

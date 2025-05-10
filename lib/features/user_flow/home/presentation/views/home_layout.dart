@@ -2,6 +2,7 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
 import '../../../Settings/presentation/views/setting_page.dart';
 import 'home_screen.dart';
 import '../../../../../generated/l10n.dart';
@@ -11,13 +12,23 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geolocator_android/geolocator_android.dart';
 
 class HomeLayout extends StatefulWidget {
+
   const HomeLayout({super.key});
+
+
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeLayout> {
+  @override
+  void initState() {
+    NotificationCubit().initializeNotificationList();
+    NotificationCubit().addNotification("Finally", "Tesssssssssst");
+
+    super.initState();
+  }
   void showCenteredSnackBar(BuildContext context, String message) {
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(

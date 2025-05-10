@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import '../../data/hive_keys.dart';
+import '../../data/hive_stroage.dart';
 import 'custom_interceptor.dart';
 import 'end_points.dart';
 
@@ -37,7 +39,10 @@ class ApiService {
         e.type == DioExceptionType.receiveTimeout ||
         e.type == DioExceptionType.unknown) {
       // Return an empty string and the internet error message.
-      return 'مشكلة في الاتصال بالإنترنت';
+
+      return HiveStorage.get(HiveKeys.isArabic)
+          ? 'مشكلة في الاتصال بالإنترنت'
+          : 'Internet connection problem';
     } else {
       // For other types of DioException, return the error message.
       return e.response?.data;
@@ -52,7 +57,9 @@ class ApiService {
         requestOptions: response.requestOptions,
         response: response,
         type: DioExceptionType.sendTimeout,
-        error: 'خطأ في الاستجابة: ${response.statusCode}',
+        error: HiveStorage.get(HiveKeys.isArabic)
+            ? 'خطأ في الاستجابة: ${response.statusCode}'
+            : 'Error in response: ${response.statusCode}',
       );
     }
     return response;

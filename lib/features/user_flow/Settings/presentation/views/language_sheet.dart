@@ -4,6 +4,7 @@ import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../main.dart';
+import '../../../../../utils/navigation.dart';
 
 class LanguageSheet extends StatelessWidget {
   const LanguageSheet({super.key});
@@ -41,7 +42,8 @@ class LanguageSheet extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     HiveStorage.set(HiveKeys.isArabic, code == "ar");
-                    //MyApp.restartApp(context);
+                    MyApp.restartApp(context);
+                    navigatePop(context: context);
                   },
                   child: Container(
                     padding:
@@ -71,7 +73,8 @@ class LanguageSheet extends StatelessWidget {
                         ),
                         if (currentLang == code)
                           Icon(Icons.check_rounded,
-                              color: Theme.of(context).colorScheme.onPrimary, size: 20.sp),
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              size: 20.sp),
                       ],
                     ),
                   ),

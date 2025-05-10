@@ -2,6 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
+import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/app.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../cubit/auth_cubit.dart';
@@ -302,6 +304,10 @@ class _SignInState extends State<SignIn> {
                               onTap: () {
                                 cubit.emailController.clear();
                                 cubit.passwordController.clear();
+                                AppLogs.scussessLog("Current User Email is :");
+                                print(NotificationCubit().currentUserEmail);
+                                AppLogs.scussessLog("Current User Email is :");
+
                                 navigateAndReplace(
                                   context: context,
                                   screen: const SignUp(),

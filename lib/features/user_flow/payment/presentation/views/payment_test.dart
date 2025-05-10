@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_successful.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
@@ -336,7 +337,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
 //تم حجز التذكره بنجاح استمتع ب المشاهده
     await NotificationsManager.showLocalNotification(title, body);
-
+    await NotificationCubit().addNotification(title, body);
     navigateAndRemoveUntil(
       context: context,
       screen: PaymentSuccessful(

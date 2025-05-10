@@ -7,6 +7,7 @@ import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.d
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
+import '../../../../../utils/notifications_manager.dart';
 import 'vertical_status_card.dart';
 
 class TicketCard extends StatelessWidget {
@@ -23,7 +24,6 @@ class TicketCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Card(
       margin: EdgeInsets.only(bottom: 15.h),
       color: Theme.of(context).colorScheme.secondary,
@@ -61,18 +61,24 @@ class TicketCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8.h),
-                  _buildInfoRow(context,'assets/icons/clock_icon.png', '${ticket.time}  |  ${ticket.date}'),
-                  _buildInfoRow(context,'assets/icons/location_icon.png', ticket.location),
-                  _buildInfoRow(context,'assets/icons/Group 4.png', 'Seat: ${ticket.seats}'),
-                  _buildInfoRow(context,'assets/icons/price-tag 2.png', ticket.price),
+                  _buildInfoRow(context, 'assets/icons/clock_icon.png',
+                      '${ticket.time}  |  ${ticket.date}'),
+                  _buildInfoRow(context, 'assets/icons/location_icon.png',
+                      ticket.location),
+                  _buildInfoRow(context, 'assets/icons/Group 4.png',
+                      'Seat: ${ticket.seats}'),
+                  _buildInfoRow(
+                      context, 'assets/icons/price-tag 2.png', ticket.price),
                   if (ticket.status == "active")
                     Padding(
                       padding: EdgeInsets.only(top: 8.h),
                       child: Center(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor:Theme.of(context).colorScheme.primary,
-                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 8.h),
                             minimumSize: Size(120.w, 35.h),
                             side: BorderSide(
                               color: const Color(0xFFBD1A2F),
@@ -82,10 +88,12 @@ class TicketCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20.r),
                             ),
                           ),
-                          onPressed:(){
+                          onPressed: () {
                             onCancel();
-                            showLocalNotification("Action Cancelled ✅", "You have canceled your ticket.");
-                          } ,
+                            NotificationsManager.showLocalNotification(
+                                "Action Cancelled ✅",
+                                "You have canceled your ticket.");
+                          },
                           child: Text(
                             'Cancel',
                             style: TextStyle(
@@ -111,7 +119,7 @@ class TicketCard extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(BuildContext context,String iconPath, String text) {
+  Widget _buildInfoRow(BuildContext context, String iconPath, String text) {
     return Padding(
       padding: EdgeInsets.only(bottom: 4.h),
       child: Row(
@@ -121,8 +129,6 @@ class TicketCard extends StatelessWidget {
             width: 18.w,
             height: 18.h,
             color: Theme.of(context).colorScheme.onSecondary,
-
-
           ),
           SizedBox(width: 5.w),
           Flexible(
@@ -156,8 +162,7 @@ class Ticket {
   final double statusImageHeight;
   final String orderId;
 
-
-  Ticket( {
+  Ticket({
     required this.movieName,
     required this.orderId,
     required this.location,

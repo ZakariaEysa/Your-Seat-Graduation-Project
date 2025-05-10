@@ -3,19 +3,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:yourseatgraduationproject/core/Network/end_points.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_stroage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_successful.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../../utils/notifications_manager.dart';
 
 class PayMobPayment {
   Dio dio = Dio(BaseOptions(
@@ -337,7 +335,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
 
 //تم حجز التذكره بنجاح استمتع ب المشاهده
-    await showLocalNotification(title, body);
+    await NotificationsManager.showLocalNotification(title, body);
 
     navigateAndRemoveUntil(
       context: context,
@@ -463,31 +461,5 @@ class _PaymentScreenState extends State<PaymentScreen> {
     } catch (e) {
       print("❌ خطأ أثناء حفظ التذكرة في مجموعة السينما: $e");
     }
-  }
-
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  Future<void> showLocalNotification(String title, String body) async {
-    const AndroidNotificationDetails androidPlatformChannelSpecifics =
-        AndroidNotificationDetails(
-      'default_channel_id',
-      'default_notifications',
-      channelDescription: 'YourSeat channel ',
-      importance: Importance.max,
-      priority: Priority.high,
-      ticker: 'ticker',
-    );
-
-    const NotificationDetails platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics);
-
-    await flutterLocalNotificationsPlugin.show(
-      333,
-      title,
-      body,
-      platformChannelSpecifics,
-      payload: 'Default_Sound',
-    );
   }
 }

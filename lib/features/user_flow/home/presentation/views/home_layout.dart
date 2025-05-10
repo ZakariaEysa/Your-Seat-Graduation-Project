@@ -2,6 +2,7 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
 import '../../../Settings/presentation/views/setting_page.dart';
 import 'home_screen.dart';
 import '../../../../../generated/l10n.dart';
@@ -18,6 +19,14 @@ class HomeLayout extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeLayout> {
+  @override
+  void initState() {
+    NotificationCubit().initializeNotificationList();
+    // NotificationCubit().addNotification("Finally", "Tesssssssssst");
+
+    super.initState();
+  }
+
   void showCenteredSnackBar(BuildContext context, String message) {
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
@@ -104,7 +113,6 @@ class _HomeScreenState extends State<HomeLayout> {
     }
   }
 
-
   int selectedIndex = 0;
 
   List<Widget> pages = [
@@ -136,10 +144,10 @@ class _HomeScreenState extends State<HomeLayout> {
               selectedIndex == 0
                   ? const AssetImage("assets/icons/home_bold.png")
                   : const AssetImage("assets/icons/home.png"),
-             color: Colors.white,
+              color: Colors.white,
             ),
             label: selectedIndex == 0 ? lang.home : '',
-            labelStyle:  TextStyle(color: Colors.white,  fontSize: 16.sp),
+            labelStyle: TextStyle(color: Colors.white, fontSize: 16.sp),
           ),
           CurvedNavigationBarItem(
             child: ImageIcon(
@@ -149,7 +157,7 @@ class _HomeScreenState extends State<HomeLayout> {
               color: Colors.white,
             ),
             label: selectedIndex == 1 ? lang.watchlist : '',
-            labelStyle:  TextStyle(color: Colors.white,  fontSize: 16.sp),
+            labelStyle: TextStyle(color: Colors.white, fontSize: 16.sp),
           ),
           CurvedNavigationBarItem(
             child: ImageIcon(
@@ -159,8 +167,7 @@ class _HomeScreenState extends State<HomeLayout> {
               color: Colors.white,
             ),
             label: selectedIndex == 2 ? lang.tickets : '',
-            labelStyle: TextStyle(color: Colors.white,  fontSize:17.sp),
-
+            labelStyle: TextStyle(color: Colors.white, fontSize: 17.sp),
           ),
           CurvedNavigationBarItem(
             child: ImageIcon(
@@ -170,7 +177,7 @@ class _HomeScreenState extends State<HomeLayout> {
               color: Colors.white,
             ),
             label: selectedIndex == 3 ? lang.settings : '',
-            labelStyle: TextStyle(color: Colors.white,  fontSize: 17.sp),
+            labelStyle: TextStyle(color: Colors.white, fontSize: 17.sp),
           ),
         ],
       ),

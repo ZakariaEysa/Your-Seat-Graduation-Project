@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../utils/notifications_manager.dart';
+import '../../../Notifaction/notification_cubit/notification_cubit.dart';
 import 'vertical_status_card.dart';
 
 class TicketCard extends StatelessWidget {
@@ -93,6 +94,8 @@ class TicketCard extends StatelessWidget {
                             NotificationsManager.showLocalNotification(
                                 "Action Cancelled ✅",
                                 "You have canceled your ticket.");
+                            NotificationCubit().addNotification("Action Cancelled ✅", "You have canceled your ticket.");
+
                           },
                           child: Text(
                             'Cancel',

@@ -4,7 +4,7 @@ description: "A new Flutter project."
 
 publish_to: "none" # Prevents accidental publishing to pub.dev.
 
-version: 1.0.9+1
+version: 1.1.1+1
 
 environment:
   sdk: ">=3.4.3 <4.0.0"
@@ -41,6 +41,7 @@ dependencies:
   flutter_polyline_points: ^2.1.0
   flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.3
+  flutter_slidable: 
   font_awesome_flutter: any
   geolocator: null
   geolocator_android: 4.6.1

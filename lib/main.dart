@@ -10,6 +10,7 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
 import 'data/hive_stroage.dart';
+import 'features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
 import 'features/user_flow/Watch_list/presentation/cubit/watch_list_cubit.dart';
 import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/cinema_details/presentation/cubit/cinema_cubit.dart';
@@ -59,6 +60,7 @@ void main() async {
           BlocProvider(create: (_) => MovieCarouselCubit()),
           BlocProvider(create: (_) => ComingSoonCubit()),
           BlocProvider(create: (_) => WatchListCubit()),
+          BlocProvider(create: (_) => NotificationCubit()),
         ],
         child: const MyApp(),
       ),

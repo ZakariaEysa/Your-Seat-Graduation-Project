@@ -11,11 +11,22 @@ class ChatMessageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isUser = message.type == MessageType.user;
     final theme = Theme.of(context);
+    final locale = Localizations.localeOf(context).languageCode;
+    final isRTL = locale == 'ar';
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+      // padding: EdgeInsetsDirectional.only(
+      //   start: isUser ? 50.w : 16.w,
+      //   end: isUser ? 16.w : 50.w,
+      //   top: 8.h,
+      //   bottom: 8.h,
+      // ),
+      padding: EdgeInsetsDirectional.only(top: 12.h, start: 20.w, end: 20.w),
+
       child: Align(
-        alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+        alignment: isUser
+            ? (isRTL ? Alignment.centerLeft : Alignment.centerRight)
+            : (isRTL ? Alignment.centerRight : Alignment.centerLeft),
         child: Container(
           constraints: BoxConstraints(maxWidth: 270.w),
           padding: EdgeInsets.all(12.r),
@@ -31,7 +42,8 @@ class ChatMessageItem extends StatelessWidget {
             ],
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment:
+                isRTL ? CrossAxisAlignment.end : CrossAxisAlignment.start,
             children: [
               Text(
                 message.message,
@@ -42,7 +54,8 @@ class ChatMessageItem extends StatelessWidget {
               ),
               if (message.recommendations != null &&
                   message.recommendations!.isNotEmpty)
-                ..._buildRecommendations(message.recommendations!, theme),
+                ..._buildRecommendations(
+                    message.recommendations!, theme, isRTL),
             ],
           ),
         ),
@@ -51,13 +64,13 @@ class ChatMessageItem extends StatelessWidget {
   }
 
   List<Widget> _buildRecommendations(
-      List<MovieRecommendation> recommendations, ThemeData theme) {
+      List<MovieRecommendation> recommendations, ThemeData theme, bool isRTL) {
     return [
       SizedBox(height: 8.h),
       Divider(color: Colors.grey[300], thickness: 1),
       SizedBox(height: 8.h),
       Text(
-        'التوصيات:',
+        isRTL ? 'التوصيات:' : 'Recommendations:',
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 14.sp,
@@ -65,15 +78,17 @@ class ChatMessageItem extends StatelessWidget {
         ),
       ),
       SizedBox(height: 4.h),
-      ...recommendations.map((movie) => _buildMovieItem(movie, theme)),
+      ...recommendations.map((movie) => _buildMovieItem(movie, theme, isRTL)),
     ];
   }
 
-  Widget _buildMovieItem(MovieRecommendation movie, ThemeData theme) {
+  Widget _buildMovieItem(
+      MovieRecommendation movie, ThemeData theme, bool isRTL) {
     return Padding(
       padding: EdgeInsets.only(top: 8.h),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isRTL ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Text(
             movie.title,
@@ -84,21 +99,25 @@ class ChatMessageItem extends StatelessWidget {
             ),
           ),
           Text(
-            '${movie.genre} • ${movie.releaseYear} • ${movie.imdbScore}/10',
+            isRTL
+                ? '${movie.genre} • ${movie.releaseYear} • ${movie.imdbScore}/10'
+                : '${movie.genre} • ${movie.releaseYear} • ${movie.imdbScore}/10',
             style: TextStyle(
               fontSize: 12.sp,
               color: Colors.grey[700],
             ),
           ),
           Text(
-            'المخرج: ${movie.director}',
+            isRTL ? 'المخرج: ${movie.director}' : 'Director: ${movie.director}',
             style: TextStyle(
               fontSize: 12.sp,
               color: Colors.grey[700],
             ),
           ),
           Text(
-            'الممثلين: ${movie.cast.join(", ")}',
+            isRTL
+                ? 'الممثلين: ${movie.cast.join(", ")}'
+                : 'Cast: ${movie.cast.join(", ")}',
             style: TextStyle(
               fontSize: 12.sp,
               color: Colors.grey[700],

@@ -15,7 +15,8 @@ class ChatUp extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 50.h, right: 20.w, left: 20.w),
+          padding:
+              EdgeInsetsDirectional.only(top: 50.h, start: 20.w, end: 20.w),
           child: Row(
             children: [
               IconButton(
@@ -33,13 +34,14 @@ class ChatUp extends StatelessWidget {
                 'assets/images/chat_bot.png',
                 width: 70.w,
                 height: 70.h,
-               // color: Theme.of(context).colorScheme.onPrimary,
+                // color: Theme.of(context).colorScheme.onPrimary,
               ),
             ],
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(15, 20, 90, 0),
+          padding:
+              EdgeInsetsDirectional.only(top: 10.h, start: 20.w, end: 20.w),
           child: Text(
             lang.HelloIamyourAIAssistant,
             style: theme.textTheme.bodyLarge!.copyWith(fontSize: 28.sp),

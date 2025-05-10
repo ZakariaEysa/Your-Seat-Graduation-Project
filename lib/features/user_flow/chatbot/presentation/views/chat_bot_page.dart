@@ -112,6 +112,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     final locale = Localizations.localeOf(context).languageCode;
     final emptyListText =
         locale == 'ar' ? 'ابدأ محادثة!' : 'Start a conversation!';
+    final isRTL = locale == 'ar';
 
     return Scaffold(
         resizeToAvoidBottomInset: true,
@@ -129,39 +130,42 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             children: [
               const ChatUp(),
               Expanded(
-                child: _messages.isEmpty
-                    ? Center(
-                        child: Text(
-                          emptyListText,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
+                child: Directionality(
+                  textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
+                  child: _messages.isEmpty
+                      ? Center(
+                          child: Text(
+                            emptyListText,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.sp,
+                            ),
                           ),
-                        ),
-                      )
-                    : ListView.builder(
-                        controller: _scrollController,
-                        padding: EdgeInsets.symmetric(vertical: 16.h),
-                        itemCount: _messages.length + (_isLoading ? 1 : 0),
-                        itemBuilder: (context, index) {
-                          if (index == _messages.length) {
-                            return Padding(
-                              padding: EdgeInsets.all(16.r),
-                              child: Center(
-                                child: SizedBox(
-                                  width: 24.w,
-                                  height: 24.h,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                    strokeWidth: 2.w,
+                        )
+                      : ListView.builder(
+                          controller: _scrollController,
+                          padding: EdgeInsets.symmetric(vertical: 16.h),
+                          itemCount: _messages.length + (_isLoading ? 1 : 0),
+                          itemBuilder: (context, index) {
+                            if (index == _messages.length) {
+                              return Padding(
+                                padding: EdgeInsets.all(16.r),
+                                child: Center(
+                                  child: SizedBox(
+                                    width: 24.w,
+                                    height: 24.h,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2.w,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          }
-                          return ChatMessageItem(message: _messages[index]);
-                        },
-                      ),
+                              );
+                            }
+                            return ChatMessageItem(message: _messages[index]);
+                          },
+                        ),
+                ),
               ),
               ChatAsk(onSendMessage: _sendMessage),
             ],

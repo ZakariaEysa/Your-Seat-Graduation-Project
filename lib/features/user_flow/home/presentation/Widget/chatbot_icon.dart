@@ -8,7 +8,8 @@ class DraggableFloatingButton extends StatefulWidget {
   const DraggableFloatingButton({super.key});
 
   @override
-  _DraggableFloatingButtonState createState() => _DraggableFloatingButtonState();
+  _DraggableFloatingButtonState createState() =>
+      _DraggableFloatingButtonState();
 }
 
 class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
@@ -37,13 +38,16 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
                 childWhenDragging: Container(),
                 onDraggableCanceled: (velocity, offset) {
                   setState(() {
-                    double newX = offset.dx.clamp(0, constraints.maxWidth - 80.w);
-                    double newY = offset.dy.clamp(0, constraints.maxHeight - 80.h);
+                    double newX =
+                        offset.dx.clamp(0, constraints.maxWidth - 80.w);
+                    double newY =
+                        offset.dy.clamp(0, constraints.maxHeight - 80.h);
                     buttonPosition = Offset(newX, newY);
                   });
                 },
                 child: GestureDetector(
-                  onTap: () => navigateTo(context: context, screen: const ChatBottt()),
+                  onTap: () => navigateTo(
+                      context: context, screen: const ChatBotScreen()),
                   child: FloatingButton(),
                 ),
               ),

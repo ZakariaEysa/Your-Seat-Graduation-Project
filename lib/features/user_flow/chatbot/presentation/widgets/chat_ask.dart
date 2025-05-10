@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../generated/l10n.dart';
+import '../../data/models/chat_message_model.dart';
 
 class ChatAsk extends StatefulWidget {
-  const ChatAsk({super.key});
+  final Function(String) onSendMessage;
+
+  const ChatAsk({
+    super.key,
+    required this.onSendMessage,
+  });
 
   @override
   _ChatAskState createState() => _ChatAskState();
@@ -23,11 +29,12 @@ class _ChatAskState extends State<ChatAsk> {
         children: [
           LayoutBuilder(
             builder: (context, constraints) {
-              textFieldWidth = constraints.maxWidth * 0.6; // 70% من عرض الـ TextField
+              textFieldWidth =
+                  constraints.maxWidth * 0.6; // 70% من عرض الـ TextField
               return Container(
                 color: const Color(0xFF27125B),
                 width: 390.w,
-                height: 80.h,
+                height: 95.h,
                 child: Padding(
                   padding: const EdgeInsets.only(
                       right: 8, bottom: 16, left: 16, top: 16),
@@ -40,6 +47,7 @@ class _ChatAskState extends State<ChatAsk> {
                             alignment: const Alignment(1.1, 0.8),
                             children: [
                               TextField(
+                                expands: true,
                                 controller: _controller,
                                 focusNode: _focusNode,
                                 maxLines: null, // يسمح بالتعدد التلقائي للأسطر
@@ -75,11 +83,14 @@ class _ChatAskState extends State<ChatAsk> {
                             ],
                           ),
                         ),
-                        Image.asset(
-                          'assets/icons/send.png',
-                          width: 48.w,
-                          height: 55.h,
-                          fit: BoxFit.cover,
+                        GestureDetector(
+                          onTap: _sendMessage,
+                          child: Image.asset(
+                            'assets/icons/send.png',
+                            width: 48.w,
+                            height: 55.h,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ],
                     ),
@@ -91,6 +102,13 @@ class _ChatAskState extends State<ChatAsk> {
         ],
       ),
     );
+  }
+
+  void _sendMessage() {
+    if (_controller.text.trim().isNotEmpty) {
+      widget.onSendMessage(_controller.text.trim());
+      _controller.clear();
+    }
   }
 
   void _handleTextChange() {

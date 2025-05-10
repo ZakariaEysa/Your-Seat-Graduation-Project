@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../utils/navigation.dart';
-import '../../../chatbot/presentation/views/chat_bottt.dart';
+import '../../../chatbot/presentation/views/chat_bot_page.dart';
 
 class DraggableFloatingButton extends StatefulWidget {
   const DraggableFloatingButton({super.key});

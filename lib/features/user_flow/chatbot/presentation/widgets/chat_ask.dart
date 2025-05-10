@@ -105,10 +105,10 @@ class _ChatAskState extends State<ChatAsk> {
   }
 
   void _sendMessage() {
-    if (_controller.text.trim().isNotEmpty) {
-      widget.onSendMessage(_controller.text.trim());
-      _controller.clear();
-    }
+    // if (_controller.text.trim().isNotEmpty) {
+    //   widget.onSendMessage(_controller.text.trim());
+    //   _controller.clear();
+    // }
   }
 
   void _handleTextChange() {

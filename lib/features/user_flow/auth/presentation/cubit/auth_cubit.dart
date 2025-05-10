@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../main.dart';
 import '../../../../../utils/app_logs.dart';
+import '../../../../../utils/notifications_manager.dart';
 import '../../data/model/google_user_model.dart';
 import '../../data/model/user_model.dart';
 import '../../domain/repos/auth_repo.dart';
@@ -67,10 +68,12 @@ class AuthCubit extends Cubit<AuthState> {
       (message) {
         if (message == "LoginSuccessful") {
           emit(UserValidationSuccess(message));
-          showLocalNotification("Logged In Successfully ✅","Welcome Back !");
+          NotificationsManager.showLocalNotification(
+              "Logged In Successfully ✅", "Welcome Back !");
         } else {
           emit(UserValidationError(message));
-          showLocalNotification("Something Went Wrong","Please try again");
+          NotificationsManager.showLocalNotification(
+              "Something Went Wrong", "Please try again");
           //emit(  UserValidationError("Sorry there was an error , please try again later"));
         }
       },
@@ -118,9 +121,9 @@ class AuthCubit extends Cubit<AuthState> {
     await authRepo.saveUser(
         userModel: userModel ??
             UserModel(name: "", email: "", password: "", dateOfBirth: ""));
-    final String name = userModel?.name??"" ;
-    showLocalNotification("Registered Successfully ✅","Hello! $name");
-
+    final String name = userModel?.name ?? "";
+    NotificationsManager.showLocalNotification(
+        "Registered Successfully ✅", "Hello! $name");
   }
 
   Future<void> updateUserPassword(String userEmail, String newPassword) async {

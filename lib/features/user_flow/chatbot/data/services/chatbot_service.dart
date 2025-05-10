@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:yourseatgraduationproject/core/Network/end_points.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import '../../../../../core/Network/api_service.dart';
 import '../models/chat_message_model.dart';
@@ -15,9 +14,15 @@ class ChatbotService {
         body: {'message': message},
       );
 
-      AppLogs.scussessLog(response.toString());
-      AppLogs.scussessLog(response.statusCode.toString());
-      AppLogs.scussessLog(response.data.toString());
+      // Check if response is a string (error message)
+      if (response.data is String) {
+        throw response.data;
+      }
+
+      // Check if response has the expected structure
+      if (response.data == null || response.data['response'] == null) {
+        throw 'Invalid response format from server';
+      }
 
       return response.data;
     } catch (e) {
@@ -30,14 +35,26 @@ class ChatbotService {
     try {
       final jsonResponse = await sendMessage(message);
 
+      // Validate response structure
+      if (jsonResponse['response'] == null ||
+          jsonResponse['response']['bot'] == null) {
+        throw 'Invalid response format from server';
+      }
+
       final botMessage = jsonResponse['response']['bot'] as String;
 
       List<MovieRecommendation> recommendations = [];
       if (jsonResponse['response']['recommendations'] != null) {
-        recommendations = (jsonResponse['response']['recommendations'] as List)
-            .map((recommendation) =>
-                MovieRecommendation.fromJson(recommendation))
-            .toList();
+        try {
+          recommendations =
+              (jsonResponse['response']['recommendations'] as List)
+                  .map((recommendation) =>
+                      MovieRecommendation.fromJson(recommendation))
+                  .toList();
+        } catch (e) {
+          AppLogs.errorLog('Error parsing recommendations: $e');
+          // Continue without recommendations if parsing fails
+        }
       }
 
       return ChatMessage(
@@ -47,8 +64,11 @@ class ChatbotService {
       );
     } catch (e) {
       AppLogs.errorLog('Error getting recommendations: $e');
+      final errorMessage = e is String
+          ? e
+          : 'Sorry, I encountered an error. Please try again later.';
       return ChatMessage(
-        message: 'Sorry, I encountered an error. Please try again later.',
+        message: errorMessage,
         type: MessageType.bot,
       );
     }

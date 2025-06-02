@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../../utils/navigation.dart';
 import '../../../../../../widgets/network_image/image_replacer.dart';
 import '../../../../cinema_details/presentation/views/cinema_details.dart';

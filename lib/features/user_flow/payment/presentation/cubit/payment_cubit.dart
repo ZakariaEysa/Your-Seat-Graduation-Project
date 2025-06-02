@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/domain/repos/payment_repo.dart';
+import '../../domain/repos/payment_repo.dart';
 
 part 'payment_state.dart';
 

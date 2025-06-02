@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'social_items.dart';
+
 import '../../../../../resources/constants.dart';
+import 'social_items.dart';
 
 class RowOfSocialItems extends StatelessWidget {
   const RowOfSocialItems({super.key});

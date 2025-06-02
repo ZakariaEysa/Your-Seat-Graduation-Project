@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 import '../views/coming_soon.dart';

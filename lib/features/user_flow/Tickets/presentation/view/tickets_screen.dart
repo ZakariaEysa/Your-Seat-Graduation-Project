@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';

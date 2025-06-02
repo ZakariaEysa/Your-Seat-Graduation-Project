@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../widgets/chat_ask.dart';
+
 import '../../../../../generated/l10n.dart';
-import '../widgets/chat_up.dart';
-import '../widgets/chat_message_item.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../data/models/chat_message_model.dart';
 import '../../data/services/chatbot_service.dart';
-import '../../../../../utils/app_logs.dart';
+import '../widgets/chat_ask.dart';
+import '../widgets/chat_message_item.dart';
+import '../widgets/chat_up.dart';
 
 class ChatBotScreen extends StatefulWidget {
   const ChatBotScreen({super.key});

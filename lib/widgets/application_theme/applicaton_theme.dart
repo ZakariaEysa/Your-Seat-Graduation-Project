@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../data/hive_keys.dart';
-import '../../data/hive_stroage.dart';
+import '../../data/hive_storage.dart';
 
 class ApplicationTheme extends ChangeNotifier {
   static bool _isDark = HiveStorage.get(HiveKeys.isDark);

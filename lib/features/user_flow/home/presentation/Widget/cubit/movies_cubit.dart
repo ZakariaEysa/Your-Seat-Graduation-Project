@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_state.dart';
+import 'movies_state.dart';
 
 class MovieCarouselCubit extends Cubit<MovieCarouselState> {
   MovieCarouselCubit() : super(MovieCarouselLoading());

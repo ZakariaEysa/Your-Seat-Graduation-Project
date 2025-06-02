@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../Notifaction/views/Notifaction.dart';
+import '../../../notification/views/Notifaction.dart';
 import '../../../../../utils/navigation.dart';
 
 class HeadWidget extends StatelessWidget {

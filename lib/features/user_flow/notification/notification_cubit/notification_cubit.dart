@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+
+import '../../../../data/hive_storage.dart';
 import 'notification_state.dart';
 
 class NotificationCubit extends Cubit<NotificationState> {

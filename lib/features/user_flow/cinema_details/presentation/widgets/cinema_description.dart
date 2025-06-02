@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:geolocator/geolocator.dart';
 
-import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/route_map.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
+import '../views/route_map.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';

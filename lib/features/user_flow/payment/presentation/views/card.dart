@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../widgets/card_part.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../widgets/card_part.dart';
 
 class PaymentCard extends StatefulWidget {
   const PaymentCard({super.key});

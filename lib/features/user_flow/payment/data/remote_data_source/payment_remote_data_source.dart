@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 
-import 'package:yourseatgraduationproject/core/Network/end_points.dart';
+import '../../../../../core/Network/end_points.dart';
 import '../../../../../utils/app_logs.dart';
 
 import '../../../../../../data/hive_keys.dart';
-import '../../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 
 abstract class PaymentRemoteDataSource {
   Future<String?> payWithPayMob(num amount);

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Watch_list/presentation/cubit/watch_list_state.dart';
 
 import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import 'watch_list_state.dart';
 
 class WatchListCubit extends Cubit<WatchListState> {
   WatchListCubit() : super(WatchListInitial());

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 import '../../../../../utils/notifications_manager.dart';
-import '../../../Notifaction/notification_cubit/notification_cubit.dart';
+import '../../../notification/notification_cubit/notification_cubit.dart';
 import 'vertical_status_card.dart';
 
 class TicketCard extends StatelessWidget {

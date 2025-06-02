@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/crew.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
+import '../../../movie_details/data/model/movies_details_model/crew.dart';
+import '../../../movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
+import '../../../movie_details/data/repos_impl/movie_details_repo_impl.dart';
+import '../../../movie_details/presentation/cubit/movie_details_cubit.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../movie_details/presentation/views/movie_details.dart';

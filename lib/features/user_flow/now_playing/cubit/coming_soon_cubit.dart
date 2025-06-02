@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:yourseatgraduationproject/features/user_flow/now_playing/cubit/coming_soon_state.dart';
+import 'coming_soon_state.dart';
 
 class ComingSoonCubit extends Cubit<ComingSoonState> {
   ComingSoonCubit() : super(ComingSoonLoading());

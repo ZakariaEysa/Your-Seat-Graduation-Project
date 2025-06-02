@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../data/hive_storage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../utils/dialog_utilits.dart';
 import '../../../utils/navigation.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../../widgets/scaffold/scaffold_f.dart';
+
 import '../../../../../generated/l10n.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../favorite_movies_provider/favorite_movies_provider.dart';
 import '../widgets/watch_list_part.dart';
 

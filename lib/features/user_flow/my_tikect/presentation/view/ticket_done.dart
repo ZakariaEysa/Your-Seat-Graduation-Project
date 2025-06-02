@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../home/presentation/views/home_layout.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../generated/l10n.dart';
 import '../widget/center_text.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';

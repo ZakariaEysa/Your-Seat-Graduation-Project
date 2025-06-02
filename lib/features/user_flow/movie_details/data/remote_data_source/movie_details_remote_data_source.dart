@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
-import 'package:yourseatgraduationproject/core/Network/end_points.dart';
-import '../../../../../core/Network/api_service.dart';
-import '../../../../../utils/app_logs.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
+
+import '../../../../../core/Network/api_service.dart';
+import '../../../../../core/Network/end_points.dart';
+import '../../../../../utils/app_logs.dart';
 
 abstract class MovieDetailsRemoteDataSource {
   Future<List> getCinemas(String movieName);

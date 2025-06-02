@@ -1,7 +1,8 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'hive_keys.dart';
+
 import '../features/user_flow/auth/data/model/google_user_model.dart';
 import '../features/user_flow/auth/data/model/user_model.dart';
+import 'hive_keys.dart';
 
 class HiveStorage {
   static late Box box;

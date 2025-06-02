@@ -13,7 +13,7 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/prese
 import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
 
 import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/dialog_utilits.dart';

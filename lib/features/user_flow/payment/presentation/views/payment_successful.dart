@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
-import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/view/ticket_done.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../../my_tikect/presentation/view/ticket_done.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../generated/l10n.dart';

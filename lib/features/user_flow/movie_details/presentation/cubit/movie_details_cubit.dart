@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/domain/repos/movie_details_repo.dart';
+import '../../domain/repos/movie_details_repo.dart';
 
 part 'movie_details_state.dart';
 

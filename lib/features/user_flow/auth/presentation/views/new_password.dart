@@ -4,21 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'sign_in.dart';
-import '../../../../../utils/navigation.dart';
-import '../../../../../widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
+import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 import '../../data/remote_data_source/auth_remote_data_source.dart';
 import '../../data/repos_impl/auth_repo_impl.dart';
 import '../cubit/auth_cubit.dart';
 import 'forget.dart';
+import 'sign_in.dart';
 
 class NewPassword extends StatefulWidget {
   const NewPassword({super.key});

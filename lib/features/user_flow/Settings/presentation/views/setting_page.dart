@@ -80,7 +80,7 @@ import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../auth/presentation/cubit/auth_cubit.dart';
 import '../widgets/SettingsItemfolder/settings_item_widget.dart';

@@ -4,10 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
-import 'package:yourseatgraduationproject/data/hive_stroage.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
+import 'package:yourseatgraduationproject/data/hive_storage.dart';
+import 'package:yourseatgraduationproject/features/user_flow/notification/notification_cubit/notification_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_successful.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';

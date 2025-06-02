@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bot_toast/bot_toast.dart';
-import '../data/hive_stroage.dart';
+import '../data/hive_storage.dart';
 import '../data/hive_keys.dart';
 import 'app_logs.dart';
 import 'firebase_manager.dart';

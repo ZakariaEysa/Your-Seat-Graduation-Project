@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/search/search_results_widgets.dart';
+import 'search_results_widgets.dart';
 
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({super.key});

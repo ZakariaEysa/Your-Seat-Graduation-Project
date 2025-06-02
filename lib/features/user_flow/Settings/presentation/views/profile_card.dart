@@ -5,7 +5,7 @@ import '../../../../../data/hive_keys.dart';
 import '../widgets/profile_card/profile_edit_card.dart';
 import '../../../settings/presentation/widgets/profile_card/personal_info_card.dart';
 import '../../../../../utils/app_logs.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 

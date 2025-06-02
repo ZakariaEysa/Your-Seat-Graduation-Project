@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/domain/repos/movie_details_repo.dart';
+import '../remote_data_source/movie_details_remote_data_source.dart';
+import '../../domain/repos/movie_details_repo.dart';
 import '../../../../../services/failure_service.dart';
 
 class MovieDetailsRepoImpl implements MovieDetailsRepo {

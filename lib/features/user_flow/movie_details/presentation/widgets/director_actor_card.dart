@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import '../../../../../utils/app_logs.dart';
-import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
-import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 import '../../../Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../movie_details/presentation/cubit/movie_details_cubit.dart';
 
 class PlayingMovies extends StatefulWidget {

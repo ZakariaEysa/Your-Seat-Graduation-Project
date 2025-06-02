@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 import '../../../../../utils/dialog_utilits.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../auth/presentation/views/sign_in.dart';

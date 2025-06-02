@@ -130,9 +130,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_state.dart';
+
+import '../../../../../utils/navigation.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../movie_details/presentation/views/movie_details.dart';
-import '../../../../../utils/navigation.dart';
 import 'movie_card.dart';
 
 class MovieCarouselWidget extends StatefulWidget {

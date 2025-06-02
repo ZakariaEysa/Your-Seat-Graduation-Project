@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../Widget/head_widget.dart';
-import '../Widget/text.dart';
+
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../Widget/chatbot_icon.dart';
 import '../Widget/Cinema_item/cinema_item.dart';
+import '../Widget/chatbot_icon.dart';
 import '../Widget/coming_soon/coming_soon.dart';
+import '../Widget/head_widget.dart';
 import '../Widget/movie_carousel_widget.dart';
 import '../Widget/search/search.dart';
+import '../Widget/text.dart';
 import '../Widget/text_widget.dart';
 
 class HomeScreen extends StatelessWidget {

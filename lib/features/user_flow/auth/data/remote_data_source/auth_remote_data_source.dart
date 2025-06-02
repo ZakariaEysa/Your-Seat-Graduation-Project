@@ -1,14 +1,13 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../../../../utils/app_logs.dart';
 
 import '../../../../../../data/hive_keys.dart';
-import '../../../../../../data/hive_stroage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
+import '../../../../../data/hive_storage.dart';
+import '../../../../../utils/app_logs.dart';
 import '../model/google_user_model.dart';
 import '../model/user_model.dart';
 

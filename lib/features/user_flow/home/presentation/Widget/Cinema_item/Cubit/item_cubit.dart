@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'item_state.dart';
 
-class CinemaaItemCubit extends Cubit<CinemaaItemState> {
-  CinemaaItemCubit() : super(CinemaLoading()); // ✅ إصلاح التهيئة
-  static CinemaaItemCubit get(context) =>
-      BlocProvider.of<CinemaaItemCubit>(context);
+class CinemaItemCubit extends Cubit<CinemaItemState> {
+  CinemaItemCubit() : super(CinemaLoading());
+  static CinemaItemCubit get(context) =>
+      BlocProvider.of<CinemaItemCubit>(context);
 
   var cinemas;
   void fetchCinemas() async {

@@ -19,14 +19,14 @@ class _CinemaItemState extends State<CinemaItem> {
   @override
   void initState() {
     super.initState();
-    CinemaaItemCubit.get(context).fetchCinemas();
+    CinemaItemCubit.get(context).fetchCinemas();
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200.h,
-      child: BlocBuilder<CinemaaItemCubit, CinemaaItemState>(
+      child: BlocBuilder<CinemaItemCubit, CinemaItemState>(
         builder: (context, state) {
           if (state is CinemaLoading) {
             return const Center(child: CircularProgressIndicator());
@@ -38,7 +38,7 @@ class _CinemaItemState extends State<CinemaItem> {
               ),
             );
           } else {
-            final cinemas = CinemaaItemCubit.get(context).cinemas;
+            final cinemas = CinemaItemCubit.get(context).cinemas;
 
             if (cinemas.isEmpty) {
               return const Center(

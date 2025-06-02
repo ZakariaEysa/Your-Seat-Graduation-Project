@@ -15,7 +15,7 @@ import 'features/user_flow/auth/presentation/cubit/auth_cubit.dart';
 import 'features/user_flow/cinema_details/presentation/cubit/cinema_cubit.dart';
 import 'features/user_flow/home/presentation/Widget/Cinema_item/Cubit/item_cubit.dart';
 import 'features/user_flow/now_playing/cubit/coming_soon_cubit.dart';
-import 'widgets/application_theme/applicaton_theme.dart';
+import 'widgets/application_theme/application_theme.dart';
 import 'config/language_bloc/switch_language_bloc.dart';
 import 'data/hive_keys.dart';
 import 'features/user_flow/Splash_screen/splash_screen.dart';
@@ -55,7 +55,7 @@ void main() async {
             ),
           ),
           BlocProvider(create: (_) => CinemaCubit()),
-          BlocProvider(create: (_) => CinemaaItemCubit()),
+          BlocProvider(create: (_) => CinemaItemCubit()),
           BlocProvider(create: (_) => MovieCarouselCubit()),
           BlocProvider(create: (_) => ComingSoonCubit()),
           BlocProvider(create: (_) => WatchListCubit()),

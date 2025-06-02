@@ -8,18 +8,14 @@ import 'firebase_manager.dart';
 import 'notifications_manager.dart';
 import 'permissions_manager.dart';
 
-/// فئة مسؤولة عن تهيئة التطبيق وترتيب الخطوات
 class AppInitializer {
   static bool _isAppInitialized = false;
   static bool _isStorageInitialized = false;
 
-  /// الحصول على حالة تهيئة التطبيق
   static bool get isAppInitialized => _isAppInitialized;
 
-  /// الحصول على حالة تهيئة التخزين المحلي
   static bool get isStorageInitialized => _isStorageInitialized;
 
-  /// تهيئة كل مكونات التطبيق بالترتيب الصحيح
   static Future<void> initializeApp() async {
     _isAppInitialized = false;
     AppLogs.infoLog('Starting app initialization');

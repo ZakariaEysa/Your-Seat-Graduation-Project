@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
-import '../../../../../widgets/application_theme/applicaton_theme.dart';
+import '../../../../../widgets/application_theme/application_theme.dart';
 
 class ThemeSheet extends StatelessWidget {
   const ThemeSheet({super.key});

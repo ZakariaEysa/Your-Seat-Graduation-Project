@@ -78,9 +78,11 @@ class TextFormFieldBuilder extends StatelessWidget {
         controller: controller,
         obscureText: obsecure,
         textAlignVertical: textAlignVer ?? TextAlignVertical.top,
-        style: style ?? TextStyle( // <-- التعديل هنا
-          color: theme.colorScheme.onPrimary,
-        ),
+        style: style ??
+            TextStyle(
+              // <-- التعديل هنا
+              color: theme.colorScheme.onPrimary,
+            ),
         validator: validator,
         onChanged: onChanged,
         onFieldSubmitted: onSubmitted,
@@ -95,22 +97,27 @@ class TextFormFieldBuilder extends StatelessWidget {
           fillColor: theme.colorScheme.primary.withOpacity(0.4),
           prefixIcon: imagePath != null
               ? Padding(
-            padding: EdgeInsets.all(12.0.sp),
-            child: Image.asset(
-              imagePath!,
-              width: 24.w,
-              height: 24.h,
-              fit: BoxFit.fill,
-              color: theme.colorScheme.onPrimary,
-            ),
-          )
-              : (prefixIcon ?? (isIcon ? Icon(prefix, color: theme.colorScheme.onPrimary) : null)),
-          suffixIcon: suffixIcon ?? (obsecure
-              ? IconButton(
-            icon: Icon(Icons.remove_red_eye, color: theme.colorScheme.onPrimary.withOpacity(0.5)),
-            onPressed: () {},
-          )
-              : null),
+                  padding: EdgeInsets.all(12.0.sp),
+                  child: Image.asset(
+                    imagePath!,
+                    width: 24.w,
+                    height: 24.h,
+                    fit: BoxFit.fill,
+                    color: theme.colorScheme.onPrimary,
+                  ),
+                )
+              : (prefixIcon ??
+                  (isIcon
+                      ? Icon(prefix, color: theme.colorScheme.onPrimary)
+                      : null)),
+          suffixIcon: suffixIcon ??
+              (obsecure
+                  ? IconButton(
+                      icon: Icon(Icons.remove_red_eye,
+                          color: theme.colorScheme.onPrimary.withOpacity(0.5)),
+                      onPressed: () {},
+                    )
+                  : null),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: const BorderSide(color: Color(0x40000000), width: 1.0),

@@ -13,6 +13,8 @@ import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }

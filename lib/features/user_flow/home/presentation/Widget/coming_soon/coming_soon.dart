@@ -74,10 +74,8 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/cubit/coming_soon_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/cubit/coming_soon_state.dart';
 import '../../../../../../utils/navigation.dart';

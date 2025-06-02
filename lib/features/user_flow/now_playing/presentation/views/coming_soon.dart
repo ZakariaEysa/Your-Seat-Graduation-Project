@@ -10,7 +10,6 @@ import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../movie_details/presentation/views/movie_details.dart';
-import '../widgets/coming_movies.dart';
 import '../widgets/playing_movies.dart';
 
 class ComingSoons extends StatefulWidget {

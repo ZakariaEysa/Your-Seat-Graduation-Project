@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_otp_auth/email_otp_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../main.dart';
 import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/notifications_manager.dart';
 import '../../data/model/google_user_model.dart';

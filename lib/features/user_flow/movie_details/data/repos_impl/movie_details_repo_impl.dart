@@ -3,19 +3,16 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/domain/repos/movie_details_repo.dart';
 import '../../../../../services/failure_service.dart';
 
-
-
 class MovieDetailsRepoImpl implements MovieDetailsRepo {
   final MovieDetailsRemoteDataSource movieDetailsRemoteDataSource;
 
   MovieDetailsRepoImpl(this.movieDetailsRemoteDataSource);
 
   @override
-  Future<Either<FailureService,List>> getCinemas(String movieName) async {
+  Future<Either<FailureService, List>> getCinemas(String movieName) async {
     try {
       final cinemas = await movieDetailsRemoteDataSource.getCinemas(movieName);
 
-     
       return Right(cinemas);
     } catch (e) {
       return Left(ServiceFailure(e.toString()));
@@ -27,11 +24,9 @@ class MovieDetailsRepoImpl implements MovieDetailsRepo {
     try {
       final rate = await movieDetailsRemoteDataSource.getRate(movieId);
 
-     
       return Right(rate);
     } catch (e) {
       return Left(ServiceFailure(e.toString()));
     }
   }
-
 }

@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
-import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
 import '../cubit/cinema_cubit.dart';
 import '../cubit/cinema_state.dart';
-import '../widgets/cinema_comments.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../widgets/cinema_description.dart';
 import '../widgets/cinema_fetch_comment.dart';
 import '../widgets/cinema_movies.dart';
-import 'route_map.dart';
 
 class CinemaDetails extends StatefulWidget {
   final Map<String, dynamic> cinemaModel;
@@ -43,7 +39,6 @@ class _CinemaDetailsState extends State<CinemaDetails> {
           children: [
             CinemaHeaderDescription(cinemaData: widget.cinemaModel),
 
-          
             // Padding Contains text movies
             Padding(
               padding: EdgeInsets.only(top: 55.0.sp),
@@ -79,7 +74,9 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                       decoration: InputDecoration(
                         hintText: lang.addComment,
 
-                        hintStyle: TextStyle(color: Colors.white70 , fontSize: 18),// سيختفي عند الكتابة
+                        hintStyle: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 18), // سيختفي عند الكتابة
 
                         filled: true,
                         fillColor: Theme.of(context)
@@ -91,8 +88,9 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                         ),
                       ),
 
-                      style: TextStyle(color: Colors.white , fontSize: 18 ), // لون النص داخل الحقل
-
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18), // لون النص داخل الحقل
                     ),
                   ),
                 ),

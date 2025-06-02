@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../Widget/head_widget.dart';
 import '../Widget/text.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../Widget/chatbot_icon.dart';
 import '../Widget/Cinema_item/cinema_item.dart';
@@ -34,7 +33,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const HeadWidget(),
-                 SearchBarWidget(),
+                SearchBarWidget(),
                 SizedBox(height: 20.h),
                 TextWidget(
                   text: lang.nowPlaying,
@@ -63,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                 Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Padding(
-                    padding:  EdgeInsetsDirectional.fromSTEB(10.w, 0, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(10.w, 0, 0, 0),
                     child: TextS(
                       text: lang.cinema,
                     ),
@@ -71,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding:  EdgeInsets.all(8.0.sp),
+                  padding: EdgeInsets.all(8.0.sp),
                   child: CinemaItem(),
                 ),
               ],

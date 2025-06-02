@@ -69,6 +69,4 @@ class HiveStorage {
     await box1.clear();
     await box2.clear();
   }
-
-
 }

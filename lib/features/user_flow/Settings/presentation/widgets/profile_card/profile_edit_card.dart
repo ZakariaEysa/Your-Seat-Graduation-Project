@@ -5,10 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import '../../../../../../widgets/loading_indicator.dart';
 import 'info_container.dart';
-import '../../../../../../widgets/button/button_builder.dart';
 
 import '../../../../../../data/hive_keys.dart';
 import '../../../../../../data/hive_stroage.dart';
@@ -195,9 +193,14 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
           child: Wrap(
             children: [
               ListTile(
-                leading: Icon(Icons.photo_library,  color: Theme.of(context).colorScheme.onPrimary,),
-                title:  Text('Gallery',
-                    style: TextStyle( color: Theme.of(context).colorScheme.onPrimary,)),
+                leading: Icon(
+                  Icons.photo_library,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                title: Text('Gallery',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    )),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
@@ -225,7 +228,6 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
     return ScaffoldF(
       appBar: AppBar(
-
         iconTheme: IconThemeData(
           size: 28.sp,
           color: Theme.of(context).colorScheme.onPrimary,
@@ -243,15 +245,17 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(51.r),
                     topRight: Radius.circular(51.r),
-                    bottomLeft:Radius.circular(51.r),
-                    bottomRight:Radius.circular(51.r) ,
+                    bottomLeft: Radius.circular(51.r),
+                    bottomRight: Radius.circular(51.r),
                   ),
-                  color: Theme.of(context).colorScheme. secondaryFixed,
+                  color: Theme.of(context).colorScheme.secondaryFixed,
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.5),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onPrimary
+                        .withOpacity(0.5),
                     width: 1.w,
                   ),
-
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
@@ -280,7 +284,10 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           borderRadius: BorderRadius.circular(23.r),
                           color: theme.colorScheme.primary.withOpacity(0.7),
                         ),
-                        child: Text(currentUser.email,style:TextStyle(fontSize: 16.sp),),
+                        child: Text(
+                          currentUser.email,
+                          style: TextStyle(fontSize: 16.sp),
+                        ),
                       ),
                       SizedBox(height: 15.h),
                       _buildLabel(theme, lang.birthDate),
@@ -334,11 +341,15 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           TextButton(
                             onPressed: () => navigatePop(context: context),
                             style: TextButton.styleFrom(
-                              backgroundColor: Color(0xff421aa3), // لون خلفية الزر
-                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                              backgroundColor:
+                                  Color(0xff421aa3), // لون خلفية الزر
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.w, vertical: 8.h),
                             ),
                             child: Text(
-                              HiveStorage.get(HiveKeys.isArabic) ? 'إلغاء' : 'Cancel',
+                              HiveStorage.get(HiveKeys.isArabic)
+                                  ? 'إلغاء'
+                                  : 'Cancel',
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 color: Colors.white,
@@ -349,11 +360,15 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           TextButton(
                             onPressed: updateProfile,
                             style: TextButton.styleFrom(
-                              backgroundColor: Color(0xff421aa3), // لون خلفية الزر
-                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                              backgroundColor:
+                                  Color(0xff421aa3), // لون خلفية الزر
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.w, vertical: 8.h),
                             ),
                             child: Text(
-                              HiveStorage.get(HiveKeys.isArabic) ? 'حفظ التغييرات' : 'Save Changes',
+                              HiveStorage.get(HiveKeys.isArabic)
+                                  ? 'حفظ التغييرات'
+                                  : 'Save Changes',
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 color: Colors.white,
@@ -362,9 +377,9 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           ),
                         ],
                       ),
-
-
-                      SizedBox(height: 45.h,)
+                      SizedBox(
+                        height: 45.h,
+                      )
                     ],
                   ),
                 ),
@@ -436,6 +451,4 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       onChanged: onChanged,
     );
   }
-
-
 }

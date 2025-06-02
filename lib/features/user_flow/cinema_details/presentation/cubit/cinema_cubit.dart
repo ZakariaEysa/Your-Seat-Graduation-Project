@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +24,8 @@ class CinemaCubit extends Cubit<CinemaState> {
 
   CinemaCubit() : super(CinemaInitial());
 
-  static CinemaCubit get(BuildContext context) => BlocProvider.of<CinemaCubit>(context);
+  static CinemaCubit get(BuildContext context) =>
+      BlocProvider.of<CinemaCubit>(context);
 
   TextEditingController get getCommentController => commentController;
 
@@ -33,14 +33,16 @@ class CinemaCubit extends Cubit<CinemaState> {
     try {
       emit(CinemaLoading());
       DocumentSnapshot snapshot =
-      await _firestore.collection('Cinemas').doc(cinemaId).get();
+          await _firestore.collection('Cinemas').doc(cinemaId).get();
 
       if (snapshot.exists) {
-        Map<String, dynamic> cinemaData = snapshot.data() as Map<String, dynamic>;
+        Map<String, dynamic> cinemaData =
+            snapshot.data() as Map<String, dynamic>;
         List<MoviesDetailsModel> movies = await fetchMoviesByCinema(cinemaId);
         cinemaDataMap = cinemaData;
         moviesList = movies;
-        emit(CinemaLoaded(cinemaData: cinemaData, comments: [], movies: movies));
+        emit(
+            CinemaLoaded(cinemaData: cinemaData, comments: [], movies: movies));
       } else {
         emit(CinemaError("No cinema details found"));
       }
@@ -52,13 +54,16 @@ class CinemaCubit extends Cubit<CinemaState> {
   Future<List<MoviesDetailsModel>> fetchMoviesByCinema(String cinemaId) async {
     try {
       emit(CinemaMoviesLoading());
-      final snapshot = await _firestore.collection('Cinemas').doc(cinemaId).get();
+      final snapshot =
+          await _firestore.collection('Cinemas').doc(cinemaId).get();
 
       if (snapshot.exists) {
         var cinemaData = snapshot.data();
         var movies = cinemaData?['movies'] as List? ?? [];
-        List<MoviesDetailsModel> moviesList = movies.map((movie) =>
-            MoviesDetailsModel.fromJson(movie as Map<String, dynamic>)).toList();
+        List<MoviesDetailsModel> moviesList = movies
+            .map((movie) =>
+                MoviesDetailsModel.fromJson(movie as Map<String, dynamic>))
+            .toList();
         moviesDataList = moviesList;
         emit(CinemaMoviesLoaded(moviesList));
         return moviesList;
@@ -82,7 +87,7 @@ class CinemaCubit extends Cubit<CinemaState> {
           .collection('comments')
           .orderBy('timestamp', descending: true)
           .get();
-      allComments = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      allComments = snapshot.docs.map((doc) => doc.data()).toList();
       commentsList = allComments.take(5).toList();
       emit(CinemaCommentsLoaded(commentsList));
     } catch (e) {
@@ -101,12 +106,12 @@ class CinemaCubit extends Cubit<CinemaState> {
   }
 
   Future<void> addComment(
-      String cinemaId,
-      BuildContext context,
-      String signInText,
-      String cancelText,
-      TextEditingController getCommentController,
-      ) async {
+    String cinemaId,
+    BuildContext context,
+    String signInText,
+    String cancelText,
+    TextEditingController getCommentController,
+  ) async {
     if (isAddingComment) return;
     isAddingComment = true;
     emit(CinemaCommentsLoading());
@@ -135,7 +140,11 @@ class CinemaCubit extends Cubit<CinemaState> {
     if (commentController.text.isNotEmpty) {
       try {
         // ✅ إضافة التعليق الجديد
-        await _firestore.collection('Cinemas').doc(cinemaId).collection('comments').add({
+        await _firestore
+            .collection('Cinemas')
+            .doc(cinemaId)
+            .collection('comments')
+            .add({
           'text': commentController.text,
           'timestamp': FieldValue.serverTimestamp(),
           'userName': currentUser.name,
@@ -155,7 +164,8 @@ class CinemaCubit extends Cubit<CinemaState> {
     isAddingComment = false;
   }
 
-  Future<void> _updateOldComments(String cinemaId, String newName, String newImage) async {
+  Future<void> _updateOldComments(
+      String cinemaId, String newName, String newImage) async {
     try {
       // ✅ جلب كل تعليقات المستخدم الحالي
       final snapshot = await _firestore

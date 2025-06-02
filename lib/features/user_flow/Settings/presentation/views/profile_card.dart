@@ -5,7 +5,6 @@ import '../../../../../data/hive_keys.dart';
 import '../widgets/profile_card/profile_edit_card.dart';
 import '../../../settings/presentation/widgets/profile_card/personal_info_card.dart';
 import '../../../../../utils/app_logs.dart';
-import '../../../../../utils/navigation.dart';
 import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -22,7 +21,8 @@ class _ProfileCardState extends State<ProfileCard> {
 
   @override
   Widget build(BuildContext context) {
-   AppLogs.scussessLog((HiveStorage.get(HiveKeys.role) == Role.email.toString()).toString());
+    AppLogs.scussessLog(
+        (HiveStorage.get(HiveKeys.role) == Role.email.toString()).toString());
     var theme = Theme.of(context);
 
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
@@ -42,35 +42,34 @@ class _ProfileCardState extends State<ProfileCard> {
       appBar: AppBar(
         actions: [
           InkWell(
-            onTap: () async {
-           if( HiveStorage.get(HiveKeys.role) == Role.google.toString()){
+              onTap: () async {
+                if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
+                } else {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfileEditCard()),
+                  );
+                }
 
-           }else{
-             await Navigator.push(
-               context,
-               MaterialPageRoute(builder: (context) => const ProfileEditCard()),
-             );
-           }
-
-              setState(() {
-                currentUser = HiveStorage.get(HiveKeys.role) == Role.google.toString()
-                    ? HiveStorage.getGoogleUser()
-                    : HiveStorage.getDefaultUser();
-              });
-            },
-
-            child: HiveStorage.get(HiveKeys.role) == Role.google.toString()? Container():
-            Icon (
-              Icons.edit,
-              size: 27.sp,
-                color: Theme.of(context).colorScheme.onPrimary,
-            )
-          ),
+                setState(() {
+                  currentUser =
+                      HiveStorage.get(HiveKeys.role) == Role.google.toString()
+                          ? HiveStorage.getGoogleUser()
+                          : HiveStorage.getDefaultUser();
+                });
+              },
+              child: HiveStorage.get(HiveKeys.role) == Role.google.toString()
+                  ? Container()
+                  : Icon(
+                      Icons.edit,
+                      size: 27.sp,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    )),
           SizedBox(
             width: 12.w,
           ),
         ],
-
         iconTheme: IconThemeData(
           size: 28.sp,
           color: Theme.of(context).colorScheme.onPrimary,
@@ -87,9 +86,13 @@ class _ProfileCardState extends State<ProfileCard> {
                   topLeft: Radius.circular(51.r),
                   topRight: Radius.circular(48.r),
                 ),
-                color: Theme.of(context).colorScheme. secondaryFixed.withOpacity(0.9),
+                color: Theme.of(context)
+                    .colorScheme
+                    .secondaryFixed
+                    .withOpacity(0.9),
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.5),
+                  color:
+                      Theme.of(context).colorScheme.onPrimary.withOpacity(0.5),
                   width: 1.w,
                 ),
               ),
@@ -108,7 +111,6 @@ class _ProfileCardState extends State<ProfileCard> {
                           fontSize: 24.sp,
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.onPrimary,
-
                         ),
                       ),
                       SizedBox(height: 10.h),
@@ -119,15 +121,18 @@ class _ProfileCardState extends State<ProfileCard> {
                           width: 150.w,
                           height: 38.h,
                           decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.1),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimary
+                                .withOpacity(0.1),
                             borderRadius: BorderRadius.circular(15.r),
                           ),
                           child: Text(
                             lang.personalInfo,
                             textAlign: TextAlign.start,
-                            style:theme.textTheme.titleLarge!.copyWith(
-                              color: Theme.of(context).colorScheme.onPrimary,fontSize:
-                              18.sp),
+                            style: theme.textTheme.titleLarge!.copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontSize: 18.sp),
                           ),
                         ),
                       ),
@@ -135,7 +140,7 @@ class _ProfileCardState extends State<ProfileCard> {
                       PersonalInfoCard(
                         title: lang.email,
                         icon: "assets/images/email 2.png",
-                        info: currentUser?. email?? "-",
+                        info: currentUser?.email ?? "-",
                       ),
                       SizedBox(height: 20.h),
                       PersonalInfoCard(

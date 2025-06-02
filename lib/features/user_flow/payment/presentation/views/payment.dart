@@ -1,15 +1,10 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/card.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_test.dart';
 import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
 import '../../../../../utils/app_logs.dart';
@@ -53,7 +48,6 @@ class Payment extends StatelessWidget {
             style: theme.textTheme.labelLarge!.copyWith(fontSize: 24.sp),
           ),
           titleSpacing: 80.0,
-
           leading: IconButton(
               onPressed: () {
                 navigatePop(context: context);
@@ -253,7 +247,7 @@ class Payment extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              " " + lang.completeYourPaymentIn,
+                              " ${lang.completeYourPaymentIn}",
                               style: theme.textTheme.titleLarge!
                                   .copyWith(fontSize: 11.sp),
                             ),

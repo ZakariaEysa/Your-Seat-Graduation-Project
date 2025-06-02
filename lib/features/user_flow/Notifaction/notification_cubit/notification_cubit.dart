@@ -84,7 +84,6 @@ class NotificationCubit extends Cubit<NotificationState> {
     }
   }
 
-
   String getTimeAgo(String timestampString) {
     final timestamp = DateTime.parse(timestampString);
     final now = DateTime.now();
@@ -104,7 +103,8 @@ class NotificationCubit extends Cubit<NotificationState> {
   Future<void> fetchNotifications() async {
     emit(NotificationLoading());
     try {
-      final userDoc = await firestore.collection('users').doc(currentUserEmail).get();
+      final userDoc =
+          await firestore.collection('users').doc(currentUserEmail).get();
       if (userDoc.exists) {
         final data = userDoc.data();
         final List<dynamic> rawList = data?['notifications'] ?? [];

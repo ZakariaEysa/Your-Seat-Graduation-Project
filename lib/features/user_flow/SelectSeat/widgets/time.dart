@@ -7,11 +7,11 @@ class Time extends StatefulWidget {
   final Function(String) onTimeSelected;
 
   const Time({
-    Key? key,
+    super.key,
     required this.times,
     required this.selectedTime,
     required this.onTimeSelected,
-  }) : super(key: key);
+  });
 
   @override
   _TimeState createState() => _TimeState();

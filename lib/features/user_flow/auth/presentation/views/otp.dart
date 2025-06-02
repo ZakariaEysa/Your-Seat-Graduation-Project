@@ -1,10 +1,8 @@
-
 import 'package:email_otp_auth/email_otp_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../cubit/auth_cubit.dart';
 import '../../../home/presentation/views/home_layout.dart';
-import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/button/button_builder.dart';
@@ -13,10 +11,11 @@ import '../widgets/timer.dart';
 
 class Otp extends StatefulWidget {
   final Future<void> Function()? isSuccessOtp;
-  Otp({super.key, this.isSuccessOtp});
+  const Otp({super.key, this.isSuccessOtp});
   @override
   _OtpState createState() => _OtpState();
 }
+
 class _OtpState extends State<Otp> {
   TextEditingController N1 = TextEditingController();
   TextEditingController N2 = TextEditingController();
@@ -60,7 +59,8 @@ class _OtpState extends State<Otp> {
   // }
 
   Future<void> verifyOtp(BuildContext context, String otp) async {
-    bool isOtpValid = (await EmailOtpAuth.verifyOtp(otp: otp))["message"] == "OTP Verified";
+    bool isOtpValid =
+        (await EmailOtpAuth.verifyOtp(otp: otp))["message"] == "OTP Verified";
     if (isOtpValid) {
       if (widget.isSuccessOtp == null) {
         await AuthCubit.get(context).verifyedSendOtp();
@@ -96,14 +96,13 @@ class _OtpState extends State<Otp> {
     final theme = Theme.of(context);
     return ScaffoldF(
       appBar: AppBar(
-          centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.white, size: 28),
-
-        title: Text( lang.ConfirmOTPcode ,
-          style:  TextStyle(
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white, size: 28),
+        title: Text(
+          lang.ConfirmOTPcode,
+          style: TextStyle(
             fontSize: 25.sp,
             fontWeight: FontWeight.w200,
-
           ),
         ),
       ),
@@ -112,7 +111,7 @@ class _OtpState extends State<Otp> {
         children: [
           SizedBox(height: 40.h),
           Text(
-           lang.PleaseEnterThe6DigitCodeSentToYourEmail,
+            lang.PleaseEnterThe6DigitCodeSentToYourEmail,
             style: theme.textTheme.bodySmall!.copyWith(fontSize: 20),
             textAlign: TextAlign.center,
           ),
@@ -159,7 +158,6 @@ class _OtpState extends State<Otp> {
                   nextFocus: null,
                   nextField: nextField,
                 ),
-
               ],
             ),
           ),
@@ -171,14 +169,18 @@ class _OtpState extends State<Otp> {
               children: [
                 CountdownTimer(
                   onResend: () async {
-                    String email = AuthCubit.get(context).emailController.text ?? '';
+                    String email =
+                        AuthCubit.get(context).emailController.text ?? '';
                     if (email.isNotEmpty) {
                       AuthCubit.get(context).sendOtp(email);
                       ScaffoldMessenger.of(context).showSnackBar(
-                         SnackBar(
-                          content: Text("OTP has been resent",style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),),
+                        SnackBar(
+                          content: Text(
+                            "OTP has been resent",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ),
                           backgroundColor: Colors.green,
                         ),
                       );
@@ -192,7 +194,12 @@ class _OtpState extends State<Otp> {
           ButtonBuilder(
             text: 'Continue',
             onTap: () {
-              if (N1.text.isEmpty || N2.text.isEmpty || N3.text.isEmpty || N4.text.isEmpty || N5.text.isEmpty || N6.text.isEmpty) {
+              if (N1.text.isEmpty ||
+                  N2.text.isEmpty ||
+                  N3.text.isEmpty ||
+                  N4.text.isEmpty ||
+                  N5.text.isEmpty ||
+                  N6.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Please enter all numbers OTP'),
@@ -200,7 +207,8 @@ class _OtpState extends State<Otp> {
                   ),
                 );
               } else {
-                String otp = N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
+                String otp =
+                    N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
                 print("OTP entered: $otp");
                 verifyOtp(context, otp);
               }

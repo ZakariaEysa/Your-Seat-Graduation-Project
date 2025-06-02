@@ -125,7 +125,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -145,7 +144,7 @@ class MovieCarouselWidget extends StatefulWidget {
 
 class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
   final PageController _pageController =
-  PageController(viewportFraction: 0.7, initialPage: 1);
+      PageController(viewportFraction: 0.7, initialPage: 1);
   int _currentPage = 1;
 
   @override
@@ -204,7 +203,8 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                               navigateTo(
                                 context: context,
                                 screen: MovieDetails(
-                                  model: MoviesDetailsModel.fromJson(movies[index]),
+                                  model: MoviesDetailsModel.fromJson(
+                                      movies[index]),
                                 ),
                               );
                             },

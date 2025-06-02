@@ -8,7 +8,8 @@ import '../../../movie_details/data/model/movies_details_model/movies_details_mo
 
 class WatchListCubit extends Cubit<WatchListState> {
   WatchListCubit() : super(WatchListInitial());
-  static WatchListCubit get(context) => BlocProvider.of<WatchListCubit>(context);
+  static WatchListCubit get(context) =>
+      BlocProvider.of<WatchListCubit>(context);
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   var currentUser;
@@ -22,7 +23,7 @@ class WatchListCubit extends Cubit<WatchListState> {
     }
     try {
       DocumentSnapshot userDoc =
-      await _firestore.collection('users').doc(currentUser.email).get();
+          await _firestore.collection('users').doc(currentUser.email).get();
       if (!userDoc.exists) {
         emit(WatchListLoaded([]));
         return;
@@ -33,7 +34,8 @@ class WatchListCubit extends Cubit<WatchListState> {
         return;
       }
       List<MoviesDetailsModel> watchList = watchListData
-          .map((movie) => MoviesDetailsModel.fromJson(movie as Map<String, dynamic>))
+          .map((movie) =>
+              MoviesDetailsModel.fromJson(movie as Map<String, dynamic>))
           .toList();
       emit(WatchListLoaded(watchList));
     } catch (e) {
@@ -44,7 +46,7 @@ class WatchListCubit extends Cubit<WatchListState> {
   Future<void> removeFromWatchList(String movieId) async {
     try {
       DocumentReference userDocRef =
-      _firestore.collection('users').doc(currentUser.email);
+          _firestore.collection('users').doc(currentUser.email);
       DocumentSnapshot userDoc = await userDocRef.get();
       if (!userDoc.exists) return;
       List<dynamic> watchListData = List.from(userDoc['watch_list'] ?? []);

@@ -60,7 +60,6 @@ class AppStylesManager {
     );
   }
 
-
   static ShapeDecoration backGroundDecorations(BuildContext context) {
     final theme = Theme.of(context);
 

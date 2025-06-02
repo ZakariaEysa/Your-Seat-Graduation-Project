@@ -49,7 +49,6 @@ class AboutUs extends StatelessWidget {
                 initialHeight: .34,
                 maxHeight: .98,
                 minHeight: .34,
-
               ),
             ),
             Align(

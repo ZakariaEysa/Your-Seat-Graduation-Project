@@ -13,13 +13,12 @@ class HeadAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
       child: Padding(
         padding: EdgeInsetsDirectional.only(top: 20.h, end: 85.w),
         child: Text(
           title,
-          style:  Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
     );

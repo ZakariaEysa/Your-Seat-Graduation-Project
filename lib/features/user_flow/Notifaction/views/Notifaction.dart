@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_state.dart';
-import '../../../../data/hive_keys.dart';
-import '../../../../data/hive_stroage.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../widgets/scaffold/scaffold_f.dart';
@@ -75,9 +73,10 @@ class _NotificationsState extends State<Notifications> {
                   title: title,
                   body: body,
                   index: index,
-                  onDelete: (i) async{
+                  onDelete: (i) async {
                     print("تم حذف الإشعار رقم $i");
-                     await notificationCubit.removeNotificationAtIndex(i); // أو أي دالة حذف
+                    await notificationCubit
+                        .removeNotificationAtIndex(i); // أو أي دالة حذف
                   },
                 );
               },
@@ -109,86 +108,81 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
+    return Container(
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.only(top: 10, left: 10, bottom: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
       ),
       child: Slidable(
-        startActionPane: ActionPane(
-          extentRatio: 0.40,
-          motion: const DrawerMotion(),
-          children: [
-            SlidableAction(
-              onPressed: (context) {
-                if (onDelete != null) {
-                  onDelete!(index);
-                }
-              },
-              backgroundColor:  Colors.red,
-              foregroundColor: Colors.white,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12),
-                bottomLeft: Radius.circular(12),
-              ),
-              icon: Icons.delete,
-              label: 'Delete',
-            ),
-          ],
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          decoration: const BoxDecoration(
-            color: Color(0xFF877AA7),
-            borderRadius: BorderRadius.all(Radius.circular(18)),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          startActionPane: ActionPane(
+            extentRatio: 0.40,
+            motion: const DrawerMotion(),
             children: [
-              // Left side: title & body
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      body,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
+              SlidableAction(
+                onPressed: (context) {
+                  if (onDelete != null) {
+                    onDelete!(index);
+                  }
+                },
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  bottomLeft: Radius.circular(12),
                 ),
-              ),
-              // Right side: time
-              Text(
-                time,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
+                icon: Icons.delete,
+                label: 'Delete',
               ),
             ],
           ),
-        )
-
-      ),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: const BoxDecoration(
+              color: Color(0xFF877AA7),
+              borderRadius: BorderRadius.all(Radius.circular(18)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Left side: title & body
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        body,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Right side: time
+                Text(
+                  time,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+          )),
     );
   }
 }
-
-

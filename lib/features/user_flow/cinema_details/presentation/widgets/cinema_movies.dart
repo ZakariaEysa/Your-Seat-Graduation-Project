@@ -10,10 +10,8 @@ import '../../../movie_details/data/model/movies_details_model/movies_details_mo
 import '../../../movie_details/presentation/views/movie_details.dart';
 import '../../../now_playing/presentation/widgets/playing_movies.dart';
 
-
 class CinemaMovies extends StatelessWidget {
   final List movies;
-
 
   const CinemaMovies({super.key, required this.movies});
 
@@ -67,9 +65,9 @@ class CinemaMovies extends StatelessWidget {
                     cast: movie["cast"],
                     category: movie["category"],
                     crew: Crew(
-                    director: movie["crew"]["director"],
-                    producer: movie["crew"]["producer"],
-                    writer: movie["crew"]["writer"]),
+                        director: movie["crew"]["director"],
+                        producer: movie["crew"]["producer"],
+                        writer: movie["crew"]["writer"]),
                     description: movie["description"],
                     duration: movie["duration"],
                     language: movie["language"],

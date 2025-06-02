@@ -30,7 +30,8 @@ class HeadMyTicket extends StatelessWidget {
   Widget build(BuildContext context) {
     // التأكد من أن القائمة ليست فارغة
     List<String> firstRowSeats = seats != null ? seats!.take(3).toList() : [];
-    List<String> secondRowSeats = seats != null && seats!.length > 3 ? seats!.skip(3).toList() : [];
+    List<String> secondRowSeats =
+        seats != null && seats!.length > 3 ? seats!.skip(3).toList() : [];
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -39,7 +40,7 @@ class HeadMyTicket extends StatelessWidget {
           Row(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 60.h, left: 20.w,right: 10.w),
+                padding: EdgeInsets.only(top: 60.h, left: 20.w, right: 10.w),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.r),
                   child: ImageReplacer(
@@ -55,7 +56,11 @@ class HeadMyTicket extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 18.w, top: 30.h,left: 18.w,),
+                      padding: EdgeInsets.only(
+                        right: 18.w,
+                        top: 30.h,
+                        left: 18.w,
+                      ),
                       child: Text(
                         seatCategory ?? "",
                         style: TextStyle(
@@ -69,7 +74,7 @@ class HeadMyTicket extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
-                        padding:  EdgeInsets.only(left: 15.w),
+                        padding: EdgeInsets.only(left: 15.w),
                         child: Text(
                           movieName ?? "",
                           maxLines: 1,
@@ -97,7 +102,8 @@ class HeadMyTicket extends StatelessWidget {
                             movieDuration ?? "",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: Colors.black, fontSize: 14.sp),
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 14.sp),
                           ),
                         ),
                       ],
@@ -117,7 +123,8 @@ class HeadMyTicket extends StatelessWidget {
                             movieCategory ?? "",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: Colors.black, fontSize: 14.sp),
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 14.sp),
                           ),
                         ),
                       ],
@@ -170,16 +177,18 @@ class HeadMyTicket extends StatelessWidget {
                         spacing: 5.w, // تباعد أفقي بين المقاعد
                         children: firstRowSeats
                             .map((seat) => Container(
-                          padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 3.h),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(5.r),
-                          ),
-                          child: Text(
-                            seat,
-                            style: TextStyle(color: Colors.black, fontSize: 14.sp),
-                          ),
-                        ))
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 6.w, vertical: 3.h),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[300],
+                                    borderRadius: BorderRadius.circular(5.r),
+                                  ),
+                                  child: Text(
+                                    seat,
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 14.sp),
+                                  ),
+                                ))
                             .toList(),
                       ),
                       SizedBox(height: 5.h), // تباعد بين السطرين
@@ -189,16 +198,18 @@ class HeadMyTicket extends StatelessWidget {
                         spacing: 5.w,
                         children: secondRowSeats
                             .map((seat) => Container(
-                          padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 3.h),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(5.r),
-                          ),
-                          child: Text(
-                            seat,
-                            style: TextStyle(color: Colors.black, fontSize: 14.sp),
-                          ),
-                        ))
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 6.w, vertical: 3.h),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey[300],
+                                    borderRadius: BorderRadius.circular(5.r),
+                                  ),
+                                  child: Text(
+                                    seat,
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 14.sp),
+                                  ),
+                                ))
                             .toList(),
                       ),
 

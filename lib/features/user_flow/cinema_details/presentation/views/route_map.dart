@@ -12,7 +12,8 @@ class RouteMapPage extends StatefulWidget {
   final double destinationLat;
   final double destinationLng;
 
-  RouteMapPage({
+  const RouteMapPage({
+    super.key,
     required this.destinationLat,
     required this.destinationLng,
   });

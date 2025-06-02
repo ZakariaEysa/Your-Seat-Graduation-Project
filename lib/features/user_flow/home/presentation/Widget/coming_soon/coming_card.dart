@@ -173,7 +173,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
 import 'dart:convert';
-import 'dart:typed_data';
 
 class ComingCard extends StatelessWidget {
   final String title;
@@ -210,17 +209,18 @@ class ComingCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: isBase64(imageUrl)
                   ? Image.memory(
-                base64Decode(imageUrl), // تحويل Base64 إلى صورة
-                height: 240.sp,
-                width: 160.sp,
-                fit: BoxFit.cover,
-              )
+                      base64Decode(imageUrl), // تحويل Base64 إلى صورة
+                      height: 240.sp,
+                      width: 160.sp,
+                      fit: BoxFit.cover,
+                    )
                   : ImageReplacer(
-                imageUrl: imageUrl, // استخدام ImageReplacer إذا كانت صورة URL
-                height: 240.sp,
-                width: 160.sp,
-                fit: BoxFit.cover,
-              ),
+                      imageUrl:
+                          imageUrl, // استخدام ImageReplacer إذا كانت صورة URL
+                      height: 240.sp,
+                      width: 160.sp,
+                      fit: BoxFit.cover,
+                    ),
             ),
             SizedBox(height: 8.h),
 

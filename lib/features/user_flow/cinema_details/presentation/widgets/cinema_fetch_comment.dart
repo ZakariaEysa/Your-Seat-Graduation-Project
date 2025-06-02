@@ -8,12 +8,12 @@ import '../cubit/cinema_state.dart';
 import 'cinema_comments.dart';
 
 class CinemaFetchComment extends StatelessWidget {
-   CinemaFetchComment({super.key});
+  const CinemaFetchComment({super.key});
 
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
-    return     BlocBuilder<CinemaCubit, CinemaState>(
+    return BlocBuilder<CinemaCubit, CinemaState>(
       builder: (context, state) {
         if (state is CinemaCommentsLoading) {
           return const Center(child: LoadingIndicator());
@@ -47,7 +47,7 @@ class CinemaFetchComment extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: CinemaComments(
-                      name: comment['userName']??"",
+                      name: comment['userName'] ?? "",
                       image: comment['image'],
                       title: comment['text'],
                     ),
@@ -57,7 +57,7 @@ class CinemaFetchComment extends StatelessWidget {
               if (comments.length < CinemaCubit.get(context).allComments.length)
                 TextButton(
                   onPressed: () {
-                   CinemaCubit.get(context).loadMoreComments();
+                    CinemaCubit.get(context).loadMoreComments();
                   },
                   child: Text(
                     "Show More..",

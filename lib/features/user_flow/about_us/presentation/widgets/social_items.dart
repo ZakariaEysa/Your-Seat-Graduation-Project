@@ -71,7 +71,7 @@ class SocialItem extends StatelessWidget {
         }
       },
       child: Container(
-        width:  42.w,
+        width: 42.w,
         height: 41.h,
         decoration: BoxDecoration(
           image: DecorationImage(

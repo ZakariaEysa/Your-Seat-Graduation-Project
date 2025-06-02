@@ -13,10 +13,7 @@ class Rate extends StatelessWidget {
     return ScaffoldF(
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            SizedBox(height: 130.h),
-            Rating()
-          ],
+          children: [SizedBox(height: 130.h), Rating()],
         ),
       ),
     );

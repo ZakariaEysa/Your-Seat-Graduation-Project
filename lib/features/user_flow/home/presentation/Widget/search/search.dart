@@ -1,8 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/search/search_results_widgets.dart';
 
 class SearchBarWidget extends StatelessWidget {
+  const SearchBarWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,12 +20,18 @@ class SearchBarWidget extends StatelessWidget {
             decoration: InputDecoration(
               prefixIcon: Padding(
                 padding: EdgeInsets.all(12.0),
-                child: Icon(Icons.search,  color: Theme.of(context).colorScheme.onPrimary,),
+                child: Icon(
+                  Icons.search,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
               ),
               hintText: "Search...",
-              hintStyle: TextStyle( color: Theme.of(context).colorScheme.onPrimary, fontSize: 14.0),
+              hintStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fontSize: 14.0),
               filled: true,
-              fillColor: Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
+              fillColor:
+                  Theme.of(context).colorScheme.onPrimary.withOpacity(0.3),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
                 borderSide: BorderSide.none,
@@ -33,11 +40,11 @@ class SearchBarWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12.0),
               ),
             ),
-            style: TextStyle( color: Theme.of(context).colorScheme.primary, fontSize: 14.0),
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.primary, fontSize: 14.0),
           ),
         ),
       ),
     );
   }
-
 }

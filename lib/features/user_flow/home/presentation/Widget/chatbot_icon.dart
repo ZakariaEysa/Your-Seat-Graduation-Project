@@ -60,6 +60,8 @@ class _DraggableFloatingButtonState extends State<DraggableFloatingButton> {
 }
 
 class FloatingButton extends StatelessWidget {
+  const FloatingButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Image.asset(

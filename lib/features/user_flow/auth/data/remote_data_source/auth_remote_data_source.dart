@@ -134,7 +134,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     } catch (e) {
       // Handle other exceptions
       if (e == "User already exists") {
-        throw e; // Re-throw the specific error
+        rethrow; // Re-throw the specific error
       } else {
         throw "Something went wrong. Please check your network.";
       }

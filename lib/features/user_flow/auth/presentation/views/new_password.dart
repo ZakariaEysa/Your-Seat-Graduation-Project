@@ -40,7 +40,6 @@ class _NewPasswordState extends State<NewPassword> {
     var lang = S.of(context);
     return ScaffoldF(
         appBar: AppBar(
-
           leading: IconButton(
               onPressed: () {
                 navigateTo(context: context, screen: ForgotPassword());
@@ -116,7 +115,8 @@ class _NewPasswordState extends State<NewPassword> {
                             return null;
                           },
                           style: TextStyle(
-                            fontSize: 15.sp,),
+                            fontSize: 15.sp,
+                          ),
                           width: 330.w,
                           height: 80.h,
                           controller: newPasswordController,
@@ -152,7 +152,8 @@ class _NewPasswordState extends State<NewPassword> {
                             return null;
                           },
                           style: TextStyle(
-                            fontSize: 15.sp,),
+                            fontSize: 15.sp,
+                          ),
                           width: 330.w,
                           height: 80.h,
                           controller: confirmPasswordController,

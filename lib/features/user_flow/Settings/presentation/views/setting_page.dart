@@ -1,4 +1,3 @@
-
 // import 'package:flutter/material.dart';
 // import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
 // import 'package:yourseatgraduationproject/features/user_flow/settings/presentation/views/language_sheet.dart';
@@ -78,7 +77,6 @@ import 'package:yourseatgraduationproject/features/user_flow/about_us/presentati
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/utils/dialog_utilits.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
-import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
 import '../../../../../data/hive_keys.dart';
@@ -97,7 +95,6 @@ class SettingsPage extends StatelessWidget {
     var lang = S.of(context);
 
     return ScaffoldF(
-
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(lang.settings),
@@ -121,7 +118,6 @@ class SettingsPage extends StatelessWidget {
         onPress: () {
           if (HiveStorage.get(HiveKeys.role) == Role.guest.toString()) {
             DialogUtils.showMessage(context, lang.youHaveToSignInToContinue,
-
                 isCancelable: false,
                 posActionTitle: lang.sign_in,
                 negActionTitle: lang.cancel, posAction: () {
@@ -150,12 +146,10 @@ class SettingsPage extends StatelessWidget {
       SettingsItemClass(
           title: lang.theme,
           imageIcon: "assets/images/theme.png",
-
-            onPress: () => _showBottomSheet(
-              context,
-              const ThemeSheet(),
-            )
-          ),
+          onPress: () => _showBottomSheet(
+                context,
+                const ThemeSheet(),
+              )),
       SettingsItemClass(
         title: lang.AboutUs,
         imageIcon: "assets/images/account.png",
@@ -183,8 +177,6 @@ class SettingsPage extends StatelessWidget {
                   context: context,
                   screen: const SignIn(),
                 );
-
-
               });
             }, negAction: () {
               navigatePop(context: context);

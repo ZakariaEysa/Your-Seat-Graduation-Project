@@ -35,8 +35,9 @@ class WatchListPart extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15.r),
-            child: ImageReplacer(imageUrl: image,
-              height: 150.h,
+              child: ImageReplacer(
+                imageUrl: image,
+                height: 150.h,
                 width: 100.w,
                 fit: BoxFit.cover,
               ),
@@ -58,7 +59,8 @@ class WatchListPart extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -70,7 +72,8 @@ class WatchListPart extends StatelessWidget {
                         Expanded(
                           child: Text(
                             smalltitle,
-                            style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
+                            style: theme.textTheme.bodyMedium!
+                                .copyWith(fontSize: 14.sp),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),

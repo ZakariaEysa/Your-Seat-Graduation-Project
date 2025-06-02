@@ -6,15 +6,18 @@ class Date extends StatefulWidget {
   final List<int> days;
   final List<int> months;
   final int selectedDay;
-    final List<int> years; // ✅ أضف هذا المتغير
+  final List<int> years; // ✅ أضف هذا المتغير
 
-  final Function(int, int, int) onDaySelected; // ✅ عدّل هنا ليستقبل (يوم، شهر، سنة)
+  final Function(int, int, int)
+      onDaySelected; // ✅ عدّل هنا ليستقبل (يوم، شهر، سنة)
 
-  Date({
+  const Date({
+    super.key,
     required this.days,
     required this.months,
     required this.selectedDay,
-    required this.onDaySelected, required this.years,
+    required this.onDaySelected,
+    required this.years,
   });
 
   @override
@@ -26,8 +29,18 @@ class _DateState extends State<Date> {
   Widget build(BuildContext context) {
     var lang = S.of(context);
     final List<String> months = [
-      lang.jan, lang.feb, lang.mar, lang.apr, lang.may, lang.jun,
-      lang.jul, lang.aug, lang.sep, lang.oct, lang.nov, lang.dec
+      lang.jan,
+      lang.feb,
+      lang.mar,
+      lang.apr,
+      lang.may,
+      lang.jun,
+      lang.jul,
+      lang.aug,
+      lang.sep,
+      lang.oct,
+      lang.nov,
+      lang.dec
     ];
 
     return SizedBox(
@@ -36,19 +49,20 @@ class _DateState extends State<Date> {
         scrollDirection: Axis.horizontal,
         itemCount: widget.days.length,
         itemBuilder: (context, index) {
-         int dayInMonth = widget.days[index];
-  int monthIndex = widget.months[index] - 1;
-  int year = widget.years[index]; // ✅ أضف السنة
-  
-  String formattedDay = dayInMonth.toString().padLeft(2, '0');
-  String formattedMonth = months[monthIndex];
+          int dayInMonth = widget.days[index];
+          int monthIndex = widget.months[index] - 1;
+          int year = widget.years[index]; // ✅ أضف السنة
 
-  bool isSelected = dayInMonth == widget.selectedDay;
+          String formattedDay = dayInMonth.toString().padLeft(2, '0');
+          String formattedMonth = months[monthIndex];
 
-  return GestureDetector(
-    onTap: () {
-      widget.onDaySelected(dayInMonth, widget.months[index], year); // ✅ رجّع اليوم، الشهر، والسنة
-    },
+          bool isSelected = dayInMonth == widget.selectedDay;
+
+          return GestureDetector(
+            onTap: () {
+              widget.onDaySelected(dayInMonth, widget.months[index],
+                  year); // ✅ رجّع اليوم، الشهر، والسنة
+            },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 6.0.w),
               child: Container(

@@ -9,7 +9,6 @@ import '../../../../../generated/l10n.dart';
 import '../../../Tickets/presentation/view/tickets_screen.dart';
 import '../../../Watch_list/presentation/views/watch_list.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:geolocator_android/geolocator_android.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});

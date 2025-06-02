@@ -1,14 +1,10 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:yourseatgraduationproject/core/Network/end_points.dart';
 import '../../../../../core/Network/api_service.dart';
 import '../../../../../utils/app_logs.dart';
 
-import '../../../../../../data/hive_keys.dart';
-import '../../../../../../data/hive_stroage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class MovieDetailsRemoteDataSource {

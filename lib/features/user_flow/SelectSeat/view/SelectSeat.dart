@@ -237,7 +237,7 @@ class _SelectSeatState extends State<SelectSeat> {
                         SeatsType(
                           color: Theme.of(context)
                               .colorScheme
-                              .surfaceVariant, // selected
+                              .surfaceContainerHighest, // selected
                           text: lang.selected,
                         ),
                       ]),
@@ -255,7 +255,6 @@ class _SelectSeatState extends State<SelectSeat> {
                       style: theme.textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 24.sp,
-
                       ),
                     ),
                   ),

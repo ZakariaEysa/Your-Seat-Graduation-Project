@@ -47,6 +47,7 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
+  @override
   Future<void> checkUserExistsR(String phone) async {
     try {
       await authRemoteDataSource.checkUserExistsR(phone);
@@ -67,6 +68,7 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
+  @override
   Future<void> sendOtp(String phoneNumber, Function(String) onCodeSent) async {
     try {
       await authRemoteDataSource.signInWithPhoneNumber(phoneNumber, onCodeSent);

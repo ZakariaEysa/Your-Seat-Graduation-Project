@@ -30,7 +30,8 @@ class CinemaCommentsLoaded extends CinemaState {
   CinemaCommentsLoaded(this.comments);
 }
 
-class CinemaCommentsError extends CinemaState { // ✅ حالة خطأ عند تحميل التعليقات
+class CinemaCommentsError extends CinemaState {
+  // ✅ حالة خطأ عند تحميل التعليقات
   final String message;
   CinemaCommentsError(this.message);
 }

@@ -20,12 +20,12 @@ class Rating extends StatefulWidget {
 
 class _RatingState extends State<Rating> {
   double _rating = 1.0;
-  TextEditingController _commentController = TextEditingController();
+  final TextEditingController _commentController = TextEditingController();
   var currentUser;
   Future<void> addComment(
-      String cinemaId,
-      BuildContext context,
-     ) async {
+    String cinemaId,
+    BuildContext context,
+  ) async {
     if (HiveStorage.get(HiveKeys.role) == Role.guest.toString()) {
       DialogUtils.showMessage(
         context,
@@ -44,14 +44,12 @@ class _RatingState extends State<Rating> {
           ? HiveStorage.getGoogleUser()
           : HiveStorage.getDefaultUser();
 
-
-
       await FirebaseFirestore.instance
           .collection('Cinemas')
           .doc(cinemaId)
           .collection('comments')
           .add({
-        'text':  _commentController.text.trim(),
+        'text': _commentController.text.trim(),
         'timestamp': FieldValue.serverTimestamp(),
         'userName': currentUser.name,
         'image': currentUser.image,
@@ -70,7 +68,7 @@ class _RatingState extends State<Rating> {
         padding: EdgeInsets.all(20.sp),
         width: 300.w,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.1),
+          color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.1),
           borderRadius: BorderRadius.circular(50.sp),
         ),
         child: Column(
@@ -80,7 +78,10 @@ class _RatingState extends State<Rating> {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
-                icon:  Icon(Icons.close, color: Theme.of(context).colorScheme.onPrimary,),
+                icon: Icon(
+                  Icons.close,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
                 onPressed: () => Navigator.pop(context),
               ),
             ),
@@ -116,14 +117,16 @@ class _RatingState extends State<Rating> {
             SizedBox(height: 5.h),
             TextField(
               controller: _commentController,
-              style:  TextStyle(color: Theme.of(context).colorScheme.onPrimary,),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Theme.of(context).colorScheme.primary,
-
                 hintText: lang.yourEvaluationIsInterested,
-                hintStyle: theme.textTheme.bodySmall!
-                    .copyWith(fontSize: 13.sp,),
+                hintStyle: theme.textTheme.bodySmall!.copyWith(
+                  fontSize: 13.sp,
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(33.sp),
                   borderSide: BorderSide.none,
@@ -163,7 +166,8 @@ class _RatingState extends State<Rating> {
                 }
 
                 try {
-                  String cinemaId = "Plaza Cinema"; // يجب تمرير معرف السينما هنا
+                  String cinemaId =
+                      "Plaza Cinema"; // يجب تمرير معرف السينما هنا
                   DocumentReference cinemaRef = FirebaseFirestore.instance
                       .collection("Cinemas")
                       .doc(cinemaId);
@@ -177,7 +181,7 @@ class _RatingState extends State<Rating> {
                     double currentRating =
                         (cinemaSnapshot['rating'] ?? 0.0).toDouble();
                     int currentRatingCount =
-                        (cinemaSnapshot['rating_count'] ?? 0); 
+                        (cinemaSnapshot['rating_count'] ?? 0);
                     double newRating =
                         ((currentRating * currentRatingCount) + _rating) /
                             (currentRatingCount + 1);
@@ -187,8 +191,7 @@ class _RatingState extends State<Rating> {
                       "rating_count": currentRatingCount + 1,
                     });
                   }
-                 await addComment(cinemaId,context);
-
+                  await addComment(cinemaId, context);
 
                   // await FirebaseFirestore.instance
                   //     .collection("Cinemas")

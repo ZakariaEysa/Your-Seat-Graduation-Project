@@ -86,9 +86,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
-import 'package:printing/printing.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:yourseatgraduationproject/features/user_flow/my_tikect/presentation/view/ticket_done.dart';
 
 import '../../../../../../generated/l10n.dart';
 
@@ -163,7 +161,6 @@ class QrWidget extends StatelessWidget {
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
                 pw.SizedBox(height: 10.h),
-
                 pw.Row(
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: [
@@ -175,7 +172,6 @@ class QrWidget extends StatelessWidget {
                       pw.Image(pw.MemoryImage(qrBytes),
                           width: 150.w, height: 120.h),
                     ]),
-
                 pw.SizedBox(height: 15.h),
                 pw.Text("Duration: ${movieDuration ?? ""}",
                     style: pw.TextStyle(fontSize: 14.sp)),
@@ -189,7 +185,6 @@ class QrWidget extends StatelessWidget {
                 pw.Text("Location: ${location ?? ""}",
                     style: pw.TextStyle(fontSize: 14.sp)),
                 pw.SizedBox(height: 10.h),
-
                 pw.Row(
                   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                   children: [
@@ -203,7 +198,6 @@ class QrWidget extends StatelessWidget {
                         style: pw.TextStyle(fontSize: 14.sp)),
                   ],
                 ),
-
               ],
             ),
           );
@@ -230,18 +224,20 @@ class QrWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.only(bottom: 70.h,end: 10.w),
+            padding: EdgeInsetsDirectional.only(bottom: 70.h, end: 10.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: 20,),
+                SizedBox(
+                  width: 20,
+                ),
                 QrImageView(
                   data: orderId,
                   size: 120.sp,
                   backgroundColor: Colors.white,
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(right: 30.w,left: 30.w),
+                  padding: EdgeInsets.only(right: 30.w, left: 30.w),
                   child: Column(
                     children: [
                       Text(
@@ -250,7 +246,7 @@ class QrWidget extends StatelessWidget {
                       ),
                       SizedBox(height: 5.h),
                       Text(
-                        "Status : ${status??""}",
+                        "Status : ${status ?? ""}",
                         style: TextStyle(color: Colors.black, fontSize: 14.sp),
                       ),
                       SizedBox(height: 7.h),

@@ -20,32 +20,29 @@ class _CinemaItemState extends State<CinemaItem> {
     super.initState();
     CinemaaItemCubit.get(context).fetchCinemas();
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200.h,
       child: BlocBuilder<CinemaaItemCubit, CinemaaItemState>(
         builder: (context, state) {
-
           if (state is CinemaLoading) {
             return const Center(child: CircularProgressIndicator());
-          }
-        else   if (state is CinemaFailure) {
+          } else if (state is CinemaFailure) {
             return Center(
               child: Text(
                 "Error: ${state.error}",
                 style: const TextStyle(color: Colors.red),
               ),
             );
-          }
-          else  {
-
-
+          } else {
             final cinemas = CinemaaItemCubit.get(context).cinemas;
 
             if (cinemas.isEmpty) {
               return const Center(
-                child: Text("No cinemas available", style: TextStyle(color: Colors.white)),
+                child: Text("No cinemas available",
+                    style: TextStyle(color: Colors.white)),
               );
             }
 
@@ -80,7 +77,7 @@ class _CinemaItemState extends State<CinemaItem> {
                       SizedBox(height: 8.h),
                       Text(
                         name,
-                        style:  TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.onPrimary,
@@ -94,7 +91,6 @@ class _CinemaItemState extends State<CinemaItem> {
           }
           return const Text("no data"); // حالة افتراضية
         },
-
       ),
     );
   }

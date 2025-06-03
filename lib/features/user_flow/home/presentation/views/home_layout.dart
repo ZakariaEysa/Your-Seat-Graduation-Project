@@ -2,13 +2,13 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../utils/permissions_manager.dart';
 import '../../../notification/notification_cubit/notification_cubit.dart';
 import '../../../Settings/presentation/views/setting_page.dart';
 import 'home_screen.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../Tickets/presentation/view/tickets_screen.dart';
 import '../../../Watch_list/presentation/views/watch_list.dart';
-import 'package:geolocator/geolocator.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});
@@ -21,95 +21,11 @@ class _HomeScreenState extends State<HomeLayout> {
   @override
   void initState() {
     NotificationCubit().initializeNotificationList();
+
     // NotificationCubit().addNotification("Finally", "Tesssssssssst");
+    PermissionsManager.requestLocationPermission();
 
     super.initState();
-  }
-
-  void showCenteredSnackBar(BuildContext context, String message) {
-    final overlay = Overlay.of(context);
-    final overlayEntry = OverlayEntry(
-      builder: (context) => Center(
-        child: Material(
-          color: Colors.transparent,
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20.w, // استخدام ScreenUtil للـ horizontal padding
-              vertical: 12.h, // استخدام ScreenUtil للـ vertical padding
-            ),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(
-                  8.r), // استخدام ScreenUtil للـ borderRadius
-            ),
-            child: Text(
-              message,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14.sp, // استخدام ScreenUtil للـ fontSize
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-
-    // إظهار الـ SnackBar
-    overlay.insert(overlayEntry);
-
-    // إخفاء الـ SnackBar بعد 3 ثواني
-    Future.delayed(Duration(seconds: 3), () {
-      overlayEntry.remove();
-    });
-  }
-
-  Future<void> printUserLocation(BuildContext context) async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    // Check if location services are enabled
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      showCenteredSnackBar(
-          context, 'Location services are disabled. Please enable them.');
-      await Geolocator.openLocationSettings(); // Open location settings
-      return;
-    }
-
-    // Check and request permission
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        showCenteredSnackBar(context, 'Location permissions are denied.');
-        return;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      showCenteredSnackBar(
-        context,
-        'Location permissions are permanently denied. Please enable them from app settings.',
-      );
-      await Geolocator
-          .openAppSettings(); // Open app settings for manual permission
-      return;
-    }
-
-    // Get current location
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-
-      String message =
-          'User location: ${position.latitude}, ${position.longitude}';
-      print(message);
-      showCenteredSnackBar(context, message);
-    } catch (e) {
-      print('Error getting location: $e');
-      showCenteredSnackBar(context, 'Error getting location: $e');
-    }
   }
 
   int selectedIndex = 0;

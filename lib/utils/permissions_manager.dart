@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -6,41 +8,46 @@ import 'app_logs.dart';
 /// فئة لإدارة أذونات التطبيق
 class PermissionsManager {
   /// طلب جميع الأذونات الأساسية للتطبيق
-  static Future<void> requestAllPermissions() async {
-    await requestBasicPermissions();
-    await requestCameraAndLocationPermissions();
-  }
+  // static Future<void> requestAllPermissions() async {
+  //   await requestCameraPermission();
+  //   await requestStoragePermission();
+  //   await requestLocationPermission();
+  // }
 
-  /// طلب الأذونات الأساسية
-  static Future<void> requestBasicPermissions() async {
-    await Permission.camera.request();
-    await Permission.storage.request();
-    await Permission.location.request();
-    AppLogs.infoLog('Basic permissions requested');
-  }
+  /// طلب إذن الكاميرا
+  static Future<void> requestCameraPermission() async {
+    final status = await Permission.camera.request();
+    _logPermissionStatus('Camera', status);
 
-  /// طلب أذونات الكاميرا والموقع مع إظهار رسائل حالة
-  static Future<void> requestCameraAndLocationPermissions() async {
-    // طلب إذن الكاميرا
-    final cameraStatus = await Permission.camera.request();
-    _logPermissionStatus('Camera', cameraStatus);
-
-    if (cameraStatus.isPermanentlyDenied) {
+    if (status.isPermanentlyDenied) {
       AppLogs.errorLog('Camera permission permanently denied');
       await openAppSettings();
     }
+  }
 
-    // طلب إذن الموقع
-    final locationStatus = await Permission.locationWhenInUse.request();
-    _logPermissionStatus('Location', locationStatus);
+  /// طلب إذن التخزين
+  static Future<void> requestStoragePermission() async {
+    final status = await Permission.storage.request();
+    _logPermissionStatus('Storage', status);
 
-    if (locationStatus.isPermanentlyDenied) {
+    if (status.isPermanentlyDenied) {
+      AppLogs.errorLog('Storage permission permanently denied');
+      await openAppSettings();
+    }
+  }
+
+  /// طلب إذن الموقع
+  static Future<void> requestLocationPermission() async {
+    final status = await Permission.locationWhenInUse.request();
+    _logPermissionStatus('Location', status);
+
+    if (status.isPermanentlyDenied) {
       AppLogs.errorLog('Location permission permanently denied');
       await openAppSettings();
     }
   }
 
-  /// التحقق من خدمة الموقع وطلب الإذن إذا لزم الأمر
+  /// التحقق من حالة خدمة الموقع وطلب الإذن إذا لزم
   static Future<bool> checkAndRequestLocationService() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
@@ -68,18 +75,6 @@ class PermissionsManager {
   }
 
   /// الحصول على الموقع الحالي للمستخدم
-  static Future<Position?> getUserLocation() async {
-    try {
-      if (await checkAndRequestLocationService()) {
-        return await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high,
-        );
-      }
-    } catch (e) {
-      AppLogs.errorLog('Error getting location: $e');
-    }
-    return null;
-  }
 
   /// تسجيل حالة الإذن في سجل التطبيق
   static void _logPermissionStatus(
@@ -90,6 +85,91 @@ class PermissionsManager {
       AppLogs.errorLog('$permissionName permission denied');
     } else if (status.isPermanentlyDenied) {
       AppLogs.errorLog('$permissionName permission permanently denied');
+    } else if (status.isRestricted) {
+      AppLogs.errorLog('$permissionName permission restricted');
+    } else if (status.isLimited) {
+      AppLogs.infoLog('$permissionName permission limited');
+    }
+  }
+
+  void showCenteredSnackBar(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.black.withOpacity(0.8),
+      textColor: Colors.white,
+      fontSize: 14.0,
+    );
+    // final context = navigatorKey.currentContext;
+    // if (context == null) return;
+
+    // final overlay = Overlay.of(context);
+    // if (overlay == null) return;
+
+    // final overlayEntry = OverlayEntry(
+    //   builder: (context) => Center(
+    //     child: Material(
+    //       color: Colors.transparent,
+    //       child: Container(
+    //         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+    //         decoration: BoxDecoration(
+    //           color: Colors.black.withOpacity(0.8),
+    //           borderRadius: BorderRadius.circular(8.r),
+    //         ),
+    //         child: Text(
+    //           message,
+    //           style: TextStyle(color: Colors.white, fontSize: 14.sp),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
+
+    // overlay.insert(overlayEntry);
+
+    // Future.delayed(Duration(seconds: 3), () {
+    //   overlayEntry.remove();
+    // });
+  }
+
+  Future<Position?> getUserLocation() async {
+    try {
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        showCenteredSnackBar(
+            'Location services are disabled. Please enable them.');
+        await Geolocator.openLocationSettings();
+        return null;
+      }
+
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          showCenteredSnackBar('Location permissions are denied.');
+          return null;
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        showCenteredSnackBar(
+            'Location permissions are permanently denied. Please enable them from app settings.');
+        await Geolocator.openAppSettings();
+        return null;
+      }
+
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+
+      showCenteredSnackBar(
+          'User location: ${position.latitude}, ${position.longitude}');
+      return position;
+    } catch (e) {
+      print('Error getting location: $e');
+      showCenteredSnackBar('Error getting location.');
+      return null;
     }
   }
 }

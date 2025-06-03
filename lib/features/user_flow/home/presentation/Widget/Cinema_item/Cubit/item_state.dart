@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class CinemaItemState extends Equatable {
@@ -9,7 +8,7 @@ abstract class CinemaItemState extends Equatable {
 class CinemaLoading extends CinemaItemState {}
 
 class CinemaSuccess extends CinemaItemState {
-  final List<QueryDocumentSnapshot> cinemas;
+  final List<Map<String, dynamic>> cinemas;
 
   CinemaSuccess(this.cinemas);
 

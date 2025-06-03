@@ -163,8 +163,8 @@ class PermissionsManager {
         desiredAccuracy: LocationAccuracy.high,
       );
 
-      showCenteredSnackBar(
-          'User location: ${position.latitude}, ${position.longitude}');
+      // showCenteredSnackBar(
+      //     'User location: ${position.latitude}, ${position.longitude}');
       return position;
     } catch (e) {
       print('Error getting location: $e');

@@ -33,10 +33,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // await AppInitializer.initializeApp();
+
   await AppInitializer.initializeEssentialParts();
+  await AppInitializer.initializeRemainingAsyncTasks();
+
   runApp(
     DevicePreview(
-      enabled: kDebugMode,
+      enabled: false,
       builder: (context) => MultiBlocProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),

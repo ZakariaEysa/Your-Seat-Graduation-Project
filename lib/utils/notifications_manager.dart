@@ -2,6 +2,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:permission_handler/permission_handler.dart';
+import '../features/user_flow/notification/notification_cubit/notification_cubit.dart';
 import 'app_logs.dart';
 
 /// فئة لإدارة الإشعارات المحلية فقط
@@ -70,6 +71,8 @@ class NotificationsManager {
     }
 
     try {
+      await NotificationCubit().addNotification(title, body);
+
       const AndroidNotificationDetails androidDetails =
           AndroidNotificationDetails(
         'default_channel_id',

@@ -2,6 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../data/hive_keys.dart';
+import '../../../../../utils/dialog_utilits.dart';
+import '../../../../../utils/navigation.dart';
+import '../../../auth/presentation/views/sign_in.dart';
 import '../widgets/profile_card/profile_edit_card.dart';
 import '../../../settings/presentation/widgets/profile_card/personal_info_card.dart';
 import '../../../../../utils/app_logs.dart';
@@ -43,12 +46,25 @@ class _ProfileCardState extends State<ProfileCard> {
         actions: [
           InkWell(
               onTap: () async {
-                if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
+                if (HiveStorage.get(HiveKeys.role) == Role.guest.toString()) {
+                  DialogUtils.showMessage(
+                      context, "You Have To Sign In To Continue",
+                      isCancelable: false,
+                      posActionTitle: lang.sign_in,
+                      negActionTitle: lang.cancel, posAction: () {
+                    HiveStorage.set(HiveKeys.role, "");
+
+                    navigateAndRemoveUntil(
+                      context: context,
+                      screen: const SignIn(),
+                    );
+                  }, negAction: () {
+                    navigatePop(context: context);
+                  });
                 } else {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProfileEditCard()),
+                  navigateTo(
+                    context: context,
+                    screen: const ProfileEditCard(),
                   );
                 }
 

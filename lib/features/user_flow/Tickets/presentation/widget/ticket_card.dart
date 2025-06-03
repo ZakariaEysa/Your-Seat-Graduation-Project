@@ -88,9 +88,6 @@ class TicketCard extends StatelessWidget {
                             NotificationsManager.showLocalNotification(
                                 "Action Cancelled ✅",
                                 "You have canceled your ticket.");
-                            NotificationCubit().addNotification(
-                                "Action Cancelled ✅",
-                                "You have canceled your ticket.");
                           },
                           child: Text(
                             'Cancel',

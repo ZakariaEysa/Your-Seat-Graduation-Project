@@ -28,7 +28,6 @@ import 'features/user_flow/auth/data/remote_data_source/auth_remote_data_source.
 import 'features/user_flow/auth/data/repos_impl/auth_repo_impl.dart';
 import 'features/user_flow/home/presentation/Widget/cubit/movies_cubit.dart';
 import 'utils/app_initializer.dart';
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -103,7 +102,6 @@ class _MyAppState extends State<MyApp> {
             splitScreenMode: true,
             builder: (_, child) {
               return MaterialApp(
-                  navigatorKey: navigatorKey,
                   theme: theme.currentTheme,
                   locale: HiveStorage.get(HiveKeys.isArabic)
                       ? const Locale('ar')

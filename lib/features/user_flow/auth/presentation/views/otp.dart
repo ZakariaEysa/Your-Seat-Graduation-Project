@@ -18,46 +18,19 @@ class Otp extends StatefulWidget {
 }
 
 class _OtpState extends State<Otp> {
-  TextEditingController N1 = TextEditingController();
-  TextEditingController N2 = TextEditingController();
-  TextEditingController N3 = TextEditingController();
-  TextEditingController N4 = TextEditingController();
-  TextEditingController N5 = TextEditingController();
-  TextEditingController N6 = TextEditingController();
+  TextEditingController otpController1 = TextEditingController();
+  TextEditingController otpController2 = TextEditingController();
+  TextEditingController otpController3 = TextEditingController();
+  TextEditingController otpController4 = TextEditingController();
+  TextEditingController otpController5 = TextEditingController();
+  TextEditingController otpController6 = TextEditingController();
 
-  final FocusNode F1 = FocusNode();
-  final FocusNode F2 = FocusNode();
-  final FocusNode F3 = FocusNode();
-  final FocusNode F4 = FocusNode();
-  final FocusNode F5 = FocusNode();
-  final FocusNode F6 = FocusNode();
-
-  // Future<void> sendOtpResend(String email) async {
-  //   try {
-  //     showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return const LoadingIndicator();
-  //       },
-  //     );
-  //
-  //     var res = await EmailOtpAuth.sendOTP(email: email);
-  //     if (context.mounted) {
-  //       Navigator.of(context).pop();
-  //     }
-  //     if (res["message"] == "Email Send" && context.mounted) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text("OTP Sent Successfully ✅")),
-  //       );
-  //     } else if (context.mounted) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text("Invalid E-Mail Address ❌")),
-  //       );
-  //     }
-  //   } catch (error) {
-  //     throw error.toString();
-  //   }
-  // }
+  final FocusNode focusNode1 = FocusNode();
+  final FocusNode focusNode2 = FocusNode();
+  final FocusNode focusNode3 = FocusNode();
+  final FocusNode focusNode4 = FocusNode();
+  final FocusNode focusNode5 = FocusNode();
+  final FocusNode focusNode6 = FocusNode();
 
   Future<void> verifyOtp(BuildContext context, String otp) async {
     bool isOtpValid =
@@ -123,40 +96,46 @@ class _OtpState extends State<Otp> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OtpFieldWidget(
-                  controller: N1,
-                  currentFocus: F1,
-                  nextFocus: F2,
+                  controller: otpController1,
+                  currentFocus: focusNode1,
+                  nextFocus: focusNode2,
+                  previousFocus: null,
                   nextField: nextField,
-                  autofocus: true, // إضافة التركيز التلقائي هنا
+                  autofocus: true,
                 ),
                 OtpFieldWidget(
-                  controller: N2,
-                  currentFocus: F2,
-                  nextFocus: F3,
-                  nextField: nextField,
-                ),
-                OtpFieldWidget(
-                  controller: N3,
-                  currentFocus: F3,
-                  nextFocus: F4,
+                  controller: otpController2,
+                  currentFocus: focusNode2,
+                  nextFocus: focusNode3,
+                  previousFocus: focusNode1,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
-                  controller: N4,
-                  currentFocus: F4,
-                  nextFocus: F5,
+                  controller: otpController3,
+                  currentFocus: focusNode3,
+                  nextFocus: focusNode4,
+                  previousFocus: focusNode2,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
-                  controller: N5,
-                  currentFocus: F5,
-                  nextFocus: F6,
+                  controller: otpController4,
+                  currentFocus: focusNode4,
+                  nextFocus: focusNode5,
+                  previousFocus: focusNode3,
                   nextField: nextField,
                 ),
                 OtpFieldWidget(
-                  controller: N6,
-                  currentFocus: F6,
+                  controller: otpController5,
+                  currentFocus: focusNode5,
+                  nextFocus: focusNode6,
+                  previousFocus: focusNode4,
+                  nextField: nextField,
+                ),
+                OtpFieldWidget(
+                  controller: otpController6,
+                  currentFocus: focusNode6,
                   nextFocus: null,
+                  previousFocus: focusNode5,
                   nextField: nextField,
                 ),
               ],
@@ -194,12 +173,12 @@ class _OtpState extends State<Otp> {
           ButtonBuilder(
             text: 'Continue',
             onTap: () {
-              if (N1.text.isEmpty ||
-                  N2.text.isEmpty ||
-                  N3.text.isEmpty ||
-                  N4.text.isEmpty ||
-                  N5.text.isEmpty ||
-                  N6.text.isEmpty) {
+              if (otpController1.text.isEmpty ||
+                  otpController2.text.isEmpty ||
+                  otpController3.text.isEmpty ||
+                  otpController4.text.isEmpty ||
+                  otpController5.text.isEmpty ||
+                  otpController6.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Please enter all numbers OTP'),
@@ -207,8 +186,12 @@ class _OtpState extends State<Otp> {
                   ),
                 );
               } else {
-                String otp =
-                    N1.text + N2.text + N3.text + N4.text + N5.text + N6.text;
+                String otp = otpController1.text +
+                    otpController2.text +
+                    otpController3.text +
+                    otpController4.text +
+                    otpController5.text +
+                    otpController6.text;
                 print("OTP entered: $otp");
                 verifyOtp(context, otp);
               }

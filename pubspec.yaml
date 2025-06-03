@@ -42,7 +42,8 @@ dependencies:
   flutter_polyline_points: ^2.1.0
   flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.3
-  flutter_slidable: 
+  flutter_slidable: null
+  fluttertoast: ^8.2.12
   font_awesome_flutter: any
   geolocator: null
   geolocator_android: 4.6.1

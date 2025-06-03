@@ -15,24 +15,9 @@ class CinemaFetchComment extends StatefulWidget {
 }
 
 class _CinemaFetchCommentState extends State<CinemaFetchComment> {
-  final ScrollController _scrollController = ScrollController();
-
   @override
   void dispose() {
-    _scrollController.dispose();
     super.dispose();
-  }
-
-  void _scrollToBottom() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
-      }
-    });
   }
 
   @override
@@ -43,6 +28,7 @@ class _CinemaFetchCommentState extends State<CinemaFetchComment> {
         if (state is CinemaCommentsLoading) {
           return const Center(child: LoadingIndicator());
         } else if (state is CinemaCommentsLoaded ||
+            state is CinemaControllerToBottom ||
             CinemaCubit.get(context).comments.isNotEmpty) {
           final comments = CinemaCubit.get(context).comments;
 
@@ -55,11 +41,8 @@ class _CinemaFetchCommentState extends State<CinemaFetchComment> {
             );
           }
 
-          // تمرير تلقائي للأسفل عند وجود تعليقات جديدة
-          _scrollToBottom();
-
           return SingleChildScrollView(
-            controller: _scrollController,
+            physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
                 ...comments.map((comment) => Padding(

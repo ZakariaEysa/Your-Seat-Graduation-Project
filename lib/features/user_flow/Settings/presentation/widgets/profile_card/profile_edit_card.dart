@@ -114,6 +114,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     });
 
     try {
+      bool changed = false;
       var userDoc =
           FirebaseFirestore.instance.collection('users').doc(currentUser.email);
 
@@ -122,6 +123,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       if (userController.text.isNotEmpty &&
           userController.text != currentUser.name) {
         updatedData['name'] = userController.text;
+        changed = true;
       }
 
       if (selectedDay != null &&
@@ -143,6 +145,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
       if (selectedImageBase64 != currentUser.image) {
         updatedData['image'] = selectedImageBase64 ?? "";
+        changed = true;
       }
 
       if (updatedData.isEmpty) {
@@ -156,7 +159,9 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       }
 
       await userDoc.update(updatedData);
-
+      await updateUserCommentsInAllCinemas(
+          updatedData['name'] ?? currentUser.name,
+          updatedData['image'] ?? currentUser.image);
       HiveStorage.saveDefaultUser(UserModel(
         name: updatedData['name'] ?? currentUser.name,
         email: currentUser.email,
@@ -219,6 +224,67 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
         );
       },
     );
+  }
+
+  Future<void> updateUserCommentsInAllCinemas(
+      String newName, String newImage) async {
+    try {
+      AppLogs.debugLog("start updating All comments ");
+
+      final userName = currentUser.name;
+      final firestore = FirebaseFirestore.instance;
+
+      // ✅ جلب كل السينمات
+      final cinemasSnapshot = await firestore.collection('Cinemas').get();
+
+      // ✅ أنشئ Batch
+      final batch = firestore.batch();
+      int operationsCount = 0;
+
+      for (var cinemaDoc in cinemasSnapshot.docs) {
+        final cinemaId = cinemaDoc.id;
+
+        // ✅ جلب كل تعليقات المستخدم داخل هذه السينما
+        final commentsSnapshot = await firestore
+            .collection('Cinemas')
+            .doc(cinemaId)
+            .collection('comments')
+            .where('userName', isEqualTo: userName)
+            .get();
+
+        for (var commentDoc in commentsSnapshot.docs) {
+          final commentRef = firestore
+              .collection('Cinemas')
+              .doc(cinemaId)
+              .collection('comments')
+              .doc(commentDoc.id);
+
+          batch.update(commentRef, {
+            'userName': newName,
+            'image': newImage,
+          });
+
+          operationsCount++;
+
+          // ✅ لو عدد العمليات قرب من 500 (الحد الأقصى للدفعة)، نرسلها ونبدأ جديدة
+          if (operationsCount == 450) {
+            await batch.commit();
+            AppLogs.debugLog("Committed 450 updates, starting new batch...");
+            operationsCount = 0;
+          }
+        }
+      }
+
+      // ✅ إرسال الدفعة النهائية إذا تبقى عمليات
+      if (operationsCount > 0) {
+        await batch.commit();
+        AppLogs.debugLog("Committed final batch of $operationsCount updates");
+      }
+
+      AppLogs.debugLog("✅ All comments updated successfully");
+    } catch (e) {
+      AppLogs.errorLog("❌ Error updating user comments: $e");
+    }
   }
 
   @override

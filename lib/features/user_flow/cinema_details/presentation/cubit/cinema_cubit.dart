@@ -187,33 +187,33 @@ class CinemaCubit extends Cubit<CinemaState> {
     isAddingComment = false;
   }
 
-  Future<void> _updateOldComments(
-      String cinemaId, String newName, String newImage) async {
-    try {
-      // ✅ جلب كل تعليقات المستخدم الحالي
-      final snapshot = await _firestore
-          .collection('Cinemas')
-          .doc(cinemaId)
-          .collection('comments')
-          .where('userName', isEqualTo: currentUser.name) // البحث بالاسم القديم
-          .get();
+  // Future<void> _updateOldComments(
+  //     String cinemaId, String newName, String newImage) async {
+  //   try {
+  //     // ✅ جلب كل تعليقات المستخدم الحالي
+  //     final snapshot = await _firestore
+  //         .collection('Cinemas')
+  //         .doc(cinemaId)
+  //         .collection('comments')
+  //         .where('userName', isEqualTo: currentUser.name) // البحث بالاسم القديم
+  //         .get();
 
-      // ✅ تحديث كل تعليق بالاسم والصورة الجديدة
-      for (var doc in snapshot.docs) {
-        await _firestore
-            .collection('Cinemas')
-            .doc(cinemaId)
-            .collection('comments')
-            .doc(doc.id)
-            .update({
-          'userName': newName,
-          'image': newImage,
-        });
-      }
+  //     // ✅ تحديث كل تعليق بالاسم والصورة الجديدة
+  //     for (var doc in snapshot.docs) {
+  //       await _firestore
+  //           .collection('Cinemas')
+  //           .doc(cinemaId)
+  //           .collection('comments')
+  //           .doc(doc.id)
+  //           .update({
+  //         'userName': newName,
+  //         'image': newImage,
+  //       });
+  //     }
 
-      AppLogs.debugLog("Updated all old comments with new name: $newName");
-    } catch (e) {
-      AppLogs.errorLog("Error updating old comments: $e");
-    }
-  }
+  //     AppLogs.debugLog("Updated all old comments with new name: $newName");
+  //   } catch (e) {
+  //     AppLogs.errorLog("Error updating old comments: $e");
+  //   }
+  // }
 }

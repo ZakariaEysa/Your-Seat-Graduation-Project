@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../../widgets/loading_indicator.dart';
-import '../../../../../widgets/loading_indicator.dart';
 
 class DialogUtils {
   static void showLoading(BuildContext context, String message,

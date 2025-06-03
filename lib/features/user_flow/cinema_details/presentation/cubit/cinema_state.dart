@@ -28,6 +28,7 @@ class CinemaCommentsLoading extends CinemaState {} // ✅ حالة تحميل ا
 class CinemaCommentsLoaded extends CinemaState {
   CinemaCommentsLoaded();
 }
+
 class CinemaControllerToBottom extends CinemaState {
   CinemaControllerToBottom();
 }

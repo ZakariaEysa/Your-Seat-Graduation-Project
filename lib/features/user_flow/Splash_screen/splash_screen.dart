@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen>
     )..forward();
 
     bubbles = List.generate(90, (index) => Bubble());
- AppInitializer.initializeRemainingAsyncTasks();
+    AppInitializer.initializeRemainingAsyncTasks();
     _timer = Timer(const Duration(seconds: 4), _navigate);
   }
 

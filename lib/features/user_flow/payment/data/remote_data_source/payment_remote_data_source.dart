@@ -93,7 +93,7 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
       required int orderId,
       required String amount}) async {
     try {
-      var currentUser;
+      Object? currentUser;
 
       if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
         currentUser = HiveStorage.getGoogleUser();

@@ -35,11 +35,13 @@ class _SplashScreenState extends State<SplashScreen>
     )..forward();
 
     bubbles = List.generate(90, (index) => Bubble());
-    AppInitializer.initializeRemainingAsyncTasks();
+
     _timer = Timer(const Duration(seconds: 4), _navigate);
   }
 
   void _navigate() {
+    AppInitializer.initializeRemainingAsyncTasks();
+
     if (HiveStorage.get(HiveKeys.passUserOnboarding) == false) {
       navigateAndReplace(context: context, screen: const OnBoarding());
     } else if (HiveStorage.get(HiveKeys.role) == "" ||

@@ -170,8 +170,7 @@ class _OtpState extends State<Otp> {
               children: [
                 CountdownTimer(
                   onResend: () async {
-                    String email =
-                        AuthCubit.get(context).emailController.text ?? '';
+                    String email = AuthCubit.get(context).emailController.text;
                     if (email.isNotEmpty) {
                       AuthCubit.get(context).sendOtp(email);
                       ScaffoldMessenger.of(context).showSnackBar(

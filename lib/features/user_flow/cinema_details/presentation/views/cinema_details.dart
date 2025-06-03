@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../utils/permissions_manager.dart';
 import '../cubit/cinema_cubit.dart';
 import '../cubit/cinema_state.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';

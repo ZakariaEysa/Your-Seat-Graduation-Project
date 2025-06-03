@@ -27,9 +27,10 @@ class AppInitializer {
   }
 
   static Future<void> initializeRemainingAsyncTasks() async {
-    await _safelyRequestPermissions();
+    // await _safelyRequestPermissions();
     await _safelyInitializeFirebase();
     await _safelyInitializeNotifications();
+    await PermissionsManager.requestStoragePermission();
   }
 
   static Future<void> initializeApp() async {
@@ -51,7 +52,7 @@ class AppInitializer {
 
     // 3. طلب الأذونات
     // هذه الخطوة ليست ضرورية تمامًا، فيمكن للتطبيق العمل بدون بعض الأذونات
-    await _safelyRequestPermissions();
+    // await _safelyRequestPermissions();
 
     // 4. تهيئة Firebase
     // يمكن للتطبيق العمل بدون Firebase في الأوضاع الأساسية
@@ -101,17 +102,17 @@ class AppInitializer {
     }
   }
 
-  /// طلب الأذونات بأمان
-  static Future<void> _safelyRequestPermissions() async {
-    try {
-      await PermissionsManager.requestAllPermissions();
-      AppLogs.infoLog('Permissions requested successfully');
-    } catch (e) {
-      AppLogs.errorLog('Error requesting permissions: $e');
-      _showError(
-          'حدث خطأ أثناء طلب الأذونات. بعض ميزات التطبيق قد لا تعمل بشكل صحيح.');
-    }
-  }
+  // /// طلب الأذونات بأمان
+  // static Future<void> _safelyRequestPermissions() async {
+  //   try {
+  //     await PermissionsManager.requestAllPermissions();
+  //     AppLogs.infoLog('Permissions requested successfully');
+  //   } catch (e) {
+  //     AppLogs.errorLog('Error requesting permissions: $e');
+  //     _showError(
+  //         'حدث خطأ أثناء طلب الأذونات. بعض ميزات التطبيق قد لا تعمل بشكل صحيح.');
+  //   }
+  // }
 
   /// تهيئة Firebase بأمان
   static Future<void> _safelyInitializeFirebase() async {

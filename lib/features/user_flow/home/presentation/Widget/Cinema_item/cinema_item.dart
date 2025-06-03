@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 
 import '../../../../../../utils/navigation.dart';
 import '../../../../../../widgets/loading_indicator.dart';
@@ -38,22 +39,30 @@ class _CinemaItemState extends State<CinemaItem> {
                 style: const TextStyle(color: Colors.red),
               ),
             );
-          } else {
-            final cinemas = CinemaItemCubit.get(context).cinemas;
+          } else  {
+            var cinemas = CinemaItemCubit.get(context).cinemas;
 
             if (cinemas.isEmpty) {
               return const Center(
                 child: Text("No cinemas available",
                     style: TextStyle(color: Colors.white)),
               );
+            } else   {
+              AppLogs.scussessLog("start sorting ");
+              AppLogs.scussessLog(cinemas.toString());
+
+             
+              AppLogs.scussessLog("end sorting ");
             }
+            AppLogs.scussessLog("start viewing ");
 
             return ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: cinemas.length,
               itemBuilder: (context, index) {
                 final cinema = cinemas[index];
-                final data = cinema.data() as Map<String, dynamic>;
+                final data = cinema;
+
                 final name = data["name"] ?? "Cinema";
                 final imageUrl = data["poster_image"] ?? "";
 

@@ -11,6 +11,7 @@ import '../../../../../../data/hive_storage.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/app_logs.dart';
 import '../../../../../../utils/navigation.dart';
+import '../../../../../../utils/permissions_manager.dart';
 import '../../../../../../widgets/loading_indicator.dart';
 import '../../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../auth/data/model/user_model.dart';
@@ -207,6 +208,8 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                       color: Theme.of(context).colorScheme.onPrimary,
                     )),
                 onTap: () async {
+                      await PermissionsManager.requestCameraPermission();
+
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
                   final XFile? image =

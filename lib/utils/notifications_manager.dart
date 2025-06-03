@@ -1,12 +1,13 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'app_logs.dart';
 
 /// فئة لإدارة الإشعارات المحلية فقط
 class NotificationsManager {
-  static final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  static final FlutterLocalNotificationsPlugin
+      _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   static bool _notificationsEnabled = true; // مفعلة دائمًا في الحالة المحلية
 
@@ -16,6 +17,8 @@ class NotificationsManager {
   /// تهيئة الإشعارات المحلية فقط
   static Future<void> initializeAllNotifications() async {
     try {
+      await requestNotificationPermission();
+
       AppLogs.infoLog('Initializing local notifications only');
 
       await initializeLocalNotifications();
@@ -25,6 +28,18 @@ class NotificationsManager {
       AppLogs.errorLog('Error initializing local notifications: $e');
       _showNotificationError(
           'حدث خطأ أثناء تهيئة الإشعارات المحلية، بعض الميزات قد لا تعمل.');
+    }
+  }
+
+  static Future<void> requestNotificationPermission() async {
+    final status = await Permission.notification.request();
+    if (status.isGranted) {
+      AppLogs.infoLog("Notification permission granted");
+    } else {
+      AppLogs.errorLog("Notification permission denied");
+      _notificationsEnabled = false;
+      _showNotificationError(
+          'تم رفض إذن الإشعارات. الرجاء تفعيله من الإعدادات.');
     }
   }
 

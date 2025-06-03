@@ -15,7 +15,22 @@ class AppInitializer {
   static bool get isAppInitialized => _isAppInitialized;
 
   static bool get isStorageInitialized => _isStorageInitialized;
+static Future<void> initializeEssentialParts() async {
+  _isAppInitialized = false;
+  AppLogs.infoLog('Starting essential app initialization');
 
+  await _safelySetScreenOrientation();
+  await _safelyInitializeLocalStorage();
+
+  _isAppInitialized = true;
+  AppLogs.scussessLog('Essential app initialization completed');
+}
+
+static Future<void> initializeRemainingAsyncTasks() async {
+  await _safelyRequestPermissions();
+  await _safelyInitializeFirebase();
+  await _safelyInitializeNotifications();
+}
   static Future<void> initializeApp() async {
     _isAppInitialized = false;
     AppLogs.infoLog('Starting app initialization');

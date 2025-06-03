@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../resources/color_manager.dart';
+import '../../../../../widgets/loading_indicator.dart';
 
 class ButtonBuilder extends StatelessWidget {
   const ButtonBuilder({
@@ -51,7 +52,7 @@ class ButtonBuilder extends StatelessWidget {
             ),
           ),
           child: isLoading
-              ? const Center(child: CircularProgressIndicator())
+              ? const LoadingIndicator()
               : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

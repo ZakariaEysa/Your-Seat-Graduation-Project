@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../../widgets/loading_indicator.dart';
+import '../../../../../widgets/loading_indicator.dart';
 
 class DialogUtils {
   static void showLoading(BuildContext context, String message,
@@ -10,7 +12,7 @@ class DialogUtils {
             backgroundColor: const Color(0xFF2E1371),
             content: Row(
               children: [
-                const CircularProgressIndicator(),
+                const LoadingIndicator(),
                 const SizedBox(
                   width: 10,
                 ),

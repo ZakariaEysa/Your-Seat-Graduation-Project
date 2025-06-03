@@ -11,6 +11,8 @@ import 'package:yourseatgraduationproject/features/user_flow/onBoarding/presenta
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
+import '../../../utils/app_initializer.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -33,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen>
     )..forward();
 
     bubbles = List.generate(90, (index) => Bubble());
-
+ AppInitializer.initializeRemainingAsyncTasks();
     _timer = Timer(const Duration(seconds: 4), _navigate);
   }
 

@@ -37,7 +37,7 @@ class _OtpState extends State<Otp> {
   //     showDialog(
   //       context: context,
   //       builder: (context) {
-  //         return const Center(child: CircularProgressIndicator());
+  //         return const LoadingIndicator();
   //       },
   //     );
   //

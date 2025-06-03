@@ -7,6 +7,7 @@ import '../notification_cubit/notification_state.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../../../widgets/loading_indicator.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -44,7 +45,7 @@ class _NotificationsState extends State<Notifications> {
         bloc: notificationCubit,
         builder: (context, state) {
           if (state is NotificationLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const LoadingIndicator();
           } else if (state is NotificationError) {
             return Center(child: Text('Error: ${state.message}'));
           } else if (state is NotificationLoaded) {

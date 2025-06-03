@@ -10,6 +10,7 @@ import '../../../../../generated/l10n.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../my_tikect/presentation/view/ticket_done.dart';
 import '../widget/ticket_card.dart';
+import '../../../../../widgets/loading_indicator.dart';
 
 class TicketPage extends StatefulWidget {
   const TicketPage({super.key});
@@ -251,7 +252,7 @@ class _TicketPageState extends State<TicketPage> {
         ),
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? LoadingIndicator()
           : tickets.isEmpty
               ? Center(
                   child: Text(

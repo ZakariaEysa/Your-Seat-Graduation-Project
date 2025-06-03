@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../utils/navigation.dart';
+import '../../../../../../widgets/loading_indicator.dart';
 import '../../../../../../widgets/network_image/image_replacer.dart';
 import '../../../../cinema_details/presentation/views/cinema_details.dart';
 import 'Cubit/item_cubit.dart';
@@ -29,7 +30,7 @@ class _CinemaItemState extends State<CinemaItem> {
       child: BlocBuilder<CinemaItemCubit, CinemaItemState>(
         builder: (context, state) {
           if (state is CinemaLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const LoadingIndicator();
           } else if (state is CinemaFailure) {
             return Center(
               child: Text(

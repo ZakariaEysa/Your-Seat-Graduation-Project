@@ -42,7 +42,7 @@
 //   Widget build(BuildContext context) {
 //     // Show loading spinner while data is being fetched
 //     if (movies.isEmpty) {
-//       return const Center(child: CircularProgressIndicator());
+//       return const LoadingIndicator();
 //     }
 //
 //     // Build a PageView with the fetched movies
@@ -82,6 +82,7 @@ import '../../../../../../utils/navigation.dart';
 import '../../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../../movie_details/presentation/views/movie_details.dart';
 import 'coming_card.dart';
+import '../../../../../../widgets/loading_indicator.dart';
 
 class ComingSoon extends StatefulWidget {
   const ComingSoon({super.key});
@@ -102,7 +103,7 @@ class _ComingSoonState extends State<ComingSoon> {
     return BlocBuilder<ComingSoonCubit, ComingSoonState>(
       builder: (context, state) {
         if (state is ComingSoonLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const LoadingIndicator();
         } else if (state is ComingSoonError) {
           return Center(child: Text(state.message));
         } else if (state is ComingSoonLoaded) {

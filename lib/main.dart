@@ -32,8 +32,8 @@ import 'utils/app_initializer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await AppInitializer.initializeApp();
-
+  // await AppInitializer.initializeApp();
+  await AppInitializer.initializeEssentialParts();
   runApp(
     DevicePreview(
       enabled: kDebugMode,

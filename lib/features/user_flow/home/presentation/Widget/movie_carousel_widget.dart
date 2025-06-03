@@ -50,7 +50,7 @@
 //   Widget build(BuildContext context) {
 //     if (movies.isEmpty) {
 //       // Show loading spinner if movies are not loaded yet
-//       return Center(child: CircularProgressIndicator());
+//       return LoadingIndicator();
 //     }
 //
 //     return Stack(
@@ -135,6 +135,7 @@ import '../../../../../utils/navigation.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../movie_details/presentation/views/movie_details.dart';
 import 'movie_card.dart';
+import '../../../../../../widgets/loading_indicator.dart';
 
 class MovieCarouselWidget extends StatefulWidget {
   const MovieCarouselWidget({super.key});
@@ -164,7 +165,7 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
     return BlocBuilder<MovieCarouselCubit, MovieCarouselState>(
       builder: (context, state) {
         if (state is MovieCarouselLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const LoadingIndicator();
         } else if (state is MovieCarouselError) {
           return Center(child: Text(state.message));
         } else if (state is MovieCarouselLoaded) {

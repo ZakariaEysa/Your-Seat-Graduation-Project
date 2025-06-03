@@ -9,7 +9,6 @@ import 'home_screen.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../Tickets/presentation/view/tickets_screen.dart';
 import '../../../Watch_list/presentation/views/watch_list.dart';
-import 'package:geolocator/geolocator.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});
@@ -28,7 +27,6 @@ class _HomeScreenState extends State<HomeLayout> {
 
     super.initState();
   }
-
 
   int selectedIndex = 0;
 

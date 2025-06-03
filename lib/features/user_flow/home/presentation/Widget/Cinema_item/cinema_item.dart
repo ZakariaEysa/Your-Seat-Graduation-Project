@@ -39,7 +39,7 @@ class _CinemaItemState extends State<CinemaItem> {
                 style: const TextStyle(color: Colors.red),
               ),
             );
-          } else  {
+          } else {
             var cinemas = CinemaItemCubit.get(context).cinemas;
 
             if (cinemas.isEmpty) {
@@ -47,11 +47,10 @@ class _CinemaItemState extends State<CinemaItem> {
                 child: Text("No cinemas available",
                     style: TextStyle(color: Colors.white)),
               );
-            } else   {
+            } else {
               AppLogs.scussessLog("start sorting ");
               AppLogs.scussessLog(cinemas.toString());
 
-             
               AppLogs.scussessLog("end sorting ");
             }
             AppLogs.scussessLog("start viewing ");

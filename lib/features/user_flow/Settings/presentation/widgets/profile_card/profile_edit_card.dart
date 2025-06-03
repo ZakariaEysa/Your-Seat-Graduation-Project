@@ -208,7 +208,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                       color: Theme.of(context).colorScheme.onPrimary,
                     )),
                 onTap: () async {
-                      await PermissionsManager.requestCameraPermission();
+                  await PermissionsManager.requestCameraPermission();
 
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();

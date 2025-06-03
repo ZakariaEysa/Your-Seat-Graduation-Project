@@ -18,9 +18,7 @@ class CinemaItemCubit extends Cubit<CinemaItemState> {
       final snapshot =
           await FirebaseFirestore.instance.collection('Cinemas').get();
       docs = snapshot.docs;
-      cinemas = snapshot.docs
-          .map((doc) => doc.data() as Map<String, dynamic>)
-          .toList();
+      cinemas = snapshot.docs.map((doc) => doc.data()).toList();
       AppLogs.scussessLog("data is okay  ");
       cinemas = await sortCinemasByDistance(cinemas: cinemas);
       AppLogs.scussessLog("data is ready  ");

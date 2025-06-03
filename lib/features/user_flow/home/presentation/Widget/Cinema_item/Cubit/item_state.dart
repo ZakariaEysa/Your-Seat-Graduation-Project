@@ -8,7 +8,7 @@ abstract class CinemaItemState extends Equatable {
 class CinemaLoading extends CinemaItemState {}
 
 class CinemaSuccess extends CinemaItemState {
-  final List< Map<String, dynamic>> cinemas;
+  final List<Map<String, dynamic>> cinemas;
 
   CinemaSuccess(this.cinemas);
 

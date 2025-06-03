@@ -4,17 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CinemaComments extends StatefulWidget {
-
-
   final String title;
   final String name;
   final String image;
   const CinemaComments({
-    Key? key,
+    super.key,
     required this.name,
     required this.image,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   State<CinemaComments> createState() => _CinemaCommentsState();
@@ -23,15 +21,14 @@ class CinemaComments extends StatefulWidget {
 class _CinemaCommentsState extends State<CinemaComments> {
   @override
   Widget build(BuildContext context) {
-
     final theme = Theme.of(context);
     return Container(
       width: 360.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-          color: Theme.of(context).colorScheme.primary,
+        color: Theme.of(context).colorScheme.primary,
         border: Border.all(
-         color: Color(0XFF2E1371),
+          color: Color(0XFF2E1371),
           width: 1,
         ),
       ),
@@ -41,11 +38,10 @@ class _CinemaCommentsState extends State<CinemaComments> {
           children: [
             CircleAvatar(
               radius: 20.r,
-              backgroundImage:
-              widget.image.isNotEmpty
+              backgroundImage: widget.image.isNotEmpty
                   ? MemoryImage(base64Decode(widget.image))
                   : const AssetImage("assets/images/account.png")
-              as ImageProvider,
+                      as ImageProvider,
             ),
             SizedBox(width: 10.w),
             Expanded(
@@ -55,18 +51,18 @@ class _CinemaCommentsState extends State<CinemaComments> {
                 children: [
                   Text(
                     "@${widget.name}",
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                    style:
+                        theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-
                   Text(
                     widget.title,
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                    style:
+                        theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-
                 ],
               ),
             ),

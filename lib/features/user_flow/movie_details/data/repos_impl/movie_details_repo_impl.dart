@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/domain/repos/movie_details_repo.dart';
+import '../remote_data_source/movie_details_remote_data_source.dart';
+import '../../domain/repos/movie_details_repo.dart';
 import '../../../../../services/failure_service.dart';
-
-
 
 class MovieDetailsRepoImpl implements MovieDetailsRepo {
   final MovieDetailsRemoteDataSource movieDetailsRemoteDataSource;
@@ -11,11 +9,10 @@ class MovieDetailsRepoImpl implements MovieDetailsRepo {
   MovieDetailsRepoImpl(this.movieDetailsRemoteDataSource);
 
   @override
-  Future<Either<FailureService,List>> getCinemas(String movieName) async {
+  Future<Either<FailureService, List>> getCinemas(String movieName) async {
     try {
       final cinemas = await movieDetailsRemoteDataSource.getCinemas(movieName);
 
-     
       return Right(cinemas);
     } catch (e) {
       return Left(ServiceFailure(e.toString()));
@@ -27,11 +24,9 @@ class MovieDetailsRepoImpl implements MovieDetailsRepo {
     try {
       final rate = await movieDetailsRemoteDataSource.getRate(movieId);
 
-     
       return Right(rate);
     } catch (e) {
       return Left(ServiceFailure(e.toString()));
     }
   }
-
 }

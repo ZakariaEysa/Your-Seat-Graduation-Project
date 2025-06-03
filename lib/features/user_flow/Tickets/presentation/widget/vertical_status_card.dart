@@ -46,7 +46,6 @@ class VerticalStatusCard extends StatelessWidget {
                 imagePath,
                 width: imageWidth.w,
                 height: imageHeight.h,
-
               ),
             ),
           ],

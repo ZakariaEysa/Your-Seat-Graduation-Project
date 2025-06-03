@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/data/remote_data_source/payment_remote_data_source.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/domain/repos/payment_repo.dart';
+import '../remote_data_source/payment_remote_data_source.dart';
+import '../../domain/repos/payment_repo.dart';
 import '../../../../../services/failure_service.dart';
 
 class PaymentRepoImpl implements PaymentRepo {

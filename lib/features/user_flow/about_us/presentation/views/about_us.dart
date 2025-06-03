@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../widgets/row_of_social_items.dart';
+
 import '../../../../../generated/l10n.dart';
 import '../../../../../resources/constants.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-
 import '../widgets/custom_bottom_sheet.dart';
+import '../widgets/row_of_social_items.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({super.key});
@@ -49,7 +49,6 @@ class AboutUs extends StatelessWidget {
                 initialHeight: .34,
                 maxHeight: .98,
                 minHeight: .34,
-
               ),
             ),
             Align(

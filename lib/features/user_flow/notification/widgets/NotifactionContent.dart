@@ -21,8 +21,7 @@ class NotificationContent extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(
-          horizontal: 20.w),
+      padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w),
       child: Column(
         children: [
           Row(
@@ -41,7 +40,6 @@ class NotificationContent extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   if (numOfNotification != null)
                     Positioned(
                       top: 0,
@@ -100,12 +98,11 @@ class NotificationContent extends StatelessWidget {
                   ],
                 ),
               ),
-
               Text(
                 time,
                 style: theme.textTheme.labelLarge?.copyWith(
                   fontSize: 14.sp,
-                    color: Theme.of(context).colorScheme.onPrimary,
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
             ],

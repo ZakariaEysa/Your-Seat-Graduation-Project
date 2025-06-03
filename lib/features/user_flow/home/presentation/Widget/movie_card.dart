@@ -212,8 +212,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../widgets/network_image/image_replacer.dart';
-
 class MovieCard extends StatelessWidget {
   final Map<String, dynamic> movie;
 
@@ -227,7 +225,7 @@ class MovieCard extends StatelessWidget {
 
   bool isBase64(String? imageUrl) {
     final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
-    return base64Pattern.hasMatch(imageUrl??"");
+    return base64Pattern.hasMatch(imageUrl ?? "");
   }
 
   @override
@@ -275,16 +273,17 @@ class MovieCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             child: isBase64(movie['poster_image'])
                 ? Image.memory(
-              base64Decode(movie['poster_image']),
-              fit: BoxFit.cover,
-              height: 350.h,
-              width: double.infinity,
-            ):Image.network(
-              movie['poster_image'],
-              fit: BoxFit.cover,
-              height: 350.h,
-              width: double.infinity,
-            ),
+                    base64Decode(movie['poster_image']),
+                    fit: BoxFit.cover,
+                    height: 350.h,
+                    width: double.infinity,
+                  )
+                : Image.network(
+                    movie['poster_image'],
+                    fit: BoxFit.cover,
+                    height: 350.h,
+                    width: double.infinity,
+                  ),
           ),
 
           SizedBox(height: 10.h),

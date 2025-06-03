@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
-abstract class CinemaaItemState extends Equatable {
+abstract class CinemaItemState extends Equatable {
   @override
   List<Object> get props => [];
 }
 
-class CinemaLoading extends CinemaaItemState {}
+class CinemaLoading extends CinemaItemState {}
 
-class CinemaSuccess extends CinemaaItemState {
+class CinemaSuccess extends CinemaItemState {
   final List<QueryDocumentSnapshot> cinemas;
 
   CinemaSuccess(this.cinemas);
@@ -17,7 +17,7 @@ class CinemaSuccess extends CinemaaItemState {
   List<Object> get props => [cinemas];
 }
 
-class CinemaFailure extends CinemaaItemState {
+class CinemaFailure extends CinemaItemState {
   final String error;
 
   CinemaFailure(this.error);

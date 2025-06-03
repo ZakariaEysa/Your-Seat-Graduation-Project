@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -6,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:geolocator/geolocator.dart';
 
-import 'package:yourseatgraduationproject/features/user_flow/cinema_details/presentation/views/route_map.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
+import '../views/route_map.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
@@ -17,7 +16,7 @@ import '../../../home/presentation/views/home_layout.dart';
 class CinemaHeaderDescription extends StatelessWidget {
   final Map<String, dynamic> cinemaData;
 
-   CinemaHeaderDescription({super.key, required this.cinemaData});
+  CinemaHeaderDescription({super.key, required this.cinemaData});
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +147,6 @@ class CinemaHeaderDescription extends StatelessWidget {
 
               printUserLocation();
 
-
               // تأكد من وجود lat و lng
               if (cinemaData["lat"] != null && cinemaData["lng"] != null) {
                 navigateTo(
@@ -175,14 +173,15 @@ class CinemaHeaderDescription extends StatelessWidget {
   }
 
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
+      FlutterLocalNotificationsPlugin();
   void _showMessage(String message) {
     AppLogs.debugLog(message);
     showLocalNotification("📢 تنبيه", message); // Notification local
   }
+
   Future<void> showLocalNotification(String title, String body) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
-    AndroidNotificationDetails(
+        AndroidNotificationDetails(
       'default_channel_id',
       'default_notifications',
       channelDescription: 'YourSeat channel ',
@@ -191,9 +190,8 @@ class CinemaHeaderDescription extends StatelessWidget {
       ticker: 'ticker',
     );
 
-
     const NotificationDetails platformChannelSpecifics =
-    NotificationDetails(android: androidPlatformChannelSpecifics);
+        NotificationDetails(android: androidPlatformChannelSpecifics);
 
     await flutterLocalNotificationsPlugin.show(
       33, // notification ID
@@ -203,7 +201,6 @@ class CinemaHeaderDescription extends StatelessWidget {
       payload: 'Default_Sound',
     );
   }
-
 
   Future<void> printUserLocation() async {
     bool serviceEnabled;
@@ -244,5 +241,4 @@ class CinemaHeaderDescription extends StatelessWidget {
       _showMessage('Error getting location: $e');
     }
   }
-
 }

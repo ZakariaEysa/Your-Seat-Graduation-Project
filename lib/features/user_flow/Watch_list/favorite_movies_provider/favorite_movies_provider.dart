@@ -31,7 +31,7 @@ class FavoriteMoviesProvider extends ChangeNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       List<String> movieList =
-      _favoriteMovies.map((movie) => jsonEncode(movie.toJson())).toList();
+          _favoriteMovies.map((movie) => jsonEncode(movie.toJson())).toList();
       await prefs.setStringList('favorite_movies', movieList);
     } catch (e) {
       AppLogs.errorLog("Error saving favorite movies: $e");
@@ -43,8 +43,9 @@ class FavoriteMoviesProvider extends ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       List<String>? movieList = prefs.getStringList('favorite_movies');
       if (movieList != null) {
-        _favoriteMovies =
-            movieList.map((movie) => MoviesDetailsModel.fromJson(jsonDecode(movie))).toList();
+        _favoriteMovies = movieList
+            .map((movie) => MoviesDetailsModel.fromJson(jsonDecode(movie)))
+            .toList();
         notifyListeners();
       }
     } catch (e) {

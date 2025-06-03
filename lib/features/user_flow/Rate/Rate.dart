@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
+import '../../../widgets/scaffold/scaffold_f.dart';
 import 'Rating.dart';
 
 class Rate extends StatelessWidget {
@@ -13,10 +13,7 @@ class Rate extends StatelessWidget {
     return ScaffoldF(
       body: SingleChildScrollView(
         child: Column(
-          children: [
-            SizedBox(height: 130.h),
-            Rating()
-          ],
+          children: [SizedBox(height: 130.h), Rating()],
         ),
       ),
     );

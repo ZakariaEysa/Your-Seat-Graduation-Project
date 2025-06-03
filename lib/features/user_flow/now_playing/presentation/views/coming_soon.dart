@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
+import '../../../../../widgets/loading_indicator.dart';
+import '../../../movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
+import '../../../movie_details/data/repos_impl/movie_details_repo_impl.dart';
+import '../../../movie_details/presentation/cubit/movie_details_cubit.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../movie_details/presentation/views/movie_details.dart';
-import '../widgets/coming_movies.dart';
 import '../widgets/playing_movies.dart';
 
 class ComingSoons extends StatefulWidget {
@@ -45,7 +45,7 @@ class _ComingSoonsState extends State<ComingSoons> {
         future: _fetchMovies(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return const LoadingIndicator();
           } else if (snapshot.hasError) {
             return Center(child: Text(lang.errorSavingUser));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {

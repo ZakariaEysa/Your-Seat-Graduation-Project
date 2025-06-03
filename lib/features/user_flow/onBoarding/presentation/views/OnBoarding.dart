@@ -1,16 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import '../../../../../data/hive_stroage.dart';
-import '../../../auth/presentation/cubit/auth_cubit.dart';
-import '../../../auth/presentation/views/sign_in.dart';
+
+import '../../../../../data/hive_keys.dart';
+import '../../../../../data/hive_storage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
-import '../../../../../data/hive_keys.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../auth/presentation/views/sign_in.dart';
 import '../widgets/OnboardingContent.dart';
 
 class OnBoarding extends StatefulWidget {

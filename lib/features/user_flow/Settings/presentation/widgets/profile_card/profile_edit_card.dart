@@ -5,19 +5,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
-import '../../../../../../widgets/loading_indicator.dart';
-import 'info_container.dart';
-import '../../../../../../widgets/button/button_builder.dart';
 
 import '../../../../../../data/hive_keys.dart';
-import '../../../../../../data/hive_stroage.dart';
+import '../../../../../../data/hive_storage.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../../utils/app_logs.dart';
 import '../../../../../../utils/navigation.dart';
+import '../../../../../../widgets/loading_indicator.dart';
 import '../../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../auth/data/model/user_model.dart';
 import '../../../../auth/presentation/widgets/BirthDateDropdown.dart';
+import 'info_container.dart';
 
 class ProfileEditCard extends StatefulWidget {
   const ProfileEditCard({super.key});
@@ -116,6 +114,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     });
 
     try {
+      bool changed = false;
       var userDoc =
           FirebaseFirestore.instance.collection('users').doc(currentUser.email);
 
@@ -124,6 +123,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       if (userController.text.isNotEmpty &&
           userController.text != currentUser.name) {
         updatedData['name'] = userController.text;
+        changed = true;
       }
 
       if (selectedDay != null &&
@@ -145,6 +145,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
       if (selectedImageBase64 != currentUser.image) {
         updatedData['image'] = selectedImageBase64 ?? "";
+        changed = true;
       }
 
       if (updatedData.isEmpty) {
@@ -158,7 +159,9 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       }
 
       await userDoc.update(updatedData);
-
+      await updateUserCommentsInAllCinemas(
+          updatedData['name'] ?? currentUser.name,
+          updatedData['image'] ?? currentUser.image);
       HiveStorage.saveDefaultUser(UserModel(
         name: updatedData['name'] ?? currentUser.name,
         email: currentUser.email,
@@ -195,9 +198,14 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
           child: Wrap(
             children: [
               ListTile(
-                leading: Icon(Icons.photo_library,  color: Theme.of(context).colorScheme.onPrimary,),
-                title:  Text('Gallery',
-                    style: TextStyle( color: Theme.of(context).colorScheme.onPrimary,)),
+                leading: Icon(
+                  Icons.photo_library,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                title: Text('Gallery',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    )),
                 onTap: () async {
                   Navigator.of(context).pop();
                   final ImagePicker picker = ImagePicker();
@@ -218,6 +226,67 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
     );
   }
 
+  Future<void> updateUserCommentsInAllCinemas(
+      String newName, String newImage) async {
+    try {
+      AppLogs.debugLog("start updating All comments ");
+
+      final userName = currentUser.name;
+      final firestore = FirebaseFirestore.instance;
+
+      // ✅ جلب كل السينمات
+      final cinemasSnapshot = await firestore.collection('Cinemas').get();
+
+      // ✅ أنشئ Batch
+      final batch = firestore.batch();
+      int operationsCount = 0;
+
+      for (var cinemaDoc in cinemasSnapshot.docs) {
+        final cinemaId = cinemaDoc.id;
+
+        // ✅ جلب كل تعليقات المستخدم داخل هذه السينما
+        final commentsSnapshot = await firestore
+            .collection('Cinemas')
+            .doc(cinemaId)
+            .collection('comments')
+            .where('userName', isEqualTo: userName)
+            .get();
+
+        for (var commentDoc in commentsSnapshot.docs) {
+          final commentRef = firestore
+              .collection('Cinemas')
+              .doc(cinemaId)
+              .collection('comments')
+              .doc(commentDoc.id);
+
+          batch.update(commentRef, {
+            'userName': newName,
+            'image': newImage,
+          });
+
+          operationsCount++;
+
+          // ✅ لو عدد العمليات قرب من 500 (الحد الأقصى للدفعة)، نرسلها ونبدأ جديدة
+          if (operationsCount == 450) {
+            await batch.commit();
+            AppLogs.debugLog("Committed 450 updates, starting new batch...");
+            operationsCount = 0;
+          }
+        }
+      }
+
+      // ✅ إرسال الدفعة النهائية إذا تبقى عمليات
+      if (operationsCount > 0) {
+        await batch.commit();
+        AppLogs.debugLog("Committed final batch of $operationsCount updates");
+      }
+
+      AppLogs.debugLog("✅ All comments updated successfully");
+    } catch (e) {
+      AppLogs.errorLog("❌ Error updating user comments: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var lang = S.of(context);
@@ -225,7 +294,6 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
 
     return ScaffoldF(
       appBar: AppBar(
-
         iconTheme: IconThemeData(
           size: 28.sp,
           color: Theme.of(context).colorScheme.onPrimary,
@@ -243,15 +311,17 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(51.r),
                     topRight: Radius.circular(51.r),
-                    bottomLeft:Radius.circular(51.r),
-                    bottomRight:Radius.circular(51.r) ,
+                    bottomLeft: Radius.circular(51.r),
+                    bottomRight: Radius.circular(51.r),
                   ),
-                  color: Theme.of(context).colorScheme. secondaryFixed,
+                  color: Theme.of(context).colorScheme.secondaryFixed,
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.5),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onPrimary
+                        .withOpacity(0.5),
                     width: 1.w,
                   ),
-
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(top: 130.h, left: 10.w, right: 10.w),
@@ -280,7 +350,10 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           borderRadius: BorderRadius.circular(23.r),
                           color: theme.colorScheme.primary.withOpacity(0.7),
                         ),
-                        child: Text(currentUser.email,style:TextStyle(fontSize: 16.sp),),
+                        child: Text(
+                          currentUser.email,
+                          style: TextStyle(fontSize: 16.sp),
+                        ),
                       ),
                       SizedBox(height: 15.h),
                       _buildLabel(theme, lang.birthDate),
@@ -334,11 +407,15 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           TextButton(
                             onPressed: () => navigatePop(context: context),
                             style: TextButton.styleFrom(
-                              backgroundColor: Color(0xff421aa3), // لون خلفية الزر
-                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                              backgroundColor:
+                                  Color(0xff421aa3), // لون خلفية الزر
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.w, vertical: 8.h),
                             ),
                             child: Text(
-                              HiveStorage.get(HiveKeys.isArabic) ? 'إلغاء' : 'Cancel',
+                              HiveStorage.get(HiveKeys.isArabic)
+                                  ? 'إلغاء'
+                                  : 'Cancel',
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 color: Colors.white,
@@ -349,11 +426,15 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           TextButton(
                             onPressed: updateProfile,
                             style: TextButton.styleFrom(
-                              backgroundColor: Color(0xff421aa3), // لون خلفية الزر
-                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                              backgroundColor:
+                                  Color(0xff421aa3), // لون خلفية الزر
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16.w, vertical: 8.h),
                             ),
                             child: Text(
-                              HiveStorage.get(HiveKeys.isArabic) ? 'حفظ التغييرات' : 'Save Changes',
+                              HiveStorage.get(HiveKeys.isArabic)
+                                  ? 'حفظ التغييرات'
+                                  : 'Save Changes',
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 color: Colors.white,
@@ -362,9 +443,9 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
                           ),
                         ],
                       ),
-
-
-                      SizedBox(height: 45.h,)
+                      SizedBox(
+                        height: 45.h,
+                      )
                     ],
                   ),
                 ),
@@ -436,6 +517,4 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       onChanged: onChanged,
     );
   }
-
-
 }

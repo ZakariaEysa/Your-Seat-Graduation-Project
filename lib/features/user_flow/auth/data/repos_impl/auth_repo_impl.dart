@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../../../../../services/failure_service.dart';
 
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
+import '../../../../../services/failure_service.dart';
 import '../../domain/repos/auth_repo.dart';
 import '../model/google_user_model.dart';
 import '../model/user_model.dart';
@@ -47,6 +47,7 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
+  @override
   Future<void> checkUserExistsR(String phone) async {
     try {
       await authRemoteDataSource.checkUserExistsR(phone);
@@ -67,6 +68,7 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
+  @override
   Future<void> sendOtp(String phoneNumber, Function(String) onCodeSent) async {
     try {
       await authRemoteDataSource.signInWithPhoneNumber(phoneNumber, onCodeSent);

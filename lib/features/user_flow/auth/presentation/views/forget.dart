@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
 import '../cubit/auth_cubit.dart';
 import 'otp.dart';
 import 'sign_in.dart';
@@ -39,7 +37,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     var lang = S.of(context);
     return ScaffoldF(
       appBar: AppBar(
-
           iconTheme: IconThemeData(
             color: Theme.of(context).colorScheme.onPrimary,
             size: 28.sp,
@@ -56,7 +53,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
               );
             },
-
             icon: Icon(
               Icons.arrow_back,
               size: 25,
@@ -105,7 +101,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   return null;
                 },
                 style: TextStyle(
-                  fontSize: 15.sp,),
+                  fontSize: 15.sp,
+                ),
                 width: 312.w,
                 height: 80.h,
                 controller: cubit.emailController,
@@ -121,11 +118,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ButtonBuilder(
                 width: 191.w,
                 height: 48.h,
-
                 text: 'Send',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                      fontWeight: FontWeight.bold,
+                    ),
                 onTap: () async {
                   if (!formKeyForgot.currentState!.validate()) return;
                   if (isValidEmail(cubit.emailController.text)) {
@@ -135,35 +131,31 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   }
 
 // TODO: check if the user exists or not first
-try {
-  final userDoc = await FirebaseFirestore.instance
-
-      .collection('users')
-
-      .doc(cubit.emailController.text)
-
-
-      .get().timeout(Duration(seconds: 1));
-  if (userDoc.exists) {
-    cubit.sendOtp(cubit.emailController.text);
-    navigateTo(
-        context: context,
-        screen: Otp(
-          isSuccessOtp: () async {
-            navigateAndReplace(
-                context: context, screen: NewPassword());
-          },
-        ));
-  } else {
-    BotToast.showText(text: lang.user_not_found);
-  }
-} catch (e) {
-
-  BotToast.showText(text: " something went wrong please check your network");
-
-
-}
-                } ,
+                  try {
+                    final userDoc = await FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(cubit.emailController.text)
+                        .get()
+                        .timeout(Duration(seconds: 1));
+                    if (userDoc.exists) {
+                      cubit.sendOtp(cubit.emailController.text);
+                      navigateTo(
+                          context: context,
+                          screen: Otp(
+                            isSuccessOtp: () async {
+                              navigateAndReplace(
+                                  context: context, screen: NewPassword());
+                            },
+                          ));
+                    } else {
+                      BotToast.showText(text: lang.user_not_found);
+                    }
+                  } catch (e) {
+                    BotToast.showText(
+                        text:
+                            " something went wrong please check your network");
+                  }
+                },
               ),
               SizedBox(
                 height: 60.h,

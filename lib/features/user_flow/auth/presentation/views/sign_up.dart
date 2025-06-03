@@ -3,18 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neon_widgets/neon_widgets.dart';
-import 'package:yourseatgraduationproject/features/user_flow/about_us/presentation/views/about_us.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/cubit/auth_cubit.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/otp.dart';
-import 'package:yourseatgraduationproject/generated/l10n.dart';
+import '../../../about_us/presentation/views/about_us.dart';
+import '../cubit/auth_cubit.dart';
+import 'otp.dart';
+import '../../../../../generated/l10n.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
-import 'package:yourseatgraduationproject/utils/validation_utils.dart';
-import 'package:yourseatgraduationproject/widgets/app_bar/head_appbar.dart';
-import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import 'sign_in.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../utils/navigation.dart';
+import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -66,19 +63,21 @@ class _SignUpState extends State<SignUp> {
 
     return ScaffoldF(
       appBar: AppBar(
-        iconTheme:IconThemeData(size: 28, color: Theme.of(context).colorScheme.onPrimary,),
+        iconTheme: IconThemeData(
+          size: 28,
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
         backgroundColor: theme.primaryColor,
         centerTitle: true, // دي بتخلي العنوان في النص على iOS تلقائيًا
-        title: Text(  local.signUp,
-          style:  TextStyle(
+        title: Text(
+          local.signUp,
+          style: TextStyle(
             fontSize: 28.sp,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
-
       ),
-
       body: Stack(
         children: [
           Form(
@@ -109,7 +108,6 @@ class _SignUpState extends State<SignUp> {
                         height: 80.h,
                         controller: cubit.userName,
                         type: TextInputType.text,
-
                         obsecure: false,
                         label: local.username,
                         validator: (value) {
@@ -122,7 +120,8 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         style: TextStyle(
-                          fontSize: 18.sp,),
+                          fontSize: 18.sp,
+                        ),
                         imagePath: 'assets/images/user.png',
                       ),
                     ),
@@ -146,7 +145,8 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         style: TextStyle(
-                          fontSize: 18.sp,),
+                          fontSize: 18.sp,
+                        ),
                         obsecure: false,
                         type: TextInputType.emailAddress,
                         imagePath: 'assets/images/email 2.png',
@@ -177,7 +177,8 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         style: TextStyle(
-                          fontSize: 18.sp,),
+                          fontSize: 18.sp,
+                        ),
                         obsecure: obscure,
                         imagePath: "assets/images/padlock.png",
                         suffixIcon: InkWell(
@@ -213,7 +214,8 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         style: TextStyle(
-                          fontSize: 18.sp,),
+                          fontSize: 18.sp,
+                        ),
                         type: TextInputType.text,
                         obsecure: obscure2,
                         imagePath: "assets/images/access.png",
@@ -308,8 +310,10 @@ class _SignUpState extends State<SignUp> {
                                 color:
                                     agree ? Colors.purple : Colors.transparent,
                                 shape: BoxShape.circle,
-                                border:
-                                    Border.all(color: Theme.of(context).colorScheme.onPrimary, width: 2.w),
+                                border: Border.all(
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                    width: 2.w),
                               ),
                               child: Icon(
                                 Icons.check,
@@ -331,12 +335,14 @@ class _SignUpState extends State<SignUp> {
                                   context: context, screen: const AboutUs());
                             },
                             child: FlickerNeonText(
-                              textColor:  Theme.of(context).colorScheme.onPrimary,
+                              textColor:
+                                  Theme.of(context).colorScheme.onPrimary,
                               text: local.privacyPolicy,
                               flickerTimeInMilliSeconds: 1000,
-                              spreadColor: Theme.of(context).colorScheme. onPrimary,
+                              spreadColor:
+                                  Theme.of(context).colorScheme.onPrimary,
                               blurRadius: 20.r,
-                              textSize:16 .sp,
+                              textSize: 16.sp,
                             ),
                           ),
                         ],
@@ -348,7 +354,7 @@ class _SignUpState extends State<SignUp> {
                     delay: const Duration(milliseconds: 550),
                     child: Text(
                       privacyPolicy ? "" : local.pleaseAcceptPrivacyAndPolicy,
-                      style: TextStyle(color: Colors.red,fontSize: 17.sp),
+                      style: TextStyle(color: Colors.red, fontSize: 17.sp),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -356,7 +362,6 @@ class _SignUpState extends State<SignUp> {
                   FadeInUp(
                     delay: const Duration(milliseconds: 550),
                     child: ButtonBuilder(
-
                       text: lang.sign_up,
                       onTap: createAccount,
                       width: 220.w,

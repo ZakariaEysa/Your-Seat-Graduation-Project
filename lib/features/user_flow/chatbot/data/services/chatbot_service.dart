@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import '../../../../../utils/app_logs.dart';
 import '../../../../../core/Network/api_service.dart';
 import '../models/chat_message_model.dart';
 

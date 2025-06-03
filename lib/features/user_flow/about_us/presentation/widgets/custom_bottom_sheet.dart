@@ -29,11 +29,11 @@ class CustomBottomSheet extends StatefulWidget {
 }
 
 class _CustomBottomSheetState extends State<CustomBottomSheet> {
-  double value =0;
+  double value = 0;
 
   @override
   Widget build(BuildContext context) {
-    var lang=S.of(context);
+    var lang = S.of(context);
     var theme = Theme.of(context);
     return Padding(
       padding:
@@ -61,9 +61,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       value = newSize;
 
                       widget.scrollController.jumpTo(newSize);
-                      setState(() {
-
-                      });
+                      setState(() {});
                     }
                   },
                   child: Container(
@@ -79,10 +77,8 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     ),
                   ),
                 ),
-
                 Expanded(
                   child: SingleChildScrollView(
-
                     controller: innerScrollController,
                     child: Padding(
                       padding: EdgeInsets.symmetric(
@@ -90,14 +86,15 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                       child: Column(
                         children: [
                           SizedBox(height: 30.h), // تعديل باستخدام ScreenUtil
-                          if(value!=0&&value>.15||widget.title!=lang.contactUs)
+                          if (value != 0 && value > .15 ||
+                              widget.title != lang.contactUs)
                             Text(
-                            widget.content,
-                            textAlign: TextAlign.left,
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                fontSize:
-                                    12.sp), // استخدام ScreenUtil لضبط الحجم
-                          ),
+                              widget.content,
+                              textAlign: TextAlign.left,
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                  fontSize:
+                                      12.sp), // استخدام ScreenUtil لضبط الحجم
+                            ),
                           SizedBox(height: 20.h), // تعديل باستخدام ScreenUtil
                           if (widget.bottomWidget != null)
                             Container(
@@ -112,8 +109,6 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     ),
                   ),
                 ),
-
-
               ],
             ),
           );

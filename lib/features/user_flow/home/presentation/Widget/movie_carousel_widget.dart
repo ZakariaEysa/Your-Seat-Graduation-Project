@@ -50,7 +50,7 @@
 //   Widget build(BuildContext context) {
 //     if (movies.isEmpty) {
 //       // Show loading spinner if movies are not loaded yet
-//       return Center(child: CircularProgressIndicator());
+//       return LoadingIndicator();
 //     }
 //
 //     return Stack(
@@ -125,16 +125,17 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/Widget/cubit/movies_state.dart';
+
+import '../../../../../utils/navigation.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../movie_details/presentation/views/movie_details.dart';
-import '../../../../../utils/navigation.dart';
 import 'movie_card.dart';
+import '../../../../../../widgets/loading_indicator.dart';
 
 class MovieCarouselWidget extends StatefulWidget {
   const MovieCarouselWidget({super.key});
@@ -145,7 +146,7 @@ class MovieCarouselWidget extends StatefulWidget {
 
 class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
   final PageController _pageController =
-  PageController(viewportFraction: 0.7, initialPage: 1);
+      PageController(viewportFraction: 0.7, initialPage: 1);
   int _currentPage = 1;
 
   @override
@@ -164,7 +165,7 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
     return BlocBuilder<MovieCarouselCubit, MovieCarouselState>(
       builder: (context, state) {
         if (state is MovieCarouselLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const LoadingIndicator();
         } else if (state is MovieCarouselError) {
           return Center(child: Text(state.message));
         } else if (state is MovieCarouselLoaded) {
@@ -204,7 +205,8 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                               navigateTo(
                                 context: context,
                                 screen: MovieDetails(
-                                  model: MoviesDetailsModel.fromJson(movies[index]),
+                                  model: MoviesDetailsModel.fromJson(
+                                      movies[index]),
                                 ),
                               );
                             },

@@ -17,34 +17,26 @@ final class MovieDetailsError extends MovieDetailsState {
   MovieDetailsError(this.error);
 }
 
-
-
-
-
-
 final class GetCinemasLoading extends MovieDetailsState {}
 
 final class GetCinemasSuccess extends MovieDetailsState {
   final List cinemas;
- GetCinemasSuccess(this.cinemas);
+  GetCinemasSuccess(this.cinemas);
 }
 
 final class GetCinemasError extends MovieDetailsState {
   final String error;
-GetCinemasError(this.error);
+  GetCinemasError(this.error);
 }
-
-
 
 final class GetRateLoading extends MovieDetailsState {}
 
 final class GetRateSuccess extends MovieDetailsState {
   final String rate;
- GetRateSuccess(this.rate);
+  GetRateSuccess(this.rate);
 }
 
 final class GetRateError extends MovieDetailsState {
   final String error;
-GetRateError(this.error);
+  GetRateError(this.error);
 }
-

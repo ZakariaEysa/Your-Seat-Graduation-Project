@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../../../../widgets/loading_indicator.dart';
 
 const String googleApiKey = 'AIzaSyD7VmrfzhvvuttRBIRVcWix-1eOjLtI1bU';
 
@@ -12,7 +13,8 @@ class RouteMapPage extends StatefulWidget {
   final double destinationLat;
   final double destinationLng;
 
-  RouteMapPage({
+  const RouteMapPage({
+    super.key,
     required this.destinationLat,
     required this.destinationLng,
   });
@@ -130,7 +132,7 @@ class _RouteMapPageState extends State<RouteMapPage> {
         style: Theme.of(context).textTheme.bodyLarge,
       )),
       body: currentLocation == null
-          ? Center(child: CircularProgressIndicator())
+          ? const LoadingIndicator()
           : GoogleMap(
               initialCameraPosition: CameraPosition(
                 target: currentLocation!,

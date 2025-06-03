@@ -1,25 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bot_toast/bot_toast.dart';
-import '../data/hive_stroage.dart';
+import '../data/hive_storage.dart';
 import '../data/hive_keys.dart';
 import 'app_logs.dart';
 import 'firebase_manager.dart';
 import 'notifications_manager.dart';
 import 'permissions_manager.dart';
 
-/// فئة مسؤولة عن تهيئة التطبيق وترتيب الخطوات
 class AppInitializer {
   static bool _isAppInitialized = false;
   static bool _isStorageInitialized = false;
 
-  /// الحصول على حالة تهيئة التطبيق
   static bool get isAppInitialized => _isAppInitialized;
 
-  /// الحصول على حالة تهيئة التخزين المحلي
   static bool get isStorageInitialized => _isStorageInitialized;
+  static Future<void> initializeEssentialParts() async {
+    _isAppInitialized = false;
+    AppLogs.infoLog('Starting essential app initialization');
 
-  /// تهيئة كل مكونات التطبيق بالترتيب الصحيح
+    await _safelySetScreenOrientation();
+    await _safelyInitializeLocalStorage();
+
+    _isAppInitialized = true;
+    AppLogs.scussessLog('Essential app initialization completed');
+  }
+
+  static Future<void> initializeRemainingAsyncTasks() async {
+    await _safelyRequestPermissions();
+    await _safelyInitializeFirebase();
+    await _safelyInitializeNotifications();
+  }
+
   static Future<void> initializeApp() async {
     _isAppInitialized = false;
     AppLogs.infoLog('Starting app initialization');

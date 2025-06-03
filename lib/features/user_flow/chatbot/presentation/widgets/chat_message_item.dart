@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../data/models/chat_message_model.dart';
 
 class ChatMessageItem extends StatelessWidget {
   final ChatMessage message;
 
-  const ChatMessageItem({Key? key, required this.message}) : super(key: key);
+  const ChatMessageItem({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {

@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import '../../../../../utils/app_logs.dart';
-import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
-import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../../utils/app_logs.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 import '../../../Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../movie_details/presentation/cubit/movie_details_cubit.dart';
-import '../views/coming_soon.dart';
 
 class PlayingMovies extends StatefulWidget {
   final String image;
@@ -58,8 +57,9 @@ class _PlayingMoviesState extends State<PlayingMovies> {
 
     bool isBase64(String? imageUrl) {
       final base64Pattern = RegExp(r'^[A-Za-z0-9+/=]+$');
-      return base64Pattern.hasMatch(imageUrl??"");
+      return base64Pattern.hasMatch(imageUrl ?? "");
     }
+
     return Padding(
       padding: EdgeInsets.only(right: 8.w, left: 8.w),
       child: Column(
@@ -68,19 +68,19 @@ class _PlayingMoviesState extends State<PlayingMovies> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: isBase64(widget.image)?
-            Image.memory(
-              base64Decode(widget.image ?? ""),
-              width: 200.w,
-              height: 250.h,
-              fit: BoxFit.cover,
-            )
-            :ImageReplacer(
-              imageUrl: widget.image,
-              width: 200.w,
-              height: 250.h,
-              fit: BoxFit.cover,
-            ),
+            child: isBase64(widget.image)
+                ? Image.memory(
+                    base64Decode(widget.image ?? ""),
+                    width: 200.w,
+                    height: 250.h,
+                    fit: BoxFit.cover,
+                  )
+                : ImageReplacer(
+                    imageUrl: widget.image,
+                    width: 200.w,
+                    height: 250.h,
+                    fit: BoxFit.cover,
+                  ),
           ),
           SizedBox(
             height: 10.h,

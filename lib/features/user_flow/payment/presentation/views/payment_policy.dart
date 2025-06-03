@@ -1,15 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/data/remote_data_source/payment_remote_data_source.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/data/repos_impl/payment_repo_impl.dart';
-import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/cubit/payment_cubit.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
+import '../../../auth/presentation/views/sign_in.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../data/remote_data_source/payment_remote_data_source.dart';
+import '../../data/repos_impl/payment_repo_impl.dart';
+import '../cubit/payment_cubit.dart';
+import '../../../../../utils/app_logs.dart';
 import 'payment.dart';
-import '../widgets/payment_policy_part.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 
@@ -83,27 +81,25 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
             SizedBox(
               height: 10.h,
             ),
-        Container(
-          width: 350.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.69),
-            border: Border.all(
-              color: Theme.of(context).colorScheme.secondary,
-              width: 1.w,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).shadowColor.withOpacity(0.3),
-                blurRadius: 10,
-                spreadRadius:5,
-                offset: Offset(0, 4),
+            Container(
+              width: 350.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.69),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.secondary,
+                  width: 1.w,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Theme.of(context).shadowColor.withOpacity(0.3),
+                    blurRadius: 10,
+                    spreadRadius: 5,
+                    offset: Offset(0, 4),
+                  ),
+                ],
               ),
-            ],
-          ),
-
-
-        padding: EdgeInsets.all(16.sp),
+              padding: EdgeInsets.all(16.sp),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,

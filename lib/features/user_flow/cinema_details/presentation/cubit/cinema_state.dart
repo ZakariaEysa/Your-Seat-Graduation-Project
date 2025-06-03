@@ -26,11 +26,15 @@ class CinemaError extends CinemaState {
 class CinemaCommentsLoading extends CinemaState {} // ✅ حالة تحميل التعليقات
 
 class CinemaCommentsLoaded extends CinemaState {
-  final List<Map<String, dynamic>> comments;
-  CinemaCommentsLoaded(this.comments);
+  CinemaCommentsLoaded();
 }
 
-class CinemaCommentsError extends CinemaState { // ✅ حالة خطأ عند تحميل التعليقات
+class CinemaControllerToBottom extends CinemaState {
+  CinemaControllerToBottom();
+}
+
+class CinemaCommentsError extends CinemaState {
+  // ✅ حالة خطأ عند تحميل التعليقات
   final String message;
   CinemaCommentsError(this.message);
 }

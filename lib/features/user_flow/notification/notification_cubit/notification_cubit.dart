@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+
+import '../../../../data/hive_storage.dart';
 import 'notification_state.dart';
 
 class NotificationCubit extends Cubit<NotificationState> {
@@ -84,7 +85,6 @@ class NotificationCubit extends Cubit<NotificationState> {
     }
   }
 
-
   String getTimeAgo(String timestampString) {
     final timestamp = DateTime.parse(timestampString);
     final now = DateTime.now();
@@ -104,7 +104,8 @@ class NotificationCubit extends Cubit<NotificationState> {
   Future<void> fetchNotifications() async {
     emit(NotificationLoading());
     try {
-      final userDoc = await firestore.collection('users').doc(currentUserEmail).get();
+      final userDoc =
+          await firestore.collection('users').doc(currentUserEmail).get();
       if (userDoc.exists) {
         final data = userDoc.data();
         final List<dynamic> rawList = data?['notifications'] ?? [];

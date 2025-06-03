@@ -2,10 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/Notifaction/notification_cubit/notification_cubit.dart';
-import 'package:yourseatgraduationproject/features/user_flow/now_playing/presentation/widgets/app.dart';
+import '../../../notification/notification_cubit/notification_cubit.dart';
 import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 import '../cubit/auth_cubit.dart';
 import 'sign_up.dart';
 import '../widgets/sign_in_part.dart';
@@ -15,7 +14,6 @@ import '../../../../../widgets/text_field/text_field/text_form_field_builder.dar
 import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../utils/validation_utils.dart';
-import '../../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -38,32 +36,26 @@ class _SignInState extends State<SignIn> {
     var lang = S.of(context);
     final theme = Theme.of(context);
     return ScaffoldF(
-      appBar: AppBar(
-
-
-        title:Text(lang.sign_in
-
-        )
-
-      )
-      ,
+      appBar: AppBar(title: Text(lang.sign_in)),
       body: Stack(
         children: [
           SingleChildScrollView(
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
-                if (state is GoogleAuthSuccess)  {
+                if (state is GoogleAuthSuccess) {
                   HiveStorage.set(HiveKeys.role, Role.google.toString());
-                  AppLogs.debugLog('${lang.login_successful} ${state.user.name}');
+                  AppLogs.debugLog(
+                      '${lang.login_successful} ${state.user.name}');
 
-                  showCenteredSnackBar(context, '${lang.login_successful} ${state.user.name}');
+                  showCenteredSnackBar(
+                      context, '${lang.login_successful} ${state.user.name}');
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is FacebookAuthSuccess) {
                   HiveStorage.set(HiveKeys.role, Role.facebook.toString());
 
-
-                  showCenteredSnackBar(context, '${lang.login_successful} ${state.user.name}');
+                  showCenteredSnackBar(
+                      context, '${lang.login_successful} ${state.user.name}');
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is UserValidationSuccess) {
@@ -73,13 +65,10 @@ class _SignInState extends State<SignIn> {
                   navigateAndRemoveUntil(
                       context: context, screen: const HomeLayout());
                 } else if (state is GoogleAuthError) {
-
                   showCenteredSnackBar(context, state.errorMsg);
                 } else if (state is FacebookAuthError) {
-
-                  showCenteredSnackBar(context,state.errorMsg);
+                  showCenteredSnackBar(context, state.errorMsg);
                 } else if (state is UserValidationError) {
-
                   showCenteredSnackBar(context, state.error);
                 }
               },
@@ -124,7 +113,8 @@ class _SignInState extends State<SignIn> {
                               return null;
                             },
                             style: TextStyle(
-                              fontSize: 15.sp,),
+                              fontSize: 15.sp,
+                            ),
                             obsecure: false,
                             type: TextInputType.emailAddress,
                             imagePath: 'assets/images/email 2.png',
@@ -145,10 +135,11 @@ class _SignInState extends State<SignIn> {
                                 setState(() => obscure2 = !obscure2);
                               },
                               child: Icon(
-                                  obscure2
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                color: Theme.of(context).colorScheme.onPrimary,),
+                                obscure2
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
                             ),
                             controller: cubit.passwordController,
                             label: lang.password,
@@ -163,7 +154,8 @@ class _SignInState extends State<SignIn> {
                               return null;
                             },
                             style: TextStyle(
-                              fontSize: 15.sp,),
+                              fontSize: 15.sp,
+                            ),
                           ),
                         ),
                       ),
@@ -191,7 +183,6 @@ class _SignInState extends State<SignIn> {
                                 lang.forgotPassword,
                                 style: theme.textTheme.bodyMedium!.copyWith(
                                   fontSize: 14.sp,
-
                                 ),
                                 textAlign: TextAlign.right,
                               ),
@@ -211,7 +202,8 @@ class _SignInState extends State<SignIn> {
                               cubit.validateUser(cubit.emailController.text,
                                   cubit.passwordController.text);
                             } else {
-                              showCenteredSnackBar(context,lang.fill_all_fields);
+                              showCenteredSnackBar(
+                                  context, lang.fill_all_fields);
                             }
                           },
                           width: 220.w,
@@ -226,9 +218,11 @@ class _SignInState extends State<SignIn> {
                           child: Row(
                             children: [
                               Expanded(
-
                                   child: Divider(
-                                      color: Theme.of(context).colorScheme.onPrimary, thickness: 2)),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary,
+                                      thickness: 2)),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.h),
                                 child: Text(lang.or,
@@ -236,7 +230,10 @@ class _SignInState extends State<SignIn> {
                               ),
                               Expanded(
                                   child: Divider(
-                                      color: Theme.of(context).colorScheme.onPrimary, thickness: 2)),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary,
+                                      thickness: 2)),
                             ],
                           ),
                         ),
@@ -322,7 +319,6 @@ class _SignInState extends State<SignIn> {
                           ],
                         ),
                       ),
-
                       SizedBox(height: 25.h),
                     ],
                   ),
@@ -360,7 +356,8 @@ void showCenteredSnackBar(BuildContext context, String message) {
           ),
           decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.8),
-            borderRadius: BorderRadius.circular(8.r), // استخدام ScreenUtil للـ borderRadius
+            borderRadius: BorderRadius.circular(
+                8.r), // استخدام ScreenUtil للـ borderRadius
           ),
           child: Text(
             message,

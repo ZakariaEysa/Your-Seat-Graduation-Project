@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
-import 'package:yourseatgraduationproject/widgets/network_image/image_replacer.dart';
-import '../views/card.dart';
-import '../../../../../utils/navigation.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
 
@@ -179,14 +177,14 @@ class PaymentPart extends StatelessWidget {
                   Text(
                     lang.total,
                     style:
-                        theme.textTheme.titleLarge!.copyWith(fontSize:15.sp),
+                        theme.textTheme.titleLarge!.copyWith(fontSize: 15.sp),
                   ),
                   SizedBox(
                     width: 15.w,
                   ),
                   Text(total,
                       style:
-                          theme.textTheme.titleLarge!.copyWith(fontSize:15.sp))
+                          theme.textTheme.titleLarge!.copyWith(fontSize: 15.sp))
                 ],
               ),
             ),

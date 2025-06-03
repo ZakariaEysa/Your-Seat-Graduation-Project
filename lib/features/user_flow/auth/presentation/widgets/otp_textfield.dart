@@ -6,17 +6,18 @@ class OtpFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode currentFocus;
   final FocusNode? nextFocus;
-  final Function({required String value, required FocusNode focusNode}) nextField;
+  final Function({required String value, required FocusNode focusNode})
+      nextField;
   final bool autofocus; // إضافة خاصية التركيز التلقائي
 
   const OtpFieldWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.currentFocus,
     required this.nextFocus,
     required this.nextField,
     this.autofocus = false, // قيمة افتراضية
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,8 @@ class OtpFieldWidget extends StatelessWidget {
           ),
           counterText: "",
         ),
-        style:TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 18),
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary, fontSize: 18),
         textDirection: TextDirection.ltr, // Force left-to-right text direction
       ),
     );

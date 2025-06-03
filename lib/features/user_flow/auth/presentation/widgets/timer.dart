@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,10 +10,10 @@ class CountdownTimer extends StatefulWidget {
   final VoidCallback onResend;
 
   const CountdownTimer({
-    Key? key,
+    super.key,
     this.startSeconds = 59,
     required this.onResend,
-  }) : super(key: key);
+  });
 
   @override
   State<CountdownTimer> createState() => _CountdownTimerState();
@@ -93,7 +94,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
                   widget.onResend();
                   resetTimer();
                 },
-                child:  Text(
+                child: Text(
                   lang.Resend,
                   style: TextStyle(
                     fontSize: 20,
@@ -102,7 +103,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
                   ),
                 ),
               )
-            :  Text(
+            : Text(
                 lang.Resendlimitreachedfortoday,
                 style: TextStyle(
                   fontSize: 18,
@@ -112,7 +113,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
               ))
         : Text(
             _formatTime(remainingSeconds),
-            style:  TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
               color: Theme.of(context).colorScheme.onPrimary,

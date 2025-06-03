@@ -37,10 +37,8 @@ class PersonalInfoCard extends StatelessWidget {
           Text(
             title,
             style: theme.textTheme.titleLarge!.copyWith(
-              color: Theme.of(context).colorScheme.onPrimary,
-              fontSize: 20.sp
-            ),
-
+                color: Theme.of(context).colorScheme.onPrimary,
+                fontSize: 20.sp),
           ),
           SizedBox(
             width: 10.w,

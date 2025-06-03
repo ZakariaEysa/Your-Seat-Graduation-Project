@@ -7,12 +7,11 @@ class CenterText extends StatelessWidget {
   String? cost;
   String? cinemaId;
   String? location;
-   CenterText({
-    super.key,
-    required this.cost,
-    required this.location,
-    required this.cinemaId
-  });
+  CenterText(
+      {super.key,
+      required this.cost,
+      required this.location,
+      required this.cinemaId});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,8 @@ class CenterText extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsetsDirectional.only(top: 370.h),
-      child: SingleChildScrollView( // Wrap content in a scroll view
+      child: SingleChildScrollView(
+        // Wrap content in a scroll view
         child: Column(
           children: [
             Column(
@@ -41,7 +41,7 @@ class CenterText extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     Text(
-                      '${cost??""} EGP',
+                      '${cost ?? ""} EGP',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.sp,
@@ -67,14 +67,15 @@ class CenterText extends StatelessWidget {
                     ),
                     SizedBox(width: 4.w),
                     Text(
-                      cinemaId??"",
+                      cinemaId ?? "",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.sp,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w400,
                         height: 1.25.h,
-                        overflow: TextOverflow.ellipsis,  // Add ellipsis when text overflows
+                        overflow: TextOverflow
+                            .ellipsis, // Add ellipsis when text overflows
                       ),
                     ),
                     SizedBox(width: 8.w),
@@ -89,7 +90,7 @@ class CenterText extends StatelessWidget {
                 Padding(
                   padding: EdgeInsetsDirectional.only(start: 60.w),
                   child: Text(
-                    location??"",
+                    location ?? "",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 14.sp,
@@ -105,7 +106,8 @@ class CenterText extends StatelessWidget {
                   children: [
                     SizedBox(width: 10.w),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(start: 25.w, bottom: 18.h),
+                      padding:
+                          EdgeInsetsDirectional.only(start: 25.w, bottom: 18.h),
                       child: Image.asset(
                         "assets/icons/img_3.png",
                         width: 25.w,
@@ -121,7 +123,8 @@ class CenterText extends StatelessWidget {
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w400,
                         height: 1.50.h,
-                        overflow: TextOverflow.ellipsis,  // Add ellipsis when text overflows
+                        overflow: TextOverflow
+                            .ellipsis, // Add ellipsis when text overflows
                       ),
                     ),
                   ],

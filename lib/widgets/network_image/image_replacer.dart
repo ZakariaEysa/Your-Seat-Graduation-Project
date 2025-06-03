@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class ImageReplacer extends StatelessWidget {
   final String? placeholderUrl;
 
   const ImageReplacer({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.width,
     this.height,
@@ -22,7 +23,7 @@ class ImageReplacer extends StatelessWidget {
     this.errorWidget,
     this.isCircle = false,
     this.placeholderUrl,
-  }) : super(key: key);
+  });
 
   bool get isBase64 =>
       imageUrl.startsWith('data:image') ||

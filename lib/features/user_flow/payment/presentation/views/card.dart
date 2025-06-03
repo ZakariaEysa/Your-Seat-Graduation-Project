@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../about_us/presentation/views/about_us.dart';
-import '../widgets/card_part.dart';
-import 'payment.dart';
-import 'payment_successful.dart';
 
-import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
-import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
-import '../../../auth/presentation/views/otp.dart';
+import '../widgets/card_part.dart';
 
 class PaymentCard extends StatefulWidget {
   const PaymentCard({super.key});

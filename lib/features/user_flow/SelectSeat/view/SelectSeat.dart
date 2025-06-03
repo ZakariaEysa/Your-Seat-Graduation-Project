@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../generated/l10n.dart';
 import '../../../../utils/app_logs.dart';
 import '../../../../utils/navigation.dart';
@@ -11,9 +12,9 @@ import '../../auth/presentation/views/sign_in.dart';
 import '../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../payment/presentation/views/payment_policy.dart';
 import '../widgets/date.dart';
-import '../widgets/time.dart';
 import '../widgets/seats_grid.dart';
 import '../widgets/seats_type.dart';
+import '../widgets/time.dart';
 
 class SelectSeat extends StatefulWidget {
   const SelectSeat({super.key, required this.cinemaId, required this.movie});
@@ -237,7 +238,7 @@ class _SelectSeatState extends State<SelectSeat> {
                         SeatsType(
                           color: Theme.of(context)
                               .colorScheme
-                              .surfaceVariant, // selected
+                              .surfaceContainerHighest, // selected
                           text: lang.selected,
                         ),
                       ]),
@@ -255,7 +256,6 @@ class _SelectSeatState extends State<SelectSeat> {
                       style: theme.textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 24.sp,
-
                       ),
                     ),
                   ),

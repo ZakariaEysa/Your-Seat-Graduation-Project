@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/navigation.dart';
-import '../../../home/presentation/views/home_layout.dart';
 import '../views/coming_soon.dart';
 import '../views/now_playing.dart';
 
@@ -49,15 +49,16 @@ class _AppState extends State<App> {
             decoration: BoxDecoration(
               color: const Color(0xFF0F0A2B).withOpacity(.30),
               borderRadius:
-              BorderRadius.circular(12), // Apply BorderRadius here
+                  BorderRadius.circular(12), // Apply BorderRadius here
             ),
             child: TabBar(
               dividerColor: Colors.transparent,
               labelColor: const Color(0xFFEB68E3),
-              unselectedLabelColor:Theme.of(context).colorScheme.onPrimary,
-            // Unselected tab text color
+              unselectedLabelColor: Theme.of(context).colorScheme.onPrimary,
+              // Unselected tab text color
               indicatorColor: const Color(0xFFEB68E3), // Highlight color
-              labelStyle: theme.textTheme.labelLarge!.copyWith(fontSize: screenWidth * 0.04),
+              labelStyle: theme.textTheme.labelLarge!
+                  .copyWith(fontSize: screenWidth * 0.04),
               tabs: [
                 Padding(
                   padding: EdgeInsets.only(right: screenWidth * 0.04),

@@ -13,7 +13,7 @@ import 'package:yourseatgraduationproject/features/user_flow/movie_details/prese
 import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
 
 import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_stroage.dart';
+import '../../../../../data/hive_storage.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/dialog_utilits.dart';
@@ -357,13 +357,16 @@ class _MovieDetailsState extends State<MovieDetails> {
                       children: [
                         Director(
                             name: widget.model.crew?.director ?? "",
-                            imagePath: widget.model.crewImages?['director']?? "https://picsum.photos/150/130"),
+                            imagePath: widget.model.crewImages?['director'] ??
+                                "https://picsum.photos/150/130"),
                         Director(
                             name: widget.model.crew?.producer ?? "",
-                            imagePath: widget.model.crewImages?["producer"]??"https://picsum.photos/150/130"),
+                            imagePath: widget.model.crewImages?["producer"] ??
+                                "https://picsum.photos/150/130"),
                         Director(
                             name: widget.model.crew?.writer ?? "",
-                            imagePath: widget.model.crewImages?["writer"]??"https://picsum.photos/150/130"),
+                            imagePath: widget.model.crewImages?["writer"] ??
+                                "https://picsum.photos/150/130"),
                       ],
                     ),
                   ),

@@ -1,8 +1,9 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive/hive.dart';
-import 'dart:convert';
-import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 
 part 'google_user_model.g.dart'; // Required for Hive adapter generation

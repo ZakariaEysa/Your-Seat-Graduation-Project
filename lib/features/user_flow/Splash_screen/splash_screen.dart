@@ -3,16 +3,19 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
-import 'package:yourseatgraduationproject/data/hive_stroage.dart';
+import 'package:yourseatgraduationproject/data/hive_storage.dart';
 import 'package:yourseatgraduationproject/features/user_flow/auth/presentation/views/sign_in.dart';
 import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
 import 'package:yourseatgraduationproject/features/user_flow/onBoarding/presentation/views/OnBoarding.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 import 'package:yourseatgraduationproject/widgets/scaffold/scaffold_f.dart';
 
+import '../../../utils/app_initializer.dart';
+
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -32,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen>
     )..forward();
 
     bubbles = List.generate(90, (index) => Bubble());
-
+    AppInitializer.initializeRemainingAsyncTasks();
     _timer = Timer(const Duration(seconds: 4), _navigate);
   }
 

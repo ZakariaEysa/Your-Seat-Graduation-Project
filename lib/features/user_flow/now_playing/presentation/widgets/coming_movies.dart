@@ -49,7 +49,6 @@ class _ComingMoviesState extends State<ComingMovies> {
           style: theme.textTheme.bodyMedium!
               .copyWith(fontSize: 15.sp, fontWeight: FontWeight.bold),
         ),
-
         Row(
           children: [
             Image.asset(
@@ -84,7 +83,6 @@ class _ComingMoviesState extends State<ComingMovies> {
             ),
           ],
         ),
-
         Row(
           children: [
             Image.asset(

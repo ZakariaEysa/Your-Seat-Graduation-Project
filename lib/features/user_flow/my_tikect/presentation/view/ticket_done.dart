@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_layout.dart';
-import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
-import 'package:yourseatgraduationproject/utils/navigation.dart';
+import '../../../home/presentation/views/home_layout.dart';
+import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
+import '../../../../../utils/navigation.dart';
 import '../../../../../generated/l10n.dart';
 import '../widget/center_text.dart';
 import '../../../../../widgets/app_bar/head_appbar.dart';
@@ -25,7 +25,6 @@ class TicketDone extends StatelessWidget {
   final String orderId;
   final String status;
 
-
   const TicketDone(
       {super.key,
       required this.model,
@@ -37,7 +36,7 @@ class TicketDone extends StatelessWidget {
       required this.time,
       required this.cinemaId,
       required this.hall,
-        required this.status,
+      required this.status,
       required this.orderId});
 
   @override
@@ -48,11 +47,13 @@ class TicketDone extends StatelessWidget {
     return ScaffoldF(
       appBar: AppBar(
         leading: InkWell(
-            onTap: (){
-               navigateAndRemoveUntil(context: context, screen: HomeLayout());
+            onTap: () {
+              navigateAndRemoveUntil(context: context, screen: HomeLayout());
             },
-            child: Icon(Icons.arrow_back_outlined,  color: Theme.of(context).colorScheme.onPrimary,)),
-
+            child: Icon(
+              Icons.arrow_back_outlined,
+              color: Theme.of(context).colorScheme.onPrimary,
+            )),
         title: Padding(
           padding:
               EdgeInsetsDirectional.only(start: 45.w, top: 0, bottom: 15.h),
@@ -69,19 +70,20 @@ class TicketDone extends StatelessWidget {
               padding: EdgeInsetsDirectional.only(
                   start: 20.w, top: 50.h, end: 20.w, bottom: 50.h),
               child: Container(
-                width: 1.sw, // Make it responsive
-                height: 1.sh * 0.8, // Set height as a fraction of screen height
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-
-                border: Border.all(
-                  color: Theme.of(context).colorScheme. primaryContainer,
-                  width:2.w,
-                ),)
-              ),
+                  width: 1.sw, // Make it responsive
+                  height:
+                      1.sh * 0.8, // Set height as a fraction of screen height
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      width: 2.w,
+                    ),
+                  )),
             ),
-            HeadMyTicket(imageUrl: model.posterImage,
+            HeadMyTicket(
+              imageUrl: model.posterImage,
               hall: hall,
               movieCategory: model.category,
               movieDate: date,
@@ -90,8 +92,6 @@ class TicketDone extends StatelessWidget {
               movieName: model.name,
               seatCategory: seatCategory,
               seats: seats,
-
-
             ),
             Positioned(
               bottom: 0,
@@ -100,7 +100,7 @@ class TicketDone extends StatelessWidget {
               top: 340.h, // Responsive to screen height
               child: Image.asset(
                 'assets/icons/img.png',
-                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
               ),
             ),
             Padding(
@@ -122,7 +122,7 @@ class TicketDone extends StatelessWidget {
               top: 340.h,
               child: Image.asset(
                 'assets/icons/img_1.png',
-                color: Theme.of(context).colorScheme.onBackground.withOpacity(0.1),
+                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
                 width: 30.w, // Responsive width
               ),
             ),
@@ -133,9 +133,11 @@ class TicketDone extends StatelessWidget {
               endIndent: 40.sp,
               thickness: 1,
             ),
-             CenterText(cinemaId: cinemaId,
-             cost: price.toString(),
-             location: location,),
+            CenterText(
+              cinemaId: cinemaId,
+              cost: price.toString(),
+              location: location,
+            ),
             QrWidget(
               status: status,
               orderId: orderId,
@@ -149,7 +151,8 @@ class TicketDone extends StatelessWidget {
               seats: seats,
               cinemaId: cinemaId,
               cost: price.toString(),
-              location: location,)
+              location: location,
+            )
           ],
         ),
       ),

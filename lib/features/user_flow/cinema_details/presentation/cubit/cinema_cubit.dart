@@ -101,6 +101,7 @@ class CinemaCubit extends Cubit<CinemaState> {
       AppLogs.debugLog("Comments done");
       comments = commentsList;
       emit(CinemaCommentsLoaded());
+      emit(CinemaControllerToBottom());
     } catch (e) {
       emit(CinemaCommentsError("Error fetching comments: $e"));
     }
@@ -115,6 +116,7 @@ class CinemaCubit extends Cubit<CinemaState> {
       comments = commentsList;
       AppLogs.debugLog("Comments loaded more");
       emit(CinemaCommentsLoaded());
+      emit(CinemaControllerToBottom());
     }
   }
 

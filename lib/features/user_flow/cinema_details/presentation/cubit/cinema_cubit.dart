@@ -22,6 +22,8 @@ class CinemaCubit extends Cubit<CinemaState> {
   List<MoviesDetailsModel> moviesDataList = [];
   List<Map<String, dynamic>> allComments = []; // ✅ جميع التعليقات المحملة
 
+  List<Map<String, dynamic>> comments = [];
+
   CinemaCubit() : super(CinemaInitial());
 
   static CinemaCubit get(BuildContext context) =>
@@ -81,15 +83,24 @@ class CinemaCubit extends Cubit<CinemaState> {
     try {
       AppLogs.debugLog("Fetching comments for cinema: $cinemaId");
       emit(CinemaCommentsLoading());
+
       final snapshot = await _firestore
           .collection('Cinemas')
           .doc(cinemaId)
           .collection('comments')
           .orderBy('timestamp', descending: true)
           .get();
+      AppLogs.debugLog("Comments fetched: ${snapshot.docs.length}");
       allComments = snapshot.docs.map((doc) => doc.data()).toList();
-      commentsList = allComments.take(5).toList();
-      emit(CinemaCommentsLoaded(commentsList));
+      if (allComments.length > 5) {
+        commentsList = allComments.take(5).toList();
+      } else {
+        commentsList = allComments;
+      }
+
+      AppLogs.debugLog("Comments done");
+      comments = commentsList;
+      emit(CinemaCommentsLoaded());
     } catch (e) {
       emit(CinemaCommentsError("Error fetching comments: $e"));
     }
@@ -101,7 +112,9 @@ class CinemaCubit extends Cubit<CinemaState> {
     if (remainingComments > 0) {
       final nextBatch = allComments.skip(currentLength).take(5).toList();
       commentsList.addAll(nextBatch);
-      emit(CinemaCommentsLoaded(commentsList));
+      comments = commentsList;
+      AppLogs.debugLog("Comments loaded more");
+      emit(CinemaCommentsLoaded());
     }
   }
 
@@ -151,12 +164,20 @@ class CinemaCubit extends Cubit<CinemaState> {
           'image': currentUser.image,
         });
 
+        comments.add({
+          'text': commentController.text,
+          'timestamp': FieldValue.serverTimestamp(),
+          'userName': currentUser.name,
+          'image': currentUser.image,
+        });
         commentController.clear();
+        emit(CinemaCommentsLoaded());
+        emit(CinemaControllerToBottom());
 
         // ✅ تحديث جميع التعليقات السابقة بالاسم الجديد
-        await _updateOldComments(cinemaId, currentUser.name, currentUser.image);
+        // await _updateOldComments(cinemaId, currentUser.name, currentUser.image);
 
-        await fetchCinemaComments(cinemaId);
+        // await fetchCinemaComments(cinemaId);
       } catch (e) {
         emit(CinemaCommentsError("Error adding comment: $e"));
       }

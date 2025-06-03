@@ -51,6 +51,9 @@ class _CinemaDetailsState extends State<CinemaDetails> {
               height: 400.h,
               child: CinemaMovies(movies: widget.cinemaModel['movies']),
             ),
+            SizedBox(
+              height: 15.h,
+            ),
             Padding(
               padding: EdgeInsets.all(10.0.sp),
               child: Text(
@@ -58,8 +61,10 @@ class _CinemaDetailsState extends State<CinemaDetails> {
                 style: theme.textTheme.bodyMedium!.copyWith(fontSize: 25.sp),
               ),
             ),
+
             // BlocBuilder  Contains fetch comments form firebase
             CinemaFetchComment(),
+
             Row(
               children: [
                 Expanded(

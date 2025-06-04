@@ -3,13 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neon_widgets/neon_widgets.dart';
+import '../../../../../utils/dialog_utilits.dart';
 import '../../../about_us/presentation/views/about_us.dart';
 import '../cubit/auth_cubit.dart';
 import 'otp.dart';
 import '../../../../../generated/l10n.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'sign_in.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/button/button_builder.dart';
@@ -406,7 +406,7 @@ class _SignUpState extends State<SignUp> {
                 showCenteredSnackBar(context, state.errorMessage);
               }
               if (state is AuthSuccess) {
-                AppLogs.scussessLog("create");
+                //AppLogs.successLog("create");
 
                 // HiveStorage.set(HiveKeys.role, Role.email.toString());
                 navigateTo(context: context, screen: Otp());

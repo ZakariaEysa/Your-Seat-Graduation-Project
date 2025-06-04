@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../widgets/network_image/image_replacer.dart';
 import '../../../../../utils/notifications_manager.dart';
-import '../../../notification/notification_cubit/notification_cubit.dart';
 import 'vertical_status_card.dart';
 
 class TicketCard extends StatelessWidget {
@@ -86,9 +85,6 @@ class TicketCard extends StatelessWidget {
                           onPressed: () {
                             onCancel();
                             NotificationsManager.showLocalNotification(
-                                "Action Cancelled ✅",
-                                "You have canceled your ticket.");
-                            NotificationCubit().addNotification(
                                 "Action Cancelled ✅",
                                 "You have canceled your ticket.");
                           },

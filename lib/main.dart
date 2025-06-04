@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -33,10 +32,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // await AppInitializer.initializeApp();
+
   await AppInitializer.initializeEssentialParts();
+  await AppInitializer.initializeRemainingAsyncTasks();
+
   runApp(
     DevicePreview(
-      enabled: kDebugMode,
+      enabled: false,
       builder: (context) => MultiBlocProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),

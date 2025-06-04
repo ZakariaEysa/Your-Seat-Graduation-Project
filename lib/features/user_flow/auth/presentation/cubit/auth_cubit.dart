@@ -5,7 +5,6 @@ import 'package:email_otp_auth/email_otp_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/notifications_manager.dart';
 import '../../data/model/google_user_model.dart';
 import '../../data/model/user_model.dart';
@@ -71,8 +70,7 @@ class AuthCubit extends Cubit<AuthState> {
               "Logged In Successfully ✅", "Welcome Back !");
         } else {
           emit(UserValidationError(message));
-          NotificationsManager.showLocalNotification(
-              "Something Went Wrong", "Please try again");
+
           //emit(  UserValidationError("Sorry there was an error , please try again later"));
         }
       },
@@ -84,7 +82,7 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     // try {
     emit(AuthLoading());
-    AppLogs.scussessLog("messageee");
+    //AppLogs.successLog("messageee");
 
     try {
       await authRepo.checkUserExistsR(userModel.email);
@@ -109,14 +107,14 @@ class AuthCubit extends Cubit<AuthState> {
     var res = await EmailOtpAuth.sendOTP(email: email);
 
     if (res["message"] == "Email Send") {
-      AppLogs.scussessLog("OTP sent successfully to $email");
+      //AppLogs.successLog("OTP sent successfully to $email");
     } else {
-      AppLogs.scussessLog("Failed to send OTP to $email");
+      //AppLogs.successLog("Failed to send OTP to $email");
     }
   }
 
   Future<void> verifyedSendOtp() async {
-    AppLogs.scussessLog(userModel.toString());
+    //AppLogs.successLog(userModel.toString());
     await authRepo.saveUser(
         userModel: userModel ??
             UserModel(name: "", email: "", password: "", dateOfBirth: ""));

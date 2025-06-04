@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 
 import '../../../../../core/Network/end_points.dart';
-import '../../../../../utils/app_logs.dart';
 
 import '../../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
@@ -32,13 +31,13 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
   Future<String?> payWithPayMob(num amount) async {
     try {
       final token = await getAuthToken();
-      AppLogs.errorLog("token : $token");
+      // AppLogs.errorLog("token : $token"); // Removed: was used for logging token
       final orderId =
           await getOrderId(token: token!, amount: (100 * amount).toString());
 
       final paymentKey = await getPaymentKey(
           token: token, orderId: orderId, amount: (100 * amount).toString());
-      AppLogs.scussessLog(paymentKey.toString());
+      // AppLogs.successLog(paymentKey.toString()); // Removed: was used for logging payment key
       return paymentKey;
     } catch (e) {
       rethrow;
@@ -54,9 +53,9 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
         // headers: {"Content-Type": "application/json"},
         data: {"api_key": EndPoints.api_key},
       );
-      AppLogs.errorLog(response.data.toString());
-      AppLogs.debugLog(response.statusCode.toString());
-      AppLogs.scussessLog(response.data["token"].toString());
+      // AppLogs.errorLog(response.data.toString()); // Removed: was used for logging response data
+      // AppLogs.debugLog(response.statusCode.toString()); // Removed: was used for logging status code
+      // AppLogs.successLog(response.data["token"].toString()); // Removed: was used for logging token
 
       return response.data["token"];
     } catch (e) {
@@ -76,10 +75,10 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
         "currency": "EGP",
         "items": [],
       });
-      AppLogs.debugLog(response.data.toString());
-      AppLogs.debugLog(response.statusCode.toString());
+      // AppLogs.debugLog(response.data.toString());
+      // AppLogs.debugLog(response.statusCode.toString());
 
-      AppLogs.scussessLog(response.data["id"].toString());
+      // AppLogs.successLog(response.data["id"].toString());
 
       return response.data["id"];
     } catch (e) {
@@ -127,12 +126,12 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
           "state": "NA"
         }
       });
-      AppLogs.infoLog(response.data.toString());
-      AppLogs.debugLog(response.statusCode.toString());
+      // AppLogs.infoLog(response.data.toString()); // Removed: was used for logging response data
+      // AppLogs.debugLog(response.statusCode.toString()); // Removed: was used for logging status code
 
       return response.data["token"];
     } catch (e) {
-      AppLogs.errorLog(e.toString());
+      // AppLogs.errorLog(e.toString()); // Removed: was used for logging error
       rethrow;
     }
   }
@@ -143,7 +142,7 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
     try {
       final token = await getAuthToken();
 
-      AppLogs.errorLog(token.toString());
+      // AppLogs.errorLog(token.toString()); // Removed: was used for logging token
 
       final response = await dio.post(
         "https://accept.paymob.com/api/acceptance/void_refund/refund",
@@ -154,17 +153,19 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
         },
       );
 
-      AppLogs.errorLog(response.data.toString());
-      if (response.statusCode != 200 && response.statusCode != 201) {
-        AppLogs.errorLog(response.data["message"].toString());
-      }
+      // AppLogs.errorLog(response.data.toString());
+      // if (response.statusCode != 200 && response.statusCode != 201) {
+      //   AppLogs.errorLog(response.data["message"].toString()); // Removed: was used for logging error message
+      // }
+      // AppLogs.errorLog(response.data.toString()); // Removed: was used for logging response data
+      // AppLogs.errorLog(response.data["message"].toString()); // Removed: was used for logging error message
       // if (response.statusCode == 200 && response.data["success"] == true) {
-      //   AppLogs.scussessLog("Refund successful for transaction $transactionId");
+      //   AppLogs.successLog("Refund successful for transaction $transactionId"); // Removed: was used for logging refund success
       // } else {
-      //   AppLogs.errorLog("Refund failed: ${response.data}");
+      //   AppLogs.errorLog("Refund failed: response.data"); // Removed: was used for logging refund failure
       // }
     } catch (e) {
-      AppLogs.errorLog("Refund request failed: ${e.toString()}");
+      // AppLogs.errorLog("Refund request failed: e.toString()"); // Removed: was used for logging refund request failure
     }
   }
 
@@ -187,18 +188,18 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
           },
         ),
       );
-      AppLogs.scussessLog("Transactions: ${response.data["results"].length}");
-      AppLogs.scussessLog("Transactions: ${response.data["results"][0]}");
+      // AppLogs.successLog("Transactions: 4response.data["results"].length4"); // Removed: was used for logging transactions count
+      // AppLogs.successLog("Transactions: 4response.data["results"][0]4"); // Removed: was used for logging first transaction
+      // AppLogs.successLog("Transactions: 4response.data["results"].length4"); // Removed: was used for logging transactions count (duplicate)
+      // AppLogs.errorLog("Error fetching transactions: 4response.data4"); // Removed: was used for logging error fetching transactions
 
       if (response.statusCode == 200) {
-        AppLogs.scussessLog("Transactions: ${response.data["results"].length}");
         return response.data["results"] ?? []; // إرجاع المعاملات
       } else {
-        AppLogs.errorLog("Error fetching transactions: ${response.data}");
         return [];
       }
     } catch (e) {
-      AppLogs.errorLog("Failed to fetch transactions: ${e.toString()}");
+      // AppLogs.errorLog("Failed to fetch transactions: e.toString()"); // Removed: was used for logging failed fetch transactions
       return [];
     }
   }

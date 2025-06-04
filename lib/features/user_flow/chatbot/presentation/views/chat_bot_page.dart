@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../generated/l10n.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../data/models/chat_message_model.dart';
 import '../../data/services/chatbot_service.dart';
 import '../widgets/chat_ask.dart';
@@ -76,7 +74,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
     try {
       // Get bot response
-      AppLogs.debugLog('Sending message to API: $text');
+      //AppLogs.debugLog('Sending message to API: $text');
       final botResponse = await _chatbotService.getRecommendations(text);
 
       setState(() {
@@ -86,7 +84,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
       _scrollToBottom();
     } catch (e) {
-      AppLogs.errorLog('Error in chatbot communication: $e');
+      //AppLogs.errorLog('Error in chatbot communication: $e');
       final locale = Localizations.localeOf(context).languageCode;
       final errorMessage = locale == 'ar'
           ? 'عذراً، حدثت مشكلة في الاتصال. يرجى المحاولة مرة أخرى لاحقاً.'
@@ -108,7 +106,6 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var lang = S.of(context);
     final theme = Theme.of(context);
     final locale = Localizations.localeOf(context).languageCode;
     final emptyListText =

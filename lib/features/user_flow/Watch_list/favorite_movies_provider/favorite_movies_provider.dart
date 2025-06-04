@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../utils/app_logs.dart';
+// import '../../../../utils/app_logs.dart';
 import '../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 
 class FavoriteMoviesProvider extends ChangeNotifier {
@@ -34,7 +34,7 @@ class FavoriteMoviesProvider extends ChangeNotifier {
           _favoriteMovies.map((movie) => jsonEncode(movie.toJson())).toList();
       await prefs.setStringList('favorite_movies', movieList);
     } catch (e) {
-      AppLogs.errorLog("Error saving favorite movies: $e");
+      // AppLogs.errorLog("Error saving favorite movies: $e"); // Removed: was used for logging error saving favorite movies
     }
   }
 
@@ -49,7 +49,7 @@ class FavoriteMoviesProvider extends ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
-      AppLogs.errorLog("Error loading favorite movies: $e");
+      // AppLogs.errorLog("Error loading favorite movies: $e"); // Removed: was used for logging error loading favorite movies
     }
   }
 }

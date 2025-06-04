@@ -2,10 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/network_image/image_replacer.dart';
-
-import '../../../../../generated/l10n.dart';
 
 class Director extends StatelessWidget {
   final String name;
@@ -25,9 +22,8 @@ class Director extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    var lang = S.of(context);
-    AppLogs.errorLog("00000000000000000000000");
-    print(imagePath);
+    // AppLogs.errorLog("00000000000000000000000"); // Removed: was used for logging an error in Director widget
+    // print(imagePath); // Removed: was used for debugging imagePath in Director widget
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Padding(

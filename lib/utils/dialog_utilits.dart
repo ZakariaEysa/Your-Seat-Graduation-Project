@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../widgets/loading_indicator.dart';
 
 class DialogUtils {
@@ -91,4 +92,41 @@ class DialogUtils {
         },
         barrierDismissible: isCancelable);
   }
+}
+
+void showCenteredSnackBar(BuildContext context, String message) {
+  final overlay = Overlay.of(context);
+  final overlayEntry = OverlayEntry(
+    builder: (context) => Center(
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w, // استخدام ScreenUtil للـ horizontal padding
+            vertical: 12.h, // استخدام ScreenUtil للـ vertical padding
+          ),
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.8),
+            borderRadius: BorderRadius.circular(
+                8.r), // استخدام ScreenUtil للـ borderRadius
+          ),
+          child: Text(
+            message,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14.sp, // استخدام ScreenUtil للـ fontSize
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  // إظهار الـ SnackBar
+  overlay.insert(overlayEntry);
+
+  // إخفاء الـ SnackBar بعد 3 ثواني
+  Future.delayed(Duration(seconds: 3), () {
+    overlayEntry.remove();
+  });
 }

@@ -23,7 +23,9 @@ class _NotificationsState extends State<Notifications> {
   void initState() {
     super.initState();
     notificationCubit = NotificationCubit();
-    notificationCubit.fetchNotifications();
+    if (NotificationCubit.get(context).notifications.isEmpty) {
+      notificationCubit.fetchNotifications();
+    }
   }
 
   @override
@@ -44,12 +46,14 @@ class _NotificationsState extends State<Notifications> {
       body: BlocBuilder<NotificationCubit, NotificationState>(
         bloc: notificationCubit,
         builder: (context, state) {
+          // AppLogs.errorLog(state.toString()); // Removed: was used for logging notification state
           if (state is NotificationLoading) {
             return const LoadingIndicator();
           } else if (state is NotificationError) {
             return Center(child: Text('Error: ${state.message}'));
-          } else if (state is NotificationLoaded) {
-            final notifications = state.notifications;
+          } else if (state is NotificationLoaded ||
+              NotificationCubit.get(context).notifications.isNotEmpty) {
+            final notifications = NotificationCubit.get(context).notifications;
 
             if (notifications.isEmpty) {
               return Center(
@@ -75,7 +79,7 @@ class _NotificationsState extends State<Notifications> {
                   body: body,
                   index: index,
                   onDelete: (i) async {
-                    print("تم حذف الإشعار رقم $i");
+                    // print("تم حذف الإشعار رقم $i"); // Removed: was used for debugging notification deletion
                     await notificationCubit
                         .removeNotificationAtIndex(i); // أو أي دالة حذف
                   },

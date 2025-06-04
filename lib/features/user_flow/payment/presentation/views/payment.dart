@@ -2,12 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../auth/presentation/views/sign_in.dart';
+import '../../../../../utils/dialog_utilits.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../cubit/payment_cubit.dart';
 import 'payment_test.dart';
 import '../../../../../widgets/loading_indicator.dart';
-import '../../../../../utils/app_logs.dart';
 import '../widgets/payment_part.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -102,13 +101,14 @@ class Payment extends StatelessWidget {
                               Spacer(),
                               BlocListener<PaymentCubit, PaymentState>(
                                 listener: (context, state) {
-                                  AppLogs.errorLog(state.toString());
+                                  // AppLogs.errorLog(state.toString()); // Removed: was used for logging payment state
+                                  // AppLogs.errorLog(state.payToken.toString()); // Removed: was used for logging payment token
+                                  // AppLogs.debugLog("order id is "); // Removed: was used for logging order id
+                                  // AppLogs.successLog(PaymentCubit.get(context).orderIdForPaymentTicket); // Removed: was used for logging order id for payment ticket
                                   if (state is PaymentSuccess) {
-                                    AppLogs.errorLog(state.payToken.toString());
-                                    AppLogs.debugLog("order id is ");
-                                    AppLogs.scussessLog(
-                                        PaymentCubit.get(context)
-                                            .orderIdForPaymentTicket);
+                                    // AppLogs.errorLog(state.payToken.toString()); // Removed: was used for logging payment token
+                                    // AppLogs.debugLog("order id is "); // Removed: was used for logging order id
+                                    // AppLogs.successLog(PaymentCubit.get(context).orderIdForPaymentTicket); // Removed: was used for logging order id for payment ticket
 
                                     navigateTo(
                                         context: context,
@@ -127,17 +127,16 @@ class Payment extends StatelessWidget {
                                             paymentToken:
                                                 state.payToken ?? ""));
                                   } else if (state is PaymentError) {
-                                    AppLogs.errorLog(state.error.toString());
+                                    // AppLogs.errorLog(state.error.toString()); // Removed: was used for logging payment error
                                     showCenteredSnackBar(context,
                                         "Something went wrong please try again and check your connection");
                                   }
                                 },
                                 child: IconButton(
                                     onPressed: () async {
-                                      AppLogs.debugLog(date.toString());
-                                      AppLogs.debugLog(time.toString());
-
-                                      AppLogs.debugLog(seats.toString());
+                                      // AppLogs.debugLog(date.toString()); // Removed: was used for logging date
+                                      // AppLogs.debugLog(time.toString()); // Removed: was used for logging time
+                                      // AppLogs.debugLog(seats.toString()); // Removed: was used for logging seats
                                       bool canProceed =
                                           await checkSeatsAvailability(
                                         selectedSeats: seats,
@@ -164,7 +163,7 @@ class Payment extends StatelessWidget {
                                       // PayMobPayment().payWithPayMob(100).then(
 
                                       //   (value) {
-                                      //     AppLogs.scussessLog(
+                                      //     AppLogs.successLog(
                                       //         "payment token: $value");
                                       //     navigateTo(
                                       //         context: context,
@@ -214,7 +213,10 @@ class Payment extends StatelessWidget {
                               ),
                               Spacer(),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    showCenteredSnackBar(context,
+                                        "This feature is not available yet");
+                                  },
                                   icon: Icon(
                                     Icons.arrow_forward_ios_sharp,
                                     color: Colors.white,
@@ -231,36 +233,36 @@ class Payment extends StatelessWidget {
                     SizedBox(
                       height: 40.h,
                     ),
-                    Container(
-                      width: 238.w,
-                      height: 38.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Color(0xFF31215B),
-                        border: Border.all(
-                          color: Color(0xFF673667),
-                          width: 2.w,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(8.sp),
-                        child: Row(
-                          children: [
-                            Text(
-                              " ${lang.completeYourPaymentIn}",
-                              style: theme.textTheme.titleLarge!
-                                  .copyWith(fontSize: 11.sp),
-                            ),
-                            Spacer(),
-                            Text(
-                              "15:00  ",
-                              style: theme.textTheme.titleLarge!.copyWith(
-                                  fontSize: 11.sp, color: Color(0xFFC11E88)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // Container(
+                    //   width: 238.w,
+                    //   height: 38.h,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(12),
+                    //     color: Color(0xFF31215B),
+                    //     border: Border.all(
+                    //       color: Color(0xFF673667),
+                    //       width: 2.w,
+                    //     ),
+                    //   ),
+                    //   // child: Padding(
+                    //   //   padding: EdgeInsets.all(8.sp),
+                    //   //   child: Row(
+                    //   //     children: [
+                    //   //       Text(
+                    //   //         " ${lang.completeYourPaymentIn}",
+                    //   //         style: theme.textTheme.titleLarge!
+                    //   //             .copyWith(fontSize: 11.sp),
+                    //   //       ),
+                    //   //       Spacer(),
+                    //   //       Text(
+                    //   //         "15:00  ",
+                    //   //         style: theme.textTheme.titleLarge!.copyWith(
+                    //   //             fontSize: 11.sp, color: Color(0xFFC11E88)),
+                    //   //       ),
+                    //   //     ],
+                    //   //   ),
+                    //   // ),
+                    // ),
                     SizedBox(
                       height: 30.h,
                     ),
@@ -298,14 +300,14 @@ class Payment extends StatelessWidget {
           .get();
 
       if (!cinemaSnapshot.exists) {
-        print("⚠️ السينما غير موجودة: $cinemaName");
+        // print("⚠️ السينما غير موجودة: $cinemaName");
         return false; // السينما غير موجودة، لا يمكن الحجز
       }
 
       Map<String, dynamic>? cinemaData =
           cinemaSnapshot.data() as Map<String, dynamic>?;
       if (cinemaData == null || !cinemaData.containsKey('movies')) {
-        print("⚠️ لا يوجد أفلام في هذه السينما.");
+        // print("⚠️ لا يوجد أفلام في هذه السينما.");
         return false;
       }
 
@@ -317,7 +319,7 @@ class Payment extends StatelessWidget {
       );
 
       if (selectedMovie.isEmpty) {
-        print("⚠️ الفيلم غير موجود في السينما: $movieName");
+        // print("⚠️ الفيلم غير موجود في السينما: $movieName");
         return false;
       }
 
@@ -329,7 +331,7 @@ class Payment extends StatelessWidget {
       );
 
       if (selectedDay.isEmpty) {
-        print("⚠️ لا يوجد عرض لهذا الفيلم في هذا اليوم: $date");
+        // print("⚠️ لا يوجد عرض لهذا الفيلم في هذا اليوم: $date");
         return false;
       }
 
@@ -341,7 +343,7 @@ class Payment extends StatelessWidget {
       );
 
       if (selectedTime.isEmpty) {
-        print("⚠️ لا يوجد عرض في هذا الوقت: $time");
+        // print("⚠️ لا يوجد عرض في هذا الوقت: $time");
         return false;
       }
 
@@ -354,15 +356,15 @@ class Payment extends StatelessWidget {
           selectedSeats.any((seat) => reservedSeats.contains(seat));
 
       if (isAnySeatReserved) {
-        print(
-            "❌ بعض المقاعد محجوزة بالفعل: ${selectedSeats.where((seat) => reservedSeats.contains(seat)).toList()}");
+        // print(
+        //     "❌ بعض المقاعد محجوزة بالفعل: ${selectedSeats.where((seat) => reservedSeats.contains(seat)).toList()}");
         return false; // ❌ يوجد مقاعد محجوزة، لا يمكن إتمام الحجز
       }
 
-      print("✅ المقاعد متاحة للحجز!");
+      // print("✅ المقاعد متاحة للحجز!");
       return true; // ✅ يمكن إتمام الحجز
     } catch (e) {
-      print("❌ خطأ أثناء التحقق من توفر المقاعد: $e");
+      // print("❌ خطأ أثناء التحقق من توفر المقاعد: $e");
       return false;
     }
   }

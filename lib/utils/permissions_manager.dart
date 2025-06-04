@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'app_logs.dart';
+// import 'app_logs.dart';
 
 /// فئة لإدارة أذونات التطبيق
 class PermissionsManager {
@@ -20,7 +20,7 @@ class PermissionsManager {
     _logPermissionStatus('Camera', status);
 
     if (status.isPermanentlyDenied) {
-      AppLogs.errorLog('Camera permission permanently denied');
+      // AppLogs.errorLog('Camera permission permanently denied');
       await openAppSettings();
     }
   }
@@ -31,7 +31,7 @@ class PermissionsManager {
     _logPermissionStatus('Storage', status);
 
     if (status.isPermanentlyDenied) {
-      AppLogs.errorLog('Storage permission permanently denied');
+      // AppLogs.errorLog('Storage permission permanently denied');
       await openAppSettings();
     }
   }
@@ -42,7 +42,7 @@ class PermissionsManager {
     _logPermissionStatus('Location', status);
 
     if (status.isPermanentlyDenied) {
-      AppLogs.errorLog('Location permission permanently denied');
+      // AppLogs.errorLog('Location permission permanently denied');
       await openAppSettings();
     }
   }
@@ -51,7 +51,7 @@ class PermissionsManager {
   static Future<bool> checkAndRequestLocationService() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      AppLogs.errorLog('Location services are disabled');
+      // AppLogs.errorLog('Location services are disabled');
       await Geolocator.openLocationSettings();
       return false;
     }
@@ -60,13 +60,13 @@ class PermissionsManager {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        AppLogs.errorLog('Location permissions are denied');
+        // AppLogs.errorLog('Location permissions are denied');
         return false;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      AppLogs.errorLog('Location permissions are permanently denied');
+      // AppLogs.errorLog('Location permissions are permanently denied');
       await Geolocator.openAppSettings();
       return false;
     }
@@ -80,15 +80,15 @@ class PermissionsManager {
   static void _logPermissionStatus(
       String permissionName, PermissionStatus status) {
     if (status.isGranted) {
-      AppLogs.scussessLog('$permissionName permission granted');
+      // AppLogs.successLog('$permissionName permission granted');
     } else if (status.isDenied) {
-      AppLogs.errorLog('$permissionName permission denied');
+      // AppLogs.errorLog('$permissionName permission denied');
     } else if (status.isPermanentlyDenied) {
-      AppLogs.errorLog('$permissionName permission permanently denied');
+      // AppLogs.errorLog('$permissionName permission permanently denied');
     } else if (status.isRestricted) {
-      AppLogs.errorLog('$permissionName permission restricted');
+      // AppLogs.errorLog('$permissionName permission restricted');
     } else if (status.isLimited) {
-      AppLogs.infoLog('$permissionName permission limited');
+      // AppLogs.infoLog('$permissionName permission limited');
     }
   }
 
@@ -163,11 +163,11 @@ class PermissionsManager {
         desiredAccuracy: LocationAccuracy.high,
       );
 
-      showCenteredSnackBar(
-          'User location: ${position.latitude}, ${position.longitude}');
+      // showCenteredSnackBar(
+      //     'User location: ${position.latitude}, ${position.longitude}');
       return position;
     } catch (e) {
-      print('Error getting location: $e');
+      // print('Error getting location: $e'); // Removed: was used for debugging location errors
       showCenteredSnackBar('Error getting location.');
       return null;
     }

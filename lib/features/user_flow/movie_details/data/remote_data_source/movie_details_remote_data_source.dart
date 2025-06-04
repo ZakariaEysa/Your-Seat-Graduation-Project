@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../../core/Network/api_service.dart';
 import '../../../../../core/Network/end_points.dart';
-import '../../../../../utils/app_logs.dart';
+// import '../../../../../utils/app_logs.dart';
 
 abstract class MovieDetailsRemoteDataSource {
   Future<List> getCinemas(String movieName);
@@ -37,11 +37,11 @@ class MovieDetailsRemoteDataSourceImpl implements MovieDetailsRemoteDataSource {
         }
       }
     } catch (e) {
-      print('Error fetching cinemas: $e');
+      // print('Error fetching cinemas: $e'); // Removed: was used for debugging errors during fetching cinemas
     }
 
-    AppLogs.infoLog(cinemaNames.length.toString());
-    AppLogs.infoLog(cinemaNames.toString());
+    // AppLogs.infoLog(cinemaNames.length.toString()); // Removed: was used for logging cinema names count
+    // AppLogs.infoLog(cinemaNames.toString()); // Removed: was used for logging cinema names list
 
     return cinemaNames;
   }
@@ -49,7 +49,7 @@ class MovieDetailsRemoteDataSourceImpl implements MovieDetailsRemoteDataSource {
   @override
   Future<String> getRate(String movieId) async {
     try {
-      AppLogs.infoLog(EndPoints.rate_endpoint + movieId);
+      // AppLogs.infoLog(EndPoints.rate_endpoint + movieId); // Removed: was used for logging rate endpoint
 
       ApiService apiService = ApiService(dio: Dio());
       var result = await apiService.getWithoutToken(
@@ -58,7 +58,7 @@ class MovieDetailsRemoteDataSourceImpl implements MovieDetailsRemoteDataSource {
       if (result.data["Response"] == "True") {
         rate = result.data["Ratings"][0]["Value"].toString();
       }
-      AppLogs.infoLog(rate);
+      // AppLogs.infoLog(rate); // Removed: was used for logging rate value
 
       return rate;
     } catch (e) {

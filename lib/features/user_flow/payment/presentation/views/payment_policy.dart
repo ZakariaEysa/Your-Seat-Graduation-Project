@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../auth/presentation/views/sign_in.dart';
+import '../../../../../utils/dialog_utilits.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../data/remote_data_source/payment_remote_data_source.dart';
 import '../../data/repos_impl/payment_repo_impl.dart';
 import '../cubit/payment_cubit.dart';
-import '../../../../../utils/app_logs.dart';
 import 'payment.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -45,16 +44,16 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
 
   @override
   Widget build(BuildContext context) {
-    AppLogs.scussessLog(widget.seatCategory.toString());
-    AppLogs.scussessLog(widget.hall.toString());
-    AppLogs.scussessLog(widget.cinemaId.toString());
-    AppLogs.scussessLog(widget.model.toString());
-    AppLogs.scussessLog(widget.price.toString());
-    AppLogs.scussessLog(widget.date.toString());
-    AppLogs.scussessLog(widget.time.toString());
-    AppLogs.scussessLog(widget.location.toString());
-    AppLogs.scussessLog(widget.seatCategory.toString());
-    AppLogs.scussessLog(widget.seats.toString());
+    // AppLogs.successLog(widget.seatCategory.toString()); // Removed: was used for logging seat category
+    // AppLogs.successLog(widget.hall.toString()); // Removed: was used for logging hall
+    // AppLogs.successLog(widget.cinemaId.toString()); // Removed: was used for logging cinemaId
+    // AppLogs.successLog(widget.model.toString()); // Removed: was used for logging model
+    // AppLogs.successLog(widget.price.toString()); // Removed: was used for logging price
+    // AppLogs.successLog(widget.date.toString()); // Removed: was used for logging date
+    // AppLogs.successLog(widget.time.toString()); // Removed: was used for logging time
+    // AppLogs.successLog(widget.location.toString()); // Removed: was used for logging location
+    // AppLogs.successLog(widget.seatCategory.toString()); // Removed: was used for logging seat category (duplicate)
+    // AppLogs.successLog(widget.seats.toString()); // Removed: was used for logging seats
 
     var lang = S.of(context);
     final theme = Theme.of(context);

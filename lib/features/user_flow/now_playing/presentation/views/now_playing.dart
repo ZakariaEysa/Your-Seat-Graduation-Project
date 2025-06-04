@@ -26,7 +26,7 @@ class NowPlaying extends StatelessWidget {
           .map((doc) => MoviesDetailsModel.fromJson(doc.data()))
           .toList();
     } catch (e) {
-      print("Error fetching movies: $e");
+      // print("Error fetching movies: $e"); // Removed: was used for debugging errors during fetching movies
       return [];
     }
   }
@@ -41,9 +41,9 @@ class NowPlaying extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const LoadingIndicator();
           } else if (snapshot.hasError) {
-            return Center(child: Text(lang.errorSavingUser));
+            return Center(child: Text("Error fetching movies"));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text(lang.errorSavingUser));
+            return Center(child: Text("Error fetching movies"));
           }
 
           final movies = snapshot.data!;

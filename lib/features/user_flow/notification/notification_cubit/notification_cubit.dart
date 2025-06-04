@@ -11,6 +11,9 @@ class NotificationCubit extends Cubit<NotificationState> {
 
   var currentUserEmail = HiveStorage.getDefaultUser()?.email ?? "";
 
+  static NotificationCubit get(context) =>
+      BlocProvider.of<NotificationCubit>(context);
+
   List<Map<String, String>> notifications = [];
 
   Future<void> initializeNotificationList() async {

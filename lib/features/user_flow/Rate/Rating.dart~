@@ -76,7 +76,7 @@
 //                 color: Colors.amber,
 //               ),
 //               onRatingUpdate: (rating) {
-//                 print(rating);
+//                 // print(rating); // Removed: was used for debugging rating value
 //               },
 //             ),
 //

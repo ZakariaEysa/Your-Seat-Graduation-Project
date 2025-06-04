@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../generated/l10n.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/network_image/image_replacer.dart';
 import '../../../Watch_list/favorite_movies_provider/favorite_movies_provider.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
@@ -109,9 +108,9 @@ class _PlayingMoviesState extends State<PlayingMovies> {
               ),
               BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
                 listener: (context, state) {
-                  AppLogs.debugLog(state.toString());
+                  // AppLogs.debugLog(state.toString()); // Removed: was used for logging state in BlocConsumer
                   if (state is GetRateError) {
-                    AppLogs.debugLog(state.error.toString());
+                    // AppLogs.debugLog(state.error.toString()); // Removed: was used for logging error in BlocConsumer
                     rate = 4.2;
                   }
                   if (state is GetRateSuccess) {
@@ -122,9 +121,9 @@ class _PlayingMoviesState extends State<PlayingMovies> {
                     }
                   }
 
-                  AppLogs.debugLog(widget.title.toString());
+                  // AppLogs.debugLog(widget.title.toString()); // Removed: was used for logging title in BlocConsumer
 
-                  AppLogs.debugLog(rate.toString());
+                  // AppLogs.debugLog(rate.toString()); // Removed: was used for logging rate in BlocConsumer
                 },
                 builder: (context, state) {
                   return Text(
@@ -142,12 +141,12 @@ class _PlayingMoviesState extends State<PlayingMovies> {
                       Provider.of<FavoriteMoviesProvider>(context,
                               listen: false)
                           .addMovie(widget.movies);
-                      print("Added to favorites: ${widget.movies.name}");
+                      // print("Added to favorites: \\${widget.movies.name}"); // Removed: was used for debugging favorite addition
                     } else {
                       Provider.of<FavoriteMoviesProvider>(context,
                               listen: false)
                           .removeMovie(widget.movies);
-                      print("Removed from favorites: ${widget.movies.name}");
+                      // print("Removed from favorites: \\${widget.movies.name}"); // Removed: was used for debugging favorite removal
                     }
                     _isBookmarked = !_isBookmarked;
                   });

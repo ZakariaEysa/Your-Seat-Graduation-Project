@@ -15,7 +15,6 @@ import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
 import '../../../../../generated/l10n.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/dialog_utilits.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/button/button_builder.dart';
@@ -44,10 +43,9 @@ class _MovieDetailsState extends State<MovieDetails> {
   String selectedCinema = "";
   @override
   void initState() {
-    AppLogs.scussessLog(widget.model.toString());
-
-    AppLogs.scussessLog(widget.model.posterImage.toString());
-    AppLogs.scussessLog(widget.model.toString());
+    // AppLogs.successLog(widget.model.toString()); // Removed: was used for logging model in initState
+    // AppLogs.successLog(widget.model.posterImage.toString()); // Removed: was used for logging poster image in initState
+    // AppLogs.successLog(widget.model.toString()); // Removed: was used for logging model in initState
 
     super.initState();
 
@@ -166,7 +164,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                     ),
                     BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
                       listener: (context, state) {
-                        AppLogs.debugLog(state.toString());
+                        // AppLogs.debugLog(state.toString()); // Removed: was used for logging state in BlocConsumer
                         if (state is GetRateError) {
                           rate = 4;
                         }
@@ -493,8 +491,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                       });
                     } else {
                       if (selectedCinema != "" && selectedCinema != "null") {
-                        AppLogs.errorLog(widget.model.name.toString());
-                        AppLogs.errorLog(widget.cinema.toString());
+                        // AppLogs.errorLog(widget.model.name.toString()); // Removed: was used for logging model name on continue
+                        // AppLogs.errorLog(widget.cinema.toString()); // Removed: was used for logging cinema on continue
                         navigateTo(
                             context: context,
                             screen: SelectSeat(
@@ -531,7 +529,7 @@ class VideoLauncher {
 //
 // PayMobPayment().payWithPayMob(100).then(
 // (value) {
-// AppLogs.scussessLog("payment token: $value");
+// AppLogs.successLog("payment token: $value");
 // navigateTo(
 // context: context,
 // screen: PaymentScreen(paymentToken: value ?? ""));

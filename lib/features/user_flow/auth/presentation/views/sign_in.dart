@@ -2,23 +2,20 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../notification/notification_cubit/notification_cubit.dart';
-import '../../../../../data/hive_keys.dart';
-import '../../../../../data/hive_storage.dart';
-import '../cubit/auth_cubit.dart';
-import 'sign_up.dart';
-import '../widgets/sign_in_part.dart';
-import '../../../home/presentation/views/home_layout.dart';
+
 import '../../../../../generated/l10n.dart';
-import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
+import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
+
+import '../cubit/auth_cubit.dart';
+import '../cubit/sign_in_logic.dart';
+import '../widgets/sign_in_part.dart';
 import 'forget.dart';
-import '../../data/model/user_model.dart';
+import 'sign_up.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -35,53 +32,22 @@ class _SignInState extends State<SignIn> {
     var cubit = AuthCubit.get(context);
     var lang = S.of(context);
     final theme = Theme.of(context);
+
     return ScaffoldF(
       appBar: AppBar(title: Text(lang.sign_in)),
       body: Stack(
         children: [
           SingleChildScrollView(
             child: BlocConsumer<AuthCubit, AuthState>(
-              listener: (context, state) {
-                if (state is GoogleAuthSuccess) {
-                  HiveStorage.set(HiveKeys.role, Role.google.toString());
-                  AppLogs.debugLog(
-                      '${lang.login_successful} ${state.user.name}');
-
-                  showCenteredSnackBar(
-                      context, '${lang.login_successful} ${state.user.name}');
-                  navigateAndRemoveUntil(
-                      context: context, screen: const HomeLayout());
-                } else if (state is FacebookAuthSuccess) {
-                  HiveStorage.set(HiveKeys.role, Role.facebook.toString());
-
-                  showCenteredSnackBar(
-                      context, '${lang.login_successful} ${state.user.name}');
-                  navigateAndRemoveUntil(
-                      context: context, screen: const HomeLayout());
-                } else if (state is UserValidationSuccess) {
-                  HiveStorage.set(HiveKeys.role, Role.email.toString());
-
-                  showCenteredSnackBar(context, lang.login_successful);
-                  navigateAndRemoveUntil(
-                      context: context, screen: const HomeLayout());
-                } else if (state is GoogleAuthError) {
-                  showCenteredSnackBar(context, state.errorMsg);
-                } else if (state is FacebookAuthError) {
-                  showCenteredSnackBar(context, state.errorMsg);
-                } else if (state is UserValidationError) {
-                  showCenteredSnackBar(context, state.error);
-                }
-              },
+              listener: (context, state) =>
+                  SignInLogic.handleAuthState(context, state),
               builder: (context, state) {
                 return Form(
                   key: cubit.formKeyLogin,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 25.h,
-                      ),
+                      SizedBox(height: 25.h),
                       FadeInRight(
                         delay: const Duration(milliseconds: 200),
                         child: Padding(
@@ -112,9 +78,7 @@ class _SignInState extends State<SignIn> {
                               }
                               return null;
                             },
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                            ),
+                            style: TextStyle(fontSize: 15.sp),
                             obsecure: false,
                             type: TextInputType.emailAddress,
                             imagePath: 'assets/images/email 2.png',
@@ -131,9 +95,7 @@ class _SignInState extends State<SignIn> {
                             obsecure: obscure2,
                             imagePath: "assets/images/padlock.png",
                             suffixIcon: InkWell(
-                              onTap: () {
-                                setState(() => obscure2 = !obscure2);
-                              },
+                              onTap: () => setState(() => obscure2 = !obscure2),
                               child: Icon(
                                 obscure2
                                     ? Icons.visibility_off
@@ -150,12 +112,9 @@ class _SignInState extends State<SignIn> {
                               if (!isValidPassword(text)) {
                                 return lang.password_validation;
                               }
-
                               return null;
                             },
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                            ),
+                            style: TextStyle(fontSize: 15.sp),
                           ),
                         ),
                       ),
@@ -168,22 +127,13 @@ class _SignInState extends State<SignIn> {
                             onTap: () {
                               navigateTo(
                                   context: context, screen: ForgotPassword());
-                              // if (
-                              // isValidEmail(
-                              // cubit.emailController.text)) {
-                              //   navigateTo(
-                              //       context: context, screen:  Otp());
-                              // } else {
-                              //   BotToast.showText(text: lang.enter_valid_email);
-                              // }
                             },
                             child: Align(
                               alignment: AlignmentDirectional.centerEnd,
                               child: Text(
                                 lang.forgotPassword,
-                                style: theme.textTheme.bodyMedium!.copyWith(
-                                  fontSize: 14.sp,
-                                ),
+                                style: theme.textTheme.bodyMedium!
+                                    .copyWith(fontSize: 14.sp),
                                 textAlign: TextAlign.right,
                               ),
                             ),
@@ -194,18 +144,9 @@ class _SignInState extends State<SignIn> {
                       FadeInLeft(
                         delay: const Duration(milliseconds: 750),
                         child: ButtonBuilder(
-                          // image:"assets/images/SignInAR.png",
-
                           text: lang.sign_in,
-                          onTap: () async {
-                            if (cubit.formKeyLogin.currentState!.validate()) {
-                              cubit.validateUser(cubit.emailController.text,
-                                  cubit.passwordController.text);
-                            } else {
-                              showCenteredSnackBar(
-                                  context, lang.fill_all_fields);
-                            }
-                          },
+                          onTap: () =>
+                              SignInLogic.handleLoginButtonTap(context, cubit),
                           width: 220.w,
                           height: 55.h,
                         ),
@@ -218,22 +159,24 @@ class _SignInState extends State<SignIn> {
                           child: Row(
                             children: [
                               Expanded(
-                                  child: Divider(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onPrimary,
-                                      thickness: 2)),
+                                child: Divider(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  thickness: 2,
+                                ),
+                              ),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.h),
                                 child: Text(lang.or,
                                     style: theme.textTheme.titleMedium),
                               ),
                               Expanded(
-                                  child: Divider(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onPrimary,
-                                      thickness: 2)),
+                                child: Divider(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  thickness: 2,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -256,9 +199,7 @@ class _SignInState extends State<SignIn> {
                         child: Padding(
                           padding: EdgeInsets.all(16.0.sp),
                           child: SignInPart(
-                            onTap: () {
-                              cubit.signInWithGoogle();
-                            },
+                            onTap: () => cubit.signInWithGoogle(),
                             title: lang.continue_with_google,
                             imagePath: "assets/images/mdi_google.png",
                           ),
@@ -269,18 +210,7 @@ class _SignInState extends State<SignIn> {
                         child: Padding(
                           padding: EdgeInsets.all(16.0.sp),
                           child: SignInPart(
-                            onTap: () {
-                              HiveStorage.saveDefaultUser(UserModel(
-                                  name: "guest",
-                                  email: '-',
-                                  password: '-',
-                                  dateOfBirth: '-',
-                                  image: ''));
-                              HiveStorage.set(
-                                  HiveKeys.role, Role.guest.toString());
-                              navigateAndRemoveUntil(
-                                  context: context, screen: const HomeLayout());
-                            },
+                            onTap: () => SignInLogic.loginAsGuest(context),
                             title: lang.continue_as_guest,
                             imagePath: "assets/images/Vector.png",
                           ),
@@ -301,10 +231,6 @@ class _SignInState extends State<SignIn> {
                               onTap: () {
                                 cubit.emailController.clear();
                                 cubit.passwordController.clear();
-                                AppLogs.scussessLog("Current User Email is :");
-                                print(NotificationCubit().currentUserEmail);
-                                AppLogs.scussessLog("Current User Email is :");
-
                                 navigateAndReplace(
                                   context: context,
                                   screen: const SignUp(),
@@ -341,41 +267,4 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
-}
-
-void showCenteredSnackBar(BuildContext context, String message) {
-  final overlay = Overlay.of(context);
-  final overlayEntry = OverlayEntry(
-    builder: (context) => Center(
-      child: Material(
-        color: Colors.transparent,
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20.w, // استخدام ScreenUtil للـ horizontal padding
-            vertical: 12.h, // استخدام ScreenUtil للـ vertical padding
-          ),
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.8),
-            borderRadius: BorderRadius.circular(
-                8.r), // استخدام ScreenUtil للـ borderRadius
-          ),
-          child: Text(
-            message,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14.sp, // استخدام ScreenUtil للـ fontSize
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
-
-  // إظهار الـ SnackBar
-  overlay.insert(overlayEntry);
-
-  // إخفاء الـ SnackBar بعد 3 ثواني
-  Future.delayed(Duration(seconds: 3), () {
-    overlayEntry.remove();
-  });
 }

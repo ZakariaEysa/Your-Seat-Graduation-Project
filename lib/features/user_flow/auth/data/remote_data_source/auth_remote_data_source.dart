@@ -7,7 +7,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
-import '../../../../../utils/app_logs.dart';
 import '../model/google_user_model.dart';
 import '../model/user_model.dart';
 
@@ -57,10 +56,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
             Role.google.toString(),
           );
         }
-        AppLogs.infoLog(user.toString());
+        // AppLogs.infoLog(user.toString()); // Removed: was used for logging user
 
-        AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString());
-        AppLogs.debugLog(GoogleUserModel.fromFirebaseUser(user).toString());
+        // AppLogs.infoLog(GoogleUserModel.fromFirebaseUser(user).toString()); // Removed: was used for logging GoogleUserModel
+        // AppLogs.debugLog(GoogleUserModel.fromFirebaseUser(user).toString()); // Removed: was used for logging GoogleUserModel debug
 
         return GoogleUserModel.fromFirebaseUser(user);
       } else {

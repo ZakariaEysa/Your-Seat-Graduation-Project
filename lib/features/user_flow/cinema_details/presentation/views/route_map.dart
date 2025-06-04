@@ -36,25 +36,25 @@ class _RouteMapPageState extends State<RouteMapPage> {
   }
 
   Future<void> _initLocationAndRoute() async {
-    print("📡 Getting current location...");
+    // print("📡 Getting current location..."); // Removed: was used for debugging location fetch
     try {
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      // print("⚠️ Location services are disabled."); // Removed: was used for debugging location services
       if (!serviceEnabled) {
-        print("⚠️ Location services are disabled.");
         return;
       }
 
       LocationPermission permission = await Geolocator.checkPermission();
+      // print("❌ Location permission denied."); // Removed: was used for debugging permission denied
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          print("❌ Location permission denied.");
           return;
         }
       }
 
       if (permission == LocationPermission.deniedForever) {
-        print("❌ Location permissions are permanently denied.");
+        // print("❌ Location permissions are permanently denied."); // Removed: was used for debugging permanently denied
         return;
       }
 
@@ -67,19 +67,19 @@ class _RouteMapPageState extends State<RouteMapPage> {
         destination = LatLng(widget.destinationLat, widget.destinationLng);
       });
 
-      print("✅ Current location: $currentLocation");
-      print("🎯 Destination location: $destination");
+      // print("✅ Current location: $currentLocation"); // Removed: was used for debugging current location
+      // print("🎯 Destination location: $destination"); // Removed: was used for debugging destination location
 
       await _drawRoute();
     } catch (e) {
-      print("❌ Error getting location: $e");
+      // print("❌ Error getting location: $e"); // Removed: was used for debugging location errors
     }
   }
 
   Future<void> _drawRoute() async {
-    print("🛣️ Starting to draw route...");
+    // print("🛣️ Starting to draw route..."); // Removed: was used for debugging route drawing
     if (currentLocation == null || destination == null) {
-      print("⚠️ Locations are null, skipping route drawing.");
+      // print("⚠️ Locations are null, skipping route drawing."); // Removed: was used for debugging null locations
       return;
     }
 
@@ -97,8 +97,8 @@ class _RouteMapPageState extends State<RouteMapPage> {
         googleApiKey: googleApiKey,
       );
 
-      print("📍 Route status: ${result.status}");
-      print("📌 Points count: ${result.points.length}");
+      // print("📍 Route status: ${result.status}"); // Removed: was used for debugging route status
+      // print("📌 Points count: ${result.points.length}"); // Removed: was used for debugging points count
 
       if (result.points.isNotEmpty) {
         List<LatLng> routePoints = result.points
@@ -114,12 +114,12 @@ class _RouteMapPageState extends State<RouteMapPage> {
           ));
         });
 
-        print("✅ Route drawn successfully.");
+        // print("✅ Route drawn successfully."); // Removed: was used for debugging successful route draw
       } else {
-        print("❌ No route found.");
+        // print("❌ No route found."); // Removed: was used for debugging no route found
       }
     } catch (e) {
-      print("❌ Error drawing route: $e");
+      // print("❌ Error drawing route: $e"); // Removed: was used for debugging route drawing errors
     }
   }
 

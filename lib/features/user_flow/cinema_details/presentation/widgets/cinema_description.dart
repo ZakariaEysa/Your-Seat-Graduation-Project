@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../views/route_map.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -20,8 +19,8 @@ class CinemaHeaderDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppLogs.errorLog(cinemaData["lat"].toString());
-    AppLogs.errorLog(cinemaData["lng"].toString());
+    // AppLogs.errorLog(cinemaData["lat"].toString()); // Removed: was used for logging latitude
+    // AppLogs.errorLog(cinemaData["lng"].toString()); // Removed: was used for logging longitude
 
     final theme = Theme.of(context);
     var lang = S.of(context);
@@ -34,12 +33,11 @@ class CinemaHeaderDescription extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        // صورة الخلفية
         imageUrl.isNotEmpty
             ? ImageReplacer(
                 imageUrl: imageUrl,
-                width: 1.sw, // استخدم عرض الشاشة بالكامل
-                height: 0.3.sh, // نسبة 30% من ارتفاع الشاشة
+                width: 1.sw,
+                height: 0.3.sh,
                 fit: BoxFit.cover,
               )
             : Container(
@@ -48,8 +46,6 @@ class CinemaHeaderDescription extends StatelessWidget {
                 color: Colors.grey,
                 child: const Icon(Icons.image, color: Colors.white),
               ),
-
-        // زر الرجوع
         Padding(
           padding: EdgeInsets.only(top: 50.0.h, left: 20.w),
           child: IconButton(
@@ -59,14 +55,12 @@ class CinemaHeaderDescription extends StatelessWidget {
             icon: Icon(Icons.arrow_back, color: Colors.white, size: 25.sp),
           ),
         ),
-
-        // معلومات السينما
         Positioned(
           bottom: -50.h,
           left: 20.w,
           child: Container(
             padding: EdgeInsets.all(12.sp),
-            width: 0.88.sw, // 90% من عرض الشاشة
+            width: 0.88.sw,
             decoration: BoxDecoration(
               color: Theme.of(context)
                   .colorScheme
@@ -135,19 +129,17 @@ class CinemaHeaderDescription extends StatelessWidget {
             ),
           ),
         ),
-
         Positioned(
           right: 40.w,
           top: 124.h,
           child: GestureDetector(
             onTap: () {
-              AppLogs.scussessLog('Navigate to RouteMapPage');
-              AppLogs.scussessLog(cinemaData["lat"].toString());
-              AppLogs.scussessLog(cinemaData["lng"].toString());
+              // AppLogs.successLog('Navigate to RouteMapPage'); // Removed: was used for logging navigation to RouteMapPage
+              // AppLogs.successLog(cinemaData["lat"].toString()); // Removed: was used for logging latitude
+              // AppLogs.successLog(cinemaData["lng"].toString()); // Removed: was used for logging longitude
 
-              printUserLocation();
+              // printUserLocation();
 
-              // تأكد من وجود lat و lng
               if (cinemaData["lat"] != null && cinemaData["lng"] != null) {
                 navigateTo(
                   context: context,
@@ -157,7 +149,7 @@ class CinemaHeaderDescription extends StatelessWidget {
                   ),
                 );
               } else {
-                AppLogs.errorLog("Latitude or Longitude is null");
+                // AppLogs.errorLog("Latitude or Longitude is null"); // Removed: was used for logging null lat/lng
               }
             },
             child: Container(
@@ -175,7 +167,6 @@ class CinemaHeaderDescription extends StatelessWidget {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   void _showMessage(String message) {
-    AppLogs.debugLog(message);
     showLocalNotification("📢 تنبيه", message); // Notification local
   }
 
@@ -202,43 +193,42 @@ class CinemaHeaderDescription extends StatelessWidget {
     );
   }
 
-  Future<void> printUserLocation() async {
-    bool serviceEnabled;
-    LocationPermission permission;
+  // Future<void> printUserLocation() async {
+  //   bool serviceEnabled;
+  //   LocationPermission permission;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      _showMessage('Location services are disabled. Please enable them.');
-      await Geolocator.openLocationSettings();
-      return;
-    }
+  //   serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  //   if (!serviceEnabled) {
+  //     _showMessage('Location services are disabled. Please enable them.');
+  //     await Geolocator.openLocationSettings();
+  //     return;
+  //   }
 
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        _showMessage('Location permissions are denied.');
-        return;
-      }
-    }
+  //   permission = await Geolocator.checkPermission();
+  //   if (permission == LocationPermission.denied) {
+  //     permission = await Geolocator.requestPermission();
+  //     if (permission == LocationPermission.denied) {
+  //       _showMessage('Location permissions are denied.');
+  //       return;
+  //     }
+  //   }
 
-    if (permission == LocationPermission.deniedForever) {
-      _showMessage(
-          'Location permissions are permanently denied. Please enable them from app settings.');
-      await Geolocator.openAppSettings();
-      return;
-    }
+  //   if (permission == LocationPermission.deniedForever) {
+  //     _showMessage(
+  //         'Location permissions are permanently denied. Please enable them from app settings.');
+  //     await Geolocator.openAppSettings();
+  //     return;
+  //   }
 
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      String message =
-          'User location: ${position.latitude}, ${position.longitude}';
-      print(message);
-      // _showMessage(message);
-    } catch (e) {
-      print('Error getting location: $e');
-      _showMessage('Error getting location: $e');
-    }
-  }
+  //   try {
+  //     Position position = await Geolocator.getCurrentPosition(
+  //         desiredAccuracy: LocationAccuracy.high);
+  //     // String message =
+  //     //     'User location: ${position.latitude}, ${position.longitude}';
+  //     // print(message);
+  //   } catch (e) {
+  //     // print('Error getting location: $e');
+  //     _showMessage('Error getting location: $e');
+  //   }
+  // }
 }

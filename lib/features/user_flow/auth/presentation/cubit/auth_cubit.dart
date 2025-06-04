@@ -82,7 +82,7 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     // try {
     emit(AuthLoading());
-    //AppLogs.scussessLog("messageee");
+    //AppLogs.successLog("messageee");
 
     try {
       await authRepo.checkUserExistsR(userModel.email);
@@ -107,14 +107,14 @@ class AuthCubit extends Cubit<AuthState> {
     var res = await EmailOtpAuth.sendOTP(email: email);
 
     if (res["message"] == "Email Send") {
-      //AppLogs.scussessLog("OTP sent successfully to $email");
+      //AppLogs.successLog("OTP sent successfully to $email");
     } else {
-      //AppLogs.scussessLog("Failed to send OTP to $email");
+      //AppLogs.successLog("Failed to send OTP to $email");
     }
   }
 
   Future<void> verifyedSendOtp() async {
-    //AppLogs.scussessLog(userModel.toString());
+    //AppLogs.successLog(userModel.toString());
     await authRepo.saveUser(
         userModel: userModel ??
             UserModel(name: "", email: "", password: "", dateOfBirth: ""));

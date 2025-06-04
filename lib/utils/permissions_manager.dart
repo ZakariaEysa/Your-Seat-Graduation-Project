@@ -80,7 +80,7 @@ class PermissionsManager {
   static void _logPermissionStatus(
       String permissionName, PermissionStatus status) {
     if (status.isGranted) {
-      // AppLogs.scussessLog('$permissionName permission granted');
+      // AppLogs.successLog('$permissionName permission granted');
     } else if (status.isDenied) {
       // AppLogs.errorLog('$permissionName permission denied');
     } else if (status.isPermanentlyDenied) {

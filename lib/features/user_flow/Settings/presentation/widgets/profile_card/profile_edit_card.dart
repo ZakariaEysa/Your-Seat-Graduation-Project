@@ -69,7 +69,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       currentUser = HiveStorage.getGoogleUser();
     } else {
       currentUser = HiveStorage.getDefaultUser();
-      // AppLogs.scussessLog(currentUser.toString()); // Removed: was used for logging default user
+      // AppLogs.successLog(currentUser.toString()); // Removed: was used for logging default user
     }
 
     String date = currentUser.dateOfBirth;
@@ -84,7 +84,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
           ? int.parse(splitDate[2])
           : null;
 
-      // AppLogs.scussessLog("Date parsed successfully"); // Removed: was used for logging date parsing success
+      // AppLogs.successLog("Date parsed successfully"); // Removed: was used for logging date parsing success
     } catch (e) {
       // AppLogs.errorLog("Date parsing failed: $e"); // Removed: was used for logging date parsing failure
     }

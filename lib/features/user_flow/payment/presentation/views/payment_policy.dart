@@ -44,16 +44,16 @@ class _PaymentPolicyState extends State<PaymentPolicy> {
 
   @override
   Widget build(BuildContext context) {
-    // AppLogs.scussessLog(widget.seatCategory.toString()); // Removed: was used for logging seat category
-    // AppLogs.scussessLog(widget.hall.toString()); // Removed: was used for logging hall
-    // AppLogs.scussessLog(widget.cinemaId.toString()); // Removed: was used for logging cinemaId
-    // AppLogs.scussessLog(widget.model.toString()); // Removed: was used for logging model
-    // AppLogs.scussessLog(widget.price.toString()); // Removed: was used for logging price
-    // AppLogs.scussessLog(widget.date.toString()); // Removed: was used for logging date
-    // AppLogs.scussessLog(widget.time.toString()); // Removed: was used for logging time
-    // AppLogs.scussessLog(widget.location.toString()); // Removed: was used for logging location
-    // AppLogs.scussessLog(widget.seatCategory.toString()); // Removed: was used for logging seat category (duplicate)
-    // AppLogs.scussessLog(widget.seats.toString()); // Removed: was used for logging seats
+    // AppLogs.successLog(widget.seatCategory.toString()); // Removed: was used for logging seat category
+    // AppLogs.successLog(widget.hall.toString()); // Removed: was used for logging hall
+    // AppLogs.successLog(widget.cinemaId.toString()); // Removed: was used for logging cinemaId
+    // AppLogs.successLog(widget.model.toString()); // Removed: was used for logging model
+    // AppLogs.successLog(widget.price.toString()); // Removed: was used for logging price
+    // AppLogs.successLog(widget.date.toString()); // Removed: was used for logging date
+    // AppLogs.successLog(widget.time.toString()); // Removed: was used for logging time
+    // AppLogs.successLog(widget.location.toString()); // Removed: was used for logging location
+    // AppLogs.successLog(widget.seatCategory.toString()); // Removed: was used for logging seat category (duplicate)
+    // AppLogs.successLog(widget.seats.toString()); // Removed: was used for logging seats
 
     var lang = S.of(context);
     final theme = Theme.of(context);

@@ -22,7 +22,7 @@ class AppInitializer {
     await _safelyInitializeLocalStorage();
 
     _isAppInitialized = true;
-    // AppLogs.scussessLog('Essential app initialization completed');
+    // AppLogs.successLog('Essential app initialization completed');
   }
 
   static Future<void> initializeRemainingAsyncTasks() async {
@@ -52,7 +52,6 @@ class AppInitializer {
       await HiveStorage.init();
       _isStorageInitialized = true;
 
-      // تعيين القيم الافتراضية إذا لم تكن موجودة
       _safelySetDefaultValue(HiveKeys.isDark, true);
       _safelySetDefaultValue(HiveKeys.passUserOnboarding, false);
       _safelySetDefaultValue(HiveKeys.isArabic, false);
@@ -72,8 +71,6 @@ class AppInitializer {
       // AppLogs.infoLog('Firebase initialized successfully');
     } catch (e) {
       // AppLogs.errorLog('Error initializing Firebase: $e');
-      _showError(
-          'حدث خطأ أثناء تهيئة Firebase. بعض ميزات التطبيق قد لا تعمل بشكل صحيح.');
     }
   }
 
@@ -83,7 +80,6 @@ class AppInitializer {
       // AppLogs.infoLog('Notifications initialized successfully');
     } catch (e) {
       // AppLogs.errorLog('Error initializing notifications: $e');
-      _showError('حدث خطأ أثناء تهيئة الإشعارات. قد لا تصلك إشعارات التطبيق.');
     }
   }
 

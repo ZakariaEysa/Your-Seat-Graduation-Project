@@ -21,7 +21,7 @@ class FirebaseManager {
       await _configureMessagingBackgroundHandler();
 
       _isFirebaseInitialized = true;
-      // AppLogs.scussessLog('Firebase initialized successfully'); // Removed: was used for logging Firebase initialization
+      // AppLogs.successLog('Firebase initialized successfully'); // Removed: was used for logging Firebase initialization
     } catch (e) {
       _isFirebaseInitialized = false;
       // AppLogs.errorLog('Error initializing Firebase: $e'); // Removed: was used for logging Firebase initialization error

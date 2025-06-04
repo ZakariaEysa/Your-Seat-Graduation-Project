@@ -406,7 +406,7 @@ class _SignUpState extends State<SignUp> {
                 showCenteredSnackBar(context, state.errorMessage);
               }
               if (state is AuthSuccess) {
-                //AppLogs.scussessLog("create");
+                //AppLogs.successLog("create");
 
                 // HiveStorage.set(HiveKeys.role, Role.email.toString());
                 navigateTo(context: context, screen: Otp());

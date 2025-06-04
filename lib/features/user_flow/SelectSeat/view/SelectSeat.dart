@@ -86,7 +86,7 @@ class _SelectSeatState extends State<SelectSeat> {
           );
 
           if (selectedMovie.isNotEmpty) {
-            // AppLogs.scussessLog("Movie '$movieName' found!"); // Removed: was used for logging found movie
+            // AppLogs.successLog("Movie '$movieName' found!"); // Removed: was used for logging found movie
 
             setState(() {
               timesList =
@@ -161,7 +161,7 @@ class _SelectSeatState extends State<SelectSeat> {
           List<String>.from(selectedTimeData["reservedSeats"] as List);
     });
 
-    // AppLogs.scussessLog("Reserved seats for $selectedTime: $reservedSeats"); // Removed: was used for logging reserved seats
+    // AppLogs.successLog("Reserved seats for $selectedTime: $reservedSeats"); // Removed: was used for logging reserved seats
   }
 
   @override
@@ -277,7 +277,7 @@ class _SelectSeatState extends State<SelectSeat> {
                         _highestSeatCategory = '';
 
                         _seatCategory = '';
-                        // AppLogs.scussessLog("date is $_selectedDate"); // Removed: was used for logging selected date
+                        // AppLogs.successLog("date is $_selectedDate"); // Removed: was used for logging selected date
                       });
                     },
                   ),

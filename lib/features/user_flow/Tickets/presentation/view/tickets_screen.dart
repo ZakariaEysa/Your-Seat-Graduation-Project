@@ -278,7 +278,7 @@ class _TicketPageState extends State<TicketPage> {
 
                             return InkWell(
                               onTap: () {
-                                // AppLogs.scussessLog(ticket.toString()); // Removed: was used for logging ticket on tap
+                                // AppLogs.successLog(ticket.toString()); // Removed: was used for logging ticket on tap
                                 if (ticket['status'].toString().toLowerCase() ==
                                     'active') {
                                   navigateTo(

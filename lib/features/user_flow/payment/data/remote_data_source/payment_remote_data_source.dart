@@ -37,7 +37,7 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
 
       final paymentKey = await getPaymentKey(
           token: token, orderId: orderId, amount: (100 * amount).toString());
-      // AppLogs.scussessLog(paymentKey.toString()); // Removed: was used for logging payment key
+      // AppLogs.successLog(paymentKey.toString()); // Removed: was used for logging payment key
       return paymentKey;
     } catch (e) {
       rethrow;
@@ -55,7 +55,7 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
       );
       // AppLogs.errorLog(response.data.toString()); // Removed: was used for logging response data
       // AppLogs.debugLog(response.statusCode.toString()); // Removed: was used for logging status code
-      // AppLogs.scussessLog(response.data["token"].toString()); // Removed: was used for logging token
+      // AppLogs.successLog(response.data["token"].toString()); // Removed: was used for logging token
 
       return response.data["token"];
     } catch (e) {
@@ -78,7 +78,7 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
       // AppLogs.debugLog(response.data.toString());
       // AppLogs.debugLog(response.statusCode.toString());
 
-      // AppLogs.scussessLog(response.data["id"].toString());
+      // AppLogs.successLog(response.data["id"].toString());
 
       return response.data["id"];
     } catch (e) {
@@ -160,7 +160,7 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
       // AppLogs.errorLog(response.data.toString()); // Removed: was used for logging response data
       // AppLogs.errorLog(response.data["message"].toString()); // Removed: was used for logging error message
       // if (response.statusCode == 200 && response.data["success"] == true) {
-      //   AppLogs.scussessLog("Refund successful for transaction $transactionId"); // Removed: was used for logging refund success
+      //   AppLogs.successLog("Refund successful for transaction $transactionId"); // Removed: was used for logging refund success
       // } else {
       //   AppLogs.errorLog("Refund failed: response.data"); // Removed: was used for logging refund failure
       // }
@@ -188,9 +188,9 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
           },
         ),
       );
-      // AppLogs.scussessLog("Transactions: 4response.data["results"].length4"); // Removed: was used for logging transactions count
-      // AppLogs.scussessLog("Transactions: 4response.data["results"][0]4"); // Removed: was used for logging first transaction
-      // AppLogs.scussessLog("Transactions: 4response.data["results"].length4"); // Removed: was used for logging transactions count (duplicate)
+      // AppLogs.successLog("Transactions: 4response.data["results"].length4"); // Removed: was used for logging transactions count
+      // AppLogs.successLog("Transactions: 4response.data["results"][0]4"); // Removed: was used for logging first transaction
+      // AppLogs.successLog("Transactions: 4response.data["results"].length4"); // Removed: was used for logging transactions count (duplicate)
       // AppLogs.errorLog("Error fetching transactions: 4response.data4"); // Removed: was used for logging error fetching transactions
 
       if (response.statusCode == 200) {

@@ -8,20 +8,18 @@ import '../../data/hive_storage.dart';
 class ApplicationTheme extends ChangeNotifier {
   static bool _isDark = HiveStorage.get(HiveKeys.isDark);
 
-  // للحصول على حالة الثيم (داكن أو فاتح)
   bool get isDark => _isDark;
 
-  // لتغيير الثيم
   void toggleTheme({required bool isDark}) {
     if (_isDark == isDark) {
-      return; // إذا كان الثيم الحالي هو نفسه، لا نقوم بأي تغيير
+      return;
+
     }
     _isDark = isDark;
     HiveStorage.set(HiveKeys.isDark, _isDark);
-    notifyListeners(); // إخطار الـ listeners بالتحديث
+    notifyListeners();
   }
 
-  // إعادة الثيم بناءً على الحالة الحالية
   ThemeData get currentTheme {
     return _isDark ? darkTheme : lightTheme;
   }

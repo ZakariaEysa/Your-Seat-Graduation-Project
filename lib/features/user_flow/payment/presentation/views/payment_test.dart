@@ -290,7 +290,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       setState(() {
         currentUser = HiveStorage.getDefaultUser();
       });
-      // AppLogs.scussessLog(currentUser.toString());
+      // AppLogs.successLog(currentUser.toString());
     }
 
     String userEmail = currentUser?.email ?? "unknown@email.com";

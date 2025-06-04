@@ -47,12 +47,12 @@ class _CinemaItemState extends State<CinemaItem> {
                     style: TextStyle(color: Colors.white)),
               );
             } else {
-              //AppLogs.scussessLog("start sorting ");
-              //AppLogs.scussessLog(cinemas.toString());
+              //AppLogs.successLog("start sorting ");
+              //AppLogs.successLog(cinemas.toString());
 
-              //AppLogs.scussessLog("end sorting ");
+              //AppLogs.successLog("end sorting ");
             }
-            //AppLogs.scussessLog("start viewing ");
+            //AppLogs.successLog("start viewing ");
 
             return ListView.builder(
               scrollDirection: Axis.horizontal,

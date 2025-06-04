@@ -18,9 +18,9 @@ class CinemaItemCubit extends Cubit<CinemaItemState> {
           await FirebaseFirestore.instance.collection('Cinemas').get();
       docs = snapshot.docs;
       cinemas = snapshot.docs.map((doc) => doc.data()).toList();
-      //AppLogs.scussessLog("data is okay  ");
+      //AppLogs.successLog("data is okay  ");
       cinemas = await sortCinemasByDistance(cinemas: cinemas);
-      //AppLogs.scussessLog("data is ready  ");
+      //AppLogs.successLog("data is ready  ");
 
       emit(CinemaSuccess(cinemas));
     } catch (e) {
@@ -40,7 +40,7 @@ class CinemaItemCubit extends Cubit<CinemaItemState> {
       return cinemas;
     }
     //type 'List<_JsonQueryDocumentSnapshot>' is not a subtype of type 'List<Map<String, dynamic>>'
-    //AppLogs.scussessLog(cinemas.toString());
+    //AppLogs.successLog(cinemas.toString());
 
     cinemas.sort((a, b) {
       final double latA = (a['lat'] ?? 0 as num).toDouble();

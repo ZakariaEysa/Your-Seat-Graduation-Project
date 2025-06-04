@@ -23,7 +23,7 @@ class _ProfileCardState extends State<ProfileCard> {
 
   @override
   Widget build(BuildContext context) {
-    // AppLogs.scussessLog((HiveStorage.get(HiveKeys.role) == Role.email.toString()).toString()); // Removed: was used for logging role check
+    // AppLogs.successLog((HiveStorage.get(HiveKeys.role) == Role.email.toString()).toString()); // Removed: was used for logging role check
     var theme = Theme.of(context);
 
     if (HiveStorage.get(HiveKeys.role) == Role.google.toString()) {
@@ -35,7 +35,7 @@ class _ProfileCardState extends State<ProfileCard> {
       setState(() {
         currentUser = HiveStorage.getDefaultUser();
       });
-      // AppLogs.scussessLog(currentUser.toString()); // Removed: was used for logging current user
+      // AppLogs.successLog(currentUser.toString()); // Removed: was used for logging current user
     }
 
     var lang = S.of(context);

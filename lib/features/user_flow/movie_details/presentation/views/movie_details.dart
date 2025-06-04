@@ -43,9 +43,9 @@ class _MovieDetailsState extends State<MovieDetails> {
   String selectedCinema = "";
   @override
   void initState() {
-    // AppLogs.scussessLog(widget.model.toString()); // Removed: was used for logging model in initState
-    // AppLogs.scussessLog(widget.model.posterImage.toString()); // Removed: was used for logging poster image in initState
-    // AppLogs.scussessLog(widget.model.toString()); // Removed: was used for logging model in initState
+    // AppLogs.successLog(widget.model.toString()); // Removed: was used for logging model in initState
+    // AppLogs.successLog(widget.model.posterImage.toString()); // Removed: was used for logging poster image in initState
+    // AppLogs.successLog(widget.model.toString()); // Removed: was used for logging model in initState
 
     super.initState();
 
@@ -529,7 +529,7 @@ class VideoLauncher {
 //
 // PayMobPayment().payWithPayMob(100).then(
 // (value) {
-// AppLogs.scussessLog("payment token: $value");
+// AppLogs.successLog("payment token: $value");
 // navigateTo(
 // context: context,
 // screen: PaymentScreen(paymentToken: value ?? ""));

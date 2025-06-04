@@ -104,11 +104,11 @@ class Payment extends StatelessWidget {
                                   // AppLogs.errorLog(state.toString()); // Removed: was used for logging payment state
                                   // AppLogs.errorLog(state.payToken.toString()); // Removed: was used for logging payment token
                                   // AppLogs.debugLog("order id is "); // Removed: was used for logging order id
-                                  // AppLogs.scussessLog(PaymentCubit.get(context).orderIdForPaymentTicket); // Removed: was used for logging order id for payment ticket
+                                  // AppLogs.successLog(PaymentCubit.get(context).orderIdForPaymentTicket); // Removed: was used for logging order id for payment ticket
                                   if (state is PaymentSuccess) {
                                     // AppLogs.errorLog(state.payToken.toString()); // Removed: was used for logging payment token
                                     // AppLogs.debugLog("order id is "); // Removed: was used for logging order id
-                                    // AppLogs.scussessLog(PaymentCubit.get(context).orderIdForPaymentTicket); // Removed: was used for logging order id for payment ticket
+                                    // AppLogs.successLog(PaymentCubit.get(context).orderIdForPaymentTicket); // Removed: was used for logging order id for payment ticket
 
                                     navigateTo(
                                         context: context,
@@ -163,7 +163,7 @@ class Payment extends StatelessWidget {
                                       // PayMobPayment().payWithPayMob(100).then(
 
                                       //   (value) {
-                                      //     AppLogs.scussessLog(
+                                      //     AppLogs.successLog(
                                       //         "payment token: $value");
                                       //     navigateTo(
                                       //         context: context,

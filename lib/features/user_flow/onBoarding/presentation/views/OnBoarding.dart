@@ -8,7 +8,7 @@ import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/button/button_builder.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../auth/presentation/views/sign_in.dart';
-import '../widgets/OnboardingContent.dart';
+import '../widgets/onboarding_content.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../generated/l10n.dart';
 import '../../../../../utils/app_logs.dart';
 import '../../data/models/chat_message_model.dart';
 import '../../data/services/chatbot_service.dart';
@@ -108,7 +107,6 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var lang = S.of(context);
     final theme = Theme.of(context);
     final locale = Localizations.localeOf(context).languageCode;
     final emptyListText =

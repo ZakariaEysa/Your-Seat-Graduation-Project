@@ -114,7 +114,6 @@ class _SeatsGridState extends State<SeatsGrid> {
   }
 
   String _getSeatImage(String seat, BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
 
     switch (seat) {
       case 'a':

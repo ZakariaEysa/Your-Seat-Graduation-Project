@@ -99,7 +99,6 @@ class _CinemaItemState extends State<CinemaItem> {
               },
             );
           }
-          return const Text("no data"); // حالة افتراضية
         },
       ),
     );

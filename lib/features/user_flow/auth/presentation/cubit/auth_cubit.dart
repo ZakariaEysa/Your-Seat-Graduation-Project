@@ -71,8 +71,7 @@ class AuthCubit extends Cubit<AuthState> {
               "Logged In Successfully ✅", "Welcome Back !");
         } else {
           emit(UserValidationError(message));
-          NotificationsManager.showLocalNotification(
-              "Something Went Wrong", "Please try again");
+
           //emit(  UserValidationError("Sorry there was an error , please try again later"));
         }
       },

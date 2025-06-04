@@ -9,7 +9,6 @@ import '../../../../utils/navigation.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../widgets/loading_indicator.dart';
 import '../../../../widgets/scaffold/scaffold_f.dart';
-import '../../auth/presentation/views/sign_in.dart';
 import '../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../payment/presentation/views/payment_policy.dart';
 import '../widgets/date.dart';

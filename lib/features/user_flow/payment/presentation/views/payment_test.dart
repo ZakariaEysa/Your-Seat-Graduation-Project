@@ -336,7 +336,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
 //تم حجز التذكره بنجاح استمتع ب المشاهده
     await NotificationsManager.showLocalNotification(title, body);
-    
+
     navigateAndRemoveUntil(
       context: context,
       screen: PaymentSuccessful(

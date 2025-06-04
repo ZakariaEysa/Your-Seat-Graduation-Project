@@ -192,7 +192,7 @@ class _OtpState extends State<Otp> {
                     otpController4.text +
                     otpController5.text +
                     otpController6.text;
-                print("OTP entered: $otp");
+                // print("OTP entered: $otp");
                 verifyOtp(context, otp);
               }
             },

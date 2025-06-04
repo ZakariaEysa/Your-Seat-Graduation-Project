@@ -7,6 +7,7 @@ class ComingSoonCubit extends Cubit<ComingSoonState> {
 
   Future<void> fetchComingMovies() async {
     try {
+      emit(ComingSoonLoading());
       final snapshot =
           await FirebaseFirestore.instance.collection('Movies').get();
       final movies = snapshot.docs.map((doc) => doc.data()).toList();

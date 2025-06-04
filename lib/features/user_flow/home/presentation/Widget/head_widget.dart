@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
 import '../../../../../generated/l10n.dart';
@@ -11,8 +12,20 @@ import '../../../notification/notification_cubit/notification_state.dart';
 import '../../../notification/views/Notifaction.dart';
 import '../../../../../utils/navigation.dart';
 
-class HeadWidget extends StatelessWidget {
+class HeadWidget extends StatefulWidget {
   const HeadWidget({super.key});
+
+  @override
+  State<HeadWidget> createState() => _HeadWidgetState();
+}
+
+class _HeadWidgetState extends State<HeadWidget> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    NotificationCubit.get(context).fetchNotifications();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +43,12 @@ class HeadWidget extends StatelessWidget {
           ),
           BlocBuilder<NotificationCubit, NotificationState>(
             builder: (context, state) {
+              String image = "assets/icons/no_notification_icon.png";
+              if (state is NotificationLoaded) {
+                if (NotificationCubit.get(context).notifications.isNotEmpty) {
+                  image = "assets/icons/notification_icon.png";
+                }
+              }
               return GestureDetector(
                 onTap: () {
                   if (HiveStorage.get(HiveKeys.role) == Role.guest.toString()) {
@@ -54,9 +73,7 @@ class HeadWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Image.asset(
-                    NotificationCubit.get(context).notifications.isEmpty
-                        ? "assets/icons/no_notification_icon.png"
-                        : "assets/icons/notification_icon.png",
+                    image,
 
                     width: 36.w,
                     height: 115.h,

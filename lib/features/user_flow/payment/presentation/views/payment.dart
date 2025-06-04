@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../utils/dialog_utilits.dart';
 import '../../../auth/presentation/views/sign_in.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../cubit/payment_cubit.dart';
@@ -214,7 +215,10 @@ class Payment extends StatelessWidget {
                               ),
                               Spacer(),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    showCenteredSnackBar(context,
+                                        "This feature is not available yet");
+                                  },
                                   icon: Icon(
                                     Icons.arrow_forward_ios_sharp,
                                     color: Colors.white,
@@ -231,36 +235,36 @@ class Payment extends StatelessWidget {
                     SizedBox(
                       height: 40.h,
                     ),
-                    Container(
-                      width: 238.w,
-                      height: 38.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Color(0xFF31215B),
-                        border: Border.all(
-                          color: Color(0xFF673667),
-                          width: 2.w,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(8.sp),
-                        child: Row(
-                          children: [
-                            Text(
-                              " ${lang.completeYourPaymentIn}",
-                              style: theme.textTheme.titleLarge!
-                                  .copyWith(fontSize: 11.sp),
-                            ),
-                            Spacer(),
-                            Text(
-                              "15:00  ",
-                              style: theme.textTheme.titleLarge!.copyWith(
-                                  fontSize: 11.sp, color: Color(0xFFC11E88)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // Container(
+                    //   width: 238.w,
+                    //   height: 38.h,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(12),
+                    //     color: Color(0xFF31215B),
+                    //     border: Border.all(
+                    //       color: Color(0xFF673667),
+                    //       width: 2.w,
+                    //     ),
+                    //   ),
+                    //   // child: Padding(
+                    //   //   padding: EdgeInsets.all(8.sp),
+                    //   //   child: Row(
+                    //   //     children: [
+                    //   //       Text(
+                    //   //         " ${lang.completeYourPaymentIn}",
+                    //   //         style: theme.textTheme.titleLarge!
+                    //   //             .copyWith(fontSize: 11.sp),
+                    //   //       ),
+                    //   //       Spacer(),
+                    //   //       Text(
+                    //   //         "15:00  ",
+                    //   //         style: theme.textTheme.titleLarge!.copyWith(
+                    //   //             fontSize: 11.sp, color: Color(0xFFC11E88)),
+                    //   //       ),
+                    //   //     ],
+                    //   //   ),
+                    //   // ),
+                    // ),
                     SizedBox(
                       height: 30.h,
                     ),

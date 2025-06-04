@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../utils/dialog_utilits.dart';
 import '../../../auth/presentation/views/sign_in.dart';
 import '../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../data/remote_data_source/payment_remote_data_source.dart';

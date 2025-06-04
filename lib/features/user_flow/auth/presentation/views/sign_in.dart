@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../utils/dialog_utilits.dart';
 import '../../../notification/notification_cubit/notification_cubit.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
@@ -168,14 +169,6 @@ class _SignInState extends State<SignIn> {
                             onTap: () {
                               navigateTo(
                                   context: context, screen: ForgotPassword());
-                              // if (
-                              // isValidEmail(
-                              // cubit.emailController.text)) {
-                              //   navigateTo(
-                              //       context: context, screen:  Otp());
-                              // } else {
-                              //   BotToast.showText(text: lang.enter_valid_email);
-                              // }
                             },
                             child: Align(
                               alignment: AlignmentDirectional.centerEnd,
@@ -194,8 +187,6 @@ class _SignInState extends State<SignIn> {
                       FadeInLeft(
                         delay: const Duration(milliseconds: 750),
                         child: ButtonBuilder(
-                          // image:"assets/images/SignInAR.png",
-
                           text: lang.sign_in,
                           onTap: () async {
                             if (cubit.formKeyLogin.currentState!.validate()) {
@@ -301,9 +292,6 @@ class _SignInState extends State<SignIn> {
                               onTap: () {
                                 cubit.emailController.clear();
                                 cubit.passwordController.clear();
-                                AppLogs.scussessLog("Current User Email is :");
-                                print(NotificationCubit().currentUserEmail);
-                                AppLogs.scussessLog("Current User Email is :");
 
                                 navigateAndReplace(
                                   context: context,
@@ -341,41 +329,4 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
-}
-
-void showCenteredSnackBar(BuildContext context, String message) {
-  final overlay = Overlay.of(context);
-  final overlayEntry = OverlayEntry(
-    builder: (context) => Center(
-      child: Material(
-        color: Colors.transparent,
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20.w, // استخدام ScreenUtil للـ horizontal padding
-            vertical: 12.h, // استخدام ScreenUtil للـ vertical padding
-          ),
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.8),
-            borderRadius: BorderRadius.circular(
-                8.r), // استخدام ScreenUtil للـ borderRadius
-          ),
-          child: Text(
-            message,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14.sp, // استخدام ScreenUtil للـ fontSize
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
-
-  // إظهار الـ SnackBar
-  overlay.insert(overlayEntry);
-
-  // إخفاء الـ SnackBar بعد 3 ثواني
-  Future.delayed(Duration(seconds: 3), () {
-    overlayEntry.remove();
-  });
 }

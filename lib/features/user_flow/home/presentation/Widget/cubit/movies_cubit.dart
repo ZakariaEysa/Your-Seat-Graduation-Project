@@ -7,6 +7,7 @@ class MovieCarouselCubit extends Cubit<MovieCarouselState> {
 
   Future<void> fetchMovies() async {
     try {
+      emit(MovieCarouselLoading());
       final snapshot = await FirebaseFirestore.instance
           .collection('playing now films')
           .get();

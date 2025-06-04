@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neon_widgets/neon_widgets.dart';
+import '../../../../../utils/dialog_utilits.dart';
 import '../../../about_us/presentation/views/about_us.dart';
 import '../cubit/auth_cubit.dart';
 import 'otp.dart';

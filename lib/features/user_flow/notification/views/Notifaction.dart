@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import '../notification_cubit/notification_cubit.dart';
 import '../notification_cubit/notification_state.dart';
 import '../../../../generated/l10n.dart';
@@ -23,7 +24,9 @@ class _NotificationsState extends State<Notifications> {
   void initState() {
     super.initState();
     notificationCubit = NotificationCubit();
-    notificationCubit.fetchNotifications();
+    if (NotificationCubit.get(context).notifications.isEmpty) {
+      notificationCubit.fetchNotifications();
+    }
   }
 
   @override
@@ -44,12 +47,14 @@ class _NotificationsState extends State<Notifications> {
       body: BlocBuilder<NotificationCubit, NotificationState>(
         bloc: notificationCubit,
         builder: (context, state) {
+          AppLogs.errorLog(state.toString());
           if (state is NotificationLoading) {
             return const LoadingIndicator();
           } else if (state is NotificationError) {
             return Center(child: Text('Error: ${state.message}'));
-          } else if (state is NotificationLoaded) {
-            final notifications = state.notifications;
+          } else if (state is NotificationLoaded ||
+              NotificationCubit.get(context).notifications.isNotEmpty) {
+            final notifications = NotificationCubit.get(context).notifications;
 
             if (notifications.isEmpty) {
               return Center(

@@ -41,9 +41,9 @@ class NowPlaying extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const LoadingIndicator();
           } else if (snapshot.hasError) {
-            return Center(child: Text(lang.errorSavingUser));
+            return Center(child: Text("Error fetching movies"));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text(lang.errorSavingUser));
+            return Center(child: Text("Error fetching movies"));
           }
 
           final movies = snapshot.data!;

@@ -76,7 +76,7 @@ class GoogleUserModel extends Equatable {
         throw Exception('فشل تحميل الصورة');
       }
     } catch (e) {
-      print('Error: $e');
+      // print('Error: $e');
       return '';
     }
   }

@@ -11,7 +11,6 @@ import '../../../../../widgets/loading_indicator.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
 import '../../../../../widgets/text_field/text_field/text_form_field_builder.dart';
 
-
 import '../cubit/auth_cubit.dart';
 import '../cubit/sign_in_logic.dart';
 import '../widgets/sign_in_part.dart';
@@ -52,10 +51,12 @@ class _SignInState extends State<SignIn> {
                       FadeInRight(
                         delay: const Duration(milliseconds: 200),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.only(start: 20.w, bottom: 15.h),
+                          padding: EdgeInsetsDirectional.only(
+                              start: 20.w, bottom: 15.h),
                           child: Text(
                             lang.pleaseFillTheCredentials,
-                            style: theme.textTheme.bodySmall!.copyWith(fontSize: 16.sp),
+                            style: theme.textTheme.bodySmall!
+                                .copyWith(fontSize: 16.sp),
                           ),
                         ),
                       ),
@@ -96,7 +97,9 @@ class _SignInState extends State<SignIn> {
                             suffixIcon: InkWell(
                               onTap: () => setState(() => obscure2 = !obscure2),
                               child: Icon(
-                                obscure2 ? Icons.visibility_off : Icons.visibility,
+                                obscure2
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
                                 color: Theme.of(context).colorScheme.onPrimary,
                               ),
                             ),
@@ -122,13 +125,15 @@ class _SignInState extends State<SignIn> {
                               end: 20.w, bottom: 15.h, top: 12.h),
                           child: GestureDetector(
                             onTap: () {
-                              navigateTo(context: context, screen: ForgotPassword());
+                              navigateTo(
+                                  context: context, screen: ForgotPassword());
                             },
                             child: Align(
                               alignment: AlignmentDirectional.centerEnd,
                               child: Text(
                                 lang.forgotPassword,
-                                style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
+                                style: theme.textTheme.bodyMedium!
+                                    .copyWith(fontSize: 14.sp),
                                 textAlign: TextAlign.right,
                               ),
                             ),
@@ -140,7 +145,8 @@ class _SignInState extends State<SignIn> {
                         delay: const Duration(milliseconds: 750),
                         child: ButtonBuilder(
                           text: lang.sign_in,
-                          onTap: () => SignInLogic.handleLoginButtonTap(context, cubit),
+                          onTap: () =>
+                              SignInLogic.handleLoginButtonTap(context, cubit),
                           width: 220.w,
                           height: 55.h,
                         ),
@@ -154,17 +160,20 @@ class _SignInState extends State<SignIn> {
                             children: [
                               Expanded(
                                 child: Divider(
-                                  color: Theme.of(context).colorScheme.onPrimary,
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
                                   thickness: 2,
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.h),
-                                child: Text(lang.or, style: theme.textTheme.titleMedium),
+                                child: Text(lang.or,
+                                    style: theme.textTheme.titleMedium),
                               ),
                               Expanded(
                                 child: Divider(
-                                  color: Theme.of(context).colorScheme.onPrimary,
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
                                   thickness: 2,
                                 ),
                               ),
@@ -214,7 +223,8 @@ class _SignInState extends State<SignIn> {
                           children: [
                             Text(
                               lang.no_account,
-                              style: theme.textTheme.bodySmall!.copyWith(fontSize: 17.sp),
+                              style: theme.textTheme.bodySmall!
+                                  .copyWith(fontSize: 17.sp),
                             ),
                             SizedBox(width: 5.w),
                             InkWell(
@@ -228,7 +238,8 @@ class _SignInState extends State<SignIn> {
                               },
                               child: Text(
                                 lang.sign_up,
-                                style: theme.textTheme.labelLarge!.copyWith(fontSize: 17.sp),
+                                style: theme.textTheme.labelLarge!
+                                    .copyWith(fontSize: 17.sp),
                               ),
                             ),
                           ],

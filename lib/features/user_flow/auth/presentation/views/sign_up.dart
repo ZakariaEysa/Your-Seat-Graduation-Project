@@ -10,7 +10,6 @@ import 'otp.dart';
 import '../../../../../generated/l10n.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'sign_in.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../utils/validation_utils.dart';
 import '../../../../../widgets/button/button_builder.dart';
@@ -407,7 +406,7 @@ class _SignUpState extends State<SignUp> {
                 showCenteredSnackBar(context, state.errorMessage);
               }
               if (state is AuthSuccess) {
-                AppLogs.scussessLog("create");
+                //AppLogs.scussessLog("create");
 
                 // HiveStorage.set(HiveKeys.role, Role.email.toString());
                 navigateTo(context: context, screen: Otp());

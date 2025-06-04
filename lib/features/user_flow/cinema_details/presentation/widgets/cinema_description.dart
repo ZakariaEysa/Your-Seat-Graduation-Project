@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../views/route_map.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../widgets/network_image/image_replacer.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -20,8 +19,8 @@ class CinemaHeaderDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppLogs.errorLog(cinemaData["lat"].toString());
-    AppLogs.errorLog(cinemaData["lng"].toString());
+    // AppLogs.errorLog(cinemaData["lat"].toString()); // Removed: was used for logging latitude
+    // AppLogs.errorLog(cinemaData["lng"].toString()); // Removed: was used for logging longitude
 
     final theme = Theme.of(context);
     var lang = S.of(context);
@@ -141,9 +140,9 @@ class CinemaHeaderDescription extends StatelessWidget {
           top: 124.h,
           child: GestureDetector(
             onTap: () {
-              AppLogs.scussessLog('Navigate to RouteMapPage');
-              AppLogs.scussessLog(cinemaData["lat"].toString());
-              AppLogs.scussessLog(cinemaData["lng"].toString());
+              // AppLogs.scussessLog('Navigate to RouteMapPage'); // Removed: was used for logging navigation to RouteMapPage
+              // AppLogs.scussessLog(cinemaData["lat"].toString()); // Removed: was used for logging latitude
+              // AppLogs.scussessLog(cinemaData["lng"].toString()); // Removed: was used for logging longitude
 
               printUserLocation();
 
@@ -157,7 +156,7 @@ class CinemaHeaderDescription extends StatelessWidget {
                   ),
                 );
               } else {
-                AppLogs.errorLog("Latitude or Longitude is null");
+                // AppLogs.errorLog("Latitude or Longitude is null"); // Removed: was used for logging null lat/lng
               }
             },
             child: Container(
@@ -175,7 +174,7 @@ class CinemaHeaderDescription extends StatelessWidget {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   void _showMessage(String message) {
-    AppLogs.debugLog(message);
+    // AppLogs.debugLog(message); // Removed: was used for logging debug message
     showLocalNotification("📢 تنبيه", message); // Notification local
   }
 
@@ -232,12 +231,11 @@ class CinemaHeaderDescription extends StatelessWidget {
     try {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      String message =
-          'User location: ${position.latitude}, ${position.longitude}';
-      print(message);
-      // _showMessage(message);
+      // String message =
+      //     'User location: ${position.latitude}, ${position.longitude}';
+      // print(message);
     } catch (e) {
-      print('Error getting location: $e');
+      // print('Error getting location: $e');
       _showMessage('Error getting location: $e');
     }
   }

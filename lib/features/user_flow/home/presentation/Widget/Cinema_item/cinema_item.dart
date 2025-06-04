@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
 
 import '../../../../../../utils/navigation.dart';
 import '../../../../../../widgets/loading_indicator.dart';
@@ -48,12 +47,12 @@ class _CinemaItemState extends State<CinemaItem> {
                     style: TextStyle(color: Colors.white)),
               );
             } else {
-              AppLogs.scussessLog("start sorting ");
-              AppLogs.scussessLog(cinemas.toString());
+              //AppLogs.scussessLog("start sorting ");
+              //AppLogs.scussessLog(cinemas.toString());
 
-              AppLogs.scussessLog("end sorting ");
+              //AppLogs.scussessLog("end sorting ");
             }
-            AppLogs.scussessLog("start viewing ");
+            //AppLogs.scussessLog("start viewing ");
 
             return ListView.builder(
               scrollDirection: Axis.horizontal,

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
 import '../../../../../utils/dialog_utilits.dart';
@@ -81,7 +80,7 @@ class CinemaCubit extends Cubit<CinemaState> {
 
   Future<void> fetchCinemaComments(String cinemaId) async {
     try {
-      AppLogs.debugLog("Fetching comments for cinema: $cinemaId");
+      // AppLogs.debugLog("Fetching comments for cinema: $cinemaId");
       emit(CinemaCommentsLoading());
 
       final snapshot = await _firestore
@@ -90,7 +89,7 @@ class CinemaCubit extends Cubit<CinemaState> {
           .collection('comments')
           .orderBy('timestamp', descending: true)
           .get();
-      AppLogs.debugLog("Comments fetched: ${snapshot.docs.length}");
+      // AppLogs.debugLog("Comments fetched: ${snapshot.docs.length}");
       allComments = snapshot.docs.map((doc) => doc.data()).toList();
       if (allComments.length > 5) {
         commentsList = allComments.take(5).toList();
@@ -98,7 +97,7 @@ class CinemaCubit extends Cubit<CinemaState> {
         commentsList = allComments;
       }
 
-      AppLogs.debugLog("Comments done");
+      // AppLogs.debugLog("Comments done");
       comments = commentsList;
       emit(CinemaCommentsLoaded());
       emit(CinemaControllerToBottom());
@@ -114,7 +113,7 @@ class CinemaCubit extends Cubit<CinemaState> {
       final nextBatch = allComments.skip(currentLength).take(5).toList();
       commentsList.addAll(nextBatch);
       comments = commentsList;
-      AppLogs.debugLog("Comments loaded more");
+      // AppLogs.debugLog("Comments loaded more");
       emit(CinemaCommentsLoaded());
       emit(CinemaControllerToBottom());
     }

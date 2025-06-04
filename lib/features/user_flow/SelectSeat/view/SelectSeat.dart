@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../../../utils/app_logs.dart';
 import '../../../../utils/dialog_utilits.dart';
 import '../../../../utils/navigation.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';
@@ -87,7 +86,7 @@ class _SelectSeatState extends State<SelectSeat> {
           );
 
           if (selectedMovie.isNotEmpty) {
-            AppLogs.scussessLog("Movie '$movieName' found!");
+            // AppLogs.scussessLog("Movie '$movieName' found!"); // Removed: was used for logging found movie
 
             setState(() {
               timesList =
@@ -109,16 +108,16 @@ class _SelectSeatState extends State<SelectSeat> {
               }
             });
           } else {
-            print("Movie '$movieName' not found in cinema $cinemaId.");
+            // print("Movie '$movieName' not found in cinema $cinemaId."); // Removed: was used for debugging missing movie in cinema
           }
         } else {
-          print("No movies found in cinema $cinemaId.");
+          // print("No movies found in cinema $cinemaId."); // Removed: was used for debugging missing movies in cinema
         }
       } else {
-        print("No cinema found with ID: $cinemaId");
+        // print("No cinema found with ID: $cinemaId"); // Removed: was used for debugging missing cinema
       }
     } catch (e) {
-      print("Error fetching movies data: $e");
+      // print("Error fetching movies data: $e"); // Removed: was used for debugging errors during fetching movies data
     }
   }
 
@@ -162,16 +161,16 @@ class _SelectSeatState extends State<SelectSeat> {
           List<String>.from(selectedTimeData["reservedSeats"] as List);
     });
 
-    AppLogs.scussessLog("Reserved seats for $selectedTime: $reservedSeats");
+    // AppLogs.scussessLog("Reserved seats for $selectedTime: $reservedSeats"); // Removed: was used for logging reserved seats
   }
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var lang = S.of(context);
-    AppLogs.debugLog(selectedSeats.toString());
-    AppLogs.debugLog(_seatCategory.toString());
-    AppLogs.debugLog(_highestSeatCategory.toString());
+    // AppLogs.debugLog(selectedSeats.toString()); // Removed: was used for logging selected seats
+    // AppLogs.debugLog(_seatCategory.toString()); // Removed: was used for logging seat category
+    // AppLogs.debugLog(_highestSeatCategory.toString()); // Removed: was used for logging highest seat category
     if (selectedSeats.isEmpty) {
       _highestSeatCategory = '';
 
@@ -278,7 +277,7 @@ class _SelectSeatState extends State<SelectSeat> {
                         _highestSeatCategory = '';
 
                         _seatCategory = '';
-                        AppLogs.scussessLog("date is $_selectedDate");
+                        // AppLogs.scussessLog("date is $_selectedDate"); // Removed: was used for logging selected date
                       });
                     },
                   ),
@@ -363,19 +362,18 @@ class _SelectSeatState extends State<SelectSeat> {
 
   void getHall() {
     int selectedDateIndex = dates.indexOf(_selectedDate ?? "");
-    AppLogs.debugLog(selectedDateIndex.toString());
-    AppLogs.debugLog(_selectedDate.toString());
+    // AppLogs.debugLog(selectedDateIndex.toString()); // Removed: was used for logging selected date index
+    // AppLogs.debugLog(_selectedDate.toString()); // Removed: was used for logging selected date
+    // AppLogs.debugLog(halls[selectedDateIndex]); // Removed: was used for logging hall name
     _selectedHall = halls[selectedDateIndex];
-    AppLogs.debugLog(halls[selectedDateIndex]);
   }
 
   void _getHighestSeatCategory() {
     selectedSeats.sort((a, b) => num.parse(a).compareTo(num.parse(b)));
 
     num seatNumber = num.parse(selectedSeats[0]);
-    AppLogs.debugLog(selectedSeats.toString());
-
-    AppLogs.debugLog(seatNumber.toString());
+    // AppLogs.debugLog(selectedSeats.toString()); // Removed: was used for logging selected seats in _getHighestSeatCategory
+    // AppLogs.debugLog(seatNumber.toString()); // Removed: was used for logging seat number in _getHighestSeatCategory
 
     if (seatNumber <= 24) {
       _highestSeatCategory = "VIP";

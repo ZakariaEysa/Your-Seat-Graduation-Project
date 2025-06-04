@@ -7,7 +7,6 @@ import '../../../movie_details/data/model/movies_details_model/movies_details_mo
 import '../cubit/payment_cubit.dart';
 import 'payment_test.dart';
 import '../../../../../widgets/loading_indicator.dart';
-import '../../../../../utils/app_logs.dart';
 import '../widgets/payment_part.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../widgets/scaffold/scaffold_f.dart';
@@ -102,13 +101,14 @@ class Payment extends StatelessWidget {
                               Spacer(),
                               BlocListener<PaymentCubit, PaymentState>(
                                 listener: (context, state) {
-                                  AppLogs.errorLog(state.toString());
+                                  // AppLogs.errorLog(state.toString()); // Removed: was used for logging payment state
+                                  // AppLogs.errorLog(state.payToken.toString()); // Removed: was used for logging payment token
+                                  // AppLogs.debugLog("order id is "); // Removed: was used for logging order id
+                                  // AppLogs.scussessLog(PaymentCubit.get(context).orderIdForPaymentTicket); // Removed: was used for logging order id for payment ticket
                                   if (state is PaymentSuccess) {
-                                    AppLogs.errorLog(state.payToken.toString());
-                                    AppLogs.debugLog("order id is ");
-                                    AppLogs.scussessLog(
-                                        PaymentCubit.get(context)
-                                            .orderIdForPaymentTicket);
+                                    // AppLogs.errorLog(state.payToken.toString()); // Removed: was used for logging payment token
+                                    // AppLogs.debugLog("order id is "); // Removed: was used for logging order id
+                                    // AppLogs.scussessLog(PaymentCubit.get(context).orderIdForPaymentTicket); // Removed: was used for logging order id for payment ticket
 
                                     navigateTo(
                                         context: context,
@@ -127,17 +127,16 @@ class Payment extends StatelessWidget {
                                             paymentToken:
                                                 state.payToken ?? ""));
                                   } else if (state is PaymentError) {
-                                    AppLogs.errorLog(state.error.toString());
+                                    // AppLogs.errorLog(state.error.toString()); // Removed: was used for logging payment error
                                     showCenteredSnackBar(context,
                                         "Something went wrong please try again and check your connection");
                                   }
                                 },
                                 child: IconButton(
                                     onPressed: () async {
-                                      AppLogs.debugLog(date.toString());
-                                      AppLogs.debugLog(time.toString());
-
-                                      AppLogs.debugLog(seats.toString());
+                                      // AppLogs.debugLog(date.toString()); // Removed: was used for logging date
+                                      // AppLogs.debugLog(time.toString()); // Removed: was used for logging time
+                                      // AppLogs.debugLog(seats.toString()); // Removed: was used for logging seats
                                       bool canProceed =
                                           await checkSeatsAvailability(
                                         selectedSeats: seats,
@@ -301,14 +300,14 @@ class Payment extends StatelessWidget {
           .get();
 
       if (!cinemaSnapshot.exists) {
-        print("⚠️ السينما غير موجودة: $cinemaName");
+        // print("⚠️ السينما غير موجودة: $cinemaName");
         return false; // السينما غير موجودة، لا يمكن الحجز
       }
 
       Map<String, dynamic>? cinemaData =
           cinemaSnapshot.data() as Map<String, dynamic>?;
       if (cinemaData == null || !cinemaData.containsKey('movies')) {
-        print("⚠️ لا يوجد أفلام في هذه السينما.");
+        // print("⚠️ لا يوجد أفلام في هذه السينما.");
         return false;
       }
 
@@ -320,7 +319,7 @@ class Payment extends StatelessWidget {
       );
 
       if (selectedMovie.isEmpty) {
-        print("⚠️ الفيلم غير موجود في السينما: $movieName");
+        // print("⚠️ الفيلم غير موجود في السينما: $movieName");
         return false;
       }
 
@@ -332,7 +331,7 @@ class Payment extends StatelessWidget {
       );
 
       if (selectedDay.isEmpty) {
-        print("⚠️ لا يوجد عرض لهذا الفيلم في هذا اليوم: $date");
+        // print("⚠️ لا يوجد عرض لهذا الفيلم في هذا اليوم: $date");
         return false;
       }
 
@@ -344,7 +343,7 @@ class Payment extends StatelessWidget {
       );
 
       if (selectedTime.isEmpty) {
-        print("⚠️ لا يوجد عرض في هذا الوقت: $time");
+        // print("⚠️ لا يوجد عرض في هذا الوقت: $time");
         return false;
       }
 
@@ -357,15 +356,15 @@ class Payment extends StatelessWidget {
           selectedSeats.any((seat) => reservedSeats.contains(seat));
 
       if (isAnySeatReserved) {
-        print(
-            "❌ بعض المقاعد محجوزة بالفعل: ${selectedSeats.where((seat) => reservedSeats.contains(seat)).toList()}");
+        // print(
+        //     "❌ بعض المقاعد محجوزة بالفعل: ${selectedSeats.where((seat) => reservedSeats.contains(seat)).toList()}");
         return false; // ❌ يوجد مقاعد محجوزة، لا يمكن إتمام الحجز
       }
 
-      print("✅ المقاعد متاحة للحجز!");
+      // print("✅ المقاعد متاحة للحجز!");
       return true; // ✅ يمكن إتمام الحجز
     } catch (e) {
-      print("❌ خطأ أثناء التحقق من توفر المقاعد: $e");
+      // print("❌ خطأ أثناء التحقق من توفر المقاعد: $e");
       return false;
     }
   }

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../core/Network/api_service.dart';
 import '../models/chat_message_model.dart';
 
@@ -8,7 +7,7 @@ class ChatbotService {
 
   Future<Map<String, dynamic>> sendMessage(String message) async {
     try {
-      AppLogs.debugLog('Sending message: $message');
+      //AppLogs.debugLog('Sending message: $message');
       final response = await _apiService.postWithoutToken(
         endPoint: '/recommend',
         body: {'message': message},
@@ -26,7 +25,7 @@ class ChatbotService {
 
       return response.data;
     } catch (e) {
-      AppLogs.errorLog('Error sending message: $e');
+      //AppLogs.errorLog('Error sending message: $e');
       rethrow;
     }
   }
@@ -52,7 +51,7 @@ class ChatbotService {
                       MovieRecommendation.fromJson(recommendation))
                   .toList();
         } catch (e) {
-          AppLogs.errorLog('Error parsing recommendations: $e');
+          //AppLogs.errorLog('Error parsing recommendations: $e');
           // Continue without recommendations if parsing fails
         }
       }
@@ -63,7 +62,7 @@ class ChatbotService {
         recommendations: recommendations,
       );
     } catch (e) {
-      AppLogs.errorLog('Error getting recommendations: $e');
+      //AppLogs.errorLog('Error getting recommendations: $e');
       final errorMessage = e is String
           ? e
           : 'Sorry, I encountered an error. Please try again later.';

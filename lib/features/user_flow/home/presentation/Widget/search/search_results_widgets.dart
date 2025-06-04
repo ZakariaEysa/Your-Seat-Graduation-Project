@@ -302,7 +302,7 @@ class _SearchState extends State<Search> {
         }
       }
     } catch (e) {
-      print('❌ Error searching: $e');
+      // print('❌ Error searching: $e'); // Removed: was used for debugging search errors
     }
 
     return results; // ✅ إرجاع النتائج بعد التحديث

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../features/user_flow/notification/notification_cubit/notification_cubit.dart';
-import 'app_logs.dart';
 
 /// فئة لإدارة الإشعارات المحلية فقط
 class NotificationsManager {
@@ -20,13 +19,13 @@ class NotificationsManager {
     try {
       await requestNotificationPermission();
 
-      AppLogs.infoLog('Initializing local notifications only');
+      // AppLogs.infoLog('Initializing local notifications only'); // Removed: was used for logging notifications initialization
 
       await initializeLocalNotifications();
 
-      AppLogs.infoLog('Local notifications initialized successfully');
+      // AppLogs.infoLog('Local notifications initialized successfully'); // Removed: was used for logging notifications initialization success
     } catch (e) {
-      AppLogs.errorLog('Error initializing local notifications: $e');
+      // AppLogs.errorLog('Error initializing local notifications: $e'); // Removed: was used for logging notifications initialization error
       _showNotificationError(
           'حدث خطأ أثناء تهيئة الإشعارات المحلية، بعض الميزات قد لا تعمل.');
     }
@@ -35,9 +34,9 @@ class NotificationsManager {
   static Future<void> requestNotificationPermission() async {
     final status = await Permission.notification.request();
     if (status.isGranted) {
-      AppLogs.infoLog("Notification permission granted");
+      // AppLogs.infoLog("Notification permission granted"); // Removed: was used for logging notification permission granted
     } else {
-      AppLogs.errorLog("Notification permission denied");
+      // AppLogs.errorLog("Notification permission denied"); // Removed: was used for logging notification permission denied
       _notificationsEnabled = false;
       _showNotificationError(
           'تم رفض إذن الإشعارات. الرجاء تفعيله من الإعدادات.');
@@ -57,16 +56,16 @@ class NotificationsManager {
 
       await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
-      AppLogs.infoLog('Local notifications system is ready');
+      // AppLogs.infoLog('Local notifications system is ready'); // Removed: was used for logging local notifications system ready
     } catch (e) {
-      AppLogs.errorLog('Error during local notification init: $e');
+      // AppLogs.errorLog('Error during local notification init: $e'); // Removed: was used for logging local notification init error
     }
   }
 
   /// عرض إشعار محلي
   static Future<void> showLocalNotification(String title, String body) async {
     if (!_notificationsEnabled) {
-      AppLogs.infoLog('Notifications disabled, skipping notification');
+      // AppLogs.infoLog('Notifications disabled, skipping notification'); // Removed: was used for logging notifications disabled
       return;
     }
 
@@ -94,9 +93,9 @@ class NotificationsManager {
         payload: 'Default_Sound',
       );
 
-      AppLogs.infoLog('Local notification shown: $title - $body');
+      // AppLogs.infoLog('Local notification shown: $title - $body'); // Removed: was used for logging local notification shown
     } catch (e) {
-      AppLogs.errorLog('Error showing local notification: $e');
+      // AppLogs.errorLog('Error showing local notification: $e'); // Removed: was used for logging local notification error
     }
   }
 

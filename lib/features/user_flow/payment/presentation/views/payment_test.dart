@@ -6,10 +6,8 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yourseatgraduationproject/data/hive_keys.dart';
 import 'package:yourseatgraduationproject/data/hive_storage.dart';
-import 'package:yourseatgraduationproject/features/user_flow/notification/notification_cubit/notification_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/movie_details/data/model/movies_details_model/movies_details_model.dart';
 import 'package:yourseatgraduationproject/features/user_flow/payment/presentation/views/payment_successful.dart';
-import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import 'package:yourseatgraduationproject/utils/navigation.dart';
 
 import '../../../../../generated/l10n.dart';
@@ -192,11 +190,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
           } else if (url != null &&
               url.queryParameters.containsKey("success") &&
               url.queryParameters["success"] == "false") {
-            AppLogs.debugLog("❌ فشل في الدفع!");
+            // AppLogs.debugLog("❌ فشل في الدفع!");
           }
         },
         onReceivedError: (controller, request, error) {
-          AppLogs.errorLog(error.toString());
+          // AppLogs.errorLog(error.toString());
         },
       ),
     );
@@ -263,24 +261,23 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                 // ✅ تحديث Firestore
                 await cinemaRef.update({'movies': moviesList});
-                print("✅ تم تحديث المقاعد المحجوزة بنجاح!");
               } else {
-                print("❌ لم يتم العثور على الوقت المحدد داخل قائمة الأوقات!");
+                // print("❌ لم يتم العثور على الوقت المحدد داخل قائمة الأوقات!");
               }
             } else {
-              print("❌ لم يتم العثور على الوقت المحدد في القائمة!");
+              // print("❌ لم يتم العثور على الوقت المحدد في القائمة!");
             }
           } else {
-            print("❌ لم يتم العثور على الفيلم المحدد!");
+            // print("❌ لم يتم العثور على الفيلم المحدد!");
           }
         } else {
-          print("❌ لا يوجد أفلام مسجلة في السينما!");
+          // print("❌ لا يوجد أفلام مسجلة في السينما!");
         }
       } else {
-        print("❌ لم يتم العثور على السينما!");
+        // print("❌ لم يتم العثور على السينما!");
       }
     } catch (e) {
-      print("❌ خطأ أثناء تحديث البيانات: $e");
+      // print("❌ خطأ أثناء تحديث البيانات: $e");
     }
   }
 
@@ -293,7 +290,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       setState(() {
         currentUser = HiveStorage.getDefaultUser();
       });
-      AppLogs.scussessLog(currentUser.toString());
+      // AppLogs.scussessLog(currentUser.toString());
     }
 
     String userEmail = currentUser?.email ?? "unknown@email.com";
@@ -408,9 +405,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
         'purchaseTime': FieldValue.serverTimestamp(),
       });
 
-      print("✅ تم حفظ التذكرة بنجاح في حساب المستخدم!");
+      // print("✅ تم حفظ التذكرة بنجاح في حساب المستخدم!");
     } catch (e) {
-      print("❌ خطأ أثناء حفظ التذكرة للمستخدم: $e");
+      // print("❌ خطأ أثناء حفظ التذكرة للمستخدم: $e");
     }
   }
 
@@ -457,9 +454,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
         'purchaseTime': FieldValue.serverTimestamp(),
       });
 
-      print("✅ تم حفظ التذكرة في قسم التذاكر الخاص بالسينما!");
+      // print("✅ تم حفظ التذكرة في قسم التذاكر الخاص بالسينما!");
     } catch (e) {
-      print("❌ خطأ أثناء حفظ التذكرة في مجموعة السينما: $e");
+      // print("❌ خطأ أثناء حفظ التذكرة في مجموعة السينما: $e");
     }
   }
 }

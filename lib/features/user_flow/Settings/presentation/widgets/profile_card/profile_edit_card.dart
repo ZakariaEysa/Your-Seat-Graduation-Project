@@ -9,7 +9,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../../../data/hive_keys.dart';
 import '../../../../../../data/hive_storage.dart';
 import '../../../../../../generated/l10n.dart';
-import '../../../../../../utils/app_logs.dart';
 import '../../../../../../utils/navigation.dart';
 import '../../../../../../utils/permissions_manager.dart';
 import '../../../../../../widgets/loading_indicator.dart';
@@ -70,7 +69,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       currentUser = HiveStorage.getGoogleUser();
     } else {
       currentUser = HiveStorage.getDefaultUser();
-      AppLogs.scussessLog(currentUser.toString());
+      // AppLogs.scussessLog(currentUser.toString()); // Removed: was used for logging default user
     }
 
     String date = currentUser.dateOfBirth;
@@ -85,9 +84,9 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
           ? int.parse(splitDate[2])
           : null;
 
-      AppLogs.scussessLog("Date parsed successfully");
+      // AppLogs.scussessLog("Date parsed successfully"); // Removed: was used for logging date parsing success
     } catch (e) {
-      AppLogs.errorLog("Date parsing failed: $e");
+      // AppLogs.errorLog("Date parsing failed: $e"); // Removed: was used for logging date parsing failure
     }
 
     userController.text = currentUser.name;
@@ -176,12 +175,12 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
         const SnackBar(content: Text("Data Updated Successfully")),
       );
 
-      AppLogs.infoLog(HiveStorage.getDefaultUser().toString());
+      // AppLogs.infoLog(HiveStorage.getDefaultUser().toString()); // Removed: was used for logging default user
     } catch (e) {
+      // AppLogs.errorLog("Update profile failed: $e"); // Removed: was used for logging update profile failure
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Something Went Wrong")),
       );
-      AppLogs.errorLog("Update profile failed: $e");
     } finally {
       setState(() {
         isLoading = false;
@@ -232,7 +231,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
   Future<void> updateUserCommentsInAllCinemas(
       String newName, String newImage) async {
     try {
-      AppLogs.debugLog("start updating All comments ");
+      // AppLogs.debugLog("start updating All comments "); // Removed: was used for logging start of updating comments
 
       final userName = currentUser.name;
       final firestore = FirebaseFirestore.instance;
@@ -272,7 +271,7 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
           // ✅ لو عدد العمليات قرب من 500 (الحد الأقصى للدفعة)، نرسلها ونبدأ جديدة
           if (operationsCount == 450) {
             await batch.commit();
-            AppLogs.debugLog("Committed 450 updates, starting new batch...");
+            // AppLogs.debugLog("Committed 450 updates, starting new batch..."); // Removed: was used for logging batch commit
             operationsCount = 0;
           }
         }
@@ -281,12 +280,12 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
       // ✅ إرسال الدفعة النهائية إذا تبقى عمليات
       if (operationsCount > 0) {
         await batch.commit();
-        AppLogs.debugLog("Committed final batch of $operationsCount updates");
+        // AppLogs.debugLog("Committed final batch of $operationsCount updates"); // Removed: was used for logging final batch commit
       }
 
-      AppLogs.debugLog("✅ All comments updated successfully");
+      // AppLogs.debugLog("✅ All comments updated successfully"); // Removed: was used for logging comments update success
     } catch (e) {
-      AppLogs.errorLog("❌ Error updating user comments: $e");
+      // AppLogs.errorLog("❌ Error updating user comments: $e"); // Removed: was used for logging comments update failure
     }
   }
 

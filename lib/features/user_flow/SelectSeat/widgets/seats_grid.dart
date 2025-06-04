@@ -114,7 +114,6 @@ class _SeatsGridState extends State<SeatsGrid> {
   }
 
   String _getSeatImage(String seat, BuildContext context) {
-
     switch (seat) {
       case 'a':
         return 'assets/images/avaliableSeat.png'; // الصورة للمقعد المتاح

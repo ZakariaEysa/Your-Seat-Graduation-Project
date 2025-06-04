@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
-import 'app_logs.dart';
 import 'notifications_manager.dart';
 
 /// فئة لإدارة خدمات Firebase
@@ -22,10 +21,10 @@ class FirebaseManager {
       await _configureMessagingBackgroundHandler();
 
       _isFirebaseInitialized = true;
-      AppLogs.scussessLog('Firebase initialized successfully');
+      // AppLogs.scussessLog('Firebase initialized successfully'); // Removed: was used for logging Firebase initialization
     } catch (e) {
       _isFirebaseInitialized = false;
-      AppLogs.errorLog('Error initializing Firebase: $e');
+      // AppLogs.errorLog('Error initializing Firebase: $e'); // Removed: was used for logging Firebase initialization error
       _showFirebaseError(
           'حدث خطأ أثناء تهيئة Firebase. بعض الميزات قد لا تعمل بشكل صحيح.');
       // نسمح للتطبيق بالاستمرار حتى مع حدوث خطأ في تهيئة Firebase
@@ -44,9 +43,9 @@ class FirebaseManager {
         ),
       );
 
-      AppLogs.infoLog('Firebase Core initialized');
+      // AppLogs.infoLog('Firebase Core initialized'); // Removed: was used for logging Firebase Core initialization
     } catch (e) {
-      AppLogs.errorLog('Error initializing Firebase Core: $e');
+      // AppLogs.errorLog('Error initializing Firebase Core: $e'); // Removed: was used for logging Firebase Core initialization error
       throw Exception('Firebase Core initialization failed: $e');
     }
   }
@@ -58,9 +57,9 @@ class FirebaseManager {
         androidProvider: AndroidProvider.debug,
       );
 
-      AppLogs.infoLog('Firebase App Check activated');
+      // AppLogs.infoLog('Firebase App Check activated'); // Removed: was used for logging Firebase App Check activation
     } catch (e) {
-      AppLogs.errorLog('Error activating Firebase App Check: $e');
+      // AppLogs.errorLog('Error activating Firebase App Check: $e'); // Removed: was used for logging Firebase App Check activation error
       _showFirebaseError(
           'فشل تفعيل Firebase App Check. سيستمر التطبيق ولكن قد تكون هناك قيود على بعض الميزات.');
       // لا نقوم بإعادة إرسال الخطأ لأن AppCheck ليس ضروريًا تمامًا للتطبيق
@@ -72,9 +71,9 @@ class FirebaseManager {
     try {
       FirebaseMessaging.onBackgroundMessage(
           _firebaseMessagingBackgroundHandler);
-      AppLogs.infoLog('Firebase Messaging background handler configured');
+      // AppLogs.infoLog('Firebase Messaging background handler configured'); // Removed: was used for logging Firebase Messaging handler configuration
     } catch (e) {
-      AppLogs.errorLog('Error configuring Messaging background handler: $e');
+      // AppLogs.errorLog('Error configuring Messaging background handler: $e'); // Removed: was used for logging Firebase Messaging handler configuration error
       // لا نقوم بإعادة إرسال الخطأ لأن معالج الرسائل في الخلفية ليس ضروريًا تمامًا للتطبيق
     }
   }
@@ -97,9 +96,9 @@ class FirebaseManager {
         );
       }
 
-      AppLogs.debugLog('Handled background message: ${message.messageId}');
+      // AppLogs.debugLog('Handled background message: ${message.messageId}'); // Removed: was used for logging handled background message
     } catch (e) {
-      AppLogs.errorLog('Error handling background message: $e');
+      // AppLogs.errorLog('Error handling background message: $e'); // Removed: was used for logging background message error
       // لا نستطيع عرض رسائل خطأ في الخلفية
     }
   }

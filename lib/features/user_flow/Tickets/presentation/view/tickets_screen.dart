@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../utils/app_logs.dart';
 import '../../../../../utils/navigation.dart';
 import '../../../../../data/hive_keys.dart';
 import '../../../../../data/hive_storage.dart';
@@ -32,7 +31,7 @@ class _TicketPageState extends State<TicketPage> {
               : HiveStorage.getDefaultUser()?.email;
 
       if (userEmail == null) {
-        print("❌ Error: No user email found");
+        // print("❌ Error: No user email found");
         return;
       }
 
@@ -47,7 +46,7 @@ class _TicketPageState extends State<TicketPage> {
         }
       }
     } catch (e) {
-      print("❌ Error fetching tickets: $e");
+      // print("❌ Error fetching tickets: $e");
     }
     setState(() {
       isLoading = false;
@@ -62,7 +61,7 @@ class _TicketPageState extends State<TicketPage> {
               : HiveStorage.getDefaultUser()?.email;
 
       if (userEmail == null) {
-        print("❌ Error: No user email found");
+        // print("❌ Error: No user email found");
         return;
       }
 
@@ -90,9 +89,9 @@ class _TicketPageState extends State<TicketPage> {
         time: tickets[index]['time'],
         seatsToCancel: List<String>.from(tickets[index]['seats']),
       );
-      print("✅ تم تحديث الحالة بنجاح في جميع الأماكن.");
+      // print("✅ تم تحديث الحالة بنجاح في جميع الأماكن.");
     } catch (e) {
-      print("❌ Error canceling ticket: $e");
+      // print("❌ Error canceling ticket: $e");
     }
   }
 
@@ -112,7 +111,7 @@ class _TicketPageState extends State<TicketPage> {
           await firestore.collection('Cinemas').doc(cinemaName).get();
 
       if (!cinemaDocSnapshot.exists) {
-        print('❌ Cinema not found');
+        // print('❌ Cinema not found');
         return;
       }
 
@@ -126,7 +125,7 @@ class _TicketPageState extends State<TicketPage> {
       );
 
       if (movie == null) {
-        print('❌ Movie not found');
+        // print('❌ Movie not found');
         return;
       }
 
@@ -137,7 +136,7 @@ class _TicketPageState extends State<TicketPage> {
           (entry) => entry['date'] == date && entry['hall'] == hall);
 
       if (timeEntryIndex == -1) {
-        print('❌ Matching date & hall not found');
+        // print('❌ Matching date & hall not found');
         return;
       }
 
@@ -149,7 +148,7 @@ class _TicketPageState extends State<TicketPage> {
       final exactTimeIndex = timeList.indexWhere((t) => t['time'] == time);
 
       if (exactTimeIndex == -1) {
-        print('❌ Time not found');
+        // print('❌ Time not found');
         return;
       }
 
@@ -169,9 +168,9 @@ class _TicketPageState extends State<TicketPage> {
         'movies': moviesList,
       });
 
-      print('✅ Reserved seats updated successfully');
+      // print('✅ Reserved seats updated successfully');
     } catch (e) {
-      print('🔥 Error: $e');
+      // print('🔥 Error: $e');
     }
   }
 
@@ -201,19 +200,19 @@ class _TicketPageState extends State<TicketPage> {
 
           if (updated) {
             await cinemaRef.update({'tickets': tickets});
-            print(
-                '✅ تم تحديث التذكرة في السينما إلى "pending" للطلب: $orderId');
+            // print(
+            //     '✅ تم تحديث التذكرة في السينما إلى "pending" للطلب: $orderId');
           } else {
-            print('❌ لم يتم العثور على التذكرة داخل قائمة التذاكر.');
+            // print('❌ لم يتم العثور على التذكرة داخل قائمة التذاكر.');
           }
         } else {
-          print('❌ لا تحتوي هذه السينما على قائمة تذاكر.');
+          // print('❌ لا تحتوي هذه السينما على قائمة تذاكر.');
         }
       } else {
-        print('❌ السينما غير موجودة.');
+        // print('❌ السينما غير موجودة.');
       }
     } catch (e) {
-      print('❌ خطأ أثناء تحديث التذكرة في السينما: $e');
+      // print('❌ خطأ أثناء تحديث التذكرة في السينما: $e');
     }
   }
 
@@ -229,9 +228,9 @@ class _TicketPageState extends State<TicketPage> {
         'status': 'pending',
       });
 
-      print('✅ تم إضافة التذكرة إلى pending_tickets باسم المستند: $orderId');
+      // print('✅ تم إضافة التذكرة إلى pending_tickets باسم المستند: $orderId');
     } catch (e) {
-      print('❌ خطأ أثناء إضافة التذكرة إلى pending_tickets: $e');
+      // print('❌ خطأ أثناء إضافة التذكرة إلى pending_tickets: $e');
     }
   }
 
@@ -279,7 +278,7 @@ class _TicketPageState extends State<TicketPage> {
 
                             return InkWell(
                               onTap: () {
-                                AppLogs.scussessLog(ticket.toString());
+                                // AppLogs.scussessLog(ticket.toString()); // Removed: was used for logging ticket on tap
                                 if (ticket['status'].toString().toLowerCase() ==
                                     'active') {
                                   navigateTo(
@@ -305,8 +304,8 @@ class _TicketPageState extends State<TicketPage> {
                                     ),
                                   );
                                 } else {
-                                  print(
-                                      "🚫 لا يمكن عرض التذكرة لأن حالتها ليست 'active'");
+                                  // print(
+                                  //     "لا يمكن عرض التذكرة لأن حالتها ليست 'active'");
                                 }
                               },
                               child: TicketCard(

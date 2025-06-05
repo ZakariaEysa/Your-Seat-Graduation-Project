@@ -44,7 +44,7 @@ class _HeadWidgetState extends State<HeadWidget> {
             builder: (context, state) {
               String image = "assets/icons/no_notification_icon.png";
               if (state is NotificationLoaded) {
-                if (NotificationCubit.get(context).notifications.isNotEmpty) {
+                if (state.notifications.isNotEmpty) {
                   image = "assets/icons/notification_icon.png";
                 }
               }

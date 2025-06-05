@@ -86,7 +86,9 @@ class TicketCard extends StatelessWidget {
                             onCancel();
                             NotificationsManager.showLocalNotification(
                                 "Action Cancelled ✅",
-                                "You have canceled your ticket.");
+                                "You have canceled your ticket",
+                                "  ✅تم إلغاء الإجراء ",
+                                "لقد قمت بإلغاء تذكرتك");
                           },
                           child: Text(
                             'Cancel',

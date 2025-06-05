@@ -10,12 +10,13 @@ class NotificationInitial extends NotificationState {}
 class NotificationLoading extends NotificationState {}
 
 class NotificationLoaded extends NotificationState {
-  final List<Map<String, String>> notifications;
+
+    final List<Map<String, String>> notifications;
 
   NotificationLoaded(this.notifications);
 
   @override
-  List<Object?> get props => [notifications];
+  List<Object?> get props => [];
 }
 
 class NotificationError extends NotificationState {

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import '../notification_cubit/notification_cubit.dart';
-import '../notification_cubit/notification_state.dart';
+import 'package:yourseatgraduationproject/widgets/loading_indicator.dart';
+import '../../../../data/hive_keys.dart';
+import '../../../../data/hive_storage.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../widgets/app_bar/head_appbar.dart';
 import '../../../../widgets/scaffold/scaffold_f.dart';
-import '../../../../../widgets/loading_indicator.dart';
+import '../notification_cubit/notification_cubit.dart';
+import '../notification_cubit/notification_state.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -23,9 +25,7 @@ class _NotificationsState extends State<Notifications> {
   void initState() {
     super.initState();
     notificationCubit = NotificationCubit();
-    if (NotificationCubit.get(context).notifications.isEmpty) {
-      notificationCubit.fetchNotifications();
-    }
+    notificationCubit.fetchNotifications();
   }
 
   @override
@@ -46,14 +46,12 @@ class _NotificationsState extends State<Notifications> {
       body: BlocBuilder<NotificationCubit, NotificationState>(
         bloc: notificationCubit,
         builder: (context, state) {
-          // AppLogs.errorLog(state.toString()); // Removed: was used for logging notification state
           if (state is NotificationLoading) {
             return const LoadingIndicator();
           } else if (state is NotificationError) {
             return Center(child: Text('Error: ${state.message}'));
-          } else if (state is NotificationLoaded ||
-              NotificationCubit.get(context).notifications.isNotEmpty) {
-            final notifications = NotificationCubit.get(context).notifications;
+          } else if (state is NotificationLoaded) {
+            final notifications = state.notifications;
 
             if (notifications.isEmpty) {
               return Center(
@@ -68,10 +66,15 @@ class _NotificationsState extends State<Notifications> {
               padding: const EdgeInsets.only(top: 50, left: 10, right: 15),
               itemCount: notifications.length,
               itemBuilder: (context, index) {
+                final bool isArb = HiveStorage.get(HiveKeys.isArabic) ?? false;
                 final notification = notifications[index];
-                final title = notification['title'] ?? 'No Title';
-                final body = notification['body'] ?? 'No Body';
-                final time = notification['timeAgo'] ?? 'No Body';
+                final title = isArb
+                    ? notification['title_arb'] ?? 'No Title'
+                    : notification['title'] ?? 'No Title';
+                final body = isArb
+                    ? notification['body_arb'] ?? 'No Body'
+                    : notification['body'] ?? 'No Body';
+                final time = notification['timeAgo'] ?? 'No time';
 
                 return NotificationCard(
                   time: time,
@@ -79,7 +82,7 @@ class _NotificationsState extends State<Notifications> {
                   body: body,
                   index: index,
                   onDelete: (i) async {
-                    // print("تم حذف الإشعار رقم $i"); // Removed: was used for debugging notification deletion
+                    print("تم حذف الإشعار رقم $i");
                     await notificationCubit
                         .removeNotificationAtIndex(i); // أو أي دالة حذف
                   },

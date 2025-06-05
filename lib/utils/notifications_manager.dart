@@ -63,14 +63,14 @@ class NotificationsManager {
   }
 
   /// عرض إشعار محلي
-  static Future<void> showLocalNotification(String title, String body) async {
+  static Future<void> showLocalNotification(String title, String body,String titleAr, String bodyAr) async {
     if (!_notificationsEnabled) {
       // AppLogs.infoLog('Notifications disabled, skipping notification'); // Removed: was used for logging notifications disabled
       return;
     }
 
     try {
-      await NotificationCubit().addNotification(title, body);
+      await NotificationCubit().addNotification(title, body, titleAr, bodyAr);
 
       const AndroidNotificationDetails androidDetails =
           AndroidNotificationDetails(

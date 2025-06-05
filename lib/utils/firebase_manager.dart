@@ -91,9 +91,10 @@ class FirebaseManager {
 
       if (message.notification != null) {
         await NotificationsManager.showLocalNotification(
-          message.notification!.title ?? 'New Notification',
-          message.notification!.body ?? '',
-        );
+            message.notification!.title ?? 'New Notification',
+            message.notification!.body ?? '',
+            "",
+            "");
       }
 
       // AppLogs.debugLog('Handled background message: ${message.messageId}'); // Removed: was used for logging handled background message

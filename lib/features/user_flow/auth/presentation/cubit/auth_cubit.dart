@@ -39,7 +39,10 @@ class AuthCubit extends Cubit<AuthState> {
         (failure) => emit(GoogleAuthError(
             "Sorry there was an error , please try again later")), (user) {
       NotificationsManager.showLocalNotification(
-          "Logged In Successfully ✅", "Welcome Back !");
+          "Logged In Successfully ✅",
+          "Welcome Back !",
+          " تم تسجيل الدخول ✅بنجاح ",
+          "مرحباً عزيزي المستخدم");
       emit(GoogleAuthSuccess(user));
     });
   }
@@ -67,7 +70,10 @@ class AuthCubit extends Cubit<AuthState> {
         if (message == "LoginSuccessful") {
           emit(UserValidationSuccess(message));
           NotificationsManager.showLocalNotification(
-              "Logged In Successfully ✅", "Welcome Back !");
+              "Logged In Successfully ✅",
+              "Welcome Back !",
+              " تم تسجيل الدخول ✅بنجاح ",
+              "مرحباً عزيزي المستخدم");
         } else {
           emit(UserValidationError(message));
 
@@ -119,8 +125,8 @@ class AuthCubit extends Cubit<AuthState> {
         userModel: userModel ??
             UserModel(name: "", email: "", password: "", dateOfBirth: ""));
     final String name = userModel?.name ?? "";
-    NotificationsManager.showLocalNotification(
-        "Registered Successfully ✅", "Hello! $name");
+    NotificationsManager.showLocalNotification("Registered Successfully ✅",
+        "Hello! $name", " ✅تم التسجيل بنجاح ", "مرحباً عزيزي المستخدم");
   }
 
   Future<void> updateUserPassword(String userEmail, String newPassword) async {

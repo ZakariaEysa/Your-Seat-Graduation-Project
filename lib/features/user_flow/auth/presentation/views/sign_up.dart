@@ -28,15 +28,13 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  bool agree = false; // يبدأ بدون موافقة.
+  bool agree = false;
   bool obscure = true;
   bool obscure2 = true;
   bool privacyPolicy = false;
   String verificationId = "";
   FirebaseAuth auth = FirebaseAuth.instance;
-
   bool isError = false;
-
   final List<int> days = List<int>.generate(31, (index) => index + 1);
   final List<int> years = List<int>.generate(70, (index) => 2015 - index);
 
@@ -406,9 +404,6 @@ class _SignUpState extends State<SignUp> {
                 showCenteredSnackBar(context, state.errorMessage);
               }
               if (state is AuthSuccess) {
-                //AppLogs.successLog("create");
-
-                // HiveStorage.set(HiveKeys.role, Role.email.toString());
                 navigateTo(context: context, screen: Otp());
               }
             },
@@ -436,13 +431,7 @@ class _SignUpState extends State<SignUp> {
         auth.selectedDay == null ||
         auth.selectedYear == null) {
       showCenteredSnackBar(context, "Please select your full birth date");
-      //
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(
-      //     content: Text(),
-      //     duration: Duration(seconds: 2),
-      //   ),
-      // );
+
       return;
     }
 

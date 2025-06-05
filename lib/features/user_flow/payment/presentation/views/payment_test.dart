@@ -332,7 +332,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
 
 //تم حجز التذكره بنجاح استمتع ب المشاهده
-    await NotificationsManager.showLocalNotification(title, body);
+
+    await NotificationsManager.showLocalNotification(title, body,"تم حجز تذكرتك بنجاح ✅","تم حجز التذكرة بنجاح استمتع بمشاهدة الفيلم");
+
+    // await NotificationsManager.showLocalNotification(title, body);
 
     navigateAndRemoveUntil(
       context: context,

@@ -135,7 +135,7 @@ class _SeatsGridState extends State<SeatsGrid> {
       case 'r':
         return colorScheme.onSurface; // اللون المحجوز من الثيم
       case 's':
-        return colorScheme.surfaceContainerHighest; // اللون المختار من الثيم
+        return colorScheme.surfaceVariant; // اللون المختار من الثيم
       default:
         return Colors.grey; // لو في حالة غير معرفة
     }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:yourseatgraduationproject/utils/app_logs.dart';
 import '../cubit/auth_cubit.dart';
 import 'otp.dart';
 import 'sign_in.dart';
@@ -151,6 +152,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       BotToast.showText(text: lang.user_not_found);
                     }
                   } catch (e) {
+                    // AppLogs.errorLog(e.toString());
                     BotToast.showText(
                         text:
                             " something went wrong please check your network");

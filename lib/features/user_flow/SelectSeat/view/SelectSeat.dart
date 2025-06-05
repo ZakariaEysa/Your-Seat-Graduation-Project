@@ -237,7 +237,7 @@ class _SelectSeatState extends State<SelectSeat> {
                         SeatsType(
                           color: Theme.of(context)
                               .colorScheme
-                              .surfaceContainerHighest, // selected
+                              .surfaceVariant, // selected
                           text: lang.selected,
                         ),
                       ]),

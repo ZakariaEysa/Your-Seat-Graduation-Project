@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/cubit/coming_soon_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/cubit/coming_soon_state.dart';
-import '../../../../../../utils/app_logs.dart';
 import '../../../../../../utils/navigation.dart';
 import '../../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../../movie_details/presentation/views/movie_details.dart';
@@ -28,7 +27,7 @@ class _ComingSoonState extends State<ComingSoon> {
 
     final cubit = context.read<ComingSoonCubit>();
     final currentState = cubit.state;
-AppLogs.successLog(currentState.toString());
+// AppLogs.successLog(currentState.toString());
     if (currentState is! ComingSoonLoaded &&
         currentState is! ComingSoonLoading) {
       cubit.fetchComingMovies();

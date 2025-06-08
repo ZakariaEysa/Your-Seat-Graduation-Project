@@ -7,6 +7,8 @@ abstract class ComingSoonState extends Equatable {
 
 class ComingSoonLoading extends ComingSoonState {}
 
+class ComingSoonInitial extends ComingSoonState {}
+
 class ComingSoonLoaded extends ComingSoonState {
   final List<Map<String, dynamic>> movies;
 

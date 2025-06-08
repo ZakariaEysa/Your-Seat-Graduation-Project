@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
-import 'package:device_preview/device_preview.dart';
 import 'features/user_flow/movie_details/data/remote_data_source/movie_details_remote_data_source.dart';
 import 'features/user_flow/movie_details/data/repos_impl/movie_details_repo_impl.dart';
 import 'features/user_flow/movie_details/presentation/cubit/movie_details_cubit.dart';
@@ -37,34 +36,31 @@ void main() async {
   await AppInitializer.initializeRemainingAsyncTasks();
 
   runApp(
-    DevicePreview(
-      enabled: false,
-      builder: (context) => MultiBlocProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
-          BlocProvider(create: (_) => SwitchLanguageCubit()),
-          BlocProvider(
-            create: (_) => AuthCubit(
-              AuthRepoImpl(AuthRemoteDataSourceImpl(
-                FirebaseAuth.instance,
-                GoogleSignIn(),
-              )),
-            ),
+    MultiBlocProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoriteMoviesProvider()),
+        BlocProvider(create: (_) => SwitchLanguageCubit()),
+        BlocProvider(
+          create: (_) => AuthCubit(
+            AuthRepoImpl(AuthRemoteDataSourceImpl(
+              FirebaseAuth.instance,
+              GoogleSignIn(),
+            )),
           ),
-          BlocProvider(
-            create: (_) => MovieDetailsCubit(
-              MovieDetailsRepoImpl(MovieDetailsRemoteDataSourceImpl()),
-            ),
+        ),
+        BlocProvider(
+          create: (_) => MovieDetailsCubit(
+            MovieDetailsRepoImpl(MovieDetailsRemoteDataSourceImpl()),
           ),
-          BlocProvider(create: (_) => CinemaCubit()),
-          BlocProvider(create: (_) => CinemaItemCubit()),
-          BlocProvider(create: (_) => MovieCarouselCubit()),
-          BlocProvider(create: (_) => ComingSoonCubit()),
-          BlocProvider(create: (_) => WatchListCubit()),
-          BlocProvider(create: (_) => NotificationCubit()),
-        ],
-        child: const MyApp(),
-      ),
+        ),
+        BlocProvider(create: (_) => CinemaCubit()),
+        BlocProvider(create: (_) => CinemaItemCubit()),
+        BlocProvider(create: (_) => MovieCarouselCubit()),
+        BlocProvider(create: (_) => ComingSoonCubit()),
+        BlocProvider(create: (_) => WatchListCubit()),
+        BlocProvider(create: (_) => NotificationCubit()),
+      ],
+      child: const MyApp(),
     ),
   );
 }
@@ -103,24 +99,25 @@ class _MyAppState extends State<MyApp> {
             splitScreenMode: true,
             builder: (_, child) {
               return MaterialApp(
-                  theme: theme.currentTheme,
-                  locale: HiveStorage.get(HiveKeys.isArabic)
-                      ? const Locale('ar')
-                      : const Locale('en'),
-                  localizationsDelegates: const [
-                    S.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                  ],
-                  supportedLocales: S.delegate.supportedLocales,
-                  debugShowCheckedModeBanner: false,
-                  builder: (context, child) {
-                    child = BotToastInit()(context, child);
-                    return DevicePreview.appBuilder(context, child);
-                  },
-                  navigatorObservers: [BotToastNavigatorObserver()],
-                  home: SplashScreen());
+                theme: theme.currentTheme,
+                locale: HiveStorage.get(HiveKeys.isArabic)
+                    ? const Locale('ar')
+                    : const Locale('en'),
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+                debugShowCheckedModeBanner: false,
+                builder: (context, child) {
+                  child = BotToastInit()(context, child);
+                  return child;
+                },
+                navigatorObservers: [BotToastNavigatorObserver()],
+                home: SplashScreen(),
+              );
             },
           );
         },

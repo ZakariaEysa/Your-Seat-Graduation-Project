@@ -5,6 +5,7 @@ abstract class MovieCarouselState extends Equatable {
   List<Object?> get props => [];
 }
 
+class MovieCarouselInitial extends MovieCarouselState {}
 class MovieCarouselLoading extends MovieCarouselState {}
 
 class MovieCarouselLoaded extends MovieCarouselState {

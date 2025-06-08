@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'movies_state.dart';
 
 class MovieCarouselCubit extends Cubit<MovieCarouselState> {
-  MovieCarouselCubit() : super(MovieCarouselLoading());
+  MovieCarouselCubit() : super(MovieCarouselInitial());
 
   Future<void> fetchMovies() async {
     try {

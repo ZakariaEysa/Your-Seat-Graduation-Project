@@ -157,11 +157,14 @@ class _ProfileEditCardState extends State<ProfileEditCard> {
         });
         return;
       }
+      if (changed == true) {
+        await updateUserCommentsInAllCinemas(
+            updatedData['name'] ?? currentUser.name,
+            updatedData['image'] ?? currentUser.image);
+      }
 
       await userDoc.update(updatedData);
-      await updateUserCommentsInAllCinemas(
-          updatedData['name'] ?? currentUser.name,
-          updatedData['image'] ?? currentUser.image);
+
       HiveStorage.saveDefaultUser(UserModel(
         name: updatedData['name'] ?? currentUser.name,
         email: currentUser.email,

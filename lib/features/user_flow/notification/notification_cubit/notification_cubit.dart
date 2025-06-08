@@ -3,15 +3,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/hive_keys.dart';
 import '../../../../data/hive_storage.dart';
-import '../../../../utils/app_logs.dart';
 import 'notification_state.dart';
 
 class NotificationCubit extends Cubit<NotificationState> {
-  NotificationCubit() : super(NotificationInitial());
+  NotificationCubit() : super(NotificationInitial()) {}
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  var currentUserEmail = HiveStorage.getDefaultUser()?.email ?? "";
+  late String currentUser;
+
+  String _getCurrentUser() {
+    final googleUser = HiveStorage.getGoogleUser();
+    final defaultUser = HiveStorage.getDefaultUser();
+
+    //print("Role: $role");
+    //print("Google email: ${googleUser?.email}");
+    //print("Default email: ${defaultUser?.email}");
+
+    if (googleUser != null) {
+      return googleUser?.email ?? "";
+    } else {
+      return defaultUser?.email ?? "";
+    }
+  }
 
   static NotificationCubit get(context) =>
       BlocProvider.of<NotificationCubit>(context);
@@ -19,9 +33,13 @@ class NotificationCubit extends Cubit<NotificationState> {
   List<Map<String, String>> allNotifications = [];
 
   Future<void> initializeNotificationList() async {
+    // if (currentUser == null) {
+    //   getCurrentUser();
+    // }
+    currentUser = _getCurrentUser();
     emit(NotificationLoading());
     try {
-      final userDoc = firestore.collection('users').doc(currentUserEmail);
+      final userDoc = firestore.collection('users').doc(currentUser);
       final snapshot = await userDoc.get();
 
       if (snapshot.exists) {
@@ -42,8 +60,14 @@ class NotificationCubit extends Cubit<NotificationState> {
 
   Future<void> addNotification(
       String titleEn, String bodyEn, String titleAr, String bodyAr) async {
+    currentUser = _getCurrentUser();
     try {
-      final userDoc = firestore.collection('users').doc(currentUserEmail);
+      //print("currentUser: $currentUser");
+      // if (currentUser == "") {
+      //   currentUser = _getCurrentUser();
+      // }
+
+      final userDocRef = firestore.collection('users').doc(currentUser);
 
       final Map<String, dynamic> notification = {
         'title': titleEn,
@@ -53,68 +77,43 @@ class NotificationCubit extends Cubit<NotificationState> {
         'timestamp': DateTime.now().toIso8601String(),
       };
 
-      await userDoc.update({
-        'notifications': FieldValue.arrayUnion([notification]),
-      });
+      final userSnapshot = await userDocRef.get();
+
+      if (!userSnapshot.exists) {
+        await userDocRef.set({
+          'notifications': [notification],
+        });
+      } else {
+        final data = userSnapshot.data() ?? {};
+        final hasNotifications = data.containsKey('notifications');
+
+        if (hasNotifications) {
+          await userDocRef.update({
+            'notifications': FieldValue.arrayUnion([notification]),
+          });
+        } else {
+          await userDocRef.update({
+            'notifications': [notification],
+          });
+        }
+      }
 
       await fetchNotifications();
     } catch (e) {
+      //print("Error adding notification: $e");
       emit(NotificationError(e.toString()));
     }
   }
 
-  // Future<void> removeNotificationAtIndex(int index) async {
-  //   try {
-  //     //AppLogserrorLog(notifications.length.toString());
-
-  //     //AppLogserrorLog(notifications.toString());
-  //     // //AppLogserrorLog(notifications.length.toString());
-
-  //     //AppLogserrorLog(index.toString());
-  //     emit(NotificationLoading());
-
-  //     final userDoc = firestore.collection('users').doc(currentUserEmail);
-  //     final snapshot = await userDoc.get();
-
-  //     if (!snapshot.exists) {
-  //       emit(NotificationError("User document does not exist"));
-  //       return;
-  //     }
-
-  //     final data = snapshot.data();
-  //     final List<dynamic> notificationsq = data?['notifications'] ?? [];
-
-  //     if (index < 0 || index >= notificationsq.length) {
-  //       emit(NotificationError("Invalid notification index"));
-  //       return;
-  //     }
-  //     notifications.removeAt(index);
-  //     // //AppLogserrorLog(notifications.length.toString());
-
-  //     // //AppLogserrorLog(notifications.toString());
-
-  //     // if (notifications.length == 1) {
-  //     //   notifications = [];
-  //     // } else {
-  //     //   notifications.removeAt(index);
-  //     // }
-  //     // //AppLogserrorLog(notifications.length.toString());
-
-  //     // //AppLogserrorLog(notifications.toString());
-
-  //     await userDoc.update({'notifications': notificationsq});
-
-  //     await fetchNotifications();
-  //   } catch (e) {
-  //     emit(NotificationError(e.toString()));
-  //   }
-  // }
   Future<void> removeNotificationAtIndex(int index) async {
+    currentUser = _getCurrentUser();
     try {
-      //AppLogserrorLog(allNotifications.length.toString());
+      // if (currentUser == null) {
+      //   getCurrentUser();
+      // }
       emit(NotificationLoading());
 
-      final userDoc = firestore.collection('users').doc(currentUserEmail);
+      final userDoc = firestore.collection('users').doc(currentUser);
       final snapshot = await userDoc.get();
 
       if (!snapshot.exists) {
@@ -135,10 +134,8 @@ class NotificationCubit extends Cubit<NotificationState> {
       await userDoc.update({
         'notifications': FieldValue.arrayRemove([notificationToRemove])
       });
-      //AppLogserrorLog(allNotifications.length.toString());
-      allNotifications = [];
-      emit(NotificationLoaded(allNotifications));
 
+      // لا نفرغ القائمة، نعيد تحميلها بعد الحذف
       await fetchNotifications();
     } catch (e) {
       emit(NotificationError(e.toString()));
@@ -171,12 +168,14 @@ class NotificationCubit extends Cubit<NotificationState> {
   }
 
   Future<void> fetchNotifications() async {
-    //AppLogserrorLog(allNotifications.length.toString());
-
+    currentUser = _getCurrentUser();
+    // if (currentUser == null) {
+    //   getCurrentUser();
+    // }
     emit(NotificationLoading());
     try {
       final userDoc =
-          await firestore.collection('users').doc(currentUserEmail).get();
+          await firestore.collection('users').doc(currentUser).get();
       if (userDoc.exists) {
         final data = userDoc.data();
         final List<dynamic> rawList = data?['notifications'] ?? [];

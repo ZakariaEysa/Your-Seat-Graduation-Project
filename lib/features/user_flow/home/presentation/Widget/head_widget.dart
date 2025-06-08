@@ -42,10 +42,17 @@ class _HeadWidgetState extends State<HeadWidget> {
           ),
           BlocBuilder<NotificationCubit, NotificationState>(
             builder: (context, state) {
+              // print(state.toString());
+              // print(NotificationCubit.get(context).allNotifications.toString());
+
               String image = "assets/icons/no_notification_icon.png";
               if (state is NotificationLoaded) {
+                // print(state.notifications.length.toString());
+
                 if (state.notifications.isNotEmpty) {
                   image = "assets/icons/notification_icon.png";
+                } else {
+                  image = "assets/icons/no_notification_icon.png";
                 }
               }
               return GestureDetector(

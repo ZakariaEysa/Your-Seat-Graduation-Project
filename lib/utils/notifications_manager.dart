@@ -19,13 +19,13 @@ class NotificationsManager {
     try {
       await requestNotificationPermission();
 
-      // AppLogs.infoLog('Initializing local notifications only'); // Removed: was used for logging notifications initialization
+      // //appLogs.infoLog('Initializing local notifications only'); // Removed: was used for logging notifications initialization
 
       await initializeLocalNotifications();
 
-      // AppLogs.infoLog('Local notifications initialized successfully'); // Removed: was used for logging notifications initialization success
+      // //appLogs.infoLog('Local notifications initialized successfully'); // Removed: was used for logging notifications initialization success
     } catch (e) {
-      // AppLogs.errorLog('Error initializing local notifications: $e'); // Removed: was used for logging notifications initialization error
+      // //appLogs.errorLog('Error initializing local notifications: $e'); // Removed: was used for logging notifications initialization error
       _showNotificationError(
           'حدث خطأ أثناء تهيئة الإشعارات المحلية، بعض الميزات قد لا تعمل.');
     }
@@ -34,9 +34,9 @@ class NotificationsManager {
   static Future<void> requestNotificationPermission() async {
     final status = await Permission.notification.request();
     if (status.isGranted) {
-      // AppLogs.infoLog("Notification permission granted"); // Removed: was used for logging notification permission granted
+      // //appLogs.infoLog("Notification permission granted"); // Removed: was used for logging notification permission granted
     } else {
-      // AppLogs.errorLog("Notification permission denied"); // Removed: was used for logging notification permission denied
+      // //appLogs.errorLog("Notification permission denied"); // Removed: was used for logging notification permission denied
       _notificationsEnabled = false;
       _showNotificationError(
           'تم رفض إذن الإشعارات. الرجاء تفعيله من الإعدادات.');
@@ -56,21 +56,26 @@ class NotificationsManager {
 
       await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
-      // AppLogs.infoLog('Local notifications system is ready'); // Removed: was used for logging local notifications system ready
+      // //appLogs.infoLog('Local notifications system is ready'); // Removed: was used for logging local notifications system ready
     } catch (e) {
-      // AppLogs.errorLog('Error during local notification init: $e'); // Removed: was used for logging local notification init error
+      // //appLogs.errorLog('Error during local notification init: $e'); // Removed: was used for logging local notification init error
     }
   }
 
   /// عرض إشعار محلي
-  static Future<void> showLocalNotification(String title, String body,String titleAr, String bodyAr) async {
+  static Future<void> showLocalNotification(
+      String title, String body, String titleAr, String bodyAr) async {
     if (!_notificationsEnabled) {
-      // AppLogs.infoLog('Notifications disabled, skipping notification'); // Removed: was used for logging notifications disabled
-      return;
+      await requestNotificationPermission();
+      if (!_notificationsEnabled) return;
+
+      // //appLogs.infoLog('Notifications disabled, skipping notification'); // Removed: was used for logging notifications disabled
     }
 
     try {
+      //appLogs.successLog("start showing");
       await NotificationCubit().addNotification(title, body, titleAr, bodyAr);
+      //appLogs.successLog("end showing");
 
       const AndroidNotificationDetails androidDetails =
           AndroidNotificationDetails(
@@ -93,9 +98,9 @@ class NotificationsManager {
         payload: 'Default_Sound',
       );
 
-      // AppLogs.infoLog('Local notification shown: $title - $body'); // Removed: was used for logging local notification shown
+      // //appLogs.infoLog('Local notification shown: $title - $body'); // Removed: was used for logging local notification shown
     } catch (e) {
-      // AppLogs.errorLog('Error showing local notification: $e'); // Removed: was used for logging local notification error
+      // //appLogs.errorLog('Error showing local notification: $e'); // Removed: was used for logging local notification error
     }
   }
 

@@ -29,7 +29,7 @@ class _NotificationsState extends State<Notifications> {
     // print(NotificationCubit.get(context).allNotifications.length);
 
     if (NotificationCubit.get(context).allNotifications.isEmpty) {
-      print("fetching notifications");
+      // print("fetching notifications");
       NotificationCubit.get(context).fetchNotifications();
     }
   }

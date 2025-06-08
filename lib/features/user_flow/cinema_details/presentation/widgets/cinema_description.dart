@@ -3,8 +3,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:geolocator/geolocator.dart';
-
 import '../views/route_map.dart';
 import '../../../../../widgets/network_image/image_replacer.dart';
 

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'coming_soon_state.dart';
 
 class ComingSoonCubit extends Cubit<ComingSoonState> {
-  ComingSoonCubit() : super(ComingSoonLoading());
+  ComingSoonCubit() : super(ComingSoonInitial());
 
   Future<void> fetchComingMovies() async {
     try {

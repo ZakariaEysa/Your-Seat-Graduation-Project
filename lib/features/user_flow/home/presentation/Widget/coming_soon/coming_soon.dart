@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/cubit/coming_soon_cubit.dart';
 import 'package:yourseatgraduationproject/features/user_flow/now_playing/cubit/coming_soon_state.dart';
+import '../../../../../../utils/app_logs.dart';
 import '../../../../../../utils/navigation.dart';
 import '../../../../movie_details/data/model/movies_details_model/movies_details_model.dart';
 import '../../../../movie_details/presentation/views/movie_details.dart';
@@ -16,10 +17,28 @@ class ComingSoon extends StatefulWidget {
 }
 
 class _ComingSoonState extends State<ComingSoon> {
+  final PageController _pageController = PageController(
+    viewportFraction: 0.5,
+    initialPage: 1,
+  );
+
   @override
   void initState() {
     super.initState();
-    context.read<ComingSoonCubit>().fetchComingMovies();
+
+    final cubit = context.read<ComingSoonCubit>();
+    final currentState = cubit.state;
+AppLogs.successLog(currentState.toString());
+    if (currentState is! ComingSoonLoaded &&
+        currentState is! ComingSoonLoading) {
+      cubit.fetchComingMovies();
+    }
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -37,10 +56,7 @@ class _ComingSoonState extends State<ComingSoon> {
             return const Center(child: Text('No movies found'));
           } else {
             return PageView.builder(
-              controller: PageController(
-                viewportFraction: 0.5,
-                initialPage: 1,
-              ),
+              controller: _pageController,
               itemCount: movies.length,
               itemBuilder: (context, index) {
                 final movie = movies[index];

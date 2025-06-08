@@ -17,26 +17,43 @@ class MovieCarouselWidget extends StatefulWidget {
 }
 
 class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
-  final PageController _pageController =
-      PageController(viewportFraction: 0.7, initialPage: 1);
-  int _currentPage = 1;
+  final PageController _pageController = PageController(
+    viewportFraction: 0.7,
+    initialPage: 1,
+  );
+
+  final ValueNotifier<int> _currentPageNotifier = ValueNotifier<int>(1);
 
   @override
   void initState() {
     super.initState();
-    context.read<MovieCarouselCubit>().fetchMovies();
+
+    final cubit = context.read<MovieCarouselCubit>();
+    final currentState = cubit.state;
+    //appLogs.successLog(currentState.toString());
+
+    if (currentState is! MovieCarouselLoaded &&
+        currentState is! MovieCarouselLoading) {
+      cubit.fetchMovies();
+    }
     _pageController.addListener(() {
-      setState(() {
-        _currentPage = _pageController.page!.round();
-      });
+      _currentPageNotifier.value = _pageController.page!.round();
     });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    _currentPageNotifier.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MovieCarouselCubit, MovieCarouselState>(
       builder: (context, state) {
-        //AppLogs.debugLog(state.toString());
+        //appLogs.successLog(state.toString());
+
         if (state is MovieCarouselLoading) {
           return const LoadingIndicator();
         } else if (state is MovieCarouselError) {
@@ -69,7 +86,7 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                                 child: Transform.scale(
                                   scale: Curves.easeOut.transform(value),
                                   child: Opacity(
-                                    opacity: _currentPage == index ? 1.0 : 0.5,
+                                    opacity: value.clamp(0.5, 1.0),
                                     child: child,
                                   ),
                                 ),
@@ -97,22 +114,27 @@ class _MovieCarouselWidgetState extends State<MovieCarouselWidget> {
                   bottom: 45.h,
                   left: 0.w,
                   right: 0.w,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(5, (index) {
-                      return AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        margin: EdgeInsets.symmetric(horizontal: 5.sp),
-                        width: _currentPage == index ? 40.w : 10.w,
-                        height: 8.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.r),
-                          color: _currentPage == index
-                              ? const Color(0xffFCC434)
-                              : const Color(0xff2E2E2E),
-                        ),
+                  child: ValueListenableBuilder<int>(
+                    valueListenable: _currentPageNotifier,
+                    builder: (context, currentPage, _) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(5, (index) {
+                          return AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            margin: EdgeInsets.symmetric(horizontal: 5.sp),
+                            width: currentPage == index ? 40.w : 10.w,
+                            height: 8.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.r),
+                              color: currentPage == index
+                                  ? const Color(0xffFCC434)
+                                  : const Color(0xff2E2E2E),
+                            ),
+                          );
+                        }),
                       );
-                    }),
+                    },
                   ),
                 ),
               ],

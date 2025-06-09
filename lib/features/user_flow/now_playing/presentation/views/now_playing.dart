@@ -26,7 +26,7 @@ class NowPlaying extends StatelessWidget {
           .map((doc) => MoviesDetailsModel.fromJson(doc.data()))
           .toList();
     } catch (e) {
-      // print("Error fetching movies: $e"); // Removed: was used for debugging errors during fetching movies
+      print("Error fetching movies: $e");
       return [];
     }
   }

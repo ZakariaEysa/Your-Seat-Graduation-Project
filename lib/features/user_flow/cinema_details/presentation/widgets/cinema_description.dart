@@ -3,6 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../utils/dialog_utilits.dart';
 import '../views/route_map.dart';
 import '../../../../../widgets/network_image/image_replacer.dart';
 
@@ -147,6 +148,8 @@ class CinemaHeaderDescription extends StatelessWidget {
                   ),
                 );
               } else {
+                showCenteredSnackBar(
+                    context, "No Address Specified Yet From The Owner");
                 // AppLogs.errorLog("Latitude or Longitude is null"); // Removed: was used for logging null lat/lng
               }
             },

@@ -12,7 +12,7 @@ platform :android do
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
       groups: "YourSeatTesting",
-      release_notes: "app is ready for testing (last version ✅) .",
+      release_notes: "Final Version ✅ .",
       upload_timeout: 5000 # بدل timeout
 
     )

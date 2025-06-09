@@ -121,7 +121,8 @@ class _SearchState extends State<Search> {
                           padding: EdgeInsets.all(8.0.w),
                           child: InkWell(
                             onTap: () {
-                              if (result['id'].toString().contains('Cinema')) {
+                              if (result['id'].toString().contains('Cinema') ||
+                                  result['id'].toString().contains('admin')) {
                                 navigateTo(
                                   context: context,
                                   screen: CinemaDetails(
@@ -263,10 +264,36 @@ class _SearchState extends State<Search> {
       bool isSingleLetter = lowerCaseSearchTerm.length ==
           1; // ✅ التحقق إذا كان البحث بحرف واحد فقط
 
-      // ✅ البحث عن الأفلام بالاسم فقط إذا كان البحث بحرف واحد
-      QuerySnapshot moviesSnapshot = await db.collection('MoviesBackUp').get();
+      QuerySnapshot moviesSnapshot =
+          await db.collection('playing now films').get();
 
       for (var doc in moviesSnapshot.docs) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+
+        String movieName = data['name']?.toString().toLowerCase() ?? '';
+        List<dynamic> castList = data['cast'] ?? [];
+
+        bool movieMatches = isSingleLetter
+            ? movieName.startsWith(
+                lowerCaseSearchTerm) // ✅ لو حرف واحد، يبحث فقط في بداية اسم الفيلم
+            : movieName.contains(
+                lowerCaseSearchTerm); // ✅ لو أكثر من حرف، يمكن أن يكون في أي مكان
+
+        bool actorMatches = !isSingleLetter &&
+            castList.any((actor) =>
+                actor.toString().toLowerCase() == lowerCaseSearchTerm);
+        // ✅ البحث عن اسم الممثل كاملاً فقط إذا كان البحث بأكثر من حرف
+
+        if ((movieMatches || actorMatches) && !seenIds.contains(doc.id)) {
+          seenIds.add(doc.id);
+          results.add({'id': doc.id, ...data});
+        }
+      }
+
+      QuerySnapshot comingSoonMoviesSnapshot =
+          await db.collection('Movies').get();
+
+      for (var doc in comingSoonMoviesSnapshot.docs) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
         String movieName = data['name']?.toString().toLowerCase() ?? '';

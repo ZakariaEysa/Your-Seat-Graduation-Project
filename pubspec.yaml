@@ -67,6 +67,8 @@ dependencies:
   timeline_calendar: ^1.0.2
   url_launcher: ^6.1.5
   webview_flutter: ^4.10.0
+dependency_overrides:
+  intl: 0.20.2
 
 dev_dependencies:
   build_runner: ^2.4.11

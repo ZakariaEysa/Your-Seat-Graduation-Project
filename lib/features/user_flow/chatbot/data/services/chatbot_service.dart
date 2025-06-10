@@ -7,7 +7,6 @@ class ChatbotService {
 
   Future<Map<String, dynamic>> sendMessage(String message) async {
     try {
-      //AppLogs.debugLog('Sending message: $message');
       final response = await _apiService.postWithoutToken(
         endPoint: '/recommend',
         body: {'message': message},
@@ -19,13 +18,12 @@ class ChatbotService {
       }
 
       // Check if response has the expected structure
-      if (response.data == null || response.data['response'] == null) {
+      if (response.data == null || response.data['bot'] == null) {
         throw 'Invalid response format from server';
       }
 
       return response.data;
     } catch (e) {
-      //AppLogs.errorLog('Error sending message: $e');
       rethrow;
     }
   }
@@ -34,24 +32,16 @@ class ChatbotService {
     try {
       final jsonResponse = await sendMessage(message);
 
-      // Validate response structure
-      if (jsonResponse['response'] == null ||
-          jsonResponse['response']['bot'] == null) {
-        throw 'Invalid response format from server';
-      }
-
-      final botMessage = jsonResponse['response']['bot'] as String;
+      final botMessage = jsonResponse['bot'] as String;
 
       List<MovieRecommendation> recommendations = [];
-      if (jsonResponse['response']['recommendations'] != null) {
+      if (jsonResponse['recommendations'] != null) {
         try {
-          recommendations =
-              (jsonResponse['response']['recommendations'] as List)
-                  .map((recommendation) =>
-                      MovieRecommendation.fromJson(recommendation))
-                  .toList();
+          recommendations = (jsonResponse['recommendations'] as List)
+              .map((recommendation) =>
+                  MovieRecommendation.fromJson(recommendation))
+              .toList();
         } catch (e) {
-          //AppLogs.errorLog('Error parsing recommendations: $e');
           // Continue without recommendations if parsing fails
         }
       }
@@ -62,7 +52,6 @@ class ChatbotService {
         recommendations: recommendations,
       );
     } catch (e) {
-      //AppLogs.errorLog('Error getting recommendations: $e');
       final errorMessage = e is String
           ? e
           : 'Sorry, I encountered an error. Please try again later.';

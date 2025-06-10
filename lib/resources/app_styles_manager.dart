@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yourseatgraduationproject/data/hive_stroage.dart';
-import 'package:yourseatgraduationproject/resources/color_manager.dart';
 
 import '../data/hive_keys.dart';
+import '../data/hive_storage.dart';
+import 'color_manager.dart';
 
 class AppStylesManager {
   final double fontSize;
@@ -23,17 +23,15 @@ class AppStylesManager {
       color: color,
     );
   }
+
   //! app Style manager add more TextStyle if needed
 
-  // example
   static TextStyle customTextStyleBl = TextStyle(
     fontSize: 16.0.sp,
     fontWeight: FontWeight.w700,
     color: ColorManager.primaryBL2,
     fontFamily: HiveStorage.get(HiveKeys.isArabic) ? 'GE Dinar One' : 'Manrope',
   );
-
-  // example
 
   static List<BoxShadow> customBoxShadow() {
     return [
@@ -52,7 +50,6 @@ class AppStylesManager {
     ];
   }
 
-  // example
   static ShapeDecoration buildContainerDecoration() {
     return ShapeDecoration(
       color: Colors.white,
@@ -63,18 +60,16 @@ class AppStylesManager {
     );
   }
 
-  static ShapeDecoration backGroundDecorations() {
+  static ShapeDecoration backGroundDecorations(BuildContext context) {
+    final theme = Theme.of(context);
+
     return ShapeDecoration(
-      gradient: const LinearGradient(
-        begin: const Alignment(0.00, 1.00),
-        end: const Alignment(0, -1),
-        colors: [const Color(0xFF0E0A1C), const Color(0xFF2F1472)],
-      ),
+      color: Theme.of(context).colorScheme.primary,
       shape: RoundedRectangleBorder(
         side: BorderSide(
           width: 1.w,
           strokeAlign: BorderSide.strokeAlignOutside,
-          color: const Color(0xFF8059E1),
+          color: theme.colorScheme.primary,
         ),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(50.sp),
@@ -83,7 +78,7 @@ class AppStylesManager {
       ),
       shadows: [
         BoxShadow(
-          color: const Color(0x3F000000),
+          color: Colors.black.withOpacity(0.25),
           blurRadius: 8.sp,
           offset: const Offset(0, 4),
           spreadRadius: 15.sp,

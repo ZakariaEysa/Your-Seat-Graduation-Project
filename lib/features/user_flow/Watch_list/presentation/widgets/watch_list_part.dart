@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../widgets/network_image/image_replacer.dart';
 
 class WatchListPart extends StatelessWidget {
   final String smallimage;
@@ -7,6 +8,7 @@ class WatchListPart extends StatelessWidget {
   final String title;
   final String smalltitle;
   final String image;
+  final VoidCallback onRemove;
 
   const WatchListPart({
     super.key,
@@ -15,65 +17,90 @@ class WatchListPart extends StatelessWidget {
     required this.time,
     required this.smallimage,
     required this.smalltitle,
+    required this.onRemove,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: EdgeInsets.all(15.sp),
       child: Container(
-        width: 500.w, // Use screen width
-        height: 150.h,
+        width: double.infinity,
+        height: 150.0.h,
         decoration: const BoxDecoration(
           color: Colors.transparent,
         ),
         child: Row(
           children: [
-            Image.asset(
-              image,
-              width: 100.w,
-              height: 150.h,
-              fit: BoxFit.cover,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 18),
-                  ),
-                  const SizedBox(height:7),
-                  Row(
-                    children: [
-                      Image.asset(smallimage, width:70, height:30),
-                      const SizedBox(width: 10),
-                      Text(
-                        smalltitle,
-                        style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    time,
-                    style: theme.textTheme.bodyMedium!.copyWith(
-                      fontSize: 16,
-                      color: const Color(0XFFD9D9D9),
-                    ),
-                  ),
-                ],
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.r),
+              child: ImageReplacer(
+                imageUrl: image,
+                height: 150.h,
+                width: 100.w,
+                fit: BoxFit.cover,
               ),
             ),
-            const Spacer(),
+            // ClipRRect(
+            //   child: Image.network(
+            //     image,
+            //     width: 100.w,
+            //     height: 150.h,
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
+            SizedBox(width: 10.w), // إضافة مسافة لمنع الالتصاق
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(16.sp),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style:
+                          theme.textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 7.h),
+                    Row(
+                      children: [
+                        Image.asset(smallimage, width: 60.w, height: 25.h),
+                        SizedBox(width: 10.w),
+                        Expanded(
+                          child: Text(
+                            smalltitle,
+                            style: theme.textTheme.bodyMedium!
+                                .copyWith(fontSize: 14.sp),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      time,
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        fontSize: 11.sp,
+                        color: const Color(0XFFD9D9D9),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 100, right: 5),
-              child: Image.asset(
-                'assets/icons/close.png',
-                width: 25,
-                height: 25,
+              padding: EdgeInsets.only(bottom: 100.h, right: 5.w),
+              child: InkWell(
+                onTap: onRemove,
+                child: Icon(
+                  Icons.cancel,
+                  color: theme.colorScheme.onSecondary,
+                  size: 22.sp,
+                ),
               ),
             ),
           ],

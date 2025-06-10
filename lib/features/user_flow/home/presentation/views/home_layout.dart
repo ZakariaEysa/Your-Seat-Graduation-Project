@@ -1,11 +1,14 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:yourseatgraduationproject/features/user_flow/home/presentation/views/home_screen.dart';
-import '../../../Settings/presentation/views/settings_screen.dart';
-import '../../../Tickets/tickets_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../utils/permissions_manager.dart';
+import '../../../notification/notification_cubit/notification_cubit.dart';
+import '../../../Settings/presentation/views/setting_page.dart';
+import 'home_screen.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../Tickets/presentation/view/tickets_screen.dart';
 import '../../../Watch_list/presentation/views/watch_list.dart';
-import '../../../Watch_list/presentation/widgets/watch_list_part.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});
@@ -15,22 +18,32 @@ class HomeLayout extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeLayout> {
+  @override
+  void initState() {
+    NotificationCubit().initializeNotificationList();
+
+    // NotificationCubit().addNotification("Finally", "Tesssssssssst");
+    PermissionsManager.requestLocationPermission();
+
+    super.initState();
+  }
+
   int selectedIndex = 0;
 
   List<Widget> pages = [
     const HomeScreen(),
-    const WatchList(),
-    const TicketPage(),
-
-    const SettingsPage(),
+    WatchList(),
+    TicketPage(),
+    SettingsPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    var lang = S.of(context);
     return Scaffold(
       body: pages[selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: const Color(0xff140B2D),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         color: const Color(0xFF27125B),
         onTap: (index) {
           setState(() {
@@ -48,8 +61,8 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/home.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 0 ? 'Home' : '',
-            labelStyle: const TextStyle(color: Colors.white),
+            label: selectedIndex == 0 ? lang.home : '',
+            labelStyle: TextStyle(color: Colors.white, fontSize: 16.sp),
           ),
           CurvedNavigationBarItem(
             child: ImageIcon(
@@ -58,8 +71,8 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/watch_list_icon.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 1 ? 'Watch List' : '',
-            labelStyle: const TextStyle(color: Colors.white),
+            label: selectedIndex == 1 ? lang.watchlist : '',
+            labelStyle: TextStyle(color: Colors.white, fontSize: 16.sp),
           ),
           CurvedNavigationBarItem(
             child: ImageIcon(
@@ -68,8 +81,8 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/ticket.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 2 ? 'Ticket' : '',
-            labelStyle: const TextStyle(color: Colors.white),
+            label: selectedIndex == 2 ? lang.tickets : '',
+            labelStyle: TextStyle(color: Colors.white, fontSize: 17.sp),
           ),
           CurvedNavigationBarItem(
             child: ImageIcon(
@@ -78,8 +91,8 @@ class _HomeScreenState extends State<HomeLayout> {
                   : const AssetImage("assets/icons/settings.png"),
               color: Colors.white,
             ),
-            label: selectedIndex == 3 ? 'Settings' : '',
-            labelStyle: const TextStyle(color: Colors.white),
+            label: selectedIndex == 3 ? lang.settings : '',
+            labelStyle: TextStyle(color: Colors.white, fontSize: 17.sp),
           ),
         ],
       ),

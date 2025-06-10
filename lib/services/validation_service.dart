@@ -47,7 +47,7 @@ class ValidationService {
       // print('$value is a valid phone number');
     } else {
       // ignore: avoid_print
-      print('done');
+      // print('done');
       return null;
     }
   }

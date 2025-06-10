@@ -8,5 +8,4 @@ class EndPoints {
   static String rate_endpoint = "https://www.omdbapi.com/?apikey=825e0c29&t=";
   // static String baseUrl = "https://web-production-bff6.up.railway.app";
   static String baseUrl = "https://web-production-18ef5.up.railway.app";
-  
 }
